@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethics for Accountants - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Ethics for Accountants - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            An accounting practitioner accepts a commission fee from a software vendor for recommending their platform to clients, without disclosing this financial benefit to the clients. This directly violates which core principle?<br>
+            Ethical Principle: <select id="ans1"><option value="">Select</option><option value="w">Integrity</option><option value="correct">Objectivity</option><option value="w">Confidentiality</option></select>
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A small practice is hired to draft the final accounts for a firm and subsequently asked to perform the independent external audit on those same records. What category of ethical threat does this represent?<br>
+            Type of Threat: <select id="ans2"><option value="">Select</option><option value="correct">Self-review threat</option><option value="w">Familiarity threat</option><option value="w">Intimidation threat</option></select>
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            Under the Proceeds of Crime Act (POCA), an accountant becomes actively involved in negotiating a commercial property acquisition using funds they know were obtained through criminal activities. Under the statutory framework, what is the maximum prison sentence for this primary offense of money laundering?<br>
+            Maximum Sentence: <input type="text" id="ans3" placeholder="0"> years
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A senior manager discovers accounting irregularities and reports them internally to the MLRO. The supervisor subsequently leaks this information to an external third party before any regulatory evaluation. This illegal disclosure is defined as:<br>
+            Offense Type: <select id="ans4"><option value="">Select</option><option value="w">Market Collusion</option><option value="correct">Tipping Off</option><option value="w">Pre-emption</option></select>
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            An aggressive tax inspector threatens to initiate a full-scale corporate structural audit on an accounting firm's practice unless they accept a disputed transaction treatment. This scenario creates an:<br>
+            Type of Threat: <select id="ans5"><option value="">Select</option><option value="w">Self-interest threat</option><option value="correct">Intimidation threat</option><option value="w">Advocacy threat</option></select>
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            A business client is identified as a Politically Exposed Person (PEP) during onboarding checks. Under the current Money Laundering Regulations, the accounting firm must automatically apply which level of due diligence?<br>
+            Due Diligence Level: <select id="ans6"><option value="">Select</option><option value="w">Simplified Due Diligence (SDD)</option><option value="w">Standard Due Diligence (CDD)</option><option value="correct">Enhanced Due Diligence (EDD)</option></select>
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            Under the fundamental principle of "Professional Behaviour", an accountant is prohibited from making exaggerated claims about the services they can offer or disparaging comparisons against the work of other practitioners.<br>
+            Is this statement True or False?<br>
+            Answer: <select id="ans7"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            An accounting firm has two clients who are direct competitors in a specialized manufacturing industry bid. To safeguard client confidentiality and objectivity, the firm must implement operational "chinesewalls".<br>
+            Is this statement True or False?<br>
+            Answer: <select id="ans8"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            An accounting assistant notices that a client is deliberately manipulating payroll records to underpay national insurance contributions. Overlooking this event to avoid personal conflict directly breaches the principle of:<br>
+            Ethical Principle: <select id="ans9"><option value="">Select</option><option value="correct">Integrity</option><option value="w">Confidentiality</option><option value="w">Objectivity</option></select>
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            Under the UK Bribery Act, if a commercial organisation fails to prevent bribery committed by an associated person acting on its behalf, the organization faces a corporate fine. What is the statutory limit for this corporate financial penalty on indictment?<br>
+            Corporate Fine Limit: <select id="ans10"><option value="">Select</option><option value="w">Maximum of £50,000</option><option value="w">Maximum of £5,000,000</option><option value="correct">An unlimited financial penalty</option></select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A corporate accountant is asked to sign off on a sustainability report containing environmental compliance metrics that they have not checked or verified. This request threatens the principle of:<br>
+            Ethical Principle: <select id="ans11"><option value="">Select</option><option value="w">Confidentiality</option><option value="correct">Professional Competence and Due Care</option><option value="w">Professional Behaviour</option></select>
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            Under the current UK Money Laundering Regulations, when an accounting firm establishes a new professional relationship with a credit client, how long must they retain the Customer Due Diligence (CDD) documents after the business relationship ends?<br>
+            Retention Period: <input type="text" id="ans12" placeholder="0"> years
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            A junior technician discovers fraudulent activity within their corporate department. To protect whistleblowers, which specific UK legislative framework provides statutory employment protection against unfair dismissal or detriment?<br>
+            Act Title (e.g., Public Interest Disclosure Act): <input type="text" id="ans13" placeholder="Public Interest Disclosure Act" style="text-align: left; width: 240px;">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            An accountant acts as a trustee for a client's estate and receives a request to invest the trust funds into a commercial venture owned by the accountant's sibling. This structural conflict primarily creates a:<br>
+            Type of Threat: <select id="ans14"><option value="">Select</option><option value="correct">Self-interest threat</option><option value="w">Advocacy threat</option><option value="w">Intimidation threat</option></select>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            If a professional body determines that an AAT member has committed a serious breach of the Code of Ethics, they hold the statutory power to permanently expel the member from the association and cancel their practice license.<br>
+            Is this statement True or False?<br>
+            Answer: <select id="ans15"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            isCorrect = (document.getElementById('ans1').value === 'correct');
+        } else if (currentQ === 2) {
+            isCorrect = (document.getElementById('ans2').value === 'correct');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '14');
+        } else if (currentQ === 4) {
+            isCorrect = (document.getElementById('ans4').value === 'correct');
+        } else if (currentQ === 5) {
+            isCorrect = (document.getElementById('ans5').value === 'correct');
+        } else if (currentQ === 6) {
+            isCorrect = (document.getElementById('ans6').value === 'correct');
+        } else if (currentQ === 7) {
+            isCorrect = (document.getElementById('ans7').value === 'correct');
+        } else if (currentQ === 8) {
+            isCorrect = (document.getElementById('ans8').value === 'correct');
+        } else if (currentQ === 9) {
+            isCorrect = (document.getElementById('ans9').value === 'correct');
+        } else if (currentQ === 10) {
+            isCorrect = (document.getElementById('ans10').value === 'correct');
+        } else if (currentQ === 11) {
+            isCorrect = (document.getElementById('ans11').value === 'correct');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '5');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim().toLowerCase();
+            isCorrect = (val === 'public interest disclosure act' || val === 'pida');
+        } else if (currentQ === 14) {
+            isCorrect = (document.getElementById('ans14').value === 'correct');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
