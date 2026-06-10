@@ -249,9 +249,10 @@
                 }
             `;
 
-                    const doc = examWindow.document;
+                                const doc = examWindow.document;
             doc.open();
             doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT Exam Session</title><style>' + htmlStyle + '</style></head><body></body></html>');
+            doc.write('<script src="https://cloudflare.com"></' + 'script>');
             doc.close();
 
             const body = doc.body;
@@ -268,7 +269,7 @@
             examForm.id = "examForm";
             container.appendChild(examForm);
 
-                    questionsData.forEach((task, index) => {
+            questionsData.forEach((task, index) => {
                 const qNum = index + 1;
                 const card = doc.createElement("div");
                 card.className = "task-card";
@@ -291,8 +292,18 @@
             subBtn.onclick = function() { examWindow.processEntireExam(); };
             
             const pdfBtn = doc.createElement("button");
-            pdfBtn.type = "button"; pdfBtn.className = "btn-pdf-exam"; pdfBtn.innerText = "Save Exam as PDF";
-            pdfBtn.onclick = function() { examWindow.print(); };
+            pdfBtn.type = "button"; pdfBtn.className = "btn-pdf-exam"; pdfBtn.innerText = "Download Exam PDF";
+            
+            pdfBtn.onclick = function() {
+                const pdfOptions = {
+                    margin: 10,
+                    filename: 'AAT-Mock-Exam-Level-' + levelSelected + '.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                examWindow.html2pdf().from(container).set(pdfOptions).save();
+            };
 
             actionGroup.appendChild(subBtn);
             actionGroup.appendChild(pdfBtn);
@@ -302,6 +313,7 @@
             scoreBar.id = "overallScoreBar"; scoreBar.className = "score-bar";
             scoreBar.innerText = "Current Performance: Submit your exam sheet to calculate final grade accuracy.";
             container.appendChild(scoreBar);
+
 
                     examWindow.processEntireExam = function() {
                 let correctAnswersCount = 0; const totalQuestions = 15;
