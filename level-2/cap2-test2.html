@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookkeeping Controls - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Bookkeeping Controls - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            The Purchase Ledger Control Account (PLCA) has an opening credit balance of £18,900. During the month, credit purchases totals from the Purchase Day Book are £12,400, purchase returns are £850, and cash paid to credit suppliers equals £13,200. Calculate the closing credit balance of the PLCA:<br>
+            Closing PLCA Balance: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A customer's cheque for £380 is returned by the bank as dishonoured. State the correct entries required to record this in the General Ledger:<br>
+            Account to Debit: <select id="ans2_deb"><option value="">Select</option><option value="correct">Sales Ledger Control Account</option><option value="w">Bank Account</option></select><br>
+            Account to Credit: <select id="ans2_crd"><option value="">Select</option><option value="w">Sales Account</option><option value="correct">Bank Account</option></select>
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            The balance of the Sales Ledger Control Account (SLCA) is £16,400. A contra entry of £420 needs to be processed to offset an equal balance in the Purchase Ledger. Calculate the revised SLCA balance:<br>
+            Revised SLCA Balance: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            An extraction of individual accounts from the Purchase Ledger shows a total sum of £9,120. However, the Purchase Ledger Control Account shows a balance of £9,360. It is discovered that a purchase returns day book entry of £240 was omitted from the individual supplier's account. Calculate the reconciled final balance:<br>
+            Reconciled Balance: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A motor vehicle purchase of £8,000 was correctly entered into the cash book but completely omitted from the Motor Vehicles asset account in the General Ledger. What type of accounting error has occurred?<br>
+            Type of Error: <select id="ans5"><option value="">Select</option><option value="w">Error of Principle</option><option value="correct">Single Entry Error (Affects Trial Balance)</option><option value="w">Error of Omission</option></select>
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            The total of the discounts received column in the Cash Book equals £310. Select the correct double entry posting required in the General Ledger:<br>
+            Debit: <select id="ans6_deb"><option value="">Select</option><option value="correct">Purchase Ledger Control Account</option><option value="w">Discounts Received Account</option></select><br>
+            Credit: <select id="ans6_crd"><option value="">Select</option><option value="w">Purchase Ledger Control Account</option><option value="correct">Discounts Received Account</option></select>
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A Trial Balance has a total debit sum of £45,200 and a total credit sum of £44,850. A Suspense Account is opened to balance the records. State the initial position of the Suspense Account:<br>
+            Suspense Account Balance: £ <input type="text" id="ans7" placeholder="0.00"> <select id="ans7_side"><option value="">Side</option><option value="w">Debit</option><option value="correct">Credit</option></select>
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            A bank reconciliation check indicates an unpresented cheque of £450 and an outstanding lodgement of £620. If the adjusted Cash Book balance is £2,100 (debit), calculate the final balance that should appear on the Bank Statement:<br>
+            Bank Statement Balance: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A credit sales invoice of £520 was completely recorded under the name of P. Smith instead of B. Smith. What type of accounting error has occurred?<br>
+            Type of Error: <select id="ans9"><option value="">Select</option><option value="w">Error of Principle</option><option value="correct">Error of Commission</option><option value="w">Error of Omission</option></select>
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A suspense account contains a debit balance of £240 caused by a credit purchase invoice of £240 being correctly recorded in the Purchase Day Book but debited to the Purchases account as £420 instead of £240. Calculate the journal adjustment value and side needed to clear the suspense account:<br>
+            Amount to adjust: £ <input type="text" id="ans10_val" placeholder="0.00"><br>
+            Suspense Account Entry: <select id="ans10_side"><option value="">Select</option><option value="w">Debit</option><option value="correct">Credit</option></select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            Before preparing the final trial balance, the VAT Control Account has a debit balance of £3,150 (Input VAT) and a credit balance of £1,920 (Output VAT). Calculate the net VAT balance to be reported:<br>
+            Net VAT Amount: £ <input type="text" id="ans11_val" placeholder="0.00"><br>
+            Position: <select id="ans11_side"><option value="">Select</option><option value="correct">VAT Recoverable (Asset)</option><option value="w">VAT Payable (Liability)</option></select>
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            An extract of the monthly payroll summary shows: Gross Wages £12,400, PAYE Deductions £2,100, National Insurance Deductions £950. Calculate the total employer liability for Net Wages to be credited to the Bank account:<br>
+            Net Wages Payable: £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            The totals of the discounts allowed column in the Sales Book equal £380. State the exact effect this total has on the Sales Ledger Control Account (SLCA):<br>
+            The SLCA must be: <select id="ans13"><option value="">Select</option><option value="w">Debited</option><option value="correct">Credited</option></select> for £ 380.00
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A purchase invoice of £512 was incorrectly recorded in the Purchase Day Book as £521. To correct this error through the General Journal, what amount must be posted to restore the true value?<br>
+            Correction Value: £ <input type="text" id="ans14_val" placeholder="0.00"><br>
+            Account to Debit: <select id="ans14_deb"><option value="">Select</option><option value="w">Purchases Account</option><option value="correct">Purchase Ledger Control Account</option></select>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A business owner pays a private utility bill of £150 using the business bank account, and the clerk records it by debiting the business Electricity Expenses account. What type of accounting error has occurred?<br>
+            Type of Error: <select id="ans15"><option value="">Select</option><option value="correct">Error of Principle</option><option value="w">Error of Commission</option><option value="w">Compensating Error</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '17250' || val === '17250.00');
+        } else if (currentQ === 2) {
+            let deb = document.getElementById('ans2_deb').value;
+            let crd = document.getElementById('ans2_crd').value;
+            isCorrect = (deb === 'correct' && crd === 'correct');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '15980' || val === '15980.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '9120' || val === '9120.00');
+        } else if (currentQ === 5) {
+            isCorrect = (document.getElementById('ans5').value === 'correct');
+        } else if (currentQ === 6) {
+            let deb = document.getElementById('ans6_deb').value;
+            let crd = document.getElementById('ans6_crd').value;
+            isCorrect = (deb === 'correct' && crd === 'correct');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            let side = document.getElementById('ans7_side').value;
+            isCorrect = ((val === '350' || val === '350.00') && side === 'correct');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '1930' || val === '1930.00');
+        } else if (currentQ === 9) {
+            isCorrect = (document.getElementById('ans9').value === 'correct');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10_val').value.trim();
+            let side = document.getElementById('ans10_side').value;
+            isCorrect = ((val === '180' || val === '180.00') && side === 'correct');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11_val').value.trim();
+            let side = document.getElementById('ans11_side').value;
+            isCorrect = ((val === '1230' || val === '1230.00') && side === 'correct');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '9350' || val === '9350.00');
+        } else if (currentQ === 13) {
+            isCorrect = (document.getElementById('ans13').value === 'correct');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14_val').value.trim();
+            let deb = document.getElementById('ans14_deb').value;
+            isCorrect = ((val === '9' || val === '9.00') && deb === 'correct');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
