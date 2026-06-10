@@ -1,414 +1,231 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osborne Books - Chapter 1 Test 2</title>
+    <title>Osborne Books | Bookkeeping Transactions Test Two | Online questions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
             background-color: #fff;
-            margin: 0 auto;
-            padding: 30px;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            color: #000;
+            margin: 20px;
+            font-size: 13px;
         }
-        h1 {
-            color: #0056b3;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 10px;
-            font-size: 24px;
+        .nav-top {
+            font-size: 11px;
+            margin-bottom: 20px;
         }
-        h2 {
-            color: #555;
-            font-size: 18px;
-            margin-top: 0;
+        .nav-top a {
+            color: #0000ee;
+            text-decoration: underline;
         }
-        .exercise {
-            background-color: #fafafa;
-            border-left: 5px solid #0056b3;
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-        }
-        .exercise-title {
+        .header-title {
+            font-size: 16px;
             font-weight: bold;
-            color: #0056b3;
-            margin-bottom: 10px;
+            color: #000;
+            margin-bottom: 20px;
         }
-        .formula {
-            background-color: #eee;
-            padding: 10px;
-            font-family: "Courier New", Courier, monospace;
-            display: inline-block;
-            margin-bottom: 10px;
+        .question-block {
+            display: none;
         }
-        label {
+        .question-block.active {
             display: block;
-            margin: 8px 0 4px;
+        }
+        .scenario {
+            margin-bottom: 20px;
+            line-height: 1.5;
+            max-width: 700px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        th {
             font-weight: bold;
-            font-size: 14px;
+            font-style: italic;
+            text-align: left;
+            padding: 5px 10px 5px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #000;
+        }
+        td {
+            padding: 8px 10px 8px 0;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+        .money-prefix {
+            font-size: 13px;
+            margin-right: 2px;
         }
         input[type="text"], input[type="number"], select {
-            width: 100%;
-            max-width: 300px;
-            padding: 6px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+            padding: 3px;
+            font-size: 12px;
+            border: 1px solid #7a7a7a;
+            width: 90px;
         }
-        .inline-inputs input {
-            width: 80px;
-            display: inline-block;
-            margin-right: 10px;
+        select {
+            width: 160px;
         }
-        .grid-inputs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            max-width: 500px;
+        .err-msg {
+            color: #cc0000;
+            font-weight: bold;
+            margin-left: 8px;
+            font-size: 12px;
         }
-        .btn-container {
-            margin-top: 20px;
-            text-align: right;
+        .actions {
+            margin-top: 30px;
+            max-width: 600px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
         }
-        button {
-            background-color: #0056b3;
-            color: white;
-            padding: 10px 20px;
+        .actions button {
+            background: none;
             border: none;
-            border-radius: 4px;
+            color: #0000ee;
+            text-decoration: underline;
             cursor: pointer;
-            font-size: 16px;
+            padding: 0;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
         }
-        button:hover {
-            background-color: #003d82;
+        .actions button:hover {
+            color: #551a8b;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Chapter 1: Introduction to Accounting</h1>
-    <h2>Test 2: Basic Concepts and Principles</h2>
-    
-    <form id="quizForm">
-
-        <!-- Esercizio 1: Corto - Scelta multipla -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 1 (Short)</div>
-            <p>Which financial statement shows the financial position of a business at a specific date?</p>
-            <select name="q1" required>
-                <option value="">Select an answer...</option>
-                <option value="A">Income Statement</option>
-                <option value="B">Statement of Financial Position (Balance Sheet)</option>
-                <option value="C">Statement of Cash Flows</option>
-            </select>
-        </div>
-
-        <!-- Esercizio 2: Valori multipli - Equazione di bilancio -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 2 (Multiple Values)</div>
-            <p>Complete the missing values in the accounting equation:</p>
-            <div class="formula">Assets = Liabilities + Equity</div>
-            <div class="grid-inputs">
-                <div>
-                    <label>Case A: Assets = £50,000 | Liabilities = £20,000</label>
-                    <input type="number" name="q2_a" placeholder="Equity (£)" required>
-                </div>
-                <div>
-                    <label>Case B: Liabilities = £15,000 | Equity = £35,000</label>
-                    <input type="number" name="q2_b" placeholder="Assets (£)" required>
-                </div>
-            </div>
-        </div>
-
-        <!-- Esercizio 3: Corto - Inserimento testo -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 3 (Short)</div>
-            <p>What is the term used for debts owed by the business to external parties?</p>
-            <input type="text" name="q3" placeholder="Your answer" required>
-        </div>
-
-        <!-- Esercizio 4: Medio - Classificazione -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 4 (Medium)</div>
-            <p>Classify the following items as either an Asset (A) or a Liability (L):</p>
-            <label>1. Trade Receivables</label>
-            <select name="q4_1" required>
-                <option value="">Select...</option>
-                <option value="A">Asset</option>
-                <option value="L">Liability</option>
-            </select>
-            
-            <label>2. Bank Loan</label>
-            <select name="q4_2" required>
-                <option value="">Select...</option>
-                <option value="A">Asset</option>
-                <option value="L">Liability</option>
-            </select>
-        </div>
-
-        <!-- Esercizio 5: Lungo - Inserimento multiplo di cifre -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 5 (Long - Financial Position)</div>
-            <p>Calculate the Total Assets based on the following balances:</p>
-            <ul>
-                <li>Machinery: £12,000</li>
-                <li>Inventory: £4,500</li>
-                <li>Trade Receivables: £3,200</li>
-                <li>Bank Overdraft: £1,500</li>
-            </ul>
-            <label>Total Current Assets:</label>
-            <input type="number" name="q5_ca" placeholder="£" required>
-            <label>Total Non-Current Assets:</label>
-            <input type="number" name="q5_nca" placeholder="£" required>
-            <label>Total Assets:</label>
-            <input type="number" name="q5_total" placeholder="£" required>
-        </div>
-
-        <!-- Esercizio 6: Corto - Vero o Falso -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 6 (Short)</div>
-            <p>True or False: The 'Business Entity' concept means the owner and the business are treated as a single legal and financial unit in accounting.</p>
-            <select name="q6" required>
-                <option value="">Select...</option>
-                <option value="T">True</option>
-                <option value="F">False</option>
-            </select>
-        </div>
-
-        <!-- Esercizio 7: Medio - Calcolo profitto -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 7 (Medium)</div>
-            <p>A business has Sales Revenue of £80,000 and a Cost of Sales of £45,000. Other operating expenses total £12,000.</p>
-            <label>Gross Profit:</label>
-            <input type="number" name="q7_gp" placeholder="£" required>
-            <label>Net Profit:</label>
-                  <!-- Esercizio 8: Corto - Scelta multipla documento di vendita -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 8 (Short)</div>
-            <p>Which document is raised by a supplier when goods are supplied on credit terms?</p>
-            <select name="q8" required>
-                <option value="">Select an answer...</option>
-                <option value="A">Credit Note</option>
-                <option value="B">Sales Invoice</option>
-                <option value="C">Purchase Order</option>
-            </select>
-        </div>
-
-        <!-- Esercizio 9: Medio - Sconto e IVA su riga singola -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 9 (Medium)</div>
-            <p>A supplier sends goods with a list price of £200, subject to a 10% trade discount. VAT is charged at 20% on the net amount.</p>
-            <div class="grid-inputs">
-                <div>
-                    <label>Net Amount (£):</label>
-                    <input type="number" name="q9_net" placeholder="£" required>
-                </div>
-                <div>
-                    <label>VAT Amount (£):</label>
-                    <input type="number" name="q9_vat" placeholder="£" required>
-                </div>
-            </div>
-        </div>
-
-        <!-- Esercizio 10: Lungo - Tabella di fatturazione completa -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 10 (Long - Invoicing Breakdown)</div>
-            <p>Calculate the final totals for an order of 25 units of Product X. List price is £10 per unit. A 20% trade discount applies. VAT is 20%.</p>
-            <div class="grid-inputs">
-                <div>
-                    <label>Gross Total (25 x £10):</label>
-                    <input type="number" name="q10_gross" placeholder="£" required>
-                </div>
-                <div>
-                    <label>Trade Discount (20%):</label>
-                    <input type="number" name="q10_disc" placeholder="£" required>
-                </div>
-                <div>
-                    <label>Net Total:</label>
-                    <input type="number" name="q10_net" placeholder="£" required>
-                </div>
-                <div>
-                    <label>VAT (20%):</label>
-                    <input type="number" name="q10_vat" placeholder="£" required>
-                </div>
-            </div>
-            <label style="margin-top:10px;">Total Invoice Amount (£):</label>
-            <input type="number" name="q10_total" placeholder="£" required>
-        </div>
-
-        <!-- Esercizio 11: Corto - Nota di credito -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 11 (Short)</div>
-            <p>What document does a business issue to a credit customer to reduce the amount they owe, for example when goods are returned?</p>
-            <input type="text" name="q11" placeholder="Your answer" required>
-        </div>
-
-        <!-- Esercizio 12: Medio - Correzione errore fattura -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 12 (Medium)</div>
-            <p>An invoice was issued with an incorrect Net total of £500 instead of £450. To correct this overcharge, what net value should be entered on the Credit Note?</p>
-            <label>Credit Note Net Value:</label>
-            <input type="number" name="q12_val" placeholder="£" required>
-        </div>
-
-        <!-- Esercizio 13: Corto - Identificazione sigla -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 13 (Short)</div>
-            <p>What does the standard abbreviation 'E&OE' usually stand for on an invoice?</p>
-            <select name="q13" required>
-                <option value="">Select...</option>
-                <option value="A">Errors and Omissions Excepted</option>
-                <option value="B">Every and Each Office Entry</option>
-                <option value="C">Estimated and Optional Expenses</option>
-            </select>
-        </div>
-
-        <!-- Esercizio 14: Medio - Flusso dei documenti -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 14 (Medium)</div>
-            <p>Complete the typical credit transaction document flow sequence:</p>
-            <div class="formula">Purchase Order &rarr; Delivery Note &rarr; [ Step 1 ] &rarr; Statement of Account</div>
-            <label>What is Step 1?</label>
-            <input type="text" name="q14_step" placeholder="e.g. Invoice" required>
-        </div>
-
-        <!-- Esercizio 15: Lungo - Riepilogo IVA mista -->
-        <div class="exercise">
-            <div class="exercise-title">Exercise 15 (Long - Mixed VAT Summary)</div>
-            <p>A business purchases two separate batches of items on a single invoice:</p>
-            <ul>
-                <li>Batch A: Net £300, subject to standard VAT at 20%</li>
-                <li>Batch B: Net £150, subject to zero-rated VAT (0%)</li>
-            </ul>
-            <div class="grid-inputs">
-                <div>
-                    <label>Total Net Amount (£):</label>
-                    <input type="number" name="q15_net" placeholder="£" required>
-                </div>
-                <div>
-                    <label>Total VAT Amount (£):</label>
-                    <input type="number" name="q15_vat" placeholder="£" required>
-                </div>
-            </div>
-            <label style="margin-top:10px;">Gross Total Payable (£):</label>
-            <input type="number" name="q15_gross" placeholder="£" required>
-        </div>
-
-        <!-- Bottoni di controllo in fondo alla pagina -->
-        <div class="btn-container">
-            <button type="button" style="background-color: #6c757d; margin-right: 10px;" onclick="resetQuiz()">Reset</button>
-            <button type="button" onclick="checkAnswers()">Am I right?</button>
-        </div>
-    </form>
+<div class="nav-top">
+    <a href="../index.html">Return to the Osborne Books homepage</a>
 </div>
 
-<script>
-    // Oggetto contenente le soluzioni corrette (i testi non differenziano maiuscole/minuscole)
-    const solutions = {
-        q1: "B",
-        q2_a: 30000,
-        q2_b: 5000,
-        q3: "liabilities",
-        q4_1: "A",
-        q4_2: "L",
-        q5_ca: 7700,     // Inventory (4500) + Receivables (3200)
-        q5_nca: 12000,   // Machinery
-        q5_total: 19700, // 7700 + 12000
-        q6: "F",          // L'azienda è un'entità separata dall'owner per la contabilità
-        q7_gp: 35000,    // 80000 - 45000
-        q7_np: 23000,    // 35000 - 12000
-        q8: "B",
-        q9_net: 180,     // 200 - 10%
-        q9_vat: 36,      // 180 * 20%
-        q10_gross: 250,
-        q10_disc: 50,
-        q10_net: 200,
-        q10_vat: 40,
-        q10_total: 240,
-        q11: "credit note",
-        q12_val: 50,     // 500 - 450
-        q13: "A",
-        q14_step: "invoice",
-        q15_net: 450,    // 300 + 150
-        q15_vat: 60,     // 300 * 20% + 150 * 0%
-        q15_gross: 510   // 450 + 60
-    };
+<div class="header-title" id="main-header">
+    Bookkeeping Transactions Test Two Q1 of 15
+</div>
 
-    function checkAnswers() {
-        const form = document.getElementById('quizForm');
-        let correctCount = 0;
-        let totalCount = Object.keys(solutions).length;
-
-        // Rimuove eventuali stili di errore/successo precedenti
-        const inputs = form.querySelectorAll('input, select');
-        inputs.forEach(input => {
-            input.style.borderColor = '#ccc';
-            input.style.backgroundColor = '#fff';
-        });
-
-        for (let key in solutions) {
-            const field = form.elements[key];
-            if (!field) continue;
-
-            let userValue = field.value.trim().toLowerCase();
-            let correctValue = solutions[key].toString().toLowerCase();
-
-            // Confronto numerico accurato se la soluzione è un numero
-            if (!isNaN(solutions[key])) {
-                if (parseFloat(userValue) === parseFloat(correctValue)) {
-                    correctCount++;
-                    field.style.borderColor = 'green';
-                    field.style.backgroundColor = '#e6f4ea';
-                } else {
-                    field.style.borderColor = 'red';
-                    field.style.backgroundColor = '#fce8e6';
-                }
-            } else {
-                // Confronto stringhe standard
-                if (userValue === correctValue) {
-                    correctCount++;
-                    field.style.borderColor = 'green';
-                    field.style.backgroundColor = '#e6f4ea';
-                } else {
-                    field.style.borderColor = 'red';
-                    field.style.backgroundColor = '#fce8e6';
-                }
-            }
-        }
-
-        // Output del risultato della verifica
-        if (correctCount === totalCount) {
-            alert("Excellent! All answers are correct.");
-        } else {
-            alert(`You got ${correctCount} out of ${totalCount} inputs correct. Incorrect fields are highlighted in red.`);
-        }
-    }
-
-    function resetQuiz() {
-        if(confirm("Are you sure you want to clear all fields?")) {
-            const form = document.getElementById('quizForm');
-            form.reset();
-            const inputs = form.querySelectorAll('input, select');
-            inputs.forEach(input => {
-                input.style.borderColor = '#ccc';
-                input.style.backgroundColor = '#fff';
-            });
-        }
-    }
-</script>
-
-</body>
-</html>
-
-            <input type="number" name="q7_np" placeholder="£" required>
+<form id="quiz-form" autocomplete="off">
+    <!-- Q1 -->
+    <div class="question-block active" id="qblock-1">
+        <div class="scenario">
+            Astral Supplies has sent the following goods to a credit customer, Domino Stationery.<br><br>
+            The list price of the goods is £4 each, plus VAT at 20%. Domino Stationery is to be given a 25% trade discount. Total quantity is 50 units. Complete the rows.
         </div>
+        <table>
+            <tr>
+                <th>Gross (£ p)</th>
+                <th>Discount (£ p)</th>
+                <th>Net (£ p)</th>
+                <th>VAT (£ p)</th>
+                <th>Total (£ p)</th>
+            </tr>
+            <tr>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="200.00" id="q1-1"><span class="err-msg" id="err-q1-1"></span></td>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="50.00" id="q1-2"><span class="err-msg" id="err-q1-2"></span></td>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="150.00" id="q1-3"><span class="err-msg" id="err-q1-3"></span></td>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="30.00" id="q1-4"><span class="err-msg" id="err-q1-4"></span></td>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="180.00" id="q1-5"><span class="err-msg" id="err-q1-5"></span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="qblock-2">
+        <div class="scenario">
+            Domino Stationery returns 10 of the units supplied in Question 1 because they were damaged. Calculate and complete the fields for the Credit Note to be sent to them (Apply the original 25% trade discount and 20% VAT).
+        </div>
+        <table>
+            <tr>
+                <th>Net (£ p)</th>
+                <th>VAT (£ p)</th>
+                <th>Total (£ p)</th>
+            </tr>
+            <tr>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="30.00" id="q2-1"><span class="err-msg" id="err-q2-1"></span></td>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="6.00" id="q2-2"><span class="err-msg" id="err-q2-2"></span></td>
+                <td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="36.00" id="q2-3"><span class="err-msg" id="err-q2-3"></span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="qblock-3">
+        <div class="scenario">
+            Which business document is normally raised by a buyer to request goods from a supplier?
+        </div>
+        <p>
+            <select id="q3-1" data-ans="purchase_order">
+                <option value="">-- Select Document --</option>
+                <option value="sales_invoice">Sales Invoice</option>
+                <option value="purchase_order">Purchase Order</option>
+                <option value="credit_note">Credit Note</option>
+                <option value="delivery_note">Delivery Note</option>
+            </select>
+            <span class="err-msg" id="err-q3-1"></span>
+        </p>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block" id="qblock-4">
+        <div class="scenario">
+            An invoice shows a subtotal of £400.00 before VAT. A bulk discount of 5% is applicable to the net amount. VAT is charged at 20%. Calculate the final figures.
+        </div>
+        <table>
+            <tr><td>Less 5% Bulk Discount:</td><td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="20.00" id="q4-1"><span class="err-msg" id="err-q4-1"></span></td></tr>
+            <tr><td>Net Total:</td><td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="380.00" id="q4-2"><span class="err-msg" id="err-q4-2"></span></td></tr>
+            <tr><td>VAT (20%):</td><td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="76.00" id="q4-3"><span class="err-msg" id="err-q4-3"></span></td></tr>
+            <tr><td>Invoice Total:</td><td><span class="money-prefix">£</span><input type="number" step="0.01" data-ans="456.00" id="q4-4"><span class="err-msg" id="err-q4-4"></span></td></tr>
+        </table>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-block" id="qblock-5">
+        <div class="scenario">
+            Match the business document to its main purpose.
+        </div>
+        <p>
+            1. Sent to correct an overcharge on an invoice.<br>
+            <select id="q5-1" data-ans="CN">
+                <option value="">-- Select --</option>
+                <option value="INV">Invoice</option>
+                <option value="CN">Credit Note</option>
+                <option value="DN">Delivery Note</option>
+            </select>
+            <span class="err-msg" id="err-q5-1"></span>
+        </p>
+        <p>
+            2. Sent with the goods to verify physical quantities.<br>
+            <select id="q5-2" data-ans="DN">
+                <option value="">-- Select --</option>
+                <option value="INV">Invoice</option>
+                <option value="CN">Credit Note</option>
+                <option value="DN">Delivery Note</option>
+            </select>
+            <span class="err-msg" id="err-q5-2"></span>
+        </p>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-block" id="qblock-6">
+        <div class="scenario">
+            A supplier issues an invoice for 15 filing cabinets at a list price of £80 each. Trade discount is 10%. Calculate the Net Total.
+        </div>
+        <p>Net Total: <span class="money-prefix">£</span><input type="number" step="0.01" data-ans="1080.00" id="q6-1"><span class="err-msg" id="err-q6-1"></span></p>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-block" id="qblock-7">
+        <div class="scenario">
+            True or False: A Delivery Note must always state the prices and VAT rates of the items being dispatched.
+        </div>
+        <p>
+            <select id="q7-1" data-ans="false">
+                <option value="">-- Select --</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+            <span class="err-msg" id="err-q7-1"></span>
+        </p>
+    </div>
