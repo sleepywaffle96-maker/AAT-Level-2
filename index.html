@@ -1,74 +1,42 @@
-            case "L4_C6": // Credit Management (DSO Ratio)
-                const salesDso = getRandomInt(400, 800) * 1000;
-                const daysGoal = getRandomInt(30, 48);
-                const recDso = Math.round((daysGoal * salesDso) / 365);
-                currentCorrectAnswer = Math.round((recDso * 365) / salesDso).toString();
-                html = `<strong>⚫ Level 4 - Credit Management</strong><br><br>
-                        Al termine dell'esercizio contabile, i registri indicano vendite a credito totali per <strong>£${salesDso.toLocaleString()}</strong> e un saldo finale dei crediti verso clienti (Trade Receivables) pari a <strong>£${recDso.toLocaleString()}</strong>.<br><br>
-                        Calcola l'indice dei **giorni medi di dilazione (Days Sales Outstanding - DSO)** arrotondando al giorno intero più vicino:<br>
-                        DSO Ratio: <input type="text" id="calc_ans" placeholder="0"> days`;
-                inputIdToCheck = "calc_ans";
-                break;
-
-            case "L4_C7": // Personal Tax (Clawback Personal Allowance)
-                const netIncome = getRandomInt(105, 118) * 1000;
-                const excess = netIncome - 100000;
-                const reduction = excess / 2;
-                currentCorrectAnswer = Math.max(0, 12570 - reduction).toFixed(2);
-                html = `<strong>⚫ Level 4 - Personal Tax</strong><br><br>
-                        Un contribuente registra un reddito netto rettificato (Adjusted Net Income) pari a <strong>£${netIncome.toLocaleString()}</strong> nel corso dell'anno fiscale corrente.<br><br>
-                        Considerando la riduzione progressiva di £1 per ogni £2 eccedenti la soglia di £100,000, calcola la quota finale residua di **Deduzione Personale (Personal Allowance)** a cui ha diritto:<br>
-                        Available Allowance: £ <input type="text" id="calc_ans" placeholder="0.00">`;
-                inputIdToCheck = "calc_ans";
-                break;
-
-            case "L4_C8": // Business Tax (Spese Indeducibili CT)
-                const accountingProfit = getRandomInt(100, 200) * 1000;
-                const entertainment = getRandomInt(2, 6) * 1000;
-                currentCorrectAnswer = (accountingProfit + entertainment).toFixed(2);
-                html = `<strong>⚫ Level 4 - Business Tax</strong><br><br>
-                        Una Limited Company chiude il bilancio con un utile ante imposte di <strong>£${accountingProfit.toLocaleString()}</strong>. Tra le voci di costo sono incluse spese di rappresentanza per l'intrattenimento di clienti (client entertainment) non deducibili per <strong>£${entertainment.toLocaleString()}</strong>.<br><br>
-                        Calcola l'**utile fiscale rettificato (adjusted trading profit)** su cui calcolare la Corporation Tax riprendendo a tassazione la spesa indeducibile:<br>
-                        Adjusted Profit: £ <input type="text" id="calc_ans" placeholder="0.00">`;
-                inputIdToCheck = "calc_ans";
-                break;
-
-            case "L4_C9": // Internal Controls (Segregation of Duties)
-                currentCorrectAnswer = "sod";
-                html = `<strong>⚫ Level 4 - Internal Accounting Systems and Controls</strong><br><br>
-                        Un'ispezione interna rivela che lo stesso impiegato d'ufficio che ha il potere di autorizzare l'inserimento di nuovi fornitori nel database aziendale è anche l'unico incaricato di predisporre ed eseguire i mandati di pagamento telematici verso i fornitori stessi.<br><br>
-                        Qual è la sigla o abbreviazione internazionale del principio fondamentale di controllo interno che è stato violato in questa procedura? (Scrivi la sigla in inglese e in minuscolo, es: abc):<br>
-                        Control Principle: <input type="text" id="calc_ans" placeholder="sod" style="text-align: left; width: 100px;">`;
-                inputIdToCheck = "calc_ans";
-                break;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Professional Accounting Assessment Platform</title>
+    <style>
+        :root {
+            --aat-navy: #0f172a;
+            --aat-cyan: #0284c7;
+            --aat-green: #0d9488;
+            --aat-green-hover: #0f766e;
+            --panel-bg: #f8fafc;
+            --text-main: #334155;
+            --border-color: #e2e8f0;
         }
-        
-        questionBox.innerHTML = html;
-    }
-
-    function checkAnswer() {
-        const feedbackBox = document.getElementById('feedbackBox');
-        const userElement = document.getElementById(inputIdToCheck);
-        if (!userElement) return;
-        const userValue = userElement.value.trim();
-        
-        const cleanUser = userValue.replace(/,/g, '').toLowerCase();
-        const cleanCorrect = currentCorrectAnswer.replace(/,/g, '').toLowerCase();
-        
-        if (cleanUser === cleanCorrect || parseFloat(cleanUser) === parseFloat(cleanCorrect)) {
-            feedbackBox.innerHTML = '<span class="correct">✔ Correct! The mathematical validation matches background ledgers perfectly.</span>';
-        } else {
-            feedbackBox.innerHTML = `<span class="incorrect">✘ Incorrect. Please evaluate calculations again. (Expected: ${currentCorrectAnswer})</span>`;
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f1f5f9;
+            background-image: 
+                linear-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 148, 136, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-main);
         }
-    }
-
-    // Inizializza il primo scenario dinamico al caricamento del file
-    generateQuestion();
-</script>
-
-</body>
-</html>
-        /* Intestazione Premium con estetica Corporate AAT */
+        .hub-container {
+            width: 100%;
+            max-width: 720px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+            border: 1px solid var(--border-color);
+        }
         .aat-header-banner {
             background: linear-gradient(135deg, var(--aat-navy) 0%, #1e293b 100%);
             padding: 45px 30px;
@@ -76,7 +44,6 @@
             position: relative;
             border-bottom: 5px solid var(--aat-green);
         }
-
         .aat-header-banner::before {
             content: "";
             position: absolute;
@@ -84,7 +51,6 @@
             background: radial-gradient(circle at 85% 15%, rgba(2, 132, 199, 0.18) 0%, transparent 55%);
             pointer-events: none;
         }
-
         .aat-badge-top {
             display: inline-block;
             background-color: var(--aat-cyan);
@@ -97,27 +63,11 @@
             margin-bottom: 12px;
             letter-spacing: 1px;
         }
+        h1 { color: #ffffff; font-size: 28px; margin: 0 0 6px 0; font-weight: 800; letter-spacing: -0.5px; }
+        .subtitle { font-size: 14px; color: #94a3b8; margin: 0; font-weight: 500; }
+        .content-area { padding: 30px; }
 
-        h1 {
-            color: #ffffff;
-            font-size: 28px;
-            margin: 0 0 6px 0;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: #94a3b8;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .content-area {
-            padding: 30px;
-        }
-        /* Banner del Simulatore Infinito */
-        .simulator-banner {
+                        .simulator-banner {
             background: linear-gradient(135deg, var(--aat-green), #0f766e);
             color: white;
             padding: 16px 20px;
@@ -130,24 +80,12 @@
             box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .simulator-banner:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
         }
-
-        .simulator-text h3 {
-            margin: 0 0 4px 0;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .simulator-text p {
-            margin: 0;
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
+        .simulator-text h3 { margin: 0 0 4px 0; font-size: 15px; font-weight: 700; }
+        .simulator-text p { margin: 0; font-size: 12px; opacity: 0.9; }
         .simulator-badge {
             background-color: rgba(255, 255, 255, 0.15);
             padding: 6px 14px;
@@ -156,150 +94,42 @@
             font-weight: 700;
             border: 1px solid rgba(255, 255, 255, 0.25);
         }
-
-        .level-section {
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
+        .level-section { margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
         .level-btn {
-            background-color: #ffffff;
-            color: var(--aat-navy);
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            font-size: 16px;
-            font-weight: 700;
-            outline: none;
-            transition: background-color 0.2s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
+            background-color: #ffffff; color: var(--aat-navy); cursor: pointer; padding: 18px; width: 100%; border: none;
+            text-align: left; font-size: 16px; font-weight: 700; outline: none; transition: background-color 0.2s;
+            display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
         }
-
-        .level-btn:hover {
-            background-color: #f8fafc;
-        }
-
-        .level-btn.active {
-            background-color: #f1f5f9;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .level-btn::after {
-            content: '▾';
-            font-size: 16px;
-            color: #94a3b8;
-            transition: transform 0.2s;
-        }
-
-        .level-btn.active::after {
-            transform: rotate(-180deg);
-        }
-        .chapters-panel {
-            background-color: #ffffff;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.25s ease-out;
-            box-sizing: border-box;
-        }
-
+        .level-btn:hover { background-color: #f8fafc; }
+        .level-btn.active { background-color: #f1f5f9; border-bottom: 1px solid var(--border-color); }
+        .level-btn::after { content: '▾'; font-size: 16px; color: #94a3b8; transition: transform 0.2s; }
+        .level-btn.active::after { transform: rotate(-180deg); }
+        .chapters-panel { background-color: #ffffff; max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; box-sizing: border-box; }
         .chapter-btn {
-            background-color: #ffffff;
-            color: var(--aat-green);
-            cursor: pointer;
-            padding: 15px 22px;
-            width: 100%;
-            border: 0;
-            border-bottom: 1px solid #f1f5f9;
-            text-align: left;
-            font-size: 14px;
-            font-weight: 600;
-            outline: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
+            background-color: #ffffff; color: var(--aat-green); cursor: pointer; padding: 15px 22px; width: 100%; border: 0;
+            border-bottom: 1px solid #f1f5f9; text-align: left; font-size: 14px; font-weight: 600; outline: none;
+            display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
         }
-
-        .chapter-btn:hover {
-            background-color: var(--panel-bg);
-        }
-
-        .chapter-btn.active {
-            background-color: #f1f5f9;
-        }
-
-        .chapter-btn::after {
-            content: '▸';
-            font-size: 12px;
-            color: #94a3b8;
-            transition: transform 0.2s;
-        }
-
-        .chapter-btn.active::after {
-            transform: rotate(90deg);
-        }
-
-        .tests-panel {
-            padding: 0 35px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.25s ease-out;
-            background-color: var(--panel-bg);
-        }
-
-        .topic-list {
-            list-style: none;
-            padding: 10px 0;
-            margin: 0;
-        }
-
-        .topic-list li {
-            padding: 10px 0;
-            border-bottom: 1px dashed #e2e8f0;
-        }
-
-        .topic-list li:last-child {
-            border-bottom: 0;
-        }
-
-        .topic-list a {
-            color: #475569;
-            text-decoration: none;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .topic-list a:hover {
-            color: var(--aat-green);
-        }
-
-        .icon-bullet {
-            margin-right: 10px;
-            color: var(--aat-cyan);
-            font-weight: bold;
-            font-size: 14px;
-        }
+        .chapter-btn:hover { background-color: var(--panel-bg); }
+        .chapter-btn.active { background-color: #f1f5f9; }
+        .chapter-btn::after { content: '▸'; font-size: 12px; color: #94a3b8; transition: transform 0.2s; }
+        .chapter-btn.active::after { transform: rotate(90deg); }
+        .tests-panel { padding: 0 35px; max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; background-color: var(--panel-bg); }
+        .topic-list { list-style: none; padding: 10px 0; margin: 0; }
+        .topic-list li { padding: 10px 0; border-bottom: 1px dashed #e2e8f0; }
+        .topic-list li:last-child { border-bottom: 0; }
+        .topic-list a { color: #475569; text-decoration: none; font-size: 13px; display: flex; align-items: center; font-weight: 500; transition: color 0.2s; }
+        .topic-list a:hover { color: var(--aat-green); }
+        .icon-bullet { margin-right: 10px; color: var(--aat-cyan); font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
-
 <div class="hub-container">
     <div class="aat-header-banner">
         <div class="aat-badge-top">Official Syllabus Mapping</div>
         <h1>AAT Professional Assessment Portal</h1>
         <p class="subtitle">Interactive Practice Suites & Technical Examination Engine</p>
     </div>
-
     <div class="content-area">
         <a href="simulatore.html" class="simulator-banner">
             <div class="simulator-text">
@@ -312,7 +142,6 @@
         <div class="level-section">
             <button class="level-btn">📊 AAT Level 2 Certificate Topics</button>
             <div class="chapters-panel">
-                
                 <button class="chapter-btn">Chapter 1: Bookkeeping Transactions</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -320,7 +149,6 @@
                         <li><a href="level-2/cap1-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Comprehensive Workflows)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 2: Bookkeeping Controls</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -328,7 +156,6 @@
                         <li><a href="level-2/cap2-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Suspense Account Reconciliation)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 3: Principles of Costing</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -336,7 +163,6 @@
                         <li><a href="level-2/cap3-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Overhead Apportionment)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 4: Work Effectively in Finance</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -344,14 +170,13 @@
                         <li><a href="level-2/cap4-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Data Protection & Professionalism)</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-        <!-- LEVEL 3 -->
+
+                        <!-- LEVEL 3 -->
         <div class="level-section">
             <button class="level-btn">🔷 AAT Level 3 Diploma Topics</button>
             <div class="chapters-panel">
-                
                 <button class="chapter-btn">Chapter 1: Advanced Bookkeeping</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -359,7 +184,6 @@
                         <li><a href="level-3/cap1-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Partnerships Basis)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 2: Final Accounts Preparation</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -367,7 +191,6 @@
                         <li><a href="level-3/cap2-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Sole Traders Accounts)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 3: Management Accounting: Costing</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -375,7 +198,6 @@
                         <li><a href="level-3/cap3-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Variances Analysis)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 4: Indirect Tax</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -383,7 +205,6 @@
                         <li><a href="level-3/cap4-test2.html"><span class="icon-bullet">📝</span> Assessment Two (HMRC Schemes & Rules)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 5: Ethics for Accountants</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -391,7 +212,6 @@
                         <li><a href="level-3/cap5-test2.html"><span class="icon-bullet">📝</span> Assessment Two (SOP & AML Scenarios)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 6: Business Awareness</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -399,14 +219,13 @@
                         <li><a href="level-3/cap6-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Macro Environment)</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-        <!-- LEVEL 4 -->
+
+                        <!-- LEVEL 4 -->
         <div class="level-section">
             <button class="level-btn">🔶 AAT Level 4 Diploma Topics</button>
             <div class="chapters-panel">
-                
                 <button class="chapter-btn">Chapter 1: Financial Statements of Limited Companies</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -414,7 +233,6 @@
                         <li><a href="level-4/cap1-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Group Consolidation)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 2: Management Accounting: Budgeting</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -422,7 +240,6 @@
                         <li><a href="level-4/cap2-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Forecasting Models)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 3: Management Accounting: Decision and Control</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -430,7 +247,6 @@
                         <li><a href="level-4/cap3-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Activity Based Costing)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 4: External Auditing</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -438,7 +254,6 @@
                         <li><a href="level-4/cap4-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Substantive Evidence)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 5: Cash and Treasury Management</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -453,7 +268,6 @@
                         <li><a href="level-4/cap6-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Legal & DSO Cost)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 7: Personal Tax</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -461,7 +275,6 @@
                         <li><a href="level-4/cap7-test2.html"><span class="icon-bullet">📝</span> Assessment Two (CGT & Allowances)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 8: Business Tax</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -469,7 +282,6 @@
                         <li><a href="level-4/cap8-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Capital Allowances)</a></li>
                     </ul>
                 </div>
-
                 <button class="chapter-btn">Chapter 9: Internal Accounting Systems and Controls</button>
                 <div class="tests-panel">
                     <ul class="topic-list">
@@ -477,49 +289,43 @@
                         <li><a href="level-4/cap9-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Risk Recommendations)</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // 1. Logica di animazione per i tre grandi blocchi dei Livelli (Level 2, 3, 4)
+    // 1. Gestione apertura menu dei grandi livelli (Level 2, 3, 4)
     const levelBtns = document.getElementsByClassName("level-btn");
     for (let i = 0; i < levelBtns.length; i++) {
         levelBtns[i].addEventListener("click", function() {
             this.classList.toggle("active");
             const panel = this.nextElementSibling;
-            
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
-                panel.classList.remove("open");
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
-                panel.classList.add("open");
             }
         });
     }
 
-    // 2. Logica ad accordion per l'annidamento interno dei singoli capitoli
+    // 2. Gestione apertura sottomenu dei capitoli ad accordion
     const chapterBtns = document.getElementsByClassName("chapter-btn");
     for (let i = 0; i < chapterBtns.length; i++) {
         chapterBtns[i].addEventListener("click", function(e) {
             this.classList.toggle("active");
             const subPanel = this.nextElementSibling;
             const parentPanel = this.parentElement;
-            
             if (subPanel.style.maxHeight) {
                 subPanel.style.maxHeight = null;
             } else {
                 subPanel.style.maxHeight = subPanel.scrollHeight + "px";
-                // Ricalcola dinamicamente lo spazio del pannello padre per evitare blocchi o tagli
+                // Ricalcola lo spazio del pannello padre per evitare tagli visivi
                 parentPanel.style.maxHeight = (parentPanel.scrollHeight + subPanel.scrollHeight) + "px";
             }
             e.stopPropagation();
         });
     }
 </script>
-
 </body>
 </html>
