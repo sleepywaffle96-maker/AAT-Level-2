@@ -218,7 +218,7 @@
                 }
                 questionsData.push(simulationEngine[targetKey]());
             }
-            const examWindow = window.open("", "_blank");
+                        const examWindow = window.open("", "_blank");
             
             let htmlStyle = `
                 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -239,12 +239,20 @@
                 .btn-pdf-exam { background-color: #0d9488; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 1; text-align:center;}
                 .feedback-box { font-weight: bold; font-size: 0.95rem; margin-top: 5px; min-height: 20px; }
                 .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; }
+                
+                /* --- STILI REALI DI ESPORTAZIONE IN PDF --- */
+                @media print {
+                    body { background: none !important; background-color: white !important; padding: 0 !important; color: #000 !important; }
+                    .exam-container { box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
+                    .button-actions-group { display: none !important; }
+                    .input-field { border: 1px solid #94a3b8 !important; background: #f8fafc !important; }
+                    .task-card { page-break-inside: avoid; border: 1px solid #cbd5e1 !important; border-left: 5px solid #0284c7 !important; background: #fff !important; margin-bottom: 15px !important; }
+                }
             `;
 
             const doc = examWindow.document;
             doc.open();
-            doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT Exam Session</title><style>' + htmlStyle + '</style></head><body></body></html>');
-            doc.write('<script src="https://cloudflare.com"></' + 'script>');
+            doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT_Mock_Exam_Level_' + levelSelected + '</title><style>' + htmlStyle + '</style></head><body></body></html>');
             doc.close();
 
             const body = doc.body;
@@ -284,17 +292,11 @@
             subBtn.onclick = function() { examWindow.processEntireExam(); };
             
             const pdfBtn = doc.createElement("button");
-            pdfBtn.type = "button"; pdfBtn.className = "btn-pdf-exam"; pdfBtn.innerText = "Download Exam PDF";
+            pdfBtn.type = "button"; pdfBtn.className = "btn-pdf-exam"; pdfBtn.innerText = "Save Exam as PDF";
             
+            // Logica nativa a prova di errore: imposta il titolo corretto del file e avvia la stampa/salvataggio
             pdfBtn.onclick = function() {
-                const pdfOptions = {
-                    margin: 10,
-                    filename: 'AAT-Mock-Exam-Level-' + levelSelected + '.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-                examWindow.html2pdf().from(container).set(pdfOptions).save();
+                examWindow.print();
             };
 
             actionGroup.appendChild(subBtn);
