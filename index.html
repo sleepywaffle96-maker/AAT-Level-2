@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 2 - Quiz Interattivo Globale</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 3px solid #005a9c;
+            padding-bottom: 10px;
+            font-size: 28px;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            background: #eef2f5;
+            padding: 10px;
+            border-left: 5px solid #2980b9;
+        }
+        .question-block {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #111;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        label {
+            cursor: pointer;
+            display: inline-block;
+        }
+        input[type="text"], select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 200px;
+            margin-top: 5px;
+        }
+        .submit-area {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        button.check-all-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button.check-all-btn:hover {
+            background-color: #219653;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            display: none;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .association-row {
+            margin-bottom: 12px;
+        }
+        #final-score {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AAT Level 2 Practice - Osborne Books Mock Interactive</h1>
+    <p>Rispondi a tutte le domande e premi il pulsante in fondo alla pagina per verificare il tuo punteggio.</p>
+
+    <!-- MODULO 1 -->
+    <h2>Modulo 1: Introduction to Bookkeeping (ITBK)</h2>
+
+    <!-- Domanda 1 -->
+    <div class="question-block" id="q1">
+        <div class="question-text">1. Un'azienda acquista beni a credito da un fornitore per un valore di &pound;500 più IVA al 20%. Qual è la corretta registrazione nel mastro (Double Entry)?</div>
+        <ul class="options">
+            <li><input type="radio" name="rad1" id="q1a" value="A"> <label for="q1a">A) Debit Purchases &pound;600, Credit Supplier &pound;600</label></li>
+            <li><input type="radio" name="rad1" id="q1b" value="B"> <label for="q1b">B) Debit Purchases &pound;500, Debit VAT &pound;100, Credit Supplier &pound;600</label></li>
+            <li><input type="radio" name="rad1" id="q1c" value="C"> <label for="q1c">C) Debit Supplier &pound;600, Credit Purchases &pound;500, Credit VAT &pound;100</label></li>
+            <li><input type="radio" name="rad1" id="q1d" value="D"> <label for="q1d">D) Debit Purchases &pound;500, Credit VAT &pound;100, Credit Supplier &pound;400</label></li>
+        </ul>
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Domanda 2 -->
+    <div class="question-block" id="q2">
+        <div class="question-text">2. Un cliente restituisce merce difettosa per un valore di &pound;120 (IVA inclusa al 20%). L'azienda deve emettere una nota di credito. Quale importo verrà registrato nel conto Sales Returns (al netto dell'IVA)?</div>
+        <input type="text" id="txt2" placeholder="Inserisci il valore numerico...">
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Domanda 3 -->
+    <div class="question-block" id="q3">
+        <div class="question-text">3. Quale dei seguenti documenti rappresenta una &quot;fonte originale&quot; (Source Document) per registrare le transazioni direttamente nel Petty Cash Book?</div>
+        <ul class="options">
+            <li><input type="radio" name="rad3" id="q3a" value="A"> <label for="q3a">A) Bank Statement</label></li>
+            <li><input type="radio" name="rad3" id="q3b" value="B"> <label for="q3b">B) Sales Invoice</label></li>
+            <li><input type="radio" name="rad3" id="q3c" value="C"> <label for="q3c">C) Petty Cash Voucher</label></li>
+            <li><input type="radio" name="rad3" id="q3d" value="D"> <label for="q3d">D) Purchase Order</label></li>
+        </ul>
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Domanda 4 -->
+    <div class="question-block" id="q4">
+        <div class="question-text">4. Associa ciascun registro (Daybook/Book) alla funzione corretta:</div>
+        <div class="association-row">
+            1. Sales Daybook: 
+            <select id="sel4_1">
+                <option value="">-- Seleziona --</option>
+                <option value="X">A) Registra tutti gli incassi e i pagamenti bancari</option>
+                <option value="Y">B) Registra le fatture emesse ai clienti a credito</option>
+                <option value="Z">C) Registra le note di credito ricevute dai fornitori</option>
+            </select>
+        </div>
+        <div class="association-row">
+            2. Cash Book: 
+            <select id="sel4_2">
+                <option value="">-- Seleziona --</option>
+                <option value="X">A) Registra tutti gli incassi e i pagamenti bancari</option>
+                <option value="Y">B) Registra le fatture emesse ai clienti a credito</option>
+                <option value="Z">C) Registra le note di credito ricevute dai fornitori</option>
+            </select>
+        </div>
+        <div class="association-row">
+            3. Purchase Returns Daybook: 
+            <select id="sel4_3">
+                <option value="">-- Seleziona --</option>
+                <option value="X">A) Registra tutti gli incassi e i pagamenti bancari</option>
+                <option value="Y">B) Registra le fatture emesse ai clienti a credito</option>
+                <option value="Z">C) Registra le note di credito ricevute dai fornitori</option>
+            </select>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Domanda 5 -->
+    <div class="question-block" id="q5">
+        <div class="question-text">5. Se il conto delle spese generali &quot;Gas &amp; Electricity&quot; presenta un saldo finale in Dare (Debit balance) pari a &pound;350, significa che:</div>
+        <ul class="options">
+            <li><input type="radio" name="rad5" id="q5a" value="A"> <label for="q5a">A) L'azienda ha un debito corrente verso il fornitore di energia.</label></li>
+            <li><input type="radio" name="rad5" id="q5b" value="B"> <label for="q5b">B) L'azienda ha registrato un costo d'esercizio di &pound;350.</label></li>
+            <li><input type="radio" name="rad5" id="q5c" value="C"> <label for="q5c">C) L'azienda ha ottenuto una riduzione o rimborso di costi.</label></li>
+            <li><input type="radio" name="rad5" id="q5d" value="D"> <label for="q5d">D) Il conto rappresenta una passività a lungo termine.</label></li>
+        </ul>
+        <div class="feedback"></div>
+    </div>
+
+
+    <!-- MODULO 2 -->
+    <h2>Modulo 2: Principles of Bookkeeping Controls (POBC)</h2>
+
+    <!-- Domanda 6 -->
+    <div class="question-block" id="q6">
+        <div class="question-text">6. Il saldo iniziale del conto Bank nel mastro è di &pound;1,200 (Dare). Un controllo dell'estratto conto rileva: un assegno emesso ma non ancora riscosso (unpresented cheque) di &pound;300 e un bonifico diretto ricevuto da un cliente di &pound;150 non ancora contabilizzato. Qual è il saldo aggiornato del Cash Book prima della riconciliazione?</div>
+        <input type="text" id="txt6" placeholder="Inserisci il valore numerico...">
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Domanda 7 -->
+    <div class="question-block" id="q7">
+        <div class="question-text">7. Un errore di &quot;Compensazione&quot; (Compensating Error) si verifica quando due errori distinti, commessi in conti diversi e per lo stesso importo ma di segno opposto, si annullano a vicenda lasciando il Trial Balance in pareggio.</div>
+        <ul class="options">
+            <li><input type="radio" name="rad7" id="q7a" value="Vero"> <label for="q7a">Vero</label></li>
+            <li><input type="radio" name="rad7" id="q7b" value="Falso"> <label for="q7b">Falso</label></li>
+        </ul>
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Domanda 8 -->
+    <div class="question-block" id="q8">
