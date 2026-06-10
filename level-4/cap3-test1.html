@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Accounting: Decision and Control - Test One</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Management Accounting: Decision and Control - Test One</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A company needs 500 kg of a specific material for a special one-off contract. This material is currently in stock, having been purchased originally for £8.00 per kg. It has no other use in the business, but could be sold as scrap for £3.50 per kg. The current replacement market price is £9.50 per kg. Calculate the relevant cost of the material for this contract:<br>
+            Relevant Cost: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A business manufactures a component at a variable cost of £14.00 per unit. Fixed production overheads allocated to each unit are £6.00. An external specialist supplier offers to sell the component to the company for £16.50 per unit. If the component is bought externally, the company will save £2.00 of specific fixed overheads per unit. Calculate the net financial benefit or penalty per unit if the company decides to BUY externally:<br>
+            Amount: £ <input type="text" id="ans2_val" placeholder="0.00"> <select id="ans2_type"><option value="">Select</option><option value="w">Benefit (Save)</option><option value="correct">Penalty (Cost extra)</option></select>
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            A company experiences a severe labor shortage. It manufactures two products, X and Y. Material availability is unrestricted, but machine capacity is limited. Product X provides a contribution of £12.00 and requires 3 machine hours. Product Y provides a contribution of £15.00 and requires 5 machine hours. Calculate the contribution per machine hour for the optimal principal budget factor utilization of Product X:<br>
+            Contribution per Hour (X): £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A factory uses Activity-Based Costing (ABC). Total machine setup overhead costs are budgeted at £36,000. The cost driver identified is the number of production runs, which is budgeted at 120 setups for the period. Calculate the predetermined cost driver rate per setup:<br>
+            Cost Driver Rate: £ <input type="text" id="ans4" placeholder="0.00"> per setup
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            Using the ABC cost driver rate computed in Q4, a batch order of Product Z requires exactly 4 separate production machine setups. Calculate the total machine setup overhead cost to be allocated to this specific batch order:<br>
+            Allocated Setup Cost: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            A company budgets for 4,000 fixed production overhead hours but actually works 4,200 hours. The predetermined standard fixed overhead absorption rate (OAR) is £8.00 per hour. Actual fixed overheads incurred were £34,000. Calculate the fixed overhead expenditure variance:<br>
+            Fixed Overhead Expenditure Variance: £ <input type="text" id="ans6_val" placeholder="0.00"> <select id="ans6_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            Using the baseline operational metrics from Q6, calculate the fixed overhead volume variance for the period:<br>
+            Fixed Overhead Volume Variance: £ <input type="text" id="ans7_val" placeholder="0.00"> <select id="ans7_type"><option value="">Select</option><option value="correct">Favourable</option><option value="w">Adverse</option></select>
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            A past sunk cost is an expenditure that has already been incurred due to a historical decision. According to relevant costing principles, sunk costs are completely irrelevant for future management decisions.<br>
+            Is this statement True or False?<br>
+            Answer: <select id="ans8"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A division reports an actual raw material usage of 6,200 kg against a standard allowance of 6,000 kg. The standard price of the material is £4.00 per kg. Calculate the direct material usage variance:<br>
+            Material Usage Variance: £ <input type="text" id="ans9_val" placeholder="0.00"> <select id="ans9_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A company uses a target costing approach for a new gadget. The market research establishes a target retail price of £60.00. The business requires a profit margin of 25% on the selling price. Calculate the maximum target cost allowed to manufacture the product:<br>
+            Target Cost: £ <input type="text" id="ans10" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A manufacturing unit absorbs fixed overheads based on standard capacity. Budgeted capacity was 10,000 labor hours and actual hours worked were 9,500. This drop in operational activity creates which type of variance?<br>
+            Variance Category: <select id="ans11"><option value="">Select</option><option value="w">Adverse Expenditure Variance</option><option value="correct">Adverse Capacity Variance</option><option value="w">Favourable Efficiency Variance</option></select>
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            An enterprise is tracking a product's costs from its initial research phase, through design, manufacturing, distribution, up to its final market withdrawal. This asset management method is known as:<br>
+            Costing Methodology: <select id="ans12"><option value="">Select</option><option value="w">Standard Costing</option><option value="w">Activity-Based Costing</option><option value="correct">Life-Cycle Costing</option></select>
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            The standard direct labor requirement for a batch is 40 hours at a standard rate of £12.00 per hour. Due to a seasonal wage settlement, the actual rate paid was £12.50 per hour for the 40 hours worked. Calculate the total labor rate variance:<br>
+            Labour Rate Variance: £ <input type="text" id="ans13_val" placeholder="0.00"> <select id="ans13_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            When analyzing financial structures under a limiting factor scenario, a manager should always prioritize the product that generates the highest contribution per unit of the limiting factor rather than the highest absolute contribution per unit of finished product.<br>
+            Is this statement True or False?<br>
+            Answer: <select id="ans14"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            An operations department implements a Just-in-Time (JIT) inventory management model. The primary operational objective of a JIT framework is to maximize raw material storage safety buffers to prevent any possible line downtime.<br>
+            Is the statement above True or False?<br>
+            Answer: <select id="ans15"><option value="">Select</option><option value="w">True</option><option value="correct">False</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '1750' || val === '1750.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2_val').value.trim();
+            let type = document.getElementById('ans2_type').value;
+            isCorrect = ((val === '0.5' || val === '0.50') && type === 'correct');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '4' || val === '4.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '300' || val === '300.00');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '1200' || val === '1200.00');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6_val').value.trim();
+            let type = document.getElementById('ans6_type').value;
+            isCorrect = ((val === '2000' || val === '2000.00') && type === 'correct');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7_val').value.trim();
+            let type = document.getElementById('ans7_type').value;
+            isCorrect = ((val === '1600' || val === '1600.00') && type === 'correct');
+        } else if (currentQ === 8) {
+            isCorrect = (document.getElementById('ans8').value === 'correct');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9_val').value.trim();
+            let type = document.getElementById('ans9_type').value;
+            isCorrect = ((val === '800' || val === '800.00') && type === 'correct');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '45' || val === '45.00');
+        } else if (currentQ === 11) {
+            isCorrect = (document.getElementById('ans11').value === 'correct');
+        } else if (currentQ === 12) {
+            isCorrect = (document.getElementById('ans12').value === 'correct');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13_val').value.trim();
+            let type = document.getElementById('ans13_type').value;
+            isCorrect = ((val === '20' || val === '20.00') && type === 'correct');
+        } else if (currentQ === 14) {
+            isCorrect = (document.getElementById('ans14').value === 'correct');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
