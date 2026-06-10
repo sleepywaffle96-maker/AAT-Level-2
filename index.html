@@ -10,47 +10,55 @@
             --aat-cyan: #0284c7;
             --aat-green: #0d9488;
             --aat-green-hover: #0f766e;
-            --panel-bg: #f8fafc;
+            --panel-bg: rgba(248, 250, 252, 0.95);
             --text-main: #334155;
             --border-color: #e2e8f0;
         }
+
         body {
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             background-color: #f1f5f9;
-            background-image: 
-                linear-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(13, 148, 136, 0.03) 1px, transparent 1px);
-            background-size: 24px 24px;
+            /* Inserimento dell'immagine a tema contabilità/finanza in background */
+            background-image: linear-gradient(rgba(241, 245, 249, 0.85), rgba(241, 245, 249, 0.85)), 
+                              url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             margin: 0;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
             color: var(--text-main);
         }
+
         .hub-container {
             width: 100%;
             max-width: 720px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
             border-radius: 12px;
             padding: 0;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+            border: 1px solid rgba(226, 232, 240, 0.8);
         }
+
         .aat-header-banner {
-            background: linear-gradient(135deg, var(--aat-navy) 0%, #1e293b 100%);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
             padding: 45px 30px;
             text-align: center;
             position: relative;
             border-bottom: 5px solid var(--aat-green);
         }
+
         .aat-header-banner::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 85% 15%, rgba(2, 132, 199, 0.18) 0%, transparent 55%);
+            background: radial-gradient(circle at 85% 15%, rgba(2, 132, 199, 0.25) 0%, transparent 60%);
             pointer-events: none;
         }
+
         .aat-badge-top {
             display: inline-block;
             background-color: var(--aat-cyan);
@@ -63,11 +71,12 @@
             margin-bottom: 12px;
             letter-spacing: 1px;
         }
+
         h1 { color: #ffffff; font-size: 28px; margin: 0 0 6px 0; font-weight: 800; letter-spacing: -0.5px; }
         .subtitle { font-size: 14px; color: #94a3b8; margin: 0; font-weight: 500; }
         .content-area { padding: 30px; }
 
-                        .simulator-banner {
+                .simulator-banner {
             background: linear-gradient(135deg, var(--aat-green), #0f766e);
             color: white;
             padding: 16px 20px;
@@ -96,7 +105,7 @@
         }
         .level-section { margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
         .level-btn {
-            background-color: #ffffff; color: var(--aat-navy); cursor: pointer; padding: 18px; width: 100%; border: none;
+            background-color: rgba(255, 255, 255, 0.9); color: var(--aat-navy); cursor: pointer; padding: 18px; width: 100%; border: none;
             text-align: left; font-size: 16px; font-weight: 700; outline: none; transition: background-color 0.2s;
             display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
         }
@@ -104,13 +113,13 @@
         .level-btn.active { background-color: #f1f5f9; border-bottom: 1px solid var(--border-color); }
         .level-btn::after { content: '▾'; font-size: 16px; color: #94a3b8; transition: transform 0.2s; }
         .level-btn.active::after { transform: rotate(-180deg); }
-        .chapters-panel { background-color: #ffffff; max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; box-sizing: border-box; }
+        .chapters-panel { background-color: rgba(255, 255, 255, 0.95); max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; box-sizing: border-box; }
         .chapter-btn {
-            background-color: #ffffff; color: var(--aat-green); cursor: pointer; padding: 15px 22px; width: 100%; border: 0;
+            background-color: transparent; color: var(--aat-green); cursor: pointer; padding: 15px 22px; width: 100%; border: 0;
             border-bottom: 1px solid #f1f5f9; text-align: left; font-size: 14px; font-weight: 600; outline: none;
             display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
         }
-        .chapter-btn:hover { background-color: var(--panel-bg); }
+        .chapter-btn:hover { background-color: rgba(248, 250, 252, 0.6); }
         .chapter-btn.active { background-color: #f1f5f9; }
         .chapter-btn::after { content: '▸'; font-size: 12px; color: #94a3b8; transition: transform 0.2s; }
         .chapter-btn.active::after { transform: rotate(90deg); }
@@ -173,7 +182,7 @@
             </div>
         </div>
 
-                        <!-- LEVEL 3 -->
+                <!-- LEVEL 3 -->
         <div class="level-section">
             <button class="level-btn">🔷 AAT Level 3 Diploma Topics</button>
             <div class="chapters-panel">
@@ -222,7 +231,7 @@
             </div>
         </div>
 
-                        <!-- LEVEL 4 -->
+                <!-- LEVEL 4 -->
         <div class="level-section">
             <button class="level-btn">🔶 AAT Level 4 Diploma Topics</button>
             <div class="chapters-panel">
@@ -320,7 +329,7 @@
                 subPanel.style.maxHeight = null;
             } else {
                 subPanel.style.maxHeight = subPanel.scrollHeight + "px";
-                // Ricalcola lo spazio del pannello padre per evitare tagli visivi
+                // Ricalcola dinamicamente lo spazio del pannello padre per evitare tagli visivi
                 parentPanel.style.maxHeight = (parentPanel.scrollHeight + subPanel.scrollHeight) + "px";
             }
             e.stopPropagation();
