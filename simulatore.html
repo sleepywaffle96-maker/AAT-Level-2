@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AAT Exam Simulator - Platform Dashboard</title>
     <style>
+        /* --- DESIGN SYSTEM RESETS & GLOBAL BACKGROUND --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
         body {
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
@@ -12,6 +13,7 @@
             background-size: cover; background-position: center; background-attachment: fixed;
             min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
+        /* --- MAIN HUB CONTAINER (PLANCIA) --- */
         .hub-container {
             background: rgba(255, 255, 255, 0.95); width: 100%; max-width: 750px;
             border-radius: 16px; padding: 40px; text-align: center;
@@ -20,6 +22,7 @@
         }
         h1 { color: #0f172a; font-size: 2rem; margin-bottom: 10px; font-weight: 700; }
         p.subtitle { color: #64748b; font-size: 1rem; margin-bottom: 30px; }
+        /* --- CONTROLS PANEL --- */
         .controls-panel {
             display: flex; flex-direction: column; gap: 15px; background: #f8fafc;
             padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;
@@ -36,8 +39,7 @@
         .placeholder-text { color: #64748b; font-size: 0.9rem; margin-top: 15px; font-style: italic; }
     </style>
 </head>
-
-    <body>
+<body>
 
     <div class="hub-container">
         <h1>AAT Infinite Exam Simulator</h1>
@@ -67,8 +69,7 @@
         </div>
         <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks based on your selection.</p>
     </div>
-
-            <!-- --- SIMULATION CORE ARCHITECTURE --- -->
+    <!-- --- SIMULATION CORE DATA STRUCTURES --- -->
     <script>
         const syllabusMapping = {
             "2": [
@@ -98,7 +99,8 @@
             ]
         };
 
-                const simulationEngine = {
+        const simulationEngine = {
+            // LEVEL 2 ENGINES
             l2_c1() {
                 const gross = (Math.random() * 5000 + 200).toFixed(2);
                 return { question: `A company records a credit purchase invoice for a total gross amount of <strong>£${gross}</strong> including 20% VAT. Calculate the net amount to be entered into the Purchases Ledger Account.`, answer: (gross / 1.20).toFixed(2) };
@@ -115,6 +117,7 @@
                 const hours = 35, rate = Math.floor(Math.random() * 5) + 12;
                 return { question: `An accounting technician works <strong>${hours} hours</strong> at a basic hourly rate of <strong>£${rate}</strong>. Calculate the gross weekly production labor allocation cost.`, answer: (hours * rate).toString() };
             },
+            // LEVEL 3 ENGINES
             l3_c1() {
                 const cost = Math.floor(Math.random() * 20000) + 10000;
                 return { question: `A non-current asset costing <strong>£${cost}</strong> is depreciated using the straight-line method at 20% per annum. Calculate the carrying amount after the first year.`, answer: (cost * 0.8).toFixed(2) };
@@ -140,8 +143,7 @@
                 const receivables = Math.round((targetedDso * creditSales) / 365);
                 return { question: `A business records total credit sales of <strong>£${creditSales}</strong> and trade receivables of <strong>£${receivables}</strong>. Compute the Days Sales Outstanding (DSO) rounded to the nearest integer.`, answer: Math.round((receivables / creditSales) * 365).toString() };
             },
-
-                                // LEVEL 4 ENGINES
+            // LEVEL 4 ENGINES
             l4_c1() {
                 const consideration = Math.floor(Math.random() * 300000) + 500000, netAssets = Math.floor(Math.random() * 200000) + 250000, nci = Math.floor(Math.random() * 50000) + 40000;
                 return { question: `The consideration transferred is <strong>£${consideration}</strong>. The fair value of the NCI is <strong>£${nci}</strong>. If the net identifiable assets equal <strong>£${netAssets}</strong>, calculate the consolidated goodwill.`, answer: (consideration + nci - netAssets).toString() };
@@ -179,8 +181,7 @@
                 return { question: `An internal control log flags <strong>${standardErrors} data errors</strong> out of <strong>${totalTransactions} accounting posts</strong>. Compute the operational system deficiency error rate expressed as a percentage.`, answer: ((standardErrors / totalTransactions) * 100).toFixed(1) };
             }
         };
-
-                function updateSubjectMenu() {
+        function updateSubjectMenu() {
             const levelSelect = document.getElementById("select-level");
             const subjectSelect = document.getElementById("select-subject");
             const selectedLevel = levelSelect.value;
@@ -196,9 +197,7 @@
                 subjectSelect.appendChild(opt);
             });
         }
-        window.onload = function() { updateSubjectMenu(); };
-
-                function launchExamSession() {
+        function launchExamSession() {
             const levelSelect = document.getElementById("select-level"), subjectSelect = document.getElementById("select-subject");
             let levelSelected = levelSelect.value, subjectKey = subjectSelect.value;
             let labelTextForHeader = subjectSelect.options[subjectSelect.selectedIndex].text;
@@ -218,9 +217,8 @@
                     labelTextForHeader = `Random Combined Modules from Level ${activeLevel}`;
                 }
                 questionsData.push(simulationEngine[targetKey]());
-            
-
-                    const examWindow = window.open("", "_blank");
+            }
+            const examWindow = window.open("", "_blank");
             
             let htmlStyle = `
                 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -241,15 +239,9 @@
                 .btn-pdf-exam { background-color: #0d9488; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 1; text-align:center;}
                 .feedback-box { font-weight: bold; font-size: 0.95rem; margin-top: 5px; min-height: 20px; }
                 .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; }
-                @media print {
-                    body { background: white !important; padding: 0 !important; color: #000 !important; }
-                    .exam-container { box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
-                    .button-actions-group, .input-field { display: none !important; }
-                    .task-card { page-break-inside: avoid; border: 1px solid #cbd5e1 !important; border-left: 5px solid #0284c7 !important; background: #fff !important; }
-                }
             `;
 
-                             const doc = examWindow.document;
+            const doc = examWindow.document;
             doc.open();
             doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT Exam Session</title><style>' + htmlStyle + '</style></head><body></body></html>');
             doc.write('<script src="https://cloudflare.com"></' + 'script>');
@@ -313,12 +305,14 @@
             scoreBar.id = "overallScoreBar"; scoreBar.className = "score-bar";
             scoreBar.innerText = "Current Performance: Submit your exam sheet to calculate final grade accuracy.";
             container.appendChild(scoreBar);
-
             examWindow.processEntireExam = function() {
                 let correctAnswersCount = 0; const totalQuestions = 15;
                 for (let i = 1; i <= totalQuestions; i++) {
-                    const inputElement = doc.getElementById('ans-' + i), feedbackElement = document.getElementById('feed-' + i);
-                    const userIn = parseFloat(inputElement.value), expected = parseFloat(inputElement.getAttribute('data-correct'));
+                    const inputElement = doc.getElementById('ans-' + i);
+                    const feedbackElement = doc.getElementById('feed-' + i);
+                    const userIn = parseFloat(inputElement.value);
+                    const expected = parseFloat(inputElement.getAttribute('data-correct'));
+                    
                     if (isNaN(userIn)) {
                         feedbackElement.innerText = "⚠ Unanswered. Marks omitted."; feedbackElement.style.color = "#ea580c"; continue;
                     }
@@ -328,13 +322,15 @@
                         feedbackElement.innerText = "✗ Incorrect. Try again."; feedbackElement.style.color = "#ef4444";
                     }
                 }
-                const bar = doc.getElementById('overallScoreBar'), percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
+                const bar = doc.getElementById('overallScoreBar');
+                const percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
                 bar.innerHTML = "Final Result: " + correctAnswersCount + " / 15 Correct Answers (" + percentage + "%)";
                 bar.style.background = (percentage >= 70) ? "#0d9488" : "#0f172a";
                 examWindow.scrollTo({ top: 0, behavior: 'smooth' });
             };
         }
+
+        window.onload = function() { updateSubjectMenu(); };
     </script>
 </body>
 </html>
-             
