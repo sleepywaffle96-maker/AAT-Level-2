@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookkeeping Transactions - Test 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Bookkeeping Transactions - Test 2</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A customer purchase order consists of 50 units of product listed at £18.00 each. The business applies a 12% trade discount on this transaction before standard rate VAT (20%) is added. Complete the invoice summary amounts:<br>
+            <table class="osborne-table">
+                <tr><td>Gross List Total:</td><td>£ 900.00</td></tr>
+                <tr><td>Net Total (After 12% Discount):</td><td>£ <input type="text" id="ans1_net" placeholder="0.00"></td></tr>
+                <tr><td>VAT Amount (20%):</td><td>£ <input type="text" id="ans1_vat" placeholder="0.00"></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            An audit of the Purchase Day Book reveals a supplier invoice entered with an incorrect gross total of £1,440.00, which incorrectly includes standard rate VAT (20%). Calculate the true underlying figures for registration:<br>
+            Correct Net Amount: £ <input type="text" id="ans2_net" placeholder="0.00"><br>
+            Correct VAT Amount: £ <input type="text" id="ans2_vat" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            Calculate the total VAT and the final Gross Invoice Total for a client shipment containing multiple categories of goods:<br>
+            - Standard-rated goods (20% VAT): £1,100.00 net<br>
+            - Zero-rated goods (0% VAT): £350.00 net<br>
+            Total VAT Amount: £ <input type="text" id="ans3_vat" placeholder="0.00"><br>
+            Gross Invoice Total: £ <input type="text" id="ans3_gross" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A sales invoice has a net subtotal of £750.00 subject to standard VAT (20%). Terms allow a 3% prompt payment discount if settled within 10 days. If the customer satisfies this condition, calculate the cash received to clear the ledger balance:<br>
+            Cash Settlement Amount: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A credit customer returns damaged stock originally invoiced at £500.00 list price. The transaction originally carried a 20% trade discount and standard 20% VAT. Calculate the net adjustment and gross total required for the Credit Note:<br>
+            Credit Note Net: £ <input type="text" id="ans5_net" placeholder="0.00"><br>
+            Credit Note Gross Total: £ <input type="text" id="ans5_gross" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            A purchase invoice for warehouse supplies displays a net total of £2,100.00. Part of the purchase (£600.00 net value) is exempt from VAT, while the remaining balance is standard-rated at 20%. Calculate the gross total of this invoice:<br>
+            Gross Invoice Total: £ <input type="text" id="ans6" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            The cumulative weekly data from the Purchases Day Book displays the following totals:<br>
+            - Total Net: £11,600.00<br>
+            - Total VAT: £2,320.00<br>
+            - Total Gross: £13,920.00<br>
+            State the exact balance to be posted to the debit side of the General Ledger Purchases Account:<br>
+            Purchases Account Debit: £ <input type="text" id="ans7" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            A credit customer owes a total outstanding balance of £1,800.00. They settle their ledger account via electronic bank transfer, taking advantage of an agreed 2.5% prompt payment discount. Calculate the final cash sum received:<br>
+            Cash Sum Received: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A petty cash system operates with a fixed imprest float of £400.00. At the end of the month, the accountant counts £94.50 in physical cash remaining in the box. Calculate the exact reimbursement value required to restore the float:<br>
+            Reimbursement Value: £ <input type="text" id="ans9" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A firm purchases office materials. The supplier invoice lists a net cost of £280.00 subject to the UK reduced VAT rate of 5%. Calculate the total gross amount to be recorded in the Purchase Day Book:<br>
+            Gross Total: £ <input type="text" id="ans10" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A credit customer's account in the Sales Ledger shows an opening debit balance of £1,450.00. During the month, the following transactions occur: a new invoice is issued for £680.00 gross, a credit note is processed for £110.00 gross, and a bank payment is received for £800.00. Calculate their final closing ledger balance:<br>
+            Closing Balance (Debit): £ <input type="text" id="ans11" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            A firm sells goods to a credit customer. The catalog list price is £4,500.00. A 10% trade discount is awarded, followed by standard rate VAT (20%). Calculate the total amount to be debited to the individual customer's account in the Sales Ledger:<br>
+            Customer Account Debit: £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            The weekly analysis of the Purchase Returns Day Book shows the following totals: Net £1,250.00, VAT £250.00, Total Gross £1,500.00. State the exact value that must be debited to the Purchase Ledger Control Account (PLCA) in the General Ledger:<br>
+            PLCA Debit Value: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A business sells redundant office furniture on credit for £650.00 net plus 20% standard VAT. Since this is a non-trading asset transaction, it is processed via the General Journal. Calculate the gross value to be debited to the Sundry Debtor ledger account:<br>
+            Sundry Debtor Debit: £ <input type="text" id="ans14" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A customer invoice was mistakenly undercharged by £125.00 net. A supplementary correction invoice must be raised, including standard rate VAT (20%). Calculate the total gross amount needed on this supplementary invoice to rectify the account:<br>
+            Supplementary Invoice Gross: £ <input type="text" id="ans15" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let net = document.getElementById('ans1_net').value.trim();
+            let vat = document.getElementById('ans1_vat').value.trim();
+            isCorrect = ((net === '792' || net === '792.00') && (vat === '158.4' || vat === '158.40'));
+        } else if (currentQ === 2) {
+            let net = document.getElementById('ans2_net').value.trim();
+            let vat = document.getElementById('ans2_vat').value.trim();
+            isCorrect = ((net === '1200' || net === '1200.00') && (vat === '240' || vat === '240.00'));
+        } else if (currentQ === 3) {
+            let vat = document.getElementById('ans3_vat').value.trim();
+            let gross = document.getElementById('ans3_gross').value.trim();
+            isCorrect = ((vat === '220' || vat === '220.00') && (gross === '1670' || gross === '1670.00'));
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '873' || val === '873.00');
+        } else if (currentQ === 5) {
+            let net = document.getElementById('ans5_net').value.trim();
+            let gross = document.getElementById('ans5_gross').value.trim();
+            isCorrect = ((net === '400' || net === '400.00') && (gross === '480' || gross === '480.00'));
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '2400' || val === '2400.00');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '11600' || val === '11600.00');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '1755' || val === '1755.00');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '305.5' || val === '305.50');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '294' || val === '294.00');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '1220' || val === '1220.00');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '4860' || val === '4860.00');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '1500' || val === '1500.00');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '780' || val === '780.00');
+        } else if (currentQ === 15) {
+            let val = document.getElementById('ans15').value.trim();
+            isCorrect = (val === '150' || val === '150.00');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
