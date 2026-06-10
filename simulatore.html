@@ -171,8 +171,7 @@
                 const net = (gross / 1.20).toFixed(2);
                 return {
                     question: `An organization processes a supplier invoice totaling <strong>£${gross}</strong> gross, which includes standard UK VAT at 20%. Calculate the net expenditure component to be debited to the expense ledger.`,
-                    answer: net,
-                    hint: "Divide Gross by 1.20 to strip the 20% VAT."
+                    answer: net
                 };
             },
             // 2. High-Low Method
@@ -185,8 +184,7 @@
                 const highCost = fixed + (highUnits * vcu);
                 return {
                     question: `The financial records of a manufacturing unit show total costs of <strong>£${lowCost}</strong> at <strong>${lowUnits} units</strong> of output, and <strong>£${highCost}</strong> at <strong>${highUnits} units</strong>. Using the High-Low method, deduce the total fixed costs.`,
-                    answer: fixed.toString(),
-                    hint: "Variable Cost per Unit = (Change in Cost / Change in Activity). Then, Fixed Cost = Total Cost - Total Variable Cost."
+                    answer: fixed.toString()
                 };
             },
             // 3. Days Sales Outstanding (DSO)
@@ -198,8 +196,7 @@
                 const finalDso = Math.round((receivables / creditSales) * days);
                 return {
                     question: `At the financial year-end, a company reports total credit sales of <strong>£${creditSales}</strong> and gross trade receivables of <strong>£${receivables}</strong>. Compute the Days Sales Outstanding (DSO) rounded to the nearest whole day.`,
-                    answer: finalDso.toString(),
-                    hint: "(Trade Receivables / Total Credit Sales) * 365 days."
+                    answer: finalDso.toString()
                 };
             },
             // 4. Goodwill Calculation
@@ -210,8 +207,7 @@
                 const finalGoodwill = consideration + nci - netAssets;
                 return {
                     question: `An entity acquires a subsidiary. The purchase consideration paid is <strong>£${consideration}</strong>. The fair value of the Non-Controlling Interest (NCI) is evaluated at <strong>£${nci}</strong>. If the identifiable net assets at acquisition date equate to <strong>£${netAssets}</strong>, isolate the goodwill figure arising on consolidation.`,
-                    answer: finalGoodwill.toString(),
-                    hint: "Goodwill = Consideration Transferred + Non-Controlling Interest - Fair Value of Net Identifiable Assets."
+                    answer: finalGoodwill.toString()
                 };
             }
         };
@@ -271,11 +267,10 @@
                     .input-field { padding: 8px 12px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 1rem; width: 200px; outline: none; }
                     .input-field:focus { border-color: #0284c7; }
                     
-                    .btn-check { background-color: #0d9488; color: white; border: none; padding: 9px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-                    .btn-check:hover { background-color: #0f766e; }
+                    .btn-submit-exam { background-color: #0284c7; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; width: 100%; margin-top: 10px; margin-bottom: 25px; box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.4); }
+                    .btn-submit-exam:hover { background-color: #0369a1; }
                     
                     .feedback-box { font-weight: bold; font-size: 0.95rem; margin-top: 5px; min-height: 20px; }
-                    .hint-box { color: #64748b; font-size: 0.85rem; margin-top: 8px; display: block; font-style: italic; }
                     
                     .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; margin-top: 20px; }
                 </style>
@@ -293,7 +288,7 @@
                     <form id="examForm" onsubmit="return false;">
             `;
 
-            // Loop and injection of the 15 tasks into the HTML template
+            // Loop and injection of the 15 tasks into the HTML template (No individual check buttons, no hint labels)
             questionsData.forEach((task, index) => {
                 const qNum = index + 1;
                 htmlContent += `
@@ -301,69 +296,67 @@
                         <div class="task-number">Task ${qNum} of 15</div>
                         <div class="task-text">${task.question}</div>
                         <div class="interaction-row">
-                            <input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter amount (£)">
-                            <button type="button" class="btn-check" onclick="verifyTask(${qNum}, '${task.answer}')">Check Answer</button>
+                            <input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter amount (£)" data-correct="${task.answer}">
                         </div>
                         <div id="feed-${qNum}" class="feedback-box"></div>
-                        <small class="hint-box">Helpful Hint: ${task.hint}</small>
                     </div>
                 `;
             });
 
-            // Footer layout with score board trackers
+            // Injection of global submit action button
             htmlContent += `
                     </form>
+                    <button type="button" class="btn-submit-exam" onclick="processEntireExam()">Submit Exam</button>
+                    
                     <div class="score-bar" id="overallScoreBar">
-                        Current Performance: Checked tasks will update overall accuracy.
+                        Current Performance: Submit your exam sheet to calculate final grade accuracy.
                     </div>
                 </div>
 
                 <script>
-                    // Tracks correctly validated tasks
-                    let trackingScores = {};
-
-                    window.verifyTask = function(id, correctVal) {
-                        const userIn = parseFloat(document.getElementById('ans-' + id).value);
-                        const feedbackElement = document.getElementById('feed-' + id);
-                        const expected = parseFloat(correctVal);
-
-                        if (isNaN(userIn)) {
-                            feedbackElement.innerText = "Please input a numeric value before validating.";
-                            feedbackElement.style.color = "#ea580c"; 
-                            return;
-                        }
-
-                        // Tolerance check for floating numbers accounting bounds
-                        if (Math.abs(userIn - expected) < 0.05) {
-                            feedbackElement.innerText = "✓ Correct! Well done.";
-                            feedbackElement.style.color = "#0d9488"; /* Teal/Verde Acqua */
-                            trackingScores[id] = 1;
-                        } else {
-                            feedbackElement.innerText = "✗ Incorrect. Expected Balance: £" + expected.toFixed(2);
-                            feedbackElement.style.color = "#ef4444"; 
-                            trackingScores[id] = 0;
-                        }
-                        
-                        updateTotalDashboard();
-                    };
-
-                    function updateTotalDashboard() {
-                        const totalAnswered = Object.keys(trackingScores).length;
+                    window.processEntireExam = function() {
                         let correctAnswersCount = 0;
-                        for (let x in trackingScores) {
-                            if (trackingScores[x] === 1) correctAnswersCount++;
+                        const totalQuestions = 15;
+
+                        for (let i = 1; i <= totalQuestions; i++) {
+                            const inputElement = document.getElementById('ans-' + i);
+                            const feedbackElement = document.getElementById('feed-' + i);
+                            
+                            const userIn = parseFloat(inputElement.value);
+                            const expected = parseFloat(inputElement.getAttribute('data-correct'));
+
+                            if (isNaN(userIn)) {
+                                feedbackElement.innerText = "⚠ Unanswered. Marks omitted.";
+                                feedbackElement.style.color = "#ea580c"; 
+                                continue;
+                            }
+
+                            // Math evaluation for professional accounting decimal tolerance
+                            if (Math.abs(userIn - expected) < 0.05) {
+                                feedbackElement.innerText = "✓ Correct! Well done.";
+                                feedbackElement.style.color = "#0d9488"; /* Teal/Verde Acqua */
+                                correctAnswersCount++;
+                            } else {
+                                // Correct answer is concealed, generic notice only as requested
+                                feedbackElement.innerText = "✗ Incorrect. Try again.";
+                                feedbackElement.style.color = "#ef4444"; /* Corporate Red */
+                            }
                         }
-                        
+
+                        // Final overall evaluation grade presentation rendering
                         const scoreBar = document.getElementById('overallScoreBar');
-                        const percentage = ((correctAnswersCount / 15) * 100).toFixed(0);
-                        scoreBar.innerHTML = "Score: " + correctAnswersCount + " / 15 Correct Answers (" + percentage + "%) - Total Verified: " + totalAnswered + "/15 Tasks";
+                        const percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
+                        scoreBar.innerHTML = "Final Result: " + correctAnswersCount + " / 15 Correct Answers (" + percentage + "%)";
                         
-                        if(percentage >= 70) {
+                        if (percentage >= 70) {
                             scoreBar.style.background = "#0d9488"; /* Success Teal */
                         } else {
-                            scoreBar.style.background = "#0f172a"; /* Default Blu Notte */
+                            scoreBar.style.background = "#0f172a"; /* Reset to Night Blue */
                         }
-                    }
+                        
+                        // Scroll layout safely back to top dashboard view to inspect targets
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    };
                 <\/script>
             </body>
             </html>
