@@ -13,7 +13,8 @@
             background-size: cover; background-position: center; background-attachment: fixed;
             min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
-        /* --- MAIN HUB CONTAINER (PLANCIA) --- */
+
+                /* --- MAIN HUB CONTAINER (PLANCIA) --- */
         .hub-container {
             background: rgba(255, 255, 255, 0.95); width: 100%; max-width: 750px;
             border-radius: 16px; padding: 40px; text-align: center;
@@ -33,7 +34,7 @@
         select:focus { border-color: #0284c7; }
         .btn-generate {
             background-color: #0284c7; color: white; padding: 14px 28px; border: none;
-            border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+            border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
         }
         .btn-generate:hover { background-color: #0369a1; }
         .placeholder-text { color: #64748b; font-size: 0.9rem; margin-top: 15px; font-style: italic; }
@@ -41,6 +42,7 @@
 </head>
 
     <body>
+
     <div class="hub-container">
         <h1>AAT Infinite Exam Simulator</h1>
         <p class="subtitle">Generate unique algorithmic accounting test scenarios on-demand.</p>
@@ -67,7 +69,7 @@
                 Generate Full Test (15 Questions)
             </button>
         </div>
-        <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks without hints.</p>
+        <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks based on your selection.</p>
     </div>
 
             <!-- --- SIMULATION CORE DATA STRUCTURES --- -->
@@ -101,8 +103,9 @@
             ]
         };
 
-                // Algorithmic generators mapped to every single chapter item (No hints, pure English)
         const simulationEngine = {
+
+                        // LEVEL 2 ENGINES
             l2_c1() {
                 const gross = (Math.random() * 5000 + 200).toFixed(2);
                 return { question: `A company records a credit purchase invoice for a total gross amount of <strong>£${gross}</strong> including 20% VAT. Calculate the net amount to be entered into the Purchases Ledger Account.`, answer: (gross / 1.20).toFixed(2) };
@@ -119,6 +122,8 @@
                 const hours = 35, rate = Math.floor(Math.random() * 5) + 12;
                 return { question: `An accounting technician works <strong>${hours} hours</strong> at a basic hourly rate of <strong>£${rate}</strong>. Calculate the gross weekly production labor allocation cost.`, answer: (hours * rate).toString() };
             },
+
+                        // LEVEL 3 ENGINES
             l3_c1() {
                 const cost = Math.floor(Math.random() * 20000) + 10000;
                 return { question: `A non-current asset costing <strong>£${cost}</strong> is depreciated using the straight-line method at 20% per annum. Calculate the carrying amount after the first year.`, answer: (cost * 0.8).toFixed(2) };
@@ -144,6 +149,8 @@
                 const receivables = Math.round((targetedDso * creditSales) / 365);
                 return { question: `A business records total credit sales of <strong>£${creditSales}</strong> and trade receivables of <strong>£${receivables}</strong>. Compute the Days Sales Outstanding (DSO) rounded to the nearest integer.`, answer: Math.round((receivables / creditSales) * 365).toString() };
             },
+
+                        // LEVEL 4 ENGINES
             l4_c1() {
                 const consideration = Math.floor(Math.random() * 300000) + 500000, netAssets = Math.floor(Math.random() * 200000) + 250000, nci = Math.floor(Math.random() * 50000) + 40000;
                 return { question: `The consideration transferred is <strong>£${consideration}</strong>. The fair value of the NCI is <strong>£${nci}</strong>. If the net identifiable assets equal <strong>£${netAssets}</strong>, calculate the consolidated goodwill.`, answer: (consideration + nci - netAssets).toString() };
@@ -182,8 +189,7 @@
             }
         };
 
-                // Updates the second selector dynamically based on selected level
-        function updateSubjectMenu() {
+                function updateSubjectMenu() {
             const levelSelect = document.getElementById("select-level");
             const subjectSelect = document.getElementById("select-subject");
             const selectedLevel = levelSelect.value;
@@ -199,17 +205,17 @@
                 subjectSelect.appendChild(opt);
             });
         }
-        window.onload = function() { updateSubjectMenu(); };
 
-                // Builds and launches the standalone 15-question child viewport window
-        function launchExamSession() {
+                function launchExamSession() {
             const levelSelect = document.getElementById("select-level"), subjectSelect = document.getElementById("select-subject");
             let levelSelected = levelSelect.value, subjectKey = subjectSelect.value;
             let labelTextForHeader = subjectSelect.options[subjectSelect.selectedIndex].text;
             const totalQuestions = 15; let questionsData = [];
 
             for (let i = 0; i < totalQuestions; i++) {
-                let targetKey = subjectKey, activeLevel = levelSelected;
+                let targetKey = subjectKey;
+                let activeLevel = levelSelected;
+                
                 if (levelSelected === "random") {
                     const levels = ["2", "3", "4"];
                     activeLevel = levels[Math.floor(Math.random() * levels.length)];
@@ -222,7 +228,7 @@
                 questionsData.push(simulationEngine[targetKey]());
             }
 
-            const examWindow = window.open("", "_blank");
+                    const examWindow = window.open("", "_blank");
             let htmlContent = `
             <!DOCTYPE html>
             <html lang="en">
@@ -233,7 +239,7 @@
                     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
                     body {
                         background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://wikimedia.org');
-                        background-size: cover; background-attachment: fixed; padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
+                        background-size: cover; background-position: center; background-attachment: fixed; padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
                     }
                     .exam-container { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
                     .header-block { border-bottom: 3px solid #0284c7; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
@@ -310,6 +316,8 @@
 
             examWindow.document.open(); examWindow.document.write(htmlContent); examWindow.document.close();
         }
+
+        window.onload = function() { updateSubjectMenu(); };
     </script>
 </body>
 </html>
