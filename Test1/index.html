@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Osborne Books Style - ITBK Test 1 (Part 1)</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; color: #333; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #002f6c; border-bottom: 3px solid #00a896; padding-bottom: 10px; font-size: 22px; }
+        h2 { color: #0056b3; font-size: 16px; background: #eef5fc; padding: 8px; border-left: 5px solid #0056b3; }
+        .exercise { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 4px; background: #fafafa; }
+        .question { font-weight: bold; margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #002f6c; color: white; }
+        input[type="number"], select { padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box; }
+        .btn { background: #00a896; color: white; padding: 12px; border: none; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 4px; margin-top: 20px; }
+        .btn:hover { background: #008f80; }
+        .result-box { display: none; margin-top: 20px; padding: 15px; border-radius: 4px; font-weight: bold; text-align: center; }
+        .correct-bg { background-color: #d4edda !important; }
+        .incorrect-bg { background-color: #f8d7da !important; }
+        .feedback { font-size: 12px; margin-top: 5px; display: none; color: #dc3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Osborne Books - Student Zone (AAT Level 2)</h1>
+    <h2>Test 1: Underlying principles – L'equazione di bilancio, attività/passività</h2>
+    <form id="quizForm">
+
+        <!-- Es 1 -->
+        <div class="exercise" id="ex1">
+            <div class="question">1. Attività = £50.000, Passività = £18.000. Calcola il Capitale (Equity):</div>
+            <input type="number" id="q1" placeholder="£">
+            <div class="feedback" id="fb1">Errato. Capitale = Attività - Passività (50.000 - 18.000 = 32000).</div>
+        </div>
+
+        <!-- Es 2 -->
+        <div class="exercise" id="ex2">
+            <div class="question">2. Inserisci il valore mancante delle Passività:</div>
+            <table>
+                <tr><td>Attività Non Correnti: £35.000 | Attività Correnti: £12.000 | Capitale Netto: £29.000</td></tr>
+            </table>
+            <input type="number" id="q2" placeholder="Inserisci Passività (£)">
+            <div class="feedback" id="fb2">Errato. Passività = Attività Totali (47.000) - Capitale (29.000) = 18000.</div>
+        </div>
+
+        <!-- Es 3 -->
+        <div class="exercise" id="ex3">
+            <div class="question">3. L'acquisto di merci in contanti come modifica il totale delle Attività (Assets)?</div>
+            <select id="q3">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Aumenta</option>
+                <option value="B">Diminuisce</option>
+                <option value="C">Rimane invariato</option>
+            </select>
+            <div class="feedback" id="fb3">Errato. È uno scambio di attività (+merci, -cassa). Risposta: Rimane invariato.</div>
+        </div>
+
+        <!-- Es 4 -->
+        <div class="exercise" id="ex4">
+            <div class="question">4. Quale voce rappresenta una Passività Corrente (Current Liability)?</div>
+            <select id="q4">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Prestito a 5 anni (Bank Loan)</option>
+                <option value="B">Debiti Fornitori (Trade Payables)</option>
+                <option value="C">Crediti Clienti (Trade Receivables)</option>
+            </select>
+            <div class="feedback" id="fb4">Errato. I debiti a breve termine verso fornitori sono passività correnti (Trade Payables).</div>
+        </div>
+
+        <!-- Es 5 -->
+        <div class="exercise" id="ex5">
+            <div class="question">5. Il titolare versa £5.000 personali sul conto aziendale. Cosa succede nell'equazione?</div>
+            <select id="q5">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Aumentano Attività e Capitale</option>
+                <option value="B">Aumentano Attività e Passività</option>
+                <option value="C">Aumenta solo il Capitale</option>
+            </select>
+            <div class="feedback" id="fb5">Errato. Aumenta la Banca (+Asset) e aumenta il Capitale apportato dal titolare (+Equity).</div>
+        </div>
+
+        <!-- Es 6 -->
+        <div class="exercise" id="ex6">
+            <div class="question">6. Il furgone aziendale (Delivery Van) è classificato come:</div>
+            <select id="q6">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Attività Non Corrente (Non-current Asset)</option>
+                <option value="B">Attività Corrente (Current Asset)</option>
+                <option value="C">Passività Corrente</option>
+            </select>
+            <div class="feedback" id="fb6">Errato. È un bene d'uso pluriennale, quindi un'Attività Non Corrente.</div>
+        </div>
+
+        <!-- Es 7 -->
+        <div class="exercise" id="ex7">
+            <div class="question">7. Azienda paga un fornitore per £1.200 con assegno. Effetto sull'equazione:</div>
+            <select id="q7">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Attività -1.200 e Passività -1.200</option>
+                <option value="B">Attività -1.200 e Capitale +1.200</option>
+                <option value="C">Passività -1.200 e Capitale -1.200</option>
+            </select>
+            <div class="feedback" id="fb7">Errato. Diminuiscono i soldi in banca (-Asset) e diminuisce il debito dovuto (-Liability).</div>
+        </div>
+
+        <!-- Es 8 -->
+        <div class="exercise" id="ex8">
+            <div class="question">8. Calcola il totale Attività: Macchinari £22.000, Inventario £4.500, Crediti £3.100, Debiti £2.900.</div>
+            <input type="number" id="q8" placeholder="£">
+            <div class="feedback" id="fb8">Errato. Somma solo le attività (22.000 + 4.500 + 3.100 = 29600). I debiti sono passività.</div>
+        </div>
+        <!-- Es 9 -->
+        <div class="exercise" id="ex9">
+            <div class="question">9. Quale formula include correttamente i prelevamenti del titolare (Drawings)?</div>
+            <select id="q9">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Attività = Passività + Capitale + Drawings</option>
+                <option value="B">Attività = Passività + Capitale - Drawings</option>
+            </select>
+            <div class="feedback" id="fb9">Errato. I prelevamenti personali riducono il Capitale complessivo dell'azienda (-Drawings).</div>
+        </div>
+
+        <!-- Es 10 -->
+        <div class="exercise" id="ex10">
+            <div class="question">10. Uno scoperto bancario (Bank Overdraft) è classificato come:</div>
+            <select id="q10">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Current Asset</option>
+                <option value="B">Current Liability</option>
+                <option value="C">Non-current Liability</option>
+            </select>
+            <div class="feedback" id="fb10">Errato. Lo scoperto rappresenta un debito a breve termine verso la banca (Current Liability).</div>
+        </div>
+
+        <!-- Es 11 -->
+        <div class="exercise" id="ex11">
+            <div class="question">11. Un cliente a credito paga £450 con bonifico. Qual è l'impatto?</div>
+            <select id="q11">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Aumento Banca (+Asset) e riduzione Crediti (-Asset)</option>
+                <option value="B">Aumento Banca (+Asset) e aumento Capitale (+Equity)</option>
+            </select>
+            <div class="feedback" id="fb11">Errato. Entra denaro in banca (+Asset) e si annulla il credito verso il cliente (-Asset).</div>
+        </div>
+
+        <!-- Es 12 -->
+        <div class="exercise" id="ex12">
+            <div class="question">12. Capitale iniziale £10.000, Utile dell'anno £3.500, Prelevamenti £1.200. Capitale finale?</div>
+            <input type="number" id="q12" placeholder="£">
+            <div class="feedback" id="fb12">Errato. Capitale finale = 10.000 + 3.500 - 1.200 = 12300.</div>
+        </div>
+
+        <!-- Es 13 -->
+        <div class="exercise" id="ex13">
+            <div class="question">13. L'acquisto di un computer a credito sbilancia temporaneamente l'equazione?</div>
+            <select id="q13">
+                <option value="">-- Seleziona --</option>
+                <option value="A">Sì, finché non viene pagato</option>
+                <option value="B">No, aumentano insieme sia Attività che Passività</option>
+            </select>
+            <div class="feedback" id="fb13">Errato. L'equazione contabile resta sempre in perfetto equilibrio per ogni singola transazione.</div>
+        </div>
+
+        <!-- Es 14 -->
+        <div class="exercise" id="ex14">
+            <div class="question">14. Se le Passività sono 1/3 delle Attività e il Capitale è £40.000, quanto valgono le Attività?</div>
+            <input type="number" id="q14" placeholder="£">
+            <div class="feedback" id="fb14">Errato. Se L = 1/3 A, allora Equity = 2/3 A. Se 2/3 A = 40.000, allora le Attività valgono 60000.</div>
+        </div>
+
+        <!-- Es 15 -->
+        <div class="exercise" id="ex15">
+            <div class="question">15. Vero o Falso: L'equazione di bilancio è la base del Double-entry bookkeeping.</div>
+            <select id="q15">
+                <option value="">-- Seleziona --</option>
+                <option value="T">Vero</option>
+                <option value="F">Falso</option>
+            </select>
+            <div class="feedback" id="fb15">Errato. È assolutamente Vero: la partita doppia si fonda sul mantenere bilanciata l'equazione.</div>
+        </div>
+
+        <button type="button" class="btn" onclick="checkAnswers()">Invia e Verifica Risposte</button>
+    </form>
+    <div id="result" class="result-box"></div>
+</div>
+
+<script>
+function checkAnswers() {
+    let score = 0;
+    for(let i=1; i<=15; i++) {
+        document.getElementById('ex'+i).classList.remove('correct-bg','incorrect-bg');
+        document.getElementById('fb'+i).style.display = 'none';
+    }
+    if(document.getElementById('q1').value == '32000') { score++; document.getElementById('ex1').classList.add('correct-bg'); } else { document.getElementById('ex1').classList.add('incorrect-bg'); document.getElementById('fb1').style.display='block'; }
+    if(document.getElementById('q2').value == '18000') { score++; document.getElementById('ex2').classList.add('correct-bg'); } else { document.getElementById('ex2').classList.add('incorrect-bg'); document.getElementById('fb2').style.display='block'; }
+    if(document.getElementById('q3').value === 'C') { score++; document.getElementById('ex3').classList.add('correct-bg'); } else { document.getElementById('ex3').classList.add('incorrect-bg'); document.getElementById('fb3').style.display='block'; }
+    if(document.getElementById('q4').value === 'B') { score++; document.getElementById('ex4').classList.add('correct-bg'); } else { document.getElementById('ex4').classList.add('incorrect-bg'); document.getElementById('fb4').style.display='block'; }
+    if(document.getElementById('q5').value === 'A') { score++; document.getElementById('ex5').classList.add('correct-bg'); } else { document.getElementById('ex5').classList.add('incorrect-bg'); document.getElementById('fb5').style.display='block'; }
+    if(document.getElementById('q6').value === 'A') { score++; document.getElementById('ex6').classList.add('correct-bg'); } else { document.getElementById('ex6').classList.add('incorrect-bg'); document.getElementById('fb6').style.display='block'; }
+    if(document.getElementById('q7').value === 'A') { score++; document.getElementById('ex7').classList.add('correct-bg'); } else { document.getElementById('ex7').classList.add('incorrect-bg'); document.getElementById('fb7').style.display='block'; }
+    if(document.getElementById('q8').value == '29600') { score++; document.getElementById('ex8').classList.add('correct-bg'); } else { document.getElementById('ex8').classList.add('incorrect-bg'); document.getElementById('fb8').style.display='block'; }
+    if(document.getElementById('q9').value === 'B') { score++; document.getElementById('ex9').classList.add('correct-bg'); } else { document.getElementById('ex9').classList.add('incorrect-bg'); document.getElementById('fb9').style.display='block'; }
+    if(document.getElementById('q10').value === 'B') { score++; document.getElementById('ex10').classList.add('correct-bg'); } else { document.getElementById('ex10').classList.add('incorrect-bg'); document.getElementById('fb10').style.display='block'; }
+    if(document.getElementById('q11').value === 'A') { score++; document.getElementById('ex11').classList.add('correct-bg'); } else { document.getElementById('ex11').classList.add('incorrect-bg'); document.getElementById('fb11').style.display='block'; }
+    if(document.getElementById('q12').value == '12300') { score++; document.getElementById('ex12').classList.add('correct-bg'); } else { document.getElementById('ex12').classList.add('incorrect-bg'); document.getElementById('fb12').style.display='block'; }
+    if(document.getElementById('q13').value === 'B') { score++; document.getElementById('ex13').classList.add('correct-bg'); } else { document.getElementById('ex13').classList.add('incorrect-bg'); document.getElementById('fb13').style.display='block'; }
+    if(document.getElementById('q14').value == '60000') { score++; document.getElementById('ex14').classList.add('correct-bg'); } else { document.getElementById('ex14').classList.add('incorrect-bg'); document.getElementById('fb14').style.display='block'; }
+    if(document.getElementById('q15').value === 'T') { score++; document.getElementById('ex15').classList.add('correct-bg'); } else { document.getElementById('ex15').classList.add('incorrect-bg'); document.getElementById('fb15').style.display='block'; }
+    
+    const r = document.getElementById('result');
+    r.style.display = 'block';
+    r.innerHTML = `Risultato: ${score} / 15 corrette.`;
+    r.className = "result-box " + (score >= 11 ? "correct-bg" : "incorrect-bg");
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
