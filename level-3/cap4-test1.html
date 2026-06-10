@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indirect Tax - Test One</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Indirect Tax (Finance Act) - Test One</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A business records total credit sales of £45,000 net, all subject to standard rate VAT at 20%. Calculate the Output VAT amount that must be entered in Box 1 of the VAT Return:<br>
+            VAT Due on Sales (Box 1): £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            During the quarter, a firm incurs total standard-rated business expenses of £18,000 gross (inclusive of 20% VAT). Calculate the Input VAT amount reclaimable in Box 4:<br>
+            VAT Reclaimable (Box 4): £ <input type="text" id="ans2" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            A company's VAT summary for the quarter shows Box 1 (Output VAT) equals £8,400 and Box 4 (Input VAT) equals £5,150. Calculate the net VAT position to be filled in Box 5:<br>
+            Net VAT (Box 5): £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A retail business uses the Flat Rate Scheme with an assigned flat rate sector percentage of 12%. During the quarter, the business achieves a total gross turnover (inclusive of VAT) of £32,500. Calculate the VAT payable to HMRC under this scheme:<br>
+            Flat Rate VAT Payable: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A company sells a commercial vehicle used for business deliveries. The net sale agreement price is £6,500 plus standard rate VAT at 20%. State the final Box 6 entry (Total value of sales excluding VAT) effect for this transaction:<br>
+            Box 6 Value Contribution: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            A wholesale supplier imports raw production materials from outside the UK with a net cost of £12,000. These goods are subject to standard UK VAT rates upon entry. Calculate the Input VAT element available for accounting verification:<br>
+            Import VAT Element: £ <input type="text" id="ans6" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A credit customer went into liquidation owing the business £1,800 gross (inclusive of 20% VAT). The debt has been outstanding for more than 6 months and has been written off in the accounts. Calculate the bad debt relief claimable on the VAT Return:<br>
+            VAT Bad Debt Relief: £ <input type="text" id="ans7" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            A company purchases a new motor vehicle for £18,000 net plus 20% VAT. The car will be used by managers for both business deliveries and private commuting. Under HMRC rules, what amount of input VAT can the business reclaim?<br>
+            Reclaimable VAT Amount: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            According to current HMRC rules, a business must monitor its cumulative turnover over a rolling 12-month period. Under the updated Finance Act, what is the mandatory threshold of taxable turnover above which a business must register for VAT?<br>
+            Registration Threshold: £ <input type="text" id="ans9" placeholder="90000">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A business operates under the Cash Accounting Scheme. During the quarter, it issues invoices total £24,000 gross but only receives £18,000 in cash from customers. It receives supplier invoices total £12,000 gross but pays only £9,000. All transactions include standard rate VAT (20%). Calculate the net VAT payable using the cash basis:<br>
+            Net VAT Payable: £ <input type="text" id="ans10" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A firm accidentally files its quarterly VAT Return late. Under the points-based penalty system updated by the Finance Act, a business receives 1 penalty point for each late submission. At how many accumulated points for quarterly returns does a financial penalty of £200 apply?<br>
+            Points Threshold: <input type="text" id="ans11" placeholder="0"> points
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            A company provides private fuel to a director for personal use in a company car. The scale charge net value for the vehicle category is determined to be £350. Calculate the Output VAT that must be added to Box 1 for this fuel scale charge:<br>
+            Fuel Scale Charge VAT: £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            Under the Annual Accounting Scheme, a business makes 9 monthly interim advance payments based on the previous year's liability. What percentage of the total estimated annual VAT liability must each monthly payment represent?<br>
+            Interim Payment Percentage: <input type="text" id="ans13" placeholder="10"> %
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            An accounting clerk discovers an error in a previous VAT return where Output VAT was underdeclared by £1,450. Under the current standard rules, what is the maximum limit for an error value that a business can correct by adjusting the current VAT Return without notifying HMRC separately?<br>
+            Maximum Correction Limit: £ <input type="text" id="ans14" placeholder="10000">
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A VAT-registered business exports goods directly to a customer located outside the UK. Select the correct VAT rating treatment applied to this export transaction under current international trade regulations:<br>
+            VAT Rating: <select id="ans15"><option value="">Select</option><option value="w">Standard rated (20%)</option><option value="w">Exempt</option><option value="correct">Zero rated (0%)</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '9000' || val === '9000.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '300' || val === '300.00');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '3250' || val === '3250.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '3900' || val === '3900.00');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '6500' || val === '6500.00');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '2400' || val === '2400.00');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '300' || val === '300.00');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '0' || val === '0.00');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '90000');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '1500' || val === '1500.00');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '4');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '70' || val === '70.00');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '10');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '10000');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
