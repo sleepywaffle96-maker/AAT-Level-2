@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principles of Costing - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Principles of Costing - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A storage facility tracks its inventory values using the Last-In, First-Out (LIFO) method. The balance changes are:<br>
+            - 1 October: Opening stock 60 kg @ £10.00/kg<br>
+            - 12 October: Purchased 40 kg @ £12.00/kg<br>
+            - 20 October: Issued 50 kg to production<br>
+            Calculate the exact total valuation of the 50 kg issued using LIFO:<br>
+            Value of Issue: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            Using the identical data from Q1, calculate the final valuation of the remaining closing stock at the end of October using the LIFO system:<br>
+            Closing Stock Value: £ <input type="text" id="ans2" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            A task has a standard targeted time of 40 hours. A technician completes the job in 32 actual hours. The hourly wage rate is £14.00. Under the company bonus scheme, the worker receives a basic wage plus a bonus equal to 50% of the time saved at the standard hourly rate. Calculate the worker's gross pay:<br>
+            Gross Pay: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            An assembly plant worker completes a 40-hour shift. The records indicate that 4 hours were classified as non-productive idle time because of a raw material shortage. The contract rate is £11.50 per hour. Calculate the total value to be recorded as Direct Labor cost:<br>
+            Direct Labor Cost: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A service center reviews historical main operational utility expenditures over two separate operating conditions:<br>
+            - Activity Level 1: 4,000 service hours | Total cost: £14,500<br>
+            - Activity Level 2: 7,000 service hours | Total cost: £22,000<br>
+            Using the High-Low method, calculate the variable utility cost per service hour:<br>
+            Variable Cost per Hour: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            Using the analytical framework established in Q5, calculate the fixed overhead cost component for the utility expenses:<br>
+            Fixed Overhead Cost: £ <input type="text" id="ans6" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A factory allocates total material handling overheads of £12,600 to two separate production cost centers based on the total weight of materials issued (kg):<br>
+            - Cost Center A: 6,000 kg | Cost Center B: 3,000 kg<br>
+            Calculate the exact overhead allocation for Cost Center B:<br>
+            Cost Center B Allocation: £ <input type="text" id="ans7" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            How should the raw rubber utilized inside a car tire production factory be classified from a managerial cost accounting viewpoint?<br>
+            Cost Classification: <select id="ans8"><option value="">Select</option><option value="correct">Direct Variable Cost</option><option value="w">Indirect Fixed Cost</option><option value="w">Direct Fixed Cost</option></select>
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A business operates a Weighted Average Cost (AVCO) system. Stock movements show:<br>
+            - Opening balance: 100 items with a total value of £500.00<br>
+            - Purchase: 50 items bought at £8.00 each<br>
+            Calculate the new weighted average unit cost following this purchase (round to 2 decimal places):<br>
+            AVCO Unit Cost: £ <input type="text" id="ans9" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A production manager notes that the budgeted cost for factory maintenance was £4,200. The actual expenditure came to £4,550. Calculate the variance and determine its financial effect:<br>
+            Variance Amount: £ <input type="text" id="ans10_val" placeholder="0.00"><br>
+            Effect: <select id="ans10_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            An accounting department calculates the predetermined Overhead Absorption Rate (OAR) based on machine hours. Total budgeted overheads are £64,000, and expected machine utilization is 4,000 hours. State the OAR per machine hour:<br>
+            OAR per Machine Hour: £ <input type="text" id="ans11" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            A manufacturing process needs 3 meters of fabric @ £6.00/meter and 1.5 hours of assembly labor @ £12.00/hour. Production overhead absorption is set at £5.00 per direct labor hour. Calculate the prime cost of the item:<br>
+            Prime Cost: £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            Using the technical product parameters outlined in Q12, calculate the total production cost for a single unit:<br>
+            Total Production Cost: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A batch of inventory is issued using the FIFO method. On 1 May there are 80 units in stock @ £4.00/unit. On 5 May, 100 units are purchased @ £4.50/unit. On 10 May, 90 units are issued. Calculate the value of this material issue:<br>
+            Value of Materials Issued: £ <input type="text" id="ans14" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A delivery driver is paid a fixed weekly salary of £400.00 plus a variable payment of £0.15 for every mile travelled. How is the truck driver's total compensation classified?<br>
+            Cost Classification: <select id="ans15"><option value="">Select</option><option value="w">Fixed Cost</option><option value="w">Variable Cost</option><option value="correct">Semi-Variable Cost</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '580' || val === '580.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '500' || val === '500.00');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '504' || val === '504.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '414' || val === '414.00');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '2.5' || val === '2.50');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '4500' || val === '4500.00');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '4200' || val === '4200.00');
+        } else if (currentQ === 8) {
+            isCorrect = (document.getElementById('ans8').value === 'correct');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '6' || val === '6.00');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10_val').value.trim();
+            let type = document.getElementById('ans10_type').value;
+            isCorrect = ((val === '350' || val === '350.00') && type === 'correct');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '16' || val === '16.00');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '36' || val === '36.00');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '43.5' || val === '43.50');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '365' || val === '365.00');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
