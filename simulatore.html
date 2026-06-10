@@ -8,10 +8,8 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f1f5f9;
-            background-image: 
-                linear-gradient(rgba(0, 102, 51, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 102, 51, 0.04) 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-image: linear-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 148, 136, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
             margin: 0;
             padding: 40px 20px;
             display: flex;
@@ -21,16 +19,16 @@
             width: 100%;
             max-width: 750px;
             background-color: #ffffff;
-            border-top: 6px solid #006633;
+            border-top: 6px solid #014d26;
             border-radius: 8px;
             padding: 35px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
         .header-title {
-            color: #006633;
+            color: #0d9488;
             font-size: 22px;
             font-weight: bold;
-            border-bottom: 2px solid #006633;
+            border-bottom: 2px solid #0d9488;
             padding-bottom: 12px;
             margin-bottom: 20px;
             text-align: center;
@@ -55,7 +53,7 @@
             min-width: 180px;
         }
         label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             color: #475569;
             text-transform: uppercase;
@@ -84,7 +82,6 @@
             padding: 25px;
             border-radius: 6px;
             margin-bottom: 20px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
         }
         .nav-buttons {
             border-top: 1px solid #e2e8f0;
@@ -107,12 +104,12 @@
             background-color: #e2e8f0;
         }
         .btn-generate {
-            background-color: #006633;
+            background-color: #0d9488;
             color: white;
-            border: 1px solid #004d26;
+            border: 1px solid #0f766e;
         }
         .btn-generate:hover {
-            background-color: #004d26;
+            background-color: #0f766e;
         }
         .feedback {
             margin: 15px 0;
@@ -120,7 +117,7 @@
             font-weight: bold;
             min-height: 24px;
         }
-        .correct { color: #006633; }
+        .correct { color: #0d9488; }
         .incorrect { color: #cc0000; }
     </style>
 </head>
@@ -129,7 +126,6 @@
 <div class="quiz-container">
     <div class="header-title">🎯 AAT Dynamic Examination Engine</div>
 
-    <!-- PANNELLO DI SELEZIONE DEL TEST DA GENERARE -->
     <div class="selector-panel">
         <div class="selector-group">
             <label for="levelSelect">Select Level</label>
@@ -149,10 +145,7 @@
         <button class="btn-action btn-generate" style="margin-top: 18px;" onclick="generateQuestion()">Generate Scenario ↻</button>
     </div>
 
-    <div id="questionBox" class="question-box">
-        <!-- Generato Dinamicamente -->
-    </div>
-
+    <div id="questionBox" class="question-box"></div>
     <div id="feedbackBox" class="feedback"></div>
 
     <div class="nav-buttons">
@@ -160,8 +153,8 @@
         <button class="btn-action btn-generate" onclick="checkAnswer()">Verify Calculations</button>
     </div>
 </div>
-<script>
-    // Database dei moduli associati a ciascun livello
+
+    <script>
     const chaptersData = {
         "2": [
             { id: "L2_C1", name: "Chapter 1: Bookkeeping Transactions" },
@@ -201,13 +194,10 @@
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    // Aggiorna dinamicamente la seconda tendina in base al livello selezionato
     function updateChapters() {
         const level = document.getElementById("levelSelect").value;
         const chapterSelect = document.getElementById("chapterSelect");
-        
         chapterSelect.innerHTML = '<option value="any">🎲 Mixed Chapters (All Topics)</option>';
-        
         if (level !== "any" && chaptersData[level]) {
             chaptersData[level].forEach(ch => {
                 const opt = document.createElement("option");
@@ -218,14 +208,12 @@
         }
     }
 
-    // Generatore principale di scenari
     function generateQuestion() {
         document.getElementById('feedbackBox').innerText = "";
         const level = document.getElementById("levelSelect").value;
         let chapter = document.getElementById("chapterSelect").value;
         const questionBox = document.getElementById('questionBox');
         
-        // Se l'utente sceglie "Mixed", il sistema estrae un capitolo a caso
         if (chapter === "any") {
             let selectedLevel = level;
             if (level === "any") {
@@ -240,29 +228,28 @@
         let html = "";
 
         switch(chapter) {
-            // --- LEVEL 2 SCENARIOS ---
-            case "L2_C1": // Bookkeeping Transactions (Scorporo IVA 20%)
+            case "L2_C1":
                 const grossVAT = getRandomInt(40, 250) * 12;
                 currentCorrectAnswer = (grossVAT / 1.2).toFixed(2);
                 html = `<strong>🟢 Level 2 - Bookkeeping Transactions</strong><br><br>
-                        <strong>${comp}</strong> ha ricevuto una fattura passiva con un totale lordo errato di <strong>£${grossVAT.toLocaleString(undefined, {minimumFractionDigits: 2})}</strong> comprensivo di IVA standard al 20%.<br><br>
+                        <strong>${comp}</strong> ha ricevuto una fattura passiva con un totale lordo di <strong>£${grossVAT.toLocaleString(undefined, {minimumFractionDigits: 2})}</strong> comprensivo di IVA standard al 20%.<br><br>
                         Calcola il valore <strong>imponibile netto</strong> corretto da registrare sul Purchase Day Book:<br>
                         Net Amount: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L2_C2": // Bookkeeping Controls (Quadratura Errore Suspense)
+            case "L2_C2":
                 const realExpense = getRandomInt(20, 80) * 10;
                 const wrongExpense = realExpense - (getRandomInt(2, 5) * 50);
                 currentCorrectAnswer = Math.abs(realExpense - wrongExpense).toFixed(2);
                 html = `<strong>🟢 Level 2 - Bookkeeping Controls</strong><br><br>
-                        Un errore di digitazione ha fatto sì che un pagamento per spese di cancelleria di £${realExpense} venisse inserito correttamente nel Cash Book, ma registrato a debito nel conto di mastro delle spese come £${wrongExpense}. Il Trial Balance non quadra.<br><br>
+                        Un errore ha fatto sì che un pagamento di £${realExpense} venisse inserito correttamente nel Cash Book, ma registrato a debito nel conto delle spese come £${wrongExpense}. Il Trial Balance non quadra.<br><br>
                         Calcola l'importo esatto da inserire nel <strong>Suspense Account</strong> per rettificare l'errore:<br>
                         Suspense Adjustment: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L2_C3": // Principles of Costing (Valutazione Magazzino FIFO)
+            case "L2_C3":
                 const unitsOp = getRandomInt(10, 20) * 10;
                 const priceOp = getRandomInt(4, 6);
                 const unitsPur = getRandomInt(15, 25) * 10;
@@ -270,50 +257,49 @@
                 const issueUnits = unitsOp + getRandomInt(2, 8) * 10;
                 currentCorrectAnswer = ((unitsOp * priceOp) + ((issueUnits - unitsOp) * pricePur)).toFixed(2);
                 html = `<strong>🟢 Level 2 - Principles of Costing</strong><br><br>
-                        I movimenti delle rimanenze di <strong>${comp}</strong> mostrano:<br>
-                        • 1 Giugno: Apertura magazzino ${unitsOp} unità @ £${priceOp.toFixed(2)} l'una<br>
-                        • 8 Giugno: Acquisto ${unitsPur} unità @ £${pricePur.toFixed(2)} l'una<br><br>
-                        Utilizzando il metodo **FIFO**, calcola il valore totale del prelievo di <strong>${issueUnits} unità</strong> inviate alla produzione il 15 giugno:<br>
+                        I movimenti di magazzino di <strong>${comp}</strong> mostrano:<br>
+                        • 1 Giugno: Rimanenze iniziali ${unitsOp} unità @ £${priceOp.toFixed(2)}<br>
+                        • 8 Giugno: Acquisto di ${unitsPur} unità @ £${pricePur.toFixed(2)}<br><br>
+                        Utilizzando il metodo <strong>FIFO</strong>, calcola il valore del prelievo di <strong>${issueUnits} unità</strong> inviate alla produzione:<br>
                         Value of Issue: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L2_C4": // Work Effectively in Finance (Calcolo accuratezza dati)
+            case "L2_C4":
                 const totalInvoices = getRandomInt(20, 40) * 10;
                 const errorsInvoices = getRandomInt(2, 6) * 2;
                 currentCorrectAnswer = (((totalInvoices - errorsInvoices) / totalInvoices) * 100).toFixed(2);
                 html = `<strong>🟢 Level 2 - Work Effectively in Finance</strong><br><br>
-                        Un assistente contabile inserisce a sistema un lotto di ${totalInvoices} fatture. Al controllo di qualità, si scopre che ${errorsInvoices} fatture contengono errori di digitazione.<br><br>
-                        Calcola il tasso percentuale di **accuratezza dei dati** (data accuracy rate) inseriti:<br>
+                        Un impiegato inserisce a sistema un lotto di ${totalInvoices} fatture. Al controllo di qualità si scopre che ${errorsInvoices} fatture contengono errori.<br><br>
+                        Calcola il tasso percentuale di <strong>accuratezza dei dati</strong> inseriti:<br>
                         Accuracy Rate: <input type="text" id="calc_ans" placeholder="0.00"> %`;
                 inputIdToCheck = "calc_ans";
                 break;
-            // --- LEVEL 3 SCENARIOS ---
-            case "L3_C1": // Advanced Bookkeeping (Ammortamento Riducente Anno 2)
+
+                    case "L3_C1":
                 const assetCost = getRandomInt(25, 60) * 1000;
-                const ratesL3 =;
-                const deprRate = getRandomItem(ratesL3);
+                const deprRates =;
+                const deprRate = getRandomItem(deprRates);
                 const yr1Depr = assetCost * (deprRate / 100);
                 currentCorrectAnswer = ((assetCost - yr1Depr) * (deprRate / 100)).toFixed(2);
                 html = `<strong>🔵 Level 3 - Advanced Bookkeeping</strong><br><br>
-                        Un'azienda acquista macchinari industriali per <strong>£${assetCost.toLocaleString()}</strong>. La politica aziendale prevede un ammortamento del <strong>${deprRate}% annuo</strong> calcolato con il metodo dei **saldi decrescenti (reducing balance)**.<br><br>
-                        Calcola la quota di ammortamento esatta per il **secondo anno** di utilizzo:<br>
+                        Un'azienda acquista macchinari industriali per <strong>£${assetCost.toLocaleString()}</strong>. La politica aziendale prevede un ammortamento del <strong>${deprRate}% annuo</strong> calcolato con il metodo dei <strong>saldi decrescenti (reducing balance)</strong>.<br><br>
+                        Calcola la quota di ammortamento esatta per il <strong>secondo anno</strong> di utilizzo:<br>
                         Year 2 Depreciation: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L3_C2": // Final Accounts Preparation (Ricarico Inverso Mark-up)
+            case "L3_C2":
                 const cogsValue = getRandomInt(30, 80) * 1000;
-                const markup = 25;
                 currentCorrectAnswer = (cogsValue * 1.25).toFixed(2);
                 html = `<strong>🔵 Level 3 - Final Accounts Preparation</strong><br><br>
-                        Dai registri incompleti di un commerciante emerge che il Costo del Venduto (COGS) dell'anno ammonta a <strong>£${cogsValue.toLocaleString()}</strong>. L'attività applica un ricarico fisso (**mark-up) del ${markup}%** sul costo di ogni bene.<br><br>
+                        Dai registri incompleti di un commerciante emerge che il Costo del Venduto (COGS) ammonta a <strong>£${cogsValue.toLocaleString()}</strong>. L'attività applica un ricarico fisso (mark-up) del <strong>25%</strong> sul costo.<br><br>
                         Calcola il fatturato totale (Sales Revenue) generato dall'attività:<br>
                         Sales Revenue: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L3_C3": // MA: Costing (Metodo Alta-Bassa per Costi Fissi)
+            case "L3_C3":
                 const lHrs = getRandomInt(10, 20) * 100;
                 const hHrs = lHrs + (getRandomInt(5, 12) * 100);
                 const vRate = getRandomInt(2, 6);
@@ -322,43 +308,44 @@
                 const hCost = fCost + (hHrs * vRate);
                 currentCorrectAnswer = fCost.toFixed(2);
                 html = `<strong>🔵 Level 3 - Management Accounting: Costing</strong><br><br>
-                        Vengono analizzati i costi semivariabili di energia elettrica di un impianto:<br>
+                        Vengono analizzati i costi semivariabili di energia elettrica:<br>
                         • Livello Minimo: ${lHrs.toLocaleString()} ore | Costo Totale: £${lCost.toLocaleString()}<br>
                         • Livello Massimo: ${hHrs.toLocaleString()} ore | Costo Totale: £${hCost.toLocaleString()}<br><br>
-                        Utilizzando il metodo **High-Low**, isola la componente fissa strutturale e calcola il **Costo Fisso Totale**:<br>
+                        Utilizzando il metodo <strong>High-Low</strong>, calcola la componente del <strong>Costo Fisso Totale</strong>:<br>
                         Total Fixed Cost: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L3_C4": // Indirect Tax (Soglia ed errori di rettifica)
+            case "L3_C4":
                 const vatUnder = getRandomInt(11, 19) * 1000;
                 currentCorrectAnswer = "no";
                 html = `<strong>🔵 Level 3 - Indirect Tax</strong><br><br>
-                        Un contabile scopre un errore commesso nella dichiarazione IVA precedente, in cui l'IVA sulle vendite (Output VAT) è stata sotto-dichiarata per un ammontare pari a <strong>£${vatUnder.toLocaleString()}</strong>.<br><br>
+                        Un contabile scopre che l'IVA sulle vendite (Output VAT) è stata sotto-dichiarata per un ammontare pari a <strong>£${vatUnder.toLocaleString()}</strong> nella scorsa dichiarazione.<br><br>
                         È possibile correggere questo errore inserendo semplicemente la rettifica all'interno del VAT Return del trimestre corrente, senza notificare separatamente l'HMRC? (Rispondi scrivendo esattamente <strong>yes</strong> o <strong>no</strong>):<br>
                         Answer: <input type="text" id="calc_ans" placeholder="yes/no" style="text-align: left; width: 100px;">`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L3_C5": // Ethics for Accountants (Percentuali Riciclaggio CDD)
+            case "L3_C5":
                 currentCorrectAnswer = "25";
                 html = `<strong>🔵 Level 3 - Ethics for Accountants</strong><br><br>
                         Durante le procedure di adeguata verifica della clientela (Customer Due Diligence), lo studio deve identificare il titolare effettivo (Beneficial Owner) dell'impresa.<br><br>
-                        Secondo le normative antiriciclaggio del Regno Unito, qual è la quota percentuale minima di azioni o diritti di voto oltre la quale un individuo è legalmente classificato come Beneficial Owner?<br>
+                        Secondo le normative antiriciclaggio del Regno Unito, qual è la quota percentuale minima di azioni o diritti di voto oltre la quale un individuo è legalmente classificato como Beneficial Owner?<br>
                         Minimum Percentage: <input type="text" id="calc_ans" placeholder="0"> %`;
                 inputIdToCheck = "calc_ans";
                 break;
 
-            case "L3_C6": // Business Awareness (Strutture Macroeconomiche)
+            case "L3_C6":
                 currentCorrectAnswer = "pestle";
                 html = `<strong>🔵 Level 3 - Business Awareness</strong><br><br>
-                        La direzione strategica di un'azienda desidera analizzare i fattori esterni politici, economici, tecnologici e legali che potrebbero impattare sulla redditività nel lungo periodo.<br><br>
-                        Qual è l'acronimo internazionale dello strumento di analisi macroambientale progettato specificamente per questo scopo? (Scrivi l'acronimo in minuscolo, es: swot):<br>
+                        La direzione aziendale desidera analizzare i fattori macro-ambientali esterni politici, economici, sociali, tecnologici, legali e ambientali che potrebbero impattare sulla redditività nel lungo periodo.<br><br>
+                        Qual è l'acronimo internazionale dello strumento di analisi macroambientale progettato per questo scopo? (Scrivi l'acronimo in minuscolo, es: swot):<br>
                         Framework: <input type="text" id="calc_ans" placeholder="pestle" style="text-align: left; width: 100px;">`;
                 inputIdToCheck = "calc_ans";
                 break;
-            // --- LEVEL 4 SCENARIOS ---
-            case "L4_C1": // Financial Statements of Limited Companies (Goodwill)
+
+                    // --- LEVEL 4 SCENARIOS ---
+            case "L4_C1": // Financial Statements (Goodwill)
                 const subShares = 100000;
                 const costAcq = getRandomInt(130, 160) * 1000;
                 const retainedEarnings = getRandomInt(30, 50) * 1000;
@@ -396,9 +383,10 @@
 
             case "L4_C4": // External Auditing (Materialità del Bilancio)
                 const pbt = getRandomInt(6, 12) * 100000;
-                currentCorrectAnswer = (pbt * 0.05).toFixed(2);
+                const auditRate = 5;
+                currentCorrectAnswer = (pbt * (auditRate / 100)).toFixed(2);
                 html = `<strong>⚫ Level 4 - External Auditing</strong><br><br>
-                        Un team di revisione sta pianificando le verifiche di bilancio su una SpA. L'utile ante imposte (Profit Before Tax) provvisorio ammonta a <strong>£${pbt.toLocaleString()}</strong>. Il revisore applica le linee guida ISA impostando la soglia di materialità pianificata (planning materiality) al 5% del PBT.<br><br>
+                        Un team di revisione sta pianificando le verifiche di bilancio su una SpA. L'utile ante imposte (Profit Before Tax) provvisorio ammonta a <strong>£${pbt.toLocaleString()}</strong>. Il revisore applica le linee guida ISA impostando la soglia di materialità pianificata (planning materiality) al ${auditRate}% del PBT.<br><br>
                         Calcola la **soglia di materialità** in sterline da utilizzare come benchmark d'errore:<br>
                         Planning Materiality: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
@@ -418,7 +406,8 @@
                         Cash Cycle: <input type="text" id="calc_ans" placeholder="0"> days`;
                 inputIdToCheck = "calc_ans";
                 break;
-            case "L4_C6": // Credit Management (DSO Ratio)
+
+                    case "L4_C6": // Credit Management (DSO Ratio)
                 const salesDso = getRandomInt(400, 800) * 1000;
                 const daysGoal = getRandomInt(30, 48);
                 const recDso = Math.round((daysGoal * salesDso) / 365);
@@ -437,7 +426,7 @@
                 currentCorrectAnswer = Math.max(0, 12570 - reduction).toFixed(2);
                 html = `<strong>⚫ Level 4 - Personal Tax</strong><br><br>
                         Un contribuente registra un reddito netto rettificato (Adjusted Net Income) pari a <strong>£${netIncome.toLocaleString()}</strong> nel corso dell'anno fiscale corrente.<br><br>
-                        Considerando la riduzione progressiva di £1 per ogni £2 eccedenti la soglia di £100,000, calcola la quota finale residua di **Deduzione Personale (Personal Allowance)** a cui ha diritto:<br>
+                        Considerando la riduzione della deduzione di £1 per ogni £2 eccedenti la soglia di £100,000, calcola la quota finale residua di **Personal Allowance** a cui ha diritto:<br>
                         Available Allowance: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
                 break;
@@ -447,7 +436,7 @@
                 const entertainment = getRandomInt(2, 6) * 1000;
                 currentCorrectAnswer = (accountingProfit + entertainment).toFixed(2);
                 html = `<strong>⚫ Level 4 - Business Tax</strong><br><br>
-                        Una Limited Company chiude il bilancio con un utile ante imposte di <strong>£${accountingProfit.toLocaleString()}</strong>. Tra le voci di costo sono incluse spese di rappresentanza per l'intrattenimento di clienti (client entertainment) non deducibili per <strong>£${entertainment.toLocaleString()}</strong>.<br><br>
+                        Una Limited Company chiude il bilancio con un utile ante imposte di <strong>£${accountingProfit.toLocaleString()}</strong>. Tra le voci di costo sono incluse spese per l'intrattenimento di clienti (client entertainment) non deducibili per <strong>£${entertainment.toLocaleString()}</strong>.<br><br>
                         Calcola l'**utile fiscale rettificato (adjusted trading profit)** su cui calcolare la Corporation Tax riprendendo a tassazione la spesa indeducibile:<br>
                         Adjusted Profit: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
