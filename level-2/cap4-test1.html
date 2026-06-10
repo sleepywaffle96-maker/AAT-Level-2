@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Effectively in Finance - Test One</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Work Effectively in Finance - Test One</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            An invoice dated 14 May has strict payment terms of "Net 30 days". Calculate the final calendar date by which the payment must be settled to avoid penalty charges (Assume May has 31 days):<br>
+            Payment Due Date (Day/Month format, e.g., 15 June): <input type="text" id="ans1" placeholder="13 June" style="text-align: left; width: 140px;">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A finance assistant processes a stack of 120 purchase invoices. Upon double-checking, 6 invoices are found to contain data entry errors. Calculate the data input accuracy rate as a percentage:<br>
+            Accuracy Rate: <input type="text" id="ans2" placeholder="0.00"> %
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            An accounting clerk needs to print a payroll report. The printer's performance metrics state it can produce 24 pages per minute. If the final report is 180 pages long, calculate the exact amount of time needed to complete the printing job:<br>
+            Time Required: <input type="text" id="ans3" placeholder="0.00"> minutes
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A small company has a statutory deadline to file its annual accounts within 9 months after its financial year ends. If the company's year-end is 31 December, calculate the final statutory date for submission:<br>
+            Submission Deadline (Day/Month format, e.g., 30 September): <input type="text" id="ans4" placeholder="30 September" style="text-align: left; width: 160px;">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A finance team must prioritize four pending administrative tasks based on urgency and organizational cash flow safety. Select the task that should be handled with the highest priority:<br>
+            Highest Priority: <select id="ans5"><option value="">Select</option><option value="w">Filing completed petty cash vouchers</option><option value="correct">Paying an urgent statutory HMRC VAT bill to avoid penalties</option><option value="w">Archiving older ledger invoices from three years ago</option></select>
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            An organization is planning to update its financial data storage policy. Under the UK statutory regulations for corporate tax data retention, a business must securely archive all accounting invoices and receipts for a minimum of how many years?<br>
+            Minimum Years Required: <input type="text" id="ans6" placeholder="0"> years
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A department manager has a total weekly budget of £2,500.00 for office operations. The actual expenses incurred during the current week sum up to £2,645.00. Calculate the exact budget variance amount:<br>
+            Budget Variance: £ <input type="text" id="ans7" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            Using the budget variance calculated in Q7, determine the administrative classification of this operational result:<br>
+            Variance Classification: <select id="ans8"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A corporate department schedules its processing targets. A senior ledger clerk can process an average of 45 supplier credit checks per hour. If a new batch consists of 270 supplier accounts, calculate the total processing hours required:<br>
+            Processing Time: <input type="text" id="ans9" placeholder="0"> hours
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            Under the General Data Protection Regulation (GDPR) rules, a business spreadsheet containing employee salary structures and personal bank accounts is classified as what type of data?<br>
+            Data Classification: <select id="ans10"><option value="">Select</option><option value="w">Public Information</option><option value="correct">Confidential Personal Data</option><option value="w">General Commercial Data</option></select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            An invoice for £840.00 is settled late by a business. The supplier applies a statutory interest penalty charge of 5% on the outstanding amount. Calculate the final total payment required to clear the debt:<br>
+            Total Payment: £ <input type="text" id="ans11" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            A firm's petty cash float is audited. The fixed imprest total is £200.00. The voucher receipts sum up to £142.50, and the actual physical cash remaining in the box is measured at £55.00. Calculate the exact cash shortage or discrepancy in the system:<br>
+            Cash Discrepancy (Shortage): £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            A customer makes a payment of £1,500 to settle an account. Due to a data entry error, the clerk records the payment as £1,050. Calculate the error value that needs to be corrected via a journal entry:<br>
+            Adjustment Value: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A finance department updates its compliance rules. If an external auditor discovers that a company intentionally altered invoices to pay less corporate tax, this illegal action is legally defined as:<br>
+            Legal Classification: <select id="ans14"><option value="">Select</option><option value="w">Tax Avoidance</option><option value="correct">Tax Evasion (Fraud)</option><option value="w">Errors of Omission</option></select>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A ledger assistant checks 250 sales accounts during a quality control review and discovers that 245 contain perfect reconciliations. Calculate the professional compliance rate as a percentage:<br>
+            Compliance Rate: <input type="text" id="ans15" placeholder="0.00"> %
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim().toLowerCase();
+            isCorrect = (val === '13 june' || val === '13/06' || val === '13-06');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '95' || val === '95.00' || val === '95%');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '7.5' || val === '7.50');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim().toLowerCase();
+            isCorrect = (val === '30 september' || val === '30/09' || val === '30-09');
+        } else if (currentQ === 5) {
+            isCorrect = (document.getElementById('ans5').value === 'correct');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '6');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '145' || val === '145.00');
+        } else if (currentQ === 8) {
+            isCorrect = (document.getElementById('ans8').value === 'correct');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '6');
+        } else if (currentQ === 10) {
+            isCorrect = (document.getElementById('ans10').value === 'correct');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '882' || val === '882.00');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '2.5' || val === '2.50');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '450' || val === '450.00');
+        } else if (currentQ === 14) {
+            isCorrect = (document.getElementById('ans14').value === 'correct');
+        } else if (currentQ === 15) {
+            let val = document.getElementById('ans15').value.trim();
+            isCorrect = (val === '98' || val === '98.00');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
