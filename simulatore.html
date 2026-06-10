@@ -96,7 +96,7 @@
                 { value: "l4_c5", label: "Chapter 5: Cash and Treasury Management" },
                 { value: "l4_c6", label: "Chapter 6: Credit Management" },
                 { value: "l4_c7", label: "Chapter 7: Personal Tax" },
-                { value: "l4_8", label: "Chapter 8: Business Tax" },
+                { value: "l4_c8", label: "Chapter 8: Business Tax" },
                 { value: "l4_c9", label: "Chapter 9: Internal Accounting Systems and Controls" }
             ]
         };
@@ -172,7 +172,7 @@
                 const salary = Math.floor(Math.random() * 15000) + 32000, allowance = 12570;
                 return { question: `An employee earns a gross salary of <strong>£${salary}</strong>. Given a standard statutory UK Personal Allowance of £${allowance}, compute the exact remaining balance of net income subject to basic tax rates.`, answer: (salary - allowance).toString() };
             },
-            l4_8() {
+            l4_c8() {
                 const netProfit = Math.floor(Math.random() * 120000) + 40000, nonAllowable = Math.floor(Math.random() * 6000) + 1000;
                 return { question: `A corporation registers a net accounting profit of <strong>£${netProfit}</strong>. Legal expenses include <strong>£${nonAllowable}</strong> which is disallowable for tax purposes. Determine the adjusted taxable trading profit.`, answer: (netProfit + nonAllowable).toString() };
             },
@@ -187,13 +187,15 @@
             const levelSelect = document.getElementById("select-level");
             const subjectSelect = document.getElementById("select-subject");
             const selectedLevel = levelSelect.value;
+            
             subjectSelect.innerHTML = '<option value="random">Random Chapter from Level</option>';
             if (selectedLevel === "random") return; 
 
             const optionsArray = syllabusMapping[selectedLevel];
             optionsArray.forEach(item => {
                 const opt = document.createElement("option");
-                opt.value = item.value; opt.textContent = item.label;
+                opt.value = item.value; 
+                opt.textContent = item.label;
                 subjectSelect.appendChild(opt);
             });
         }
