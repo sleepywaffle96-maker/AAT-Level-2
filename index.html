@@ -1,162 +1,160 @@
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A petty cash book has a fixed imprest float of £300.00. At the end of the week, the remaining cash in the box is £63.20. Calculate the exact reimbursement total needed to restore the petty cash float:<br>
-            Reimbursement Value: £ <input type="text" id="ans9" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A business purchases office stationery. The supplier invoice lists a net cost of £120.00 subject to the UK reduced VAT rate of 5%. Calculate the total gross amount to be entered in the Purchase Day Book:<br>
-            Gross Total: £ <input type="text" id="ans10" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            A credit customer's account in the Sales Ledger has an opening debit balance of £850.00. During the month, they are issued a new invoice for £420.00 gross, a credit note for £60.00 gross, and they make a payment of £500.00. Calculate their new closing ledger balance:<br>
-            Closing Balance (Debit): £ <input type="text" id="ans11" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            A firm sells goods to a credit customer. The list price is £2,000.00. A 20% trade discount is given, followed by standard rate VAT (20%). Calculate the total amount to be debited to the individual customer's account in the Sales Ledger:<br>
-            Customer Account Debit: £ <input type="text" id="ans12" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            The weekly totals of the Purchase Returns Day Book are: Net £950.00, VAT £190.00, Total £1,140.00. State the exact value that must be debited to the Purchase Ledger Control Account (PLCA) in the General Ledger:<br>
-            PLCA Debit Value: £ <input type="text" id="ans13" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            A business sells a piece of machinery on credit for £3,500.00 net plus 20% standard VAT. Since this is a non-trading sale of an asset, it must be recorded in the General Journal. Calculate the gross value to be debited to the Sundry Debtor account:<br>
-            Sundry Debtor Debit: £ <input type="text" id="ans14" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            An invoice was issued to a customer with an undercharge error of £85.00 net. A supplementary invoice is raised to correct the error, including standard rate VAT (20%). Calculate the final gross amount needed on this supplementary invoice:<br>
-            Supplementary Invoice Gross: £ <input type="text" id="ans15" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
-<script>
-    let currentQ = 1;
-    const totalQ = 15;
-
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
-    }
-
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Accounting Assessment Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
         }
-    }
-
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
-
-        if (currentQ === 1) {
-            let net = document.getElementById('ans1_net').value.trim();
-            let vat = document.getElementById('ans1_vat').value.trim();
-            isCorrect = ((net === '900' || net === '900.00') && (vat === '180' || vat === '180.00'));
-        } else if (currentQ === 2) {
-            let net = document.getElementById('ans2_net').value.trim();
-            let vat = document.getElementById('ans2_vat').value.trim();
-            isCorrect = ((net === '630' || net === '630.00') && (vat === '126' || vat === '126.00'));
-        } else if (currentQ === 3) {
-            let vat = document.getElementById('ans3_vat').value.trim();
-            let gross = document.getElementById('ans3_gross').value.trim();
-            isCorrect = ((vat === '130' || vat === '130.00') && (gross === '990' || gross === '990.00'));
-        } else if (currentQ === 4) {
-            let val = document.getElementById('ans4').value.trim();
-            isCorrect = (val === '561.6' || val === '561.60');
-        } else if (currentQ === 5) {
-            let net = document.getElementById('ans5_net').value.trim();
-            let gross = document.getElementById('ans5_gross').value.trim();
-            isCorrect = ((net === '255' || net === '255.00') && (gross === '306' || gross === '306.00'));
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6').value.trim();
-            isCorrect = (val === '1600' || val === '1600.00');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7').value.trim();
-            isCorrect = (val === '14250' || val === '14250.00');
-        } else if (currentQ === 8) {
-            let val = document.getElementById('ans8').value.trim();
-            isCorrect = (val === '1200' || val === '1200.00');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9').value.trim();
-            isCorrect = (val === '236.8' || val === '236.80');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '126' || val === '126.00');
-        } else if (currentQ === 11) {
-            let val = document.getElementById('ans11').value.trim();
-            isCorrect = (val === '710' || val === '710.00');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12').value.trim();
-            isCorrect = (val === '1920' || val === '1920.00');
-        } else if (currentQ === 13) {
-            let val = document.getElementById('ans13').value.trim();
-            isCorrect = (val === '1140' || val === '1140.00');
-        } else if (currentQ === 14) {
-            let val = document.getElementById('ans14').value.trim();
-            isCorrect = (val === '4200' || val === '4200.00');
-        } else if (currentQ === 15) {
-            let val = document.getElementById('ans15').value.trim();
-            isCorrect = (val === '102' || val === '102.00');
+        .hub-container {
+            width: 100%;
+            max-width: 650px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 35px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
         }
-
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
-        } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        h1 {
+            color: #006633;
+            font-size: 22px;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-align: center;
         }
-    }
+        .level-section {
+            margin-top: 15px;
+        }
+        .level-btn {
+            background-color: #f4f4f4;
+            color: #333333;
+            cursor: pointer;
+            padding: 14px;
+            width: 100%;
+            border: 1px solid #cccccc;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            outline: none;
+            transition: 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .level-btn:hover, .level-btn.active {
+            background-color: #e0e0e0;
+        }
+        .level-btn::after {
+            content: '\025BC';
+            font-size: 12px;
+            color: #666666;
+        }
+        .level-btn.active::after {
+            content: '\025B2';
+        }
+        .chapters-panel {
+            padding: 0;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-left: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+            box-sizing: border-box;
+        }
+        .chapters-panel.open {
+            border-bottom: 1px solid #cccccc;
+        }
+        .chapter-btn {
+            background-color: #ffffff;
+            color: #006633;
+            cursor: pointer;
+            padding: 12px 15px;
+            width: 100%;
+            border: none;
+            border-bottom: 1px dashed #dddddd;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .chapter-btn:hover, .chapter-btn.active {
+            background-color: #f9f9f9;
+        }
+        .chapter-btn::after {
+            content: '\025BC';
+            font-size: 10px;
+            color: #999999;
+        }
+        .chapter-btn.active::after {
+            content: '\025B2';
+        }
+        .tests-panel {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #fafafa;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+        }
+        .topic-list li {
+            padding: 6px 0;
+        }
+        .topic-list a {
+            color: #444444;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .topic-list a:hover {
+            color: #006633;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
 
-    updateButtons();
-</script>
+<div class="hub-container">
+    <h1>AAT Assessment Portal</h1>
+    
+    <!-- LEVEL 2 -->
+    <div class="level-section">
+        <button class="level-btn">AAT Level 2 Certificate</button>
+        <div class="chapters-panel">
+            
+            <button class="chapter-btn">Chapter 1: Bookkeeping Transactions</button>
+            <div class="tests-panel">
+                <ul class="topic-list">
+                    <li><a href="level-2/cap1-test1.html">→ Bank Reconciliation Test 1</a></li>
+                    <li><a href="level-2/cap1-test2.html">→ Bank Reconciliation Test 2</a></li>
+                </ul>
+            </div>
 
-</body>
-</html>
+            <button class="chapter-btn">Chapter 2: Principles of Costing</button>
+            <div class="tests-panel">
+                <ul class="topic-list">
+                    <li><a href="#">→ Materials and Labour Test 1 (Coming Soon)</a></li>
+                    <li><a href="#">→ Materials and Labour Test 2 (Coming Soon)</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
     <!-- LEVEL 3 -->
     <div class="level-section">
         <button class="level-btn">AAT Level 3 Diploma</button>
@@ -165,16 +163,14 @@
             <button class="chapter-btn">Chapter 1: Business Awareness</button>
             <div class="tests-panel">
                 <ul class="topic-list">
-                    <li><a href="#">→ Business Environment Test 1</a></li>
-                    <li><a href="#">→ Business Environment Test 2</a></li>
+                    <li><a href="#">→ Business Environment Test 1 (Coming Soon)</a></li>
                 </ul>
             </div>
 
             <button class="chapter-btn">Chapter 2: Financial Accounting</button>
             <div class="tests-panel">
                 <ul class="topic-list">
-                    <li><a href="#">→ Advanced Ledger Accounts Test 1</a></li>
-                    <li><a href="#">→ Advanced Ledger Accounts Test 2</a></li>
+                    <li><a href="#">→ Advanced Ledger Accounts Test 1 (Coming Soon)</a></li>
                 </ul>
             </div>
 
@@ -189,8 +185,7 @@
             <button class="chapter-btn">Chapter 1: Applied Management Accounting</button>
             <div class="tests-panel">
                 <ul class="topic-list">
-                    <li><a href="#">→ Budgeting Scenarios Test 1</a></li>
-                    <li><a href="#">→ Budgeting Scenarios Test 2</a></li>
+                    <li><a href="#">→ Budgeting Scenarios Test 1 (Coming Soon)</a></li>
                 </ul>
             </div>
 
@@ -199,7 +194,7 @@
 </div>
 
 <script>
-    // 1. Gestione apertura Livelli Principali
+    // 1. Gestione apertura Livelli Principali (Level 2, 3, 4)
     const levelBtns = document.getElementsByClassName("level-btn");
     for (let i = 0; i < levelBtns.length; i++) {
         levelBtns[i].addEventListener("click", function() {
@@ -216,7 +211,7 @@
         });
     }
 
-    // 2. Gestione apertura Capitoli interni (Doppio Click / Annidato)
+    // 2. Gestione apertura Capitoli interni (Annidamento a doppio livello)
     const chapterBtns = document.getElementsByClassName("chapter-btn");
     for (let i = 0; i < chapterBtns.length; i++) {
         chapterBtns[i].addEventListener("click", function(e) {
@@ -227,11 +222,10 @@
             if (subPanel.style.maxHeight) {
                 subPanel.style.maxHeight = null;
             } else {
-                // Calcola l'altezza del sotto-pannello e la aggiunge al contenitore padre per evitare che si tagli
                 subPanel.style.maxHeight = subPanel.scrollHeight + "px";
+                // Incrementa l'altezza della tendina principale per non nascondere il contenuto
                 parentPanel.style.maxHeight = (parentPanel.scrollHeight + subPanel.scrollHeight) + "px";
             }
-            // Blocca la propagazione per non resettare i menu
             e.stopPropagation();
         });
     }
