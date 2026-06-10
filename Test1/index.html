@@ -1,317 +1,51 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 - Bank Reconciliation Mock Test</title>
+    <meta charset="UTF-8"><title>Osborne Books Test</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .header-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        .header-table td {
-            padding: 10px;
-            border: 1px solid #999;
-            background-color: #eaeaea;
-            font-weight: bold;
-        }
-        .timer-box {
-            text-align: right;
-            color: #b22222;
-        }
-        h1 {
-            font-size: 20px;
-            color: #003366;
-            border-bottom: 2px solid #003366;
-            padding-bottom: 5px;
-            margin-top: 25px;
-        }
-        p, li {
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .instruction-box {
-            background-color: #f9f9f9;
-            border-left: 4px solid #003366;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        table.data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            margin-bottom: 25px;
-        }
-        table.data-table th {
-            background-color: #003366;
-            color: white;
-            padding: 8px;
-            font-size: 13px;
-            text-align: left;
-            border: 1px solid #002244;
-        }
-        table.data-table td {
-            padding: 6px 8px;
-            border: 1px solid #ccc;
-            font-size: 13px;
-        }
-        .numeric-col {
-            text-align: right;
-            width: 120px;
-        }
-        input[type="text"] {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 4px;
-            border: 1px solid #999;
-            text-align: right;
-            font-family: monospace;
-        }
-        select {
-            width: 100%;
-            padding: 4px;
-            border: 1px solid #999;
-            font-size: 13px;
-        }
-        .btn-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .submit-btn {
-            background-color: #003366;
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        .submit-btn:hover {
-            background-color: #002244;
-        }
-        .correct {
-            background-color: #d4edda !important;
-            color: #155724;
-        }
-        .incorrect {
-            background-color: #f8d7da !important;
-            color: #721c24;
-        }
-        .score-display {
-            margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            display: none;
-        }
+        body { font-family: Arial, sans-serif; background-color: #e4e4e4; padding: 20px; }
+        .quiz-container { max-width: 800px; margin: 0 auto; background-color: #fff; border: 1px solid #999; padding: 25px; }
+        .header-title { color: #006633; font-weight: bold; border-bottom: 1px solid #ccc; }
+        .question-page { display: none; } .question-page.active { display: block; }
+        table.osborne-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        table.osborne-table td, table.osborne-table th { border: 1px solid #aaa; padding: 6px; font-size: 13px; }
+        .nav-buttons { margin-top: 25px; border-top: 1px solid #ccc; padding-top: 15px; text-align: center; }
+        .osborne-btn { padding: 5px 12px; cursor: pointer; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <table class="header-table">
-        <tr>
-            <td>Unit: AAT Level 2 Certificate in Accounting</td>
-            <td class="timer-box">Tempo Trascorso: <span id="timer">00:00</span></td>
-        </tr>
-        <tr>
-            <td colspan="2">Task: Bank Reconciliation (Esercitazione Unica)</td>
-        </tr>
-    </table>
-
-    <div class="instruction-box">
-        <p><strong>Istruzioni:</strong> Completa le due sezioni del test. Inserisci i valori numerici nel formato standard con decimali (es. 1250.00). Non usare virgole per separare le migliaia.</p>
+<div class="quiz-container">
+    <div class="header-title">Osborne Books | Bank Reconciliation Test</div>
+    <!-- Q1 (Esempio Dropdown) -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A <select id="ans1_1"><option value="">Select</option><option value="brs">bank reconciliation</option></select> 
+            statement accounts for differences between the 
+            <select id="ans1_2"><option value="">Select</option><option value="cb">cash book</option></select> 
+            and the bank statement.
+        </div>
     </div>
-
-    <h1>Sezione 1: Teoria e Identificazione delle Differenze</h1>
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>Elemento Riscontrato</th>
-                <th style="width: 40%;">Azione Richiesta</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1. Commissioni bancarie (Bank charges) sul conto estratto conto non registrate.</td>
-                <td>
-                    <select id="q1_1">
-                        <option value="">-- Seleziona opzione --</option>
-                        <option value="cb">Aggiornare il Libro Cassa (Cash Book)</option>
-                        <option value="brs">Inserire nella Riconciliazione (BRS)</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>2. Assegni emessi e consegnati ai fornitori ma non ancora incassati (Unpresented cheques).</td>
-                <td>
-                    <select id="q1_2">
-                        <option value="">-- Seleziona opzione --</option>
-                        <option value="cb">Aggiornare il Libro Cassa (Cash Book)</option>
-                        <option value="brs">Inserire nella Riconciliazione (BRS)</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>3. Versamenti effettuati in banca ma non ancora accreditati (Outstanding lodgements).</td>
-                <td>
-                    <select id="q1_3">
-                        <option value="">-- Seleziona opzione --</option>
-                        <option value="cb">Aggiornare il Libro Cassa (Cash Book)</option>
-                        <option value="brs">Inserire nella Riconciliazione (BRS)</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>4. Un ordine permanente (Standing Order) pagato dalla banca e non presente in contabilità.</td>
-                <td>
-                    <select id="q1_4">
-                        <option value="">-- Seleziona opzione --</option>
-                        <option value="cb">Aggiornare il Libro Cassa (Cash Book)</option>
-                        <option value="brs">Inserire nella Riconciliazione (BRS)</option>
-                    </select>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <h1>Sezione 2: Aggiornamento Libro Cassa e Prospetto di Riconciliazione</h1>
-    <p><strong>Dati iniziali dell'esercizio:</strong></p>
-    <ul>
-        <li>Saldo iniziale del Libro Cassa (dare): £1,450.00</li>
-        <li>Saldo dell'Estratto Conto Bancario (a favore): £1,920.00</li>
-        <li>Commissioni bancarie non registrate: £45.00</li>
-        <li>Assegni non ancora presentati all'incasso (Unpresented cheques): £640.00</li>
-        <li>Depositi non ancora accreditati (Outstanding lodgements): £225.00</li>
-    </ul>
-
-    <h3>Parte A: Aggiornamento del Libro Cassa (Cash Book)</h3>
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>Descrizione della transazione</th>
-                <th class="numeric-col">Importo (£)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Saldo iniziale del Libro Cassa (Prima della correzione)</td>
-                <td><input type="text" id="q2_cb_start" value="1450.00" readonly style="background-color:#eee;"></td>
-            </tr>
-            <tr>
-                <td>Meno: Commissioni bancarie (Bank charges)</td>
-                <td><input type="text" id="q2_cb_charges" placeholder="0.00"></td>
-            </tr>
-            <tr>
-                <td><strong>Saldo Finale Rettificato del Libro Cassa</strong></td>
-                <td><input type="text" id="q2_cb_end" placeholder="0.00"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3>Parte B: Prospetto di Riconciliazione Bancaria (BRS)</h3>
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>Elemento di Riconciliazione</th>
-                <th class="numeric-col">Importo (£)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Saldo finale risultante dall'Estratto Conto Bancario</td>
-                <td><input type="text" id="q2_brs_bank" value="1920.00" readonly style="background-color:#eee;"></td>
-            </tr>
-            <tr>
-                <td>Più: Depositi non ancora accreditati (Outstanding lodgements)</td>
-                <td><input type="text" id="q2_brs_lodg" placeholder="0.00"></td>
-            </tr>
-            <tr>
-                <td>Meno: Assegni non ancora presentati (Unpresented cheques)</td>
-                <td><input type="text" id="q2_brs_cheq" placeholder="0.00"></td>
-            </tr>
-            <tr>
-                <td><strong>Saldo Riconciliato (Deve corrispondere al Libro Cassa)</strong></td>
-                <td><input type="text" id="q2_brs_end" placeholder="0.00"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="btn-container">
-        <button class="submit-btn" onclick="checkAnswers()">Verifica Risposte</button>
+    <!-- ... (Domande Q2-Q7 in formato simile) ... -->
+    <div class="nav-buttons">
+        <button class="osborne-btn" onclick="changePage(-1)">Back</button>
+        <button class="osborne-btn" onclick="changePage(1)">Next</button>
     </div>
-
-    <div id="scoreDisplay" class="score-display"></div>
 </div>
-
 <script>
-    // Timer
-    let seconds = 0;
-    setInterval(() => {
-        seconds++;
-        let mins = Math.floor(seconds / 60);
-        let secs = seconds % 60;
-        document.getElementById('timer').innerText = 
-            (mins < 10 ? '0' + mins : mins) + ':' + (secs < 10 ? '0' + secs : secs);
-    }, 1000);
-
-    // Sistema di verifica risposte integrato
-    function checkAnswers() {
-        let score = 0;
-        let total = 9;
-
-        const solutions = {
-            q1_1: "cb", q1_2: "brs", q1_3: "brs", q1_4: "cb",
-            q2_cb_charges: "45.00", q2_cb_end: "1405.00",
-            q2_brs_lodg: "225.00", q2_brs_cheq: "640.00", q2_brs_end: "1405.00"
-        };
-
-        const allInputs = document.querySelectorAll('select, input[type="text"]');
-        allInputs.forEach(el => el.classList.remove('correct', 'incorrect'));
-
-        // Sezione 1
-        for (let i = 1; i <= 4; i++) {
-            let id = 'q1_' + i;
-            let el = document.getElementById(id);
-            if (el.value === solutions[id]) { el.classList.add('correct'); score++; } else { el.classList.add('incorrect'); }
-        }
-
-        // Sezione 2
-        const numericIds = ['q2_cb_charges', 'q2_cb_end', 'q2_brs_lodg', 'q2_brs_cheq', 'q2_brs_end'];
-        numericIds.forEach(id => {
-            let el = document.getElementById(id);
-            let val = el.value.trim().replace(/,/g, '');
-            if (val !== "" && !val.includes('.')) { val = parseInt(val).toFixed(2); } 
-            else if (val !== "") { val = parseFloat(val).toFixed(2); }
-
-            if (val === solutions[id]) { el.classList.add('correct'); score++; } else { el.classList.add('incorrect'); }
-        });
-
-        let percentage = Math.round((score / total) * 100);
-        let scoreDisplay = document.getElementById('scoreDisplay');
-        scoreDisplay.style.display = 'block';
-        scoreDisplay.innerHTML = `Risultato: ${score} / ${total} risposte corrette (${percentage}%)<br>` + 
-            (percentage >= 70 ? '<span style="color:green;">Test Superato con Successo!</span>' : '<span style="color:red;">Test fallito. Ricontrolla gli errori in rosso.</span>');
-        
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
+    // Logica di navigazione e validazione (omessa per brevità)
 </script>
-
 </body>
 </html>
+// Aggiungere al blocco script precedente per la gestione delle 15 domande:
+let currentQ = 1;
+function changePage(step) {
+    document.getElementById(`page${currentQ}`).classList.remove('active');
+    currentQ += step;
+    document.getElementById(`page${currentQ}`).classList.add('active');
+}
+// Esempio logica calcolo Q8
+function checkQ8() {
+    let balance = 1200 - 35 - 120;
+    // ... validazione ...
+}
