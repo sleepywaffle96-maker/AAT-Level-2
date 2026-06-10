@@ -6,130 +6,41 @@
     <title>AAT Exam Simulator - Platform Dashboard</title>
     <style>
         /* --- DESIGN SYSTEM RESETS & GLOBAL BACKGROUND --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
         body {
-            /* Mask layer over official financial background image */
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
                         url('https://wikimedia.org');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background-size: cover; background-position: center; background-attachment: fixed;
+            min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
-
         /* --- MAIN HUB CONTAINER (PLANCIA) --- */
         .hub-container {
-            background: rgba(255, 255, 255, 0.95);
-            width: 100%;
-            max-width: 750px;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
+            background: rgba(255, 255, 255, 0.95); width: 100%; max-width: 750px;
+            border-radius: 16px; padding: 40px; text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
-
-        h1 {
-            color: #0f172a; /* Blu Notte */
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        p.subtitle {
-            color: #64748b;
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
+        h1 { color: #0f172a; font-size: 2rem; margin-bottom: 10px; font-weight: 700; }
+        p.subtitle { color: #64748b; font-size: 1rem; margin-bottom: 30px; }
         /* --- CONTROLS PANEL --- */
         .controls-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            margin-bottom: 20px;
+            display: flex; flex-direction: column; gap: 15px; background: #f8fafc;
+            padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;
         }
-
-        .select-group {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            gap: 5px;
-        }
-
-        label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #0f172a;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        select {
-            padding: 12px;
-            border-radius: 8px;
-            border: 2px solid #cbd5e1;
-            background-color: white;
-            color: #0f172a;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        select:focus {
-            border-color: #0284c7; /* Cyan/Azzurro */
-        }
-
-        /* --- ACTION BUTTON --- */
+        .select-group { display: flex; flex-direction: column; text-align: left; gap: 5px; }
+        label { font-size: 0.85rem; font-weight: 600; color: #0f172a; text-transform: uppercase; }
+        select { padding: 12px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1rem; outline: none; }
+        select:focus { border-color: #0284c7; }
         .btn-generate {
-            background-color: #0284c7; /* Cyan/Azzurro */
-            color: white;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.4);
-            margin-top: 10px;
+            background-color: #0284c7; color: white; padding: 14px 28px; border: none;
+            border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
         }
-
-        .btn-generate:hover {
-            background-color: #0369a1;
-        }
-
-        .btn-generate:active {
-            transform: scale(0.98);
-        }
-
-        .placeholder-text {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-top: 15px;
-            font-style: italic;
-        }
+        .btn-generate:hover { background-color: #0369a1; }
+        .placeholder-text { color: #64748b; font-size: 0.9rem; margin-top: 15px; font-style: italic; }
     </style>
 </head>
 
     <body>
-
     <div class="hub-container">
         <h1>AAT Infinite Exam Simulator</h1>
         <p class="subtitle">Generate unique algorithmic accounting test scenarios on-demand.</p>
@@ -148,7 +59,6 @@
             <div class="select-group">
                 <label for="select-subject">Select Subject / Chapter Module</label>
                 <select id="select-subject">
-                    <!-- Automatically populated by JavaScript based on chosen level -->
                     <option value="random">Random Chapter from Level</option>
                 </select>
             </div>
@@ -157,13 +67,12 @@
                 Generate Full Test (15 Questions)
             </button>
         </div>
-
-        <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks. No questions are generated until you click the button.</p>
+        <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks without hints.</p>
     </div>
 
-            <!-- --- SIMULATION CORE MATHEMATICAL ENGINES --- -->
+            <!-- --- SIMULATION CORE DATA STRUCTURES --- -->
     <script>
-        // Official mapping directly extracted from your platform screenshot
+        // Official mapping directly extracted from the platform screenshot
         const syllabusMapping = {
             "2": [
                 { value: "l2_c1", label: "Chapter 1: Bookkeeping Transactions" },
@@ -187,167 +96,131 @@
                 { value: "l4_c5", label: "Chapter 5: Cash and Treasury Management" },
                 { value: "l4_c6", label: "Chapter 6: Credit Management" },
                 { value: "l4_c7", label: "Chapter 7: Personal Tax" },
-                { value: "l4_c8", label: "Chapter 8: Business Tax" },
+                { value: "l4_8", label: "Chapter 8: Business Tax" },
                 { value: "l4_c9", label: "Chapter 9: Internal Accounting Systems and Controls" }
             ]
         };
 
+                // Algorithmic generators mapped to every single chapter item (No hints, pure English)
         const simulationEngine = {
-
-                        // LEVEL 2 ENGINES
             l2_c1() {
                 const gross = (Math.random() * 5000 + 200).toFixed(2);
                 return { question: `A company records a credit purchase invoice for a total gross amount of <strong>£${gross}</strong> including 20% VAT. Calculate the net amount to be entered into the Purchases Ledger Account.`, answer: (gross / 1.20).toFixed(2) };
             },
             l2_c2() {
-                const balance = Math.floor(Math.random() * 10000) + 5000;
-                const uncredited = Math.floor(Math.random() * 1500) + 200;
-                return { question: `The cash book shows a balance of <strong>£${balance}</strong>. If uncredited lodgements amount to <strong>£${uncredited}</strong>, calculate the adjusted bank statement balance for the bank reconciliation control.`, answer: (balance + uncredited).toString() };
+                const balance = Math.floor(Math.random() * 10000) + 5000, uncredited = Math.floor(Math.random() * 1500) + 200;
+                return { question: `The cash book shows a balance of <strong>£${balance}</strong>. If uncredited lodgements amount to <strong>£${uncredited}</strong>, calculate the adjusted bank statement balance.`, answer: (balance + uncredited).toString() };
             },
             l2_c3() {
                 const materials = Math.floor(Math.random() * 3000) + 500, labor = Math.floor(Math.random() * 2000) + 500;
                 return { question: `An item incurs direct material costs of <strong>£${materials}</strong> and direct labor costs of <strong>£${labor}</strong>. Overheads are assigned at 40% of direct labor. Calculate the total prime cost element.`, answer: (materials + labor).toString() };
             },
             l2_c4() {
-                const hours = 35; const rate = Math.floor(Math.random() * 5) + 12;
-                return { question: `An accounting technician works <strong>${hours} hours</strong> at a basic hourly rate of <strong>£${rate}</strong>. Calculate the gross weekly production labor allocation cost for the financial office.`, answer: (hours * rate).toString() };
+                const hours = 35, rate = Math.floor(Math.random() * 5) + 12;
+                return { question: `An accounting technician works <strong>${hours} hours</strong> at a basic hourly rate of <strong>£${rate}</strong>. Calculate the gross weekly production labor allocation cost.`, answer: (hours * rate).toString() };
             },
-
-                        // LEVEL 3 ENGINES
             l3_c1() {
                 const cost = Math.floor(Math.random() * 20000) + 10000;
-                return { question: `A non-current asset costing <strong>£${cost}</strong> is depreciated using the straight-line method at 20% per annum. Calculate the carrying amount after the first year of operation.`, answer: (cost * 0.8).toFixed(2) };
+                return { question: `A non-current asset costing <strong>£${cost}</strong> is depreciated using the straight-line method at 20% per annum. Calculate the carrying amount after the first year.`, answer: (cost * 0.8).toFixed(2) };
             },
             l3_c2() {
                 const openingInv = Math.floor(Math.random() * 5000) + 2000, purchases = Math.floor(Math.random() * 40000) + 15000, closingInv = Math.floor(Math.random() * 6000) + 1000;
-                return { question: `In preparing final accounts, you are given: Opening Inventory <strong>£${openingInv}</strong>, Purchases <strong>£${purchases}</strong>, and Closing Inventory <strong>£${closingInv}</strong>. Calculate the Cost of Goods Sold (COGS).`, answer: (openingInv + purchases - closingInv).toString() };
+                return { question: `Given: Opening Inventory <strong>£${openingInv}</strong>, Purchases <strong>£${purchases}</strong>, and Closing Inventory <strong>£${closingInv}</strong>. Calculate the Cost of Goods Sold (COGS).`, answer: (openingInv + purchases - closingInv).toString() };
             },
             l3_c3() {
-                const lowUnits = 400, highUnits = 1200; const vcu = Math.floor(Math.random() * 8) + 3, fixed = Math.floor(Math.random() * 5000) + 2000;
-                return { question: `A department incurs semi-variable costs of <strong>£${fixed + (lowUnits * vcu)}</strong> at <strong>${lowUnits} units</strong> and <strong>£${fixed + (highUnits * vcu)}</strong> at <strong>${highUnits} units</strong>. Calculate the total fixed cost element using the High-Low method.`, answer: fixed.toString() };
+                const lowUnits = 400, highUnits = 1200, vcu = Math.floor(Math.random() * 8) + 3, fixed = Math.floor(Math.random() * 5000) + 2000;
+                return { question: `A department incurs semi-variable costs of <strong>£${fixed + (lowUnits * vcu)}</strong> at <strong>${lowUnits} units</strong> and <strong>£${fixed + (highUnits * vcu)}</strong> at <strong>${highUnits} units</strong>. Deduce the total fixed costs.`, answer: fixed.toString() };
             },
             l3_c4() {
                 const sales = Math.floor(Math.random() * 60000) + 20000;
                 return { question: `A firm records net standard-rated credit sales of <strong>£${sales}</strong>. Calculate the output Indirect Tax (VAT) liability to be declared to HMRC at the standard rate of 20%.`, answer: (sales * 0.20).toFixed(2) };
             },
             l3_c5() {
-                const totalScenarios = 100; const breachCount = Math.floor(Math.random() * 5) + 1;
-                return { question: `Out of <strong>${totalScenarios}</strong> data access events checked during an ethical review, <strong>${breachCount}</strong> lacked proper security authorization. Calculate the procedural compliance breach rate percentage.`, answer: ((breachCount / totalScenarios) * 100).toFixed(1) };
+                const total = 100, breach = Math.floor(Math.random() * 5) + 1;
+                return { question: `Out of <strong>${total}</strong> data access events checked, <strong>${breach}</strong> lacked proper security authorization. Calculate the procedural compliance breach rate percentage.`, answer: ((breach / total) * 100).toFixed(1) };
             },
             l3_c6() {
                 const creditSales = Math.floor(Math.random() * 300000) + 100000, targetedDso = Math.floor(Math.random() * 20) + 30;
                 const receivables = Math.round((targetedDso * creditSales) / 365);
-                return { question: `A business records total credit sales of <strong>£${creditSales}</strong> and trade receivables of <strong>£${receivables}</strong>. Calculate the Days Sales Outstanding (DSO) metrics rounded to the nearest integer.`, answer: Math.round((receivables / creditSales) * 365).toString() };
+                return { question: `A business records total credit sales of <strong>£${creditSales}</strong> and trade receivables of <strong>£${receivables}</strong>. Compute the Days Sales Outstanding (DSO) rounded to the nearest integer.`, answer: Math.round((receivables / creditSales) * 365).toString() };
             },
-
-                        // LEVEL 4 ENGINES
             l4_c1() {
                 const consideration = Math.floor(Math.random() * 300000) + 500000, netAssets = Math.floor(Math.random() * 200000) + 250000, nci = Math.floor(Math.random() * 50000) + 40000;
-                return { question: `Company A acquires a subsidiary. The consideration transferred is <strong>£${consideration}</strong>. The fair value of the non-controlling interest (NCI) is <strong>£${nci}</strong>. If the net identifiable assets equal <strong>£${netAssets}</strong>, calculate the consolidated goodwill.`, answer: (consideration + nci - netAssets).toString() };
+                return { question: `The consideration transferred is <strong>£${consideration}</strong>. The fair value of the NCI is <strong>£${nci}</strong>. If the net identifiable assets equal <strong>£${netAssets}</strong>, calculate the consolidated goodwill.`, answer: (consideration + nci - netAssets).toString() };
             },
             l4_c2() {
-                const budget = Math.floor(Math.random() * 50000) + 20000; const actual = budget + Math.floor(Math.random() * 4000) + 500;
-                return { question: `A production budget plans for an expenditure of <strong>£${budget}</strong>. The actual cost incurred totals <strong>£${actual}</strong>. Calculate the absolute value of the adverse expenditure variance.`, answer: (actual - budget).toString() };
+                const budget = Math.floor(Math.random() * 50000) + 20000, actual = budget + Math.floor(Math.random() * 4000) + 500;
+                return { question: `A production budget plans for an expenditure of <strong>£${budget}</strong>. The actual cost totals <strong>£${actual}</strong>. Calculate the absolute value of the adverse expenditure variance.`, answer: (actual - budget).toString() };
             },
             l4_c3() {
-                const sellingPrice = 50; const vc = Math.floor(Math.random() * 15) + 15; const fixedCosts = Math.floor(Math.random() * 30000) + 10000;
-                return { question: `A company sells a product for £${sellingPrice} per unit with variable costs of <strong>£${vc}</strong> per unit. Total structural fixed costs equal <strong>£${fixedCosts}</strong>. Compute the breakeven point in product units.`, answer: Math.ceil(fixedCosts / (sellingPrice - vc)).toString() };
+                const sellingPrice = 50, vc = Math.floor(Math.random() * 15) + 15, fixedCosts = Math.floor(Math.random() * 30000) + 10000;
+                return { question: `A company sells a product for £${sellingPrice} per unit with variable costs of <strong>£${vc}</strong> per unit. Total fixed costs equal <strong>£${fixedCosts}</strong>. Compute the breakeven point in product units.`, answer: Math.ceil(fixedCosts / (sellingPrice - vc)).toString() };
             },
             l4_c4() {
-                const totalInvoices = 500; const sampledInvoices = Math.floor(Math.random() * 50) + 20;
-                return { question: `An external auditor samples <strong>${sampledInvoices} invoices</strong> out of a total population of <strong>${totalInvoices}</strong> to test substantive audit testing controls. Calculate the mathematical coverage ratio percentage of this audit sample rounded to one decimal place.`, answer: ((sampledInvoices / totalInvoices) * 100).toFixed(1) };
+                const totalInvoices = 500, sampledInvoices = Math.floor(Math.random() * 50) + 20;
+                return { question: `An auditor samples <strong>${sampledInvoices} invoices</strong> out of a total population of <strong>${totalInvoices}</strong>. Calculate the mathematical coverage ratio percentage rounded to one decimal place.`, answer: ((sampledInvoices / totalInvoices) * 100).toFixed(1) };
             },
             l4_c5() {
-                const payment = Math.floor(Math.random() * 50000) + 10000; const discountRate = 2;
-                return { question: `A treasury unit decides to settle a trade payable of <strong>£${payment}</strong> early to claim an offered cash settlement discount of <strong>${discountRate}%</strong>. Calculate the final net cash outflow required.`, answer: (payment * (1 - discountRate / 100)).toFixed(2) };
+                const payment = Math.floor(Math.random() * 50000) + 10000, discountRate = 2;
+                return { question: `A treasury unit decides to settle a trade payable of <strong>£${payment}</strong> early to claim an offered settlement discount of <strong>${discountRate}%</strong>. Calculate the final net cash outflow required.`, answer: (payment * (1 - discountRate / 100)).toFixed(2) };
             },
             l4_c6() {
-                const debt = Math.floor(Math.random() * 8000) + 2000; const provisionRate = 5;
-                return { question: `An aging ledger analysis flags an outstanding customer debt balance of <strong>£${debt}</strong>. Management enforces a specific allowance for credit impairment of <strong>${provisionRate}%</strong>. Calculate the net balance value.`, answer: (debt * (1 - provisionRate / 100)).toFixed(2) };
+                const debt = Math.floor(Math.random() * 8000) + 2000, provisionRate = 5;
+                return { question: `An aging ledger analysis flags an outstanding customer debt balance of <strong>£${debt}</strong>. Management enforces an allowance for credit impairment of <strong>${provisionRate}%</strong>. Calculate the net balance value.`, answer: (debt * (1 - provisionRate / 100)).toFixed(2) };
             },
             l4_c7() {
-                const salary = Math.floor(Math.random() * 15000) + 32000; const allowance = 12570;
+                const salary = Math.floor(Math.random() * 15000) + 32000, allowance = 12570;
                 return { question: `An employee earns a gross salary of <strong>£${salary}</strong>. Given a standard statutory UK Personal Allowance of £${allowance}, compute the exact remaining balance of net income subject to basic tax rates.`, answer: (salary - allowance).toString() };
             },
-            l4_c8() {
-                const netProfit = Math.floor(Math.random() * 120000) + 40000; const nonAllowable = Math.floor(Math.random() * 6000) + 1000;
+            l4_8() {
+                const netProfit = Math.floor(Math.random() * 120000) + 40000, nonAllowable = Math.floor(Math.random() * 6000) + 1000;
                 return { question: `A corporation registers a net accounting profit of <strong>£${netProfit}</strong>. Legal expenses include <strong>£${nonAllowable}</strong> which is disallowable for tax purposes. Determine the adjusted taxable trading profit.`, answer: (netProfit + nonAllowable).toString() };
             },
             l4_c9() {
-                const totalTransactions = 1000; const standardErrors = Math.floor(Math.random() * 15) + 3;
-                return { question: `An internal control log flags <strong>${standardErrors} data errors</strong> out of <strong>${totalTransactions} accounting posts</b>. Compute the operational system deficiency error rate expressed as a percentage.`, answer: ((standardErrors / totalTransactions) * 100).toFixed(1) };
+                const totalTransactions = 1000, standardErrors = Math.floor(Math.random() * 15) + 3;
+                return { question: `An internal control log flags <strong>${standardErrors} data errors</strong> out of <strong>${totalTransactions} accounting posts</strong>. Compute the operational system deficiency error rate expressed as a percentage.`, answer: ((standardErrors / totalTransactions) * 100).toFixed(1) };
             }
         };
 
-                // Dynamic update dropdown routing engine
+                // Updates the second selector dynamically based on selected level
         function updateSubjectMenu() {
             const levelSelect = document.getElementById("select-level");
             const subjectSelect = document.getElementById("select-subject");
             const selectedLevel = levelSelect.value;
-
-            // Clear options except base fallback
             subjectSelect.innerHTML = '<option value="random">Random Chapter from Level</option>';
+            if (selectedLevel === "random") return; 
 
-            if (selectedLevel === "random") {
-                return; 
-            }
-
-            // Populate items matching the strict mapped screenshot array items
             const optionsArray = syllabusMapping[selectedLevel];
             optionsArray.forEach(item => {
                 const opt = document.createElement("option");
-                opt.value = item.value;
-                opt.textContent = item.label;
+                opt.value = item.value; opt.textContent = item.label;
                 subjectSelect.appendChild(opt);
             });
         }
+        window.onload = function() { updateSubjectMenu(); };
 
-        window.onload = function() {
-            updateSubjectMenu();
-        };
-    </script>
-
-            <script>
-        // --- EXAM WINDOW GENERATOR AND POPULATOR ---
+                // Builds and launches the standalone 15-question child viewport window
         function launchExamSession() {
-            const levelSelect = document.getElementById("select-level");
-            const subjectSelect = document.getElementById("select-subject");
-            
-            let levelSelected = levelSelect.value;
-            let subjectKey = subjectSelect.value;
+            const levelSelect = document.getElementById("select-level"), subjectSelect = document.getElementById("select-subject");
+            let levelSelected = levelSelect.value, subjectKey = subjectSelect.value;
             let labelTextForHeader = subjectSelect.options[subjectSelect.selectedIndex].text;
+            const totalQuestions = 15; let questionsData = [];
 
-            const totalQuestions = 15;
-            let questionsData = [];
-
-            // Main compiling matrix loop
             for (let i = 0; i < totalQuestions; i++) {
-                let targetKey = subjectKey;
-                let activeLevel = levelSelected;
-
-                // Mode A: Random Level and completely mixed random syllabus topics
+                let targetKey = subjectKey, activeLevel = levelSelected;
                 if (levelSelected === "random") {
                     const levels = ["2", "3", "4"];
                     activeLevel = levels[Math.floor(Math.random() * levels.length)];
-                    const possibleChapters = syllabusMapping[activeLevel];
-                    targetKey = possibleChapters[Math.floor(Math.random() * possibleChapters.length)].value;
+                    targetKey = syllabusMapping[activeLevel][Math.floor(Math.random() * syllabusMapping[activeLevel].length)].value;
                     labelTextForHeader = "Mixed Comprehensive Exam (Randomized Levels & Chapters)";
-                } 
-                // Mode B: Set Level but completely random modules picked from that specific level list
-                else if (subjectKey === "random") {
-                    const possibleChapters = syllabusMapping[activeLevel];
-                    targetKey = possibleChapters[Math.floor(Math.random() * possibleChapters.length)].value;
+                } else if (subjectKey === "random") {
+                    targetKey = syllabusMapping[activeLevel][Math.floor(Math.random() * syllabusMapping[activeLevel].length)].value;
                     labelTextForHeader = `Random Combined Modules from Level ${activeLevel}`;
                 }
-
-                // Append generated task object
                 questionsData.push(simulationEngine[targetKey]());
             }
 
-                            // Open clean blank child window instance
             const examWindow = window.open("", "_blank");
-            
-            // Build layout string template using corporate design identities
             let htmlContent = `
             <!DOCTYPE html>
             <html lang="en">
@@ -357,132 +230,83 @@
                 <style>
                     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
                     body {
-                        background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                                    url('https://wikimedia.org');
-                        background-size: cover; background-position: center; background-attachment: fixed;
-                        padding: 40px 20px; color: #0f172a; display: flex; flex-direction: column; align-items: center;
+                        background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://wikimedia.org');
+                        background-size: cover; background-attachment: fixed; padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
                     }
-                    .exam-container {
-                        background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px;
-                        border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-                    }
-                    .header-block {
-                        border-bottom: 3px solid #0284c7; padding-bottom: 20px; margin-bottom: 30px;
-                        display: flex; justify-content: space-between; align-items: center;
-                    }
+                    .exam-container { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+                    .header-block { border-bottom: 3px solid #0284c7; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
                     .header-block h2 { color: #0f172a; font-size: 1.6rem; }
-                    .header-block span { background: #0f172a; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold;}
-                    
-                    .task-card {
-                        background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid #0284c7;
-                        padding: 20px; margin-bottom: 25px; border-radius: 6px; transition: transform 0.2s;
-                    }
-                    .task-card:hover { transform: translateX(2px); }
+                    .header-block span { background: #0f172a; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
+                    .task-card { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid #0284c7; padding: 20px; margin-bottom: 25px; border-radius: 6px; }
                     .task-number { font-weight: bold; color: #0f172a; font-size: 1.1rem; margin-bottom: 10px; text-transform: uppercase; }
                     .task-text { font-size: 1.05rem; line-height: 1.5; color: #334155; margin-bottom: 15px; }
-                    
-                    .interaction-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
                     .input-field { padding: 8px 12px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 1rem; width: 200px; outline: none; }
-                    .input-field:focus { border-color: #0284c7; }
-                    
-                    .btn-submit-exam { background-color: #0284c7; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; width: 100%; margin-top: 10px; margin-bottom: 25px; box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.4); }
-                    .btn-submit-exam:hover { background-color: #0369a1; }
-                    
+                    .button-actions-group { display: flex; gap: 15px; width: 100%; margin-top: 10px; margin-bottom: 25px; }
+                    .btn-submit-exam { background-color: #0284c7; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 2; }
+                    .btn-pdf-exam { background-color: #0d9488; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 1; }
                     .feedback-box { font-weight: bold; font-size: 0.95rem; margin-top: 5px; min-height: 20px; }
-                    
-                    .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; margin-top: 20px; }
+                    .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; }
+                    @media print {
+                        body { background: white !important; padding: 0 !important; color: #000 !important; }
+                        .exam-container { box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
+                        .button-actions-group, .input-field { display: none !important; }
+                        .task-card { page-break-inside: avoid; border: 1px solid #cbd5e1 !important; border-left: 5px solid #0284c7 !important; background: #fff !important; }
+                    }
                 </style>
             </head>
             <body>
                 <div class="exam-container">
                     <div class="header-block">
-                        <div>
-                            <h2>AAT Mock Examination Session</h2>
-                            <p style="color: #64748b; font-size: 0.9rem; margin-top: 4px;">Syllabus Focus: ${labelTextForHeader}</p>
-                        </div>
+                        <div><h2>AAT Mock Examination Session</h2><p style="color: #64748b; font-size: 0.9rem; margin-top: 4px;">Syllabus Focus: ${labelTextForHeader}</p></div>
                         <span>TARGET: ${levelSelected.toUpperCase()}</span>
                     </div>
+                    <form id="examForm" onsubmit="return false;">`;
 
-                    <form id="examForm" onsubmit="return false;">
-
-            // Loop and injection of the 15 tasks without individual buttons or hints
             questionsData.forEach((task, index) => {
                 const qNum = index + 1;
                 htmlContent += `
                     <div class="task-card">
                         <div class="task-number">Task ${qNum} of 15</div>
                         <div class="task-text">${task.question}</div>
-                        <div class="interaction-row">
-                            <input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter balance (£)" data-correct="${task.answer}">
-                        </div>
+                        <div class="interaction-row"><input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter amount (£)" data-correct="${task.answer}"></div>
                         <div id="feed-${qNum}" class="feedback-box"></div>
-                    </div>
-                `;
+                    </div>`;
             });
 
             htmlContent += `
                     </form>
-                    <button type="button" class="btn-submit-exam" onclick="processEntireExam()">Submit Exam</button>
-                    
-                    <div class="score-bar" id="overallScoreBar">
-                        Current Performance: Submit your exam sheet to calculate final grade accuracy.
+                    <div class="button-actions-group">
+                        <button type="button" class="btn-submit-exam" onclick="processEntireExam()">Submit Exam</button>
+                        <button type="button" class="btn-pdf-exam" onclick="window.print()">Save Exam as PDF</button>
                     </div>
-                </div>
-            `;
+                    <div class="score-bar" id="overallScoreBar">Current Performance: Submit your exam sheet to calculate final grade accuracy.</div>
+                </div>`;
 
-                <script>
+                        <script>
                     window.processEntireExam = function() {
-                        let correctAnswersCount = 0;
-                        const totalQuestions = 15;
-
+                        let correctAnswersCount = 0; const totalQuestions = 15;
                         for (let i = 1; i <= totalQuestions; i++) {
-                            const inputElement = document.getElementById('ans-' + i);
-                            const feedbackElement = document.getElementById('feed-' + i);
-                            
-                            const userIn = parseFloat(inputElement.value);
-                            const expected = parseFloat(inputElement.getAttribute('data-correct'));
-
+                            const inputElement = document.getElementById('ans-' + i), feedbackElement = document.getElementById('feed-' + i);
+                            const userIn = parseFloat(inputElement.value), expected = parseFloat(inputElement.getAttribute('data-correct'));
                             if (isNaN(userIn)) {
-                                feedbackElement.innerText = "⚠ Unanswered. Marks omitted.";
-                                feedbackElement.style.color = "#ea580c"; 
-                                continue;
+                                feedbackElement.innerText = "⚠ Unanswered. Marks omitted."; feedbackElement.style.color = "#ea580c"; continue;
                             }
-
-                            // Math evaluation for professional accounting decimal tolerance
                             if (Math.abs(userIn - expected) < 0.05) {
-                                feedbackElement.innerText = "✓ Correct! Well done.";
-                                feedbackElement.style.color = "#0d9488"; /* Teal/Verde Acqua */
-                                correctAnswersCount++;
+                                feedbackElement.innerText = "✓ Correct! Well done."; feedbackElement.style.color = "#0d9488"; correctAnswersCount++;
                             } else {
-                                // Correct answer is completely concealed, generic notice only
-                                feedbackElement.innerText = "✗ Incorrect. Try again.";
-                                feedbackElement.style.color = "#ef4444"; /* Corporate Red */
+                                feedbackElement.innerText = "✗ Incorrect. Try again."; feedbackElement.style.color = "#ef4444";
                             }
                         }
-
-                        // Final overall evaluation grade presentation rendering
-                        const scoreBar = document.getElementById('overallScoreBar');
-                        const percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
+                        const scoreBar = document.getElementById('overallScoreBar'), percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
                         scoreBar.innerHTML = "Final Result: " + correctAnswersCount + " / 15 Correct Answers (" + percentage + "%)";
-                        
-                        if (percentage >= 70) {
-                            scoreBar.style.background = "#0d9488"; /* Success Teal */
-                        } else {
-                            scoreBar.style.background = "#0f172a"; /* Reset to Night Blue */
-                        }
-                        
-                        // Scroll layout safely back to top dashboard view to inspect targets
+                        scoreBar.style.background = (percentage >= 70) ? "#0d9488" : "#0f172a";
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     };
                 <\/script>
             </body>
-            </html>
-            `;
+            </html>`;
 
-            // Document write execution into the new clean window instance
-            examWindow.document.open();
-            examWindow.document.write(htmlContent);
-            examWindow.document.close();
+            examWindow.document.open(); examWindow.document.write(htmlContent); examWindow.document.close();
         }
     </script>
 </body>
