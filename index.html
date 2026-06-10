@@ -26,13 +26,12 @@
             color: var(--text-main);
             box-sizing: border-box;
             
-            /* CARICAMENTO IMMAGINE CONTABILITÀ: Velo ghiaccio semi-trasparente sopra l'immagine per garantire leggibilità */
-            background: linear-gradient(rgba(241, 245, 249, 0.85), rgba(241, 245, 249, 0.85)), 
-                        url('https://unsplash.com');
-            background-size: cover;
-            background-position: center;
+            /* Sfondo generato nativamente: pattern di grafici finanziari in trasparenza */
+            background-color: #f1f5f9;
+            background-image: 
+                linear-gradient(rgba(241, 245, 249, 0.88), rgba(241, 245, 249, 0.88)), 
+                url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M0 120 L30 90 L60 100 L90 50 L120 70 L120 120 Z' fill='rgba(2, 132, 199, 0.08)'/%3E%3Cpath d='M0 90 L40 50 L80 70 L120 20' stroke='rgba(13, 148, 136, 0.1)' stroke-width='2' fill='none'/%3E%3Ccircle cx='40' cy='50' r='3' fill='rgba(13, 148, 136, 0.2)'/%3E%3Ccircle cx='80' cy='70' r='3' fill='rgba(13, 148, 136, 0.2)'/%3E%3Cline x1='0' y1='0' x2='120' y2='120' stroke='rgba(0,0,0,0.01)' stroke-width='1'/%3E%3C/svg%3E");
             background-attachment: fixed;
-            background-repeat: no-repeat;
         }
 
         .hub-container {
@@ -44,7 +43,7 @@
             border-radius: 12px;
             padding: 0;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
             border: 1px solid rgba(226, 232, 240, 0.8);
             position: relative;
         }
