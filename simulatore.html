@@ -218,7 +218,7 @@
                     labelTextForHeader = `Random Combined Modules from Level ${activeLevel}`;
                 }
                 questionsData.push(simulationEngine[targetKey]());
-            }
+            
 
                     const examWindow = window.open("", "_blank");
             
@@ -249,7 +249,7 @@
                 }
             `;
 
-                                const doc = examWindow.document;
+                             const doc = examWindow.document;
             doc.open();
             doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT Exam Session</title><style>' + htmlStyle + '</style></head><body></body></html>');
             doc.write('<script src="https://cloudflare.com"></' + 'script>');
@@ -314,15 +314,11 @@
             scoreBar.innerText = "Current Performance: Submit your exam sheet to calculate final grade accuracy.";
             container.appendChild(scoreBar);
 
-
-                    examWindow.processEntireExam = function() {
+            examWindow.processEntireExam = function() {
                 let correctAnswersCount = 0; const totalQuestions = 15;
                 for (let i = 1; i <= totalQuestions; i++) {
-                    const inputElement = doc.getElementById('ans-' + i);
-                    const feedbackElement = doc.getElementById('feed-' + i);
-                    const userIn = parseFloat(inputElement.value);
-                    const expected = parseFloat(inputElement.getAttribute('data-correct'));
-                    
+                    const inputElement = doc.getElementById('ans-' + i), feedbackElement = document.getElementById('feed-' + i);
+                    const userIn = parseFloat(inputElement.value), expected = parseFloat(inputElement.getAttribute('data-correct'));
                     if (isNaN(userIn)) {
                         feedbackElement.innerText = "⚠ Unanswered. Marks omitted."; feedbackElement.style.color = "#ea580c"; continue;
                     }
@@ -332,8 +328,7 @@
                         feedbackElement.innerText = "✗ Incorrect. Try again."; feedbackElement.style.color = "#ef4444";
                     }
                 }
-                const bar = doc.getElementById('overallScoreBar');
-                const percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
+                const bar = doc.getElementById('overallScoreBar'), percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
                 bar.innerHTML = "Final Result: " + correctAnswersCount + " / 15 Correct Answers (" + percentage + "%)";
                 bar.style.background = (percentage >= 70) ? "#0d9488" : "#0f172a";
                 examWindow.scrollTo({ top: 0, behavior: 'smooth' });
@@ -342,3 +337,4 @@
     </script>
 </body>
 </html>
+             
