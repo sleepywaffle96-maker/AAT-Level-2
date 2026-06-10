@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principles of Costing - Test One</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Principles of Costing - Test One</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A manufacturing company has the following stock records for a raw material:<br>
+            - 1 June: Opening stock 100 units @ £5.00 each<br>
+            - 8 June: Purchased 150 units @ £6.00 each<br>
+            - 15 June: Issued 120 units to production<br>
+            Calculate the value of the 120 units issued using the First-In, First-Out (FIFO) method:<br>
+            Value of Materials Issued: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            Using the same inventory records from Q1, calculate the total value of the closing stock remaining at the end of June using the FIFO method:<br>
+            Value of Closing Stock: £ <input type="text" id="ans2" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            An employee is paid a basic rate of £10.50 per hour for a standard 37-hour week. Overtime is paid at time-and-a-half. During a busy week, the employee works 43 hours. Calculate their gross weekly wage:<br>
+            Gross Weekly Wage: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A factory worker is paid under a piecework scheme with a guaranteed minimum weekly wage of £350.00. The basic rate paid is £2.40 per completed unit. During a week, the worker completes 160 units. Calculate their final gross earnings for that week:<br>
+            Gross Earnings: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A business analyses its total production costs at two different output levels:<br>
+            - Output 1: 1,500 units | Total cost: £7,500<br>
+            - Output 2: 2,500 units | Total cost: £11,500<br>
+            Using the High-Low method, calculate the variable cost per unit:<br>
+            Variable Cost per Unit: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            Using the calculation data from Q5, work backwards to determine the fixed cost element of the total production cost:<br>
+            Total Fixed Cost: £ <input type="text" id="ans6" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            Factory rent of £18,000 needs to be allocated between three production departments based on floor area (sq. meters):<br>
+            - Machining: 500 sq. m | Assembly: 300 sq. m | Finishing: 200 sq. m<br>
+            Calculate the overhead cost allocated to the Machining department:<br>
+            Machining Allocation: £ <input type="text" id="ans7" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            Classify the cost of depreciation of factory machinery calculated on a straight-line basis over a monthly period:<br>
+            Classification: <select id="ans8"><option value="">Select</option><option value="correct">Fixed Cost</option><option value="w">Variable Cost</option><option value="w">Semi-Variable Cost</option></select>
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A firm uses the Weighted Average Cost (AVCO) method to value its stock. Using the same records as Q1:<br>
+            - 1 June: Opening stock 100 units @ £5.00 each<br>
+            - 8 June: Purchased 150 units @ £6.00 each<br>
+            Calculate the exact average cost per unit before the issue on 15 June (round to 2 decimal places):<br>
+            AVCO Unit Cost: £ <input type="text" id="ans9" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A production line records 120 total hours of labor for a week. 15 of these hours were idle time due to a machinery breakdown. The standard labor rate is £12.00 per hour. Calculate the indirect labor cost to be charged to production overheads:<br>
+            Indirect Labor Cost: £ <input type="text" id="ans10" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A company budget estimates production overheads of £45,000 for the upcoming period. Total budgeted direct labor hours are 2,500. Calculate the predetermined Overhead Absorption Rate (OAR) per labor hour:<br>
+            OAR per hour: £ <input type="text" id="ans11" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            A product requires 4 kg of raw materials @ £3.50/kg and 2 hours of direct labor @ £11.00/hour. Production overheads are absorbed at £4.00 per direct labor hour. Calculate the total prime cost of producing one unit:<br>
+            Prime Cost: £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            Using the data from Q12, calculate the final total production cost for one unit of the product (Prime Cost + Absorbed Overheads):<br>
+            Total Production Cost: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A business uses the Last-In, First-Out (LIFO) method for stock valuation. Using the data from Q1:<br>
+            - 1 June: Opening stock 100 units @ £5.00 each<br>
+            - 8 June: Purchased 150 units @ £6.00 each<br>
+            Calculate the value of the 120 units issued to production on 15 June using LIFO:<br>
+            Value of Materials Issued: £ <input type="text" id="ans14" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            The total cost of electricity for a factory is analyzed. There is a fixed quarterly standing charge of £150.00, plus a variable rate of £0.12 per kilowatt-hour consumed. How is this entire electricity expense classified?<br>
+            Cost Classification: <select id="ans15"><option value="">Select</option><option value="w">Fixed Cost</option><option value="w">Variable Cost</option><option value="correct">Semi-Variable Cost</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '620' || val === '620.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '780' || val === '780.00');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '483' || val === '483.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '384' || val === '384.00');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '4' || val === '4.00');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '1500' || val === '1500.00');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '9000' || val === '9000.00');
+        } else if (currentQ === 8) {
+            isCorrect = (document.getElementById('ans8').value === 'correct');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '5.6' || val === '5.60');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '180' || val === '180.00');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '18' || val === '18.00');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '36' || val === '36.00');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '44' || val === '44.00');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '720' || val === '720.00');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
