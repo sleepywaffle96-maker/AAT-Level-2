@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Bookkeeping - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Advanced Bookkeeping - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A business purchases an integrated IT server system for £30,000. It policy is to charge depreciation at 30% per annum using the reducing balance method. Calculate the total accumulated depreciation balance at the end of the second year:<br>
+            Accumulated Depreciation Year 2: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A vehicle that originally cost £24,000 has a carrying amount (Net Book Value) of £9,600. It is sold through an auctioneer for £11,100 cash. Calculate the final profit or loss on disposal to be reported:<br>
+            Disposal Result Amount: £ <input type="text" id="ans2_val" placeholder="0.00"> <select id="ans2_type"><option value="">Select</option><option value="correct">Profit</option><option value="w">Loss</option></select>
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            On 31 March, a company's insurance expense account shows a total debit of £7,200. This balance includes a premium invoice of £4,800 paid on 1 November for a 12-month policy. Calculate the prepayments adjustment required at year-end:<br>
+            Insurance Prepayment: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            At the financial year-end of 30 June, the final quarter's warehouse gas heating charges of £620 remain unbilled and unpaid. State the required adjusting entry to be posted through the General Journal:<br>
+            Debit Account: <select id="ans4_deb"><option value="">Select</option><option value="correct">Gas Expense Account</option><option value="w">Accruals Account</option></select><br>
+            Credit Account: <select id="ans4_crd"><option value="">Select</option><option value="w">Prepayments Account</option><option value="correct">Accruals Account</option></select>
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A business has an opening general allowance for doubtful debts of £4,100. At the year-end, total trade receivables stand at £115,000, which includes a specific customer debt of £3,000 that needs to be written off immediately. The general allowance is to be set at 5% of the remaining receivables. Calculate the new required closing balance of the Allowance for Doubtful Debts account:<br>
+            Closing Allowance Balance: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            Using the allowance data adjustments calculated in Q5, determine the net transaction entry value to be transferred to the Statement of Profit or Loss:<br>
+            Net Statement Value: £ <input type="text" id="ans6_val" placeholder="0.00"> <select id="ans6_side"><option value="">Select</option><option value="correct">Debit (Increase expense)</option><option value="w">Credit (Decrease expense)</option></select>
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            Partners C and D share profits and losses in the ratio 2:1. The net trading profit for the year is £75,000. Under the partnership deed, partner D is entitled to a fixed salary of £12,000 per annum, and partner C is entitled to an interest on capital allocation of £3,000. Calculate C's final total share of the residual profit:<br>
+            C's Residual Profit Share: £ <input type="text" id="ans7" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            An Extended Trial Balance fails to balance, resulting in a Suspense Account opened with a credit balance of £850. An audit reveals that a bank transfer fee of £425 was correctly entered in the Cash Book but completely debited twice to the Bank Charges account. Calculate the final balance of the Suspense account after processing the correction:<br>
+            Suspense Final Balance: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A manufacturing company buys a piece of equipment for £32,000 on 1 April. The straight-line depreciation method is used at a rate of 20% per annum, assuming a residual scrap value of £2,000. Calculate the total carrying amount (Net Book Value) of the equipment at the end of the second year:<br>
+            Carrying Amount Year 2: £ <input type="text" id="ans9" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A year-end closing inventory assessment on 31 March values stock at cost for £22,800. An item within this stock cost £1,500 but is found to be water-damaged and can only be sold for a Net Realisable Value (NRV) of £600 after spending £100 on repackaging. Calculate the final total inventory valuation under IAS 2 guidelines:<br>
+            Inventory Valuation: £ <input type="text" id="ans10" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            Partner B has a fixed capital account balance of £80,000. The partnership agreement allows a 6% interest on capital allocation per annum. Partner B also drew £15,000 from the business during the year. Calculate the net interest on capital to be credited to Partner B's Current Account:<br>
+            Interest on Capital: £ <input type="text" id="ans11" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            The opening allowance for doubtful debts was £1,800. At the current year-end, the required allowance is calculated to be £2,450 based on aged debtor risks. Calculate the net adjustment required in the Statement of Profit or Loss:<br>
+            Adjustment Value: £ <input type="text" id="ans12_val" placeholder="0.00"> <select id="ans12_side"><option value="">Select</option><option value="correct">Debit (Increase in expense)</option><option value="w">Credit (Income reduction of expense)</option></select>
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            On 1 September, a firm pays an annual local property tax invoice of £3,600 covering a 12-month period. If the company's financial year ends on 31 December, calculate the prepaid amount to be carried forward as an asset to the next period:<br>
+            Prepaid Property Tax: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            An old production machine that cost £12,000 with accumulated depreciation of £7,500 is part-exchanged for a new asset. The supplier provides a part-exchange trade-in allowance of £4,800. Calculate the profit or loss on the disposal of this machine:<br>
+            Amount: £ <input type="text" id="ans14_val" placeholder="0.00"> <select id="ans14_type"><option value="">Select</option><option value="correct">Profit</option><option value="w">Loss</option></select>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A bookkeeper extracts an unadjusted Trial Balance and discovers that a credit purchase invoice of £620 from an office supplier was completely recorded as £260 in both the Purchases day book and the supplier's ledger account. What type of accounting error has occurred?<br>
+            Error Type: <select id="ans15"><option value="">Select</option><option value="correct">Error of Original Entry</option><option value="w">Error of Omission</option><option value="w">Error of Principle</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '14700' || val === '14700.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2_val').value.trim();
+            let type = document.getElementById('ans2_type').value;
+            isCorrect = ((val === '1500' || val === '1500.00') && type === 'correct');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '2800' || val === '2800.00');
+        } else if (currentQ === 4) {
+            let deb = document.getElementById('ans4_deb').value;
+            let crd = document.getElementById('ans4_crd').value;
+            isCorrect = (deb === 'correct' && crd === 'correct');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '5600' || val === '5600.00');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6_val').value.trim();
+            let side = document.getElementById('ans6_side').value;
+            isCorrect = ((val === '1500' || val === '1500.00') && side === 'correct');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '40000' || val === '40000.00');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '425' || val === '425.00');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '20000' || val === '20000.00');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '21900' || val === '21900.00');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '4800' || val === '4800.00');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12_val').value.trim();
+            let side = document.getElementById('ans12_side').value;
+            isCorrect = ((val === '650' || val === '650.00') && side === 'correct');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '2400' || val === '2400.00');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14_val').value.trim();
+            let type = document.getElementById('ans14_type').value;
+            isCorrect = ((val === '300' || val === '300.00') && type === 'correct');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
