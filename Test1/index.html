@@ -1,51 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>Osborne Books Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Reconciliation Test</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #e4e4e4; padding: 20px; }
-        .quiz-container { max-width: 800px; margin: 0 auto; background-color: #fff; border: 1px solid #999; padding: 25px; }
-        .header-title { color: #006633; font-weight: bold; border-bottom: 1px solid #ccc; }
-        .question-page { display: none; } .question-page.active { display: block; }
-        table.osborne-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        table.osborne-table td, table.osborne-table th { border: 1px solid #aaa; padding: 6px; font-size: 13px; }
-        .nav-buttons { margin-top: 25px; border-top: 1px solid #ccc; padding-top: 15px; text-align: center; }
-        .osborne-btn { padding: 5px 12px; cursor: pointer; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 180px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 3px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+        }
+        input[type="text"] {
+            width: 100px;
+            text-align: right;
+        }
+        .radio-group {
+            margin-top: 10px;
+        }
+        .radio-option {
+            margin-bottom: 8px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
     </style>
 </head>
 <body>
+
 <div class="quiz-container">
-    <div class="header-title">Osborne Books | Bank Reconciliation Test</div>
-    <!-- Q1 (Esempio Dropdown) -->
+    <div class="header-title">Bank Reconciliation Test</div>
+
+    <!-- Q1 -->
     <div id="page1" class="question-page active">
         <div class="question-counter">Q1 of 15</div>
         <div class="question-body">
-            A <select id="ans1_1"><option value="">Select</option><option value="brs">bank reconciliation</option></select> 
-            statement accounts for differences between the 
-            <select id="ans1_2"><option value="">Select</option><option value="cb">cash book</option></select> 
-            and the bank statement.
+            A <select id="ans1"><option value="">Select</option><option value="correct">bank reconciliation</option><option value="w">trial balance</option></select> 
+            statement accounts for differences between the cash book and the bank statement.
         </div>
     </div>
-    <!-- ... (Domande Q2-Q7 in formato simile) ... -->
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            Which of the following items is an example of a timing difference?
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans2" value="w"> Bank charges</div>
+                <div class="radio-option"><input type="radio" name="ans2" value="correct"> Unpresented cheques</div>
+                <div class="radio-option"><input type="radio" name="ans2" value="w"> Standing orders</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            Bank charges appearing on the bank statement but not in the cash book require an update to the:
+            <select id="ans3">
+                <option value="">Select</option>
+                <option value="correct">Cash Book</option>
+                <option value="w">Bank Reconciliation Statement</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            An outstanding lodgement is money that has been paid into the bank but has not yet been processed by the bank.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans4" value="correct"> True</div>
+                <div class="radio-option"><input type="radio" name="ans4" value="w"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            When completing a bank reconciliation statement starting with the bank statement balance, outstanding lodgements should be:
+            <select id="ans5">
+                <option value="">Select</option>
+                <option value="correct">Added</option>
+                <option value="w">Subtracted</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            Unpresented cheques are cheques issued by the business that have not yet been cleared by the bank.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans6" value="correct"> True</div>
+                <div class="radio-option"><input type="radio" name="ans6" value="w"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A credit transfer received from a customer directly into the bank account must be entered on the:
+            <select id="ans7">
+                <option value="">Select</option>
+                <option value="correct">Debit side of the Cash Book</option>
+                <option value="w">Credit side of the Cash Book</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            Calculate the adjusted Cash Book balance:<br>
+            - Starting Cash Book balance (debit): £1,200<br>
+            - Bank charges: £45<br>
+            Adjusted Balance: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A dishonoured cheque from a customer requires a corrective entry to be made in the Cash Book.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans9" value="correct"> True</div>
+                <div class="radio-option"><input type="radio" name="ans9" value="w"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            Which item would appear on the bank statement but not in the cash book before update?
+            <select id="ans10">
+                <option value="">Select</option>
+                <option value="correct">Direct Debit</option>
+                <option value="w">Cheque paid to a supplier</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            To record bank charges in the Cash Book, you must credit the Bank column.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans11" value="correct"> True</div>
+                <div class="radio-option"><input type="radio" name="ans11" value="w"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            If a bank statement shows a credit balance, it means the business has money in the bank.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans12" value="correct"> True</div>
+                <div class="radio-option"><input type="radio" name="ans12" value="w"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            Calculate the reconciled bank balance:<br>
+            - Bank statement balance: £1,500<br>
+            - Outstanding lodgements: £300<br>
+            - Unpresented cheques: £200<br>
+            Reconciled Balance: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A standing order is an instruction to the bank to pay a variable amount at irregular intervals.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans14" value="w"> True</div>
+                <div class="radio-option"><input type="radio" name="ans14" value="correct"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            The final adjusted Cash Book balance must equal the final reconciled Bank Statement balance.
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="ans15" value="correct"> True</div>
+                <div class="radio-option"><input type="radio" name="ans15" value="w"> False</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
     <div class="nav-buttons">
-        <button class="osborne-btn" onclick="changePage(-1)">Back</button>
-        <button class="osborne-btn" onclick="changePage(1)">Next</button>
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
     </div>
 </div>
+
 <script>
-    // Logica di navigazione e validazione (omessa per brevità)
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            isCorrect = (document.getElementById('ans1').value === 'correct');
+        } else if (currentQ === 2) {
+            let choice = document.querySelector('input[name="ans2"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 3) {
+            isCorrect = (document.getElementById('ans3').value === 'correct');
+        } else if (currentQ === 4) {
+            let choice = document.querySelector('input[name="ans4"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 5) {
+            isCorrect = (document.getElementById('ans5').value === 'correct');
+        } else if (currentQ === 6) {
+            let choice = document.querySelector('input[name="ans6"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 7) {
+            isCorrect = (document.getElementById('ans7').value === 'correct');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '1155' || val === '1155.00');
+        } else if (currentQ === 9) {
+            let choice = document.querySelector('input[name="ans9"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 10) {
+            isCorrect = (document.getElementById('ans10').value === 'correct');
+        } else if (currentQ === 11) {
+            let choice = document.querySelector('input[name="ans11"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 12) {
+            let choice = document.querySelector('input[name="ans12"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '1600' || val === '1600.00');
+        } else if (currentQ === 14) {
+            let choice = document.querySelector('input[name="ans14"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        } else if (currentQ === 15) {
+            let choice = document.querySelector('input[name="ans15"]:checked');
+            isCorrect = (choice && choice.value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
 </script>
+
 </body>
 </html>
-// Aggiungere al blocco script precedente per la gestione delle 15 domande:
-let currentQ = 1;
-function changePage(step) {
-    document.getElementById(`page${currentQ}`).classList.remove('active');
-    currentQ += step;
-    document.getElementById(`page${currentQ}`).classList.add('active');
-}
-// Esempio logica calcolo Q8
-function checkQ8() {
-    let balance = 1200 - 35 - 120;
-    // ... validazione ...
-}
