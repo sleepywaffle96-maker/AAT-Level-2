@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Tax - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Business Tax (Finance Act) - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A trading company records a net commercial profit of £210,000. The calculations show £6,500 of depreciation, £3,200 of subscription fees to non-authorized trade associations, and £1,500 for capital fines. Calculate the net adjusted trading profit after adding back these disallowed outlays:<br>
+            Adjusted Trading Profit: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A company buys a second-hand commercial lorry for £38,000 during its current 12-month cycle. If the investment is fully allocated within the company's remaining Annual Investment Allowance (AIA) pool, calculate the total allowance claimed:<br>
+            AIA Capital Allowance Claim: £ <input type="text" id="ans2" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            A corporation's Main Pool has a tax written-down value (TWDV) of £85,000 at the start of the period. No assets are added or sold. Calculate the standard Writing Down Allowance (WDA) deduction using the current 18% rate:<br>
+            Main Pool WDA Claim: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A company has a Special Rate Pool balance of £75,000 covering integral building features. Calculate the Writing Down Allowance (WDA) available at the special pool rate of 6%:<br>
+            Special Rate Pool WDA Claim: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A manufacturing company disposes of an old delivery van from the Main Pool for £4,500 cash. The original cost was £12,000. Before this disposal, the Main Pool balance stood at £3,100. This creates a net credit balance of £1,400. Identify the tax term for this balance added back to profits:<br>
+            Tax Adjustment Element: <select id="ans5"><option value="">Select</option><option value="w">Balancing Allowance</option><option value="correct">Balancing Charge</option><option value="w">Writing Down Allowance</option></select>
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            A large company has an accounting period matching the calendar year. Under the UK installment system for large corporate groups, how many equal quarterly installment payments must the company make to settle its estimated annual Corporation Tax liability?<br>
+            Installment Payments: <input type="text" id="ans6" placeholder="0"> payments
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A group structure consists of Company S (75% subsidiary of Parent P). Company S suffers a current year trading loss of £50,000. Company S can elect to surrender this loss to Parent P to offset Parent P's taxable profits for the same period. This corporate loss mitigation relief is known as:<br>
+            Loss Relief Term: <select id="ans7"><option value="">Select</option><option value="w">Carry Forward Relief</option><option value="correct">Group Relief</option><option value="w">Terminal Loss Relief</option></select>
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            A company purchases a new passenger car for business deliveries with an official CO2 emissions rating of 35g/km. Under the Capital Allowances rules for corporate cars, which pool category applies to this vehicle?<br>
+            Pool Category: <select id="ans8"><option value="">Select</option><option value="correct">Main Pool (18% WDA)</option><option value="w">Special Rate Pool (6% WDA)</option><option value="w">100% First Year Allowance</option></select>
+        </div>
+    </div>
+
+      <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A limited company purchases an existing commercial freehold property on 1 June. Under the statutory structures for corporate non-residential property, which capital allowance framework allows a 3% flat-rate annual deduction on the original structural construction cost?<br>
+            Allowance Classification: <select id="ans9"><option value="">Select</option><option value="w">Annual Investment Allowance (AIA)</option><option value="correct">Structures and Buildings Allowance (SBA)</option><option value="w">Writing Down Allowance (WDA)</option></select>
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A corporate group sells a piece of land held as a non-current asset, realizing an accounting profit of £45,000. For limited companies, capital gains are not taxed under Capital Gains Tax rules, but are instead integrated into which tax framework?<br>
+            Tax Classification: <select id="ans10"><option value="">Select</option><option value="w">Income Tax</option><option value="correct">Corporation Tax</option><option value="w">Value Added Tax (VAT)</option></select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A business incurs a legal expense of £3,500 related to the renewal of a 25-year lease on its retail premises. When calculating the adjusted trading profit for Corporation Tax, how is this capital lease renewal cost treated?<br>
+            Tax Treatment: <select id="ans11"><option value="">Select</option><option value="w">It is fully allowable</option><option value="correct">It must be completely disallowed and added back</option><option value="w">It qualifies for 100% AIA</option></select>
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            A company has an accounting profit of £120,000. Depreciation charged in the accounts is £14,200, while the calculated capital allowances are £9,800. Assuming no other adjustments, calculate the final taxable trading profit:<br>
+            Taxable Trading Profit: £ <input type="text" id="ans12" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            A limited company invests cash into R&D activities, qualifying for the SME R&D tax relief scheme. This framework allows the company to deduct an additional percentage of its qualifying expenditure from its taxable profits. Under the baseline rules, what is this extra tax deduction percentage?<br>
+            Extra Deduction Rate: <input type="text" id="ans13" placeholder="0"> %
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A company receives £4,000 of bank interest income on its treasury cash reserves. In the Corporation Tax computation, this non-trading interest is classified under which specific income category?<br>
+            Tax Classification: <select id="ans14"><option value="">Select</option><option value="w">Trading Profits</option><option value="correct">Loan Relationships (Non-trading income)</option><option value="w">Miscellaneous Capital Distributions</option></select>
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A business sells a Main Pool machine that originally cost £10,000 for £12,000 cash. The asset's tax written-down value was zero. Under corporate capital disposal guidelines, the maximum disposal proceeds to be credited to the pool cannot exceed the asset's original cost.<br>
+            Is the statement above True or False?<br>
+            Answer: <select id="ans15"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '221200' || val === '221200.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '38000' || val === '38000.00');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '15300' || val === '15300.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '4500' || val === '4500.00');
+        } else if (currentQ === 5) {
+            isCorrect = (document.getElementById('ans5').value === 'correct');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '4');
+        } else if (currentQ === 7) {
+            isCorrect = (document.getElementById('ans7').value === 'correct');
+        } else if (currentQ === 8) {
+            isCorrect = (document.getElementById('ans8').value === 'correct');
+        } else if (currentQ === 9) {
+            isCorrect = (document.getElementById('ans9').value === 'correct');
+        } else if (currentQ === 10) {
+            isCorrect = (document.getElementById('ans10').value === 'correct');
+        } else if (currentQ === 11) {
+            isCorrect = (document.getElementById('ans11').value === 'correct');
+        } else if (currentQ === 12) {
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '124400' || val === '124400.00');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '130'); // SME R&D extra deduction percentage under FA2020 layout
+        } else if (currentQ === 14) {
+            isCorrect = (document.getElementById('ans14').value === 'correct');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
