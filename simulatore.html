@@ -5,39 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AAT Infinite Exam Engine</title>
     <style>
+        :root {
+            --aat-navy: #0f172a;
+            --aat-cyan: #0284c7;
+            --aat-green: #0d9488;
+            --aat-green-hover: #0f766e;
+            --text-main: #334155;
+            --border-color: #e2e8f0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f1f5f9;
-            background-image: linear-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 148, 136, 0.03) 1px, transparent 1px);
-            background-size: 24px 24px;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             margin: 0;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: var(--text-main);
+            box-sizing: border-box;
+
+            /* IMMAGINE DI SFONDO PREMIUM: Calcolatrice, grafici e numeri azzurri fluttuanti */
+            background: linear-gradient(rgba(241, 245, 249, 0.82), rgba(241, 245, 249, 0.82)), 
+                        url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
+
         .quiz-container {
             width: 100%;
             max-width: 750px;
-            background-color: #ffffff;
-            border-top: 6px solid #014d26;
-            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 35px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
+
         .header-title {
-            color: #0d9488;
+            color: var(--aat-green);
             font-size: 22px;
             font-weight: bold;
-            border-bottom: 2px solid #0d9488;
+            border-bottom: 2px solid var(--aat-green);
             padding-bottom: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
+
         .selector-panel {
-            background-color: #f8fafc;
+            background-color: rgba(248, 250, 252, 0.9);
             border: 1px solid #e2e8f0;
-            padding: 15px;
-            border-radius: 6px;
+            padding: 20px;
+            border-radius: 8px;
             margin-bottom: 25px;
             display: flex;
             gap: 15px;
@@ -45,33 +66,39 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .selector-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             flex: 1;
             min-width: 180px;
         }
+
         label {
             font-size: 11px;
             font-weight: bold;
-            color: #475569;
+            color: #64748b;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+
         select, input[type="text"] {
-            padding: 8px 12px;
+            padding: 10px 14px;
             font-size: 14px;
             border: 1px solid #cbd5e1;
-            border-radius: 4px;
+            border-radius: 6px;
             background-color: #ffffff;
             color: #1e293b;
             outline: none;
         }
+
         input[type="text"] {
             font-family: monospace;
             text-align: right;
             width: 140px;
         }
+
         .question-box {
             min-height: 150px;
             font-size: 15px;
@@ -80,15 +107,18 @@
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
             padding: 25px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
+
         .nav-buttons {
             border-top: 1px solid #e2e8f0;
             padding-top: 20px;
             display: flex;
             justify-content: space-between;
         }
+
         .btn-action {
             background-color: #f1f5f9;
             border: 1px solid #cbd5e1;
@@ -97,27 +127,33 @@
             font-weight: 600;
             cursor: pointer;
             color: #334155;
-            border-radius: 4px;
+            border-radius: 6px;
             transition: all 0.2s;
+            text-decoration: none;
         }
+
         .btn-action:hover {
             background-color: #e2e8f0;
         }
+
         .btn-generate {
-            background-color: #0d9488;
+            background-color: var(--aat-green);
             color: white;
-            border: 1px solid #0f766e;
+            border: 1px solid var(--aat-green-hover);
         }
+
         .btn-generate:hover {
-            background-color: #0f766e;
+            background-color: var(--aat-green-hover);
         }
+
         .feedback {
             margin: 15px 0;
             font-size: 15px;
             font-weight: bold;
             min-height: 24px;
         }
-        .correct { color: #0d9488; }
+
+        .correct { color: var(--aat-green); }
         .incorrect { color: #cc0000; }
     </style>
 </head>
@@ -142,14 +178,14 @@
                 <option value="any">🎲 Mixed Chapters (All Topics)</option>
             </select>
         </div>
-        <button class="btn-action btn-generate" style="margin-top: 18px;" onclick="generateQuestion()">Generate Scenario ↻</button>
+        <button class="btn-action btn-generate" style="margin-top: 20px;" onclick="generateQuestion()">Generate Scenario ↻</button>
     </div>
 
     <div id="questionBox" class="question-box"></div>
     <div id="feedbackBox" class="feedback"></div>
 
     <div class="nav-buttons">
-        <a href="index.html" class="btn-action" style="text-decoration: none;">← Exit to Hub</a>
+        <a href="index.html" class="btn-action">← Exit to Hub</a>
         <button class="btn-action btn-generate" onclick="checkAnswer()">Verify Calculations</button>
     </div>
 </div>
@@ -243,7 +279,7 @@
                 const wrongExpense = realExpense - (getRandomInt(2, 5) * 50);
                 currentCorrectAnswer = Math.abs(realExpense - wrongExpense).toFixed(2);
                 html = `<strong>🟢 Level 2 - Bookkeeping Controls</strong><br><br>
-                        Un errore ha fatto sì che un pagamento di £${realExpense} venisse inserito correttamente nel Cash Book, ma registrato a debito nel conto delle spese come £${wrongExpense}. Il Trial Balance non quadra.<br><br>
+                        Un errore ha fatto sì che un pagamento di £${realExpense} venisse inserito correttamente nel Cash Book, ma registrato a debito nel conto delle spese como £${wrongExpense}. Il Trial Balance non quadra.<br><br>
                         Calcola l'importo esatto da inserire nel <strong>Suspense Account</strong> per rettificare l'errore:<br>
                         Suspense Adjustment: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
@@ -278,8 +314,7 @@
 
                     case "L3_C1":
                 const assetCost = getRandomInt(25, 60) * 1000;
-                const deprRates =;
-                const deprRate = getRandomItem(deprRates);
+                const deprRate = getRandomItem([10, 15, 20, 25]);
                 const yr1Depr = assetCost * (deprRate / 100);
                 currentCorrectAnswer = ((assetCost - yr1Depr) * (deprRate / 100)).toFixed(2);
                 html = `<strong>🔵 Level 3 - Advanced Bookkeeping</strong><br><br>
@@ -330,7 +365,7 @@
                 currentCorrectAnswer = "25";
                 html = `<strong>🔵 Level 3 - Ethics for Accountants</strong><br><br>
                         Durante le procedure di adeguata verifica della clientela (Customer Due Diligence), lo studio deve identificare il titolare effettivo (Beneficial Owner) dell'impresa.<br><br>
-                        Secondo le normative antiriciclaggio del Regno Unito, qual è la quota percentuale minima di azioni o diritti di voto oltre la quale un individuo è legalmente classificato como Beneficial Owner?<br>
+                        Secondo le normative antiriciclaggio del Regno Unito, qual è la quota percentuale minima di azioni o diritti di voto oltre la quale un individuo è legalmente classificato come Beneficial Owner?<br>
                         Minimum Percentage: <input type="text" id="calc_ans" placeholder="0"> %`;
                 inputIdToCheck = "calc_ans";
                 break;
@@ -375,7 +410,7 @@
                 const scrapValue = getRandomInt(3, 5);
                 currentCorrectAnswer = (stockQty * scrapValue).toFixed(2);
                 html = `<strong>⚫ Level 4 - Management Accounting: Decision and Control</strong><br><br>
-                        Un'azienda ha bisogno di 500 kg di materiali speciali per una commessa spot una tantum. Questo materiale è già presente in magazzino (costo storico £9.00/kg). Il materiale non ha altri usi aziendali, ma può essere rivenduto come rottame a <strong>£${scrapValue.toFixed(2)}/kg</strong>. Il prezzo di riacquisto sul mercato è di £11.00/kg.<br><br>
+                        Un'azienda ha bisogno di 500 kg di materiali speciali per una commessa spot una tantum. Questo materiale è già presente in magazzino (costo storico £9.00/kg). Il materiale non ha altri usi aziendali, ma può essere rivenduto como rottame a <strong>£${scrapValue.toFixed(2)}/kg</strong>. Il prezzo di riacquisto sul mercato è di £11.00/kg.<br><br>
                         Calcola il **costo rilevante (relevant cost)** complessivo del materiale da imputare alla commessa:<br>
                         Relevant Cost: £ <input type="text" id="calc_ans" placeholder="0.00">`;
                 inputIdToCheck = "calc_ans";
