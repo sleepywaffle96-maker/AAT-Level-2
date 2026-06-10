@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Statements of Limited Companies - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Financial Statements of Limited Companies - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A parent company buys 75% of the 200,000 ordinary £0.50 shares of a subsidiary for £160,000 cash. At the date of acquisition, the subsidiary's retained earnings were £35,000. Calculate the total Goodwill arising on consolidation assuming the non-controlling interest is measured using the proportionate net assets method:<br>
+            Goodwill: £ <input type="text" id="ans1" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            Using the acquisition metrics from Q1, two years post-acquisition the subsidiary's total retained earnings have grown to £55,000. Calculate the adjusted value of the Non-Controlling Interest (NCI) to be reported in the Consolidated Statement of Financial Position:<br>
+            Non-Controlling Interest Value: £ <input type="text" id="ans2" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            When preparing an IAS 7 Statement of Cash Flows (indirect method), the net profit before tax is £110,000. Adjustments include a depreciation expense of £18,500, a loss on disposal of plant of £3,000, and an increase in trade payables of £4,200. Calculate the cash generated from operations:<br>
+            Cash Generated from Operations: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A limited company reports a net profit before interest and tax (EBIT) of £175,000. Finance costs were £18,000, and the corporation tax expense is calculated at £32,000. If the company declared and paid a final ordinary dividend of £25,000, calculate the net increase to the retained earnings ledger at the year-end:<br>
+            Net Increase to Retained Earnings: £ <input type="text" id="ans4" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A company executes a 1-for-5 bonus issue of ordinary shares. Prior to this, the equity showed 500,000 ordinary shares of £1.00 nominal value and a Share Premium account balance of £140,000. Calculate the remaining balance in the Share Premium account after funding this bonus issue:<br>
+            Remaining Share Premium: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            A company provides the following data from its Statement of Profit or Loss: Revenue £600,000, Cost of Sales £360,000, and Operating Expenses £90,000. Calculate the Gross Profit Margin percentage:<br>
+            Gross Profit Margin: <input type="text" id="ans6" placeholder="0.00"> %
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A limited company shows total non-current liabilities of £200,000 in 6% bank loans. Total equity reserves are £300,000. Calculate the gearing ratio using the capital-employed method [Debt / (Equity + Debt)]:<br>
+            Gearing Ratio: <input type="text" id="ans7" placeholder="0.0"> %
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            A parent company sells inventory to its subsidiary for £36,000 cash, which includes a markup on cost of 20%. At the financial year-end, one-third of these goods remain unsold in the subsidiary's inventory. Calculate the Provision for Unrealised Profit (PUP) adjustment required on consolidation:<br>
+            PUP Adjustment: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+    <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A limited company announces a 1-for-4 rights issue of ordinary shares at an offer price of £1.50 per share. Before this event, the company had 400,000 ordinary £1.00 nominal shares in issue. Calculate the total cash injection received by the company from this rights issue:<br>
+            Total Cash Received: £ <input type="text" id="ans9" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            Based on the rights issue transaction metrics described in Q9, calculate the total value that must be credited to the Share Premium Account:<br>
+            Value credited to Share Premium: £ <input type="text" id="ans10" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A corporate financial statement shows the following year-end summary balances:<br>
+            - Closing Inventory: £45,000<br>
+            - Total Cost of Sales: £365,000<br>
+            Calculate the Inventory Holding Period expressed in days (round to the nearest whole day):<br>
+            Inventory Holding Period: <input type="text" id="ans11" placeholder="0"> days
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            According to IAS 10, a destruction of a major manufacturing plant by fire after the reporting period provides evidence of conditions that arose after the reporting period. This type of event is classified as a:<br>
+            Event Classification: <select id="ans12"><option value="">Select</option><option value="w">Adjusting event</option><option value="correct">Non-adjusting event</option></select>
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            A company has an opening tax liability of £18,000. During the year, it pays a final sum of £17,200 to settle the prior year's tax liability. The estimated tax provision required for the current year-end is £24,000. Calculate the total tax expense to be reported in the Statement of Profit or Loss:<br>
+            Total Tax Expense: £ <input type="text" id="ans13" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A limited company achieves a profit from operations (EBIT) of £144,000. The Statement of Financial Position shows total equity of £450,000 and non-current liabilities of £150,000. Calculate the Return on Capital Employed (ROCE) percentage ratio:<br>
+            ROCE Ratio: <input type="text" id="ans14" placeholder="0.0"> %
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            Under IAS 38 Intangible Assets, which of the following items must always be expensed directly to the Statement of Profit or Loss as incurred and cannot be capitalized?<br>
+            Item: <select id="ans15"><option value="">Select</option><option value="w">Development expenditures meeting technical feasibility</option><option value="correct">Internally generated brand names and goodwill</option><option value="w">Purchased patent licenses</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '58750' || val === '58750.00');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '48750' || val === '48750.00');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '135700' || val === '135700.00');
+        } else if (currentQ === 4) {
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '100000' || val === '100000.00');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '40000' || val === '40000.00');
+        } else if (currentQ === 6) {
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '40' || val === '40.00');
+        } else if (currentQ === 7) {
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '40' || val === '40.0' || val === '40.00');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '2000' || val === '2000.00');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '150000' || val === '150000.00');
+        } else if (currentQ === 10) {
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '50000' || val === '50000.00');
+        } else if (currentQ === 11) {
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '45');
+        } else if (currentQ === 12) {
+            isCorrect = (document.getElementById('ans12').value === 'correct');
+        } else if (currentQ === 13) {
+            let val = document.getElementById('ans13').value.trim();
+            isCorrect = (val === '23200' || val === '23200.00');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '24' || val === '24.0');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
