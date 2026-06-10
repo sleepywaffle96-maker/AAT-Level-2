@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Management - Test Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #ffffff;
+            border: 1px solid #999999;
+            padding: 25px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #006633;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #006633;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .question-page {
+            display: none;
+            min-height: 220px;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-counter {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+        .question-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222222;
+        }
+        select, input[type="text"] {
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999999;
+            border-radius: 2px;
+            margin: 4px 0;
+        }
+        input[type="text"] {
+            width: 110px;
+            text-align: right;
+            font-family: monospace;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-action {
+            background-color: #f0f0f0;
+            border: 1px solid #999999;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333333;
+        }
+        .btn-action:hover {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .correct { color: #006633; }
+        .incorrect { color: #cc0000; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header-title">Credit Management - Test Two</div>
+
+    <!-- Q1 -->
+    <div id="page1" class="question-page active">
+        <div class="question-counter">Q1 of 15</div>
+        <div class="question-body">
+            A company has total annual credit sales of £1,095,000 and a closing trade receivables balance of £135,000. Calculate the company's Days Sales Outstanding (DSO) to the nearest whole day (Assume a standard 365-day year):<br>
+            Days Sales Outstanding: <input type="text" id="ans1" placeholder="0"> days
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="page2" class="question-page">
+        <div class="question-counter">Q2 of 15</div>
+        <div class="question-body">
+            A credit analyst evaluates a buyer's liquidity metrics using the draft balance sheet:<br>
+            - Current Assets (including inventory of £40,000): £90,000<br>
+            - Current Liabilities: £25,000<br>
+            Calculate the exact Acid Test (Quick) Ratio (format as X.XX):<br>
+            Acid Test Ratio: <input type="text" id="ans2" placeholder="0.00"> : 1
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="page3" class="question-page">
+        <div class="question-counter">Q3 of 15</div>
+        <div class="question-body">
+            A credit customer has an overdue balance of £6,000 that has been outstanding for 60 days past the payment deadline. The firm's internal cost of capital is 9.125% per annum. Calculate the exact interest cost of carrying this overdue debt for 60 days (Assume a 365-day year, round to 2 decimal places):<br>
+            Carrying Cost of Debt: £ <input type="text" id="ans3" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="page4" class="question-page">
+        <div class="question-counter">Q4 of 15</div>
+        <div class="question-body">
+            A credit control department decides to take formal legal action against a debtor owing £15,000. Which court in England and Wales handles high-value commercial recovery claims exceeding the standard small claims limits?<br>
+            Court Type: <select id="ans4"><option value="">Select</option><option value="correct">The County Court / High Court</option><option value="w">Crown Court</option><option value="w">Magistrates' Court</option></select>
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="page5" class="question-page">
+        <div class="question-counter">Q5 of 15</div>
+        <div class="question-body">
+            A credit policy offers terms of "3/10, net 30". A client buys goods worth £12,000 on account and pays within the 10-day settlement window. Calculate the final cash collection amount required to clear the debt:<br>
+            Discounted Cash Settlement: £ <input type="text" id="ans5" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="page6" class="question-page">
+        <div class="question-counter">Q6 of 15</div>
+        <div class="question-body">
+            Under the Late Payment of Commercial Debts Act, if a business charges statutory interest on a late payment, they are also entitled to claim a fixed lump sum compensation. For a debt between £1,000 and £9,999.99, what is the statutory compensation fee?<br>
+            Statutory Fee: <select id="ans6"><option value="">Select</option><option value="w">£40</option><option value="correct">£70</option><option value="w">£100</option></select>
+        </div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="page7" class="question-page">
+        <div class="question-counter">Q7 of 15</div>
+        <div class="question-body">
+            A credit review indicates that a high-volume client has an extremely low Interest Cover Ratio. This trend indicates to the credit manager that the buyer:<br>
+            Credit Risk Interpretation: <select id="ans7"><option value="">Select</option><option value="w">Has excellent short-term bank liquidity buffers</option><option value="correct">May struggle to pay interest expenses from operating profits, representing high default risk</option><option value="w">Is collecting customer debts at an accelerated speed</option></select>
+        </div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="page8" class="question-page">
+        <div class="question-counter">Q8 of 15</div>
+        <div class="question-body">
+            An analysis of aged debtors shows total receivables of £200,000. Out of this, £20,000 has been outstanding for more than 120 days. The policy dictates a specific allowance of 40% for debts older than 120 days, and a general allowance of 3% for all remaining balances. Calculate the total allowance for doubtful debts:<br>
+            Total Credit Allowance: £ <input type="text" id="ans8" placeholder="0.00">
+        </div>
+    </div>
+
+      <!-- Q9 -->
+    <div id="page9" class="question-page">
+        <div class="question-counter">Q9 of 15</div>
+        <div class="question-body">
+            A corporate buyer enters administration owing your business £8,000. The insolvency practitioner notifies creditors that unsecured claims will receive a payout of exactly 22p in the pound. Calculate the final bad debt amount that must be written off to the profit or loss account:<br>
+            Bad Debt Write-off Value: £ <input type="text" id="ans9" placeholder="0.00">
+        </div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="page10" class="question-page">
+        <div class="question-counter">Q10 of 15</div>
+        <div class="question-body">
+            A credit controller seeks to recover funds directly from a debtor's bank account. They apply for a court order that instructs the debtor's bank to freeze and transfer the required judgment sum straight to the creditor. This legal mechanism is known as a:<br>
+            Legal Mechanism: <select id="ans10"><option value="">Select</option><option value="correct">Third Party Debt Order</option><option value="w">Charging Order</option><option value="w">Warrant of Control</option></select>
+        </div>
+    </div>
+
+    <!-- Q11 -->
+    <div id="page11" class="question-page">
+        <div class="question-counter">Q11 of 15</div>
+        <div class="question-body">
+            A prospective client has a Current Ratio of 2.80 : 1 but an Acid Test Ratio of 0.40 : 1. How should the credit manager interpret this business layout?<br>
+            Liquidity Risk Status: <select id="ans11"><option value="">Select</option><option value="w">The buyer has uniform cash assets</option><option value="correct">The buyer is over-stocked with slow-moving inventory, indicating cash blockages</option><option value="w">The buyer is overly reliant on bank overdrafts</option></select>
+        </div>
+    </div>
+
+    <!-- Q12 -->
+    <div id="page12" class="question-page">
+        <div class="question-counter">Q12 of 15</div>
+        <div class="question-body">
+            If a customer exceeds their maximum approved credit limit, the credit management system should automatically put the account on 'credit hold' to prevent further order dispatches until a payment is made.<br>
+            Is this statement True or False?<br>
+            Answer: <select id="ans12"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+
+    <!-- Q13 -->
+    <div id="page13" class="question-page">
+        <div class="question-counter">Q13 of 15</div>
+        <div class="question-body">
+            A credit risk manager purchases a financial derivative policy that transfers the default risk of a high-value key customer to an insurance institution, ensuring cash recovery if insolvency occurs. This structure represents:<br>
+            Methodology: <select id="ans13"><option value="">Select</option><option value="w">Invoice Factoring</option><option value="correct">Credit Insurance</option><option value="w">Retention of Title</option></select>
+        </div>
+    </div>
+
+    <!-- Q14 -->
+    <div id="page14" class="question-page">
+        <div class="question-counter">Q14 of 15</div>
+        <div class="question-body">
+            A firm reports an average inventory holding period of 50 days, a trade payables payment period of 40 days, and its trade receivables collection period (DSO) is 55 days. Calculate the net cash conversion cycle (CCC) window in days:<br>
+            Net Cash Cycle: <input type="text" id="ans14" placeholder="0"> days
+        </div>
+    </div>
+
+    <!-- Q15 -->
+    <div id="page15" class="question-page">
+        <div class="question-counter">Q15 of 15</div>
+        <div class="question-body">
+            A clause inserted into terms of trade which states that legal ownership of the goods remains with the seller until the buyer has paid for them in full is known as a Retention of Title (or Romalpa) clause.<br>
+            Is the statement above True or False?<br>
+            Answer: <select id="ans15"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
+        </div>
+    </div>
+
+    <!-- Feedback e Navigazione -->
+    <div id="feedbackBox" class="feedback"></div>
+
+    <div class="nav-buttons">
+        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
+        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
+        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentQ = 1;
+    const totalQ = 15;
+
+    function updateButtons() {
+        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
+        document.getElementById('feedbackBox').innerText = '';
+    }
+
+    function changePage(step) {
+        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
+            document.getElementById(`page${currentQ}`).classList.remove('active');
+            currentQ += step;
+            document.getElementById(`page${currentQ}`).classList.add('active');
+            updateButtons();
+        }
+    }
+
+    function checkCurrentAnswer() {
+        let isCorrect = false;
+        let feedback = document.getElementById('feedbackBox');
+
+        if (currentQ === 1) {
+            let val = document.getElementById('ans1').value.trim();
+            isCorrect = (val === '45');
+        } else if (currentQ === 2) {
+            let val = document.getElementById('ans2').value.trim();
+            isCorrect = (val === '2' || val === '2.0' || val === '2.00');
+        } else if (currentQ === 3) {
+            let val = document.getElementById('ans3').value.trim();
+            isCorrect = (val === '90' || val === '90.00');
+        } else if (currentQ === 4) {
+            isCorrect = (document.getElementById('ans4').value === 'correct');
+        } else if (currentQ === 5) {
+            let val = document.getElementById('ans5').value.trim();
+            isCorrect = (val === '11640' || val === '11640.00');
+        } else if (currentQ === 6) {
+            isCorrect = (document.getElementById('ans6').value === 'correct');
+        } else if (currentQ === 7) {
+            isCorrect = (document.getElementById('ans7').value === 'correct');
+        } else if (currentQ === 8) {
+            let val = document.getElementById('ans8').value.trim();
+            isCorrect = (val === '13400' || val === '13400.00');
+        } else if (currentQ === 9) {
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '6240' || val === '6240.00');
+        } else if (currentQ === 10) {
+            isCorrect = (document.getElementById('ans10').value === 'correct');
+        } else if (currentQ === 11) {
+            isCorrect = (document.getElementById('ans11').value === 'correct');
+        } else if (currentQ === 12) {
+            isCorrect = (document.getElementById('ans12').value === 'correct');
+        } else if (currentQ === 13) {
+            isCorrect = (document.getElementById('ans13').value === 'correct');
+        } else if (currentQ === 14) {
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '65');
+        } else if (currentQ === 15) {
+            isCorrect = (document.getElementById('ans15').value === 'correct');
+        }
+
+        if (isCorrect) {
+            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        } else {
+            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        }
+    }
+
+    updateButtons();
+</script>
+
+</body>
+</html>
