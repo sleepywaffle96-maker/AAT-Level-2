@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Reconciliation Test</title>
+    <title>Bookkeeping Transactions Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,7 +31,7 @@
         }
         .question-page {
             display: none;
-            min-height: 180px;
+            min-height: 220px;
         }
         .question-page.active {
             display: block;
@@ -48,20 +48,31 @@
             color: #222222;
         }
         select, input[type="text"] {
-            padding: 3px;
+            padding: 4px;
             font-size: 13px;
             border: 1px solid #999999;
             border-radius: 2px;
+            margin: 4px 0;
         }
         input[type="text"] {
-            width: 100px;
+            width: 110px;
             text-align: right;
+            font-family: monospace;
         }
-        .radio-group {
-            margin-top: 10px;
+        table.osborne-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
         }
-        .radio-option {
-            margin-bottom: 8px;
+        table.osborne-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.osborne-table td, table.osborne-table th {
+            border: 1px solid #aaaaaa;
+            padding: 6px;
+            font-size: 13px;
         }
         .nav-buttons {
             margin-top: 30px;
@@ -93,14 +104,18 @@
 <body>
 
 <div class="quiz-container">
-    <div class="header-title">Bank Reconciliation Test</div>
+    <div class="header-title">Bookkeeping Transactions Test</div>
 
     <!-- Q1 -->
     <div id="page1" class="question-page active">
         <div class="question-counter">Q1 of 15</div>
         <div class="question-body">
-            A <select id="ans1"><option value="">Select</option><option value="correct">bank reconciliation</option><option value="w">trial balance</option></select> 
-            statement accounts for differences between the cash book and the bank statement.
+            An invoice contains 40 items listed at £25.00 each. A trade discount of 10% is applied to the bulk purchase before standard rate VAT (20%) is calculated. Calculate the values to complete the invoice table:<br>
+            <table class="osborne-table">
+                <tr><td>Gross List Total:</td><td>£ 1000.00</td></tr>
+                <tr><td>Net Total (After Discount):</td><td>£ <input type="text" id="ans1_net" placeholder="0.00"></td></tr>
+                <tr><td>VAT Amount (20%):</td><td>£ <input type="text" id="ans1_vat" placeholder="0.00"></td></tr>
+            </table>
         </div>
     </div>
 
@@ -108,12 +123,9 @@
     <div id="page2" class="question-page">
         <div class="question-counter">Q2 of 15</div>
         <div class="question-body">
-            Which of the following items is an example of a timing difference?
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans2" value="w"> Bank charges</div>
-                <div class="radio-option"><input type="radio" name="ans2" value="correct"> Unpresented cheques</div>
-                <div class="radio-option"><input type="radio" name="ans2" value="w"> Standing orders</div>
-            </div>
+            A company checks a batch of credit supplier invoices. One invoice has a gross total of £756.00 which incorrectly includes standard VAT at 20%. Calculate the correct net value and the VAT amount that should be recorded in the Purchase Day Book:<br>
+            Net Amount: £ <input type="text" id="ans2_net" placeholder="0.00"><br>
+            VAT Amount: £ <input type="text" id="ans2_vat" placeholder="0.00">
         </div>
     </div>
 
@@ -121,12 +133,11 @@
     <div id="page3" class="question-page">
         <div class="question-counter">Q3 of 15</div>
         <div class="question-body">
-            Bank charges appearing on the bank statement but not in the cash book require an update to the:
-            <select id="ans3">
-                <option value="">Select</option>
-                <option value="correct">Cash Book</option>
-                <option value="w">Bank Reconciliation Statement</option>
-            </select>
+            A Sales Invoice needs to be generated for a mixed order. Calculate the total VAT and the final Gross Invoice Total based on the following breakdown:<br>
+            - Standard-rated goods (20% VAT): £650.00 net<br>
+            - Zero-rated goods (0% VAT): £210.00 net<br>
+            Total VAT Amount: £ <input type="text" id="ans3_vat" placeholder="0.00"><br>
+            Gross Invoice Total: £ <input type="text" id="ans3_gross" placeholder="0.00">
         </div>
     </div>
 
@@ -134,11 +145,8 @@
     <div id="page4" class="question-page">
         <div class="question-counter">Q4 of 15</div>
         <div class="question-body">
-            An outstanding lodgement is money that has been paid into the bank but has not yet been processed by the bank.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans4" value="correct"> True</div>
-                <div class="radio-option"><input type="radio" name="ans4" value="w"> False</div>
-            </div>
+            A supplier invoice has a net amount of £480.00 subject to standard VAT (20%). The supplier offers a 2.5% prompt payment discount if paid within 7 days. If the customer qualifies for the discount, calculate the exact amount of cash required to clear the debt:<br>
+            Cash Payment Amount: £ <input type="text" id="ans4" placeholder="0.00">
         </div>
     </div>
 
@@ -146,12 +154,9 @@
     <div id="page5" class="question-page">
         <div class="question-counter">Q5 of 15</div>
         <div class="question-body">
-            When completing a bank reconciliation statement starting with the bank statement balance, outstanding lodgements should be:
-            <select id="ans5">
-                <option value="">Select</option>
-                <option value="correct">Added</option>
-                <option value="w">Subtracted</option>
-            </select>
+            A customer returns faulty goods originally invoiced at £300.00 net, which were subject to a 15% trade discount and 20% VAT. Calculate the net reduction and the total gross value to be issued on the Credit Note:<br>
+            Credit Note Net: £ <input type="text" id="ans5_net" placeholder="0.00"><br>
+            Credit Note Gross Total: £ <input type="text" id="ans5_gross" placeholder="0.00">
         </div>
     </div>
 
@@ -159,11 +164,8 @@
     <div id="page6" class="question-page">
         <div class="question-counter">Q6 of 15</div>
         <div class="question-body">
-            Unpresented cheques are cheques issued by the business that have not yet been cleared by the bank.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans6" value="correct"> True</div>
-                <div class="radio-option"><input type="radio" name="ans6" value="w"> False</div>
-            </div>
+            A purchase invoice for raw materials shows a net value of £1,400.00. Part of the shipment (£400.00 net value) is exempt from VAT, while the rest is standard-rated at 20%. Calculate the total gross amount of the invoice:<br>
+            Gross Invoice Total: £ <input type="text" id="ans6" placeholder="0.00">
         </div>
     </div>
 
@@ -171,12 +173,12 @@
     <div id="page7" class="question-page">
         <div class="question-counter">Q7 of 15</div>
         <div class="question-body">
-            A credit transfer received from a customer directly into the bank account must be entered on the:
-            <select id="ans7">
-                <option value="">Select</option>
-                <option value="correct">Debit side of the Cash Book</option>
-                <option value="w">Credit side of the Cash Book</option>
-            </select>
+            The totals of the Sales Day Book at the end of the week are:<br>
+            - Total Net: £14,250.00<br>
+            - Total VAT: £2,850.00<br>
+            - Total Gross: £17,100.00<br>
+            Calculate the balance that must be posted to the credit side of the General Ledger Sales Account:<br>
+            Sales Account Credit: £ <input type="text" id="ans7" placeholder="0.00">
         </div>
     </div>
 
@@ -184,21 +186,16 @@
     <div id="page8" class="question-page">
         <div class="question-counter">Q8 of 15</div>
         <div class="question-body">
-            Calculate the adjusted Cash Book balance:<br>
-            - Starting Cash Book balance (debit): £1,200<br>
-            - Bank charges: £45<br>
-            Adjusted Balance: £ <input type="text" id="ans8" placeholder="0.00">
+            A client with a total outstanding credit balance of £1,250.00 settles their account by cheque. They are allowed a 4% prompt payment discount. Calculate the amount written on the cheque received:<br>
+            Cheque Value Received: £ <input type="text" id="ans8" placeholder="0.00">
         </div>
     </div>
     <!-- Q9 -->
     <div id="page9" class="question-page">
         <div class="question-counter">Q9 of 15</div>
         <div class="question-body">
-            A dishonoured cheque from a customer requires a corrective entry to be made in the Cash Book.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans9" value="correct"> True</div>
-                <div class="radio-option"><input type="radio" name="ans9" value="w"> False</div>
-            </div>
+            A petty cash book has a fixed imprest float of £300.00. At the end of the week, the remaining cash in the box is £63.20. Calculate the exact reimbursement total needed to restore the petty cash float:<br>
+            Reimbursement Value: £ <input type="text" id="ans9" placeholder="0.00">
         </div>
     </div>
 
@@ -206,12 +203,8 @@
     <div id="page10" class="question-page">
         <div class="question-counter">Q10 of 15</div>
         <div class="question-body">
-            Which item would appear on the bank statement but not in the cash book before update?
-            <select id="ans10">
-                <option value="">Select</option>
-                <option value="correct">Direct Debit</option>
-                <option value="w">Cheque paid to a supplier</option>
-            </select>
+            A business purchases office stationery. The supplier invoice lists a net cost of £120.00 subject to the UK reduced VAT rate of 5%. Calculate the total gross amount to be entered in the Purchase Day Book:<br>
+            Gross Total: £ <input type="text" id="ans10" placeholder="0.00">
         </div>
     </div>
 
@@ -219,11 +212,8 @@
     <div id="page11" class="question-page">
         <div class="question-counter">Q11 of 15</div>
         <div class="question-body">
-            To record bank charges in the Cash Book, you must credit the Bank column.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans11" value="correct"> True</div>
-                <div class="radio-option"><input type="radio" name="ans11" value="w"> False</div>
-            </div>
+            A credit customer's account in the Sales Ledger has an opening debit balance of £850.00. During the month, they are issued a new invoice for £420.00 gross, a credit note for £60.00 gross, and they make a payment of £500.00. Calculate their new closing ledger balance:<br>
+            Closing Balance (Debit): £ <input type="text" id="ans11" placeholder="0.00">
         </div>
     </div>
 
@@ -231,11 +221,8 @@
     <div id="page12" class="question-page">
         <div class="question-counter">Q12 of 15</div>
         <div class="question-body">
-            If a bank statement shows a credit balance, it means the business has money in the bank.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans12" value="correct"> True</div>
-                <div class="radio-option"><input type="radio" name="ans12" value="w"> False</div>
-            </div>
+            A firm sells goods to a credit customer. The list price is £2,000.00. A 20% trade discount is given, followed by standard rate VAT (20%). Calculate the total amount to be debited to the individual customer's account in the Sales Ledger:<br>
+            Customer Account Debit: £ <input type="text" id="ans12" placeholder="0.00">
         </div>
     </div>
 
@@ -243,11 +230,8 @@
     <div id="page13" class="question-page">
         <div class="question-counter">Q13 of 15</div>
         <div class="question-body">
-            Calculate the reconciled bank balance:<br>
-            - Bank statement balance: £1,500<br>
-            - Outstanding lodgements: £300<br>
-            - Unpresented cheques: £200<br>
-            Reconciled Balance: £ <input type="text" id="ans13" placeholder="0.00">
+            The weekly totals of the Purchase Returns Day Book are: Net £950.00, VAT £190.00, Total £1,140.00. State the exact value that must be debited to the Purchase Ledger Control Account (PLCA) in the General Ledger:<br>
+            PLCA Debit Value: £ <input type="text" id="ans13" placeholder="0.00">
         </div>
     </div>
 
@@ -255,11 +239,8 @@
     <div id="page14" class="question-page">
         <div class="question-counter">Q14 of 15</div>
         <div class="question-body">
-            A standing order is an instruction to the bank to pay a variable amount at irregular intervals.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans14" value="w"> True</div>
-                <div class="radio-option"><input type="radio" name="ans14" value="correct"> False</div>
-            </div>
+            A business sells a piece of machinery on credit for £3,500.00 net plus 20% standard VAT. Since this is a non-trading sale of an asset, it must be recorded in the General Journal. Calculate the gross value to be debited to the Sundry Debtor account:<br>
+            Sundry Debtor Debit: £ <input type="text" id="ans14" placeholder="0.00">
         </div>
     </div>
 
@@ -267,11 +248,8 @@
     <div id="page15" class="question-page">
         <div class="question-counter">Q15 of 15</div>
         <div class="question-body">
-            The final adjusted Cash Book balance must equal the final reconciled Bank Statement balance.
-            <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="ans15" value="correct"> True</div>
-                <div class="radio-option"><input type="radio" name="ans15" value="w"> False</div>
-            </div>
+            An invoice was issued to a customer with an undercharge error of £85.00 net. A supplementary invoice is raised to correct the error, including standard rate VAT (20%). Calculate the final gross amount needed on this supplementary invoice:<br>
+            Supplementary Invoice Gross: £ <input type="text" id="ans15" placeholder="0.00">
         </div>
     </div>
 
@@ -309,45 +287,54 @@
         let feedback = document.getElementById('feedbackBox');
 
         if (currentQ === 1) {
-            isCorrect = (document.getElementById('ans1').value === 'correct');
+            let net = document.getElementById('ans1_net').value.trim();
+            let vat = document.getElementById('ans1_vat').value.trim();
+            isCorrect = ((net === '900' || net === '900.00') && (vat === '180' || vat === '180.00'));
         } else if (currentQ === 2) {
-            let choice = document.querySelector('input[name="ans2"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let net = document.getElementById('ans2_net').value.trim();
+            let vat = document.getElementById('ans2_vat').value.trim();
+            isCorrect = ((net === '630' || net === '630.00') && (vat === '126' || vat === '126.00'));
         } else if (currentQ === 3) {
-            isCorrect = (document.getElementById('ans3').value === 'correct');
+            let vat = document.getElementById('ans3_vat').value.trim();
+            let gross = document.getElementById('ans3_gross').value.trim();
+            isCorrect = ((vat === '130' || vat === '130.00') && (gross === '990' || gross === '990.00'));
         } else if (currentQ === 4) {
-            let choice = document.querySelector('input[name="ans4"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans4').value.trim();
+            isCorrect = (val === '561.6' || val === '561.60');
         } else if (currentQ === 5) {
-            isCorrect = (document.getElementById('ans5').value === 'correct');
+            let net = document.getElementById('ans5_net').value.trim();
+            let gross = document.getElementById('ans5_gross').value.trim();
+            isCorrect = ((net === '255' || net === '255.00') && (gross === '306' || gross === '306.00'));
         } else if (currentQ === 6) {
-            let choice = document.querySelector('input[name="ans6"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans6').value.trim();
+            isCorrect = (val === '1600' || val === '1600.00');
         } else if (currentQ === 7) {
-            isCorrect = (document.getElementById('ans7').value === 'correct');
+            let val = document.getElementById('ans7').value.trim();
+            isCorrect = (val === '14250' || val === '14250.00');
         } else if (currentQ === 8) {
             let val = document.getElementById('ans8').value.trim();
-            isCorrect = (val === '1155' || val === '1155.00');
+            isCorrect = (val === '1200' || val === '1200.00');
         } else if (currentQ === 9) {
-            let choice = document.querySelector('input[name="ans9"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans9').value.trim();
+            isCorrect = (val === '236.8' || val === '236.80');
         } else if (currentQ === 10) {
-            isCorrect = (document.getElementById('ans10').value === 'correct');
+            let val = document.getElementById('ans10').value.trim();
+            isCorrect = (val === '126' || val === '126.00');
         } else if (currentQ === 11) {
-            let choice = document.querySelector('input[name="ans11"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans11').value.trim();
+            isCorrect = (val === '710' || val === '710.00');
         } else if (currentQ === 12) {
-            let choice = document.querySelector('input[name="ans12"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans12').value.trim();
+            isCorrect = (val === '1920' || val === '1920.00');
         } else if (currentQ === 13) {
             let val = document.getElementById('ans13').value.trim();
-            isCorrect = (val === '1600' || val === '1600.00');
+            isCorrect = (val === '1140' || val === '1140.00');
         } else if (currentQ === 14) {
-            let choice = document.querySelector('input[name="ans14"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans14').value.trim();
+            isCorrect = (val === '4200' || val === '4200.00');
         } else if (currentQ === 15) {
-            let choice = document.querySelector('input[name="ans15"]:checked');
-            isCorrect = (choice && choice.value === 'correct');
+            let val = document.getElementById('ans15').value.trim();
+            isCorrect = (val === '102' || val === '102.00');
         }
 
         if (isCorrect) {
