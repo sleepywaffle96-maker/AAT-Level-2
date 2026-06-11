@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -15,6 +15,7 @@
             --primary: #00f2fe;
             --secondary: #4facfe;
             --accent-green: #10b981;
+            --accent-orange: #f59e0b;
         }
         body {
             background-color: var(--bg-dark);
@@ -61,10 +62,12 @@
         }
         h3 {
             color: var(--secondary);
+            margin-top: 1.5rem;
         }
         p, li {
             color: var(--text-muted);
             font-size: 1.05rem;
+            text-align: justify;
         }
         strong {
             color: var(--text-main);
@@ -76,6 +79,13 @@
             border-radius: 0 8px 8px 0;
             margin-bottom: 2rem;
         }
+        .exam-tip {
+            border-left: 4px solid var(--accent-orange);
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
     </style>
 </head>
 <body>
@@ -85,34 +95,44 @@
         <article class="glass-card">
             <h1>Drafting & Interpreting Financial Statements (DAIF): Consolidated Financial Statements</h1>
             <div class="syllabus-box">
-                <p style="margin:0; color:var(--text-main);"><strong>AAT Level 4 Syllabus Context:</strong> This chapter covers the mechanical principles and standard regulations for preparing group accounts, calculating goodwill, and adjusting for intra-group trading under IFRS 3 and IFRS 10.</p>
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Level 4 Deep-Dive Textbook:</strong> This technical chapter covers the legal, conceptual, and mathematical architecture of limited company group accounts. It focuses on consolidated asset aggregation, Goodwill calculation under IFRS 3, and complex intra-group adjustments under IFRS 10.</p>
             </div>
 
-            <h2>1. Group Structures and Control Parameters</h2>
-            <p>When a limited company invests in another company, the relationship is determined by the percentage of equity shares held and the level of direct influence exercised over corporate decisions.</p>
+            <h2>1. Legal Definitions, Economic Control, and Group Parameters</h2>
+            <p>A corporate group exists when one limited entity (the Parent company) acquires an equity stake in another entity (the Subsidiary company) sufficient to establish operational direction. From a strict legal standpoint, each corporate entity remains a separate legal person. However, to provide a true and fair view to investors, consolidated accounts must override this legal separation, presenting the parent and its subsidiaries as a single global economic entity.</p>
             
-            <h3>Subsidiary Companies (IFRS 10)</h3>
-            <p>A subsidiary is an entity controlled by another entity (known as the Parent or Holding company). **Control** is generally presumed to exist when the parent company owns **more than 50%** of the voting equity shares. Under IFRS 10, control requires exposure to variable returns and the practical ability to affect those returns through corporate voting power. Parent companies must prepare consolidated financial statements to present the group as a single economic entity.</p>
+            <h3>Subsidiaries and the Definition of Control (IFRS 10)</h3>
+            <p>A parent company is legally required to consolidate an investment line-by-line if it possesses **Control** over the investee. Under IFRS 10, control is generally assumed when the parent owns **more than 50%** of the voting equity shares. However, control is formally defined by three elements: power over the investee, exposure or rights to variable returns from its involvement, and the practical ability to use its power to affect the amount of those returns (e.g., controlling the board of directors).</p>
 
-            <h3>Associate Companies (IAS 28)</h3>
-            <p>An associate is an entity over which the investing investor company possesses **significant influence**, but not full operational control. Significant influence is presumed when the investor holds between **20% and 50%** of the voting equity shares. Associates are not consolidated line-by-line; instead, they are accounted for using the **Equity Method** within the consolidated Statement of Financial Position (SoFP), appearing as a single asset entry called "Investment in Associates".</p>
-
-            <h2>2. Consolidated Statement of Financial Position Adjustments</h2>
-            <p>Group accounting requires replacing the parent company's original asset entry "Investment in Subsidiary" with the individual assets and liabilities of the subsidiary, combined line-by-line.</p>
+            <h3>Associates and Significant Influence (IAS 28)</h3>
+            <p>An associate is an entity where the parent company does not exercise full control, but holds **Significant Influence**. Significant influence is presumed when the parent holds between **20% and 50%** of the voting equity shares, or participates directly in policy-making processes. Associates are entirely excluded from line-by-line asset consolidation. Instead, they are incorporated into the consolidated Statement of Financial Position (SoFP) using the **Equity Method**, appearing as a single non-current asset line called "Investment in Associates".</p>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Structural Consolidation Steps: Goodwill and Equity Metrics</h2>
+            <p>The core mechanism of consolidation involves taking 100% of the individual assets and liabilities of both the parent and subsidiary and adding them together line-by-line, regardless of the exact percentage owned. The parent's original ledger entry "Investment in Subsidiary" is deleted and replaced by group balances.</p>
             
-            <h3>Goodwill Calculation (IFRS 3)</h3>
-            <p>Goodwill represents the excess consideration paid by a parent company over the fair value of the subsidiary's net identifiable assets at the acquisition date. It represents intangible economic value such as brand reputation, customer loyalty, and systemic business synergy. Goodwill is capitalised as a non-current asset on the consolidated SoFP and checked annually for impairment under IAS 36.</p>
+            <h3>Goodwill Acquisition Mechanics (IFRS 3)</h3>
+            <p>**Goodwill** represents the premium paid by the parent company above the fair value of the subsidiary's net identifiable assets at the acquisition milestone date. It reflects intangible value such as brand equity, technical synergy, patent rights, and staff expertise. Goodwill is calculated by taking the purchase consideration transferred by the parent, adding the fair value of the Non-Controlling Interest (NCI), and subtracting the total fair value of the subsidiary's net assets at acquisition. Under IAS 36, goodwill cannot be amortized periodically; it must remain on the consolidated balance sheet as an asset and be audited annually for impairment.</p>
 
-            <h3>Non-Controlling Interest (NCI)</h3>
-            <p>When a parent company purchases less than 100% of a subsidiary's equity shares, the remaining shares are held by external investors. This portion is called the Non-Controlling Interest. The NCI represents the proportion of net assets and profits not owned by the parent company and is disclosed as a separate line item within the Equity section of the consolidated SoFP.</p>
+            <h3>The Non-Controlling Interest (NCI)</h3>
+            <p>When a parent purchases less than 100% of a subsidiary's shares (e.g., an 80% stake), the remaining 20% of equity belongs to external shareholders. This share is called the **Non-Controlling Interest**. Because 100% of the subsidiary's assets are consolidated, the NCI acts as an accounting balancing line within the Group Equity section of the SoFP, showing the portion of net assets that does not belong to the parent company.</p>
 
-            <h2>3. Elimination of Intra-Group Transactions</h2>
-            <p>A group cannot make a profit by trading with itself. All financial relationships and transactions between the parent and subsidiary must be completely eliminated upon consolidation:</p>
-            <ul>
-                <li><strong>Intra-Group Receivables and Payables:</strong> Inter-company loan balances or outstanding trade balances must be cancelled against each other. They must not appear inside consolidated current assets or current liabilities.</li>
-                <li><strong>Provision for Unrealised Profit (PUP):</strong> When goods are sold between group entities at a profit markup, and some of those items remain in closing inventory at year-end, the profit is unrealised from a group perspective. A PUP adjustment must be processed to reduce consolidated inventory values and group retained earnings.</li>
-                <li><strong>Mid-Year Acquisitions:</strong> When a subsidiary is purchased part-way through an accounting year, its profits must be pro-rated across pre-acquisition and post-acquisition phases. Only post-acquisition earnings are included in consolidated group reserves.</li>
-            </ul>
+            <div class="exam-tip">
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Exam Calculation Warning:</strong> In many Level 4 exams, a subsidiary's reserves at the reporting year-end differ from those at the acquisition date due to accumulated trading profits. You must calculate the **Post-Acquisition Profit** change and allocate the parent's and NCI's shares correctly to ensure the group statements balance.</p>
+            </div>
+<!-- RIFERIMENTO_BLOCCO: 3 -->
+            <h2>3. Elimination of Intra-Group Transactions and Profit Distortions</h2>
+            <p>A corporate group cannot make a profit by trading with itself, nor can it report debts owed to itself as corporate assets. All internal transactions must be fully cancelled upon consolidation.</p>
+            
+            <h3>Intra-Group Receivables and Payables</h3>
+            <p>If the parent company sells goods on credit to the subsidiary, a trade receivable appears on the parent's books, and a matching trade payable appears on the subsidiary's books. On consolidation, these internal balances must be completely eliminated. They must never appear inside group current assets or current liabilities, as they do not represent relationships with external third parties.</p>
+
+            <h3>Provision for Unrealised Profit (PUP Adjustment)</h3>
+            <p>When an entry within a group sells inventory to another group entry at a profit markup, the selling entity records a transaction profit. However, from a group perspective, no genuine profit is earned until those goods are sold onwards to an external third party. 
+            <br>If any of these intra-group items remain unsold in the buyer's closing inventory at the year-end reporting date, the profit contained within that remaining stock is considered **unrealised**.</p>
+            <p>Management accountants must process a **PUP adjustment** to remove this distortion. The adjustment reduces the consolidated inventory balance to its true historical manufacturing cost and removes the corresponding unrealised profit from group retained earnings.</p>
+
+            <h3>Mid-Year Acquisitions and Net Asset Adjustments</h3>
+            <p>When a parent purchases a subsidiary part-way through an accounting period, the subsidiary's full-year results must be pro-rated. Only the profits generated *after* the acquisition date are included in consolidated group reserves. Profits generated prior to the acquisition date are treated as capital and are frozen inside the goodwill calculation, meaning they can never be distributed as dividends to group shareholders.</p>
         </article>
     </div>
 </body>
