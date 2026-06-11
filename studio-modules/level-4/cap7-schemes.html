@@ -1,0 +1,146 @@
+<!-- BLOCCO 1 -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4 - Chapter 7: IASC Evaluation Schemes | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --t-green: #10b981;
+            --t-red: #ef4444;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+        .t-account {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.02);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .t-account th {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .t-account td {
+            padding: 0.6rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .t-account td:first-child {
+            border-right: 2px solid var(--border-glass);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>IASC Evaluation Models & Cost-Benefit Layouts</h1>
+            <p style="color: var(--text-muted)">Visual audit templates and investment analysis grids for system evaluation tasks.</p>
+
+            <h2>1. System Deficiency Assessment Matrix</h2>
+            <p style="color: var(--text-muted)">The standard reporting structure used to map control gaps, business risks, and solutions.</p>
+            
+            <table class="t-account">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Identified Control Deficiency</th>
+                        <th>Associated Corporate Risk</th>
+                        <th>Recommended System Control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:var(--text-main)">Accounting staff share a single master database log-in credential.</td>
+                        <td>Total loss of individual audit trails; adjustments cannot be traced to specific users.</td>
+                        <td style="color:var(--primary)">Enforce unique individual user log-ins with mandatory monthly password resets.</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)">Purchase ledger accounts are reconciled only once every six months.</td>
+                        <td>Delayed identification of processing errors, supplier payment issues, or duplicate billing.</td>
+                        <td style="color:var(--secondary)">Mandate monthly supplier statement reconciliations signed off by an accounting supervisor.</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)">Physical inventory counts are overseen by warehouse managers.</td>
+                        <td>Lack of independence; risk of staff hiding stock shrinkage, damages, or theft.</td>
+                        <td style="color:var(--t-green)">Appoint independent inventory count teams not connected to warehouse staff.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2. Financial Cost-Benefit Layout for System Upgrades</h2>
+            <p style="color: var(--text-muted)">Standard pro-forma template used to justify system investments to the board of directors.</p>
+            
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
+Implementation Capital Outlay (Year 0 Investment):
+  Cloud Accounting Software Licensing ............   -£15,000
+  External Consultant Configuration Fees ........   - £8,500
+  Staff Training & Downtime Costs ................   - £4,000
+Total Financial Capital Outlay ............................   -<strong>£27,500</strong>
+
+Projected Annual Financial Improvements (Years 1-3 Benefit):
+  Reduced Invoice Reconciliation Processing Hours    +£12,000
+  Elimination of Duplicate Billing Payment Errors .   + £4,500
+  Reduction in External Audit Fee Surcharges ......   + £2,000
+Total Annual Recurring Benefit Pool .......................   +<strong>£18,500</strong>
+
+<strong>Net System Payback Horizon Period</strong> ........................    <strong>1.49 Years</strong>
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
