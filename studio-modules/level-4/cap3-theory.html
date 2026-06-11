@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -15,6 +15,7 @@
             --primary: #00f2fe;
             --secondary: #4facfe;
             --accent-green: #10b981;
+            --accent-orange: #f59e0b;
         }
         body {
             background-color: var(--bg-dark);
@@ -61,10 +62,12 @@
         }
         h3 {
             color: var(--secondary);
+            margin-top: 1.5rem;
         }
         p, li {
             color: var(--text-muted);
             font-size: 1.05rem;
+            text-align: justify;
         }
         strong {
             color: var(--text-main);
@@ -76,6 +79,13 @@
             border-radius: 0 8px 8px 0;
             margin-bottom: 2rem;
         }
+        .exam-tip {
+            border-left: 4px solid var(--accent-orange);
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
     </style>
 </head>
 <body>
@@ -85,35 +95,53 @@
         <article class="glass-card">
             <h1>Applied Management Accounting (AMAC): Control & Variance Analysis</h1>
             <div class="syllabus-box">
-                <p style="margin:0; color:var(--text-main);"><strong>AAT Level 4 Syllabus Context:</strong> This chapter covers advanced standard costing systems, reconciliation techniques, and the mathematical splitting of planning and operational variances.</p>
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Level 4 Deep-Dive Textbook:</strong> This intensive chapter covers advanced variance reconciliation systems, the operational interdependency of variances, and the decomposition of standard metrics into planning and operational sub-components.</p>
             </div>
 
-            <h2>1. Standard Costing Systems and Control</h2>
-            <p>Standard costing involves establishing predetermined estimates of costs and revenues to serve as benchmarks for performance evaluation. The differences between these standard targets and actual results are classified as variances.</p>
-            
-            <h3>Variance Interpretation Dynamics</h3>
-            <p>Variances are not isolated figures; they are operationally interdependent. Management must avoid analyzing them in silos:</p>
+            <h2>1. Advanced Standard Costing Frameworks & Interdependencies</h2>
+            <p>At Level 4, variance analysis changes from a simple calculation task into a diagnostic tool. A variance is the difference between a predetermined standard target and the actual result achieved. Standards must be regularly reviewed to ensure they remain appropriate:</p>
             <ul>
-                <li><strong>Adverse Variance (A):</strong> Occurs when actual expenditure exceeds standard projections, or actual revenue falls below standard benchmarks.</li>
-                <li><strong>Favourable Variance (F):</strong> Occurs when actual expenditure is lower than standard projections, or actual revenue exceeds benchmarks.</li>
-            </ul>
-            <p>An adverse material price variance might correlate with a favourable labour efficiency variance if higher-quality raw materials reduced mechanical downtime and processing errors on the factory floor.</p>
-<!-- BLOCCO 2 -->
-            <h2>2. Advanced Variance Deconstruction</h2>
-            <p>At Level 4, standard variances are split further to isolate shifts in market conditions from true operational performance.</p>
-            
-            <h3>Planning vs Operational Variances</h3>
-            <p>Traditional variance calculations unfairly penalize operational managers for deviations caused by broad macroeconomic changes or faulty initial assumptions. Modern tracking systems subdivide total deviations into two distinct categories:</p>
-            <ul>
-                <li><strong>Planning Variances:</strong> Measure the difference between the original budget standard and a revised standard that reflects realistic market realities (e.g., unexpected nationwide raw material shortages or statutory updates to minimum wage levels). These are considered non-controllable by local staff.</li>
-                <li><strong>Operational Variances:</strong> Measure the remaining difference between the revised standard and the actual results achieved. These reflect genuine local efficiency and are fully controllable by operational managers.</li>
+                <li><strong>Ideal Standards:</strong> Based on perfect operating conditions. They allow for no wastage, machine breakdowns, or staff breaks. While useful for long-term target scoping, they often demoralize workforce teams because they are unachievable in practice.</li>
+                <li><strong>Attainable Standards:</strong> Based on efficient but realistic operating conditions. They incorporate allowances for normal material shrinkage, machine maintenance, and human fatigue. These are highly effective for staff motivation and budgeting.</li>
             </ul>
 
-            <h3>Mix and Yield Variances</h3>
-            <p>When manufacturing processes require blending multiple raw material inputs, standard material usage variances are divided into:</p>
+            <h3>Variance Interdependence Dynamics</h3>
+            <p>Variances do not occur in isolation. A single decision by a manager can trigger a chain reaction of positive and negative variances across different departments. Management must look at the overall context rather than punishing single adverse variances:</p>
             <ul>
-                <li><strong>Material Mix Variance:</strong> Evaluates the cost impact of changing the input proportions relative to the standard recipe baseline.</li>
-                <li><strong>Material Yield Variance:</strong> Evaluates the efficiency of the conversion process, calculating the difference between the actual output achieved and the standard output expected from the input volume.</li>
+                <li><strong>Material and Labour Link:</strong> Purchasing cheaper, sub-standard raw materials generates a **Favourable Material Price Variance**. However, these poor-quality materials can cause machines to jam and produce excessive scrap, leading to an **Adverse Material Usage Variance** and an **Adverse Labour Efficiency Variance** as workers spend more time dealing with production errors.</li>
+                <li><strong>Labour Rate and Efficiency Link:</strong> Hiring highly skilled, premium-rate workers results in an **Adverse Labour Rate Variance**. However, their experience can significantly speed up production and reduce waste, creating a **Favourable Labour Efficiency Variance** and a **Favourable Material Usage Variance**.</li>
+            </ul>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Planning vs Operational Variances: The Controllability Principle</h2>
+            <p>Traditional variance analysis can unfairly hold operational managers accountable for cost overruns caused by macroeconomic changes or initial planning mistakes. To solve this, advanced management accounting splits variances into **Planning** and **Operational** components.</p>
+            
+            <h3>The Core Distinction</h3>
+            <ul>
+                <li><strong>Planning Variances (Non-Controllable):</strong> Measure the difference between the original budget standard and a revised standard that reflects realistic market realities at year-end. These variances are caused by macro shifts outside management's control (e.g., a global raw material shortage, hyperinflation, or a statutory update to the national minimum wage) or genuine calculation errors by the budget committee.</li>
+                <li><strong>Operational Variances (Controllable):</strong> Measure the remaining difference between the revised standard and the actual results achieved. These isolate the actual performance of operational managers under realistic conditions, providing a fair baseline for performance appraisal.</li>
+            </ul>
+
+            <div class="exam-tip">
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Exam Written Evaluation Guide:</strong> When evaluating performance in a written task, always argue that a manager should only be praised or penalized based on <strong>Operational Variances</strong>. If the total adverse variance is entirely driven by a massive adverse planning variance, the manager has actually run the operations efficiently under difficult circumstances.</p>
+            </div>
+
+            <h3>Methodological Approach to Revision</h3>
+            <p>To calculate these metrics, management must establish a revised standard baseline as soon as external conditions shift. The mathematical pathway follows a strict order: comparing the original standard to the revised standard isolates the planning error; comparing the revised standard to the actual outcomes isolates the operational performance.</p>
+<!-- RIFERIMENTO_BLOCCO: 3 -->
+            <h2>3. Advanced Manufacturing Variances: Mix and Yield</h2>
+            <p>In process manufacturing industries (such as chemicals, food production, or textiles), final products are created by blending multiple raw material inputs in a predetermined recipe standard. In these environments, the standard material usage variance is split into **Material Mix** and **Material Yield** variances.</p>
+            
+            <h3>Material Mix Variance</h3>
+            <p>The mix variance calculates the cost impact of changing the input proportions relative to the standard recipe baseline. If production managers use a higher proportion of a cheap material and a lower proportion of an expensive material, a **Favourable Material Mix Variance** is generated. However, changing the recipe can alter the weight, density, or quality of the final output.</p>
+
+            <h3>Material Yield Variance</h3>
+            <p>The yield variance measures the efficiency of the conversion process itself. It compares the actual output achieved against the standard output expected from the total input volume used. If changing the ingredient mix to include cheaper materials causes chemical defects or high rejection rates during packaging, an **Adverse Material Yield Variance** will occur, often offsetting the initial mix savings.</p>
+            
+            <h3>Sales Mix and Quantity Variances</h3>
+            <p>Similarly, when an enterprise sells multiple distinct products, the total sales volume variance is split into:</p>
+            <ul>
+                <li><strong>Sales Mix Variance:</strong> Measures the profit impact of selling products in different proportions than originally budgeted (e.g., selling more low-margin items and fewer high-margin items).</li>
+                <li><strong>Sales Quantity Variance:</strong> Measures the profit impact of changes in total sales volume, assuming the standard product mix proportions remained constant.</li>
             </ul>
         </article>
     </div>
