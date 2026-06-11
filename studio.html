@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Global Theory & Revision Hub</title>
+    <title>AAT Theory & Revision Hub</title>
     <style>
-        /* --- DESIGN SYSTEM RESETS & GLOBAL BACKGROUND --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body {
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
                         url('https://wikimedia.org');
             background-size: cover; background-position: center; background-attachment: fixed;
             min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
-        /* --- MAIN HUB CONTAINER --- */
         .hub-container {
             background: rgba(255, 255, 255, 0.95); width: 100%; max-width: 850px;
             border-radius: 16px; padding: 40px; text-align: center;
@@ -30,23 +28,13 @@
         label { font-size: 0.85rem; font-weight: 600; color: #0f172a; text-transform: uppercase; }
         select { padding: 12px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1rem; outline: none; }
         select:focus { border-color: #0284c7; }
-        
-        /* --- STUDY TEXT CONTENT LAYOUT --- */
-        .study-panel {
-            display: none; text-align: left; background: #ffffff;
-            border: 1px solid #cbd5e1; border-left: 5px solid #0d9488;
-            border-radius: 8px; padding: 25px; margin-top: 10px;
-        }
+        .study-panel { display: none; text-align: left; background: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #0d9488; border-radius: 8px; padding: 25px; margin-top: 10px; }
         .study-panel h3 { color: #0f172a; font-size: 1.3rem; margin-bottom: 15px; font-weight: 700; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px; }
         .study-panel h4 { color: #0284c7; font-size: 1.1rem; margin-top: 20px; margin-bottom: 8px; font-weight: 600; }
         .study-panel p { color: #334155; font-size: 0.95rem; line-height: 1.5; margin-bottom: 12px; }
         .study-panel ul { margin-left: 20px; color: #334155; font-size: 0.95rem; margin-bottom: 15px; }
         .study-panel li { margin-bottom: 6px; line-height: 1.4; }
-        .formula-box {
-            background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #0d9488;
-            padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace;
-            font-weight: bold; color: #115e59; margin: 12px 0; font-size: 0.95rem;
-        }
+        .formula-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #0d9488; padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-weight: bold; color: #115e59; margin: 12px 0; font-size: 0.95rem; }
         .study-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
         .study-table th { background: #0f172a; color: white; padding: 10px; text-align: left; }
         .study-table td { padding: 10px; border: 1px solid #cbd5e1; color: #334155; }
@@ -56,11 +44,9 @@
     </style>
 </head>
 <body>
-
     <div class="hub-container">
         <h1>AAT Academic Theory & Formula Hub</h1>
         <p class="subtitle">Access complete formulas, ledger double-entry rules, and tax tables on-demand.</p>
-        
         <div class="controls-panel">
             <div class="select-group">
                 <label for="study-level">Select Qualification Level</label>
@@ -71,7 +57,6 @@
                     <option value="4">Level 4 (Professional)</option>
                 </select>
             </div>
-            
             <div class="select-group">
                 <label for="study-subject">Select Specific Chapter Module</label>
                 <select id="study-subject" onchange="renderTheoryContent()">
@@ -79,13 +64,10 @@
                 </select>
             </div>
         </div>
-
-        <!-- Dynamic Content Display Panel -->
         <div id="theory-display-panel" class="study-panel">
             <h3 id="theory-header-title">Chapter Title</h3>
             <div id="theory-html-content"></div>
         </div>
-
         <a href="index.html" class="btn-back">← Return to Main Homepage Dashboard</a>
     </div>
     <script>
@@ -93,86 +75,184 @@
             "2": [
                 { value: "l2_c1", label: "Chapter 1: Bookkeeping Transactions" },
                 { value: "l2_c2", label: "Chapter 2: Bookkeeping Controls" },
-                { value: "l2_c3", label: "Chapter 3: Principles of Costing" }
+                { value: "l2_c3", label: "Chapter 3: Principles of Costing" },
+                { value: "l2_c4", label: "Chapter 4: Work Effectively in Finance" }
             ],
             "3": [
+                { value: "l3_c1", label: "Chapter 1: Advanced Bookkeeping" },
+                { value: "l3_c2", label: "Chapter 2: Final Accounts Preparation" },
                 { value: "l3_c3", label: "Chapter 3: Management Accounting: Costing" },
                 { value: "l3_c4", label: "Chapter 4: Indirect Tax" },
+                { value: "l3_c5", label: "Chapter 5: Ethics for Accountants" },
                 { value: "l3_c6", label: "Chapter 6: Business Awareness" }
             ],
             "4": [
                 { value: "l4_c1", label: "Chapter 1: Financial Statements of Limited Companies" },
+                { value: "l4_c2", label: "Chapter 2: Management Accounting: Budgeting" },
+                { value: "l4_c3", label: "Chapter 3: Management Accounting: Decision and Control" },
+                { value: "l4_c4", label: "Chapter 4: External Auditing" },
+                { value: "l4_c5", label: "Chapter 5: Cash and Treasury Management" },
+                { value: "l4_c6", label: "Chapter 6: Credit Management" },
                 { value: "l4_c7", label: "Chapter 7: Personal Tax" },
                 { value: "l4_c8", label: "Chapter 8: Business Tax" },
                 { value: "l4_c9", label: "Chapter 9: Internal Accounting Systems and Controls" }
             ]
         };
-
         const theoryTextDatabase = {
             l2_c1: `
-                <p>Mastering Double Entry rules is essential for all Level 2 tasks.</p>
+                <p>This module establishes the bedrock of financial accounting, focusing on credit transactions and processing invoices.</p>
                 <h4>1. Accounting Equation</h4>
-                <div class="formula-box">Assets = Liabilities + Capital</div>
+                <div class="formula-box">Assets = Liabilities + (Capital + Profit - Drawings)</div>
                 <h4>2. Ledger Rules (DEAD CLIC)</h4>
                 <table class="study-table">
                     <tr><th>Debit Increase (DEAD)</th><th>Credit Increase (CLIC)</th></tr>
                     <tr><td>Expenses, Assets, Drawings</td><td>Liabilities, Income, Capital</td></tr>
                 </table>
-                <h4>3. Extracting VAT (20%)</h4>
-                <div class="formula-box">Net = Gross / 1.20 | VAT = Gross - Net</div>
+                <h4>3. T-Account Ledgers Layout</h4>
+                <p>Example of recording a Credit Sale (£1,200 Gross, £1,000 Net, £200 VAT):</p>
+                <table class="study-table"><tr><th colspan="2">Dr. Trade Receivables (Asset) .Cr</th></tr><tr><td>Sales Link (Gross): £1,200</td><td></td></tr></table>
+                <table class="study-table"><tr><th colspan="2">Dr. Sales Revenue (Income) .Cr</th></tr><tr><td></td><td>Receivables (Net): £1,000</td></tr></table>
+                <table class="study-table"><tr><th colspan="2">Dr. VAT Control (Liability) .Cr</th></tr><tr><td></td><td>Receivables (20%): £200</td></tr></table>
             `,
             l2_c2: `
-                <p>Focuses on ensuring ledger integrity using control accounts.</p>
-                <h4>1. Bank Reconciliation Formula</h4>
-                <div class="formula-box">Adjusted Bank Balance = Bank Statement Balance + Uncredited Lodgements - Unpresented Cheques</div>
+                <p>Focuses on maintaining system integrity and checking errors via control accounts.</p>
+                <h4>1. Bank Reconciliation Framework</h4>
+                <div class="formula-box">Reconciled Balance = Bank Balance + Outstanding Lodgements - Unpresented Cheques</div>
+                <h4>2. Ledger Corrections (Contra Entries)</h4>
+                <div class="formula-box">Contra: Debit PLCA / Credit SLCA</div>
             `,
             l2_c3: `
-                <p>Introduction to classification of company expenditures.</p>
-                <h4>1. Direct Factory Valuation</h4>
+                <p>Introduction to tracking production costs and internal expenditure classifications.</p>
+                <h4>1. Prime Cost Equation</h4>
                 <div class="formula-box">Prime Cost = Direct Materials + Direct Labour + Direct Expenses</div>
+                <h4>2. Continuous Inventory Valuation (AVCO)</h4>
+                <div class="formula-box">AVCO Unit Rate = Total Value of Stock / Total Stock Quantity</div>
+            `,
+            l2_c4: `
+                <p>Covers professional ethics, GDPR data compliance, and basic payroll metrics.</p>
+                <h4>1. Labor Allocation Formula</h4>
+                <div class="formula-box">Gross Weekly Wage = (Basic Hours * Rate) + (Overtime Hours * Overtime Premium Rate)</div>
+            `,
+            l3_c1: `
+                <p>Advanced adjustments including depreciation methods and asset disposals.</p>
+                <h4>1. Straight-Line Depreciation</h4>
+                <div class="formula-box">Annual Expense = (Cost - Residual Value) / Useful Economic Life</div>
+                <h4>2. Reducing Balance Method</h4>
+                <div class="formula-box">Annual Expense = Carrying Amount (Net Book Value) * Depreciation %</div>
+                <h4>3. Disposal of Non-Current Assets</h4>
+                <div class="formula-box">Net Profit/Loss = Disposal Proceeds - Carrying Amount at Date of Sale</div>
+            `,
+            l3_c2: `
+                <p>Compiling final financial reporting structures for sole traders and partnerships.</p>
+                <h4>1. Cost of Goods Sold (COGS) Framework</h4>
+                <div class="formula-box">COGS = Opening Inventory + Purchases - Closing Inventory</div>
+                <h4>2. Adjustments for Doubtful Balances</h4>
+                <div class="formula-box">Adjusted Receivables = Gross Receivables - Specific Bad Debts - Allowance for Doubtful Debts</div>
             `,
             l3_c3: `
-                <p>Advanced costing models and analysis of semi-variable expenditures.</p>
-                <h4>1. High-Low Method Formulas</h4>
-                <div class="formula-box">Variable Cost per Unit (VCU) = (Highest Cost - Lowest Cost) / (Highest Units - Lowest Units)</div>
-                <div class="formula-box">Total Fixed Costs = Total Cost - (VCU * Total Units)</div>
+                <p>Advanced costing methods, cost-volume-profit analysis, and safety targets.</p>
+                <h4>1. High-Low Cost Splitting Model</h4>
+                <div class="formula-box">Variable Cost per Unit (VCU) = (Highest Cost - Lowest Cost) / (Highest Volume - Lowest Volume)</div>
+                <div class="formula-box">Fixed Cost Element = Total Cost at Peak - (VCU * Highest Volume Units)</div>
+                <h4>2. Breakeven Projections</h4>
+                <div class="formula-box">Contribution per Unit = Selling Price per Unit - Variable Cost per Unit</div>
+                <div class="formula-box">Breakeven Point (Units) = Total Fixed Costs / Contribution per Unit</div>
+                <div class="formula-box">Margin of Safety (%) = [(Budgeted Sales - Breakeven Sales) / Budgeted Sales] * 100</div>
             `,
             l3_c4: `
-                <p>Rules governing UK Value Added Tax returns to HMRC.</p>
-                <div class="formula-box">VAT Payable/Refund = Output VAT (Sales) - Input VAT (Purchases)</div>
+                <p>UK Value Added Tax (VAT) accounting regulations and statutory reporting lines.</p>
+                <h4>1. Statutory HMRC Box 5 Settlement</h4>
+                <div class="formula-box">Net Tax Owed/Refund = Box 3 (Output VAT) - Box 4 (Input VAT)</div>
+                <h4>2. UK VAT Rates Summary Table</h4>
+                <table class="study-table">
+                    <tr><th>VAT Type</th><th>Rate (%)</th><th>Treatment Background</th></tr>
+                    <tr><td>Standard Rate</td><td>20% Tier</td><td>Charged on standard sales; claimable on purchases.</td></tr>
+                    <tr><td>Reduced Rate</td><td>5% Tier</td><td>Applies to domestic energy elements and fuel sectors.</td></tr>
+                    <tr><td>Zero Rated</td><td>0% Tier</td><td>Books and children clothes. Inputs are recoverable.</td></tr>
+                </table>
+            `,
+            l3_c5: `
+                <p>Focuses on the IESBA/CIMA fundamental ethical pillars governing professional accountants.</p>
+                <h4>1. The 5 Core Ethical Principles</h4>
+                <ul>
+                    <li><strong>Integrity:</strong> Be straightforward and honest in all relationships.</li>
+                    <li><strong>Objectivity:</strong> Overcome bias or conflict of interest.</li>
+                    <li><strong>Professional Competence:</strong> Maintain knowledge and technical skill.</li>
+                    <li><strong>Confidentiality:</strong> Protect sensitive commercial data records.</li>
+                    <li><strong>Professional Behaviour:</strong> Comply with legal rules and avoid discrediting actions.</li>
+                </ul>
             `,
             l3_c6: `
-                <p>Analysis of performance metrics and credit control collection periods.</p>
-                <h4>1. Days Sales Outstanding (DSO) Formula</h4>
-                <div class="formula-box">DSO = (Trade Receivables / Total Credit Sales) * 365 Days</div>
+                <p>Examines organizational environments, macroeconomic factors, and liquidity management.</p>
+                <h4>1. Credit Management Liquidity Ratio</h4>
+                <div class="formula-box">Days Sales Outstanding (DSO) = (Gross Trade Receivables / Credit Revenue) * 365 Days</div>
+                <h4>2. Operational Profitability Metrics</h4>
+                <div class="formula-box">Operating Profit Margin (%) = (Operating Profit / Total Revenue) * 100</div>
             `,
             l4_c1: `
-                <p>Preparation of financial statements for consolidated parent-subsidiary corporations.</p>
-                <h4>1. Corporate Goodwill Calculation</h4>
-                <div class="formula-box">Goodwill = Purchase Consideration + Fair Value of NCI - Fair Value of Net Assets</div>
+                <p>Preparing consolidated final reporting accounts under IAS/IFRS benchmarks.</p>
+                <h4>1. Group Acquisition Goodwill Model</h4>
+                <div class="formula-box">Consolidated Goodwill = Consideration Paid + Fair Value of NCI - Fair Value of Net Assets</div>
+                <h4>2. IAS Financial Statements Components</h4>
+                <ul>
+                    <li><strong>IAS 1:</strong> Directives on minimum lines for Balance Sheets and Profit or Loss.</li>
+                    <li><strong>IAS 7:</strong> Mandatory split into Operating, Investing, and Financing Cash Flows.</li>
+                </ul>
+            `,
+            l4_c2: `
+                <p>Formulating master forecast structures, cash-flow pipelines, and functional budgets.</p>
+                <h4>1. Production Budget Volume Model</h4>
+                <div class="formula-box">Units to Produce = Forecasted Sales Units + Target Closing Stock - Opening Stock</div>
+            `,
+            l4_c3: `
+                <p>Variance evaluation, standard costing structures, and operational variance analysis.</p>
+                <h4>1. Material Price Variance Formula</h4>
+                <div class="formula-box">Material Price Variance = (Standard Price - Actual Price) * Actual Quantity Purchased</div>
+                <h4>2. Labour Efficiency Variance</h4>
+                <div class="formula-box">Labour Efficiency Variance = (Standard Hours - Actual Hours Worked) * Standard Rate</div>
+            `,
+            l4_c4: `
+                <p>Substantive financial tests, audit trails, and assessing sample coverage.</p>
+                <div class="formula-box">Audit Sample Coverage (%) = (Value of Items Sampled / Total Population Value) * 100</div>
+            `,
+            l4_c5: `
+                <p>Liquidity control structures, cash investments, and money market operations.</p>
+                <h4>1. Net Present Value (NPV) Investment Appraisal</h4>
+                <div class="formula-box">NPV = Sum of [Future Net Cash Flows * Discount Factor] - Initial Capital Outlay</div>
+            `,
+            l4_c6: `
+                <p>Statutory interest on late payments and evaluating doubtful ledger provisions.</p>
+                <div class="formula-box">Bad Debt Provision Adjustment = Target Provision Balance - Current Provision Balance</div>
             `,
             l4_c7: `
-                <p>UK Income Tax calculations and assessment thresholds.</p>
-                <div class="formula-box">Taxable Income = Gross Income - Personal Allowance (£12,570)</div>
-                <h4>2. Statutory Tax Bands</h4>
+                <p>Complete calculations of UK statutory Personal Income Tax liabilities and allowances.</p>
+                <h4>1. Statutory Net Taxable Base</h4>
+                <div class="formula-box">Net Taxable Income = Gross Employment Salary - Personal Allowance Buffer (£12,570)</div>
+                <h4>2. Personal Income Tax Bands Matrix</h4>
                 <table class="study-table">
-                    <tr><th>Tax Band</th><th>Threshold</th><th>Rate</th></tr>
-                    <tr><td>Personal Allowance</td><td>£0 - £12,570</td><td>0%</td></tr>
-                    <tr><td>Basic Rate</td><td>£12,571 - £50,270</td><td>20%</td></tr>
-                    <tr><td>Higher Rate</td><td>£50,271 - £125,140</td><td>40%</td></tr>
+                    <tr><th>UK Tax Tier Band</th><th>Income Parameters</th><th>Marginal Rate</th></tr>
+                    <tr><td>Personal Allowance</td><td>£0 to £12,570</td><td>0% Exempt</td></tr>
+                    <tr><td>Basic Rate Band</td><td>£12,571 to £50,270</td><td>20% Tier</td></tr>
+                    <tr><td>Higher Rate Band</td><td>£50,271 to £125,140</td><td>40% Tier</td></tr>
                 </table>
             `,
             l4_c8: `
-                <p>Adjusting financial accounts profit matrices for statutory Corporation Tax.</p>
-                <div class="formula-box">Taxable Trading Profit = Net Profit + Disallowable Expenses - Capital Allowances</div>
-                <p><strong>Note:</strong> Client entertainment and standard depreciation must be added back.</p>
+                <p>Adjusting company profit matrices to satisfy HMRC statutory Corporation Tax rules.</p>
+                <h4>1. Tax Computation Reconciliation</h4>
+                <div class="formula-box">Adjusted Trading Profit = Net Accounting Profit + Disallowable Expenses - Capital Allowances</div>
+                <h4>2. HMRC Disallowable Expenses Reference Layout</h4>
+                <table class="study-table">
+                    <tr><th>Disallowable Items (Add Back)</th><th>Allowable Items (Deductible Buffer)</th></tr>
+                    <tr><td>General Ledger Depreciation posts</td><td>Capital Allowances (Writing Down Allowances)</td></tr>
+                    <tr><td>Client Entertainment expenses</td><td>Staff Parties and Internal Training Costs</td></tr>
+                </table>
             `,
             l4_c9: `
-                <p>Evaluation of internal system loopholes and auditing error controls.</p>
-                <div class="formula-box">Control Deviation Rate = (Authorisation Errors / Audit Sample Size) * 100</div>
+                <p>Audit system evaluations, estimating internal fraud risks, and deficiency compliance testing.</p>
+                <h4>1. Control Deficiency Testing</h4>
+                <div class="formula-box">Control Deviation Rate (%) = (Discovered Authorisation Errors / Sample Size Checked) * 100</div>
             `
         };
-
         function updateStudySyllabusMenu() {
             const lvlSelect = document.getElementById("study-level");
             const subSelect = document.getElementById("study-subject");
@@ -194,7 +274,6 @@
                 subSelect.appendChild(opt);
             });
         }
-
         function renderTheoryContent() {
             const subSelect = document.getElementById("study-subject");
             const displayPanel = document.getElementById("theory-display-panel");
