@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -80,7 +80,7 @@
             color: var(--text-muted);
         }
         li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -90,39 +90,43 @@
         
         <div class="glass-card">
             <h1>DAIF Formula Cheat Sheet & Reference</h1>
-            <p style="color: var(--text-muted)">Essential core mathematical equations for interpretation exams.</p>
+            <p style="color: var(--text-muted)">Essential core mathematical equations for interpretation and financial analysis exams.</p>
 
-            <h2>1. Primary Profitability Equations</h2>
+            <h2>1. Profitability and Du Pont Component Ratios</h2>
             <div class="formula-panel">
                 <div class="formula-title">Return on Capital Employed (ROCE %)</div>
-                <div class="formula-text">(Operating Profit / [Equity + Non-Current Liabilities]) x 100</div>
+                <div class="formula-text">ROCE = (Operating Profit [PBIT] / [Total Equity + Non-Current Liabilities]) x 100</div>
             </div>
             <div class="formula-panel">
                 <div class="formula-title">Asset Turnover Ratio</div>
-                <div class="formula-text">Revenue / (Equity + Non-Current Liabilities) [expressed as times]</div>
+                <div class="formula-text">Asset Turnover = Revenue / (Total Equity + Non-Current Liabilities) [expressed as times]</div>
             </div>
 
-            <h2>2. Financial Gearing & Leverage Risks</h2>
+            <h2>2. Liquidity & Working Capital Timeline Formulations</h2>
             <div class="formula-panel">
-                <div class="formula-title">Capital Gearing % Method</div>
-                <div class="formula-text">(Long-Term Debt / [Equity + Long-Term Debt]) x 100</div>
+                <div class="formula-title">Acid Test (Quick Ratio)</div>
+                <div class="formula-text">Acid Test = (Total Current Assets - Inventory) / Total Current Liabilities</div>
+            </div>
+            <div class="formula-panel">
+                <div class="formula-title">Receivables Collection Period</div>
+                <div class="formula-text">Receivables Days = (Average Trade Receivables / Credit Sales Revenue) x 365</div>
+            </div>
+
+            <h2>3. Capital Structure & Leverage Vulnerabilities</h2>
+            <div class="formula-panel">
+                <div class="formula-title">Capital Gearing Ratio %</div>
+                <div class="formula-text">Gearing = (Long-Term Non-Current Liabilities / [Total Equity + Long-Term Liabilities]) x 100</div>
             </div>
             <div class="formula-panel">
                 <div class="formula-title">Interest Cover Ratio</div>
-                <div class="formula-text">Operating Profit / Finance Costs [expressed as times]</div>
-                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">Values below 2.0 indicate significant risk of default during structural downturns.</p>
+                <div class="formula-text">Interest Cover = Operating Profit [PBIT] / Annual Finance Costs [expressed as times]</div>
             </div>
 
-            <h2>3. Total Working Capital Net Cycle</h2>
-            <div class="formula-panel">
-                <div class="formula-text">Net Cycle Days = Inventory Days + Receivables Days - Payables Days</div>
-            </div>
-
-            <h2>4. Ratio Interpretation Rules</h2>
+            <h2>4. Ratio Interpretation Rules Reference</h2>
             <ul>
-                <li><strong>Operating Profit Baseline:</strong> Always evaluate profit before charging interest expenses and taxation lines to maintain cross-company comparability.</li>
-                <li><strong>Overtrading Symptoms:</strong> Rapidly expanding revenue alongside dropping liquidity ratios, surging current bank overdraft balances, and ballooning receivables days.</li>
-                <li><strong>Window Dressing:</strong> Making temporary transactional changes just before year-end to artificially distort accounting health metrics (e.g., executing emergency short-term cash payments to suppliers to polish liquidity benchmarks).</li>
+                <li><strong>Overtrading Symptoms:</strong> Plunging liquidity metrics matching high revenue growth, dropping bank balances, and surging trade payables days.</li>
+                <li><strong>Window Dressing:</strong> Executing short-term transactions right before the year-end cutoff to temporarily distort accounting benchmarks.</li>
+                <li><strong>Gearing Alert:</strong> Structures exceeding 50% gearing require a high interest cover ratio (>3.0 times) to guarantee solvency during economic downturns.</li>
             </ul>
         </div>
     </div>
