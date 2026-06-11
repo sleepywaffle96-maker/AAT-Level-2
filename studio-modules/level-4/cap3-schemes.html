@@ -1,0 +1,162 @@
+<!-- BLOCCO 1 -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4 - Chapter 3: AMAC Variance Schemes | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --t-green: #10b981;
+            --t-red: #ef4444;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+        .t-account {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.02);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .t-account th {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .t-account td {
+            padding: 0.6rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .t-account td:first-child {
+            border-right: 2px solid var(--border-glass);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>AMAC Variance Models & Reconciliation Sheets</h1>
+            <p style="color: var(--text-muted)">Visual tracking templates for standard manufacturing controls and variance mapping.</p>
+
+            <h2>1. Operating Statement (Standard Absorption Reconciliation Model)</h2>
+            <p style="color: var(--text-muted)">The formal reporting framework utilized to reconcile budgeted profit targets with actual net earnings.</p>
+            
+            <table class="t-account">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Profit Reconciliation Line Item</th>
+                        <th>Favourable (£)</th>
+                        <th>Adverse (£)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:var(--text-main)"><strong>Budgeted Net Profit Baseline</strong></td>
+                        <td style="color:var(--primary)"><strong>45,000</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sales Volume Variance</td>
+                        <td>1,200</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Material Price Variance</td>
+                        <td></td>
+                        <td>850</td>
+                    </tr>
+                    <tr>
+                        <td>Material Usage Variance</td>
+                        <td>300</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Labour Rate Variance</td>
+                        <td></td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>Labour Efficiency Variance</td>
+                        <td>900</td>
+                        <td></td>
+                    </tr>
+                    <tr style="background: rgba(0, 242, 254, 0.05); border-top: 2px solid var(--primary);">
+                        <td style="color:var(--t-green)"><strong>Actual Net Profit Achieved</strong></td>
+                        <td></td>
+                        <td style="color:var(--primary)"><strong>46,150</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+<!-- BLOCCO 2 -->
+            <h2>2. Advanced Variance Splitting Framework</h2>
+            <p style="color: var(--text-muted)">Visual mapping model displaying how planning adjustments separate non-controllable market errors from operational execution variances.</p>
+            
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
+[ Original Budget Standard ]
+            │
+            ├─► <strong>PLANNING VARIANCE</strong> (Non-Controllable Market Realities)
+            ▼
+[ Revised Market Standard ]
+            │
+            ├─► <strong>OPERATIONAL VARIANCE</strong> (Controllable Staff Performance)
+            ▼
+[ Actual Results Achieved ]
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
