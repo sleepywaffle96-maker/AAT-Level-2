@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -15,6 +15,7 @@
             --primary: #00f2fe;
             --secondary: #4facfe;
             --accent-green: #10b981;
+            --accent-orange: #f59e0b;
         }
         body {
             background-color: var(--bg-dark);
@@ -61,10 +62,12 @@
         }
         h3 {
             color: var(--secondary);
+            margin-top: 1.5rem;
         }
         p, li {
             color: var(--text-muted);
             font-size: 1.05rem;
+            text-align: justify;
         }
         strong {
             color: var(--text-main);
@@ -76,6 +79,13 @@
             border-radius: 0 8px 8px 0;
             margin-bottom: 2rem;
         }
+        .exam-tip {
+            border-left: 4px solid var(--accent-orange);
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
     </style>
 </head>
 <body>
@@ -85,41 +95,66 @@
         <article class="glass-card">
             <h1>Drafting & Interpreting Financial Statements (DAIF): Regulatory Framework</h1>
             <div class="syllabus-box">
-                <p style="margin:0; color:var(--text-main);"><strong>AAT Level 4 Syllabus Context:</strong> This unit covers the financial regulatory environment, IFRS reporting standards, accounting policy choices, and legal disclosure frameworks for limited companies.</p>
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Level 4 Deep-Dive Textbook:</strong> This technical chapter covers the financial reporting regulatory environment, the legal principles of corporate disclosures, and an analytical analysis of International Accounting Standards (IAS/IFRS) adopted in the UK.</p>
             </div>
 
-            <h2>1. The Financial Reporting Regulatory Infrastructure</h2>
-            <p>Financial accounting for limited companies in the UK is strictly regulated to protect external users who lack direct access to corporate day-to-day operations. This framework guarantees transparency, consistency, and standard compliance across varying market sectors.</p>
+            <h2>1. The Corporate Financial Reporting Regulatory Framework</h2>
+            <p>Unlike unincorporated entities (such as sole traders or general partnerships), limited companies operate under strict financial accountability rules. Because there is a formal separation between the owners (shareholders) and the managers (directors) of a company, corporate law requires a rigorous framework to guarantee that disclosures are true, complete, and comparable across market sectors.</p>
             
-            <h3>Key Framework Components</h3>
+            <h3>The Pillars of UK Corporate Regulation</h3>
             <ul>
-                <li><strong>The Companies Act 2006:</strong> The primary legal structure governing corporate bodies in the UK. It mandates the preparation of annual financial accounts, external audit thresholds, and statutory filing windows with Companies House.</li>
-                <li><strong>International Financial Reporting Standards (IFRS):</strong> Issued by the International Accounting Standards Board (IASB). These principles establish cross-border financial comparability, ensuring UK corporate disclosures match global financial expectations.</li>
-                <li><strong>The Financial Reporting Council (FRC):</strong> The UK independent regulator responsible for promoting high-quality corporate governance and financial reporting standards. The FRC oversees the implementation of UK GAAP (FRS 102).</li>
+                <li><strong>The Companies Act 2006:</strong> The primary legal foundation governing all limited entities in the United Kingdom. It sets out statutory responsibilities for accounting records, mandates external audit exemptions or thresholds, dictates filing windows with Companies House, and defines financial delivery timelines to protect creditors and investors.</li>
+                <li><strong>International Financial Reporting Standards (IFRS):</strong> Frameworks issued by the International Accounting Standards Board (IASB) and adopted within the UK. They establish clear global accounting benchmarks, moving accounting away from rigid local definitions toward global economic transparency.</li>
+                <li><strong>The Financial Reporting Council (FRC):</strong> The independent UK regulator promoting high-quality corporate governance and clear reporting. The FRC oversees audit quality and manages the UK GAAP framework (specifically FRS 102) for entities that are not required to adopt full international standards.</li>
             </ul>
 
-            <h2>2. Essential Accounting Standards (IAS/IFRS)</h2>
-            <p>Level 4 students must possess comprehensive discursive knowledge of individual accounting standards that dictate asset valuations and income recognition timelines:</p>
+            <h3>IASB Conceptual Framework Qualitative Characteristics</h3>
+            <p>Financial statements must possess specific attributes to be considered useful by stakeholders. These are split into fundamental and enhancing properties:</p>
+            <ul>
+                <li><strong>Relevance:</strong> Information must be capable of making a difference in the decisions made by users. It has predictive value, confirmatory value, or both. It is directly tied to the concept of **Materiality**.</li>
+                <li><strong>Faithful Representation:</strong> The information must accurately depict the economic reality of the transactions. To achieve this, it must be complete, neutral (unbiased), and free from material error. This underpins the concept of **Substance Over Form**, where the legal structure of a transaction is overridden if its economic reality is different.</li>
+                <li><strong>Enhancing Characteristics:</strong> Comparability (across different periods and competitors), Verifiability (independent observers reaching a consensus), Timeliness (available before decision-making value expires), and Understandability (clear presentation for informed users).</li>
+            </ul>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Deep-Dive into International Accounting Standards (IAS)</h2>
+            <p>Level 4 examinations require advanced knowledge of asset valuation rules and income recognition constraints under explicit standards. Minor misinterpretations of these standards can result in material misstatements on corporate balance sheets.</p>
             
             <h3>IAS 1: Presentation of Financial Statements</h3>
-            <p>Establishes the minimum structure and disclosure requirements for a complete set of financial statements. It outlines fundamental accounting concepts including the **Going Concern** assumption, the **Accruals baseline**, and the explicit restriction against offsetting independent assets against liabilities.</p>
+            <p>This standard sets out the minimum structural requirements for a complete set of financial statements. It outlines essential accounting principles, including the **Going Concern** baseline, the **Accruals basis** of accounting, consistency of presentation, and the explicit restriction against offsetting assets against liabilities or income against expenses unless explicitly permitted by another standard.</p>
 
-            <h3>IAS 2: Valuation of Inventories</h3>
-            <p>Dictates that closing inventory balances must be valued at the **lower of cost and Net Realisable Value (NRV)**. Cost encompasses all purchase expenditure and conversion overheads incurred to bring items to their current location. NRV represents the projected selling price in the ordinary course of business, less any remaining completion and distribution expenses.</p>
+            <h3>IAS 2: Inventories</h3>
+            <p>Dictates that closing inventory balances must be valued at the **lower of cost and Net Realisable Value (NRV)**. 
+            <br><em>Cost</em> encompasses all expenditures incurred to bring the inventory to its present location and condition, including purchase prices, non-refundable import duties, freight charges, and direct production conversion overheads. 
+            <br><em>NRV</em> represents the estimated selling price in the ordinary course of business, less the estimated costs of completion and any estimated marketing and distribution expenses. If NRV falls below cost, the asset must be written down, expensing the deficit directly to cost of sales in the Statement of Profit or Loss (SoPL).</p>
 
             <h3>IAS 16: Property, Plant and Equipment (PPE)</h3>
-            <p>Governs the tracking of non-current tangible assets. Initial recognition requires measurement at cost, including non-refundable purchase duties and site installation expenses. Subsequent measurements permit two accounting models:</p>
+            <p>Governs the initial recognition and subsequent measurement of tangible non-current assets. Asset acquisition requires measurement at cost, including site preparation, initial delivery, assembly, and dismantling provisions. Subsequent accounting allows two distinct structural choices:</p>
             <ul>
                 <li><strong>Cost Model:</strong> Historical cost less accumulated depreciation and subsequent impairment provisions.</li>
-                <li><strong>Revaluation Model:</strong> Fair asset value measured regularly, with accumulated revaluation surpluses credited directly to the Revaluation Reserve within the Equity section of the Statement of Financial Position.</li>
+                <li><strong>Revaluation Model:</strong> Regular fair value revaluations. If an asset appreciates, the gain cannot be credited to the SoPL. Instead, it must be credited to Other Comprehensive Income (OCI) and accumulated in the **Revaluation Reserve** within the Equity section of the Statement of Financial Position (SoFP). If an asset revaluation causes a deficit, it is charged to the SoPL, unless it reverses a previous surplus on that same asset, in which case it is debited to the revaluation reserve.</li>
             </ul>
 
-            <h2>3. Provisions, Contingencies, and Events After Reporting Period</h2>
-            <p>Prudence dictates how corporate reporting models incorporate economic uncertainties without misstating final profitability metrics:</p>
+            <div class="exam-tip">
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Exam Technical Rule:</strong> Under IAS 16, when a factory is revalued upwards, the annual depreciation expense will increase. Organizations are permitted to make an annual equity transfer from the Revaluation Reserve to Retained Earnings to account for this excess depreciation, keeping distributable profit reserves accurate.</p>
+            </div>
+<!-- RIFERIMENTO_BLOCCO: 3 -->
+            <h2>3. Uncertainties, Provisions, and Post-Balance-Sheet Events</h2>
+            <p>Prudence dictates how corporate reporting models incorporate economic risks and post-period changes without overstating financial health metrics.</p>
+            
+            <h3>IAS 37: Provisions, Contingent Liabilities and Contingent Assets</h3>
+            <p>This standard sets strict thresholds to prevent companies from "smoothing" profits through arbitrary provisions or hiding material exposures in foot-notes:</p>
             <ul>
-                <li><strong>IAS 37 (Provisions):</strong> A provision is a liability of uncertain timing or amount. It must be recognized only when a present legal or constructive obligation exists from a past event, an outflow of financial resources is probable, and a reliable statistical estimate can be established. If the outflow is only possible, it is classified as a **Contingent Liability** and disclosed strictly within the accompanying notes.</li>
-                <li><strong>IAS 10 (Events After the Reporting Period):</strong> Events occurring between the Statement of Financial Position date and the formal authorization date are split into **Adjusting Events** (providing evidence of conditions existing at year-end, requiring ledger entry updates) and **Non-Adjusting Events** (indicative of conditions arising after year-end, requiring disclosure notes only if material).</li>
+                <li><strong>Provisions:</strong> A provision is a liability of uncertain timing or amount. It must be formally recognized on the face of the SoFP only when a three-way condition is satisfied: a present legal or constructive obligation exists as a result of a past event; it is probable (defined as more likely than not, >50%) that an outflow of economic benefits will be required to settle the obligation; and a reliable statistical estimate can be made of the amount.</li>
+                <li><strong>Contingent Liabilities:</strong> If the economic outflow is only possible (5% to 50% likelihood) or if a present obligation cannot be measured reliably, it is classified as a Contingent Liability. No ledger entry is made; it is disclosed strictly within the accompanying notes. Remote contingencies (<5%) are ignored entirely.</li>
+                <li><strong>Contingent Assets:</strong> A possible asset arising from past events (e.g., an ongoing insurance claim). Prudence dictates that it must *never* be recognized on the SoFP until the economic inflow is virtually certain. If the inflow is probable, it is disclosed strictly in the notes.</li>
             </ul>
+
+            <h3>IAS 10: Events After the Reporting Period</h3>
+            <p>This standard covers events that occur between the Statement of Financial Position date and the date when the financial statements are formally authorized for issue by the board of directors. These events are split into two categories:</p>
+            <ol>
+                <li><strong>Adjusting Events:</strong> Events that provide additional evidence of conditions that existed at the reporting date. These require retroactively updating the ledger values before final publication (e.g., the insolvency of a major credit customer after year-end confirms that their outstanding trade receivable balance was already impaired at the balance sheet date).</li>
+                <li><strong>Non-Adjusting Events:</strong> Events that are indicative of conditions that arose *after* the reporting date. No changes are made to the financial statements; if the event is material, it is disclosed in the notes to prevent the accounts from being misleading (e.g., a major factory fire or a corporate acquisition occurring two weeks after the year-end date).</li>
+            </ol>
         </article>
     </div>
 </body>
