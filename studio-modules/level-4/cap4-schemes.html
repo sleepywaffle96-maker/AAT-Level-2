@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -16,6 +16,7 @@
             --secondary: #4facfe;
             --t-green: #10b981;
             --t-red: #ef4444;
+            --accent-blue: #3b82f6;
         }
         body {
             background-color: var(--bg-dark);
@@ -93,51 +94,60 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>DAIF Framework Layouts & Disclosures</h1>
-            <p style="color: var(--text-muted)">Visual structural standards for company disclosures and asset valuation revaluation accounts.</p>
+            <h1>DAIF Asset Adjustments & Structural Disclosure Models</h1>
+            <p style="color: var(--text-muted)">Visual ledgers for asset revaluations, excess depreciation equity updates, and standard legal disclosure pathways.</p>
 
-            <h2>1. IAS 16 Revaluation Reserve General Ledger Adjustments</h2>
-            <p style="color: var(--text-muted)">The standard accounting process required to record a corporate non-current asset revaluation surplus.</p>
+            <h2>1. IAS 16 Revaluation Reserve and Excess Depreciation Ledger Adjustments</h2>
+            <p style="color: var(--text-muted)">The standard accounting process required to record a corporate non-current asset gain, followed by the annual reserves transfer.</p>
             
             <table class="t-account">
                 <thead>
-                    <tr><th colspan="2">Property Revaluation Reserve (Equity Section)</th></tr>
+                    <tr><th colspan="2">Property Revaluation Reserve Account (Equity Section)</th></tr>
                     <tr>
-                        <th class="side-title">Debit (Dr) - Decreases/Transfers</th>
-                        <th class="side-title">Credit (Cr) - Asset Gains</th>
+                        <th class="side-title">Debit (Dr) - Decreases / Transfers Out</th>
+                        <th class="side-title">Credit (Cr) - Surpluses / Increases In</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Transfer to Retained Earnings (Excess Depr) <span style="color:var(--t-red)">£12,000</span></td>
-                        <td>Opening Balance b/f <span style="color:var(--text-main)">£150,000</span></td>
+                        <td>Transfer to Retained Earnings: Excess Depreciation <span style="color:var(--t-red)">£5,000</span></td>
+                        <td>Opening Balance b/f <span style="color:var(--text-main)">£120,000</span></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>Gain on Factory Revaluation (IAS 16) <span style="color:var(--t-green)">£45,000</span></td>
+                        <td>Gain on Land and Buildings Revaluation <span style="color:var(--t-green)">£35,000</span></td>
                     </tr>
                     <tr style="background: rgba(0, 242, 254, 0.05); border-top: 1px solid var(--primary);">
-                        <td>Closing Balance c/f <span style="color:var(--primary)">£183,000</span></td>
+                        <td><strong>Closing Balance c/f (Carried to SoFP Equity)</strong> <span style="color:var(--primary)">£150,000</span></td>
                         <td></td>
                     </tr>
                 </tbody>
             </table>
-
-            <h2>2. IAS 37 Treatment Decision Matrix Flow</h2>
-            <p style="color: var(--text-muted)">Visual logical flow used to classify legal and constructive obligations on financial records.</p>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Statutory IAS 37 Treatment Decision Grid Flow</h2>
+            <p style="color: var(--text-muted)">Visual structure used to determine whether a corporate obligation requires financial provision recording or footnote text disclosures.</p>
             
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
                 <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-Is the economic outflow PROBABLE? (&gt;50%) ──► YES ──► <strong>Recognise Provision on SoFP</strong>
-            │
-            ├──► NO
-            ▼
-Is the economic outflow POSSIBLE? (5% - 50%) ──► YES ──► <strong>Disclose Contingent Liability in Notes</strong>
-            │
-            ├──► NO
-            ▼
-Is the economic outflow REMOTE? (&lt;5%) ────────► YES ──► <strong>No Disclosure / Ignore</strong>
+                          [ <strong>Past Obligating Event Identified</strong> ]
+                                           │
+                                           ▼
+                 Is economic resource outflow PROBABLE? (&gt;50% Likelihood)
+                                           │
+                        ┌──────────────────┴──────────────────┐
+                        ▼ YES                                 ▼ NO
+          Can amount be reliably estimated?       Is outflow POSSIBLE? (5% - 50%)
+                        │                                     │
+            ┌───────────┴───────────┐             ┌───────────┴───────────┐
+            ▼ YES                   ▼ NO          ▼ YES                   ▼ NO (Remote &lt;5%)
+     [ <strong>RECORD PROVISION</strong> ]    [ <strong>DISCLOSE NOTE</strong> ]   [ <strong>DISCLOSE NOTE</strong> ]     [ <strong>IGNORE ENTIRELY</strong> ]
+     Debit: Profit or Loss   Footnote text disclosure  Footnote text disclosure  No financial action
+     Credit: Provisions Liab in Statements        in Statements        required
                 </pre>
+            </div>
+            
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 242, 254, 0.05); border-radius: 6px; border: 1px solid var(--border-glass)">
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-main);"><strong>Analytical Insight:</strong> For adjusting events under IAS 10, use the same logical checks. If an event confirms conditions that already existed at the reporting date, update the figures in the financial statements. If it introduces new conditions, disclose it in the notes without altering the numbers.</p>
             </div>
         </div>
     </div>
