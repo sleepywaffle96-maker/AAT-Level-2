@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Chapter 3: MATC Theory | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent-green: #10b981;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: var(--secondary);
+        }
+        p, li {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        strong {
+            color: var(--text-main);
+        }
+        .syllabus-box {
+            border-left: 4px solid var(--accent-green);
+            background: rgba(16, 185, 129, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <article class="glass-card">
+            <h1>Management Accounting Techniques (MATC)</h1>
+            <div class="syllabus-box">
+                <p style="margin:0; color:var(--text-main);"><strong>AAT Syllabus Context:</strong> This unit focuses on role-specific knowledge required to provide management with information for planning, control, and decision-making regarding costs, inventory, and budgeting.</p>
+            </div>
+
+            <h2>1. Cost Classification and Behaviour</h2>
+            <p>To provide relevant data to stakeholders, management accountants must classify costs based on their behaviour in relation to changes in activity levels:</p>
+            
+            <h3>Classification by Nature</h3>
+            <ul>
+                <li><strong>Direct Costs:</strong> Expenses that can be directly and fully traced to a specific cost unit (e.g., raw materials, direct factory wages).</li>
+                <li><strong>Indirect Costs (Overheads):</strong> Expenses that cannot be directly traced to a single unit (e.g., factory rent, supervisor salaries).</li>
+            </ul>
+
+            <h3>Classification by Behaviour</h3>
+            <ul>
+                <li><strong>Fixed Costs:</strong> Remain constant in total over a specific range of activity (relevant range), but decrease per unit as production rises (e.g., rent).</li>
+                <li><strong>Variable Costs:</strong> Change in direct proportion to production volume, remaining constant per unit (e.g., raw materials).</li>
+                <li><strong>Semi-Variable Costs:</strong> Contain both a fixed and a variable element (e.g., electricity bills with a standing charge plus usage rate). Analysts split these using the <strong>High-Low Method</strong>.</li>
+                <li><strong>Stepped Fixed Costs:</strong> Fixed within a certain level of activity but jump to a higher level once capacity is reached (e.g., hiring an extra warehouse).</li>
+            </ul>
+            <h2>2. Costing Methodologies</h2>
+            <p>Organisations use different costing methods depending on their inventory valuation strategies and production frameworks.</p>
+            
+            <h3>Absorption Costing</h3>
+            <p>This approach allocates both <strong>variable and fixed manufacturing costs</strong> to individual cost units. It satisfies external reporting requirements (IAS 2) by ensuring closing inventory values carry a share of fixed factory overheads. The process involves three distinct steps:</p>
+            <ul>
+                <li><strong>Allocation:</strong> Charging whole cost items directly to cost centres.</li>
+                <li><strong>Apportionment:</strong> Sharing indirect costs across multiple cost centres using a fair baseline (e.g., square metres for rent).</li>
+                <li><strong>Absorption:</strong> Recovering overheads into product units using a predetermined <strong>Overhead Absorption Rate (OAR)</strong>.</li>
+            </ul>
+
+            <h3>Marginal Costing</h3>
+            <p>This framework assigns only <strong>variable costs</strong> to products. Fixed overheads are treated as period costs and are expensed entirely in the period they occur. Inventory is valued strictly at marginal (variable) cost. The key metric generated is <strong>Contribution</strong> (Sales Revenue less Variable Costs), which assists managers in short-term decision-making, special pricing options, and break-even analysis.</p>
+
+            <h2>3. Inventory Control Frameworks</h2>
+            <p>Proper physical and financial valuation of inventory directly impacts profit and asset visibility. AAT students must master the following mechanisms:</p>
+            <ul>
+                <li><strong>FIFO (First In, First Out):</strong> Assumes the oldest inventory items are sold first. Closing inventory values reflect current market prices.</li>
+                <li><strong>LIFO (Last In, First Out):</strong> Assumes the newest items are sold first. (Note: Not permitted under IAS 2, but used for internal benchmarking).</li>
+                <li><strong>AVCO (Weighted Average Cost):</strong> Recalculates the average unit price either continuously after each delivery or periodically at month-end.</li>
+            </ul>
+        </article>
+    </div>
+</body>
+</html>
