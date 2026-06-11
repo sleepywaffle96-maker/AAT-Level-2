@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Chapter 4: TPFB Summary | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --panel-bg: rgba(0, 242, 254, 0.05);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.3rem;
+        }
+        .formula-panel {
+            background: var(--panel-bg);
+            border-left: 3px solid var(--secondary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .formula-title {
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+        .formula-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>TPFB Cheat Sheet & Tax Formulas</h1>
+            <p style="color: var(--text-muted)">Essential parameters and parsing methods for extraction tasks within UK tax computations.</p>
+
+            <h2>1. VAT Extraction Formulas (Standard Rate 20%)</h2>
+            <div class="formula-panel">
+                <div class="formula-title">Extracting VAT from a Gross Total</div>
+                <div class="formula-text">VAT Amount = Gross Value x (20 / 120) [or Gross / 6]</div>
+            </div>
+            <div class="formula-panel">
+                <div class="formula-title">Calculating Net from a Gross Total</div>
+                <div class="formula-text">Net Value = Gross Value / 1.20</div>
+            </div>
+
+            <h2>2. Fuel Scale Charges</h2>
+            <div class="formula-panel">
+                <p style="margin: 0; color: var(--text-muted)">If a business reclaims 100% of input VAT on fuel for a car used both commercially and privately, it must add back a fixed statutory output tax amount called the <strong>Fuel Scale Charge</strong> to account for private usage.</p>
+            </div>
+
+            <h2>3. Disallowed Input VAT Rules (Exclusions)</h2>
+            <ul>
+                <li><strong>Business Entertainment:</strong> VAT cannot be reclaimed on entertaining UK clients (except staff events).</li>
+                <li><strong>Passenger Motor Cars:</strong> 100% blocked on new cars unless used entirely for business (e.g., taxi, driving school). Lease cars usually have a 50% recovery block.</li>
+            </ul>
+
+            <h2>4. Fuel & Travel Special Rules</h2>
+            <ul>
+                <li><strong>Public Transport:</strong> Train, bus, and flight bookings inside the UK are <strong>zero-rated</strong> (0%).</li>
+                <li><strong>Petrol/Diesel:</strong> Input VAT recovery requires valid VAT receipts containing HMRC-compliant tax breakdown figures.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
