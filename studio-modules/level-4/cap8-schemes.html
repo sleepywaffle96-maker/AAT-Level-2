@@ -1,0 +1,145 @@
+<!-- BLOCCO 1 -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4 - Chapter 8: IASC Fraud & Risk Schemes | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --t-green: #10b981;
+            --t-red: #ef4444;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+        .t-account {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.02);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .t-account th {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .t-account td {
+            padding: 0.6rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .t-account td:first-child {
+            border-right: 2px solid var(--border-glass);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>IASC Risk Grids & Analytical Schematics</h1>
+            <p style="color: var(--text-muted)">Visual templates displaying risk mapping logic and fraud defense matrices.</p>
+
+            <h2>1. The Risk Assessment Matrix Layout</h2>
+            <p style="color: var(--text-muted)">Visual mapping structure utilized by accounting auditors to categorize threats and assign policy priorities.</p>
+            
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
+              ┌────────────────────────────────────────────────┐
+              │             <strong>IMPACT LEVEL (Severity)</strong>            │
+              ├───────────────────────┬────────────────────────┤
+              │      <strong>LOW</strong>              │      <strong>HIGH</strong>              │
+ <strong>LIKELIHOOD</strong>   ├───────────────────────┼────────────────────────┤
+ <strong>(Probability)</strong>│                       │                        │
+   <strong>HIGH</strong>       │  <strong>REDUCE / CONTROL</strong>     │  <strong>AVOID / MITIGATE</strong>      │
+              │  (Optimize Systems)   │  (Change Direction)    │
+              ├───────────────────────┼────────────────────────┤
+   <strong>LOW</strong>        │  <strong>ACCEPT / IGNORE</strong>      │  <strong>TRANSFER / SHARE</strong>      │
+              │  (Monitor Over Time)  │  (Insurance Policies)  │
+              └───────────────────────┴────────────────────────┘
+                </pre>
+            </div>
+
+            <h2>2. Operational Fraud Vulnerability Assessment Mapping</h2>
+            <p style="color: var(--text-muted)">The standard audit tracking template for isolating technological gaps, security exposure patterns, and defenses.</p>
+            
+            <table class="t-account">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Threat Pattern Area</th>
+                        <th>System Vulnerability Mode</th>
+                        <th>Target Prevention Policy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:var(--text-main)">Teeming & Lading</td>
+                        <td>Receivables manager covers a theft by diverting cash entries from subsequent customer accounts.</td>
+                        <td style="color:var(--primary)">Mandatory 2-week continuous holiday blocks; regular independent debtor statement matching.</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)">Phishing / Cyber Breach</td>
+                        <td>Staff download tracking malware via spoofed emails, exposing internal database access keys.</td>
+                        <td style="color:var(--secondary)">Enforce Multi-Factor Authentication (MFA); ongoing phishing simulations for personnel.</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)">Asset Diversion</td>
+                        <td>Unsupervised stock disposal logs allow staff to misclassify functional inventory items as scrap.</td>
+                        <td style="color:var(--t-green)">Dual-authorization requirement for inventory disposals; quarterly surprise scrap inspections.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
