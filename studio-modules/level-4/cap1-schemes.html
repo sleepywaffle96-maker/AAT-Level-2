@@ -1,4 +1,5 @@
-<!-- BLOCK_ID: L4_C1_SCHEMES_P1 -->
+<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -16,6 +17,7 @@
             --secondary: #4facfe;
             --t-green: #10b981;
             --t-red: #ef4444;
+            --accent-blue: #3b82f6;
         }
         body {
             background-color: var(--bg-dark);
@@ -58,32 +60,27 @@
             font-size: 1.4rem;
             margin-top: 1.5rem;
         }
-        .t-account {
+        .matrix-table {
             width: 100%;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
+            background: rgba(255,255,255,0.01);
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid var(--border-glass);
         }
-        .t-account th {
+        .matrix-table th {
             background: rgba(0, 242, 254, 0.1);
             color: var(--primary);
-            padding: 0.5rem;
+            padding: 0.8rem;
+            text-align: left;
             border-bottom: 2px solid var(--primary);
-        }
-        .t-account td {
-            padding: 0.6rem;
             font-size: 0.95rem;
+        }
+        .matrix-table td {
+            padding: 0.8rem;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .t-account td:first-child {
-            border-right: 2px solid var(--border-glass);
-        }
-        .side-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
             color: var(--text-muted);
         }
     </style>
@@ -93,59 +90,77 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>AMAC Planning Layouts & Schemes</h1>
-            <p style="color: var(--text-muted)">Algorithmic master budget forecasting layouts and production capacity adjustments.</p>
+            <h1>AMAC Planning Architecture & Sync Layouts</h1>
+            <p style="color: var(--text-muted)">Comprehensive visual frameworks mapping multi-layered master budget creation, inventory hedges, and cash lags.</p>
 
-            <h2>1. Production and Material Purchases Budget Construction Sequence</h2>
-            <p style="color: var(--text-muted)">The mathematical matrix required to map expected unit numbers against inventory control requirements.</p>
+            <h2>1. Structural Interdependency & Synchronization Map</h2>
+            <p style="color: var(--text-muted)">The operational workflow required to build consolidated accounts. Notice how a change in sales figures alters raw material purchases and cash parameters.</p>
             
-            <table class="t-account">
+            <table class="matrix-table">
                 <thead>
                     <tr>
-                        <th style="text-align: left;">Budget Element Line Item</th>
-                        <th>Calculation Steps / Components</th>
-                        <th>Output Value Target</th>
+                        <th>Budget Schedule</th>
+                        <th>Upstream Inputs Needed</th>
+                        <th>Core Mathematical Mechanism</th>
+                        <th>Downstream Outputs Generated</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="color:var(--text-main)"><strong>1. Production Budget (Units)</strong></td>
-                        <td>Forecast Sales Units + Target Closing Stock - Opening Stock</td>
-                        <td style="color:var(--primary)">Production Units Required</td>
+                        <td style="color:var(--text-main)"><strong>1. Sales Budget</strong></td>
+                        <td>Market Demand Research</td>
+                        <td>Forecast Units x Target Selling Price</td>
+                        <td style="color:var(--primary)">Gross Revenue Target</td>
                     </tr>
                     <tr>
-                        <td style="color:var(--text-main)"><strong>2. Material Usage Budget (Kg/Litres)</strong></td>
-                        <td>Production Units Required x Standard Material Component per Unit</td>
-                        <td style="color:var(--secondary)">Total Raw Materials Needed</td>
+                        <td style="color:var(--text-main)"><strong>2. Production Budget</strong></td>
+                        <td>Sales Budget Units</td>
+                        <td>Sales Units + Closing Inventory Cushions - Opening Stock b/f</td>
+                        <td style="color:var(--secondary)">Total Production Units Required</td>
                     </tr>
                     <tr>
-                        <td style="color:var(--text-main)"><strong>3. Material Purchases Budget (£)</strong></td>
-                        <td>(Usage Requirements + Target Closing Material - Opening Material) x Cost per Kg</td>
-                        <td style="color:var(--t-green)">Total Purchase Cash Outlay</td>
+                        <td style="color:var(--text-main)"><strong>3. Material Usage</strong></td>
+                        <td>Production Budget Units</td>
+                        <td>Production Units x Standard Material Component Weight</td>
+                        <td style="color:var(--accent-blue)">Total Material Weights Needed</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)"><strong>4. Material Purchases</strong></td>
+                        <td>Material Usage Weights</td>
+                        <td>(Usage Weights + Closing Material cushions - Opening b/f) x Cost per Kg</td>
+                        <td style="color:var(--t-green)">Material Purchase Outlay (£)</td>
                     </tr>
                 </tbody>
             </table>
-<!-- BLOCK_ID: L4_C1_SCHEMES_P2 -->
-            <h2>2. Cash Budget Operational Flow Model</h2>
-            <p style="color: var(--text-muted)">Pro-forma layout tracking lagged credit receipts alongside operational cash outflows.</p>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Comprehensive Cash Budget Multi-Period Pro-Forma Layout</h2>
+            <p style="color: var(--text-muted)">Advanced template displaying cash collection delay structures (Lagged Debtors) alongside operational expenditures.</p>
             
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
                 <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-Cash Receipts:                             Month 1 (£)       Month 2 (£)
-  Cash Sales .............................    12,000            15,000
-  Credit Receivables (1-Month Lag) .......    24,000            26,500
-Total Receipts (A) .......................    36,000            41,500
+Cash Inflows:                                    January (£)       February (£)      March (£)
+  Cash Sales Revenue (Immediate) .............     15,000            18,000            22,000
+  Credit Receipts (1-Month Credit Lag: 60%) ..     34,000            36,000            43,200
+  Credit Receipts (2-Month Credit Lag: 40%) ..     22,000            24,000            25,500
+Total Cash Receipts Pool (A) .................     <strong>71,000</strong>            <strong>78,000</strong>            <strong>90,700</strong>
 
-Cash Payments:
-  Trade Payables Cash Outflow ............    14,500            16,000
-  Factory Operating Wages ................     8,000             8,200
-  Capital Equipment Purchase .............    10,000                 0
-Total Payments (B) .......................    32,500            24,200
+Cash Outflows:
+  Trade Payables Settlements (1-Month Lag) ...     25,000            28,500            31,000
+  Direct Factory Labour Payroll Expenses .....     12,500            13,000            14,500
+  Variable Production Overheads ..............      6,200             6,800             7,400
+  Fixed Factory Rent Administrative Outlay ...          0            15,000                 0
+  Capital Expenditure Equipment Purchase .....     35,000                 0                 0
+Total Cash Payments Pool (B) .................     <strong>78,700</strong>            <strong>63,300</strong>            <strong>52,900</strong>
 
-Net Cash Flow (A - B) ....................    +3,500           +17,300
-Opening Cash Balance b/f .................     2,100             5,600
-<strong>Closing Cash Balance c/f</strong> .................    <strong>£5,600</strong>           <strong>£22,900</strong>
+Net Cash Flow Surplus / Deficit (A - B) ......     -7,700           +14,700           +37,800
+Opening Bank Cash Balance b/f ................     12,400             4,700            19,400
+══════════════════════════════════════════════════════════════════════════════════════════════════
+<strong>CLOSING BANK CASH BALANCE c/f</strong> ................     <strong>£4,700</strong>           <strong>£19,400</strong>           <strong>£57,200</strong>
                 </pre>
+            </div>
+            
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 242, 254, 0.05); border-radius: 6px; border: 1px solid var(--border-glass)">
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-main);"><strong>Analytical Insight:</strong> January displays a net cash deficit due to a major capital expenditure purchase (£35,000). The system shows financial resilience as the closing balance stays positive due to a strong opening cash position.</p>
             </div>
         </div>
     </div>
