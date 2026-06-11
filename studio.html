@@ -3,293 +3,610 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Theory & Revision Hub</title>
+    <title>AAT Level 2 - Chapter 2: Principles of Bookkeeping Controls</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --bg-main: #0a0f1d;
+            --bg-card: #111827;
+            --cyan: #00f2fe;
+            --teal: #4facfe;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
+            --debit-color: #10b981;
+            --credit-color: #ef4444;
+            --warn-color: #f59e0b;
+        }
+
         body {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                        url('https://wikimedia.org');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
         }
-        .hub-container {
-            background: rgba(255, 255, 255, 0.95); width: 100%; max-width: 850px;
-            border-radius: 16px; padding: 40px; text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        h1 { color: #0f172a; font-size: 2rem; margin-bottom: 10px; font-weight: 700; }
-        p.subtitle { color: #64748b; font-size: 1rem; margin-bottom: 30px; }
-        .controls-panel {
-            display: flex; flex-direction: column; gap: 15px; background: #f8fafc;
-            padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;
+
+        .back-btn {
+            display: inline-block;
+            color: var(--cyan);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
         }
-        .select-group { display: flex; flex-direction: column; text-align: left; gap: 5px; }
-        label { font-size: 0.85rem; font-weight: 600; color: #0f172a; text-transform: uppercase; }
-        select { padding: 12px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1rem; outline: none; }
-        select:focus { border-color: #0284c7; }
-        .study-panel { display: none; text-align: left; background: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #0d9488; border-radius: 8px; padding: 25px; margin-top: 10px; }
-        .study-panel h3 { color: #0f172a; font-size: 1.3rem; margin-bottom: 15px; font-weight: 700; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px; }
-        .study-panel h4 { color: #0284c7; font-size: 1.1rem; margin-top: 20px; margin-bottom: 8px; font-weight: 600; }
-        .study-panel p { color: #334155; font-size: 0.95rem; line-height: 1.5; margin-bottom: 12px; }
-        .study-panel ul { margin-left: 20px; color: #334155; font-size: 0.95rem; margin-bottom: 15px; }
-        .study-panel li { margin-bottom: 6px; line-height: 1.4; }
-        .formula-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #0d9488; padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-weight: bold; color: #115e59; margin: 12px 0; font-size: 0.95rem; }
-        .study-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
-        .study-table th { background: #0f172a; color: white; padding: 10px; text-align: left; }
-        .study-table td { padding: 10px; border: 1px solid #cbd5e1; color: #334155; }
-        .study-table tr:nth-child(even) { background: #f1f5f9; }
-        .btn-back { display: inline-block; margin-top: 20px; color: #0284c7; text-decoration: none; font-weight: bold; font-size: 0.95rem; }
-        .btn-back:hover { text-decoration: underline; }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--cyan);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--teal);
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: var(--text-main);
+            margin-top: 20px;
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* T-Account Styles */
+        .t-account-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .t-account {
+            background: #0f1423;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .t-title {
+            text-align: center;
+            font-weight: bold;
+            color: var(--cyan);
+            border-bottom: 2px solid var(--teal);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .t-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+        }
+
+        .t-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .t-side {
+            padding: 0 10px;
+        }
+
+        .t-side-title {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .t-side.debit .t-side-title { color: var(--debit-color); text-align: left; }
+        .t-side.credit .t-side-title { color: var(--credit-color); text-align: right; }
+
+        .t-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .t-side.credit .t-row {
+            flex-direction: row-reverse;
+        }
+
+        .t-total {
+            border-top: 1px solid var(--border);
+            border-bottom: 4px double var(--border);
+            margin-top: 10px;
+            padding: 5px 0;
+            font-weight: bold;
+        }
+
+        /* Tables & Lists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #1e293b;
+            color: var(--cyan);
+        }
+
+        tr:hover {
+            background-color: #131b2e;
+        }
+
+        .formula-box {
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            border-left: 4px solid var(--cyan);
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 15px 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1.05rem;
+            color: var(--cyan);
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .badge-deb { background: rgba(16, 185, 129, 0.2); color: var(--debit-color); }
+        .badge-cred { background: rgba(239, 68, 68, 0.2); color: var(--credit-color); }
+        .badge-warn { background: rgba(245, 158, 11, 0.2); color: var(--warn-color); }
     </style>
 </head>
 <body>
-    <div class="hub-container">
-        <h1>AAT Academic Theory & Formula Hub</h1>
-        <p class="subtitle">Access complete formulas, ledger double-entry rules, and tax tables on-demand.</p>
-        <div class="controls-panel">
-            <div class="select-group">
-                <label for="study-level">Select Qualification Level</label>
-                <select id="study-level" onchange="updateStudySyllabusMenu()">
-                    <option value="">-- Choose a Level --</option>
-                    <option value="2">Level 2 (Foundation)</option>
-                    <option value="3">Level 3 (Advanced)</option>
-                    <option value="4">Level 4 (Professional)</option>
-                </select>
-            </div>
-            <div class="select-group">
-                <label for="study-subject">Select Specific Chapter Module</label>
-                <select id="study-subject" onchange="renderTheoryContent()">
-                    <option value="">-- Select a Level First --</option>
-                </select>
-            </div>
-        </div>
-        <div id="theory-display-panel" class="study-panel">
-            <h3 id="theory-header-title">Chapter Title</h3>
-            <div id="theory-html-content"></div>
-        </div>
-        <a href="index.html" class="btn-back">← Return to Main Homepage Dashboard</a>
+
+<div class="container">
+    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
+    
+    <h1>Level 2 - Chapter 2: Principles of Bookkeeping Controls</h1>
+    <!-- SECTION 1: EXTENDED THEORY (PART 1) -->
+    <div class="section-card theory-section">
+        <h2>1. Teoria Estesa (Syllabus Alignment - Parte 1)</h2>
+        
+        <h3>I Conti di Controllo (Control Accounts)</h3>
+        <p>Nel sistema contabile britannico, i <em>Control Accounts</em> sono conti riassuntivi registrati nel General Ledger (Libro Mastro Generale). Il loro scopo principale è monitorare globalmente il saldo dovuto dai clienti o spettante ai fornitori, fungendo da controllo interno indipendente rispetto ai registri di dettaglio (Subsidiary Ledgers).</p>
+
+        <h3>Sales Ledger Control Account (SLCA)</h3>
+        <p>L'SLCA (chiamato anche <em>Trade Receivables Control Account</em>) riassume il valore complessivo di tutti i crediti commerciali dell'azienda. Rappresenta un <strong>Asset</strong> (Attività), pertanto il suo saldo ordinario si trova in <strong>Dare (Debit)</strong>. Gli studenti d'esame devono comprendere l'esatto impatto delle seguenti operazioni sul conto:</p>
+        <ul>
+            <li><strong>Addebiti (Debit Increase):</strong> Saldo iniziale, vendite a credito lorde (Sales + VAT) estratte dal <em>Sales Day Book</em>, e assegni respinti (Dishonoured Cheques) inseriti tramite il Cash Book.</li>
+            <li><strong>Accrediti (Credit Decrease):</strong> Incassi da clienti (Cash Book Receipts), sconti concessi (Discounts Allowed), note di credito emesse per resi o rettifiche (Sales Returns Day Book), crediti inesigibili stralciati (Irrecoverable Debits via Journal) e i rinvii compensativi (Contra Entries).</li>
+        </ul>
+
+        <h3>Purchase Ledger Control Account (PLCA)</h3>
+        <p>Il PLCA (chiamato anche <em>Trade Payables Control Account</em>) riassume il valore totale dei debiti commerciali verso i fornitori. Essendo una <strong>Liability</strong> (Passività), il suo saldo di natura si trova in <strong>Avere (Credit)</strong>. Le movimentazioni tipiche includono:</p>
+        <ul>
+            <li><strong>Accrediti (Credit Increase):</strong> Saldo iniziale e acquisti a credito lordi (Purchases + VAT) estratti dal <em>Purchase Day Book</em>.</li>
+            <li><strong>Addebiti (Debit Decrease):</strong> Pagamenti effettuati a fornitori (Cash Book Payments), sconti ricevuti (Discounts Received), note di credito ricevute per merci rese (Purchase Returns Day Book) e compensazioni (Contra Entries).</li>
+        </ul>
     </div>
-    <script>
-        const studySyllabusData = {
-            "2": [
-                { value: "l2_c1", label: "Chapter 1: Bookkeeping Transactions" },
-                { value: "l2_c2", label: "Chapter 2: Bookkeeping Controls" },
-                { value: "l2_c3", label: "Chapter 3: Principles of Costing" },
-                { value: "l2_c4", label: "Chapter 4: Work Effectively in Finance" }
-            ],
-            "3": [
-                { value: "l3_c1", label: "Chapter 1: Advanced Bookkeeping" },
-                { value: "l3_c2", label: "Chapter 2: Final Accounts Preparation" },
-                { value: "l3_c3", label: "Chapter 3: Management Accounting: Costing" },
-                { value: "l3_c4", label: "Chapter 4: Indirect Tax" },
-                { value: "l3_c5", label: "Chapter 5: Ethics for Accountants" },
-                { value: "l3_c6", label: "Chapter 6: Business Awareness" }
-            ],
-            "4": [
-                { value: "l4_c1", label: "Chapter 1: Financial Statements of Limited Companies" },
-                { value: "l4_c2", label: "Chapter 2: Management Accounting: Budgeting" },
-                { value: "l4_c3", label: "Chapter 3: Management Accounting: Decision and Control" },
-                { value: "l4_c4", label: "Chapter 4: External Auditing" },
-                { value: "l4_c5", label: "Chapter 5: Cash and Treasury Management" },
-                { value: "l4_c6", label: "Chapter 6: Credit Management" },
-                { value: "l4_c7", label: "Chapter 7: Personal Tax" },
-                { value: "l4_c8", label: "Chapter 8: Business Tax" },
-                { value: "l4_c9", label: "Chapter 9: Internal Accounting Systems and Controls" }
-            ]
-        };
-        const theoryTextDatabase = {
-            l2_c1: `
-                <p>This module establishes the bedrock of financial accounting, focusing on credit transactions and processing invoices.</p>
-                <h4>1. Accounting Equation</h4>
-                <div class="formula-box">Assets = Liabilities + (Capital + Profit - Drawings)</div>
-                <h4>2. Ledger Rules (DEAD CLIC)</h4>
-                <table class="study-table">
-                    <tr><th>Debit Increase (DEAD)</th><th>Credit Increase (CLIC)</th></tr>
-                    <tr><td>Expenses, Assets, Drawings</td><td>Liabilities, Income, Capital</td></tr>
+    <!-- SECTION 1: EXTENDED THEORY (PART 2) -->
+    <div class="section-card theory-section">
+        <h2>1. Teoria Estesa (Syllabus Alignment - Parte 2)</h2>
+        
+        <h3>La Riconciliazione Bancaria (Bank Reconciliation)</h3>
+        <p>Il saldo del conto bancario nel <em>Cash Book</em> dell'azienda raramente coincide con il saldo finale dell'estratto conto emesso dalla banca (<em>Bank Statement</em>). Questa discrepanza è causata da differenze temporali di registrazione o da transazioni di cui l'azienda non è ancora a conoscenza prima di ricevere l'estratto conto.</p>
+
+        <h3>Aggiornamenti del Cash Book vs Voci di Riconciliazione</h3>
+        <p>Gli errori più comuni all'esame AAT derivano dal confondere le operazioni che richiedono una registrazione contabile immediata da quelle che richiedono solo un inserimento nel prospetto di riconciliazione:</p>
+        
+        <ul>
+            <li><strong>Elementi che richiedono l'aggiornamento del Cash Book:</strong> Operazioni presenti sull'estratto conto ma non ancora registrate nei libri interni dell'azienda. Esempi: commissioni bancarie (Bank Charges), interessi attivi o passivi, bonifici diretti ricevuti (Credit Transfers / Direct Credits), ordini permanenti (Standing Orders), addebiti diretti (Direct Debits) e assegni insoluti (Dishonoured Cheques).</li>
+            <li><strong>Elementi di riconciliazione (Non toccano il Cash Book):</strong> Operazioni già registrate nel Cash Book ma non ancora elaborate dalla banca. Esempi: assegni emessi dall'azienda ma non ancora incassati dai fornitori (Unpresented Cheques) e versamenti effettuati dall'azienda ma non ancora accreditati sul conto corrente (Outstanding Lodgements / Uncleared Deposits).</li>
+        </ul>
+
+        <h3>I Rinvii Compensativi (Contra Entries)</h3>
+        <p>Una <em>Contra Entry</em> si verifica quando una stessa azienda è contemporaneamente sia cliente (nel Sales Ledger) che fornitore (nel Purchase Ledger) di un'altra attività. Invece di effettuare due pagamenti separati, le parti concordano di compensare i saldi contrapposti, riducendo sia il credito che il debito dell'importo minore tra i due. Questa operazione richiede una registrazione in Avere (Credit) sull'SLCA e una in Dare (Debit) sul PLCA.</p>
+    </div>
+    <!-- SECTION 2: TECHNICAL FORMULAS (PART 1) -->
+    <div class="section-card formula-block">
+        <h2>2. Formulari Tecnici e Calcoli Chiave (Parte 1)</h2>
+        
+        <h3>Formulazione Matematica della Riconciliazione Bancaria</h3>
+        <p>Il processo si articola rigorosamente in due fasi matematiche sequenziali. Non è possibile effettuare la riconciliazione senza aver prima allineato il registro di cassa interno.</p>
+
+        <h3>Fase 1: Calcolo del Saldo Aggiornato del Cash Book</h3>
+        <p>Si parte dal saldo contabile originario prima della ricezione dell'estratto conto e si inseriscono le transazioni non ancora tracciate internamente:</p>
+        
+        <div class="formula-box">
+            Updated Cash Book Balance = Original Cash Book Balance + Direct Credits + Bank Interest Received - Bank Charges - Direct Debits - Standing Orders - Dishonoured Cheques
+        </div>
+
+        <h3>Fase 2: Prospetto di Riconciliazione (Bank Reconciliation Statement)</h3>
+        <p>Questa equazione parte dal saldo finale dell'estratto conto bancario (Bank Statement) e applica le differenze temporali per verificare la perfetta coincidenza aritmetica con il saldo ottenuto nella Fase 1:</p>
+        
+        <div class="formula-box">
+            Target Value (Updated Cash Book Balance) = Bank Statement Balance + Outstanding Lodgements - Unpresented Cheques
+        </div>
+
+        <p><em>Nota per l'esame:</em> Se il saldo dell'estratto conto è in passivo (Overdraft), il valore iniziale dell'equazione della Fase 2 deve essere inserito come numero negativo.</p>
+    </div>
+    <!-- SECTION 2: TECHNICAL FORMULAS (PART 2) -->
+    <div class="section-card formula-block">
+        <h2>2. Formulari Tecnici e Calcoli Chiave (Parte 2)</h2>
+        
+        <h3>Quadratura dei Conti di Controllo (Control Accounts Reconciliation)</h3>
+        <p>Al termine del periodo contabile, il saldo finale del conto di controllo generale deve coincidere al centesimo con la somma algebrica di tutti i singoli saldi estratti dai registri personali dei clienti o dei fornitori.</p>
+
+        <h3>Equazione di Quadratura del Sales Ledger</h3>
+        <p>Se viene rilevata una discrepanza tra l'SLCA e la lista dei saldi estratti dal Sales Ledger, si applica la seguente formula di verifica per identificare dove risiede l'errore (se nel conto generale o nei registri di dettaglio):</p>
+        
+        <div class="formula-box">
+            Sales Ledger Control Account Balance = Total of Individual Customer Balances in Sales Ledger
+        </div>
+
+        <h3>Equazione di Quadratura del Purchase Ledger</h3>
+        <p>Allo stesso modo, per i debiti commerciali, la riconciliazione richiede il perfetto allineamento tra la sintesi generale e il dettaglio analitico:</p>
+        
+        <div class="formula-box">
+            Purchase Ledger Control Account Balance = Total of Individual Supplier Balances in Purchase Ledger
+        </div>
+
+        <h3>Calcolo della Compensazione (Contra Entry Boundary)</h3>
+        <p>La regola aritmetica fondamentale per registrare una Contra Entry richiede l'individuazione del valore minimo per evitare di mandare un conto in passivo. La formula di calcolo è:</p>
+        
+        <div class="formula-box">
+            Contra Value = Minimum(Balance owed BY Customer in SL, Balance owed TO Same Entity in PL)
+        </div>
+    </div>
+    <!-- SECTION 3: SCHEMES & T-ACCOUNTS (PART 1) -->
+    <div class="section-card accounting-charts">
+        <h2>3. Schemi e Scritture (Mastrini T - Parte 1)</h2>
+        
+        <h3>I Mastrini di Controllo nel General Ledger</h3>
+        <p>Di seguito viene illustrata la struttura visiva formale dell'SLCA e del PLCA con l'esatta collocazione delle voci d'esame ricorrenti. Nota come i movimenti speculari (es. Contra Entries) colpiscano i lati opposti dei due conti.</p>
+
+        <div class="t-account-container">
+            <!-- SLCA ACCOUNT -->
+            <div class="t-account">
+                <div class="t-title">Sales Ledger Control Account (SLCA)</div>
+                <div class="t-grid">
+                    <div class="t-side debit">
+                        <div class="t-side-title">Debit (+)</div>
+                        <div class="t-row"><span>Opening Balance b/d</span><span>£X,XXX</span></div>
+                        <div class="t-row"><span>Credit Sales (SDB)</span><span>£X,XXX</span></div>
+                        <div class="t-row"><span>Dishonoured Cheques</span><span>£XXX</span></div>
+                    </div>
+                    <div class="t-side credit">
+                        <div class="t-side-title">Credit (-)</div>
+                        <div class="t-row"><span>Bank Receipts (CB)</span><span>£X,XXX</span></div>
+                        <div class="t-row"><span>Sales Returns (SRDB)</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Discounts Allowed</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Irrecoverable Debits</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Contra to PLCA</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Closing Balance c/d</span><span>£X,XXX</span></div>
+                    </div>
+                </div>
+                <div class="t-total">
+                    <div class="t-row"><span>Opening Balance b/d</span><span>£X,XXX</span></div>
+                </div>
+            </div>
+
+            <!-- PLCA ACCOUNT -->
+            <div class="t-account">
+                <div class="t-title">Purchase Ledger Control Account (PLCA)</div>
+                <div class="t-grid">
+                    <div class="t-side debit">
+                        <div class="t-side-title">Debit (-)</div>
+                        <div class="t-row"><span>Bank Payments (CB)</span><span>£X,XXX</span></div>
+                        <div class="t-row"><span>Purchase Returns (PRDB)</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Discounts Received</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Contra from SLCA</span><span>£XXX</span></div>
+                        <div class="t-row"><span>Closing Balance c/d</span><span>£X,XXX</span></div>
+                    </div>
+                    <div class="t-side credit">
+                        <div class="t-side-title">Credit (+)</div>
+                        <div class="t-row"><span>Opening Balance b/d</span><span>£X,XXX</span></div>
+                        <div class="t-row"><span>Credit Purchases (PDB)</span><span>£X,XXX</span></div>
+                    </div>
+                </div>
+                <div class="t-total">
+                    <div class="t-row"><span>Opening Balance b/d</span><span>£X,XXX</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SECTION 3: SCHEMES & T-ACCOUNTS (PART 2) -->
+    <div class="section-card accounting-charts">
+        <h2>3. Schemi e Scritture (Libro Giornale e Errori - Parte 2)</h2>
+        
+        <h3>Classificazione degli Errori Contabili</h3>
+        <p>Il Syllabus AAT richiede di distinguere gli errori in due macro-categorie, a seconda del loro impatto sul bilancio di verifica (Trial Balance):</p>
+        
+        <ul>
+            <li><strong>Errori che NON alterano la quadratura del Trial Balance:</strong> Omission (transazione dimenticata), Commission (conto errato della stessa natura), Principle (conto errato di natura diversa, es. costo anziché asset), Original Entry (importo errato all'origine), Reversal (dare e avere invertiti).</li>
+            <li><strong>Errori che ALTERANO la quadratura del Trial Balance:</strong> Errori di calcolo aritmetico, registrazioni singole senza contropartita, o omissioni di un solo lato della partita doppia. Questi errori richiedono l'apertura immediata di un <strong>Suspense Account</strong> per bilanciare temporaneamente il Trial Balance in attesa della correzione.</li>
+        </ul>
+
+        <h3>Struttura delle Scritture di Correzione sul Libro Giornale (Journal Entries)</h3>
+        <p>Ogni rettifica formale deve essere registrata sul Libro Giornale includendo la data, i conti movimentati e una breve descrizione esplicativa (Narrative).</p>
+
+        <div class="t-account-container">
+            <!-- CONTROPARTE: SUSPENSE ACCOUNT -->
+            <div class="t-account">
+                <div class="t-title">Suspense Account</div>
+                <div class="t-grid">
+                    <div class="t-side debit">
+                        <div class="t-side-title">Debit (-)</div>
+                        <div class="t-row"><span>Correction (Error 1)</span><span>£450</span></div>
+                    </div>
+                    <div class="t-side credit">
+                        <div class="t-side-title">Credit (+)</div>
+                        <div class="t-row"><span>Difference in TB</span><span>£450</span></div>
+                    </div>
+                </div>
+                <div class="t-total">
+                    <div class="t-row"><span>Cleared Balance</span><span>£0</span></div>
+                </div>
+            </div>
+
+            <!-- CONTROPARTE: CORRECTION EXAMPLES -->
+            <div class="t-account">
+                <div class="t-title">Esempio Scrittura Giornale (Journal Form)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Account Name</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Suspense Account</td>
+                            <td>£450</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Sales Revenue</td>
+                            <td></td>
+                            <td>£450</td>
+                        </tr>
+                        <tr style="border-top: 1px solid var(--border);">
+                            <td colspan="3" style="font-size: 0.75rem; color: var(--text-muted); italic;">
+                                <em>Narrative: Being correction of an omission where a cash sale of £450 was entered only in the Cash Book.</em>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-                <h4>3. T-Account Ledgers Layout</h4>
-                <p>Example of recording a Credit Sale (£1,200 Gross, £1,000 Net, £200 VAT):</p>
-                <table class="study-table"><tr><th colspan="2">Dr. Trade Receivables (Asset) .Cr</th></tr><tr><td>Sales Link (Gross): £1,200</td><td></td></tr></table>
-                <table class="study-table"><tr><th colspan="2">Dr. Sales Revenue (Income) .Cr</th></tr><tr><td></td><td>Receivables (Net): £1,000</td></tr></table>
-                <table class="study-table"><tr><th colspan="2">Dr. VAT Control (Liability) .Cr</th></tr><tr><td></td><td>Receivables (20%): £200</td></tr></table>
-            `,
-            l2_c2: `
-                <p>Focuses on maintaining system integrity and checking errors via control accounts.</p>
-                <h4>1. Bank Reconciliation Framework</h4>
-                <div class="formula-box">Reconciled Balance = Bank Balance + Outstanding Lodgements - Unpresented Cheques</div>
-                <h4>2. Ledger Corrections (Contra Entries)</h4>
-                <div class="formula-box">Contra: Debit PLCA / Credit SLCA</div>
-            `,
-            l2_c3: `
-                <p>Introduction to tracking production costs and internal expenditure classifications.</p>
-                <h4>1. Prime Cost Equation</h4>
-                <div class="formula-box">Prime Cost = Direct Materials + Direct Labour + Direct Expenses</div>
-                <h4>2. Continuous Inventory Valuation (AVCO)</h4>
-                <div class="formula-box">AVCO Unit Rate = Total Value of Stock / Total Stock Quantity</div>
-            `,
-            l2_c4: `
-                <p>Covers professional ethics, GDPR data compliance, and basic payroll metrics.</p>
-                <h4>1. Labor Allocation Formula</h4>
-                <div class="formula-box">Gross Weekly Wage = (Basic Hours * Rate) + (Overtime Hours * Overtime Premium Rate)</div>
-            `,
-            l3_c1: `
-                <p>Advanced adjustments including depreciation methods and asset disposals.</p>
-                <h4>1. Straight-Line Depreciation</h4>
-                <div class="formula-box">Annual Expense = (Cost - Residual Value) / Useful Economic Life</div>
-                <h4>2. Reducing Balance Method</h4>
-                <div class="formula-box">Annual Expense = Carrying Amount (Net Book Value) * Depreciation %</div>
-                <h4>3. Disposal of Non-Current Assets</h4>
-                <div class="formula-box">Net Profit/Loss = Disposal Proceeds - Carrying Amount at Date of Sale</div>
-            `,
-            l3_c2: `
-                <p>Compiling final financial reporting structures for sole traders and partnerships.</p>
-                <h4>1. Cost of Goods Sold (COGS) Framework</h4>
-                <div class="formula-box">COGS = Opening Inventory + Purchases - Closing Inventory</div>
-                <h4>2. Adjustments for Doubtful Balances</h4>
-                <div class="formula-box">Adjusted Receivables = Gross Receivables - Specific Bad Debts - Allowance for Doubtful Debts</div>
-            `,
-            l3_c3: `
-                <p>Advanced costing methods, cost-volume-profit analysis, and safety targets.</p>
-                <h4>1. High-Low Cost Splitting Model</h4>
-                <div class="formula-box">Variable Cost per Unit (VCU) = (Highest Cost - Lowest Cost) / (Highest Volume - Lowest Volume)</div>
-                <div class="formula-box">Fixed Cost Element = Total Cost at Peak - (VCU * Highest Volume Units)</div>
-                <h4>2. Breakeven Projections</h4>
-                <div class="formula-box">Contribution per Unit = Selling Price per Unit - Variable Cost per Unit</div>
-                <div class="formula-box">Breakeven Point (Units) = Total Fixed Costs / Contribution per Unit</div>
-                <div class="formula-box">Margin of Safety (%) = [(Budgeted Sales - Breakeven Sales) / Budgeted Sales] * 100</div>
-            `,
-            l3_c4: `
-                <p>UK Value Added Tax (VAT) accounting regulations and statutory reporting lines.</p>
-                <h4>1. Statutory HMRC Box 5 Settlement</h4>
-                <div class="formula-box">Net Tax Owed/Refund = Box 3 (Output VAT) - Box 4 (Input VAT)</div>
-                <h4>2. UK VAT Rates Summary Table</h4>
-                <table class="study-table">
-                    <tr><th>VAT Type</th><th>Rate (%)</th><th>Treatment Background</th></tr>
-                    <tr><td>Standard Rate</td><td>20% Tier</td><td>Charged on standard sales; claimable on purchases.</td></tr>
-                    <tr><td>Reduced Rate</td><td>5% Tier</td><td>Applies to domestic energy elements and fuel sectors.</td></tr>
-                    <tr><td>Zero Rated</td><td>0% Tier</td><td>Books and children clothes. Inputs are recoverable.</td></tr>
-                </table>
-            `,
-            l3_c5: `
-                <p>Focuses on the IESBA/CIMA fundamental ethical pillars governing professional accountants.</p>
-                <h4>1. The 5 Core Ethical Principles</h4>
-                <ul>
-                    <li><strong>Integrity:</strong> Be straightforward and honest in all relationships.</li>
-                    <li><strong>Objectivity:</strong> Overcome bias or conflict of interest.</li>
-                    <li><strong>Professional Competence:</strong> Maintain knowledge and technical skill.</li>
-                    <li><strong>Confidentiality:</strong> Protect sensitive commercial data records.</li>
-                    <li><strong>Professional Behaviour:</strong> Comply with legal rules and avoid discrediting actions.</li>
-                </ul>
-            `,
-            l3_c6: `
-                <p>Examines organizational environments, macroeconomic factors, and liquidity management.</p>
-                <h4>1. Credit Management Liquidity Ratio</h4>
-                <div class="formula-box">Days Sales Outstanding (DSO) = (Gross Trade Receivables / Credit Revenue) * 365 Days</div>
-                <h4>2. Operational Profitability Metrics</h4>
-                <div class="formula-box">Operating Profit Margin (%) = (Operating Profit / Total Revenue) * 100</div>
-            `,
-            l4_c1: `
-                <p>Preparing consolidated final reporting accounts under IAS/IFRS benchmarks.</p>
-                <h4>1. Group Acquisition Goodwill Model</h4>
-                <div class="formula-box">Consolidated Goodwill = Consideration Paid + Fair Value of NCI - Fair Value of Net Assets</div>
-                <h4>2. IAS Financial Statements Components</h4>
-                <ul>
-                    <li><strong>IAS 1:</strong> Directives on minimum lines for Balance Sheets and Profit or Loss.</li>
-                    <li><strong>IAS 7:</strong> Mandatory split into Operating, Investing, and Financing Cash Flows.</li>
-                </ul>
-            `,
-            l4_c2: `
-                <p>Formulating master forecast structures, cash-flow pipelines, and functional budgets.</p>
-                <h4>1. Production Budget Volume Model</h4>
-                <div class="formula-box">Units to Produce = Forecasted Sales Units + Target Closing Stock - Opening Stock</div>
-            `,
-            l4_c3: `
-                <p>Variance evaluation, standard costing structures, and operational variance analysis.</p>
-                <h4>1. Material Price Variance Formula</h4>
-                <div class="formula-box">Material Price Variance = (Standard Price - Actual Price) * Actual Quantity Purchased</div>
-                <h4>2. Labour Efficiency Variance</h4>
-                <div class="formula-box">Labour Efficiency Variance = (Standard Hours - Actual Hours Worked) * Standard Rate</div>
-            `,
-            l4_c4: `
-                <p>Substantive financial tests, audit trails, and assessing sample coverage.</p>
-                <div class="formula-box">Audit Sample Coverage (%) = (Value of Items Sampled / Total Population Value) * 100</div>
-            `,
-            l4_c5: `
-                <p>Liquidity control structures, cash investments, and money market operations.</p>
-                <h4>1. Net Present Value (NPV) Investment Appraisal</h4>
-                <div class="formula-box">NPV = Sum of [Future Net Cash Flows * Discount Factor] - Initial Capital Outlay</div>
-            `,
-            l4_c6: `
-                <p>Statutory interest on late payments and evaluating doubtful ledger provisions.</p>
-                <div class="formula-box">Bad Debt Provision Adjustment = Target Provision Balance - Current Provision Balance</div>
-            `,
-            l4_c7: `
-                <p>Complete calculations of UK statutory Personal Income Tax liabilities and allowances.</p>
-                <h4>1. Statutory Net Taxable Base</h4>
-                <div class="formula-box">Net Taxable Income = Gross Employment Salary - Personal Allowance Buffer (£12,570)</div>
-                <h4>2. Personal Income Tax Bands Matrix</h4>
-                <table class="study-table">
-                    <tr><th>UK Tax Tier Band</th><th>Income Parameters</th><th>Marginal Rate</th></tr>
-                    <tr><td>Personal Allowance</td><td>£0 to £12,570</td><td>0% Exempt</td></tr>
-                    <tr><td>Basic Rate Band</td><td>£12,571 to £50,270</td><td>20% Tier</td></tr>
-                    <tr><td>Higher Rate Band</td><td>£50,271 to £125,140</td><td>40% Tier</td></tr>
-                </table>
-            `,
-            l4_c8: `
-                <p>Adjusting company profit matrices to satisfy HMRC statutory Corporation Tax rules.</p>
-                <h4>1. Tax Computation Reconciliation</h4>
-                <div class="formula-box">Adjusted Trading Profit = Net Accounting Profit + Disallowable Expenses - Capital Allowances</div>
-                <h4>2. HMRC Disallowable Expenses Reference Layout</h4>
-                <table class="study-table">
-                    <tr><th>Disallowable Items (Add Back)</th><th>Allowable Items (Deductible Buffer)</th></tr>
-                    <tr><td>General Ledger Depreciation posts</td><td>Capital Allowances (Writing Down Allowances)</td></tr>
-                    <tr><td>Client Entertainment expenses</td><td>Staff Parties and Internal Training Costs</td></tr>
-                </table>
-            `,
-            l4_c9: `
-                <p>Audit system evaluations, estimating internal fraud risks, and deficiency compliance testing.</p>
-                <h4>1. Control Deficiency Testing</h4>
-                <div class="formula-box">Control Deviation Rate (%) = (Discovered Authorisation Errors / Sample Size Checked) * 100</div>
-            `
-        };
-        function updateStudySyllabusMenu() {
-            const lvlSelect = document.getElementById("study-level");
-            const subSelect = document.getElementById("study-subject");
-            const selectedLvl = lvlSelect.value;
-            const displayPanel = document.getElementById("theory-display-panel");
+            </div>
+        </div>
+    </div>
+    <!-- SECTION 3: SCHEMES & T-ACCOUNTS (PART 3) -->
+    <div class="section-card accounting-charts">
+        <h2>3. Schemi e Scritture (Case Study: Riconciliazione - Parte 3)</h2>
+        
+        <h3>Esempio Pratico Guidato: Bank Reconciliation</h3>
+        <p>Un'azienda presenta un saldo iniziale del <strong>Cash Book pari a £2,450 (Debit)</strong>. L'estratto conto bancario (Bank Statement) mostra invece un saldo di <strong>£2,615</strong>. L'analisi rileva le seguenti discrepanze:</p>
+        <ol>
+            <li>Commissioni bancarie (Bank Charges) sull'estratto conto non registrate: £45</li>
+            <li>Un addebito diretto (Direct Debit) per utenze non tracciato internamente: £120</li>
+            <li>Assegni emessi a fornitori ma non ancora incassati (Unpresented Cheques): £430</li>
+            <li>Un versamento dell'ultimo giorno non ancora accreditato dalla banca (Outstanding Lodgement): £100</li>
+        </ol>
 
-            displayPanel.style.display = "none";
-            subSelect.innerHTML = '<option value="">-- Select a Module --</option>';
+        <h3>Risoluzione - Passo 1: Aggiornamento del Cash Book</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dettaglio Operazione</th>
+                    <th>Dare (Debit)</th>
+                    <th>Avere (Credit)</th>
+                    <th>Saldo Contabile</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Saldo Iniziale (Original Balance)</td>
+                    <td>£2,450</td>
+                    <td></td>
+                    <td>£2,450</td>
+                </tr>
+                <tr>
+                    <td>Spese Bancarie (Bank Charges)</td>
+                    <td></td>
+                    <td>£45</td>
+                    <td>£2,405</td>
+                </tr>
+                <tr>
+                    <td>Addebito Diretto (Direct Debit)</td>
+                    <td></td>
+                    <td>£120</td>
+                    <td><strong>£2,285 (Aggiornato)</strong></td>
+                </tr>
+            </tbody>
+        </table>
 
-            if (!selectedLvl) {
-                subSelect.innerHTML = '<option value="">-- Select a Level First --</option>';
-                return;
-            }
+        <h3>Risoluzione - Passo 2: Prospetto di Riconciliazione</h3>
+        <p>Partendo dal saldo dell'estratto conto, applichiamo gli elementi di riconciliazione temporale per intercettare il nuovo saldo ottenuto al Passo 1:</p>
 
-            const modules = studySyllabusData[selectedLvl];
-            modules.forEach(m => {
-                const opt = document.createElement("option");
-                opt.value = m.value; opt.textContent = m.label;
-                subSelect.appendChild(opt);
-            });
-        }
-        function renderTheoryContent() {
-            const subSelect = document.getElementById("study-subject");
-            const displayPanel = document.getElementById("theory-display-panel");
-            const headerTitle = document.getElementById("theory-header-title");
-            const htmlContent = document.getElementById("theory-html-content");
-            const selectedSub = subSelect.value;
+        <table>
+            <thead>
+                <tr>
+                    <th>Voce del Prospetto (Bank Reconciliation Statement)</th>
+                    <th>Importo Parziale</th>
+                    <th>Totale Progressivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Saldo Finale Estratto Conto (Bank Statement Balance)</strong></td>
+                    <td></td>
+                    <td><strong>£2,615</strong></td>
+                </tr>
+                <tr>
+                    <td>(+) Aggiungi: Versamenti non accreditati (Outstanding Lodgements)</td>
+                    <td>£100</td>
+                    <td>£2,715</td>
+                </tr>
+                <tr>
+                    <td>(-) Detrai: Assegni non presentati (Unpresented Cheques)</td>
+                    <td>(£430)</td>
+                    <td></td>
+                </tr>
+                <tr style="border-top: 2px solid var(--cyan); background: #0f172a;">
+                    <td><strong>Saldo Riconciliato (Coincide con Cash Book aggiornato)</strong></td>
+                    <td></td>
+                    <td><strong>£2,285</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- SECTION 3: SCHEMES & T-ACCOUNTS (PART 4) -->
+    <div class="section-card accounting-charts">
+        <h2>3. Schemi e Scritture (Case Study: Correzione Errori - Parte 4)</h2>
+        
+        <h3>Esempio Pratico Guidato: Azzeramento del Suspense Account</h3>
+        <p>Il Trial Balance di un'azienda non quadra: il totale dei Credit supera il totale dei Debit di <strong>£210</strong>. Viene quindi aperto un Suspense Account con un saldo temporaneo in <strong>Debit di £210</strong> per bilanciare i libri. Successivamente si scoprono due errori:</p>
+        <ol>
+            <li>Una fattura di acquisto di merci per £150 è stata registrata correttamente nel Purchase Ledger Control Account, ma è stata completamente omessa dal Purchases Account nel General Ledger.</li>
+            <li>Un incasso da un cliente di £60 è stato registrato regolarmente nell'SLCA, ma è stato inserito nel Cash Book come £120.</li>
+        </ol>
 
-            if (!selectedSub || !theoryTextDatabase[selectedSub]) {
-                displayPanel.style.display = "none";
-                return;
-            }
+        <h3>Risoluzione sul Libro Giornale (Journal Entries)</h3>
+        <p>Analizziamo l'impatto di ogni singola correzione per ripristinare la quadratura:</p>
 
-            headerTitle.innerText = subSelect.options[subSelect.selectedIndex].text;
-            htmlContent.innerHTML = theoryTextDatabase[selectedSub];
-            displayPanel.style.display = "block";
-        }
-    </script>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ref</th>
+                    <th>Conto Movimentato (Account Name)</th>
+                    <th>Dare (Debit)</th>
+                    <th>Avere (Credit)</th>
+                    <th>Spiegazione (Narrative)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2"><strong>1</strong></td>
+                    <td>Purchases Account</td>
+                    <td>£150</td>
+                    <td></td>
+                    <td rowspan="2">Inserimento della quota acquisti precedentemente omessa solo sul conto economico di mastro.</td>
+                </tr>
+                <tr>
+                    <td>Suspense Account</td>
+                    <td></td>
+                    <td>£150</td>
+                </tr>
+                <tr style="border-top: 1px solid var(--border);">
+                    <td rowspan="2"><strong>2</strong></td>
+                    <td>Suspense Account</td>
+                    <td></td>
+                    <td>£60</td>
+                    <td rowspan="2">Storno del maggior valore erroneamente registrato nel Cash Book per l'incasso del cliente (£120 - £60).</td>
+                </tr>
+                <tr>
+                    <td>Cash Book (Bank)</td>
+                    <td></td>
+                    <td>£60</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Verifica del Mastrino a T (Suspense Account Ledger)</h3>
+        <p>Applicando le due rettifiche del giornale, il conto transitorio si azzera perfettamente, confermando la correzione totale delle anomalie:</p>
+
+        <div class="t-account-container">
+            <div class="t-account" style="max-width: 500px; margin: 0 auto;">
+                <div class="t-title">Suspense Account</div>
+                <div class="t-grid">
+                    <div class="t-side debit">
+                        <div class="t-side-title">Debit (+)</div>
+                        <div class="t-row"><span>Opening Difference</span><span>£210</span></div>
+                    </div>
+                    <div class="t-side credit">
+                        <div class="t-side-title">Credit (-)</div>
+                        <div class="t-row"><span>Correction (Error 1)</span><span>£150</span></div>
+                        <div class="t-row"><span>Correction (Error 2)</span><span>£60</span></div>
+                    </div>
+                </div>
+                <div class="t-total">
+                    <div class="t-row"><span>Cleared Balance</span><span>£0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SECTION 4: SYNOPTIC SUMMARY (PART 1) -->
+    <div class="section-card synoptic-summary">
+        <h2>4. Riassunto Sinottico (Pre-Exam Cheat Sheet - Parte 1)</h2>
+        <p>Sintesi tecnica e concettuale per rispondere in modo rapido e sicuro alle domande del simulatore d'esame:</p>
+        
+        <ul>
+            <li><strong>Natura dei Conti di Controllo:</strong> L'SLCA è un <em>Asset</em> (saldo ordinario in <span class="badge badge-deb">DEBIT</span>); il PLCA è una <em>Liability</em> (saldo ordinario in <span class="badge badge-cred">CREDIT</span>).</li>
+            <li><strong>Le Vendite Lorde:</strong> Le transazioni estratte dal Sales Day Book (SDB) includono sempre l'IVA e aumentano l'SLCA in Dare (<span class="badge badge-deb">DEBIT</span>).</li>
+            <li><strong>Gli Acquisti Lordi:</strong> Le transazioni del Purchase Day Book (PDB) aumentano il PLCA in Avere (<span class="badge badge-cred">CREDIT</span>).</li>
+            <li><strong>Contra Entry (Compensazione):</strong> Riduce contemporaneamente sia l'SLCA (<span class="badge badge-cred">CREDIT</span>) sia il PLCA (<span class="badge badge-deb">DEBIT</span>) per il valore più basso tra i due saldi a confronto.</li>
+            <li><strong>Discounts Allowed vs Received:</strong> Gli sconti concessi ai clienti riducono l'SLCA in Avere (<span class="badge badge-cred">CREDIT</span>). Gli sconti ricevuti dai fornitori riducono il PLCA in Dare (<span class="badge badge-deb">DEBIT</span>).</li>
+            <li><strong>Assegni Insoluti (Dishonoured Cheques):</strong> Annullano l'incasso precedente ripristinando il debito del cliente. Si registrano in Dare (<span class="badge badge-deb">DEBIT</span>) nell'SLCA e in Avere (<span class="badge badge-cred">CREDIT</span>) nel Cash Book.</li>
+            <li><strong>Aggiornamento Cash Book obbligatorio per:</strong> Voci dell'estratto conto non note all'azienda (Bank Charges, Direct Debits, Standing Orders, Interessi).</li>
+            <li><strong>Voci esclusive del Prospetto di Riconciliazione:</strong> Operazioni note all'azienda ma non ancora elaborate dalla banca (Unpresented Cheques da detrarre, Outstanding Lodgements da aggiungere al saldo dell'estratto conto).</li>
+        </ul>
+    </div>
+    <!-- SECTION 4: SYNOPTIC SUMMARY (PART 2) -->
+    <div class="section-card synoptic-summary">
+        <h2>4. Riassunto Sinottico (Pre-Exam Cheat Sheet - Parte 2)</h2>
+        <p>Regole diagnostiche finali per il superamento dei test e dei simulatori analitici:</p>
+        
+        <ul>
+            <li><strong>Errore di Principio (Principle):</strong> Violazione della natura stessa del conto. Ad esempio, registrare l'acquisto di un veicolo aziendale (Asset) nel conto delle spese del carburante (Expense). Il Trial Balance quadra comunque.</li>
+            <li><strong>Errore di Commissione (Commission):</strong> Registrazione dell'importo corretto sul conto sbagliato, ma della stessa identica natura giuridica o contabile. Ad esempio, addebitare il conto del cliente Smith anziché il conto del cliente Smythe. Il Trial Balance rimane quadrato.</li>
+            <li><strong>Apertura del Suspense Account:</strong> Si genera solo e soltanto quando i totali delle colonne Dare e Avere del Trial Balance non coincidono a causa di un errore a sbilanciamento unilaterale.</li>
+            <li><strong>Azzeramento del Conto Transitorio:</strong> Il Suspense Account è un conto di passaggio temporaneo. Il suo saldo deve tassativamente risultare pari a zero (£0) una volta che tutte le scritture correttive di rettifica sul Libro Giornale sono state inserite e completate correttamente.</li>
+            <li><strong>Regola del Controllo Interno:</strong> I registri analitici individuali (Sales/Purchase Ledgers) contengono i dettagli dei singoli partner commerciali. I conti di controllo sintetici (SLCA/PLCA) registrano i totali aggregati dei Day Books nel General Ledger. I due sistemi devono quadrare costantemente in ogni esercizio.</li>
+        </ul>
+    </div>
+
+</div> <!-- End Container -->
+
 </body>
 </html>
