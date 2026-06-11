@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -80,7 +80,7 @@
             color: var(--text-muted);
         }
         li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -89,33 +89,38 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>DAIF Regulatory Cheat Sheet</h1>
-            <p style="color: var(--text-muted)">Essential formulas and classification boundaries for accounting standard compliance checks.</p>
+            <h1>DAIF Framework Cheat Sheet & Reference</h1>
+            <p style="color: var(--text-muted)">Essential parameters and calculation constraints for accounting standard compliance checks.</p>
 
-            <h2>1. Inventory Valuation Calculation Constraints (IAS 2)</h2>
+            <h2>1. Inventory Net Realisable Value Constraints (IAS 2)</h2>
             <div class="formula-panel">
-                <div class="formula-title">Net Realisable Value (NRV) Equation</div>
-                <div class="formula-text">NRV = Projected Selling Price - Estimated Completion Costs - Estimated Selling Expenses</div>
+                <div class="formula-title">Net Realisable Value Calculation</div>
+                <div class="formula-text">NRV = Estimated Selling Price - Costs to Complete Production - Costs to Market/Sell/Distribute</div>
+                <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">Compare this result directly against historical unit cost. Value the closing stock lines at the lower of the two figures.</p>
             </div>
 
-            <h2>2. IAS 16 Non-Current Asset Revaluation Elements</h2>
+            <h2>2. Non-Current Asset Revaluation Adjustments (IAS 16)</h2>
             <div class="formula-panel">
-                <div class="formula-title">Revaluation Surplus Calculation</div>
-                <div class="formula-text">Surplus = Regular Fair Value Valuation - Net Book Value at Date of Revaluation</div>
+                <div class="formula-title">Revaluation Surplus Equation</div>
+                <div class="formula-text">Surplus = Asset Market Valuation - Net Book Value at Date of Valuation</div>
+            </div>
+            <div class="formula-panel">
+                <div class="formula-title">Excess Annual Reserves Transfer Calculation</div>
+                <div class="formula-text">Transfer Amount = New Depreciation Charge - Original Historical Cost Depreciation Charge</div>
             </div>
 
-            <h2>3. IAS 36 Impairment Metric Boundaries</h2>
+            <h2>3. Asset Impairment Valuation Limits (IAS 36)</h2>
             <div class="formula-panel">
                 <div class="formula-title">Recoverable Amount Condition</div>
                 <div class="formula-text">Recoverable Amount = HIGHER of (Fair Value Less Costs to Sell) and (Value in Use)</div>
-                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">An asset is impaired if its carrying amount on the SoFP exceeds this Recoverable Amount.</p>
+                <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">An asset is impaired if its carrying value exceeds this baseline. Write down the difference to the SoPL.</p>
             </div>
 
-            <h2>4. Corporate Reporting Core Rules</h2>
+            <h2>4. Corporate Reporting Core Rules Reference</h2>
             <ul>
-                <li><strong>Going Concern:</strong> The baseline structural assumption that the company will continue trading and operating for at least 12 months from the reporting date.</li>
-                <li><strong>Adjusting Event:</strong> Post-reporting-date evidence confirming financial conditions that were already present at year-end (e.g., bankruptcy of a credit customer).</li>
-                <li><strong>Constructive Obligation:</strong> Arises when previous company practices or published policies create a valid corporate expectation that the firm will accept a liability.</li>
+                <li><strong>Substance Over Form:</strong> Financial statements must reflect the economic reality of a transaction rather than its legal structure to ensure a faithful representation.</li>
+                <li><strong>Constructive Obligation:</strong> Arises when an entity's past practices, established patterns, or published policies create a valid expectation among third parties that the company will accept and settle a liability.</li>
+                <li><strong>Adjusting Event:</strong> Post-reporting-date evidence that confirms conditions already present at the year-end milestone date (e.g., a customer liquidating their business).</li>
             </ul>
         </div>
     </div>
