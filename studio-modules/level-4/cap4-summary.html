@@ -1,0 +1,123 @@
+<!-- BLOCCO 1 -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4 - Chapter 4: DAIF Framework Summary | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --panel-bg: rgba(0, 242, 254, 0.05);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.3rem;
+        }
+        .formula-panel {
+            background: var(--panel-bg);
+            border-left: 3px solid var(--secondary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .formula-title {
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+        .formula-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>DAIF Regulatory Cheat Sheet</h1>
+            <p style="color: var(--text-muted)">Essential formulas and classification boundaries for accounting standard compliance checks.</p>
+
+            <h2>1. Inventory Valuation Calculation Constraints (IAS 2)</h2>
+            <div class="formula-panel">
+                <div class="formula-title">Net Realisable Value (NRV) Equation</div>
+                <div class="formula-text">NRV = Projected Selling Price - Estimated Completion Costs - Estimated Selling Expenses</div>
+            </div>
+
+            <h2>2. IAS 16 Non-Current Asset Revaluation Elements</h2>
+            <div class="formula-panel">
+                <div class="formula-title">Revaluation Surplus Calculation</div>
+                <div class="formula-text">Surplus = Regular Fair Value Valuation - Net Book Value at Date of Revaluation</div>
+            </div>
+
+            <h2>3. IAS 36 Impairment Metric Boundaries</h2>
+            <div class="formula-panel">
+                <div class="formula-title">Recoverable Amount Condition</div>
+                <div class="formula-text">Recoverable Amount = HIGHER of (Fair Value Less Costs to Sell) and (Value in Use)</div>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">An asset is impaired if its carrying amount on the SoFP exceeds this Recoverable Amount.</p>
+            </div>
+
+            <h2>4. Corporate Reporting Core Rules</h2>
+            <ul>
+                <li><strong>Going Concern:</strong> The baseline structural assumption that the company will continue trading and operating for at least 12 months from the reporting date.</li>
+                <li><strong>Adjusting Event:</strong> Post-reporting-date evidence confirming financial conditions that were already present at year-end (e.g., bankruptcy of a credit customer).</li>
+                <li><strong>Constructive Obligation:</strong> Arises when previous company practices or published policies create a valid corporate expectation that the firm will accept a liability.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
