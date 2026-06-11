@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 2 - Chapter 2: Quick Summary & Formulas</title>
+    <style>
+        :root {
+            --bg-main: #0a0f1d;
+            --bg-card: #111827;
+            --cyan: #00f2fe;
+            --teal: #4facfe;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
+            --debit-color: #10b981;
+            --credit-color: #ef4444;
+            --highlight: #f59e0b;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--cyan);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--cyan);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: var(--teal);
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .formula-display {
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            border-left: 4px solid var(--cyan);
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+            margin: 10px 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1rem;
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .badge-dr { background: rgba(16, 185, 129, 0.2); color: var(--debit-color); }
+        .badge-cr { background: rgba(239, 68, 68, 0.2); color: var(--credit-color); }
+        .badge-info { background: rgba(245, 158, 11, 0.2); color: var(--highlight); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
+    
+    <h1>Chapter 2: Control Accounts & Reconciliations Cheat Sheet</h1>
+
+    <h2>1. Bank Reconciliation Algorithmic Math</h2>
+    <p>Reconciling cash must always follow this strict two-stage logical flow to resolve numeric simulation tasks:</p>
+
+    <div class="summary-grid">
+        <div class="summary-card" style="grid-column: 1 / -1;">
+            <span class="badge badge-info">Stage 1: Update Internal Cash Book</span>
+            <div class="formula-display">Updated Cash Book = Original Balance + Direct Credits + Bank Interest - Bank Charges - Direct Debits - Standing Orders - Dishonoured Cheques</div>
+        </div>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card" style="grid-column: 1 / -1;">
+            <span class="badge badge-info">Stage 2: Bank Reconciliation Statement Target</span>
+            <div class="formula-display">Target Updated Cash Book = Bank Statement Balance + Outstanding Lodgements - Unpresented Cheques</div>
+            <ul>
+                <li><strong>Overdraft Note:</strong> If the bank statement is overdrawn, insert the starting statement balance as a <em>negative</em> figure.</li>
+            </ul>
+        </div>
+    </div>
+    <h2>2. Control Accounts Integrity & Contra Rules</h2>
+    <p>Core reconciliation boundaries and ledger balances that must be memorised for instant recall during assessments:</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="badge badge-dr">SLCA Natural Balance</span>
+            <p style="font-size: 0.85rem; margin: 8px 0;">Classified as a <strong>Current Asset</strong>. Regular balance sits on the <strong>Debit</strong> side.</p>
+            <ul>
+                <li><strong>Reconciliation Check:</strong> <code>SLCA Closing Balance = Total of Individual Customer Balances in Sales Ledger</code>.</li>
+            </ul>
+        </div>
+
+        <div class="summary-card">
+            <span class="badge badge-cr">PLCA Natural Balance</span>
+            <p style="font-size: 0.85rem; margin: 8px 0;">Classified as a <strong>Current Liability</strong>. Regular balance sits on the <strong>Credit</strong> side.</p>
+            <ul>
+                <li><strong>Reconciliation Check:</strong> <code>PLCA Closing Balance = Total of Individual Supplier Balances in Purchase Ledger</code>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card" style="grid-column: 1 / -1;">
+            <span class="badge badge-info">Contra Entry Rule (Inter-Ledger Transfer)</span>
+            <div class="formula-display">Contra Value = Minimum(Customer Balance in SL, Supplier Balance in PL)</div>
+            <ul>
+                <li><strong>Double Posting Check:</strong> Always record the contra offset by making a <strong>Debit</strong> to PLCA (reducing liability) and a matching <strong>Credit</strong> to SLCA (reducing asset).</li>
+            </ul>
+        </div>
+    </div>
+    <h2>3. Error Correction & Suspense Diagnostics</h2>
+    <p>Quick rules to isolate processing mistakes and track the temporary holding ledger account:</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="badge badge-info">Trial Balance Agrees (No Suspense)</span>
+            <p style="font-size: 0.85rem; margin: 8px 0;">Errors that do not break the arithmetic balance because a debit matches a credit:</p>
+            <ul>
+                <li><strong>Omission:</strong> Left out entirely.</li>
+                <li><strong>Commission:</strong> Correct type, wrong name.</li>
+                <li><strong>Principle:</strong> Wrong account class (Asset vs Expense).</li>
+                <li><strong>Original Entry:</strong> Inaccurate figure used on both sides.</li>
+                <li><strong>Reversal:</strong> Inverted Dr/Cr positions.</li>
+            </ul>
+        </div>
+
+        <div class="summary-card">
+            <span class="badge badge-info">Trial Balance Breaks (Suspense Opened)</span>
+            <p style="font-size: 0.85rem; margin: 8px 0;">Errors that create an unequal ledger balance and require immediate suspense investigation:</p>
+            <ul>
+                <li><strong>Single-Sided Entry:</strong> One part is missing.</li>
+                <li><strong>Two Debits / Two Credits:</strong> Input on the same side.</li>
+                <li><strong>Calculation Errors:</strong> Mismatched figures across ledger sides.</li>
+                <li><strong>Target:</strong> Clear the balance to exactly <strong>£0</strong>.</li>
+            </ul>
+        </div>
+    </div>
+
+</div> <!-- End Container -->
+
+</body>
+</html>
