@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 2 - Chapter 1: Quick Summary & Formulas</title>
+    <style>
+        :root {
+            --bg-main: #0a0f1d;
+            --bg-card: #111827;
+            --cyan: #00f2fe;
+            --teal: #4facfe;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
+            --debit-color: #10b981;
+            --credit-color: #ef4444;
+            --highlight: #f59e0b;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--cyan);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--cyan);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: var(--teal);
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .formula-display {
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            border-left: 4px solid var(--cyan);
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+            margin: 10px 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1.1rem;
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .badge-dr { background: rgba(16, 185, 129, 0.2); color: var(--debit-color); }
+        .badge-cr { background: rgba(239, 68, 68, 0.2); color: var(--credit-color); }
+        .badge-info { background: rgba(245, 158, 11, 0.2); color: var(--highlight); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
+    
+    <h1>Chapter 1: Quick Reference Cheat Sheet</h1>
+
+    <h2>1. The Core Accounting Equation Relationships</h2>
+    <p>Every single transaction entered into the General Ledger must maintain the equilibrium of the balance sheet equation. Use these variations depending on the objective target:</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="badge badge-info">Standard Format</span>
+            <div class="formula-display">Assets = Liabilities + Capital</div>
+        </div>
+        <div class="summary-card">
+            <span class="badge badge-info">To Find Equity</span>
+            <div class="formula-display">Capital = Assets - Liabilities</div>
+        </div>
+        <div class="summary-card">
+            <span class="badge badge-info">To Find Debts</span>
+            <div class="formula-display">Liabilities = Assets - Capital</div>
+        </div>
+    </div>
+    <h2>2. UK VAT Breakdown & Extraction Formulas</h2>
+    <p>In the UK AAT examinations, you must quickly calculate tax fractions based on an standard rate of 20%. Use the following mathematical shortcuts to jump between values:</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="badge badge-info">From Net to VAT Amount</span>
+            <div class="formula-display">VAT = Net × 0.20</div>
+            <ul>
+                <li>Applies when starting from the core cost/revenue figure.</li>
+                <li>Example: £500 Net × 0.20 = £100 VAT.</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <span class="badge badge-info">From Net to Gross Total</span>
+            <div class="formula-display">Gross = Net × 1.20</div>
+            <ul>
+                <li>Calculates the final invoice total due including tax.</li>
+                <li>Example: £500 Net × 1.20 = £600 Gross.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="badge badge-info">Extract VAT From Gross (Shortcut)</span>
+            <div class="formula-display">VAT = Gross / 6</div>
+            <ul>
+                <li>The standard AAT exam formula to isolate output/input tax.</li>
+                <li>Alternative: <code>(Gross / 120) × 20</code>.</li>
+                <li>Example: £600 Gross / 6 = £100 VAT.</li>
+            </ul>
+        </div>
+
+        <div class="summary-card">
+            <span class="badge badge-info">Extract Net From Gross Total</span>
+            <div class="formula-display">Net = Gross / 1.20</div>
+            <ul>
+                <li>Removes the tax layer to find the true income or expense.</li>
+                <li>Example: £600 Gross / 1.20 = £500 Net.</li>
+            </ul>
+        </div>
+    </div>
+    <h2>3. The Double-Entry Engine & Petty Cash Controls</h2>
+    <p>Core algorithmic posting rules and balancing criteria that must be memorised for instant recall during time-pressured assessments:</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="badge badge-dr">DEAD Accounts</span>
+            <p style="font-size: 0.85rem; margin: 8px 0;">Increases are recorded on the <strong>Debit</strong> side:</p>
+            <ul>
+                <li><strong>E</strong>xpenses (Costs incurred)</li>
+                <li><strong>A</strong>ssets (Resources owned)</li>
+                <li><strong>D</strong>rawings (Owner withdrawals)</li>
+            </ul>
+        </div>
+
+        <div class="summary-card">
+            <span class="badge badge-cr">CLIC Accounts</span>
+            <p style="font-size: 0.85rem; margin: 8px 0;">Increases are recorded on the <strong>Credit</strong> side:</p>
+            <ul>
+                <li><strong>L</strong>iabilities (Debts owed)</li>
+                <li><strong>I</strong>ncome (Revenues generated)</li>
+                <li><strong>C</strong>apital (Owner investment)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card" style="grid-column: 1 / -1;">
+            <span class="badge badge-info">Petty Cash Imprest Control Equation</span>
+            <div class="formula-display">Imprest Float = Physical Cash in Hand + Sum of Paid Petty Cash Vouchers</div>
+            <ul>
+                <li><strong>Reimbursement Rule:</strong> The cash amount needed to top up the tin is always <em>exactly equal</em> to the total value of the spent vouchers.</li>
+                <li><strong>Double Posting Check:</strong> Total credit sales gross value always hits the debit side of Trade Receivables; net value hits credit sales revenue; tax hits credit VAT control.</li>
+            </ul>
+        </div>
+    </div>
+
+</div> <!-- End Container -->
+
+</body>
+</html>
