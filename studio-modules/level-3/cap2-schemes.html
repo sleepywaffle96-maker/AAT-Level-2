@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Chapter 2: FAPS Schemes | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --t-green: #10b981;
+            --t-red: #ef4444;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+        .t-account {
+            width: 100%;
+            max-width: 480px;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.02);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .t-account th {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .t-account td {
+            padding: 0.6rem;
+            width: 50%;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .t-account td:first-child {
+            border-right: 2px solid var(--border-glass);
+        }
+        .side-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        .flex-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>FAPS Visual Layouts & T-Accounts</h1>
+            <p style="color: var(--text-muted)">Visual frameworks for posting adjustments and mapping incomplete records structures.</p>
+
+            <h2>1. Ledger Adjustments: Accruals and Prepayments</h2>
+            <div class="flex-grid">
+                <!-- Expense Ledger T-Account -->
+                <table class="t-account">
+                    <thead>
+                        <tr><th colspan="2">Electricity Expense Account</th></tr>
+                        <tr>
+                            <th class="side-title">Debit (Dr)</th>
+                            <th class="side-title">Credit (Cr)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bank (Cash Paid) <span style="color:var(--t-green)">£1,200</span></td>
+                            <td>Prepaid b/f (Opening) <span style="color:var(--t-red)">£150</span></td>
+                        </tr>
+                        <tr>
+                            <td>Accrued c/f (Closing) <span style="color:var(--t-green)">£200</span></td>
+                            <td><strong>SoPL (Balancing Figure)</strong> <span style="color:var(--text-main)">£1,250</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>2. Incomplete Records Control Frameworks</h2>
+            <p style="color: var(--text-muted)">Use these ledger frameworks to find missing figures like credit sales, credit purchases, or cash takings.</p>
+            
+            <div class="flex-grid">
+                <!-- Receivables Ledger Control Account -->
+                <table class="t-account">
+                    <thead>
+                        <tr><th colspan="2">Sales Ledger Control Account (SLCA)</th></tr>
+                        <tr>
+                            <th class="side-title">Debit (Dr)</th>
+                            <th class="side-title">Credit (Cr)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Opening Balance b/f <span style="color:var(--text-main)">£4,500</span></td>
+                            <td>Bank (Cash Received) <span style="color:var(--t-red)">£22,000</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Credit Sales (Missing Fig)</strong> <span style="color:var(--primary)">£23,800</span></td>
+                            <td>Irrecoverable Debts <span style="color:var(--t-red)">£300</span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Closing Balance c/f <span style="color:var(--text-main)">£6,000</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Partnership Appropriation Allocation Map -->
+                <table class="t-account">
+                    <thead>
+                        <tr><th colspan="2">Partnership Appropriation Summary</th></tr>
+                        <tr>
+                            <th class="side-title">Add / Credit to Pool</th>
+                            <th class="side-title">Deduct / Debit Pool</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Net Profit from SoPL <span style="color:var(--t-green)">£50,000</span></td>
+                            <td>Partners' Salaries <span style="color:var(--t-red)">£12,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>Interest on Drawings <span style="color:var(--t-green)">£1,500</span></td>
+                            <td>Interest on Capital <span style="color:var(--t-red)">£4,000</span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><strong>Residual Profit Split</strong> <span style="color:var(--primary)">£35,500</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Financial Statements Pro-Forma Layout (Extracts)</h2>
+            <div style="background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 6px; border: 1px solid var(--border-glass);">
+                <span style="color: var(--secondary); font-weight: bold;">Statement of Financial Position - Equity Section (Partnership)</span>
+                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin-top: 0.5rem;">
+Capital Accounts:
+   Partner A ....................................... £40,000
+   Partner B ....................................... £30,000   £70,000
+
+Current Accounts:
+   Partner A (Op. Bal + Share - Drawings) ..........  £4,200
+   Partner B (Op. Bal + Share - Drawings) ..........  £(1,100)  £3,100
+Total Equity ............................................... £73,100
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
