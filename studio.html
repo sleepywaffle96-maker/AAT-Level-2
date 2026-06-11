@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Global Theory & Revision Hub</title>
+    <style>
+        /* --- DESIGN SYSTEM RESETS & GLOBAL BACKGROUND --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body {
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
+                        url('https://wikimedia.org');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        /* --- MAIN HUB CONTAINER --- */
+        .hub-container {
+            background: rgba(255, 255, 255, 0.95); width: 100%; max-width: 850px;
+            border-radius: 16px; padding: 40px; text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        h1 { color: #0f172a; font-size: 2rem; margin-bottom: 10px; font-weight: 700; }
+        p.subtitle { color: #64748b; font-size: 1rem; margin-bottom: 30px; }
+        .controls-panel {
+            display: flex; flex-direction: column; gap: 15px; background: #f8fafc;
+            padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;
+        }
+        .select-group { display: flex; flex-direction: column; text-align: left; gap: 5px; }
+        label { font-size: 0.85rem; font-weight: 600; color: #0f172a; text-transform: uppercase; }
+        select { padding: 12px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1rem; outline: none; }
+        select:focus { border-color: #0284c7; }
+        
+        /* --- STUDY TEXT CONTENT LAYOUT --- */
+        .study-panel {
+            display: none; text-align: left; background: #ffffff;
+            border: 1px solid #cbd5e1; border-left: 5px solid #0d9488;
+            border-radius: 8px; padding: 25px; margin-top: 10px;
+        }
+        .study-panel h3 { color: #0f172a; font-size: 1.3rem; margin-bottom: 15px; font-weight: 700; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px; }
+        .study-panel h4 { color: #0284c7; font-size: 1.1rem; margin-top: 20px; margin-bottom: 8px; font-weight: 600; }
+        .study-panel p { color: #334155; font-size: 0.95rem; line-height: 1.5; margin-bottom: 12px; }
+        .study-panel ul { margin-left: 20px; color: #334155; font-size: 0.95rem; margin-bottom: 15px; }
+        .study-panel li { margin-bottom: 6px; line-height: 1.4; }
+        .formula-box {
+            background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #0d9488;
+            padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace;
+            font-weight: bold; color: #115e59; margin: 12px 0; font-size: 0.95rem;
+        }
+        .study-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        .study-table th { background: #0f172a; color: white; padding: 10px; text-align: left; }
+        .study-table td { padding: 10px; border: 1px solid #cbd5e1; color: #334155; }
+        .study-table tr:nth-child(even) { background: #f1f5f9; }
+        .btn-back { display: inline-block; margin-top: 20px; color: #0284c7; text-decoration: none; font-weight: bold; font-size: 0.95rem; }
+        .btn-back:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="hub-container">
+        <h1>AAT Academic Theory & Formula Hub</h1>
+        <p class="subtitle">Access complete formulas, ledger double-entry rules, and tax tables on-demand.</p>
+        
+        <div class="controls-panel">
+            <div class="select-group">
+                <label for="study-level">Select Qualification Level</label>
+                <select id="study-level" onchange="updateStudySyllabusMenu()">
+                    <option value="">-- Choose a Level --</option>
+                    <option value="2">Level 2 (Foundation)</option>
+                    <option value="3">Level 3 (Advanced)</option>
+                    <option value="4">Level 4 (Professional)</option>
+                </select>
+            </div>
+            
+            <div class="select-group">
+                <label for="study-subject">Select Specific Chapter Module</label>
+                <select id="study-subject" onchange="renderTheoryContent()">
+                    <option value="">-- Select a Level First --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dynamic Content Display Panel -->
+        <div id="theory-display-panel" class="study-panel">
+            <h3 id="theory-header-title">Chapter Title</h3>
+            <div id="theory-html-content"></div>
+        </div>
+
+        <a href="index.html" class="btn-back">← Return to Main Homepage Dashboard</a>
+    </div>
+    <script>
+        const studySyllabusData = {
+            "2": [
+                { value: "l2_c1", label: "Chapter 1: Bookkeeping Transactions" },
+                { value: "l2_c2", label: "Chapter 2: Bookkeeping Controls" },
+                { value: "l2_c3", label: "Chapter 3: Principles of Costing" }
+            ],
+            "3": [
+                { value: "l3_c3", label: "Chapter 3: Management Accounting: Costing" },
+                { value: "l3_c4", label: "Chapter 4: Indirect Tax" },
+                { value: "l3_c6", label: "Chapter 6: Business Awareness" }
+            ],
+            "4": [
+                { value: "l4_c1", label: "Chapter 1: Financial Statements of Limited Companies" },
+                { value: "l4_c7", label: "Chapter 7: Personal Tax" },
+                { value: "l4_c8", label: "Chapter 8: Business Tax" },
+                { value: "l4_c9", label: "Chapter 9: Internal Accounting Systems and Controls" }
+            ]
+        };
+
+        const theoryTextDatabase = {
+            l2_c1: `
+                <p>Mastering Double Entry rules is essential for all Level 2 tasks.</p>
+                <h4>1. Accounting Equation</h4>
+                <div class="formula-box">Assets = Liabilities + Capital</div>
+                <h4>2. Ledger Rules (DEAD CLIC)</h4>
+                <table class="study-table">
+                    <tr><th>Debit Increase (DEAD)</th><th>Credit Increase (CLIC)</th></tr>
+                    <tr><td>Expenses, Assets, Drawings</td><td>Liabilities, Income, Capital</td></tr>
+                </table>
+                <h4>3. Extracting VAT (20%)</h4>
+                <div class="formula-box">Net = Gross / 1.20 | VAT = Gross - Net</div>
+            `,
+            l2_c2: `
+                <p>Focuses on ensuring ledger integrity using control accounts.</p>
+                <h4>1. Bank Reconciliation Formula</h4>
+                <div class="formula-box">Adjusted Bank Balance = Bank Statement Balance + Uncredited Lodgements - Unpresented Cheques</div>
+            `,
+            l2_c3: `
+                <p>Introduction to classification of company expenditures.</p>
+                <h4>1. Direct Factory Valuation</h4>
+                <div class="formula-box">Prime Cost = Direct Materials + Direct Labour + Direct Expenses</div>
+            `,
+            l3_c3: `
+                <p>Advanced costing models and analysis of semi-variable expenditures.</p>
+                <h4>1. High-Low Method Formulas</h4>
+                <div class="formula-box">Variable Cost per Unit (VCU) = (Highest Cost - Lowest Cost) / (Highest Units - Lowest Units)</div>
+                <div class="formula-box">Total Fixed Costs = Total Cost - (VCU * Total Units)</div>
+            `,
+            l3_c4: `
+                <p>Rules governing UK Value Added Tax returns to HMRC.</p>
+                <div class="formula-box">VAT Payable/Refund = Output VAT (Sales) - Input VAT (Purchases)</div>
+            `,
+            l3_c6: `
+                <p>Analysis of performance metrics and credit control collection periods.</p>
+                <h4>1. Days Sales Outstanding (DSO) Formula</h4>
+                <div class="formula-box">DSO = (Trade Receivables / Total Credit Sales) * 365 Days</div>
+            `,
+            l4_c1: `
+                <p>Preparation of financial statements for consolidated parent-subsidiary corporations.</p>
+                <h4>1. Corporate Goodwill Calculation</h4>
+                <div class="formula-box">Goodwill = Purchase Consideration + Fair Value of NCI - Fair Value of Net Assets</div>
+            `,
+            l4_c7: `
+                <p>UK Income Tax calculations and assessment thresholds.</p>
+                <div class="formula-box">Taxable Income = Gross Income - Personal Allowance (£12,570)</div>
+                <h4>2. Statutory Tax Bands</h4>
+                <table class="study-table">
+                    <tr><th>Tax Band</th><th>Threshold</th><th>Rate</th></tr>
+                    <tr><td>Personal Allowance</td><td>£0 - £12,570</td><td>0%</td></tr>
+                    <tr><td>Basic Rate</td><td>£12,571 - £50,270</td><td>20%</td></tr>
+                    <tr><td>Higher Rate</td><td>£50,271 - £125,140</td><td>40%</td></tr>
+                </table>
+            `,
+            l4_c8: `
+                <p>Adjusting financial accounts profit matrices for statutory Corporation Tax.</p>
+                <div class="formula-box">Taxable Trading Profit = Net Profit + Disallowable Expenses - Capital Allowances</div>
+                <p><strong>Note:</strong> Client entertainment and standard depreciation must be added back.</p>
+            `,
+            l4_c9: `
+                <p>Evaluation of internal system loopholes and auditing error controls.</p>
+                <div class="formula-box">Control Deviation Rate = (Authorisation Errors / Audit Sample Size) * 100</div>
+            `
+        };
+
+        function updateStudySyllabusMenu() {
+            const lvlSelect = document.getElementById("study-level");
+            const subSelect = document.getElementById("study-subject");
+            const selectedLvl = lvlSelect.value;
+            const displayPanel = document.getElementById("theory-display-panel");
+
+            displayPanel.style.display = "none";
+            subSelect.innerHTML = '<option value="">-- Select a Module --</option>';
+
+            if (!selectedLvl) {
+                subSelect.innerHTML = '<option value="">-- Select a Level First --</option>';
+                return;
+            }
+
+            const modules = studySyllabusData[selectedLvl];
+            modules.forEach(m => {
+                const opt = document.createElement("option");
+                opt.value = m.value; opt.textContent = m.label;
+                subSelect.appendChild(opt);
+            });
+        }
+
+        function renderTheoryContent() {
+            const subSelect = document.getElementById("study-subject");
+            const displayPanel = document.getElementById("theory-display-panel");
+            const headerTitle = document.getElementById("theory-header-title");
+            const htmlContent = document.getElementById("theory-html-content");
+            const selectedSub = subSelect.value;
+
+            if (!selectedSub || !theoryTextDatabase[selectedSub]) {
+                displayPanel.style.display = "none";
+                return;
+            }
+
+            headerTitle.innerText = subSelect.options[subSelect.selectedIndex].text;
+            htmlContent.innerHTML = theoryTextDatabase[selectedSub];
+            displayPanel.style.display = "block";
+        }
+    </script>
+</body>
+</html>
