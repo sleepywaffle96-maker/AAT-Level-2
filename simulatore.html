@@ -63,13 +63,23 @@
                 </select>
             </div>
 
+            <div class="select-group">
+                <label for="select-difficulty">Select Difficulty</label>
+                <select id="select-difficulty">
+                    <option value="random">Random Difficulty</option>
+                    <option value="easy">Easy (Round Numbers)</option>
+                    <option value="medium">Medium (Standard Exam Layout)</option>
+                    <option value="hard">Hard (Complex Balances & Decimals)</option>
+                </select>
+            </div>
+
             <button class="btn-generate" onclick="launchExamSession()">
                 Generate Full Test (15 Questions)
             </button>
         </div>
         <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks based on your selection.</p>
     </div>
-    <!-- --- SIMULATION CORE DATA STRUCTURES --- -->
+    <!-- --- SIMULATION CORE ARCHITECTURE --- -->
     <script>
         const syllabusMapping = {
             "2": [
@@ -100,7 +110,6 @@
         };
 
         const simulationEngine = {
-            // LEVEL 2 ENGINES
             l2_c1() {
                 const gross = (Math.random() * 5000 + 200).toFixed(2);
                 return { question: `A company records a credit purchase invoice for a total gross amount of <strong>£${gross}</strong> including 20% VAT. Calculate the net amount to be entered into the Purchases Ledger Account.`, answer: (gross / 1.20).toFixed(2) };
@@ -117,7 +126,7 @@
                 const hours = 35, rate = Math.floor(Math.random() * 5) + 12;
                 return { question: `An accounting technician works <strong>${hours} hours</strong> at a basic hourly rate of <strong>£${rate}</strong>. Calculate the gross weekly production labor allocation cost.`, answer: (hours * rate).toString() };
             },
-            // LEVEL 3 ENGINES
+
             l3_c1() {
                 const cost = Math.floor(Math.random() * 20000) + 10000;
                 return { question: `A non-current asset costing <strong>£${cost}</strong> is depreciated using the straight-line method at 20% per annum. Calculate the carrying amount after the first year.`, answer: (cost * 0.8).toFixed(2) };
@@ -143,7 +152,6 @@
                 const receivables = Math.round((targetedDso * creditSales) / 365);
                 return { question: `A business records total credit sales of <strong>£${creditSales}</strong> and trade receivables of <strong>£${receivables}</strong>. Compute the Days Sales Outstanding (DSO) rounded to the nearest integer.`, answer: Math.round((receivables / creditSales) * 365).toString() };
             },
-            // LEVEL 4 ENGINES
             l4_c1() {
                 const consideration = Math.floor(Math.random() * 300000) + 500000, netAssets = Math.floor(Math.random() * 200000) + 250000, nci = Math.floor(Math.random() * 50000) + 40000;
                 return { question: `The consideration transferred is <strong>£${consideration}</strong>. The fair value of the NCI is <strong>£${nci}</strong>. If the net identifiable assets equal <strong>£${netAssets}</strong>, calculate the consolidated goodwill.`, answer: (consideration + nci - netAssets).toString() };
@@ -197,28 +205,60 @@
                 subjectSelect.appendChild(opt);
             });
         }
+    </script>
+    <script>
         function launchExamSession() {
-            const levelSelect = document.getElementById("select-level"), subjectSelect = document.getElementById("select-subject");
-            let levelSelected = levelSelect.value, subjectKey = subjectSelect.value;
+            const levelSelect = document.getElementById("select-level");
+            const subjectSelect = document.getElementById("select-subject");
+            const difficultySelect = document.getElementById("select-difficulty");
+            
+            let levelSelected = levelSelect.value;
+            let subjectKey = subjectSelect.value;
+            let difficultySelected = difficultySelect.value;
             let labelTextForHeader = subjectSelect.options[subjectSelect.selectedIndex].text;
+            
             const totalQuestions = 15; let questionsData = [];
 
             for (let i = 0; i < totalQuestions; i++) {
                 let targetKey = subjectKey;
                 let activeLevel = levelSelected;
-                
+                let activeDifficulty = difficultySelected;
+
+                if (difficultySelected === "random") {
+                    const diffs = ["easy", "medium", "hard"];
+                    activeDifficulty = diffs[Math.floor(Math.random() * diffs.length)];
+                }
                 if (levelSelected === "random") {
                     const levels = ["2", "3", "4"];
                     activeLevel = levels[Math.floor(Math.random() * levels.length)];
                     targetKey = syllabusMapping[activeLevel][Math.floor(Math.random() * syllabusMapping[activeLevel].length)].value;
-                    labelTextForHeader = "Mixed Comprehensive Exam (Randomized Levels & Chapters)";
+                    labelTextForHeader = "Mixed Comprehensive Exam (Randomized Levels)";
                 } else if (subjectKey === "random") {
                     targetKey = syllabusMapping[activeLevel][Math.floor(Math.random() * syllabusMapping[activeLevel].length)].value;
                     labelTextForHeader = `Random Combined Modules from Level ${activeLevel}`;
                 }
-                questionsData.push(simulationEngine[targetKey]());
+
+                let taskGenerated = simulationEngine[targetKey]();
+                
+                if (activeDifficulty === "easy") {
+                    taskGenerated.answer = Math.round(parseFloat(taskGenerated.answer)).toString();
+                    taskGenerated.question = taskGenerated.question.replace(/£\d+\.\d+/g, function(match) {
+                        return "£" + Math.round(parseFloat(match.replace("£", "")));
+                    });
+                } else if (activeDifficulty === "hard") {
+                    if (!taskGenerated.answer.includes(".")) {
+                        taskGenerated.answer = (parseFloat(taskGenerated.answer) + 0.37).toFixed(2);
+                        taskGenerated.question = taskGenerated.question.replace(/<strong>£\d+<\/strong>/g, function(match) {
+                            let val = parseInt(match.replace(/[^0-9]/g, ''));
+                            return "<strong>£" + (val + 0.37).toFixed(2) + "</strong>";
+                        });
+                    }
+                }
+
+                taskGenerated.severity = activeDifficulty;
+                questionsData.push(taskGenerated);
             }
-                        const examWindow = window.open("", "_blank");
+            const examWindow = window.open("", "_blank");
             
             let htmlStyle = `
                 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -232,6 +272,8 @@
                 .header-block span { background: #0f172a; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
                 .task-card { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid #0284c7; padding: 20px; margin-bottom: 25px; border-radius: 6px; }
                 .task-number { font-weight: bold; color: #0f172a; font-size: 1.1rem; margin-bottom: 10px; text-transform: uppercase; }
+                .difficulty-badge { font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 8px; color: white; vertical-align: middle; }
+                .badge-easy { background-color: #0d9488; } .badge-medium { background-color: #0284c7; } .badge-hard { background-color: #b91c1c; }
                 .task-text { font-size: 1.05rem; line-height: 1.5; color: #334155; margin-bottom: 15px; }
                 .input-field { padding: 8px 12px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 1rem; width: 200px; outline: none; }
                 .button-actions-group { display: flex; gap: 15px; width: 100%; margin-top: 10px; margin-bottom: 25px; }
@@ -239,8 +281,6 @@
                 .btn-pdf-exam { background-color: #0d9488; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 1; text-align:center;}
                 .feedback-box { font-weight: bold; font-size: 0.95rem; margin-top: 5px; min-height: 20px; }
                 .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; }
-                
-                /* --- STILI REALI DI ESPORTAZIONE IN PDF --- */
                 @media print {
                     body { background: none !important; background-color: white !important; padding: 0 !important; color: #000 !important; }
                     .exam-container { box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
@@ -249,10 +289,9 @@
                     .task-card { page-break-inside: avoid; border: 1px solid #cbd5e1 !important; border-left: 5px solid #0284c7 !important; background: #fff !important; margin-bottom: 15px !important; }
                 }
             `;
-
             const doc = examWindow.document;
             doc.open();
-            doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT_Mock_Exam_Level_' + levelSelected + '</title><style>' + htmlStyle + '</style></head><body></body></html>');
+            doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT_Mock_Exam_Session</title><style>' + htmlStyle + '</style></head><body></body></html>');
             doc.close();
 
             const body = doc.body;
@@ -262,28 +301,26 @@
 
             const headerBlock = doc.createElement("div");
             headerBlock.className = "header-block";
-            headerBlock.innerHTML = `<div><h2>AAT Mock Examination Session</h2><p style="color: #64748b; font-size: 0.9rem; margin-top: 4px;">Syllabus Focus: ${labelTextForHeader}</p></div><span>TARGET: ${levelSelected.toUpperCase()}</span>`;
+            headerBlock.innerHTML = `<div><h2>AAT Mock Examination Session</h2><p style="color: #64748b; font-size: 0.9rem; margin-top: 4px;">Syllabus Focus: ${labelTextForHeader} (${difficultySelected.toUpperCase()})</p></div><span>TARGET: ${levelSelected.toUpperCase()}</span>`;
             container.appendChild(headerBlock);
 
             const examForm = doc.createElement("form");
             examForm.id = "examForm";
             container.appendChild(examForm);
-
             questionsData.forEach((task, index) => {
                 const qNum = index + 1;
                 const card = doc.createElement("div");
                 card.className = "task-card";
                 card.innerHTML = `
-                    <div class="task-number">Task ${qNum} of 15</div>
+                    <div class="task-number">Task ${qNum} of 15 <span class="difficulty-badge badge-${task.severity}">${task.severity.toUpperCase()}</span></div>
                     <div class="task-text">${task.question}</div>
                     <div class="interaction-row">
-                        <input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter amount (£)" data-correct="${task.answer}">
+                        <input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter amount (£)" data-correct="${task.answer}" data-severity="${task.severity}">
                     </div>
                     <div id="feed-${qNum}" class="feedback-box"></div>
                 `;
                 examForm.appendChild(card);
             });
-
             const actionGroup = doc.createElement("div");
             actionGroup.className = "button-actions-group";
             
@@ -293,11 +330,7 @@
             
             const pdfBtn = doc.createElement("button");
             pdfBtn.type = "button"; pdfBtn.className = "btn-pdf-exam"; pdfBtn.innerText = "Save Exam as PDF";
-            
-            // Logica nativa a prova di errore: imposta il titolo corretto del file e avvia la stampa/salvataggio
-            pdfBtn.onclick = function() {
-                examWindow.print();
-            };
+            pdfBtn.onclick = function() { examWindow.print(); };
 
             actionGroup.appendChild(subBtn);
             actionGroup.appendChild(pdfBtn);
@@ -314,11 +347,16 @@
                     const feedbackElement = doc.getElementById('feed-' + i);
                     const userIn = parseFloat(inputElement.value);
                     const expected = parseFloat(inputElement.getAttribute('data-correct'));
+                    const severity = inputElement.getAttribute('data-severity');
                     
+                    let tolerance = 0.05; 
+                    if (severity === "easy") tolerance = 0.50; 
+                    if (severity === "hard") tolerance = 0.01; 
+
                     if (isNaN(userIn)) {
                         feedbackElement.innerText = "⚠ Unanswered. Marks omitted."; feedbackElement.style.color = "#ea580c"; continue;
                     }
-                    if (Math.abs(userIn - expected) < 0.05) {
+                    if (Math.abs(userIn - expected) <= tolerance) {
                         feedbackElement.innerText = "✓ Correct! Well done."; feedbackElement.style.color = "#0d9488"; correctAnswersCount++;
                     } else {
                         feedbackElement.innerText = "✗ Incorrect. Try again."; feedbackElement.style.color = "#ef4444";
