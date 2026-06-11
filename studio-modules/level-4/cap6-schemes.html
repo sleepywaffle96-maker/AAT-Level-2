@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -16,6 +16,7 @@
             --secondary: #4facfe;
             --t-green: #10b981;
             --t-red: #ef4444;
+            --accent-blue: #3b82f6;
         }
         body {
             background-color: var(--bg-dark);
@@ -58,27 +59,28 @@
             font-size: 1.4rem;
             margin-top: 1.5rem;
         }
-        .t-account {
+        .matrix-table {
             width: 100%;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
+            background: rgba(255,255,255,0.01);
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid var(--border-glass);
         }
-        .t-account th {
+        .matrix-table th {
             background: rgba(0, 242, 254, 0.1);
             color: var(--primary);
-            padding: 0.5rem;
+            padding: 0.8rem;
+            text-align: left;
             border-bottom: 2px solid var(--primary);
-        }
-        .t-account td {
-            padding: 0.6rem;
             font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .t-account td:first-child {
-            border-right: 2px solid var(--border-glass);
+        .matrix-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -87,53 +89,70 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>DAIF Ratio Classification & Du Pont Interdependence</h1>
+            <h1>DAIF Ratio Classification & Du Pont Interdependency</h1>
             <p style="color: var(--text-muted)">Visual structural layouts mapping financial metrics against working capital timelines.</p>
 
-            <h2>1. The Du Pont Profitability Interdependence Layout</h2>
+            <h2>1. The Du Pont Profitability Interdependency Layout</h2>
             <p style="color: var(--text-muted)">Visual schematic showing how operational profitability metrics combine to build overall return targets.</p>
             
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; overflow-x: auto;">
                 <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-              ┌────────────────────────────────────────────────┐
-              │      <strong>RETURN ON CAPITAL EMPLOYED (ROCE)</strong>         │
-              └───────────────────────┬────────────────────────┘
-                                      │
-                       ▲              │              ▲
-                       │                             │
-        ┌──────────────┴──────────────┐       ┌──────┴──────────────────────┐
-        │     Operating Profit Margin │   X   │        Asset Turnover       │
-        │     (Profitability Metric)  │       │      (Efficiency Metric)    │
-        └─────────────────────────────┘       └─────────────────────────────┘
+                             ┌────────────────────────────────────────────────┐
+                             │       <strong>RETURN ON CAPITAL EMPLOYED (ROCE)</strong>        │
+                             │       Target Operating Performance Baseline     │
+                             └───────────────────────┬────────────────────────┘
+                                                     │
+                                      ┌──────────────┴──────────────┐
+                                      ▼                             ▼
+                       ┌─────────────────────────────┐       ┌─────────────────────────────┐
+                       │   <strong>Operating Profit Margin</strong>   │   X   │        <strong>Asset Turnover</strong>       │
+                       │   (PBIT / Revenue x 100)    │       │     (Revenue / Capital)     │
+                       └──────────────┬──────────────┘       └──────────────┬──────────────┘
+                                      │                                     │
+                        ┌─────────────┴─────────────┐         ┌─────────────┴─────────────┐
+                        ▼                           ▼         ▼                           ▼
+             [ <strong>Gross Profit Margin</strong> ]     [ <strong>Expense Ratios</strong> ] [ <strong>Non-Current Assets</strong> ]  [ <strong>Working Capital</strong> ]
+              Pricing and factory        Administrative and  Capacity and equipment  Inventory and trade
+              efficiency thresholds      distribution control  utilization levels     receivable balances
                 </pre>
             </div>
-
-            <h2>2. Working Capital Operational Cycle Schematic</h2>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Net Operating Cycle Days & Liquidity Asset Map</h2>
             <p style="color: var(--text-muted)">The mathematical pipeline mapping day limits for processing physical items back into monetary value.</p>
             
-            <table class="t-account">
+            <table class="matrix-table">
                 <thead>
                     <tr>
-                        <th style="text-align: left;">Cycle Phase Component</th>
-                        <th>Day Metric Equation</th>
-                        <th>Impact on Cash Resources</th>
+                        <th>Working Capital Cycle Phase</th>
+                        <th>Standard Formula Model</th>
+                        <th>Operational Goal Direction</th>
+                        <th>Cash Flow Implications</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="color:var(--text-main)">Inventory Holding Period</td>
+                        <td style="color:var(--text-main)"><strong>1. Inventory Holding Period</strong></td>
                         <td>(Average Inventory / Cost of Sales) x 365</td>
-                        <td style="color:var(--t-red)">Ties up cash resources longer</td>
+                        <td style="color:var(--t-red)">Minimize (e.g., target 45 days)</td>
+                        <td>Prevents cash from being tied up in raw materials and finished stock.</td>
                     </tr>
                     <tr>
-                        <td style="color:var(--text-main)">Receivables Collection Days</td>
+                        <td style="color:var(--text-main)"><strong>2. Trade Receivables Period</strong></td>
                         <td>(Average Receivables / Credit Sales) x 365</td>
-                        <td style="color:var(--t-red)">Delays cash arrivals into bank</td>
+                        <td style="color:var(--t-red)">Minimize (e.g., target 30 days)</td>
+                        <td>Speeds up the conversion of credit invoices into raw bank deposits.</td>
                     </tr>
-                    <tr style="background: rgba(16, 185, 129, 0.05);">
-                        <td style="color:var(--t-green)">Less: Payables Payment Days</td>
+                    <tr style="background: rgba(16, 185, 129, 0.05)">
+                        <td style="color:var(--t-green)"><strong>3. Less: Trade Payables Period</strong></td>
                         <td>(Average Payables / Credit Purchases) x 365</td>
-                        <td style="color:var(--t-green)">Preserves corporate bank liquidity</td>
+                        <td style="color:var(--t-green)">Maximize (e.g., target 60 days)</td>
+                        <td>Delays outward payments to retain liquid cash inside the company bank account.</td>
+                    </tr>
+                    <tr style="background: rgba(0, 242, 254, 0.05); border-top: 2px solid var(--primary)">
+                        <td style="color:var(--primary)"><strong>NET OPERATING CYCLE TOTAL</strong></td>
+                        <td><strong>Days (1 + 2) - Days 3</strong></td>
+                        <td><strong>Target: Lean Cycle Profile</strong></td>
+                        <td><strong>Measures the net number of days cash is tied up in trading loops.</strong></td>
                     </tr>
                 </tbody>
             </table>
