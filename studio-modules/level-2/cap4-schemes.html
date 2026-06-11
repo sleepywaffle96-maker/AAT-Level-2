@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 2 - Chapter 4: Visual Schemes</title>
+    <style>
+        :root {
+            --bg-main: #0a0f1d;
+            --bg-card: #111827;
+            --cyan: #00f2fe;
+            --teal: #4facfe;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
+            --debit-color: #10b981;
+            --credit-color: #ef4444;
+            --warn-color: #f59e0b;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--cyan);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--cyan);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--teal);
+            margin-top: 35px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: var(--text-main);
+            margin-top: 25px;
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cycle Flow Layout Stilling */
+        .cycle-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .cycle-box {
+            background: #0f1423;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--cyan);
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .cycle-num {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--teal);
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #1e293b;
+            color: var(--cyan);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
+    
+    <h1>Chapter 4: Lifelong Learning, Data, & Ethics — Schemes</h1>
+
+    <!-- SECTION 1: THE CPD CYCLE GRAPH -->
+    <div class="section-card">
+        <h2>1. The Continuous Professional Development (CPD) Learning Loop</h2>
+        <p>This matrix maps out the cyclical stages an accountant must follow to guarantee systematic, lifelong skill development.</p>
+        
+        <div class="cycle-container">
+            <div class="cycle-box">
+                <div class="cycle-num">01</div>
+                <strong>PLANNING</strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">Identify technical flaws and map education goals.</p>
+            </div>
+            <div class="cycle-box">
+                <div class="cycle-num">02</div>
+                <strong>ACTION</strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">Complete target training modules or research updates.</p>
+            </div>
+            <div class="cycle-box">
+                <div class="cycle-num">03</div>
+                <strong>EVALUATION</strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">Assess practical knowledge outputs against targets.</p>
+            </div>
+            <div class="cycle-box">
+                <div class="cycle-num">04</div>
+                <strong>REFLECTION</strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">Review the long-term impact on daily workplace speed.</p>
+            </div>
+        </div>
+    </div>
+    <!-- SECTION 2: DATA PROTECTION SECURITY MATRIX -->
+    <div class="section-card">
+        <h2>2. UK GDPR Compliance & Threat Defense Matrix</h2>
+        <p>This technical scheme highlights the security mapping required to safeguard accounting ledgers against current cyber vectors.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Data Protection Threat Vector</th>
+                    <th>UK GDPR Principle At Risk</th>
+                    <th>Mandatory Accounting Security Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Phishing Attack</strong> (Malicious external payload email)</td>
+                    <td style="color: var(--credit-color);">Integrity and Confidentiality</td>
+                    <td>Mandatory Multi-Factor Authentication (MFA) + Staff Awareness Tests</td>
+                </tr>
+                <tr>
+                    <td><strong>Unauthorized Ledger Review</strong> (Clerk snooping records)</td>
+                    <td style="color: var(--credit-color);">Purpose & Storage Limitation</td>
+                    <td style="color: var(--debit-color);">Role-Based Access Permissions (RBAC)</td>
+                </tr>
+                <tr>
+                    <td><strong>Hardware Catastrophe</strong> (Local drive physical corruption)</td>
+                    <td style="color: var(--warn-color);">Availability and Security</td>
+                    <td style="color: var(--debit-color);">Automated Offsite Encrypted Cloud Backups</td>
+                </tr>
+                <tr>
+                    <td><strong>Unreported Ledger Alteration</strong> (Untracked entry change)</td>
+                    <td style="color: var(--credit-color);">Accountability Principle</td>
+                    <td style="color: var(--debit-color);">Immutable Automated Digital Audit Log Software</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- SECTION 3: COMMUNICATION SELECTION MATRIX -->
+    <div class="section-card">
+        <h2>3. Corporate Medium Optimization Layout</h2>
+        <p>This selection grid guides a bookkeeper toward choosing the correct business communication format depending on the scenario layout.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Corporate Communication Objective</th>
+                    <th>Optimized Medium Format</th>
+                    <th>Primary Audit Trail Advantage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Distributing monthly budget variances to directors</td>
+                    <td style="color: var(--cyan); font-weight: bold;">Structured Email / Written Report</td>
+                    <td>Creates an unalterable permanent numerical reference trail.</td>
+                </tr>
+                <tr>
+                    <td>Addressing internal disputes regarding ledger mistakes</td>
+                    <td style="color: var(--warn-color);">Face-to-Face / Verbal Meeting</td>
+                    <td>Enables rapid interpersonal empathy and friction reduction.</td>
+                </tr>
+                <tr>
+                    <td>Announcing urgent system down updates to all departments</td>
+                    <td style="color: var(--cyan);">Corporate Intranet Broadcast</td>
+                    <td>Ensures simultaneous wide-scale employee awareness.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- End Container -->
+
+</body>
+</html>
