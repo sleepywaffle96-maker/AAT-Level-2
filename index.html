@@ -290,37 +290,15 @@
         </div>
     </div>
 </div>
-    <!-- NUOVO HUB-CONTAINER AFFIANCATO -->
-    <div class="hub-container" style="flex: 1; min-width: 320px; max-width: 750px; margin: 0; border-top: 4px solid var(--aat-green);">
-        <div class="aat-header-banner">
-            <div class="aat-badge-top">Official Theory Hub</div>
-            <h1>AAT Academic Studio</h1>
-            <p class="subtitle">Independent Study Suites</p>
-        </div>
-        <div class="content-area">
-            <a href="studio.html" class="simulator-banner" style="background: linear-gradient(135deg, var(--aat-green), #0f766e); margin-bottom: 25px;">
-                <div class="simulator-text">
-                    <h3>Academic Theory & Formula Hub</h3>
-                    <p>Access rules, equations, and tax tables on-demand</p>
-                </div>
-                <div class="simulator-badge">Open Hub &rarr;</div>
-            </a>
-            <div class="level-section">
-                <p style="color: #64748b; font-style: italic; font-size: 0.95rem; text-align: center;">
-                    Select the module above to open the complete structured database.
-                </p>
-            </div>
-        </div>
-    </div>
 </div> <!-- CHIUSURA WRAPPER GLOBALE -->
 
 <script>
-    // 1. Gestione dei tre grandi blocchi di livello
-    const levelBtns = document.getElementsByClassName("level-btn");
+    // 1. Gestione dei grandi blocchi di livello
+    let levelBtns = document.getElementsByClassName("level-btn");
     for (let i = 0; i < levelBtns.length; i++) {
         levelBtns[i].addEventListener("click", function() {
             this.classList.toggle("active");
-            const panel = this.nextElementSibling;
+            let panel = this.parentElement.querySelector(".tests-panel") || this.nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
             } else {
@@ -329,20 +307,21 @@
         });
     }
 
-    // 2. Gestione ad accordion annidato interno per i capitoli
-    const chapterBtns = document.getElementsByClassName("chapter-btn");
+    // 2. Gestione degli accordion dei capitoli interni
+    let chapterBtns = document.getElementsByClassName("chapter-btn");
     for (let i = 0; i < chapterBtns.length; i++) {
-        chapterBtns[i].addEventListener("click", function(e) {
+        chapterBtns[i].addEventListener("click", function() {
             this.classList.toggle("active");
-            const subPanel = this.nextElementSibling;
-            const parentPanel = this.parentElement;
-            if (subPanel.style.maxHeight) {
-                subPanel.style.maxHeight = null;
+            let panel = this.nextElementSibling;
+            let parentPanel = this.closest(".tests-panel");
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
             } else {
-                subPanel.style.maxHeight = subPanel.scrollHeight + "px";
-                parentPanel.style.maxHeight = (parentPanel.scrollHeight + subPanel.scrollHeight) + "px";
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                if (parentPanel) {
+                    parentPanel.style.maxHeight = (parentPanel.scrollHeight + panel.scrollHeight) + "px";
+                }
             }
-            e.stopPropagation();
         });
     }
 </script>
