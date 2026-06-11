@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -16,6 +16,7 @@
             --secondary: #4facfe;
             --t-green: #10b981;
             --t-red: #ef4444;
+            --accent-blue: #3b82f6;
         }
         body {
             background-color: var(--bg-dark);
@@ -58,27 +59,28 @@
             font-size: 1.4rem;
             margin-top: 1.5rem;
         }
-        .t-account {
+        .matrix-table {
             width: 100%;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
+            background: rgba(255,255,255,0.01);
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid var(--border-glass);
         }
-        .t-account th {
+        .matrix-table th {
             background: rgba(0, 242, 254, 0.1);
             color: var(--primary);
-            padding: 0.5rem;
+            padding: 0.8rem;
+            text-align: left;
             border-bottom: 2px solid var(--primary);
-        }
-        .t-account td {
-            padding: 0.6rem;
             font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .t-account td:first-child {
-            border-right: 2px solid var(--border-glass);
+        .matrix-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -87,35 +89,35 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>DAIF Consolidation Mechanics & Working Layouts</h1>
-            <p style="color: var(--text-muted)">Standard architectural step-by-step working models for parsing consolidated group accounts.</p>
+            <h1>DAIF Standard Group Consolidation Workings</h1>
+            <p style="color: var(--text-muted)">The essential step-by-step mathematical working sheets required to draft consolidated statements under IFRS rules.</p>
 
-            <h2>1. Working 2: Goodwill Matrix Pro-Forma (IFRS 3)</h2>
-            <p style="color: var(--text-muted)">The statutory working layout used to compute goodwill values at the acquisition milestone date.</p>
+            <h2>1. Working 2: Full Goodwill Valuation Schedule (IFRS 3)</h2>
+            <p style="color: var(--text-muted)">The standardized structure used to calculate goodwill at the acquisition date, including fair value adjustments.</p>
             
-            <table class="t-account">
+            <table class="matrix-table">
                 <thead>
                     <tr>
-                        <th style="text-align: left;">Goodwill Computation Components</th>
-                        <th>Parent Value (£)</th>
-                        <th>Total Value Pool (£)</th>
+                        <th>Goodwill Component Breakdown</th>
+                        <th>Parent Share (£)</th>
+                        <th>Consolidated Pool Total (£)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Purchase Consideration Transferred by Parent</td>
-                        <td>450,000</td>
+                        <td style="color:var(--text-main)">Purchase Consideration Transferred by Parent Company</td>
+                        <td>520,000</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Add: Fair Value of Non-Controlling Interest (NCI) at Acquisition</td>
-                        <td>110,000</td>
+                        <td style="color:var(--text-main)">Add: Fair Value of the Non-Controlling Interest (NCI) at Acquisition</td>
+                        <td>140,000</td>
                         <td></td>
                     </tr>
-                    <tr style="border-bottom: 2px solid var(--secondary)">
-                        <td style="color:var(--text-main)"><strong>Total Combined Consideration Value Pool</strong></td>
+                    <tr style="border-bottom: 2px solid var(--secondary); background: rgba(255,255,255,0.02)">
+                        <td><strong>Total Combined Value Pool</strong></td>
                         <td></td>
-                        <td style="color:var(--primary)"><strong>560,000</strong></td>
+                        <td style="color:var(--primary)"><strong>660,000</strong></td>
                     </tr>
                     <tr>
                         <td>Less: Subsidiary Net Identifiable Assets at Acquisition:</td>
@@ -123,44 +125,48 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>- Ordinary Share Capital Baseline</td>
-                        <td>(200,000)</td>
+                        <td>- Ordinary Share Capital Baseline Value</td>
                         <td></td>
+                        <td>(250,000)</td>
                     </tr>
                     <tr>
-                        <td>- Retained Earnings at Acquisition Date</td>
-                        <td>(180,000)</td>
+                        <td>- Retained Earnings at Acquisition Date Milestone</td>
                         <td></td>
+                        <td>(190,000)</td>
                     </tr>
                     <tr>
-                        <td>- Revaluation Surplus Fair Value Adjustments</td>
-                        <td>(30,000)</td>
+                        <td>- Land Fair Value Revaluation Surplus Adjustments</td>
                         <td></td>
+                        <td>(40,000)</td>
                     </tr>
                     <tr style="background: rgba(16, 185, 129, 0.05); border-top: 2px solid var(--t-green);">
-                        <td style="color:var(--t-green)"><strong>FINAL GOODWILL ARISING (Asset to SoFP)</strong></td>
+                        <td style="color:var(--t-green)"><strong>FINAL ASSET GOODWILL ARISING (Carried to SoFP Assets)</strong></td>
                         <td></td>
-                        <td style="color:var(--primary)"><strong>150,000</strong></td>
+                        <td style="color:var(--primary)"><strong>180,000</strong></td>
                     </tr>
                 </tbody>
             </table>
-
-            <h2>2. Working 5: Consolidated Group Retained Earnings Sheet</h2>
-            <p style="color: var(--text-muted)">Calculates the group's total share of post-acquisition retained profits.</p>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Working 5: Group Retained Earnings Calculation</h2>
+            <p style="color: var(--text-muted)">Advanced working model to calculate consolidated retained profits, accounting for post-acquisition shares and PUP adjustments.</p>
             
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
                 <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-Parent Company Retained Earnings Balance (100%) ..............     £850,000
+Parent Company Retained Earnings Balance (100% Core) .........     £920,000
 Add: Group Share of Subsidiary Post-Acquisition Profit:
-     Subsidiary Retained Earnings at Year End ...... £240,000
-     Less: Subsidiary Retained at Acquisition ..... -£180,000
-     Subsidiary Post-Acquisition Total Profit ......  £60,000
-     Group Share (80% Parent Ownership Allocation) ...........    + £48,000
-Less: Group Provision for Unrealised Profit (PUP Adjustment) .    -  £3,000
-Less: Goodwill Impairment Surcharges (Group Share) ..........    -  £5,000
+     Subsidiary Retained Earnings at Reporting Date . £265,000
+     Less: Subsidiary Retained Earnings at Acquisition -£190,000
+     Total Subsidiary Post-Acquisition Profit Pool ..  £75,000
+     Group Allocation Share (80% Parent Share) ..............    + £60,000
+Less: Provision for Unrealised Profit (PUP: Parent Selling) ..    -  £4,200
+Less: Accumulated Goodwill Impairment Surcharges (Group Share)    -  £6,000
 ════════════════════════════════════════════════════════════════════════════
-<strong>CONSOLIDATED RETAINED EARNINGS (Equity to SoFP)</strong> ..............    <strong>£890,000</strong>
+<strong>CONSOLIDATED RETAINED EARNINGS BALANCE (Carried to Equity)</strong> ...    <strong>£969,800</strong>
                 </pre>
+            </div>
+            
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 242, 254, 0.05); border-radius: 6px; border: 1px solid var(--border-glass)">
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-main);"><strong>Consolidation Rule Reminder:</strong> If the Subsidiary was the selling entity in the intra-group transaction, the PUP adjustment must be deducted from Working 3 (Subsidiary Net Assets), reducing both the Parent's and the NCI's shares proportionately rather than impacting Working 5 directly.</p>
             </div>
         </div>
     </div>
