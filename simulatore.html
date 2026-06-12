@@ -1,4 +1,4 @@
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_PART_1 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_REGRESSIONE_CALC_PART_1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -78,15 +78,93 @@
         .submit-test-btn { width: 100%; background: #1E293B; color: #FFFFFF; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 600; cursor: pointer; }
         .submit-test-btn:hover { background: #334155; }
 
-        /* WIDGET CALCOLATRICE PERSISTENTE */
-        .glass-calc { position: fixed; bottom: 20px; right: 20px; width: 240px; background: rgba(31, 41, 55, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); border-radius: 12px; padding: 12px; z-index: 100; color: #FFFFFF; }
-        .calc-btn { padding: 8px; background: #374151; border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer; text-align: center; font-size: 13px; }
-        .calc-btn:hover { background: #4B5563; }
-        .calc-op { background: rgba(49, 46, 129, 0.6); color: #C7D2FE; }
-        .calc-op:hover { background: rgb(49, 46, 129); }
+        /* ================= VECCHIO STILE ORIGINALE CALCOLATRICE ================= */
+        .calc-widget-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 280px;
+            z-index: 9999;
+            background: rgba(16, 24, 48, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            border-radius: 10px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .calc-widget-header {
+            background: rgba(0, 242, 254, 0.15);
+            padding: 0.8rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #00f2fe;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+            user-select: none;
+        }
+        .calc-widget-header:hover {
+            background: rgba(0, 242, 254, 0.25);
+        }
+        .calc-widget-body {
+            padding: 1rem;
+            display: none;
+        }
+        .calc-display {
+            width: 100%;
+            padding: 0.6rem;
+            background: #070b14;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            color: #00f2fe;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.4rem;
+            text-align: right;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+        .calc-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        .calc-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            padding: 0.6rem;
+            color: #f8fafc;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .calc-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .btn-sci {
+            color: #4facfe;
+            background: rgba(79, 172, 254, 0.05);
+        }
+        .btn-op {
+            color: #00f2fe;
+            background: rgba(0, 242, 254, 0.05);
+        }
+        .btn-equals {
+            background: #00f2fe;
+            color: #0a0f1d;
+            grid-row: span 1;
+        }
+        .btn-equals:hover {
+            background: #4facfe;
+            color: #fff;
+        }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_PART_2 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_REGRESSIONE_CALC_PART_2 -->
 <body>
 <div class="container">
     <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
@@ -129,39 +207,8 @@
 
     </div>
 </div>
-
-<!-- FLOATING WIDGET CALCOLATRICE -->
-<div id="persistent-calculator" class="glass-calc">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding: 0 4px;">
-        <span style="text-transform: uppercase; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: #9CA3AF;">AAT Calculator</span>
-        <button onclick="document.getElementById('calc-screen').value = ''" style="background: none; border: none; color: #F87171; cursor: pointer; font-size: 11px; font-weight: 700;">C</button>
-    </div>
-    <input type="text" id="calc-screen" style="width: 100%; box-sizing: border-box; background: #030712; text-align: right; font-size: 16px; font-family: monospace; padding: 8px; border: 1px solid #1F2937; border-radius: 6px; color: #10B981; margin-bottom: 8px; outline: none;" readonly />
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
-        <button onclick="appendCalc('7')" class="calc-btn">7</button>
-        <button onclick="appendCalc('8')" class="calc-btn">8</button>
-        <button onclick="appendCalc('9')" class="calc-btn">9</button>
-        <button onclick="appendCalc('/')" class="calc-btn calc-op">/</button>
-        
-        <button onclick="appendCalc('4')" class="calc-btn">4</button>
-        <button onclick="appendCalc('5')" class="calc-btn">5</button>
-        <button onclick="appendCalc('6')" class="calc-btn">6</button>
-        <button onclick="appendCalc('*')" class="calc-btn calc-op">*</button>
-        
-        <button onclick="appendCalc('1')" class="calc-btn">1</button>
-        <button onclick="appendCalc('2')" class="calc-btn">2</button>
-        <button onclick="appendCalc('3')" class="calc-btn">3</button>
-        <button onclick="appendCalc('-')" class="calc-btn calc-op">-</button>
-        
-        <button onclick="appendCalc('0')" class="calc-btn">0</button>
-        <button onclick="appendCalc('.')" class="calc-btn">.</button>
-        <button onclick="solveCalc()" class="calc-btn" style="background: #059669;">=</button>
-        <button onclick="appendCalc('+')" class="calc-btn calc-op">+</button>
-    </div>
-</div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_PART_3 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_REGRESSIONE_CALC_PART_3 -->
 <script>
-    // Database dei capitoli allineato rigidamente alla dashboard
     const syllabusData = {
         "L2": [
             "Chapter 1: Bookkeeping Transactions",
@@ -203,7 +250,6 @@
             return;
         }
 
-        // Aggiunge l'opzione "Random" specifica all'interno del livello selezionato
         let optRand = document.createElement("option");
         optRand.value = "LEVEL_RANDOM";
         optRand.textContent = "🎲 Randomize Chapter Inside This Level";
@@ -218,7 +264,7 @@
             });
         }
     }
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_PART_4 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_REGRESSIONE_CALC_PART_4 -->
     function generateRandomTest() {
         let lvl = document.getElementById("level-selector").value;
         let chap = document.getElementById("chapter-selector").value;
@@ -228,7 +274,6 @@
             return;
         }
 
-        // Se l'utente sceglie RANDOM totale, estrae a sorte un livello reale per generare la domanda
         if (lvl === "RANDOM") {
             const levels = ["L2", "L3", "L4"];
             lvl = levels[Math.floor(Math.random() * levels.length)];
@@ -263,13 +308,107 @@
         alert("Verification completed. Results computed successfully.");
     }
 
-    /* LOGICA OPERATIVA DELLA CALCOLATRICE */
-    function appendCalc(val) { document.getElementById('calc-screen').value += val; }
-    function solveCalc() {
+    // ================= LOGICA OPERATIVA INIEZIONE CALCOLATRICE VINTAGE =================
+    document.body.insertAdjacentHTML('beforeend', `
+        <div id="floatingCalcWidget" class="calc-widget-floating">
+            <div class="calc-widget-header" onclick="toggleCalculatorView()">
+                <span>🧮 AAT Exam Calculator</span>
+                <span id="calcToggleArrow">▲</span>
+            </div>
+            <div id="calcWidgetBody" class="calc-widget-body">
+                <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
+                <div class="calc-btn-grid">
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
+                    <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+                    <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
+                    <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
+                    <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+                    <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
+                    <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
+                    <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+                    <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
+                    <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
+                    <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+                    <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
+                    <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
+                    <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+                </div>
+            </div>
+        </div>
+    `);
+
+    let isCalcBodyExpanded = false;
+    let calcCurrentExpressionString = "";
+
+    function toggleCalculatorView() {
+        const body = document.getElementById("calcWidgetBody");
+        const arrow = document.getElementById("calcToggleArrow");
+        isCalcBodyExpanded = !isCalcBodyExpanded;
+        if (isCalcBodyExpanded) {
+            body.style.display = "block";
+            arrow.textContent = "▼";
+        } else {
+            body.style.display = "none";
+            arrow.textContent = "▲";
+        }
+    }
+
+    function pushCalcChar(char) {
+        const display = document.getElementById("calcDisplayScreen");
+        if (display.value === "0" && char !== ".") {
+            calcCurrentExpressionString = char;
+        } else {
+            calcCurrentExpressionString += char;
+        }
+        display.value = calcCurrentExpressionString;
+    }
+
+    function clearCalcScreen() {
+        calcCurrentExpressionString = "";
+        document.getElementById("calcDisplayScreen").value = "0";
+    }
+
+    function pushCalcFunction(type) {
+        const display = document.getElementById("calcDisplayScreen");
+        let currentNumericValue = parseFloat(display.value) || 0;
+        if (type === 'sqrt') {
+            if (currentNumericValue < 0) {
+                display.value = "Error";
+                calcCurrentExpressionString = "";
+                return;
+            }
+            currentNumericValue = Math.sqrt(currentNumericValue);
+        } else if (type === 'pow') {
+            currentNumericValue = Math.pow(currentNumericValue, 2);
+        } else if (type === 'percent') {
+            currentNumericValue = currentNumericValue / 100;
+        }
+        calcCurrentExpressionString = Number(currentNumericValue.toFixed(6)).toString();
+        display.value = calcCurrentExpressionString;
+    }
+
+    function executeCalcExpression() {
+        const display = document.getElementById("calcDisplayScreen");
+        if (!calcCurrentExpressionString) return;
         try {
-            let res = eval(document.getElementById('calc-screen').value);
-            document.getElementById('calc-screen').value = Number(res.toFixed(4));
-        } catch { document.getElementById('calc-screen').value = 'Error'; }
+            let mathematicalEvaluationOutput = new Function(`return (${calcCurrentExpressionString})`)();
+            if (mathematicalEvaluationOutput === Infinity || isNaN(mathematicalEvaluationOutput)) {
+                display.value = "Error";
+                calcCurrentExpressionString = "";
+            } else {
+                calcCurrentExpressionString = Number(mathematicalEvaluationOutput.toFixed(6)).toString();
+                display.value = calcCurrentExpressionString;
+            }
+        } catch (error) {
+            display.value = "Syntax Error";
+            calcCurrentExpressionString = "";
+        }
     }
 </script>
 </body>
