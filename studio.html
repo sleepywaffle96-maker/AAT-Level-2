@@ -1,399 +1,470 @@
-<!-- RIFERIMENTO_BLOCCO: 1 -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_PART_1_HEAD -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Hub | AAT Accounting Hub</title>
+    <title>AAT Accounting Hub - Study Area</title>
     <style>
         :root {
-            --bg-dark: #0a0f1d;
-            --card-glass: rgba(16, 24, 48, 0.75);
-            --border-glass: rgba(0, 242, 254, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --accent-teal: #00f2fe;
+            --bg-main: #0B0F19;
+            --bg-bubble: #FFFFFF;
+            --cyan: #0284c7;
+            --teal: #0d9488;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
         }
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main) !important;
+            color: #f9fafb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
             margin: 0;
-            padding: 2rem;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
+            padding-bottom: 40px;
+            width: 100%;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 20px;
         }
         h1 {
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            font-size: 2.8rem;
-            margin-top: 0;
-            text-align: center;
+            color: #00f2fe;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
         }
-        .hub-description {
-            text-align: center;
-            color: var(--text-muted);
+        .subtitle {
             font-size: 1.1rem;
-            margin-bottom: 3rem;
+            color: #9ca3af;
         }
-        .glass-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glass);
+        .back-home {
+            display: inline-block;
+            color: #4facfe;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .back-home:hover {
+            color: #00f2fe;
+            text-decoration: underline;
+        }
+        /* Layout Bolle Chiare Accordion */
+        .level-accordion {
+            margin-bottom: 20px;
+            border: 1px solid var(--border-light);
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            margin-bottom: 2rem;
+            overflow: hidden;
+            background: var(--bg-bubble) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
-        .level-section {
-            margin-bottom: 1.5rem;
-        }
-        .level-header {
-            background: rgba(0, 242, 254, 0.08);
-            border: 1px solid rgba(0, 242, 254, 0.2);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
+        .accordion-header {
+            background: #f8fafc;
+            padding: 22px;
+            font-size: 1.25rem;
+            display: flex;
+            font-weight: 700;
+            color: var(--text-dark);
             cursor: pointer;
-            display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            user-select: none;
+            transition: background 0.2s;
+            border-bottom: 1px solid transparent;
         }
-        .level-header:hover {
-            background: rgba(0, 242, 254, 0.15);
-            border-color: var(--primary);
+        .level-accordion.active .accordion-header {
+            border-bottom-color: var(--border-light);
+            background: #f1f5f9;
         }
-        .level-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary);
+        .accordion-header:hover {
+            background: #e2e8f0;
         }
-        .level-content {
-            display: none;
-            padding: 1rem 0 0 0;
+        .accordion-icon {
+            transition: transform 0.25s ease-out;
+            color: var(--text-muted);
         }
-        .chapter-row {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            padding: 1rem;
-            margin-bottom: 0.8rem;
+        .level-accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #ffffff;
+        }
+        .chapter-list {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+        .chapter-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-direction: column;
+            padding: 22px;
+            border-bottom: 1px solid var(--border-light);
+            gap: 15px;
+        }
+        @media (min-width: 850px) {
+            .chapter-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        .chapter-item:last-child {
+            border-bottom: none;
         }
         .chapter-info {
-            flex: 1;
-            min-width: 250px;
-        }
-        .chapter-name {
-            font-weight: 600;
-            color: var(--text-main);
-        }
-        .chapter-module {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .links-group {
             display: flex;
-            gap: 0.8rem;
+            flex-direction: column;
+            flex: 1;
+        }
+        .chapter-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        .chapter-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         .study-btn {
-            background: rgba(79, 172, 254, 0.1);
-            border: 1px solid rgba(79, 172, 254, 0.3);
-            color: var(--text-main);
+            color: white !important;
             text-decoration: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s, box-shadow 0.2s;
+            text-align: center;
+            border: 1px solid transparent;
+            min-width: 120px;
+            box-sizing: border-box;
         }
-        .study-btn:hover {
-            background: var(--secondary);
-            border-color: var(--secondary);
-            box-shadow: 0 0 10px rgba(79, 172, 254, 0.4);
+        .btn-theory {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        .btn-theory:hover {
+            background: #334155;
+        }
+        .btn-schemes {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        }
+        .btn-schemes:hover {
+            box-shadow: 0 0 8px rgba(14, 165, 233, 0.4);
+        }
+        .btn-summary {
+            background: linear-gradient(135deg, #4facfe 0%, #1d4ed8 100%);
+        }
+        .btn-summary:hover {
+            box-shadow: 0 0 8px rgba(79, 172, 254, 0.4);
         }
     </style>
 </head>
+<!-- RIFERIMENTO_BLOCCO: STUDIO_PART_2_LEVEL_2_ICONS -->
 <body>
-    <div class="container">
-        <header style="margin-bottom: 2rem;">
-            <h1>AAT Examination Study Hub</h1>
-            <p class="hub-description">Select an educational tier to unlock specialized textbooks, structural visual schemes, and mathematical formula cheat sheets.</p>
-        </header>
-
-        <div class="glass-card">
-<!-- RIFERIMENTO_BLOCCO: 2 -->
-            <!-- LEVEL 2 ACCORDION -->
-            <div class="level-section">
-                <div class="level-header" onclick="toggleLevel('level2')">
-                    <span class="level-title">AAT Level 2 - Certificate in Accounting</span>
-                    <span id="level2-arrow">▼</span>
-                </div>
-                <div id="level2" class="level-content">
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Introduction to Bookkeeping</span><br>
-                            <span class="chapter-name">Chapter 1: Principles of Double-Entry & Ledger Posting</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-2/cap1-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-2/cap1-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-2/cap1-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Introduction to Bookkeeping</span><br>
-                            <span class="chapter-name">Chapter 2: Documentation & Business Transactions</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-2/cap2-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-2/cap2-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-2/cap2-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Principles of Bookkeeping Controls</span><br>
-                            <span class="chapter-name">Chapter 3: Control Accounts & Bank Reconciliations</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-2/cap3-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-2/cap3-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-2/cap3-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Principles of Bookkeeping Controls</span><br>
-                            <span class="chapter-name">Chapter 4: Journal Adjustments & Correction of Errors</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-2/cap4-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-2/cap4-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-2/cap4-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LEVEL 3 ACCORDION -->
-            <div class="level-section">
-                <div class="level-header" onclick="toggleLevel('level3')">
-                    <span class="level-title">AAT Level 3 - Diploma in Accounting</span>
-                    <span id="level3-arrow">▼</span>
-                </div>
-                <div id="level3" class="level-content">
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Business Awareness (BUAW)</span><br>
-                            <span class="chapter-name">Chapter 1: The Business Environment & Structure</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-3/cap1-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-3/cap1-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-3/cap1-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Financial Accounting (FAPS)</span><br>
-                            <span class="chapter-name">Chapter 2: Preparing Financial Statements</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-3/cap2-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-3/cap2-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-3/cap2-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Management Accounting Techniques (MATC)</span><br>
-                            <span class="chapter-name">Chapter 3: Cost Classification & Behaviour</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-3/cap3-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-3/cap3-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-3/cap3-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Tax Processes for Businesses (TPFB)</span><br>
-                            <span class="chapter-name">Chapter 4: Value Added Tax (VAT) Administration</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-3/cap4-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-3/cap4-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-3/cap4-summary.html" class="study-btn">Summary</a>
-                            </div>
-                    </div>
-                    <!-- CHAPTER 5: CORPORATE GOVERNANCE -->
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Business Awareness (BUAW)</span><br>
-                            <span class="chapter-name">Chapter 5: Corporate Governance & Advanced Structures</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-3/cap5-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-3/cap5-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-3/cap5-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-
-                    <!-- CHAPTER 6: INTERNAL CONTROLS & ETHICS -->
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Business Awareness (BUAW)</span><br>
-                            <span class="chapter-name">Chapter 6: Internal Controls & Professional Ethics</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-3/cap6-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-3/cap6-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-3/cap6-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-<!-- RIFERIMENTO_BLOCCO: 3 -->
-            <!-- LEVEL 4 ACCORDION (CORRECTED & ALLIGNED UP TO 9 CORE ENTRIES) -->
-            <div class="level-section">
-                <div class="level-header" onclick="toggleLevel('level4')">
-                    <span class="level-title">AAT Level 4 - Diploma in Professional Accounting</span>
-                    <span id="level4-arrow">▼</span>
-                </div>
-                <div id="level4" class="level-content">
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Applied Management Accounting (AMAC)</span><br>
-                            <span class="chapter-name">Chapter 1: Budgeting & Planning Architecture</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap1-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap1-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap1-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Applied Management Accounting (AMAC)</span><br>
-                            <span class="chapter-name">Chapter 2: Costing Paradigms & Performance</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap2-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap2-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap2-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Applied Management Accounting (AMAC)</span><br>
-                            <span class="chapter-name">Chapter 3: Control & Variance Deconstruction</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap3-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap3-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap3-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Drafting & Interpreting Financial Statements (DAIF)</span><br>
-                            <span class="chapter-name">Chapter 4: International Regulatory Framework</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap4-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap4-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap4-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Drafting & Interpreting Financial Statements (DAIF)</span><br>
-                            <span class="chapter-name">Chapter 5: Consolidated Group Accounting</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap5-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap5-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap5-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Drafting & Interpreting Financial Statements (DAIF)</span><br>
-                            <span class="chapter-name">Chapter 6: Financial Analysis & Ratios Interpretation</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap6-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap6-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap6-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Internal Accounting Systems & Controls (IASC)</span><br>
-                            <span class="chapter-name">Chapter 7: Accounting Systems Evaluation</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap7-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap7-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap7-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Internal Accounting Systems & Controls (IASC)</span><br>
-                            <span class="chapter-name">Chapter 8: Fraud Detection & Risk Management</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap8-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap8-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap8-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                    <div class="chapter-row">
-                        <div class="chapter-info">
-                            <span class="chapter-module">Synoptic Core Focus</span><br>
-                            <span class="chapter-name">Chapter 9: Professional Ethics & Sustainability Models</span>
-                        </div>
-                        <div class="links-group">
-                            <a href="studio-modules/level-4/cap9-theory.html" class="study-btn">Theory</a>
-                            <a href="studio-modules/level-4/cap9-schemes.html" class="study-btn">Schemes</a>
-                            <a href="studio-modules/level-4/cap9-summary.html" class="study-btn">Summary</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!-- RIFERIMENTO_BLOCCO: 4 -->
-        </div>
+<div class="container">
+    <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
+    <div class="header-section">
+        <h1>AAT Study Hub</h1>
+        <p class="subtitle">Select your level and choose your dedicated learning interface for each separate chapter.</p>
     </div>
 
-    <script>
-        function toggleLevel(levelId) {
-            const content = document.getElementById(levelId);
-            const arrow = document.getElementById(levelId + '-arrow');
-            
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-                arrow.textContent = '▼';
-            } else {
-                content.style.display = 'block';
-                arrow.textContent = '▲';
-            }
-        }
-    </script>
+    <!-- LEVEL 2 ACCORDION BUBBLE -->
+    <div class="level-accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>AAT Level 2 Certificate in Accounting</span>
+            <span class="accordion-icon">&#9662;</span>
+        </div>
+        <div class="accordion-content">
+            <ul class="chapter-list">
+                <!-- LEVEL 2 CHAPTER 1 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 1: Introduction to Bookkeeping</span>
+                        <span class="chapter-desc">Double-entry, business documentation, books of prime entry, and VAT calculations.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-2/cap1-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-2/cap1-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-2/cap1-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 2 CHAPTER 2 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 2: Principles of Bookkeeping Controls</span>
+                        <span class="chapter-desc">Bank reconciliations, control accounts (SLCA/PLCA), journals, and suspense accounts.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-2/cap2-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-2/cap2-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-2/cap2-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 2 CHAPTER 3 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 3: Principles of Costing</span>
+                        <span class="chapter-desc">Cost classification, material and labour monitoring, overheads, and break-even models.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-2/cap3-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-2/cap3-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-2/cap3-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 2 CHAPTER 4 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 4: Developing Lifelong Learning</span>
+                        <span class="chapter-desc">CPD management, data security, professional ethics, and corporate communications.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-2/cap4-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-2/cap4-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-2/cap4-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!-- RIFERIMENTO_BLOCCO: STUDIO_PART_3_LEVEL_3_A_ICONS -->
+    <!-- LEVEL 3 ACCORDION BUBBLE -->
+    <div class="level-accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>AAT Level 3 Diploma in Accounting</span>
+            <span class="accordion-icon">&#9662;</span>
+        </div>
+        <div class="accordion-content">
+            <ul class="chapter-list">
+                <!-- LEVEL 3 CHAPTER 1 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 1: Business Awareness</span>
+                        <span class="chapter-desc">Business structures, macroeconomic environment, microeconomics, and GDPR compliance.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-3/cap1-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-3/cap1-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-3/cap1-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 3 CHAPTER 2 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 2: Financial Accounting: Preparing Financial Statements</span>
+                        <span class="chapter-desc">Depreciation, accruals/prepayments, irrecoverable debts, and closing Trial Balance extensions.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-3/cap2-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-3/cap2-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-3/cap2-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 3 CHAPTER 3 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 3: Management Accounting Techniques</span>
+                        <span class="chapter-desc">Budgeting methods, material/labour variance calculations, absorption costing, and forecasting.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-3/cap3-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-3/cap3-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-3/cap3-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+<!-- RIFERIMENTO_BLOCCO: STUDIO_PART_4_LEVEL_3_B_ICONS -->
+                <!-- LEVEL 3 CHAPTER 4 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 4: Tax Processes for Businesses</span>
+                        <span class="chapter-desc">HMRC statutory frameworks, complex VAT schemes, reporting schedules, and penalty systems.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-3/cap4-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-3/cap4-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-3/cap4-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 3 CHAPTER 5 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 5: Audit and Assurance (Optional Module)</span>
+                        <span class="chapter-desc">Independent verification frameworks, sampling audit evidence, control risk evaluation, and reporting.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-3/cap5-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-3/cap5-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-3/cap5-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 3 CHAPTER 6 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 6: Payroll Administration (Optional Module)</span>
+                        <span class="chapter-desc">Gross pay calculations, statutory deductions (PAYE, NICs), student loans, and HMRC filing.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-3/cap6-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-3/cap6-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-3/cap6-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!-- RIFERIMENTO_BLOCCO: STUDIO_PART_5_LEVEL_4_ICONS -->
+    <!-- LEVEL 4 ACCORDION BUBBLE -->
+    <div class="level-accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>AAT Level 4 Diploma in Professional Accounting</span>
+            <span class="accordion-icon">&#9662;</span>
+        </div>
+        <div class="accordion-content">
+            <ul class="chapter-list">
+                <!-- LEVEL 4 CHAPTER 1 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 1: Applied Management Accounting</span>
+                        <span class="chapter-desc">Strategic planning, capital investment appraisals (NPV, IRR), and operational performance analysis.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap1-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap1-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap1-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 2 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 2: Drafting and Interpreting Financial Statements</span>
+                        <span class="chapter-desc">Group accounts consolidation, international standards (IAS/IFRS frameworks), and accounting ratios.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap2-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap2-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap2-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 3 -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 3: Internal Accounting Systems and Controls</span>
+                        <span class="chapter-desc">Internal audit system analysis, fraud prevention models, and formal management recommendation structures.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap3-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap3-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap3-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 4 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 4: Business Tax (Optional Module)</span>
+                        <span class="chapter-desc">Corporation Tax computations, capital allowances, group relief allocations, and tax return planning.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap4-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap4-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap4-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 5 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 5: Personal Tax (Optional Module)</span>
+                        <span class="chapter-desc">UK Income Tax bands, Capital Gains Tax calculations, Inheritance Tax planning, and reliefs.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap5-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap5-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap5-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 6 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 6: Audit and Assurance (Optional Module)</span>
+                        <span class="chapter-desc">External audit planning, substantive audit procedures, professional ethics, and audit opinions.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap6-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap6-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap6-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 7 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 7: Cash and Financial Management (Optional Module)</span>
+                        <span class="chapter-desc">Cash flow optimization, working capital cycles, treasury structures, and short-term funding markets.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap7-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap7-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap7-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+                <!-- LEVEL 4 CHAPTER 8 (OPTIONAL) -->
+                <li class="chapter-item">
+                    <div class="chapter-info">
+                        <span class="chapter-title">Chapter 8: Credit Management (Optional Module)</span>
+                        <span class="chapter-desc">Credit checking policies, credit risk minimization, debt collection legal steps, and aged debt analysis.</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="studio-modules/level-4/cap8-theory.html" class="study-btn btn-theory">📖 Theory Book</a>
+                        <a href="studio-modules/level-4/cap8-schemes.html" class="study-btn btn-schemes">📊 Visual Schemes</a>
+                        <a href="studio-modules/level-4/cap8-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> <!-- End Container -->
+<!-- RIFERIMENTO_BLOCCO: PART_6_ACCORDION_SCRIPT -->
+<script>
+ let levelBtns = document.getElementsByClassName("level-btn");
+ for (let i = 0; i < levelBtns.length; i++) {
+     levelBtns[i].addEventListener("click", function() {
+         this.classList.toggle("active");
+         let panel = this.nextElementSibling;
+         if (panel.style.maxHeight) {
+             panel.style.maxHeight = null;
+         } else {
+             panel.style.maxHeight = "2000px";
+         }
+     });
+ }
+
+ let chapterBtns = document.getElementsByClassName("chapter-btn");
+ for (let i = 0; i < chapterBtns.length; i++) {
+     chapterBtns[i].addEventListener("click", function() {
+         this.classList.toggle("active");
+         let panel = this.nextElementSibling;
+         if (panel.style.maxHeight) {
+             panel.style.maxHeight = null;
+         } else {
+             panel.style.maxHeight = panel.scrollHeight + "px";
+         }
+     });
+ }
+</script>
 </body>
 </html>
