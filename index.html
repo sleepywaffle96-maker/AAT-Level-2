@@ -14,8 +14,11 @@
             --text-muted: #94a3b8;
             --primary: #00f2fe;
             --secondary: #4facfe;
-            --accent-teal: #00f2fe;
-            --success: #10b981;
+            
+            /* Color boundaries for historic geometric shapes */
+            --l2-orange: #f59e0b;
+            --l3-teal: #10b981;
+            --l4-purple: #a855f7;
         }
         body {
             background-color: var(--bg-dark);
@@ -50,7 +53,6 @@
             font-size: 1.2rem;
             letter-spacing: 0.5px;
         }
-        /* Dashboard symmetric layout grid */
         .hub-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -103,47 +105,56 @@
             transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
         }
-        .btn-alt {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-glass);
-            color: var(--text-main);
-            margin-bottom: 0;
-        }
-        .btn-alt:hover {
-            background: rgba(0, 242, 254, 0.05);
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-        }
+        
+        /* Geometric Block Badges Style mimicking original parameters */
         .level-accordion-btn {
             background: rgba(255,255,255,0.01);
             border: 1px solid rgba(255,255,255,0.05);
             padding: 0.8rem;
             border-radius: 6px;
-            color: var(--text-muted);
+            color: var(--text-main);
             text-align: left;
             cursor: pointer;
-            margin-top: 0.5rem;
+            margin-top: 0.6rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             transition: all 0.2s;
+            user-select: none;
         }
         .level-accordion-btn:hover {
-            border-color: var(--secondary);
-            color: var(--text-main);
+            background: rgba(255,255,255,0.03);
         }
+        .geo-shape {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+        .shape-l2 { background: var(--l2-orange); box-shadow: 0 0 8px var(--l2-orange); }
+        .shape-l3 { background: var(--l3-teal); box-shadow: 0 0 8px var(--l3-teal); }
+        .shape-l4 { background: var(--l4-purple); box-shadow: 0 0 8px var(--l4-purple); }
+        
         .test-list-dropdown {
             display: none;
             padding: 0.5rem 1rem;
             background: rgba(0,0,0,0.2);
-            border-radius: 6px;
-            margin-top: 0.3rem;
+            border-radius: 0 0 6px 6px;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-top: none;
         }
         .test-link {
             display: block;
             color: var(--text-muted);
             text-decoration: none;
-            padding: 0.4rem 0;
+            padding: 0.5rem 0;
             font-size: 0.95rem;
             transition: color 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+        .test-link:last-child {
+            border-bottom: none;
         }
         .test-link:hover {
             color: var(--primary);
@@ -178,14 +189,17 @@
                 <!-- Action 1: Global Algorithmic Simulator -->
                 <a href="simulatore.html" class="action-btn">Launch Algorithmic Simulator</a>
                 
-                <!-- Action 2: Fixed Practice Tests Dropdowns -->
+                <!-- Action 2: Fixed Practice Tests Dropdowns with original colored shapes -->
                 <div style="margin-top: 1rem; display: flex; flex-direction: column;">
                     <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: bold; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
                         Or Open Fixed Practice Tests:
                     </span>
                     
                     <!-- Level 2 Tests Toggle -->
-                    <div class="level-accordion-btn" onclick="toggleTestMenu('l2_tests')">▼ AAT Level 2 Practice Exams</div>
+                    <div class="level-accordion-btn" onclick="toggleTestMenu('l2_tests')">
+                        <span class="geo-shape shape-l2"></span>
+                        <span>AAT Level 2 Practice Exams</span>
+                    </div>
                     <div id="l2_tests" class="test-list-dropdown">
                         <a href="level-2/cap1-test1.html" class="test-link">Chapter 1: Principles of Double-Entry</a>
                         <a href="level-2/cap2-test1.html" class="test-link">Chapter 2: Documentation & Transactions</a>
@@ -194,7 +208,10 @@
                     </div>
 
                     <!-- Level 3 Tests Toggle -->
-                    <div class="level-accordion-btn" onclick="toggleTestMenu('l3_tests')">▼ AAT Level 3 Practice Exams</div>
+                    <div class="level-accordion-btn" onclick="toggleTestMenu('l3_tests')">
+                        <span class="geo-shape shape-l3"></span>
+                        <span>AAT Level 3 Practice Exams</span>
+                    </div>
                     <div id="l3_tests" class="test-list-dropdown">
                         <a href="level-3/cap1-test1.html" class="test-link">Chapter 1: Business Environment (BUAW)</a>
                         <a href="level-3/cap2-test1.html" class="test-link">Chapter 2: Preparing Financial Statements (FAPS)</a>
@@ -205,7 +222,10 @@
                     </div>
 
                     <!-- Level 4 Tests Toggle -->
-                    <div class="level-accordion-btn" onclick="toggleTestMenu('l4_tests')">▼ AAT Level 4 Practice Exams</div>
+                    <div class="level-accordion-btn" onclick="toggleTestMenu('l4_tests')">
+                        <span class="geo-shape shape-l4"></span>
+                        <span>AAT Level 4 Practice Exams</span>
+                    </div>
                     <div id="l4_tests" class="test-list-dropdown">
                         <a href="level-4/cap1-test1.html" class="test-link">Chapter 1: Budgeting & Planning (AMAC)</a>
                         <a href="level-4/cap2-test1.html" class="test-link">Chapter 2: Costing & Performance (AMAC)</a>
