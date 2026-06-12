@@ -1,7 +1,6 @@
 import os
 import re
 
-# Template superiore (Head, CSS e impostazioni della bolla bianca del quiz)
 HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +16,7 @@ HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
         .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; background: #0D9488; }
         .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
         .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
+"""
         .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
         .option-row:hover { background: #F1F5F9; }
         .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
@@ -43,9 +43,15 @@ HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
         .btn-equals { background: #00f2fe; color: #0a0f1d; }
         @media print {
             body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
-            .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; display: block !important; }
+            .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
             .calc-widget-floating, .osborne-footer-grid { display: none !important; }
-        }# Template inferiore (Pulsanti di controllo Osborne, PDF e codice JavaScript calcolatrice)
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
+        <div id="questions-root-wrapper" style="width: 100%;">
+"""
 HTML_FOOTER_TEMPLATE = """
         </div>
     </div>
@@ -125,7 +131,8 @@ HTML_JS_TEMPLATE = """
                 if (targetRow) targetRow.classList.add("reveal-correct");
             }
         }
-
+"""
+HTML_CALC_TEMPLATE = """
         function verifyCurrentInline() {
             const activeCard = document.getElementById("card_task_" + currentActiveIndex);
             const correctVal = activeCard.getAttribute("data-correct");
@@ -151,8 +158,7 @@ HTML_JS_TEMPLATE = """
                 mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
             }
         }
-"""
-HTML_CALC_TEMPLATE = """
+
         function resetCurrentForm() {
             const activeCard = document.getElementById("card_task_" + currentActiveIndex);
             if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
@@ -189,7 +195,7 @@ HTML_CALC_TEMPLATE = """
             else if (type === 'pow') { val = Math.pow(val, 2); }
             else if (type === 'percent') { val = val / 100; }
             calcCurrentExpressionString = Number(val.toFixed(6)).toString();
-            display.value = calcCurrentExpressionString;
+            display.value = val;
         }
         function executeCalcExpression() {
             const display = document.getElementById("calcDisplayScreen");
@@ -214,7 +220,6 @@ if os.path.exists(folder):
             with open(path, "r", encoding="utf-8") as f:
                 html = f.read()
 
-            # Estrae tutti i blocchi delle domande esistenti dal file vecchio
             cards = re.findall(r'(<div class="test-card-container".*?</div>\s*</div>)', html, re.DOTALL)
             
             if cards:
@@ -232,14 +237,9 @@ if os.path.exists(folder):
                         card = card.replace('test-card-container active', 'test-card-container')
                     cleaned_cards.append(card)
 
-                new_content = HTML_HEAD_TEMPLATE + "\n".join(cleaned_cards) + FULL_FOOTER
+                    new_content = HTML_HEAD_TEMPLATE + "\n".join(cleaned_cards) + HTML_FOOTER_TEMPLATE + HTML_JS_TEMPLATE + HTML_CALC_TEMPLATE
+
                 
                 with open(path, "w", encoding="utf-8") as f:
                     f.write(new_content)
                 print(f"✅ Migrato con successo lo stile Osborne per: {file_name}")
-    </style>
-</head>
-<body>
-    <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
-        <div id="questions-root-wrapper" style="width: 100%;">
-"""
