@@ -228,18 +228,21 @@
                 </style>
             </head>
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_STYLE_4C -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_4C -->
             <body>
                 <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
                     <div id="questions-root-wrapper" style="width: 100%;"></div>
                 </div>
 
-                <div class="osborne-footer-grid">
+                <!-- PLANCIA PULSANTI CON TASTO PDF AGGIUNTIVO PER LA FINE DEL TEST -->
+                <div class="osborne-footer-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
                     <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
                     <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
                     <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
                     <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
+                    <button id="osborne-pdf-trigger" onclick="window.print()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Save Full Sheet as PDF</button>
                 </div>
+
 
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4D -->
                 <div id="floatingCalcWidget" class="calc-widget-floating">
@@ -337,13 +340,21 @@
                         \`;
                     });
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_4 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_4E_4 -->
                     function changeQuestion(step) {
                         const target = currentActiveIndex + step;
                         if (target >= 0 && target < 15) {
                             document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
                             currentActiveIndex = target;
                             document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
+                        }
+
+                        // CONTROLLO AUTOMATICO FINE TEST: Mostra il tasto PDF solo sulla quindicesima domanda
+                        const pdfBtn = document.getElementById("osborne-pdf-trigger");
+                        if (currentActiveIndex === 14) {
+                            pdfBtn.style.display = "block";
+                        } else {
+                            pdfBtn.style.display = "none";
                         }
                     }
 
@@ -352,25 +363,37 @@
                         const correctVal = activeCard.getAttribute("data-correct");
                         const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
                         const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
+                        const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
+                        
                         const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
                         const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
+                        const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
+
                         mA.style.display = "none";
                         mB.style.display = "none";
+                        mC.style.display = "none";
+
                         if (rA.checked) {
                             mA.style.display = "block";
                             mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
                         } else if (rB.checked) {
                             mB.style.display = "block";
                             mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
+                        } else if (rC.checked) {
+                            mC.style.display = "block";
+                            mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
                         }
                     }
 
                     function resetCurrentForm() {
                         document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
                         document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
+                        document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
                         document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;
                         document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
+                        document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
                     }
+
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_5 -->
                     let isCalcBodyExpanded = false;
                     let calcCurrentExpressionString = "";
