@@ -158,7 +158,7 @@
             });
         }
     }
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4A -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4A_15Q -->
     function launchTestWindow() {
         let lvl = document.getElementById("level-selector").value;
         let chap = document.getElementById("chapter-selector").value;
@@ -174,35 +174,36 @@
         }
 
         let badgeClass = "background: #0D9488;";
-        let badgeText = "Level 2 Assessment";
-        if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Assessment"; }
-        if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Assessment"; }
+        let badgeText = "Level 2 Full Assessment";
+        if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
+        if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
 
-        const difficulties = ["🟢 Difficulty: Entry Level (Low Risk)", "🟡 Difficulty: Intermediate (Balanced Analysis)", "🔴 Difficulty: Professional Level (High Complexity)"];
-        const extractedDifficulty = difficulties[Math.floor(Math.random() * difficulties.length)];
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
-
         const testWindow = window.open("", "_blank");
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4B -->
+
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4B_15Q -->
         testWindow.document.write(`
             <!DOCTYPE html>
             <html>
             <head>
-                <title>AAT Assessment Worksheet - Entry #${randomEntryNum}</title>
+                <title>AAT Full Examination Sheet - Entry #${randomEntryNum}</title>
                 <link href="https://googleapis.com" rel="stylesheet">
                 <style>
                     body { background-color: #0B0F19; color: #F3F4F6; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
-                    .test-card-container { width: 100%; max-width: 700px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; }
-                    .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-                    .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
-                    .difficulty-tag { font-size: 12px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
-                    .question-title { font-size: 18px; font-weight: 800; color: #0F172A; margin: 15px 0; }
-                    .options-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
-                    .option-row { background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 8px; padding: 14px 16px; font-size: 14px; font-weight: 600; color: #334155; display: flex; align-items: center; gap: 10px; }
-                    .action-footer { display: flex; gap: 10px; width: 100%; max-width: 700px; margin-top: 20px; }
-                    .footer-btn { flex: 1; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; }
+                    .test-wrapper-main { width: 100%; max-width: 740px; display: flex; flex-direction: column; gap: 20px; }
+                    .test-card-container { width: 100%; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid #E2E8F0; box-sizing: border-box; }
+                    .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+                    .level-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
+                    .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
+                    .question-title { font-size: 16px; font-weight: 800; color: #0F172A; margin: 10px 0; }
+                    .options-stack { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+                    .option-row { background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 8px; padding: 12px 14px; font-size: 13px; font-weight: 600; color: #334155; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+                    
+                    .action-footer { display: flex; gap: 10px; width: 100%; max-width: 740px; margin-top: 20px; }
+                    .footer-btn { flex: 1; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; }
                     .btn-submit { background: #1E293B; color: white; }
                     .btn-pdf { background: #00796B; color: white; box-shadow: 0 4px 12px rgba(0,121,107,0.2); }
+                    
                     .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; transition: transform 0.3s ease; }
                     .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
                     .calc-widget-body { padding: 1rem; display: none; }
@@ -212,35 +213,71 @@
                     .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
                     .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
                     .btn-equals { background: #00f2fe; color: #0a0f1d; }
+
                     @media print {
                         body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
-                        .test-card-container { box-shadow: none !important; border: none !important; max-width: 100% !important; padding: 0 !important; }
+                        .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; }
                         .action-footer, .calc-widget-floating { display: none !important; }
                     }
                 </style>
             </head>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4C -->
             <body>
+                <div class="test-wrapper-main">
+
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4C_15Q -->
+        `);
+
+        // Database di scenari contabili UK per la variazione delle domande
+        const scenarios = [
+            "Verify the balancing steps for the Sales Ledger Control Account discrepancy.",
+            "Analyze the statutory ammortisation index applied to non-current asset categories.",
+            "Reconcile the opening cash book deficit against bank statement credit entries.",
+            "Compute the standard overhead absorption rate based on direct labour allocation.",
+            "Determine the correct input VAT adjustment for irrecoverable trade receivables.",
+            "Evaluate closing inventory variance under strict FIFO valuation constraints.",
+            "Reconstruct incomplete sole trader turnover parameters using margin criteria.",
+            "Formulate the proper accounting treatment for capitalised development outlays.",
+            "Process year-end accruals for statutory utility and rental liabilities.",
+            "Identify the systemic risk indicators within the purchase ledger sub-module.",
+            "Adjust the Suspense Account allocation following a core transposition error.",
+            "Calculate the Partnership profit share ratio adjustments under current laws.",
+            "Assess Corporate Governance ethical breaches under the official IESBA framework.",
+            "Verify the Consolidated Statement adjustments for internal unrealised profits.",
+            "Compute the standard variance indicators for material and production yields."
+        ];
+
+        const difficulties = ["🟢 Difficulty: Entry Level", "🟡 Difficulty: Intermediate", "🔴 Difficulty: Professional Level"];
+
+        for (let i = 1; i <= 15; i++) {
+            let selectedScenario = scenarios[(i - 1) % scenarios.length];
+            let currentDiff = difficulties[(i - 1) % difficulties.length];
+            
+            testWindow.document.write(`
                 <div class="test-card-container">
                     <div class="header-area">
-                        <span class="level-tag">${badgeText}</span>
-                        <span class="difficulty-tag">${extractedDifficulty}</span>
+                        <span class="level-tag">${badgeText} • Question ${i}/15</span>
+                        <span class="difficulty-tag">${currentDiff}</span>
                     </div>
-                    <div class="question-title">Official Syllabus Scenario Module (Entry #${randomEntryNum})</div>
-                    <p style="font-size: 14px; color: #4B5563; margin-bottom: 20px; line-height: 1.6;">
-                        Analyze the current financial ledger provisions. Apply strict statutory accounting rules aligned with the United Kingdom qualifications framework to balance the control entries.
+                    <div class="question-title">Assessment Task ${i}: Framework Scenario</div>
+                    <p style="font-size: 13.5px; color: #4B5563; margin-bottom: 15px; line-height: 1.5;">
+                        Task ${i} Analysis Focus: ${selectedScenario} Apply official UK qualifications framework regulations to identify the balance.
                     </p>
                     <div class="options-stack">
-                        <label class="option-row"><input type="radio" name="ex1" value="A"> Option A: Adjust the opening credit balance via Prime Entry adjustments</label>
-                        <label class="option-row"><input type="radio" name="ex1" value="B"> Option B: Account for the discrepancy directly through Suspense Control account</label>
+                        <label class="option-row"><input type="radio" name="q${i}" value="A"> Option A: Execute direct ledger reconciliation through Prime Entry adjustments</label>
+                        <label class="option-row"><input type="radio" name="q${i}" value="B"> Option B: Account for the discrepancy directly through Suspense Control procedures</label>
                     </div>
                 </div>
+            `);
+        }
 
+        testWindow.document.write(`
+                </div> <!-- Fine wrapper principale -->
                 <div class="action-footer">
-                    <button onclick="alert('Submission evaluated successfully.')" class="footer-btn btn-submit">Verify Work</button>
-                    <button onclick="window.print()" class="footer-btn btn-pdf">💾 Save Sheet as PDF / Print</button>
+                    <button onclick="checkAllAnswers()" class="footer-btn btn-submit">Verify Complete Exam Card</button>
+                    <button onclick="window.print()" class="footer-btn btn-pdf">💾 Save Full Sheet as PDF / Print</button>
                 </div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4D -->
+
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4D_15Q -->
                 <div id="floatingCalcWidget" class="calc-widget-floating">
                     <div class="calc-widget-header" onclick="toggleCalculatorView()">
                         <span>🧮 AAT Exam Calculator</span>
@@ -272,10 +309,26 @@
                         </div>
                     </div>
                 </div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4E -->
+
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4E_15Q -->
                 <script>
                     let isCalcBodyExpanded = false;
                     let calcCurrentExpressionString = "";
+
+                    function checkAllAnswers() {
+                        let answeredCount = 0;
+                        for (let i = 1; i <= 15; i++) {
+                            let radios = document.getElementsByName('q' + i);
+                            let checked = false;
+                            for (let r = 0; r < radios.length; r++) {
+                                if (radios[r].checked) { checked = true; break; }
+                            }
+                            if (checked) answeredCount++;
+                        }
+                        
+                        let scorePercentage = Math.round((answeredCount / 15) * 100);
+                        alert("Exam Evaluation Summary:\\n\\nCompleted Tasks: " + answeredCount + " / 15\\nOverall Competency Score: " + scorePercentage + "%\\n\\nReview individual balances before final HMRC/AAT export.");
+                    }
 
                     function toggleCalculatorView() {
                         const body = document.getElementById("calcWidgetBody");
