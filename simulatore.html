@@ -65,8 +65,8 @@
         <div class="header-section">
             <h1>AAT Interactive Simulator</h1>
             <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
-        </div>
-        <div class="filter-group">
+       <!-- RIFERIMENTO_BLOCCO: FILTER_GROUP_CONTAINER_FIXED -->
+                <div class="filter-group">
             <div class="select-wrapper">
                 <label class="select-label">Target Assessment Level</label>
                 <select id="level-selector" class="custom-select" onchange="updateChapters()">
@@ -77,16 +77,16 @@
                     <option value="L4">🔸 AAT Level 4 Diploma</option>
                 </select>
             </div>
+
             <div class="select-wrapper">
                 <label class="select-label">Syllabus Chapter Unit</label>
-                <select id="chapter-selector" class="custom-select">
+                <select id="chapter-selector" class="custom-select" disabled>
                     <option value="" selected disabled>Select a level first...</option>
                 </select>
             </div>
         </div>
-        <button onclick="launchPaginatedTestWindow()" class="generate-btn">
-            Launch Paginated Test Window &rarr;
-        </button>
+
+        <button onclick="launchPaginatedTestWindow()" class="generate-btn">Launch Paginated Test Window &rarr;</button>
     </div>
 </div>
 <!-- RIFERIMENTO_BLOCCO: FULL_SIM_MOD_3 -->
