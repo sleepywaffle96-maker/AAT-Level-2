@@ -3,100 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 Certificate in Accounting - Chapter 1 Practical Test</title>
+    <title>AAT L2 Accounting - Chapter 1 Fixed Test</title>
     <style>
-        /* 1. Reset Globale e Layout Sfondo */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #0B0F19; color: #333333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-
-        /* 2. Contenitore Principale (Bolla Bianca Protetta) */
-        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); position: relative; min-height: 580px; display: flex; flex-direction: column; justify-content: space-between; }
-
-        /* 3. Intestazione e Contatore */
+        
+        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); min-height: 550px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
         .test-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 25px; }
         .test-title { font-size: 18px; font-weight: 700; color: #1E293B; }
         .question-counter { font-size: 14px; font-weight: 600; color: #64748B; background: #F1F5F9; padding: 6px 12px; border-radius: 20px; }
-
-        /* 4. Sistema a Schede (Tabs delle Domande) */
         .question-tab { display: none; flex-direction: column; gap: 20px; flex-grow: 1; }
         .question-tab.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
         .question-text { font-size: 16px; font-weight: 600; color: #0F172A; line-height: 1.5; }
-        .question-context { font-size: 14px; color: #475569; background-color: #F8FAFC; padding: 15px; border-left: 4px solid #2563EB; border-radius: 4px; margin-bottom: 5px; line-height: 1.5; }
         .options-container { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
         
-        /* 5. Box Risposte (Opzioni Radio e Campi Numerici) */
-        .option-box { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 2px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; position: relative; }
+        .option-box { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 2px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
         .option-box:hover { border-color: #94A3B8; background-color: #F8FAFC; }
-        .option-box input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; }
+        .option-box input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; }
         .option-label { display: flex; align-items: center; width: 100%; font-size: 15px; font-weight: 500; }
         
         .numeric-input-wrapper { display: flex; align-items: center; justify-content: space-between; width: 100%; }
         .numeric-field { width: 150px; padding: 10px; border: 2px solid #E2E8F0; border-radius: 6px; text-align: right; font-size: 16px; font-weight: 600; color: #0F172A; }
-        .numeric-field:focus { outline: none; border-color: #2563EB; }
-
-        /* 6. Indicatori Visivi di Feedback */
+        
         .feedback-icon { font-size: 18px; margin-left: 10px; display: none; }
         .correct-answer-highlight { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
 
-        /* 7. Pulsantiera di Controllo Inferiore (Stile Osborne) */
         .controls-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; border-top: 2px solid #E5E7EB; padding-top: 20px; gap: 10px; flex-wrap: wrap; }
         .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
-        .btn { padding: 10px 18px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
+        .btn { padding: 10px 18px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; }
         .btn-blue { background-color: #2563EB; color: white; }
-        .btn-blue:hover { background-color: #1D4ED8; }
         .btn-green { background-color: #059669; color: white; }
-        .btn-green:hover { background-color: #047857; }
         .btn-red { background-color: #DC2626; color: white; }
-        .btn-red:hover { background-color: #B91C1C; }
         .btn-gray { background-color: #4B5563; color: white; }
-        .btn-gray:hover { background-color: #374151; }
         .btn-purple { background-color: #7C3AED; color: white; display: none; }
-        .btn-purple:hover { background-color: #6D28D9; }
-
-        /* 8. Widget Calcolatrice Vetrificata Avanzata */
-        #calc-widget { position: fixed; bottom: 30px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 1000; }
-        #calc-screen { width: 100%; height: 45px; background: #000000; border-radius: 6px; color: #00FFFF; text-shadow: 0 0 8px #00FFFF; font-family: 'Courier New', Courier, monospace; text-align: right; padding: 12px; font-size: 20px; font-weight: bold; margin-bottom: 12px; border: 1px solid #00FFFF; overflow: hidden; }
+        #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
+        #calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #calc-header span { color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        #calc-close-btn { background: transparent; border: none; color: #EF4444; font-weight: bold; cursor: pointer; font-size: 14px; }
+        #calc-screen { width: 100%; height: 45px; background: #000000; border-radius: 8px; color: #00FFFF; text-shadow: 0 0 10px #00FFFF; font-family: 'Courier New', monospace; text-align: right; padding: 12px; font-size: 20px; font-weight: bold; margin-bottom: 12px; border: 1px solid #00FFFF; }
         .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-        .calc-btn { background: rgba(255, 255, 255, 0.1); border: none; color: white; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: background 0.1s; }
-        .calc-btn:hover { background: rgba(255, 255, 255, 0.25); }
-        .calc-btn.op { color: #00FFFF; font-weight: 700; }
+        .calc-btn { background: rgba(255, 255, 255, 0.08); border: none; color: white; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+        .calc-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .calc-btn.op { color: #00FFFF; background: rgba(0, 255, 255, 0.05); }
 
-        /* 9. Animazioni e Regole di Stampa Clean PDF */
+        #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #2563EB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s; }
+        #calc-toggle-trigger:hover { transform: scale(1.08); }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @media print {
             body { background-color: #FFFFFF; color: #000000; padding: 0; }
             .test-container { box-shadow: none; padding: 0; max-width: 100%; }
-            .controls-footer, #calc-widget, .feedback-icon { display: none !important; }
+            .controls-footer, #calc-widget, #calc-toggle-trigger, .feedback-icon { display: none !important; }
             .question-tab { display: flex !important; page-break-after: always; }
         }
     </style>
-    </head>
+</head>
 <body>
-
     <div class="test-container">
         <div class="test-header">
-            <div class="test-title">Level 2: Principles of Bookkeeping Controls - Chapter 1 Test</div>
+            <div class="test-title">Level 2 Accounting - Chapter 1: Introduction to Bookkeeping</div>
             <div class="question-counter">Question <span id="current-q-num">1</span> of 15</div>
         </div>
 
-        <form id="quiz-form">            <!-- Q1 -->
+        <form id="quiz-form">
+            <!-- Q1 -->
             <div class="question-tab active" data-qindex="1" data-type="radio" data-correct="B">
-                <p class="question-text">1. A business returns faulty inventory worth £800 list price to a supplier. The supplier had originally allowed a 15% trade discount. Which document should the business expect to receive from the supplier to adjust the balance outstanding?</p>
+                <p class="question-text">1. Which of the following source documents is issued to a customer when they return faulty goods purchased on credit?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="A"> Debit Note for £800</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="B"> Credit Note for £680</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="C"> Credit Note for £800</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="D"> Invoice for £680</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="A"> Invoice</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="B"> Credit Note</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="C"> Debit Note</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="D"> Receipt</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
             <!-- Q2 -->
-            <div class="question-tab" data-qindex="2" data-type="input" data-correct="2280">
-                <p class="question-text">2. An invoice shows goods with a total list price of £2,500. A trade discount of 12% is applicable, followed by a settlement discount of 4% if paid within 7 days. Calculate the final net amount to be entered in the Purchase Day Book upon receiving the invoice.</p>
+            <div class="question-tab" data-qindex="2" data-type="input" data-correct="450">
+                <p class="question-text">2. An invoice shows goods at a list price of £500 subject to a 10% trade discount. Calculate the net amount to be recorded in the Sales Day Book.</p>
                 <div class="options-container">
                     <div class="option-box">
                         <div class="numeric-input-wrapper">
-                            <span>Net entry in Purchase Day Book (£):</span>
+                            <span>Enter calculated total value (£):</span>
                             <input type="text" class="numeric-field" name="q2" placeholder="0.00">
                         </div>
                         <span class="feedback-icon"></span>
@@ -105,96 +92,91 @@
             </div>
 
             <!-- Q3 -->
-            <div class="question-tab" data-qindex="3" data-type="radio" data-correct="C">
-                <p class="question-text">3. When a credit customer settles an account balance of £1,200 within the cash discount period, taking a 2.5% prompt payment discount, how should the entry in the cash book be split?</p>
+            <div class="question-tab" data-qindex="3" data-type="radio" data-correct="A">
+                <p class="question-text">3. Which of the following is considered an asset in a business balance sheet?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="A"> Cash Received £1,200, Discount Allowed £0</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="B"> Cash Received £1,170, Discount Received £30</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="C"> Cash Received £1,170, Discount Allowed £30</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="D"> Cash Received £1,230, Discount Allowed £30</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="A"> Trade Receivables</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="B"> Bank Overdraft</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="C"> Trade Payables</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="D"> Loan from Bank</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
             <!-- Q4 -->
-            <div class="question-tab" data-qindex="4" data-type="input" data-correct="180">
-                <p class="question-text">4. A supplier invoice totals £900. It includes VAT charged at the standard rate of 20%. Calculate the exact amount of VAT included in this total invoice price to be processed in the Purchases VAT account.</p>
+            <div class="question-tab" data-qindex="4" data-type="radio" data-correct="C">
+                <p class="question-text">4. What is the fundamental accounting equation?</p>
                 <div class="options-container">
-                    <div class="option-box">
-                        <div class="numeric-input-wrapper">
-                            <span>Calculated VAT element (£):</span>
-                            <input type="text" class="numeric-field" name="q4" placeholder="0.00">
-                        </div>
-                        <span class="feedback-icon"></span>
-                    </div>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q4" value="A"> Assets = Liabilities - Capital</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q4" value="B"> Liabilities = Assets + Capital</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q4" value="C"> Assets = Liabilities + Capital</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
             <!-- Q5 -->
-            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="A">
-                <p class="question-text">5. Inventory is sold on credit to J. Green for £450 plus VAT at 20%. What are the primary ledger postings required to record this sale transaction?</p>
+            <div class="question-tab" data-qindex="5" data-type="input" data-correct="180">
+                <p class="question-text">5. A petty cash book operates on an float system of £200. During the month, total vouchers for expenses equal £180. Calculate the required amount to restore the float to its full value (£).</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="A"> Debit J. Green Account £540 | Credit Sales £450, Credit VAT £90</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="B"> Credit J. Green Account £540 | Debit Sales £450, Debit VAT £90</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="C"> Debit J. Green Account £450, Debit VAT £90 | Credit Sales £540</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="D"> Debit Sales £450 | Credit J. Green Account £450</span><span class="feedback-icon"></span></label>
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Restoration amount (£):</span>
+                            <input type="text" class="numeric-field" name="q5" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
                 </div>
             </div>
 
             <!-- Q6 -->
-            <div class="question-tab" data-qindex="6" data-type="input" data-correct="1410">
-                <p class="question-text">6. At the end of the week, the Sales Day Book shows the following totals: Goods Net £1,150, VAT £230, Total £1,380. Additionally, a manual invoice of £30 net (no VAT) was omitted. Calculate the final adjusted Total to be debited to the Sales Ledger Control Account.</p>
+            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="D">
+                <p class="question-text">6. A business purchase office equipment for £2,400 on credit from Office Depot. In which primary book of entry must this transaction be entered?</p>
                 <div class="options-container">
-                    <div class="option-box">
-                        <div class="numeric-input-wrapper">
-                            <span>Adjusted Total Debit (£):</span>
-                            <input type="text" class="numeric-field" name="q6" placeholder="0.00">
-                        </div>
-                        <span class="feedback-icon"></span>
-                    </div>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="A"> Purchases Day Book</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="B"> Cash Book</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="C"> Petty Cash Book</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="D"> The Journal</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
             <!-- Q7 -->
-            <div class="question-tab" data-qindex="7" data-type="radio" data-correct="D">
-                <p class="question-text">7. A business purchases office equipment for £1,500 on credit from Office Supplies Ltd. In which ledger and book of prime entry should this transaction be recorded?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="A"> Purchases Day Book and Sales Ledger</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="B"> Cash Book and General Ledger</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="C"> Purchases Day Book and General Ledger</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="D"> The Journal and General Ledger</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-
-            <!-- Q8 -->
-            <div class="question-tab" data-qindex="8" data-type="input" data-correct="610">
-                <p class="question-text">8. The Purchases Day Book page total shows £580 net plus £116 VAT. A credit note received from a supplier for £70 net plus £14 VAT is processed. Calculate the final net obligation to be posted to the Purchases Account for this batch.</p>
+            <div class="question-tab" data-qindex="7" data-type="input" data-correct="120">
+                <p class="question-text">7. Goods are sold on credit for £600 net of VAT. If the standard rate of VAT is 20%, calculate the total value of VAT to be recorded in the Sales Tax Account (£).</p>
                 <div class="options-container">
                     <div class="option-box">
                         <div class="numeric-input-wrapper">
-                            <span>Net Purchases Account Posting (£):</span>
-                            <input type="text" class="numeric-field" name="q8" placeholder="0.00">
+                            <span>Calculated VAT amount (£):</span>
+                            <input type="text" class="numeric-field" name="q7" placeholder="0.00">
                         </div>
                         <span class="feedback-icon"></span>
                     </div>
                 </div>
             </div>
+
+            <!-- Q8 -->
+            <div class="question-tab" data-qindex="8" data-type="radio" data-correct="A">
+                <p class="question-text">8. Which of the following transactions would be entered directly into the Petty Cash Book?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q8" value="A"> Purchase of postage stamps for £15</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q8" value="B"> Payment of bulk trade inventory for £1,200</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q8" value="C"> Receipts from credit customers for £350</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q8" value="D"> Purchase of a new delivery van for £18,000</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
             <!-- Q9 -->
             <div class="question-tab" data-qindex="9" data-type="radio" data-correct="B">
-                <p class="question-text">9. A petty cash book is maintained using the imprest system with a float of £200. During the month, vouchers for stationery (£34), petrol (£45), and tea supplies (£12) were paid. What amount is required to restore the float back to its original imprest level?</p>
+                <p class="question-text">9. We received a Credit Note from a supplier, J. Wells, for faulty goods returned. The credit note shows: Goods £200, Less 10% Trade Discount. What is the correct ledger entry to record this transaction?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="A"> £200</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="B"> £91</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="C"> £109</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="D"> £111</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="A"> Debit Purchases Overheads £180, Credit J. Wells Account £180</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="B"> Debit J. Wells Account £180, Credit Purchase Returns Account £180</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="C"> Debit J. Wells Account £200, Credit Purchase Returns Account £200</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
             <!-- Q10 -->
-            <div class="question-tab" data-qindex="10" data-type="input" data-correct="140">
-                <p class="question-text">10. At the month-end, the petty cash box contains £60 in cash notes and coins. The total voucher expenses for the period sum up to £140. Using the imprest system guidelines, calculate what the total designated float amount (Imprest Float) must be.</p>
+            <div class="question-tab" data-qindex="10" data-type="input" data-correct="768">
+                <p class="question-text">10. An invoice for £800 contains a Prompt Payment Discount (PPD) terms of 4% if paid within 10 days. The customer complies with the terms and pays on day 7. Calculate the final cash amount received from the customer (£).</p>
                 <div class="options-container">
                     <div class="option-box">
                         <div class="numeric-input-wrapper">
-                            <span>Total Imprest Float (£):</span>
+                            <span>Final cash payment (£):</span>
                             <input type="text" class="numeric-field" name="q10" placeholder="0.00">
                         </div>
                         <span class="feedback-icon"></span>
@@ -203,47 +185,46 @@
             </div>
 
             <!-- Q11 -->
-            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="A">
-                <p class="question-text">11. A cash sale of £120 inclusive of 20% VAT occurs. What is the double-entry setup needed to capture this cash sale in the general ledger accounts?</p>
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="C">
+                <p class="question-text">11. Which of the following shows the correct operational sequence of documents when making a credit purchase from a trade supplier?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="A"> Debit Cash Book £120 | Credit Sales £100, Credit VAT £20</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="B"> Debit Sales £100, Debit VAT £20 | Credit Cash Book £120</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="C"> Debit Cash Book £120 | Credit Sales £120</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="D"> Debit Trade Receivables £120 | Credit Sales £100, Credit VAT £20</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="A"> Invoice → Purchase Order → Delivery Note → Statement</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="B"> Delivery Note → Purchase Order → Invoice → Credit Note</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="C"> Purchase Order → Delivery Note → Invoice → Statement</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
             <!-- Q12 -->
-            <div class="question-tab" data-qindex="12" data-type="input" data-correct="3200">
-                <p class="question-text">12. A bank ledger account has an opening debit balance of £2,500. Total cash receipts recorded during the period are £4,800, and total payments issued amount to £4,100. Calculate the closing analytical balance of the bank account.</p>
+            <div class="question-tab" data-qindex="12" data-type="input" data-correct="1430">
+                <p class="question-text">12. During the week, the Purchase Day Book shows three invoices from suppliers: Invoice A £400, Invoice B £650, and Invoice C £380. Compute the total credit entry to be posted to the Purchase Ledger Control Account at the end of the week (£).</p>
                 <div class="options-container">
                     <div class="option-box">
                         <div class="numeric-input-wrapper">
-                            <span>Closing Bank Balance (£):</span>
+                            <span>Total posted to PLCA (£):</span>
                             <input type="text" class="numeric-field" name="q12" placeholder="0.00">
                         </div>
                         <span class="feedback-icon"></span>
                     </div>
                 </div>
             </div>
+
             <!-- Q13 -->
-            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="C">
-                <p class="question-text">13. Which of the following errors would be highlighted and exposed immediately by extracting an unadjusted Trial Balance?</p>
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="D">
+                <p class="question-text">13. A business has an unadjusted cash book balance of £1,200 (Debit). Following a bank bank transaction review, a bank overdraft of £1,500 is verified on the statement. How is a bank overdraft classified under the accounting equation?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> A transaction completely omitted from the books (Error of Omission)</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> Postings made to the wrong person's account in the Sales Ledger</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="C"> A debit entry made for £450 but the corresponding credit entered as £540</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="D"> Buying equipment but entering it into the repairs account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> Non-current Asset</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> Current Asset</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="D"> Current Liability</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
             <!-- Q14 -->
-            <div class="question-tab" data-qindex="14" data-type="input" data-correct="8400">
-                <p class="question-text">14. At the end of the year, a business has total assets of £15,600 and total outside liabilities of £7,200. Using the accounting equation, calculate the value of Owner's Capital.</p>
+            <div class="question-tab" data-qindex="14" data-type="input" data-correct="23500">
+                <p class="question-text">14. At the end of the financial window, a sole trader has Total Assets of £35,000 and Total Liabilities of £11,500. Calculate the closing Capital balance using the accounting equation (£).</p>
                 <div class="options-container">
                     <div class="option-box">
                         <div class="numeric-input-wrapper">
-                            <span>Owner Capital Value (£):</span>
+                            <span>Closing Capital (£):</span>
                             <input type="text" class="numeric-field" name="q14" placeholder="0.00">
                         </div>
                         <span class="feedback-icon"></span>
@@ -253,15 +234,14 @@
 
             <!-- Q15 -->
             <div class="question-tab" data-qindex="15" data-type="radio" data-correct="A">
-                <p class="question-text">15. A trade discount is explicitly used to reduce the list price of goods for trade customers, whereas a settlement discount is an incentive for prompt payment. Is this statement true or false?</p>
+                <p class="question-text">15. A credit purchase transaction of £450 was accurately entered into the supplier's personal account but completely omitted from the Purchase Day Book. What is the operational effect on the Trial Balance?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="A"> True</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="B"> False</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="A"> The Trial Balance total will disagree by £450</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="B"> The Trial Balance will still agree completely</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
         </form>
 
-        <!-- Pulsantiera Inferiore dei Controlli -->
         <div class="controls-footer">
             <div class="btn-group-left">
                 <button class="btn btn-blue" id="btn-am-i-right">Am I right?</button>
@@ -275,8 +255,15 @@
             </div>
         </div>
     </div>
-    <!-- WIDGET CALCOLATRICE VETRATA -->
+    <!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+    <div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
+
+    <!-- INTERFACCIA CALCOLATRICE -->
     <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" title="Hide">✕</button>
+        </div>
         <div id="calc-screen">0</div>
         <div class="calc-grid">
             <button class="calc-btn op" onclick="clearCalc()">C</button>
@@ -298,7 +285,7 @@
             <button class="calc-btn" onclick="pressCalc('0')">0</button>
             <button class="calc-btn" onclick="pressCalc('.')">.</button>
             <button class="calc-btn op" onclick="pressCalc('%')">%</button>
-            <button class="calc-btn op" style="background:#059669;" onclick="calculateCalc()">=</button>
+            <button class="calc-btn op" style="background:#059669; color: white;" onclick="calculateCalc()">=</button>
         </div>
     </div>
     <script>
@@ -311,11 +298,9 @@
         const btnNext = document.getElementById('btn-next');
         const btnPdf = document.getElementById('btn-pdf');
 
-        // 1. Gestione Navigazione Sequenziale dei Tab
         function updateNavigation() {
             tabs.forEach(tab => tab.classList.remove('active'));
             document.querySelector(`.question-tab[data-qindex="${currentQuestion}"]`).classList.add('active');
-            
             currentQNum.innerText = currentQuestion;
             btnPrev.disabled = currentQuestion === 1;
             
@@ -331,7 +316,6 @@
         btnNext.addEventListener('click', () => { if (currentQuestion < totalQuestions) { currentQuestion++; updateNavigation(); } });
         btnPrev.addEventListener('click', () => { if (currentQuestion > 1) { currentQuestion--; updateNavigation(); } });
 
-        // 2. Controllo Esecuzione: Am I right?
         document.getElementById('btn-am-i-right').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
             const type = activeTab.getAttribute('data-type');
@@ -339,74 +323,59 @@
             
             if (type === 'radio') {
                 const selected = activeTab.querySelector('input[type="radio"]:checked');
-                const icons = activeTab.querySelectorAll('.feedback-icon');
-                icons.forEach(i => i.style.display = 'none'); 
-                
+                activeTab.querySelectorAll('.feedback-icon').forEach(i => i.style.display = 'none');
                 if (selected) {
-                    const feedbackSpan = selected.closest('.option-box').querySelector('.feedback-icon');
-                    feedbackSpan.style.display = 'inline';
-                    if (selected.value === correctAnswer) {
-                        feedbackSpan.innerText = ' ✔️';
-                        feedbackSpan.style.color = '#10B981';
-                    } else {
-                        feedbackSpan.innerText = ' ❌';
-                        feedbackSpan.style.color = '#DC2626';
-                    }
+                    const span = selected.closest('.option-box').querySelector('.feedback-icon');
+                    span.style.display = 'inline';
+                    span.innerText = selected.value === correctAnswer ? ' ✔️' : ' ❌';
+                    span.style.color = selected.value === correctAnswer ? '#10B981' : '#DC2626';
                 }
             } else if (type === 'input') {
-                const inputField = activeTab.querySelector('.numeric-field');
-                const feedbackSpan = activeTab.querySelector('.feedback-icon');
-                feedbackSpan.style.display = 'inline';
-                
-                if (inputField.value.trim() === correctAnswer) {
-                    feedbackSpan.innerText = ' ✔️';
-                    feedbackSpan.style.color = '#10B981';
-                } else {
-                    feedbackSpan.innerText = ' ❌';
-                    feedbackSpan.style.color = '#DC2626';
-                }
+                const input = activeTab.querySelector('.numeric-field');
+                const span = activeTab.querySelector('.feedback-icon');
+                span.style.display = 'inline';
+                span.innerText = input.value.trim() === correctAnswer ? ' ✔️' : ' ❌';
+                span.style.color = input.value.trim() === correctAnswer ? '#10B981' : '#DC2626';
             }
         });
 
-        // 3. Controllo Esecuzione: Show Solution (#DCFCE7)
         document.getElementById('btn-show-solution').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
             const type = activeTab.getAttribute('data-type');
             const correctAnswer = activeTab.getAttribute('data-correct');
 
             if (type === 'radio') {
-                const targetRadio = activeTab.querySelector(`input[value="${correctAnswer}"]`);
-                if (targetRadio) {
-                    targetRadio.closest('.option-box').classList.add('correct-answer-highlight');
-                }
+                const target = activeTab.querySelector(`input[value="${correctAnswer}"]`);
+                if (target) target.closest('.option-box').classList.add('correct-answer-highlight');
             } else if (type === 'input') {
-                const inputField = activeTab.querySelector('.numeric-field');
-                inputField.closest('.option-box').classList.add('correct-answer-highlight');
-                inputField.value = correctAnswer; 
+                const input = activeTab.querySelector('.numeric-field');
+                input.closest('.option-box').classList.add('correct-answer-highlight');
+                input.value = correctAnswer;
             }
         });
 
-        // 4. Controllo Esecuzione: Reset Schermata Attiva
         document.getElementById('btn-reset').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
-            const type = activeTab.getAttribute('data-type');
-            
-            activeTab.querySelectorAll('.option-box').forEach(box => box.classList.remove('correct-answer-highlight'));
-            activeTab.querySelectorAll('.feedback-icon').forEach(icon => { icon.style.display = 'none'; icon.innerText = ''; });
-
-            if (type === 'radio') {
-                const checked = activeTab.querySelector('input[type="radio"]:checked');
-                if (checked) checked.checked = false;
-            } else if (type === 'input') {
-                activeTab.querySelector('.numeric-field').value = '';
-            }
+            activeTab.querySelectorAll('.option-box').forEach(b => b.classList.remove('correct-answer-highlight'));
+            activeTab.querySelectorAll('.feedback-icon').forEach(i => { i.style.display = 'none'; i.innerText = ''; });
+            const radio = activeTab.querySelector('input[type="radio"]:checked');
+            if (radio) radio.checked = false;
+            const input = activeTab.querySelector('.numeric-field');
+            if (input) input.value = '';
         });
 
-        // 5. Stampa e Generazione PDF Condizionale
         btnPdf.addEventListener('click', () => { window.print(); });
+        // 1. Gestione Visibilità (Mostra / Nascondi)
+        const calcWidget = document.getElementById('calc-widget');
+        const calcTrigger = document.getElementById('calc-toggle-trigger');
+        const calcClose = document.getElementById('calc-close-btn');
 
-        // 6. Calcolatrice Fluttuante Logica Computazionale
+        calcTrigger.addEventListener('click', () => calcWidget.style.display = 'block');
+        calcClose.addEventListener('click', () => calcWidget.style.display = 'none');
+
+        // 2. Operazioni Matematiche del Display
         let calcDisplay = document.getElementById('calc-screen');
+        
         function pressCalc(val) {
             if (calcDisplay.innerText === '0' && !isNaN(val)) calcDisplay.innerText = '';
             if (val === 'sq') { calcDisplay.innerText = Math.pow(eval(calcDisplay.innerText), 2); }
@@ -414,7 +383,31 @@
             else { calcDisplay.innerText += val; }
         }
         function clearCalc() { calcDisplay.innerText = '0'; }
-        function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
+        function calculateCalc() { 
+            try { calcDisplay.innerText = eval(calcDisplay.innerText); } 
+            catch(e) { calcDisplay.innerText = 'Error'; } 
+        }
+
+        // 3. Logica di Trascinamento (Drag & Drop dello Studente)
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+        calcWidget.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('calc-btn') || e.target.id === 'calc-screen') return;
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            isDragging = true;
+        });
+
+        document.addEventListener('mouseup', () => { isDragging = false; initialX = currentX; initialY = currentY; });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            xOffset = currentX;
+            yOffset = currentY;
+            calcWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        });
     </script>
 </body>
 </html>
