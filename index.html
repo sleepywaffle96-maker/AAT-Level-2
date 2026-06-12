@@ -1,136 +1,132 @@
-<!-- RIFERIMENTO_BLOCCO: INDEX_HEAD_CONFIG_VINTAGE -->
+<!-- RIFERIMENTO_BLOCCO: INDEX_HEAD_FIXED -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AAT Accounting Hub - Home</title>
-    <!-- Tailwind CSS & Google Fonts -->
-    <script src="https://jsdelivr.net"></script>
+    <!-- Caricamento Font Inter -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0B0F19; color: #F3F4F6; }
+        body { font-family: 'Inter', sans-serif; background-color: #0B0F19; color: #F3F4F6; margin: 0; padding: 0; box-sizing: border-box; }
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; width: 100%; text-align: center; }
+        .hubs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; width: 100%; text-align: left; }
+        .white-hub { background-color: #FFFFFF !important; color: #111827 !important; border-radius: 16px; padding: 30px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); display: flex; flex-col: column; flex-direction: column; justify-content: space-between; min-height: 400px; box-sizing: border-box; }
+        .hub-header { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 20px; }
+        .badge { font-size: 10px; font-weight: 700; padding: 3px 8px; rounded-radius: 4px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-top: 4px; }
+        .badge-orange { background-color: #FFEDD5; color: #C2410C; }
+        .badge-teal { background-color: #CCFBF1; color: #0F766E; }
+        .select-field { width: 100%; background-color: #F9FAFB; border: 1px solid #D1D5DB; color: #111827; font-size: 14px; border-radius: 10px; padding: 12px; margin-bottom: 12px; font-weight: 600; cursor: pointer; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234B5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; }
+        .btn { display: flex; align-items: center; justify-content: space-between; width: 100%; color: #FFFFFF !important; font-weight: 600; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-size: 14px; box-sizing: border-box; transition: opacity 0.2s; margin-top: auto; }
+        .btn:hover { opacity: 0.9; }
+        .btn-orange { background-color: #EA580C; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2); }
+        .btn-teal { background-color: #0D9488; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2); }
+        .btn-icon { width: 16px; height: 16px; display: inline-block; fill: none; stroke: currentColor; stroke-width: 2; }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: INDEX_BODY_HEADER_VINTAGE -->
-<body class="min-h-screen bg-[#0B0F19] flex flex-col justify-between antialiased">
+<!-- RIFERIMENTO_BLOCCO: INDEX_BODY_HUBS_FIXED -->
+<body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
 
-    <!-- Container Principale -->
-    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
+    <main class="main-container">
         
-        <!-- Titolo Centrale Tradizionale -->
-        <div class="text-center mb-10 max-w-2xl px-4">
-            <span class="bg-indigo-950/80 text-indigo-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-indigo-900/50">
+        <!-- Intestazione della Suite -->
+        <div style="margin-bottom: 20px;">
+            <span style="background-color: rgba(30, 27, 75, 0.8); color: #818CF8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(49, 46, 129, 0.5);">
                 Official Exam Preparation Suite
             </span>
-            <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight">
+            <h1 style="text-size: 32px; font-size: 32px; font-weight: 800; color: #FFFFFF; margin: 16px 0 8px 0; letter-spacing: -0.5px;">
                 AAT Interactive Simulator
             </h1>
-            <p class="text-gray-400 text-sm mt-2">
+            <p style="color: #9CA3AF; font-size: 14px; margin: 0; max-width: 600px; margin: 0 auto;">
                 Consult full structural lessons before attempting mock exams or select static parameters below.
             </p>
         </div>
-<!-- RIFERIMENTO_BLOCCO: INDEX_HUBS_AND_DROPDOWNS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl px-4 items-start">
+
+        <!-- Griglia dei due Hub speculari Nativi -->
+        <div class="hubs-grid">
             
-            <!-- ================= HUB 1: AREA STUDIO (BIANCO) ================= -->
-            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-200 flex flex-col justify-between h-full min-h-[460px]">
+            <!-- ================= HUB 1: AREA STUDIO (BIANCO COSTRUTTIVO) ================= -->
+            <div class="white-hub">
                 <div>
-                    <div class="flex items-center gap-4 mb-4 border-b border-gray-100 pb-4">
-                        <span class="text-4xl filter drop-shadow-sm">📚</span>
+                    <div class="hub-header">
+                        <span style="font-size: 36px;">📚</span>
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Area Studio</h2>
-                            <span class="text-[10px] bg-orange-100 text-orange-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                                Syllabus Coursework
-                            </span>
+                            <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #111827;">Area Studio</h2>
+                            <span class="badge badge-orange">Syllabus Coursework</span>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-8">
+                    <p style="font-size: 14px; color: #4B5563; line-height: 1.6; margin: 0 0 24px 0;">
                         Consult full structural lessons, digital documentation, and official corporate guidelines tailored perfectly to your active AAT level qualifications.
                     </p>
                 </div>
                 
-                <a href="studio.html" class="flex items-center justify-between w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3.5 px-5 rounded-xl transition-colors cursor-pointer text-sm shadow-md shadow-orange-600/20 mt-auto">
+                <a href="studio.html" class="btn btn-orange">
                     <span>Open Study Hub</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24"><polyline points='9 18 15 12 9 6'></polyline></svg>
                 </a>
             </div>
 
-            <!-- ================= HUB 2: PRACTICE ROOM (BIANCO) ================= -->
-            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-200 flex flex-col justify-between h-full min-h-[460px]">
+            <!-- ================= HUB 2: PRACTICE ROOM (BIANCO COSTRUTTIVO) ================= -->
+            <div class="white-hub">
                 <div>
-                    <div class="flex items-center gap-4 mb-4 border-b border-gray-100 pb-4">
-                        <span class="text-4xl filter drop-shadow-sm">🧮</span>
+                    <div class="hub-header">
+                        <span style="font-size: 36px;">🧮</span>
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Practice & Tests</h2>
-                            <span class="text-[10px] bg-teal-100 text-teal-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                                Simulator Suite
-                            </span>
+                            <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #111827;">Practice & Tests</h2>
+                            <span class="badge badge-teal">Simulator Suite</span>
                         </div>
                     </div>
                     
-                    <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-4">Fixed Practice Tests</p>
+                    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #6B7280; letter-spacing: 0.5px; margin: 0 0 10px 0;">Fixed Practice Tests</p>
                     
-                    <!-- Area delle Selezioni a Tendina -->
-                    <div class="space-y-3 mb-6">
-                        <!-- Tendina Level 2 -->
-                        <div class="relative">
-                            <select onchange="if(this.value) window.location.href=this.value" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 p-3 appearance-none cursor-pointer font-medium">
-                                <option value="" selected disabled>🟠 AAT Level 2 Certificate Topics</option>
-                                <option value="level-2/cap1-test1.html">Chapter 1: Double-Entry Bookkeeping</option>
-                                <option value="level-2/cap2-test1.html">Chapter 2: Principles of Documentation</option>
-                                <option value="level-2/cap3-test1.html">Chapter 3: Bookkeeping Controls</option>
-                                <option value="level-2/cap4-test1.html">Chapter 4: Correction of Errors</option>
-                            </select>
-                        </div>
+                    <!-- Area Selezioni Dropdown -->
+                    <div style="margin-bottom: 20px;">
+                        <!-- Livello 2 -->
+                        <select onchange="if(this.value) window.location.href=this.value" class="select-field">
+                            <option value="" selected disabled>🟠 AAT Level 2 Certificate Topics</option>
+                            <option value="level-2/cap1-test1.html">Chapter 1: Double-Entry Bookkeeping</option>
+                            <option value="level-2/cap2-test1.html">Chapter 2: Principles of Documentation</option>
+                            <option value="level-2/cap3-test1.html">Chapter 3: Bookkeeping Controls</option>
+                            <option value="level-2/cap4-test1.html">Chapter 4: Correction of Errors</option>
+                        </select>
 
-                        <!-- Tendina Level 3 -->
-                        <div class="relative">
-                            <select onchange="if(this.value) window.location.href=this.value" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 p-3 appearance-none cursor-pointer font-medium">
-                                <option value="" selected disabled>🟢 AAT Level 3 Diploma Topics</option>
-                                <option value="level-3/cap1-test1.html">Chapter 1: BUAW Financial Environment</option>
-                                <option value="level-3/cap2-test1.html">Chapter 2: FAPS Financial Statements</option>
-                                <option value="level-3/cap3-test1.html">Chapter 3: MATC Management Costing</option>
-                                <option value="level-3/cap4-test1.html">Chapter 4: TPFB VAT Accounting</option>
-                                <option value="level-3/cap5-test1.html">Chapter 5: Corporate Governance</option>
-                                <option value="level-3/cap6-test1.html">Chapter 6: Internal Controls & Ethics</option>
-                            </select>
-                        </div>
+                        <!-- Livello 3 -->
+                        <select onchange="if(this.value) window.location.href=this.value" class="select-field">
+                            <option value="" selected disabled>🟢 AAT Level 3 Diploma Topics</option>
+                            <option value="level-3/cap1-test1.html">Chapter 1: BUAW Financial Environment</option>
+                            <option value="level-3/cap2-test1.html">Chapter 2: FAPS Financial Statements</option>
+                            <option value="level-3/cap3-test1.html">Chapter 3: MATC Management Costing</option>
+                            <option value="level-3/cap4-test1.html">Chapter 4: TPFB VAT Accounting</option>
+                            <option value="level-3/cap5-test1.html">Chapter 5: Corporate Governance</option>
+                            <option value="level-3/cap6-test1.html">Chapter 6: Internal Controls & Ethics</option>
+                        </select>
 
-                        <!-- Tendina Level 4 -->
-                        <div class="relative">
-                            <select onchange="if(this.value) window.location.href=this.value" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 p-3 appearance-none cursor-pointer font-medium">
-                                <option value="" selected disabled>🟣 AAT Level 4 Diploma Topics</option>
-                                <option value="level-4/cap1-test1.html">Chapter 1: AMAC Applied Budgeting</option>
-                                <option value="level-4/cap2-test1.html">Chapter 2: AMAC Advanced Costing</option>
-                                <option value="level-4/cap3-test1.html">Chapter 3: AMAC Variance Analysis</option>
-                                <option value="level-4/cap4-test1.html">Chapter 4: DAIF Regulatory Framework</option>
-                                <option value="level-4/cap5-test1.html">Chapter 5: DAIF Consolidated Statements</option>
-                                <option value="level-4/cap6-test1.html">Chapter 6: DAIF Key Financial Ratios</option>
-                                <option value="level-4/cap7-test1.html">Chapter 7: IASC Accounting Systems</option>
-                                <option value="level-4/cap8-test1.html">Chapter 8: IASC Fraud Prevention</option>
-                                <option value="level-4/cap9-test1.html">Chapter 9: Professional Ethics</option>
-                            </select>
-                        </div>
+                        <!-- Livello 4 -->
+                        <select onchange="if(this.value) window.location.href=this.value" class="select-field">
+                            <option value="" selected disabled>🟣 AAT Level 4 Diploma Topics</option>
+                            <option value="level-4/cap1-test1.html">Chapter 1: AMAC Applied Budgeting</option>
+                            <option value="level-4/cap2-test1.html">Chapter 2: AMAC Advanced Costing</option>
+                            <option value="level-4/cap3-test1.html">Chapter 3: AMAC Variance Analysis</option>
+                            <option value="level-4/cap4-test1.html">Chapter 4: DAIF Regulatory Framework</option>
+                            <option value="level-4/cap5-test1.html">Chapter 5: DAIF Consolidated Statements</option>
+                            <option value="level-4/cap6-test1.html">Chapter 6: DAIF Key Financial Ratios</option>
+                            <option value="level-4/cap7-test1.html">Chapter 7: IASC Accounting Systems</option>
+                            <option value="level-4/cap8-test1.html">Chapter 8: IASC Fraud Prevention</option>
+                            <option value="level-4/cap9-test1.html">Chapter 9: Professional Ethics</option>
+                        </select>
                     </div>
                 </div>
                 
-                <!-- Pulsante Principale Algoritmico -->
-                <a href="simulatore.html" class="flex items-center justify-between w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 px-5 rounded-xl transition-colors cursor-pointer text-sm shadow-md shadow-teal-600/20 mt-auto">
+                <a href="simulatore.html" class="btn btn-teal">
                     <span>Launch Random Scenario Engine</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24"><polyline points='9 18 15 12 9 6'></polyline></svg>
                 </a>
             </div>
 
         </div>
     </main>
-<!-- RIFERIMENTO_BLOCCO: INDEX_FOOTER_CLOSURE_VINTAGE -->
-    <!-- Footer Istituzionale -->
-    <footer class="w-full text-center py-6 border-t border-gray-900/40 text-[11px] text-gray-500 uppercase tracking-widest bg-gray-950/10">
+<!-- RIFERIMENTO_BLOCCO: INDEX_FOOTER_FIXED -->
+    <footer style="width: 100%; text-align: center; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #4B5563; text-transform: uppercase; letter-spacing: 1px; background-color: rgba(0,0,0,0.1);">
         Official AAT Syllabus Alignment • Strict UK English Standards Only
     </footer>
 
