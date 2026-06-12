@@ -179,7 +179,7 @@
 
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
         const testWindow = window.open("", "_blank");
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_STYLE_4B -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4B -->
         testWindow.document.write(`
             <!DOCTYPE html>
             <html>
@@ -195,31 +195,27 @@
                     .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
                     .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
                     
-                    /* STILE IDENTICO ALLO SCREENSHOT: SPAZIATURA E ELEMENTI DISPOSTI AI LATI */
-                    .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: background 0.15s; }
+                    .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
                     .option-row:hover { background: #F1F5F9; }
                     .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
                     .option-right-inputs { display: flex; align-items: center; gap: 12px; }
+                    
+                    /* STILE PER FARE VEDERE LA SOLUZIONE SU RICHIESTA */
+                    .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); }
                     
                     .feedback-marker { font-size: 15px; font-weight: bold; display: none; }
                     .feedback-correct { color: #10B981; }
                     .feedback-wrong { color: #EF4444; }
                     
-                    .osborne-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
-                    .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 6px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
+                    .osborne-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
+                    .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 4px; font-size: 11.5px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
                     .osborne-btn:hover { background: #F1F5F9; }
                     .btn-verify { background: #1E293B; color: #FFFFFF; border-color: #1E293B; }
                     .btn-verify:hover { background: #0F172A; }
+                    .btn-solution { background: #0284C7; color: #FFFFFF; border-color: #0284C7; }
+                    .btn-solution:hover { background: #0369A1; }
                     
                     .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
-                    .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
-                    .calc-widget-body { padding: 1rem; display: none; }
-                    .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
-                    .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-                    .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
-                    .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
-                    .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
-                    .btn-equals { background: #00f2fe; color: #0a0f1d; }
                     @media print {
                         body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
                         .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
@@ -228,19 +224,20 @@
                 </style>
             </head>
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_AUTO_4C -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4C -->
             <body>
                 <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
                     <div id="questions-root-wrapper" style="width: 100%;"></div>
                 </div>
 
-                <!-- PLANCIA PULSANTI CON TRIGGER PDF DIRETTO -->
-                <div class="osborne-footer-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                <!-- GRIGLIA COMANDI CON TASTO SOLUZIONE INTEGRATO -->
+                <div class="osborne-footer-grid">
                     <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
+                    <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
                     <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
                     <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
                     <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
-                    <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Download Test as PDF</button>
+                    <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Download as PDF</button>
                 </div>
 
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4D -->
@@ -339,7 +336,7 @@
                         \`;
                     });
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_AUTO_4E_4 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4E_4 -->
                     function changeQuestion(step) {
                         const target = currentActiveIndex + step;
                         if (target >= 0 && target < 15) {
@@ -348,7 +345,6 @@
                             document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
                         }
 
-                        // Mostra il pulsante di download solo alla fine del test (Question 15)
                         const pdfBtn = document.getElementById("osborne-pdf-trigger");
                         if (currentActiveIndex === 14) {
                             pdfBtn.style.display = "block";
@@ -358,17 +354,26 @@
                     }
 
                     function triggerAutoPDFDownload() {
-                        // Cambia dinamicamente il titolo del documento per preimpostare il nome del file nel prompt di salvataggio
                         const originalTitle = document.title;
                         document.title = "AAT_Official_Exam_Worksheet_" + Math.floor(Math.random() * 9000 + 1000);
-                        
-                        // Avvia il comando di esportazione/stampa
                         window.print();
+                        setTimeout(() => { document.title = originalTitle; }, 500);
+                    }
+
+                    function showCurrentSolution() {
+                        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+                        const correctLetter = activeCard.getAttribute("data-correct");
                         
-                        // Ripristina il titolo originale subito dopo
-                        setTimeout(() => {
-                            document.title = originalTitle;
-                        }, 500);
+                        // Rimuove eventuali evidenziazioni precedenti per pulizia
+                        const rows = activeCard.querySelectorAll(".option-row");
+                        rows.forEach(r => r.classList.remove("reveal-correct"));
+                        
+                        // Trova la riga corretta in base al radio button interno e le applica lo stile verde
+                        const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);
+                        if (correctRadio) {
+                            const targetRow = correctRadio.closest(".option-row");
+                            if (targetRow) targetRow.classList.add("reveal-correct");
+                        }
                     }
 
                     function verifyCurrentInline() {
@@ -399,9 +404,16 @@
                     }
 
                     function resetCurrentForm() {
+                        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+                        
+                        // Ripulisce sia i marker (spunte) sia l'evidenziazione della soluzione verde
                         document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
                         document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
                         document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
+                        
+                        const rows = activeCard.querySelectorAll(".option-row");
+                        rows.forEach(r => r.classList.remove("reveal-correct"));
+                        
                         document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;
                         document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
                         document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
