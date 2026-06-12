@@ -1,4 +1,4 @@
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAGINATO_PART_1 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_7P_1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -62,7 +62,7 @@
         .generate-btn:hover { opacity: 0.95; }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAGINATO_PART_2 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_7P_2 -->
 <body>
 <div class="container">
     <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
@@ -100,9 +100,8 @@
 
     </div>
 </div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_FIX_CHAPTER_LOCK -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_7P_3 -->
 <script>
-    // Database dei capitoli allineato rigidamente ai valori delle tendine
     const syllabusData = {
         "L2": [
             "Chapter 1: Bookkeeping Transactions",
@@ -135,7 +134,6 @@
         const lvl = document.getElementById("level-selector").value;
         const chapSel = document.getElementById("chapter-selector");
         
-        // Sblocca la tendina e svuota i vecchi elementi
         chapSel.disabled = false;
         chapSel.innerHTML = "";
         
@@ -147,13 +145,11 @@
             return;
         }
 
-        // Inserisce l'opzione jolly iniziale
         let optRand = document.createElement("option");
         optRand.value = "LEVEL_RANDOM";
         optRand.textContent = "🎲 Randomize Chapter Inside This Level";
         chapSel.appendChild(optRand);
 
-        // Popola la lista in base al livello selezionato
         if (syllabusData[lvl]) {
             syllabusData[lvl].forEach((chap, idx) => {
                 let opt = document.createElement("option");
@@ -163,7 +159,7 @@
             });
         }
     }
-
+// RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_7P_4
     function launchPaginatedTestWindow() {
         let lvl = document.getElementById("level-selector").value;
         let chap = document.getElementById("chapter-selector").value;
@@ -173,7 +169,6 @@
             return;
         }
 
-        // Estrazione casuale in caso di Random totale
         if (lvl === "RANDOM") {
             const levels = ["L2", "L3", "L4"];
             lvl = levels[Math.floor(Math.random() * levels.length)];
@@ -187,7 +182,6 @@
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
         const testWindow = window.open("", "_blank");
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4B -->
         testWindow.document.write(`
             <!DOCTYPE html>
             <html>
@@ -238,8 +232,7 @@
                     }
                 </style>
             </head>
-
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4C -->
+// RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_7P_5
             <body>
                 <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
                     <div id="questions-root-wrapper" style="width: 100%;"></div>
@@ -285,143 +278,7 @@
                         </div>
                     </div>
                 </div>
-
-
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4D -->
-                <div id="floatingCalcWidget" class="calc-widget-floating">
-                    <div class="calc-widget-header" onclick="toggleCalculatorView()">
-                        <span>🧮 AAT Exam Calculator</span>
-                        <span id="calcToggleArrow">▲</span>
-                    </div>
-                    <div id="calcWidgetBody" class="calc-widget-body">
-                        <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
-                        <div class="calc-btn-grid">
-                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
-                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
-                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
-                            <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
-                            <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
-                            <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
-                            <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
-                            <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
-                            <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
-                            <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
-                            <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
-                            <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
-                            <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
-                            <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
-                            <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
-                            <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
-                        </div>
-                    </div>
-                </div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_1 -->
-                <script>
-                    const scenarios = [
-                        { text: "Verify the balancing steps for the Sales Ledger Control Account discrepancy.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Analyze the statutory ammortisation index applied to non-current asset categories.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Reconcile the opening cash book deficit against bank statement credit entries.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Compute the standard overhead absorption rate based on direct labour allocation.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Determine the correct input VAT adjustment for trade receivables.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_2 -->
-                        { text: "Evaluate closing inventory variance under FIFO valuation constraints.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Reconstruct incomplete sole trader turnover parameters using margin criteria.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
-                        { text: "Formulate the proper accounting treatment for capitalised development outlays.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Process year-end accruals for statutory utility liabilities.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Identify the systemic risk indicators within the purchase ledger sub-module.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Adjust the Suspense Account allocation following a transposition error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Calculate the Partnership profit share ratio adjustments under current laws.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
-                        { text: "Assess Corporate Governance breaches under the IESBA framework.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Verify the Consolidated Statement adjustments for internal unrealised profits.", correct: "A", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Compute the standard variance indicators for production yields.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
-                    ];
-// RIFERIMENTO_BLOCCO: SIMULATORE_RISPOSTE_DINAMICHE_4E_3
-                    let currentActiveIndex = 0;
-                    const root = document.getElementById("questions-root-wrapper");
-
-                    // Array di risposte differenziate per ciascuna delle 15 domande
-                    const optionTexts = [
-                        { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
-                        { a: "Apply straight-line depreciation index to non-current structures", b: "Execute statutory reducing balance adjustments to current categories", c: "Reclassify non-current outlays into operational expenses" },
-                        { a: "Reconcile the opening cash book deficit against credit bank entries", b: "Transfer unpresented cheques directly to the Suspense Control account", c: "Perform a retrospective bank statement write-off analysis" },
-                        { a: "Compute standard absorption parameters based on direct labour allocation", b: "Allocate general factory overheads using floor area square coefficients", c: "Absorb marginal expenses into production yield margins" },
-                        { a: "Process bad debts write-offs under HMRC irrecoverable rules", b: "Determine the correct input VAT clawback for trade receivables", c: "Adjust the provision for doubtful debts using age analysis parameters" },
-                        { a: "Evaluate closing inventory values under strict FIFO constraints", b: "Apply AVCO index adjustments to periodic stock valuations", c: "Execute an immediate net realisable value cost write-down" },
-                        { a: "Apply the standard gross profit margin percentage to purchases data", b: "Reconstruct incomplete sole trader turnover using mark-up criteria", c: "Formulate bank summary cash drawings balancing steps" },
-                        { a: "Capitalise intangible outlays under strict IAS 38 recognition criteria", b: "Write off structural prototype expenses as immediate overhead costs", c: "Amortise research coefficients over a fixed operational cycle" },
-                        { a: "Debit relevant utility expenditure and credit the Accruals account", b: "Credit outstanding rental provisions and debit Prepayments balances", c: "Post year-end corrections directly through the Trial Balance ledger" },
-                        { a: "Segregate commercial processing duties within the purchase ledger", b: "Implement systemic risk reviews within the automated payment loop", c: "Perform an exhaustive manual audit of supplier invoice matching rules" },
-                        { a: "Debit Suspense Account and credit Sales ledger following a transposition error", b: "Adjust opening Trial Balance differences via direct general journal entries", c: "Reverse incorrect double-entry parameters across control files" },
-                        { a: "Apportion residual profits using agreed partnership salary clauses", b: "Calculate profit share ratio adjustments under current legal bases", c: "Charge nominal interest on partner capital drawings variables" },
-                        { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
-                        { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
-                        { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" }
-                    ];
-
-                    scenarios.forEach((q, idx) => {
-                        const num = idx + 1;
-                        // Prende il set di risposte specifico per la domanda corrente
-                        const opts = optionTexts[idx % optionTexts.length];
-
-                        root.innerHTML += `
-                            <div class="test-card-container ${idx === 0 ? 'active' : ''}" id="card_task_${idx}" data-correct="${q.correct}">
-                                <div class="header-area">
-                                    <span class="level-tag">${badgeText} • Q${num} of 15</span>
-                                    <span class="difficulty-tag">${q.diff}</span>
-                                </div>
-                                <div class="question-title">Assessment Task ${num}</div>
-                                <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">
-                                    ${q.text}
-                                </p>
-                                
-                                <div class="option-row" onclick="document.getElementById('opt_${idx}_A').checked = true">
-                                    <span class="option-text-left">${opts.a}</span>
-                                    <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_${idx}_A"></div>
-                                        <input type="radio" name="ans_${idx}" id="opt_${idx}_A" value="A" style="cursor:pointer;">
-                                    </div>
-                                </div>
-                                
-                                <div class="option-row" onclick="document.getElementById('opt_${idx}_B').checked = true">
-                                    <span class="option-text-left">${opts.b}</span>
-                                    <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_${idx}_B"></div>
-                                        <input type="radio" name="ans_${idx}" id="opt_${idx}_B" value="B" style="cursor:pointer;">
-                                    </div>
-                                </div>
-
-                                <div class="option-row" onclick="document.getElementById('opt_${idx}_C').checked = true">
-                                    <span class="option-text-left">${opts.c}</span>
-                                    <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_${idx}_C"></div>
-                                        <input type="radio" name="ans_${idx}" id="opt_${idx}_C" value="C" style="cursor:pointer;">
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    });
-
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4E_4 -->
-                    function changeQuestion(step) {
-                        const target = currentActiveIndex + step;
-                        if (target >= 0 && target < 15) {
-                            document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
-                            currentActiveIndex = target;
-                            document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
-                        }
-
-                        const pdfBtn = document.getElementById("osborne-pdf-trigger");
-                        if (currentActiveIndex === 14) {
-                            pdfBtn.style.display = "block";
-                        } else {
-                            pdfBtn.style.display = "none";
-                        }
-                    }
-
+// RIFERIMENTO_BLOCCO: SIMULATORE_COMPLETO_PARTE_6_UNIFICATO
                     function triggerAutoPDFDownload() {
                         const originalTitle = document.title;
                         document.title = "AAT_Official_Exam_Worksheet_" + Math.floor(Math.random() * 9000 + 1000);
@@ -432,12 +289,8 @@
                     function showCurrentSolution() {
                         const activeCard = document.getElementById("card_task_" + currentActiveIndex);
                         const correctLetter = activeCard.getAttribute("data-correct");
-                        
-                        // Rimuove eventuali evidenziazioni precedenti per pulizia
                         const rows = activeCard.querySelectorAll(".option-row");
                         rows.forEach(r => r.classList.remove("reveal-correct"));
-                        
-                        // Trova la riga corretta in base al radio button interno e le applica lo stile verde
                         const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);
                         if (correctRadio) {
                             const targetRow = correctRadio.closest(".option-row");
@@ -451,7 +304,6 @@
                         const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
                         const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
                         const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
-                        
                         const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
                         const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
                         const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
@@ -474,21 +326,16 @@
 
                     function resetCurrentForm() {
                         const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-                        
-                        // Ripulisce sia i marker (spunte) sia l'evidenziazione della soluzione verde
                         document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
                         document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
                         document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
-                        
                         const rows = activeCard.querySelectorAll(".option-row");
                         rows.forEach(r => r.classList.remove("reveal-correct"));
-                        
                         document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;
                         document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
                         document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
                     }
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_5 -->
                     let isCalcBodyExpanded = false;
                     let calcCurrentExpressionString = "";
 
