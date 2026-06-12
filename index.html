@@ -1,10 +1,10 @@
-<!-- RIFERIMENTO_BLOCCO: INDEX_HTML_FIXED -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Accounting Hub | Home</title>
+    <title>AAT Accounting Hub | Executive Portal</title>
     <style>
         :root {
             --bg-dark: #0a0f1d;
@@ -14,52 +14,78 @@
             --text-muted: #94a3b8;
             --primary: #00f2fe;
             --secondary: #4facfe;
+            --accent-teal: #00f2fe;
+            --success: #10b981;
         }
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 2rem;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            box-sizing: border-box;
         }
         .container {
-            max-width: 600px;
+            max-width: 1100px;
             width: 100%;
-            padding: 2rem;
-            box-sizing: border-box;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        /* Dashboard symmetric layout grid */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
         }
         .glass-card {
             background: var(--card-glass);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-glass);
             border-radius: 12px;
-            padding: 3rem 2rem;
+            padding: 2.5rem;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            text-align: center;
-        }
-        h1 {
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            font-size: 2.6rem;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-        .btn-group {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
         }
-        .hub-btn {
+        .hub-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hub-description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+        .action-btn {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: #0a0f1d;
@@ -68,11 +94,12 @@
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
+            text-align: center;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            display: block;
+            margin-bottom: 1rem;
         }
-        .hub-btn:hover {
+        .action-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
         }
@@ -80,25 +107,130 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-glass);
             color: var(--text-main);
+            margin-bottom: 0;
         }
         .btn-alt:hover {
             background: rgba(0, 242, 254, 0.05);
             border-color: var(--primary);
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
         }
+        .level-accordion-btn {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 0.8rem;
+            border-radius: 6px;
+            color: var(--text-muted);
+            text-align: left;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .level-accordion-btn:hover {
+            border-color: var(--secondary);
+            color: var(--text-main);
+        }
+        .test-list-dropdown {
+            display: none;
+            padding: 0.5rem 1rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+            margin-top: 0.3rem;
+        }
+        .test-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .test-link:hover {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="glass-card">
+        <header>
             <h1>AAT Accounting Hub</h1>
-            <p class="subtitle">UK Accounting Examination Preparation Platform</p>
-            
-            <div class="btn-group">
-                <a href="studio.html" class="hub-btn">📚 Open Study Hub Indice</a>
-                <a href="simulatore.html" class="hub-btn btn-alt">🧮 Launch Exam Simulator</a>
+            <p class="subtitle">UK Accounting Examination Advanced Preparation Platform</p>
+        </header>
+
+        <div class="hub-grid">
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <!-- SECTION 1: STUDY HUB INDICE -->
+            <div class="glass-card">
+                <div class="hub-title">📚 Study Hub Indice</div>
+                <p class="hub-description">
+                    Access deep-dive textbooks, structured visual layouts, T-accounts, and quick-reference formula cheat sheets. Perfectly synchronized across all official AAT tiers to build core knowledge.
+                </p>
+                <a href="studio.html" class="action-btn">Open Learning Hub Indice</a>
+            </div>
+
+            <!-- SECTION 2: EXAM & TESTING PLATFORM -->
+            <div class="glass-card">
+                <div class="hub-title">🧮 Exam & Practice Test Hub</div>
+                <p class="hub-description">
+                    Validate your accounting competency through two separate professional testing environments designed to align perfectly with the textbook chapters.
+                </p>
+                
+                <!-- Action 1: Global Algorithmic Simulator -->
+                <a href="simulatore.html" class="action-btn">Launch Algorithmic Simulator</a>
+                
+                <!-- Action 2: Fixed Practice Tests Dropdowns -->
+                <div style="margin-top: 1rem; display: flex; flex-direction: column;">
+                    <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: bold; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Or Open Fixed Practice Tests:
+                    </span>
+                    
+                    <!-- Level 2 Tests Toggle -->
+                    <div class="level-accordion-btn" onclick="toggleTestMenu('l2_tests')">▼ AAT Level 2 Practice Exams</div>
+                    <div id="l2_tests" class="test-list-dropdown">
+                        <a href="level-2/cap1-test1.html" class="test-link">Chapter 1: Principles of Double-Entry</a>
+                        <a href="level-2/cap2-test1.html" class="test-link">Chapter 2: Documentation & Transactions</a>
+                        <a href="level-2/cap3-test1.html" class="test-link">Chapter 3: Control Accounts & Bank Recons</a>
+                        <a href="level-2/cap4-test1.html" class="test-link">Chapter 4: Journal Adjustments & Errors</a>
+                    </div>
+
+                    <!-- Level 3 Tests Toggle -->
+                    <div class="level-accordion-btn" onclick="toggleTestMenu('l3_tests')">▼ AAT Level 3 Practice Exams</div>
+                    <div id="l3_tests" class="test-list-dropdown">
+                        <a href="level-3/cap1-test1.html" class="test-link">Chapter 1: Business Environment (BUAW)</a>
+                        <a href="level-3/cap2-test1.html" class="test-link">Chapter 2: Preparing Financial Statements (FAPS)</a>
+                        <a href="level-3/cap3-test1.html" class="test-link">Chapter 3: Cost Classification & Behaviour (MATC)</a>
+                        <a href="level-3/cap4-test1.html" class="test-link">Chapter 4: Value Added Tax Administration (TPFB)</a>
+                        <a href="level-3/cap5-test1.html" class="test-link">Chapter 5: Corporate Governance (BUAW)</a>
+                        <a href="level-3/cap6-test1.html" class="test-link">Chapter 6: Internal Controls & Ethics (BUAW)</a>
+                    </div>
+
+                    <!-- Level 4 Tests Toggle -->
+                    <div class="level-accordion-btn" onclick="toggleTestMenu('l4_tests')">▼ AAT Level 4 Practice Exams</div>
+                    <div id="l4_tests" class="test-list-dropdown">
+                        <a href="level-4/cap1-test1.html" class="test-link">Chapter 1: Budgeting & Planning (AMAC)</a>
+                        <a href="level-4/cap2-test1.html" class="test-link">Chapter 2: Costing & Performance (AMAC)</a>
+                        <a href="level-4/cap3-test1.html" class="test-link">Chapter 3: Control & Variance Analysis (AMAC)</a>
+                        <a href="level-4/cap4-test1.html" class="test-link">Chapter 4: Regulatory Framework (DAIF)</a>
+                        <a href="level-4/cap5-test1.html" class="test-link">Chapter 5: Consolidated Financial Statements (DAIF)</a>
+                        <a href="level-4/cap6-test1.html" class="test-link">Chapter 6: Financial Analysis & Ratios (DAIF)</a>
+                        <a href="level-4/cap7-test1.html" class="test-link">Chapter 7: Systems Evaluation (IASC)</a>
+                        <a href="level-4/cap8-test1.html" class="test-link">Chapter 8: Fraud & Risk Management (IASC)</a>
+                        <a href="level-4/cap9-test1.html" class="test-link">Chapter 9: Professional Ethics & Sustainability</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleTestMenu(menuId) {
+            const dropdown = document.getElementById(menuId);
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
