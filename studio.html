@@ -1,4 +1,4 @@
-<!-- RIFERIMENTO_BLOCCO: STUDIO_HEAD_HUBS_COLORATI -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_DIAG_HEAD_STYLING -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -25,22 +25,6 @@
             max-width: 760px;
             margin: 0 auto;
         }
-        .header-section {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-        h1 {
-            color: #FFFFFF;
-            margin: 0 0 10px 0;
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .subtitle {
-            font-size: 14px;
-            color: #94A3B8;
-            margin: 0;
-        }
         .back-home {
             display: inline-block;
             color: #38BDF8;
@@ -53,24 +37,40 @@
             text-decoration: underline;
         }
         
-        /* IL GRANDE HUB CONTENITORE CENTRALE */
-        .big-study-hub {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        /* IL GRANDE HUB: BOLLA GENERALE CHIARA DI CONTRASTO */
+        .big-white-study-hub {
+            background: #FFFFFF !important;
+            border-radius: 20px;
+            padding: 35px 25px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            border: 1px solid #E2E8F0;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #0F172A !important;
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #64748B;
+            margin: 0;
         }
 
-        /* STRUTTURA DELLE TENDINE STILE BOLLA SIMULATORE */
+        /* ACCORDION STRUTTURALI */
         .level-accordion {
             margin-bottom: 16px;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         .accordion-header {
             padding: 18px 20px;
@@ -85,13 +85,13 @@
             transition: opacity 0.2s;
         }
         .accordion-header:hover {
-            opacity: 0.9;
+            opacity: 0.95;
         }
         
-        /* COLORAZIONI DELLE BOLLE PER LIVELLO */
-        .header-l2 { background: linear-gradient(135deg, #EA580C, #C2410C); box-shadow: 0 4px 14px rgba(234, 88, 12, 0.2); }
-        .header-l3 { background: linear-gradient(135deg, #0D9488, #0F766E); box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25); }
-        .header-l4 { background: linear-gradient(135deg, #6D28D9, #5B21B6); box-shadow: 0 4px 14px rgba(109, 40, 217, 0.25); }
+        /* COLORAZIONI ADERENTI ALLE ICONE DELLA HOMEPAGE */
+        .header-l2 { background: linear-gradient(135deg, #0D9488, #0F766E); } /* Verde simulatore originale */
+        .header-l3 { background: linear-gradient(135deg, #0284C7, #0369A1); } /* Azzurro/Blu dell'iconcina */
+        .header-l4 { background: linear-gradient(135deg, #EA580C, #C2410C); } /* Arancione dell'iconcina */
 
         .accordion-icon {
             font-size: 16px;
@@ -101,12 +101,12 @@
             transform: rotate(180deg);
         }
         
-        /* CONTENUTO INTERNO WHITE BUBBLE RIGIDO */
+        /* PANNELLI CONTENUTO INTERNO CHIARO */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            background: #FFFFFF !important;
+            background: #F8FAFC !important;
         }
         .chapter-list {
             padding: 0;
@@ -167,23 +167,23 @@
         .btn-summary { background: linear-gradient(135deg, #38BDF8, #1D4ED8); }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: STUDIO_BODY_LEVEL_2_HUB -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_DIAG_BODY_L2_GREEN -->
 <body>
 <div class="container">
     <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
     
-    <!-- IL GRANDE HUB ESTERNO COINVOLGENTE -->
-    <div class="big-study-hub">
+    <!-- LA GRANDE BOLLA GENERALE CHIARA DI CONTRASTO -->
+    <div class="big-white-study-hub">
         
         <div class="header-section">
             <h1>AAT Study Hub</h1>
             <p class="subtitle">Select your level and choose your dedicated learning interface for each separate chapter.</p>
         </div>
 
-        <!-- LEVEL 2 ACCORDION (BOLLA ARANCIONE) -->
+        <!-- LEVEL 2 ACCORDION (BOLLA INTERNA VERDE) -->
         <div class="level-accordion">
             <div class="accordion-header header-l2" onclick="toggleAccordion(this)">
-                <span>📊 AAT Level 2 Certificate in Accounting</span>
+                <span>AAT Level 2 - Certificate in Accounting</span>
                 <span class="accordion-icon">&#9662;</span>
             </div>
             <div class="accordion-content">
@@ -235,11 +235,11 @@
                 </ul>
             </div>
         </div>
-<!-- RIFERIMENTO_BLOCCO: STUDIO_BODY_LEVEL_3_A_HUB -->
-        <!-- LEVEL 3 ACCORDION (BOLLA TEAL) -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_DIAG_BODY_L3_BLUE_A -->
+        <!-- LEVEL 3 ACCORDION (BOLLA INTERNA AZZURRO/BLU) -->
         <div class="level-accordion">
             <div class="accordion-header header-l3" onclick="toggleAccordion(this)">
-                <span>🔹 AAT Level 3 Diploma in Accounting</span>
+                <span>AAT Level 3 - Diploma in Accounting</span>
                 <span class="accordion-icon">&#9662;</span>
             </div>
             <div class="accordion-content">
@@ -277,7 +277,7 @@
                             <a href="studio-modules/level-3/cap3-summary.html" class="study-btn btn-summary">⚡ Cheat Sheet</a>
                         </div>
                     </li>
-<!-- RIFERIMENTO_BLOCCO: STUDIO_BODY_LEVEL_3_B_HUB -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_DIAG_BODY_L3_BLUE_B -->
                     <li class="chapter-item">
                         <div class="chapter-info">
                             <span class="chapter-title">Chapter 4: Tax Processes for Businesses</span>
@@ -314,11 +314,11 @@
                 </ul>
             </div>
         </div>
-<!-- RIFERIMENTO_BLOCCO: STUDIO_BODY_LEVEL_4_HUB -->
-        <!-- LEVEL 4 ACCORDION (BOLLA VIOLA) -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_DIAG_BODY_L4_ORANGE -->
+        <!-- LEVEL 4 ACCORDION (BOLLA INTERNA ARANCIONE) -->
         <div class="level-accordion">
             <div class="accordion-header header-l4" onclick="toggleAccordion(this)">
-                <span>🔸 AAT Level 4 Diploma in Professional Accounting</span>
+                <span>AAT Level 4 - Diploma in Professional Accounting</span>
                 <span class="accordion-icon">&#9662;</span>
             </div>
             <div class="accordion-content">
@@ -415,15 +415,15 @@
             </div>
         </div>
 
-    </div> <!-- FINE BIG HUB -->
+    </div> <!-- FINE BIG WHITE HUB -->
 </div> <!-- FINE CONTAINER -->
-<!-- RIFERIMENTO_BLOCCO: STUDIO_SCRIPT_ACCORDION_FIX -->
+<!-- RIFERIMENTO_BLOCCO: STUDIO_DIAG_SCRIPT_FIX -->
 <script>
 function toggleAccordion(header) {
     const accordion = header.parentElement;
     const content = accordion.querySelector('.accordion-content');
     
-    // Chiude tutti gli altri blocchi di livello aperti per mantenere l'ordine
+    // Chiude gli altri livelli aperti per preservare lo stacco visivo pulito
     document.querySelectorAll('.level-accordion').forEach(item => {
         if (item !== accordion && item.classList.contains('active')) {
             item.classList.remove('active');
@@ -431,7 +431,7 @@ function toggleAccordion(header) {
         }
     });
 
-    // Inverte lo stato attivo del blocco selezionato
+    // Sblocca lo stato attivo del livello cliccato
     accordion.classList.toggle('active');
     
     if (accordion.classList.contains('active')) {
@@ -443,4 +443,3 @@ function toggleAccordion(header) {
 </script>
 </body>
 </html>
-
