@@ -2,6 +2,9 @@ name: Esegui Convertitore Automatico
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write # QUESTO RIMOVE L'ERRORE 128 E SBLOCCA IL GIT PUSH
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -18,7 +21,6 @@ jobs:
               sed -i 's/background-color:[[:space:]]*#[a-fA-F0-9]*/background-color: #0B0F19/g' "$file"
               sed -i 's/\.test-card-container[[:space:]]*{/\.test-card-container { background: #FFFFFF !important; color: #1E293B !important; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);/g' "$file"
               sed -i 's/\.option-row[[:space:]]*{/\.option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer;/g' "$file"
-              # Sblocca i selettori e forza il refresh dei radio button a destra
               sed -i 's/name="ans_/name="ans_/g' "$file"
             fi
           done
