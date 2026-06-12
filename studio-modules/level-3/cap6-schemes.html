@@ -1,0 +1,147 @@
+<!-- RIFERIMENTO_BLOCCO: 1 -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Chapter 6: BUAW Schemes | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --t-green: #10b981;
+            --t-red: #ef4444;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+        .matrix-table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.01);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+        }
+        .matrix-table th {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 2px solid var(--primary);
+            font-size: 0.95rem;
+        }
+        .matrix-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>BUAW Internal Control Weaknesses & Resolution Flow</h1>
+            <p style="color: var(--text-muted)">Visual analysis grids mapping accounting control deficiencies, potential business risks, and standard ethical escalation pathways.</p>
+
+            <h2>1. System Deficiency Assessment Matrix</h2>
+            <p style="color: var(--text-muted)">The standard audit template used to identify transaction flaws and design effective systems control check gates.</p>
+            
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Identified Accounting Flaw</th>
+                        <th>Associated Risk / Vulnerability</th>
+                        <th>Recommended Control Gating Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:var(--text-main)">Purchase invoices are processed and paid without verifying delivery documents.</td>
+                        <td>Paying for duplicate supplier bills, incorrect quantities, or goods that were never received.</td>
+                        <td style="color:var(--primary)">Enforce a three-way matching control: Purchase Invoice must align with the Purchase Order and Goods Received Note (GRN) before payment approval.</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)">The petty cash box is kept in an unlocked drawer with multiple employees accessing the change.</td>
+                        <td>Theft of cash, missing transaction logs, and an inability to trace ledger adjustments to specific staff.</td>
+                        <td style="color:var(--secondary)">Keep petty cash secured inside a locked safe. Assign a single custodian and mandate signed receipts for every withdrawal.</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--text-main)">The database profile used to modify employee payroll parameters requires no secondary manager sign-off.</td>
+                        <td>Creation of ghost employees, falsified overtime submissions, or unauthorized wage increases.</td>
+                        <td style="color:var(--t-green)">Configure a dual-authorization check gate: payroll adjustments must be signed off by a senior manager before the system updates the bank file.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2. Ethical Dilemma Resolution Pipeline</h2>
+            <p style="color: var(--text-muted)">The official systematic path recommended by the AAT when dealing with operational pressures or fraud.</p>
+            
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
+                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
+[ <strong>STEP 1: Gather Evidence</strong> ] ──► Fact-check calculations and document specific accounting deviations.
+              │
+              ▼
+[ <strong>STEP 2: Internal Report</strong> ]  ──► Escalate the issue to a line manager or the independent Audit Committee.
+              │
+              ▼
+[ <strong>STEP 3: Technical Advice</strong> ] ──► Contact AAT ethical helpline channels for professional guidance.
+              │
+              ▼
+[ <strong>STEP 4: Legal Protection</strong> ] ──► Consult independent legal advisors regarding UK whistleblower safety rules.
+              │
+              ▼
+[ <strong>STEP 5: Final Recourse</strong> ]    ──► <strong>Resign from the position</strong> if executive management refuses to fix the fraud.
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
