@@ -1,6 +1,6 @@
 name: Esegui Convertitore Automatico
 on:
-  workflow_dispatch: # Questo sblocca il pulsante "Play" manuale
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -9,18 +9,225 @@ jobs:
       - name: Controlla il codice
         uses: actions/checkout@v4
 
-      - name: Configura Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+      - name: Inject Osborne Styles and Scripts into level-2 HTML files
+        run: |
+          for file in level-2/*.html; do
+            if [ -f "$file" ]; then
+              echo "Processing manually: $file"
+              sed -n '/<div class="test-card-container"/,/<\/div>[[:space:]]*<\/div>/p' "$file" > temp_cards.txt
+              cat << 'EOF' > "$file"
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Fixed Practice Test</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body { background-color: #0B0F19; color: #F3F4F6; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
+        .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
+        .test-card-container.active { display: block; }
+        .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; background: #0D9488; }
+        .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
+        .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
+        .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+        .option-row:hover { background: #F1F5F9; }
+        .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
+        .option-right-inputs { display: flex; align-items: center; gap: 12px; }
+        .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); }
+        .feedback-marker { font-size: 15px; font-weight: bold; display: none; }
+        .feedback-correct { color: #10B981; }
+        .feedback-wrong { color: #EF4444; }
+        .osborne-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
+        .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 4px; font-size: 11.5px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
+        .osborne-btn:hover { background: #F1F5F9; }
+        .btn-verify { background: #1E293B; color: #FFFFFF; border-color: #1E293B; }
+        .btn-verify:hover { background: #0F172A; }
+        .btn-solution { background: #0284C7; color: #FFFFFF; border-color: #0284C7; }
+        .btn-solution:hover { background: #0369A1; }
+        .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
+        .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
+        .calc-widget-body { padding: 1rem; display: none; }
+        .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
+        .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+        .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
+        .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
+        .btn-equals { background: #00f2fe; color: #0a0f1d; }
+        @media print {
+            body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
+            .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
+            .calc-widget-floating, .osborne-footer-grid { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
+        <div id="questions-root-wrapper" style="width: 100%;">
+EOF
+              cat temp_cards.txt >> "$file"
+              cat << 'EOF' >> "$file"
+        </div>
+    </div>
+    <div class="osborne-footer-grid">
+        <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
+        <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
+        <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
+        <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
+        <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
+        <button id="osborne-pdf-trigger" onclick="window.print()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Download as PDF</button>
+    </div>
+    <div id="floatingCalcWidget" class="calc-widget-floating">
+        <div class="calc-widget-header" onclick="toggleCalculatorView()">
+            <span>🧮 AAT Exam Calculator</span>
+            <span id="calcToggleArrow">▲</span>
+        </div>
+        <div id="calcWidgetBody" class="calc-widget-body">
+            <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
+            <div class="calc-btn-grid">
+                <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
+                <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
+                <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
+                <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+                <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
+                <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
+                <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
+                <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+                <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
+                <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
+                <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
+                <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+                <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
+                <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
+                <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
+                <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+                <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
+                <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
+                <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
+                <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentActiveIndex = 0;
+        const totalQuestions = document.querySelectorAll('.test-card-container').length;
+        document.querySelectorAll('.test-card-container').forEach((el, idx) => {
+            if (idx === 0) el.classList.add('active');
+            else el.classList.remove('active');
+            el.id = "card_task_" + idx;
+            const rows = el.querySelectorAll('.option-row');
+            rows.forEach(r => {
+                const input = r.querySelector('input[type="radio"]');
+                const marker = r.querySelector('.feedback-marker');
+                if (input) {
+                    input.name = "ans_" + idx;
+                    input.id = "opt_" + idx + "_" + input.value;
+                    r.setAttribute("onclick", "document.getElementById('opt_" + idx + "_" + input.value + "').checked = true");
+                }
+                if (marker && input) marker.id = "mark_" + idx + "_" + input.value;
+            });
+        });
+        function changeQuestion(step) {
+            const target = currentActiveIndex + step;
+            if (target >= 0 && target < totalQuestions) {
+                document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
+                currentActiveIndex = target;
+                document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
+            }
+            const pdfBtn = document.getElementById("osborne-pdf-trigger");
+            if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === totalQuestions - 1) ? "block" : "none";
+        }
+        function showCurrentSolution() {
+            const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+            const correctLetter = activeCard.getAttribute("data-correct");
+            const rows = activeCard.querySelectorAll(".option-row");
+            rows.forEach(r => r.classList.remove("reveal-correct"));
+            const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);
+            if (correctRadio) {
+                const targetRow = correctRadio.closest(".option-row");
+                if (targetRow) targetRow.classList.add("reveal-correct");
+            }
+        }
+        function verifyCurrentInline() {
+            const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+            const correctVal = activeCard.getAttribute("data-correct");
+            const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
+            const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
+            const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
+            const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
+            const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
+            const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
+            if(mA) mA.style.display = "none";
+            if(mB) mB.style.display = "none";
+            if(mC) mC.style.display = "none";
+            if (rA && rA.checked && mA) {
+                mA.style.display = "block";
+                mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
+            } else if (rB && rB.checked && mB) {
+                mB.style.display = "block";
+                mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
+            } else if (rC && rC.checked && mC) {
+                mC.style.display = "block";
+                mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
+            }
+        }
+        function resetCurrentForm() {
+            const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+            if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
+            if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
+            if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
+            const rows = activeCard.querySelectorAll(".option-row");
+            rows.forEach(r => r.classList.remove("reveal-correct"));
+            ['A', 'B', 'C'].forEach(l => {
+                let rb = document.getElementById("opt_" + currentActiveIndex + "_" + l);
+                if(rb) rb.checked = false;
+            });
+        }
+        let isCalcBodyExpanded = false;
+        let calcCurrentExpressionString = "";
+        function toggleCalculatorView() {
+            const body = document.getElementById("calcWidgetBody");
+            isCalcBodyExpanded = !isCalcBodyExpanded;
+            body.style.display = isCalcBodyExpanded ? "block" : "none";
+        }
+        function pushCalcChar(char) {
+            const display = document.getElementById("calcDisplayScreen");
+            if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; }
+            else { calcCurrentExpressionString += char; }
+            display.value = calcCurrentExpressionString;
+        }
+        function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }
+        function pushCalcFunction(type) {
+            const display = document.getElementById("calcDisplayScreen");
+            let val = parseFloat(display.value) || 0;
+            if (type === 'sqrt') { if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; } val = Math.sqrt(val); }
+            else if (type === 'pow') { val = Math.pow(val, 2); }
+            else if (type === 'percent') { val = val / 100; }
+            calcCurrentExpressionString = Number(val.toFixed(6)).toString();
+            display.value = calcCurrentExpressionString;
+        }
+        function executeCalcExpression() {
+            const display = document.getElementById("calcDisplayScreen");
+            if (!calcCurrentExpressionString) return;
+            try {
+                let res = new Function('return (' + calcCurrentExpressionString + ')')();
+                calcCurrentExpressionString = Number(res.toFixed(6)).toString();
+                display.value = calcCurrentExpressionString;
+            } catch (e) { display.value = "Error"; calcCurrentExpressionString = ""; }
+        }
+    </script>
+</body>
+</html>
+EOF
+              rm -f temp_cards.txt
+            fi
+          done
 
-      - name: Esegui la conversione dei file
-        run: python converti_test.py
-
-      - name: Salva i file modificati su GitHub
+      - name: Commit and Push the updated fixed HTML tests
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
           git add level-2/*.html
-          git diff-index --quiet HEAD || git commit -m "Automated style update for level-2 tests"
+          git diff-index --quiet HEAD || git commit -m "Automated native shell style updates for level-2 tests"
           git push
