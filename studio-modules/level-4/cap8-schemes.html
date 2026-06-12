@@ -1,10 +1,10 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 4 - Chapter 8: IASC Fraud & Risk Schemes | AAT Accounting Hub</title>
+    <title>Level 4 - Chapter 7: IASC Evaluation Summary | AAT Accounting Hub</title>
     <style>
         :root {
             --bg-dark: #0a0f1d;
@@ -14,8 +14,7 @@
             --text-muted: #94a3b8;
             --primary: #00f2fe;
             --secondary: #4facfe;
-            --t-green: #10b981;
-            --t-red: #ef4444;
+            --panel-bg: rgba(0, 242, 254, 0.05);
         }
         body {
             background-color: var(--bg-dark);
@@ -25,7 +24,7 @@
             padding: 2rem;
         }
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
         }
         .nav-back {
@@ -44,41 +43,44 @@
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            margin-bottom: 2rem;
         }
         h1 {
             color: transparent;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-top: 0;
         }
         h2 {
             color: var(--primary);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-top: 1.5rem;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.3rem;
         }
-        .t-account {
-            width: 100%;
+        .formula-panel {
+            background: var(--panel-bg);
+            border-left: 3px solid var(--secondary);
+            padding: 1rem;
             margin: 1rem 0;
-            border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
-            overflow: hidden;
+            border-radius: 0 6px 6px 0;
         }
-        .t-account th {
-            background: rgba(0, 242, 254, 0.1);
+        .formula-title {
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+        .formula-text {
+            font-family: 'Courier New', Courier, monospace;
             color: var(--primary);
-            padding: 0.5rem;
-            border-bottom: 2px solid var(--primary);
+            font-size: 1.1rem;
         }
-        .t-account td {
-            padding: 0.6rem;
-            font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+        ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
         }
-        .t-account td:first-child {
-            border-right: 2px solid var(--border-glass);
+        li {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -87,58 +89,149 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>IASC Risk Grids & Analytical Schematics</h1>
-            <p style="color: var(--text-muted)">Visual templates displaying risk mapping logic and fraud defense matrices.</p>
+            <h1>IASC Systems Evaluation Core Reference</h1>
+            <p style="color: var(--text-muted)">Essential parameters, framework definitions, and formulas for internal system audit tasks.</p>
 
-            <h2>1. The Risk Assessment Matrix Layout</h2>
-            <p style="color: var(--text-muted)">Visual mapping structure utilized by accounting auditors to categorize threats and assign policy priorities.</p>
-            
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
-                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-              ┌────────────────────────────────────────────────┐
-              │             <strong>IMPACT LEVEL (Severity)</strong>            │
-              ├───────────────────────┬────────────────────────┤
-              │      <strong>LOW</strong>              │      <strong>HIGH</strong>              │
- <strong>LIKELIHOOD</strong>   ├───────────────────────┼────────────────────────┤
- <strong>(Probability)</strong>│                       │                        │
-   <strong>HIGH</strong>       │  <strong>REDUCE / CONTROL</strong>     │  <strong>AVOID / MITIGATE</strong>      │
-              │  (Optimize Systems)   │  (Change Direction)    │
-              ├───────────────────────┼────────────────────────┤
-   <strong>LOW</strong>        │  <strong>ACCEPT / IGNORE</strong>      │  <strong>TRANSFER / SHARE</strong>      │
-              │  (Monitor Over Time)  │  (Insurance Policies)  │
-              └───────────────────────┴────────────────────────┘
-                </pre>
+            <h2>1. Investment Financial Break-Even Metrics</h2>
+            <div class="formula-panel">
+                <div class="formula-title">The Simple Capital Payback Period</div>
+                <div class="formula-text">Payback Period = Upfront Capital Outlay Cost / Net Annual Operating Cash Savings</div>
+                <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">The resulting value shows the exact timeline required for an accounting platform upgrade to recover its initial implementation costs.</p>
             </div>
 
-            <h2>2. Operational Fraud Vulnerability Assessment Mapping</h2>
-            <p style="color: var(--text-muted)">The standard audit tracking template for isolating technological gaps, security exposure patterns, and defenses.</p>
-            
-            <table class="t-account">
-                <thead>
-                    <tr>
-                        <th style="text-align: left;">Threat Pattern Area</th>
-                        <th>System Vulnerability Mode</th>
-                        <th>Target Prevention Policy</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="color:var(--text-main)">Teeming & Lading</td>
-                        <td>Receivables manager covers a theft by diverting cash entries from subsequent customer accounts.</td>
-                        <td style="color:var(--primary)">Mandatory 2-week continuous holiday blocks; regular independent debtor statement matching.</td>
-                    </tr>
-                    <tr>
-                        <td style="color:var(--text-main)">Phishing / Cyber Breach</td>
-                        <td>Staff download tracking malware via spoofed emails, exposing internal database access keys.</td>
-                        <td style="color:var(--secondary)">Enforce Multi-Factor Authentication (MFA); ongoing phishing simulations for personnel.</td>
-                    </tr>
-                    <tr>
-                        <td style="color:var(--text-main)">Asset Diversion</td>
-                        <td>Unsupervised stock disposal logs allow staff to misclassify functional inventory items as scrap.</td>
-                        <td style="color:var(--t-green)">Dual-authorization requirement for inventory disposals; quarterly surprise scrap inspections.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>2. Value for Money (VFM) Framework Checklist</h2>
+            <div class="formula-panel">
+                <p style="margin: 0; color: var(--text-muted)"><strong>Economy:</strong> Minimizing the financial cost of input resources required for the upgrade while maintaining quality standards (spending less).</p>
+                <p style="margin: 0.3rem 0 0 0; color: var(--text-muted)"><strong>Efficiency:</strong> Maximizing the volume of accurate system outputs generated relative to the resource inputs consumed (spending well).</p>
+                <p style="margin: 0.3rem 0 0 0; color: var(--text-muted)"><strong>Effectiveness:</strong> Ensuring the new control infrastructure directly fulfills the organization's strategic compliance and safety goals (spending wisely).</p>
+            </div>
+
+            <h2>3. Critical Internal Audit Parameters</h2>
+            <ul>
+                <li><strong>Three-Way Invoice Match:</strong> An essential internal control verification process that reconciles a supplier's Purchase Invoice against the company's original Purchase Order (PO) and its corresponding Goods Received Note (GRN) before authorizing a cash disbursement.</li>
+                <li><strong>Segregation of Duties:</strong> Splitting up key duties across a transaction workflow so that no single staff member can process, record, and authorize a payment from start to finish.</li>
+                <li><strong>Audit Trail logs:</strong> Automatic, chronological database records that log the exact user identity, timestamp, and machine terminal behind every ledger adjustment or entry modification.</li>
+                <li><strong>System Resilience:</strong> The ability of a financial software network to maintain data security, prevent access breaches, and restore accounting entries after unexpected utility failures or cyber incidents.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<!-- RIFERIMENTO_BLOCCO: 1 -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4 - Chapter 7: IASC Evaluation Summary | AAT Accounting Hub</title>
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --panel-bg: rgba(0, 242, 254, 0.05);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.3rem;
+        }
+        .formula-panel {
+            background: var(--panel-bg);
+            border-left: 3px solid var(--secondary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .formula-title {
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+        .formula-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
+        
+        <div class="glass-card">
+            <h1>IASC Systems Evaluation Core Reference</h1>
+            <p style="color: var(--text-muted)">Essential parameters, framework definitions, and formulas for internal system audit tasks.</p>
+
+            <h2>1. Investment Financial Break-Even Metrics</h2>
+            <div class="formula-panel">
+                <div class="formula-title">The Simple Capital Payback Period</div>
+                <div class="formula-text">Payback Period = Upfront Capital Outlay Cost / Net Annual Operating Cash Savings</div>
+                <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: var(--text-muted)">The resulting value shows the exact timeline required for an accounting platform upgrade to recover its initial implementation costs.</p>
+            </div>
+
+            <h2>2. Value for Money (VFM) Framework Checklist</h2>
+            <div class="formula-panel">
+                <p style="margin: 0; color: var(--text-muted)"><strong>Economy:</strong> Minimizing the financial cost of input resources required for the upgrade while maintaining quality standards (spending less).</p>
+                <p style="margin: 0.3rem 0 0 0; color: var(--text-muted)"><strong>Efficiency:</strong> Maximizing the volume of accurate system outputs generated relative to the resource inputs consumed (spending well).</p>
+                <p style="margin: 0.3rem 0 0 0; color: var(--text-muted)"><strong>Effectiveness:</strong> Ensuring the new control infrastructure directly fulfills the organization's strategic compliance and safety goals (spending wisely).</p>
+            </div>
+
+            <h2>3. Critical Internal Audit Parameters</h2>
+            <ul>
+                <li><strong>Three-Way Invoice Match:</strong> An essential internal control verification process that reconciles a supplier's Purchase Invoice against the company's original Purchase Order (PO) and its corresponding Goods Received Note (GRN) before authorizing a cash disbursement.</li>
+                <li><strong>Segregation of Duties:</strong> Splitting up key duties across a transaction workflow so that no single staff member can process, record, and authorize a payment from start to finish.</li>
+                <li><strong>Audit Trail logs:</strong> Automatic, chronological database records that log the exact user identity, timestamp, and machine terminal behind every ledger adjustment or entry modification.</li>
+                <li><strong>System Resilience:</strong> The ability of a financial software network to maintain data security, prevent access breaches, and restore accounting entries after unexpected utility failures or cyber incidents.</li>
+            </ul>
         </div>
     </div>
 </body>
