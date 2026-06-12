@@ -1,0 +1,26 @@
+name: Esegui Convertitore Automatico
+on:
+  workflow_dispatch: # Questo sblocca il pulsante "Play" manuale
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Controlla il codice
+        uses: actions/checkout@v4
+
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Esegui la conversione dei file
+        run: python converti_test.py
+
+      - name: Salva i file modificati su GitHub
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add level-2/*.html
+          git diff-index --quiet HEAD || git commit -m "Automated style update for level-2 tests"
+          git push
