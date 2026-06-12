@@ -1,100 +1,329 @@
-<!-- RIFERIMENTO_BLOCCO: INDEX_HEAD_LEGACY_FIX -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Accounting Hub - Home</title>
+    <title>AAT Professional Accounting Assessment Platform</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #0B0F19; color: #FFFFFF; margin: 0; padding: 20px; box-sizing: border-box; }
-        .header-title { text-align: center; margin-bottom: 30px; }
-        .header-title h1 { font-size: 28px; margin: 10px 0 5px 0; color: #FFFFFF; }
-        .header-title p { color: #9CA3AF; font-size: 14px; margin: 0; }
-        .hubs-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: row; gap: 20px; justify-content: center; }
-        .old-white-card { background: #FFFFFF !important; color: #000000 !important; width: 50%; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); box-sizing: border-box; }
-        .old-white-card h2 { font-size: 22px; margin: 10px 0 5px 0; color: #000000 !important; }
-        .old-white-card p { font-size: 14px; color: #333333; line-height: 1.5; margin-bottom: 20px; }
-        .old-white-card a { color: #4F46E5; font-weight: bold; text-decoration: underline; font-size: 14px; }
-        .old-white-card a:hover { color: #4338CA; }
-        .dropdown-label { font-size: 12px; font-weight: bold; color: #666666; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        .legacy-select { width: 100%; padding: 10px; border: 1px solid #CCCCCC; border-radius: 4px; background-color: #FFFFFF; color: #000000; font-size: 14px; margin-bottom: 10px; cursor: pointer; }
-        @media (max-width: 768px) { .hubs-container { flex-direction: column; } .old-white-card { width: 100%; } }
+        :root {
+            --aat-navy: #0f172a;
+            --aat-cyan: #0284c7;
+            --aat-green: #0d9488;
+            --aat-green-hover: #0f766e;
+            --panel-bg: rgba(248, 250, 252, 0.95);
+            --text-main: #334155;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: var(--text-main);
+            box-sizing: border-box;
+            
+            /* SOLUZIONE DEFINITIVA: Immagine istituzionale da Wikimedia Commons con maschera chiara */
+            background: linear-gradient(rgba(241, 245, 249, 0.85), rgba(241, 245, 249, 0.85)), 
+                        url('https://wikimedia.org');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .hub-container {
+            width: 100%;
+            max-width: 720px;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            position: relative;
+        }
+
+        .aat-header-banner {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.98) 100%);
+            padding: 45px 30px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--aat-green);
+        }
+
+        .aat-badge-top {
+            display: inline-block;
+            background-color: var(--aat-cyan);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        h1 { color: #ffffff; font-size: 28px; margin: 0 0 6px 0; font-weight: 800; letter-spacing: -0.5px; }
+        .subtitle { font-size: 14px; color: #94a3b8; margin: 0; font-weight: 500; }
+        .content-area { padding: 30px; }
+        .simulator-banner { background: linear-gradient(135deg, var(--aat-green), #0f766e); color: white; padding: 16px 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25); }
+        .simulator-text h3 { margin: 0 0 4px 0; font-size: 15px; font-weight: 700; }
+        .simulator-text p { margin: 0; font-size: 12px; opacity: 0.9; }
+        .simulator-badge { background-color: rgba(255, 255, 255, 0.15); padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.25); }
+        .level-section { margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .level-btn { background-color: #ffffff; color: var(--aat-navy); cursor: pointer; padding: 18px; width: 100%; border: none; text-align: left; font-size: 16px; font-weight: 700; outline: none; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .level-btn.active { background-color: #f1f5f9; border-bottom: 1px solid var(--border-color); }
+        .level-btn::after { content: '▾'; font-size: 16px; color: #94a3b8; }
+        .chapters-panel { background-color: #ffffff; max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; box-sizing: border-box; }
+        .chapter-btn { background-color: transparent; color: var(--aat-green); cursor: pointer; padding: 15px 22px; width: 100%; border: 0; border-bottom: 1px solid #f1f5f9; text-align: left; font-size: 14px; font-weight: 600; outline: none; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .chapter-btn::after { content: '▸'; font-size: 12px; color: #94a3b8; }
+        .tests-panel { padding: 0 35px; max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; background-color: var(--panel-bg); }
+        .topic-list { list-style: none; padding: 10px 0; margin: 0; }
+        .topic-list li { padding: 10px 0; border-bottom: 1px dashed #e2e8f0; }
+        .topic-list li:last-child { border-bottom: 0; }
+        .topic-list a { color: #475569; text-decoration: none; font-size: 13px; display: flex; align-items: center; font-weight: 500; }
+        .icon-bullet { margin-right: 10px; color: var(--aat-cyan); font-weight: bold; font-size: 14px; }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: INDEX_BODY_START_LEGACY -->
 <body>
+<!-- INIZIO WRAPPER GLOBALE PER AFFIANCARE I DUE CONTAINER -->
+<div style="display: flex; gap: 30px; justify-content: center; align-items: flex-start; max-width: 1600px; margin: 0 auto; width: 100%; flex-wrap: wrap;">
 
-    <div class="header-title">
-        <p style="font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #818CF8;">Official Exam Preparation Suite</p>
-        <h1>AAT Interactive Simulator</h1>
-        <p>Consult full structural lessons before attempting mock exams or select static parameters below.</p>
+    <!-- PANNELLO SINISTRO: ACADEMIC STUDIO (TEORIA, SCHEMI, FORMULE) -->
+    <div class="hub-container" style="flex: 1; min-width: 320px; max-width: 750px; margin: 0; border-top: 4px solid var(--aat-green);">
+        <div class="aat-header-banner">
+            <div class="aat-badge-top">Official Theory Hub</div>
+            <h1>AAT Academic Studio</h1>
+            <p class="subtitle">Complete Technical Explanations, Double-Entry T-Accounts & Statutory Tax Tables</p>
+        </div>
+        <div class="content-area">
+            <a href="studio.html" class="simulator-banner" style="background: linear-gradient(135deg, var(--aat-green), #0f766e); margin-bottom: 25px;">
+                <div class="simulator-text">
+                    <h3>Open Theory & Formula Hub</h3>
+                    <p>Read full textbook chapters, double-entry ledgers, and tax coefficients on-site</p>
+                </div>
+                <div class="simulator-badge">Open Hub &rarr;</div>
+            </a>
+            <div class="level-section">
+                <p style="color: #64748b; font-style: italic; font-size: 0.95rem; text-align: center;">
+                    Consult full structural lessons before attempting mock exams.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="hubs-container">
-<!-- RIFERIMENTO_BLOCCO: INDEX_HUBS_CONTENT_LEGACY -->
-        <!-- ================= HUB 1: AREA STUDIO ================= -->
-        <div class="old-white-card">
-            <span style="font-size: 32px;">📚</span>
-            <h2>Area Studio</h2>
-            <p style="font-size: 12px; font-weight: bold; color: #EA580C; text-transform: uppercase; margin-top: -5px; margin-bottom: 15px;">Syllabus Coursework</p>
-            <p>Consult full structural lessons, digital documentation, and official corporate guidelines tailored perfectly to your active AAT level qualifications.</p>
-            <div style="margin-top: 30px;">
-                <a href="studio.html">Open Study Hub &rarr;</a>
+    <!-- PANNELLO DESTRO: EXAM GENERATOR & ACCORDION TEST (Il tuo vecchio blocco originale) -->
+    <div class="hub-container" style="margin: 0; flex: 1; min-width: 320px; max-width: 750px;">
+        <div class="aat-header-banner">
+            <div class="aat-badge-top">Official Exam Preparation Suite</div>
+            <h1>AAT Interactive Simulator</h1>
+            <p class="subtitle">Select your level below to launch randomized or static examination blocks</p>
+        </div>
+        <div class="content-area">
+            <a href="simulatore.html" class="simulator-banner" style="margin-bottom: 25px;">
+                <div class="simulator-text">
+                    <h3>Automated Random Scenario Generator</h3>
+                    <p>Dynamically alters numerical indicators for endless practice</p>
+                </div>
+                <div class="simulator-badge">Open Engine &rarr;</div>
+            </a>
+
+                <!-- LEVEL 2 -->
+        <div class="level-section">
+            <button class="level-btn">📊 AAT Level 2 Certificate Topics</button>
+            <div class="chapters-panel">
+                <button class="chapter-btn">Chapter 1: Bookkeeping Transactions</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-2/cap1-test1.html"><span class="icon-bullet">📝</span> Assessment One (Core Ledger Entries)</a></li>
+                        <li><a href="level-2/cap1-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Comprehensive Workflows)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 2: Bookkeeping Controls</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-2/cap2-test1.html"><span class="icon-bullet">📝</span> Assessment One (Control Accounts Balance)</a></li>
+                        <li><a href="level-2/cap2-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Suspense Account Reconciliation)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 3: Principles of Costing</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-2/cap3-test1.html"><span class="icon-bullet">📝</span> Assessment One (Inventory & Labour Elements)</a></li>
+                        <li><a href="level-2/cap3-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Overhead Apportionment)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 4: Work Effectively in Finance</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-2/cap4-test1.html"><span class="icon-bullet">📝</span> Assessment One (Corporate Regulations & Deadlines)</a></li>
+                        <li><a href="level-2/cap4-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Data Protection & Professionalism)</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <!-- ================= HUB 2: PRACTICE ROOM ================= -->
-        <div class="old-white-card">
-            <span style="font-size: 32px;">🧮</span>
-            <h2>Practice & Tests</h2>
-            <p style="font-size: 12px; font-weight: bold; color: #0D9488; text-transform: uppercase; margin-top: -5px; margin-bottom: 15px;">Simulator Suite</p>
-            
-            <span class="dropdown-label">Fixed Practice Tests</span>
-            
-            <!-- Tendina Livello 2 -->
-            <select onchange="if(this.value) window.location.href=this.value" class="legacy-select">
-                <option value="" selected disabled>🟠 AAT Level 2 Certificate Topics</option>
-                <option value="level-2/cap1-test1.html">Chapter 1: Double-Entry Bookkeeping</option>
-                <option value="level-2/cap2-test1.html">Chapter 2: Principles of Documentation</option>
-                <option value="level-2/cap3-test1.html">Chapter 3: Bookkeeping Controls</option>
-                <option value="level-2/cap4-test1.html">Chapter 4: Correction of Errors</option>
-            </select>
-
-            <!-- Tendina Livello 3 -->
-            <select onchange="if(this.value) window.location.href=this.value" class="legacy-select">
-                <option value="" selected disabled>🟢 AAT Level 3 Diploma Topics</option>
-                <option value="level-3/cap1-test1.html">Chapter 1: BUAW Financial Environment</option>
-                <option value="level-3/cap2-test1.html">Chapter 2: FAPS Financial Statements</option>
-                <option value="level-3/cap3-test1.html">Chapter 3: MATC Management Costing</option>
-                <option value="level-3/cap4-test1.html">Chapter 4: TPFB VAT Accounting</option>
-                <option value="level-3/cap5-test1.html">Chapter 5: Corporate Governance</option>
-                <option value="level-3/cap6-test1.html">Chapter 6: Internal Controls & Ethics</option>
-            </select>
-
-            <!-- Tendina Livello 4 -->
-            <select onchange="if(this.value) window.location.href=this.value" class="legacy-select">
-                <option value="" selected disabled>🟣 AAT Level 4 Diploma Topics</option>
-                <option value="level-4/cap1-test1.html">Chapter 1: AMAC Applied Budgeting</option>
-                <option value="level-4/cap2-test1.html">Chapter 2: AMAC Advanced Costing</option>
-                <option value="level-4/cap3-test1.html">Chapter 3: AMAC Variance Analysis</option>
-                <option value="level-4/cap4-test1.html">Chapter 4: DAIF Regulatory Framework</option>
-                <option value="level-4/cap5-test1.html">Chapter 5: DAIF Consolidated Statements</option>
-                <option value="level-4/cap6-test1.html">Chapter 6: DAIF Key Financial Ratios</option>
-                <option value="level-4/cap7-test1.html">Chapter 7: IASC Accounting Systems</option>
-                <option value="level-4/cap8-test1.html">Chapter 8: IASC Fraud Prevention</option>
-                <option value="level-4/cap9-test1.html">Chapter 9: Professional Ethics</option>
-            </select>
-
-            <div style="margin-top: 25px;">
-                <a href="simulatore.html">Launch Random Scenario Engine &rarr;</a>
+        <!-- LEVEL 3 -->
+        <div class="level-section">
+            <button class="level-btn">🔷 AAT Level 3 Diploma Topics</button>
+            <div class="chapters-panel">
+                <button class="chapter-btn">Chapter 1: Advanced Bookkeeping</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-3/cap1-test1.html"><span class="icon-bullet">📝</span> Assessment One (Year-end Adjustments)</a></li>
+                        <li><a href="level-3/cap1-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Partnerships Basis)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 2: Final Accounts Preparation</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-3/cap2-test1.html"><span class="icon-bullet">📝</span> Assessment One (Incomplete Records)</a></li>
+                        <li><a href="level-3/cap2-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Sole Traders Accounts)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 3: Management Accounting: Costing</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-3/cap3-test1.html"><span class="icon-bullet">📝</span> Assessment One (Absorption vs Marginal)</a></li>
+                        <li><a href="level-3/cap3-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Variances Analysis)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 4: Indirect Tax</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-3/cap4-test1.html"><span class="icon-bullet">📝</span> Assessment One (VAT Return Layout)</a></li>
+                        <li><a href="level-3/cap4-test2.html"><span class="icon-bullet">📝</span> Assessment Two (HMRC Schemes & Rules)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 5: Ethics for Accountants</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-3/cap5-test1.html"><span class="icon-bullet">📝</span> Assessment One (Ethical Principles)</a></li>
+                        <li><a href="level-3/cap5-test2.html"><span class="icon-bullet">📝</span> Assessment Two (SOP & AML Scenarios)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 6: Business Awareness</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-3/cap6-test1.html"><span class="icon-bullet">📝</span> Assessment One (Structures & Micro)</a></li>
+                        <li><a href="level-3/cap6-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Macro Environment)</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-<!-- RIFERIMENTO_BLOCCO: INDEX_FOOTER_LEGACY -->
-    </div>
 
-    <div style="text-align: center; margin-top: 50px; font-size: 11px; color: #4B5563; text-transform: uppercase; letter-spacing: 1px;">
-        Official AAT Syllabus Alignment • Strict UK English Standards Only
+                <!-- LEVEL 4 -->
+        <div class="level-section">
+            <button class="level-btn">🔶 AAT Level 4 Diploma Topics</button>
+            <div class="chapters-panel">
+                <button class="chapter-btn">Chapter 1: Financial Statements of Limited Companies</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap1-test1.html"><span class="icon-bullet">📝</span> Assessment One (IAS/IFRS Formats)</a></li>
+                        <li><a href="level-4/cap1-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Group Consolidation)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 2: Management Accounting: Budgeting</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap2-test1.html"><span class="icon-bullet">📝</span> Assessment One (Cash Budgets)</a></li>
+                        <li><a href="level-4/cap2-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Forecasting Models)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 3: Management Accounting: Decision and Control</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap3-test1.html"><span class="icon-bullet">📝</span> Assessment One (Relevant Costing)</a></li>
+                        <li><a href="level-4/cap3-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Activity Based Costing)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 4: External Auditing</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap4-test1.html"><span class="icon-bullet">📝</span> Assessment One (Audit Planning & Risk)</a></li>
+                        <li><a href="level-4/cap4-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Substantive Evidence)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 5: Cash and Treasury Management</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap5-test1.html"><span class="icon-bullet">📝</span> Assessment One (Liquidity Cycles)</a></li>
+                        <li><a href="level-4/cap5-test2.html"><span class="icon-bullet">📝</span> Assessment Two (FX Risk & Capital)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 6: Credit Management</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap6-test1.html"><span class="icon-bullet">📝</span> Assessment One (Credit Scoring)</a></li>
+                        <li><a href="level-4/cap6-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Legal & DSO Cost)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 7: Personal Tax</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap7-test1.html"><span class="icon-bullet">📝</span> Assessment One (Income Tax Bands)</a></li>
+                        <li><a href="level-4/cap7-test2.html"><span class="icon-bullet">📝</span> Assessment Two (CGT & Allowances)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 8: Business Tax</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap8-test1.html"><span class="icon-bullet">📝</span> Assessment One (Corporation Tax)</a></li>
+                        <li><a href="level-4/cap8-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Capital Allowances)</a></li>
+                    </ul>
+                </div>
+                <button class="chapter-btn">Chapter 9: Internal Accounting Systems and Controls</button>
+                <div class="tests-panel">
+                    <ul class="topic-list">
+                        <li><a href="level-4/cap9-test1.html"><span class="icon-bullet">📝</span> Assessment One (Systems Failures)</a></li>
+                        <li><a href="level-4/cap9-test2.html"><span class="icon-bullet">📝</span> Assessment Two (Risk Recommendations)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+</div> <!-- CHIUSURA WRAPPER GLOBALE -->
 
+<script>
+    // 1. Gestione dei grandi blocchi di livello
+    let levelBtns = document.getElementsByClassName("level-btn");
+    for (let i = 0; i < levelBtns.length; i++) {
+        levelBtns[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let panel = this.parentElement.querySelector(".tests-panel") || this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+
+    // 2. Gestione degli accordion dei capitoli interni
+    let chapterBtns = document.getElementsByClassName("chapter-btn");
+    for (let i = 0; i < chapterBtns.length; i++) {
+        chapterBtns[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let panel = this.nextElementSibling;
+            let parentPanel = this.closest(".tests-panel");
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                if (parentPanel) {
+                    parentPanel.style.maxHeight = (parentPanel.scrollHeight + panel.scrollHeight) + "px";
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
