@@ -1,300 +1,320 @@
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Exam Simulator</title>
+    <title>Algorithmic Exam Simulator | AAT Accounting Hub</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-glass: rgba(16, 24, 48, 0.75);
+            --border-glass: rgba(0, 242, 254, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
         body {
-            background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), 
-                        url('https://wikimedia.org');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 2rem;
         }
-        .hub-container {
-            background: rgba(255,255,255,0.95); width: 100%; max-width: 750px;
-            border-radius: 16px; padding: 40px; text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        h1 { color: #0f172a; font-size: 2rem; margin-bottom: 10px; font-weight: 700; }
-        p.subtitle { color: #64748b; font-size: 1rem; margin-bottom: 30px; }
-        .controls-panel {
-            display: flex; flex-direction: column; gap: 15px; background: #f8fafc;
-            padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 1.5rem;
         }
-        .select-group { display: flex; flex-direction: column; text-align: left; gap: 5px; }
-        label { font-size: 0.85rem; font-weight: 600; color: #0f172a; text-transform: uppercase; }
-        select { padding: 12px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1rem; outline: none; }
-        select:focus { border-color: #0284c7; }
-        .btn-generate {
-            background-color: #0284c7; color: white; padding: 14px 28px; border: none;
-            border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+        h1 {
+            color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            font-size: 2.2rem;
+            margin-top: 0;
+            text-align: center;
         }
-        .btn-generate:hover { background-color: #0369a1; }
-        .placeholder-text { color: #64748b; font-size: 0.9rem; margin-top: 15px; font-style: italic; }
+        .control-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #111827;
+            border: 1px solid var(--border-glass);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+        select:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .simulator-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s;
+        }
+        .simulator-btn:hover {
+            opacity: 0.9;
+        }
+        .option-container {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-container:hover {
+            border-color: var(--primary);
+            background: rgba(0, 242, 254, 0.03);
+        }
+        .explanation-box {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="hub-container">
-        <h1>AAT Infinite Exam Simulator</h1>
-        <p class="subtitle">Generate unique algorithmic accounting test scenarios on-demand.</p>
-        <div class="controls-panel">
-            <div class="select-group">
-                <label for="select-level">Select Level</label>
-                <select id="select-level" onchange="updateSubjectMenu()">
-                    <option value="random">Random Level (Mixed Exam)</option>
-                    <option value="2">Level 2 (Foundation)</option>
-                    <option value="3">Level 3 (Advanced)</option>
-                    <option value="4">Level 4 (Professional)</option>
-                </select>
-            </div>
-            <div class="select-group">
-                <label for="select-subject">Select Subject / Chapter Module</label>
-                <select id="select-subject">
-                    <option value="random">Random Chapter from Level</option>
-                </select>
-            </div>
-            <div class="select-group">
-                <label for="select-difficulty">Select Difficulty</label>
-                <select id="select-difficulty">
-                    <option value="random">Random Difficulty</option>
-                    <option value="easy">Easy (Round Numbers)</option>
-                    <option value="medium">Medium (Standard Exam Layout)</option>
-                    <option value="hard">Hard (Complex Balances & Decimals)</option>
-                </select>
-            </div>
-            <button class="btn-generate" onclick="launchExamSession()">
-                Generate Full Test (15 Questions)
-            </button>
-        </div>
-        <p class="placeholder-text">The exam session will open in a new window containing 15 randomized tasks.</p>
-    </div>
-    <!-- --- SIMULATION CORE DATA STRUCTURES --- -->
-    <script>
-        const syllabusMapping = {
-            "2": [
-                { value: "l2_c1", label: "Chapter 1: Bookkeeping Transactions" },
-                { value: "l2_c2", label: "Chapter 2: Bookkeeping Controls" },
-                { value: "l2_c3", label: "Chapter 3: Principles of Costing" },
-                { value: "l2_c4", label: "Chapter 4: Work Effectively in Finance" }
-            ],
-            "3": [
-                { value: "l3_c1", label: "Chapter 1: Advanced Bookkeeping" },
-                { value: "l3_c2", label: "Chapter 2: Final Accounts Preparation" },
-                { value: "l3_c3", label: "Chapter 3: Management Accounting: Costing" },
-                { value: "l3_c4", label: "Chapter 4: Indirect Tax" },
-                { value: "l3_c5", label: "Chapter 5: Ethics for Accountants" },
-                { value: "l3_c6", label: "Chapter 6: Business Awareness" }
-            ],
-            "4": [
-                { value: "l4_c1", label: "Chapter 1: Financial Statements of Limited Companies" },
-                { value: "l4_c2", label: "Chapter 2: Management Accounting: Budgeting" },
-                { value: "l4_c3", label: "Chapter 3: Management Accounting: Decision and Control" },
-                { value: "l4_c4", label: "Chapter 4: External Auditing" },
-                { value: "l4_c5", label: "Chapter 5: Cash and Treasury Management" },
-                { value: "l4_c6", label: "Chapter 6: Credit Management" },
-                { value: "l4_c7", label: "Chapter 7: Personal Tax" },
-                { value: "l4_c8", label: "Chapter 8: Business Tax" },
-                { value: "l4_c9", label: "Chapter 9: Internal Accounting Systems and Controls" }
-            ]
-        };
-        const simulationEngine = {
-            l2_c1() {
-                const gross = (Math.random() * 5000 + 200).toFixed(2);
-                return { question: `A company records a credit purchase invoice for a total gross amount of <strong>£${gross}</strong> including 20% VAT. Calculate the net amount to be entered into the Purchases Ledger Account.`, answer: (gross / 1.20).toFixed(2) };
-            },
-            l2_c2() {
-                const balance = Math.floor(Math.random() * 10000) + 5000, uncredited = Math.floor(Math.random() * 1500) + 200;
-                return { question: `The cash book shows a balance of <strong>£${balance}</strong>. If uncredited lodgements amount to <strong>£${uncredited}</strong>, calculate the adjusted bank statement balance.`, answer: (balance + uncredited).toString() };
-            },
-            l2_c3() {
-                const materials = Math.floor(Math.random() * 3000) + 500, labor = Math.floor(Math.random() * 2000) + 500;
-                return { question: `An item incurs direct material costs of <strong>£${materials}</strong> and direct labor costs of <strong>£${labor}</strong>. Overheads are assigned at 40% of direct labor. Calculate the total prime cost element.`, answer: (materials + labor).toString() };
-            },
-            l2_c4() {
-                const hours = 35, rate = Math.floor(Math.random() * 5) + 12;
-                return { question: `An accounting technician works <strong>${hours} hours</strong> at a basic hourly rate of <strong>£${rate}</strong>. Calculate the gross weekly production labor allocation cost.`, answer: (hours * rate).toString() };
-            },
-            l3_c1() {
-                const cost = Math.floor(Math.random() * 20000) + 10000;
-                return { question: `A non-current asset costing <strong>£${cost}</strong> is depreciated using the straight-line method at 20% per annum. Calculate the carrying amount after the first year.`, answer: (cost * 0.8).toFixed(2) };
-            },
-            l3_c2() {
-                const openingInv = Math.floor(Math.random() * 5000) + 2000, purchases = Math.floor(Math.random() * 40000) + 15000, closingInv = Math.floor(Math.random() * 6000) + 1000;
-                return { question: `Given: Opening Inventory <strong>£${openingInv}</strong>, Purchases <strong>£${purchases}</strong>, and Closing Inventory <strong>£${closingInv}</strong>. Calculate the Cost of Goods Sold (COGS).`, answer: (openingInv + purchases - closingInv).toString() };
-            },
-            l3_c3() {
-                const lowUnits = 400, highUnits = 1200, vcu = Math.floor(Math.random() * 8) + 3, fixed = Math.floor(Math.random() * 5000) + 2000;
-                return { question: `A department incurs semi-variable costs of <strong>£${fixed + (lowUnits * vcu)}</strong> at <strong>${lowUnits} units</strong> and <strong>£${fixed + (highUnits * vcu)}</strong> at <strong>${highUnits} units</strong>. Deduce the total fixed costs.`, answer: fixed.toString() };
-            },
-            l3_c4() {
-                const sales = Math.floor(Math.random() * 60000) + 20000;
-                return { question: `A firm records net standard-rated credit sales of <strong>£${sales}</strong>. Calculate the output Indirect Tax (VAT) liability to be declared to HMRC at the standard rate of 20%.`, answer: (sales * 0.20).toFixed(2) };
-            },
-            l3_c5() {
-                const total = 100, breach = Math.floor(Math.random() * 5) + 1;
-                return { question: `Out of <strong>${total}</strong> data access events checked, <strong>${breach}</strong> lacked proper security authorization. Calculate the procedural compliance breach rate percentage.`, answer: ((breach / total) * 100).toFixed(1) };
-            },
-            l3_c6() {
-                const creditSales = Math.floor(Math.random() * 300000) + 100000, targetedDso = Math.floor(Math.random() * 20) + 30;
-                const receivables = Math.round((targetedDso * creditSales) / 365);
-                return { question: `A business records total credit sales of <strong>£${creditSales}</strong> and trade receivables of <strong>£${receivables}</strong>. Compute the Days Sales Outstanding (DSO) rounded to the nearest integer.`, answer: Math.round((receivables / creditSales) * 365).toString() };
-            },
-            l4_c1() {
-                const consideration = Math.floor(Math.random() * 300000) + 500000, netAssets = Math.floor(Math.random() * 200000) + 250000, nci = Math.floor(Math.random() * 50000) + 40000;
-                return { question: `The consideration transferred is <strong>£${consideration}</strong>. The fair value of the NCI is <strong>£${nci}</strong>. If the net identifiable assets equal <strong>£${netAssets}</strong>, calculate the consolidated goodwill.`, answer: (consideration + nci - netAssets).toString() };
-            },
-            l4_c2() {
-                const budget = Math.floor(Math.random() * 50000) + 20000, actual = budget + Math.floor(Math.random() * 4000) + 500;
-                return { question: `A production budget plans for an expenditure of <strong>£${budget}</strong>. The actual cost totals <strong>£${actual}</strong>. Calculate the absolute value of the adverse expenditure variance.`, answer: (actual - budget).toString() };
-            },
-            l4_c3() {
-                const sellingPrice = 50, vc = Math.floor(Math.random() * 15) + 15, fixedCosts = Math.floor(Math.random() * 30000) + 10000;
-                return { question: `A company sells a product for £${sellingPrice} per unit with variable costs of <strong>£${vc}</strong> per unit. Total fixed costs equal <strong>£${fixedCosts}</strong>. Compute the breakeven point in product units.`, answer: Math.ceil(fixedCosts / (sellingPrice - vc)).toString() };
-            },
-            l4_c4() {
-                const totalInvoices = 500, sampledInvoices = Math.floor(Math.random() * 50) + 20;
-                return { question: `An auditor samples <strong>${sampledInvoices} invoices</strong> out of a total population of <strong>${totalInvoices}</strong>. Calculate the mathematical coverage ratio percentage rounded to one decimal place.`, answer: ((sampledInvoices / totalInvoices) * 100).toFixed(1) };
-            },
-            l4_c5() {
-                const payment = Math.floor(Math.random() * 50000) + 10000, discountRate = 2;
-                return { question: `A treasury unit decides to settle a trade payable of <strong>£${payment}</strong> early to claim an offered settlement discount of <strong>${discountRate}%</strong>. Calculate the final net cash outflow required.`, answer: (payment * (1 - discountRate / 100)).toFixed(2) };
-            },
-            l4_c6() {
-                const debt = Math.floor(Math.random() * 8000) + 2000, provisionRate = 5;
-                return { question: `An aging ledger analysis flags an outstanding customer debt balance of <strong>£${debt}</strong>. Management enforces an allowance for credit impairment of <strong>${provisionRate}%</strong>. Calculate the net balance value.`, answer: (debt * (1 - provisionRate / 100)).toFixed(2) };
-            },
-            l4_c7() {
-                const salary = Math.floor(Math.random() * 15000) + 32000, allowance = 12570;
-                return { question: `An employee earns a gross salary of <strong>£${salary}</strong>. Given a standard statutory UK Personal Allowance of £${allowance}, compute the exact remaining balance of net income subject to basic tax rates.`, answer: (salary - allowance).toString() };
-            },
-            l4_c8() {
-                const netProfit = Math.floor(Math.random() * 120000) + 40000, nonAllowable = Math.floor(Math.random() * 6000) + 1000;
-                return { question: `A corporation registers a net accounting profit of <strong>£${netProfit}</strong>. Legal expenses include <strong>£${nonAllowable}</strong> which is disallowable for tax purposes. Determine the adjusted taxable trading profit.`, answer: (netProfit + nonAllowable).toString() };
-            },
-            l4_c9() {
-                const totalTransactions = 1000, standardErrors = Math.floor(Math.random() * 15) + 3;
-                return { question: `An internal control log flags <strong>${standardErrors} data errors</strong> out of <strong>${totalTransactions} accounting posts</strong>. Compute the operational system deficiency error rate expressed as a percentage.`, answer: ((standardErrors / totalTransactions) * 100).toFixed(1) };
-            }
-        };
-        function updateSubjectMenu() {
-            const levelSelect = document.getElementById("select-level");
-            const subjectSelect = document.getElementById("select-subject");
-            const selectedLevel = levelSelect.value;
-            subjectSelect.innerHTML = '<option value="random">Random Chapter from Level</option>';
-            if (selectedLevel === "random") return; 
-            const optionsArray = syllabusMapping[selectedLevel];
-            optionsArray.forEach(item => {
-                const opt = document.createElement("option");
-                opt.value = item.value; opt.textContent = item.label;
-                subjectSelect.appendChild(opt);
-            });
-        }
-        function launchExamSession() {
-            const levelSelect = document.getElementById("select-level"), subjectSelect = document.getElementById("select-subject"), difficultySelect = document.getElementById("select-difficulty");
-            let levelSelected = levelSelect.value, subjectKey = subjectSelect.value, difficultySelected = difficultySelect.value;
-            let labelTextForHeader = subjectSelect.options[subjectSelect.selectedIndex].text;
-            const totalQuestions = 15; let questionsData = [];
-            for (let i = 0; i < totalQuestions; i++) {
-                let targetKey = subjectKey, activeLevel = levelSelected, activeDifficulty = difficultySelected;
-                if (difficultySelected === "random") {
-                    const diffs = ["easy", "medium", "hard"]; activeDifficulty = diffs[Math.floor(Math.random() * diffs.length)];
-                }
-                if (levelSelected === "random") {
-                    const levels = ["2", "3", "4"]; activeLevel = levels[Math.floor(Math.random() * levels.length)];
-                    targetKey = syllabusMapping[activeLevel][Math.floor(Math.random() * syllabusMapping[activeLevel].length)].value;
-                    labelTextForHeader = "Mixed Comprehensive Exam";
-                } else if (subjectKey === "random") {
-                    targetKey = syllabusMapping[activeLevel][Math.floor(Math.random() * syllabusMapping[activeLevel].length)].value;
-                    labelTextForHeader = `Random Combined Modules from Level ${activeLevel}`;
-                }
-                let taskGenerated = simulationEngine[targetKey]();
-                if (activeDifficulty === "easy") {
-                    taskGenerated.answer = Math.round(parseFloat(taskGenerated.answer)).toString();
-                    taskGenerated.question = taskGenerated.question.replace(/£\d+\.\d+/g, function(match) { return "£" + Math.round(parseFloat(match.replace("£", ""))); });
-                } else if (activeDifficulty === "hard") {
-                    if (!taskGenerated.answer.includes(".")) {
-                        taskGenerated.answer = (parseFloat(taskGenerated.answer) + 0.37).toFixed(2);
-                        taskGenerated.question = taskGenerated.question.replace(/<strong>£\d+<\/strong>/g, function(match) { let val = parseInt(match.replace(/[^0-9]/g, '')); return "<strong>£" + (val + 0.37).toFixed(2) + "</strong>"; });
-                    }
-                }
-                taskGenerated.severity = activeDifficulty; questionsData.push(taskGenerated);
-            }
-            const examWindow = window.open("", "_blank");
-            let htmlStyle = `
-                * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-                body { background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), url('https://wikimedia.org'); background-size: cover; background-attachment: fixed; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
-                .exam-container { background: rgba(255,255,255,0.98); width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-                .header-block { border-bottom: 3px solid #0284c7; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
-                .header-block h2 { color: #0f172a; font-size: 1.6rem; }
-                .header-block span { background: #0f172a; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
-                .task-card { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid #0284c7; padding: 20px; margin-bottom: 25px; border-radius: 6px; }
-                .task-number { font-weight: bold; color: #0f172a; font-size: 1.1rem; margin-bottom: 10px; text-transform: uppercase; }
-                .difficulty-badge { font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 8px; color: white; vertical-align: middle; }
-                .badge-easy { background-color: #0d9488; } .badge-medium { background-color: #0284c7; } .badge-hard { background-color: #b91c1c; }
-                .task-text { font-size: 1.05rem; line-height: 1.5; color: #334155; margin-bottom: 15px; }
-                .input-field { padding: 8px 12px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 1rem; width: 200px; outline: none; }
-                .button-actions-group { display: flex; gap: 15px; width: 100%; margin-top: 10px; margin-bottom: 25px; }
-                .btn-submit-exam { background-color: #0284c7; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 2; text-align:center;}
-                .btn-pdf-exam { background-color: #0d9488; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; flex: 1; text-align:center;}
-                .feedback-box { font-weight: bold; font-size: 0.95rem; margin-top: 5px; min-height: 20px; }
-                .score-bar { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; }
-                @media print {
-                    body { background: none !important; background-color: white !important; padding: 0 !important; color: #000 !important; }
-                    .exam-container { box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
-                    .button-actions-group { display: none !important; }
-                    .input-field { border: 1px solid #94a3b8 !important; background: #f8fafc !important; }
-                    .task-card { page-break-inside: avoid; border: 1px solid #cbd5e1 !important; border-left: 5px solid #0284c7 !important; background: #fff !important; margin-bottom: 15px !important; }
-                }
-            `;
-            const doc = examWindow.document; doc.open();
-            doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AAT Exam</title><style>' + htmlStyle + '</style></head><body></body></html>');
-            doc.close();
-            const body = doc.body, container = doc.createElement("div"); container.className = "exam-container"; body.appendChild(container);
-            const headerBlock = doc.createElement("div"); headerBlock.className = "header-block";
-            headerBlock.innerHTML = `<div><h2>AAT Mock Examination</h2><p style="color:#64748b; font-size:0.9rem; margin-top:4px;">Focus: ${labelTextForHeader}</p></div><span>TARGET: ${levelSelected.toUpperCase()}</span>`;
-            container.appendChild(headerBlock);
-            const examForm = doc.createElement("form"); examForm.id = "examForm"; container.appendChild(examForm);
+    <div class="container">
+        <header style="margin-bottom: 2rem;">
+            <h1>AAT Algorithmic Simulator Engine</h1>
+        </header>
 
-            questionsData.forEach((task, index) => {
-                const qNum = index + 1; const card = doc.createElement("div"); card.className = "task-card";
-                card.innerHTML = `
-                    <div class="task-number">Task ${qNum} of 15 <span class="difficulty-badge badge-${task.severity}">${task.severity.toUpperCase()}</span></div>
-                    <div class="task-text">${task.question}</div>
-                    <div class="interaction-row"><input type="number" step="0.01" id="ans-${qNum}" class="input-field" placeholder="Enter amount (£)" data-correct="${task.answer}" data-severity="${task.severity}"></div>
-                    <div id="feed-${qNum}" class="feedback-box"></div>`;
-                examForm.appendChild(card);
-            });
-            const actionGroup = doc.createElement("div"); actionGroup.className = "button-actions-group";
-            const subBtn = doc.createElement("button"); subBtn.type = "button"; subBtn.className = "btn-submit-exam"; subBtn.innerText = "Submit Exam";
-            subBtn.onclick = function() { examWindow.processEntireExam(); };
-            const pdfBtn = doc.createElement("button"); pdfBtn.type = "button"; pdfBtn.className = "btn-pdf-exam"; pdfBtn.innerText = "Save Exam as PDF";
-            pdfBtn.onclick = function() { examWindow.print(); };
-            actionGroup.appendChild(subBtn); actionGroup.appendChild(pdfBtn); container.appendChild(actionGroup);
-            const scoreBar = doc.createElement("div"); scoreBar.id = "overallScoreBar"; scoreBar.className = "score-bar";
-            scoreBar.innerText = "Current Performance: Submit your exam sheet to calculate final grade accuracy.";
-            container.appendChild(scoreBar);
-            examWindow.processEntireExam = function() {
-                let correctAnswersCount = 0; const totalQuestions = 15;
-                for (let i = 1; i <= totalQuestions; i++) {
-                    const inputElement = doc.getElementById('ans-' + i), feedbackElement = document.getElementById('feed-' + i);
-                    const userIn = parseFloat(inputElement.value), expected = parseFloat(inputElement.getAttribute('data-correct')), severity = inputElement.getAttribute('data-severity');
-                    let tolerance = 0.05;
-                    if (severity === "easy") tolerance = 0.50;
-                    if (severity === "hard") tolerance = 0.01;
-                    if (isNaN(userIn)) { feedbackElement.innerText = "⚠ Unanswered."; feedbackElement.style.color = "#ea580c"; continue; }
-                    if (Math.abs(userIn - expected) <= tolerance) { feedbackElement.innerText = "✓ Correct! Well done."; feedbackElement.style.color = "#0d9488"; correctAnswersCount++; }
-                    else { feedbackElement.innerText = "✗ Incorrect. Try again."; feedbackElement.style.color = "#ef4444"; }
-                }
-                const bar = doc.getElementById('overallScoreBar'), percentage = ((correctAnswersCount / totalQuestions) * 100).toFixed(0);
-                bar.innerHTML = "Final Result: " + correctAnswersCount + " / 15 Correct (" + percentage + "%)";
-                bar.style.background = (percentage >= 70) ? "#0d9488" : "#0f172a";
-                examWindow.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-        }
-        window.onload = function() { updateSubjectMenu(); };
-    </script>
+        <!-- CONFIGURATION PANEL -->
+        <div id="setupPanel" class="glass-card">
+            <div class="control-group">
+                <label for="levelSelect">Select Educational Tier:</label>
+                <select id="levelSelect" onchange="syncChaptersDropdown()">
+                    <option value="">-- Select Level --</option>
+                    <option value="2">AAT Level 2 - Certificate in Accounting</option>
+                    <option value="3">AAT Level 3 - Diploma in Accounting</option>
+                    <option value="4">AAT Level 4 - Diploma in Professional Accounting</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="chapterSelect">Select Exam Module (Speculated Mapping):</label>
+                <select id="chapterSelect" disabled>
+                    <option value="">-- Select Tier First --</option>
+                </select>
+            </div>
+
+            <button id="startBtn" class="simulator-btn" onclick="startExamSession()" disabled>Launch Testing Interface</button>
+        </div>
+
+        <!-- ACTIVE EXAMINATION SCREEN -->
+        <div id="examPanel" class="glass-card" style="display: none;">
+            <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                <span id="questionTracker">Question 1 of 1</span>
+                <span id="scoreTracker">Score: 0</span>
+            </div>
+            <div id="questionText" style="font-size: 1.15rem; font-weight: 600; margin-bottom: 1.5rem;">Loading question text...</div>
+            <div id="optionsGroup"></div>
+            <div id="explanationArea" class="explanation-box"></div>
+            <button id="nextBtn" class="simulator-btn" style="margin-top: 1.5rem; display: none;" onclick="advanceQuestion()">Advance to Next Question</button>
+        </div>
+    </div>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+<script>
+// Comprehensive centralized quiz bank for Level 2, Level 3 and Level 4
+const quizGlobalDatabase = {
+    "level2": {
+        1: [{ question: "What is the correct double-entry to record a credit purchase from a supplier?", options: ["Debit Bank, Credit Sales", "Debit Purchases, Credit Trade Payables", "Debit Trade Payables, Credit Purchases", "Debit Cash, Credit Capital"], correct: 1, explanation: "A credit purchase increases raw cost variables (Debit Purchases) and simultaneously increases current liability obligations inside supplier control ledgers (Credit Trade Payables)." }],
+        2: [{ question: "Which document should be raised when a customer returns faulty goods?", options: ["Purchase Order", "Credit Note", "Delivery Note", "Debit Note"], correct: 1, explanation: "A Credit Note is formally issued to a buyer to reduce the amount owed following a stock return or overcharge event." }],
+        3: [{ question: "What does an unexpected debit balance inside the Purchase Ledger Control Account (PLCA) typically signify?", options: ["An overpayment to a supplier", "An outstanding credit invoice balance", "Standard cash purchases execution", "A raw materials banking deduction"], correct: 0, explanation: "The PLCA normally carries a credit balance. A debit entry indicates an anomaly, such as an overpayment or a refund due from a supplier." }],
+        4: [{ question: "Which of the following errors will cause an immediate imbalance in the Trial Balance?", options: ["Error of Omission", "Error of Commission", "Single-entry posting error", "Compensating Error"], correct: 2, explanation: "If a debit value is logged without its corresponding credit counterpart, the trial balance system will immediately fail to match." }]
+    },
+    "level3": {
+        1: [{ question: "Which economic structure exposes its individual owner to unlimited personal liability for business debts?", options: ["Limited Liability Partnership", "Sole Trader", "Public Limited Company (PLC)", "Private Limited Company (Ltd)"], correct: 1, explanation: "A sole trader has no separate legal personality from their enterprise, meaning their personal assets are fully exposed to corporate creditors." }],
+        2: [{ question: "Based on the accruals concept, how must a year-end unpaid electricity invoice be adjusted?", options: ["Ignored until cash changes hands", "Logged as a current asset prepayments line", "Debited to expenses and credited to accruals liabilities", "Credited to bank and debited to equity profiles"], correct: 2, explanation: "The accruals concept mandates recognizing expenses in the period they occur. Unpaid utilities require an accrual entry: Dr Expenses / Cr Accruals." }],
+        3: [{ question: "Using the High-Low method, what is the variable cost per unit if Highest activity is 2,000 units (£5,000) and Lowest is 1,000 units (£3,000)?", options: ["£1.00 per unit", "£2.00 per unit", "£1.50 per unit", "£2.50 per unit"], correct: 1, explanation: "Calculation: (£5,000 - £3,000) / (2,000 - 1,000) = £2,000 / 1,000 units = £2.00 variable cost per unit." }],
+        4: [{ question: "What is the compulsory rolling 12-month taxable turnover threshold requiring UK businesses to register for VAT?", options: ["£85,000", "£90,000", "£45,000", "£100,000"], correct: 1, explanation: "Under HMRC guidelines, a business must register for VAT if its taxable turnover exceeds £90,000 over a rolling 12-month horizon." }],
+        5: [{ question: "Which organization form possesses a legal structure completely distinct from its underlying equity investors?", options: ["Sole Proprietorship", "Limited Company", "General Partnership", "Unincorporated Joint Venture"], correct: 1, explanation: "Limited entities (Ltd/PLC) have a distinct legal personality, protecting their shareholders through limited liability parameters." }],
+        6: [{ question: "Which criminal offense is committed under POCA 2002 if an accountant warns a client that a SAR has been filed with the NCA?", options: ["Greenwashing", "Fraudulent Trading", "Tipping Off", "Inside Advocacy manipulation"], correct: 2, explanation: "Tipping off involves revealing that a money laundering investigation is underway, which is a severe criminal offense under the Proceeds of Crime Act 2002." }]
+    },
+    "level4": {
+        1: [{ question: "Which budget profile must be constructed first if market sales demand is the principal budget factor?", options: ["The Production Budget", "The Sales Budget", "The Cash Budget", "The Material Purchases Budget"], correct: 1, explanation: "The principal budget factor determines the order of budget construction. If market demand is the limiting constraint, the Sales Budget must be prepared first." }],
+        2: [{ question: "Under Throughput Accounting (TA) philosophy, which cost line is treated as the only true variable cost in the short term?", options: ["Direct Factory Labour Payroll", "Direct Raw Materials Expenses", "Variable Production Utilities", "Machine Maintenance Surcharges"], correct: 1, explanation: "Throughput accounting recognizes direct labor and overheads as fixed costs in the short term, isolating direct raw materials as the sole variable expense." }],
+        3: [{ question: "An adverse material price planning variance is typically triggered by which of the following operational scenarios?", options: ["Inefficient wastage rates by local factory teams", "A sudden macroeconomic surge in global raw material tariff rates", "Poor price negotiations by the local procurement manager", "Mechanical faults occurring on primary production lines"], correct: 1, explanation: "Planning variances isolate external market shifts or forecasting changes from the operational performance of local managers." }],
+        4: [{ question: "Under IAS 2 regulations, closing corporate inventory metrics must be valued at which parameters?", options: ["The lower of historical cost and net realisable value", "The higher of production cost and current fair market evaluation", "The exact manufacturing cost including selling overhead distributions", "The current net book asset value updated for inflation lines"], correct: 0, explanation: "IAS 2 states that inventory lines must be valued at the lower of historical cost and Net Realisable Value (NRV) to prevent asset overstatement." }],
+        5: [{ question: "Under IFRS 10 criteria, how is a subsidiary entity formally defined within consolidated group structures?", options: ["An entity where the parent holds between 20% and 50% of the equity voting rights", "An entity over which the investing company exercises significant structural influence", "An entity controlled by another entity through voting power or exposure to variable returns", "An entity integrated strictly using the single-line equity accounting layout"], correct: 2, explanation: "IFRS 10 defines a subsidiary based on economic control, requiring exposure to variable returns and the operational power to affect those parameters." }],
+        6: [{ question: "Which structural performance symptom is indicative of an expanding enterprise suffering from Overtrading anomalies?", options: ["Ballooning cash surpluses matching declining supplier payables lines", "Rapid revenue growth accompanied by plunging liquidity ratios and surging current bank overdraft profiles", "Decreasing asset turnover metrics alongside rising working capital cushions", "Consistent gross profit increases matching a drop in trade receivables periods"], correct: 1, explanation: "Overtrading occurs when a business expands its turnover faster than its liquid cash flow can support, leading to severe cash strains." }],
+        7: [{ question: "Which documentation format provides internal controls auditors with the fastest structural visibility into redundant processing check loops?", options: ["Narrative descriptions", "Internal Control Questionnaires (ICQs)", "Systems flowcharts", "Audit trail text logs"], correct: 2, explanation: "Systems flowcharts map data paths visually across departments, allowing immediate detection of gaps or excessive administrative loops." }],
+        8: [{ question: "Under Cressey's Fraud Triangle framework, which core operational component is the only parameter directly controllable by internal control design engineers?", options: ["Financial Incentives", "Systemic Opportunity", "Cognitive Rationalisation", "Macroeconomic Pressure"], correct: 1, explanation: "While pressure and rationalisation reside within individual staff psychology, system designers control the Opportunity parameter by erecting hard control barriers and segregating duties." }],
+        9: [{ question: "What does the concept of professional skepticism require an accounting auditor to maintain when inspecting corporate books?", options: ["An assumption that company management teams are fundamentally dishonest", "A questioning mind and a critical evaluation of all audit evidence received", "An evaluation separate from statutory corporate public interest mandates", "An uncritical acceptance of all data records authorized by executive directors"], correct: 1, explanation: "Professional skepticism demands an active, questioning mind that challenges evidence rather than accepting client assertions at face value, protecting the Public Interest." }]
+    }
+};
+// RIFERIMENTO_BLOCCO: 3
+// Synchronization engine between dropdowns and operational loops
+const levelChaptersMap = {
+    "2": [
+        "Chapter 1: Principles of Double-Entry & Ledger Posting",
+        "Chapter 2: Documentation & Business Transactions",
+        "Chapter 3: Control Accounts & Bank Reconciliations",
+        "Chapter 4: Journal Adjustments & Correction of Errors"
+    ],
+    "3": [
+        "Chapter 1: The Business Environment & Structure (BUAW)",
+        "Chapter 2: Preparing Financial Statements (FAPS)",
+        "Chapter 3: Cost Classification & Behaviour (MATC)",
+        "Chapter 4: Value Added Tax (VAT) Administration (TPFB)",
+        "Chapter 5: Corporate Governance & Advanced Structures (BUAW)",
+        "Chapter 6: Internal Controls & Professional Ethics (BUAW)"
+    ],
+    "4": [
+        "Chapter 1: Budgeting & Planning Architecture (AMAC)",
+        "Chapter 2: Costing Paradigms & Performance (AMAC)",
+        "Chapter 3: Control & Variance Deconstruction (AMAC)",
+        "Chapter 4: International Regulatory Framework (DAIF)",
+        "Chapter 5: Consolidated Group Accounting (DAIF)",
+        "Chapter 6: Financial Analysis & Ratios Interpretation (DAIF)",
+        "Chapter 7: Accounting Systems Evaluation (IASC)",
+        "Chapter 8: Fraud Detection & Risk Management (IASC)",
+        "Chapter 9: Professional Ethics & Sustainability Models"
+    ]
+};
+
+function syncChaptersDropdown() {
+    const levelSelect = document.getElementById("levelSelect");
+    const chapterSelect = document.getElementById("chapterSelect");
+    const startBtn = document.getElementById("startBtn");
+    const selectedLevel = levelSelect.value;
+
+    chapterSelect.innerHTML = "";
+
+    if (!selectedLevel) {
+        chapterSelect.innerHTML = '<option value="">-- Select Tier First --</option>';
+        chapterSelect.disabled = true;
+        startBtn.disabled = true;
+        return;
+    }
+
+    chapterSelect.disabled = false;
+    startBtn.disabled = false;
+
+    const targetChapters = levelChaptersMap[selectedLevel];
+    targetChapters.forEach((title, index) => {
+        const option = document.createElement("option");
+        option.value = index + 1; // Align keys directly with database structure
+        option.textContent = title;
+        chapterSelect.appendChild(option);
+    });
+}
+
+let activeQuestionsPool = [];
+let currentQuestionIndex = 0;
+let userScore = 0;
+
+function startExamSession() {
+    const level = document.getElementById("levelSelect").value;
+    const chapter = document.getElementById("chapterSelect").value;
+
+    const levelKey = "level" + level;
+    if (quizGlobalDatabase[levelKey] && quizGlobalDatabase[levelKey][chapter]) {
+        activeQuestionsPool = [...quizGlobalDatabase[levelKey][chapter]];
+        currentQuestionIndex = 0;
+        userScore = 0;
+
+        document.getElementById("setupPanel").style.display = "none";
+        document.getElementById("examPanel").style.display = "block";
+        renderActiveQuestion();
+    } else {
+        alert("Selected target chapter database is empty or currently under development.");
+    }
+}
+
+function renderActiveQuestion() {
+    const qData = activeQuestionsPool[currentQuestionIndex];
+    document.getElementById("questionTracker").textContent = `Question ${currentQuestionIndex + 1} of ${activeQuestionsPool.length}`;
+    document.getElementById("scoreTracker").textContent = `Score: ${userScore}`;
+    document.getElementById("questionText").textContent = qData.question;
+    
+    const optionsGroup = document.getElementById("optionsGroup");
+    optionsGroup.innerHTML = "";
+    document.getElementById("explanationArea").style.display = "none";
+    document.getElementById("nextBtn").style.display = "none";
+
+    qData.options.forEach((optText, optIdx) => {
+        const div = document.createElement("div");
+        div.className = "option-container";
+        div.textContent = optText;
+        div.onclick = () => verifyUserSelection(optIdx, div);
+        optionsGroup.appendChild(div);
+    });
+}
+
+function verifyUserSelection(selectedIdx, clickedElement) {
+    const qData = activeQuestionsPool[currentQuestionIndex];
+    const optionsGroup = document.getElementById("optionsGroup");
+    
+    // Disable multiple choice attempts by freezing clicks
+    const allOptions = optionsGroup.querySelectorAll(".option-container");
+    allOptions.forEach(el => el.onclick = null);
+
+    const explanationArea = document.getElementById("explanationArea");
+    explanationArea.style.display = "block";
+    explanationArea.textContent = qData.explanation;
+
+    if (selectedIdx === qData.correct) {
+        clickedElement.style.borderColor = "var(--success)";
+        clickedElement.style.background = "rgba(16, 185, 129, 0.1)";
+        explanationArea.style.background = "rgba(16, 185, 129, 0.05)";
+        explanationArea.style.borderLeft = "4px solid var(--success)";
+        userScore++;
+        document.getElementById("scoreTracker").textContent = `Score: ${userScore}`;
+    } else {
+        clickedElement.style.borderColor = "var(--danger)";
+        clickedElement.style.background = "rgba(239, 68, 68, 0.1)";
+        explanationArea.style.background = "rgba(239, 68, 68, 0.05)";
+        explanationArea.style.borderLeft = "4px solid var(--danger)";
+        
+        // Visual indicator pointing to the correct choice row
+        allOptions[qData.correct].style.borderColor = "var(--success)";
+    }
+
+    document.getElementById("nextBtn").style.display = "block";
+}
+
+function advanceQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < activeQuestionsPool.length) {
+        renderActiveQuestion();
+    } else {
+        alert(`Session evaluation complete. Your final score is: ${userScore} out of ${activeQuestionsPool.length}`);
+        document.getElementById("examPanel").style.display = "none";
+        document.getElementById("setupPanel").style.display = "block";
+    }
+}
+</script>
 </body>
 </html>
