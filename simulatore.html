@@ -1,4 +1,4 @@
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_1 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAGINATO_PART_1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -34,7 +34,7 @@
         }
         .back-home:hover { text-decoration: underline; }
 
-        /* BOLLA BIANCA GENERALE DEL SELEZIONATORE */
+        /* BOLLA BIANCA DEL SELEZIONATORE DI PARTENZA */
         .simulator-white-bubble {
             background: #FFFFFF !important;
             border-radius: 20px;
@@ -56,14 +56,13 @@
         .filter-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
         .select-wrapper { display: flex; flex-direction: column; gap: 6px; }
         .select-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.5px; }
-        
         .custom-select { width: 100%; background-color: #F8FAFC; border: 1px solid #D1D5DB; color: #1E293B; font-size: 14px; border-radius: 10px; padding: 14px; font-weight: 700; cursor: pointer; outline: none; }
         
         .generate-btn { display: block; width: 100%; background: linear-gradient(135deg, #0D9488, #0F766E); color: #FFFFFF !important; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
         .generate-btn:hover { opacity: 0.95; }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_2 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAGINATO_PART_2 -->
 <body>
 <div class="container">
     <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
@@ -72,7 +71,7 @@
         
         <div class="header-section">
             <h1>AAT Interactive Simulator</h1>
-            <p class="subtitle">Configure your criteria below to dynamically generate a randomized official mock exam card in a separate workspace window.</p>
+            <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
         </div>
 
         <div class="filter-group">
@@ -95,13 +94,13 @@
             </div>
         </div>
 
-        <button onclick="launchTestWindow()" class="generate-btn">
-            Launch Test Sheet Window &rarr;
+        <button onclick="launchPaginatedTestWindow()" class="generate-btn">
+            Launch Paginated Test Window &rarr;
         </button>
 
     </div>
 </div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_3 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAGINATO_PART_3 -->
 <script>
     const syllabusData = {
         "L2": [
@@ -158,13 +157,13 @@
             });
         }
     }
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4A_15Q -->
-    function launchTestWindow() {
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4A -->
+    function launchPaginatedTestWindow() {
         let lvl = document.getElementById("level-selector").value;
         let chap = document.getElementById("chapter-selector").value;
         
         if (!lvl || !chap) {
-            alert("Please select both a level and a chapter unit before generating.");
+            alert("Please select both parameters before launching.");
             return;
         }
 
@@ -180,31 +179,32 @@
 
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
         const testWindow = window.open("", "_blank");
-
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4B_15Q -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4B -->
         testWindow.document.write(`
             <!DOCTYPE html>
             <html>
             <head>
-                <title>AAT Full Examination Sheet - Entry #${randomEntryNum}</title>
+                <title>AAT Paginated Exam - Entry #${randomEntryNum}</title>
                 <link href="https://googleapis.com" rel="stylesheet">
                 <style>
                     body { background-color: #0B0F19; color: #F3F4F6; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
-                    .test-wrapper-main { width: 100%; max-width: 740px; display: flex; flex-direction: column; gap: 20px; }
-                    .test-card-container { width: 100%; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid #E2E8F0; box-sizing: border-box; }
-                    .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-                    .level-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
+                    .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
+                    .test-card-container.active { display: block; }
+                    .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+                    .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
                     .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
-                    .question-title { font-size: 16px; font-weight: 800; color: #0F172A; margin: 10px 0; }
-                    .options-stack { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-                    .option-row { background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 8px; padding: 12px 14px; font-size: 13px; font-weight: 600; color: #334155; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-                    
-                    .action-footer { display: flex; gap: 10px; width: 100%; max-width: 740px; margin-top: 20px; }
-                    .footer-btn { flex: 1; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; }
-                    .btn-submit { background: #1E293B; color: white; }
-                    .btn-pdf { background: #00796B; color: white; box-shadow: 0 4px 12px rgba(0,121,107,0.2); }
-                    
-                    .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; transition: transform 0.3s ease; }
+                    .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 15px 0; }
+                    .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; }
+                    .option-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #334155; }
+                    .feedback-marker { font-size: 16px; font-weight: bold; display: none; }
+                    .feedback-correct { color: #10B981; }
+                    .feedback-wrong { color: #EF4444; }
+                    .osborne-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
+                    .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 6px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
+                    .osborne-btn:hover { background: #F1F5F9; }
+                    .btn-verify { background: #1E293B; color: #FFFFFF; border-color: #1E293B; }
+                    .btn-verify:hover { background: #0F172A; }
+                    .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
                     .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
                     .calc-widget-body { padding: 1rem; display: none; }
                     .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
@@ -213,71 +213,26 @@
                     .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
                     .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
                     .btn-equals { background: #00f2fe; color: #0a0f1d; }
-
                     @media print {
                         body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
-                        .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; }
-                        .action-footer, .calc-widget-floating { display: none !important; }
+                        .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
+                        .action-footer, .calc-widget-floating, .osborne-footer-grid { display: none !important; }
                     }
                 </style>
             </head>
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4C -->
             <body>
-                <div class="test-wrapper-main">
-
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4C_15Q -->
-        `);
-
-        // Database di scenari contabili UK per la variazione delle domande
-        const scenarios = [
-            "Verify the balancing steps for the Sales Ledger Control Account discrepancy.",
-            "Analyze the statutory ammortisation index applied to non-current asset categories.",
-            "Reconcile the opening cash book deficit against bank statement credit entries.",
-            "Compute the standard overhead absorption rate based on direct labour allocation.",
-            "Determine the correct input VAT adjustment for irrecoverable trade receivables.",
-            "Evaluate closing inventory variance under strict FIFO valuation constraints.",
-            "Reconstruct incomplete sole trader turnover parameters using margin criteria.",
-            "Formulate the proper accounting treatment for capitalised development outlays.",
-            "Process year-end accruals for statutory utility and rental liabilities.",
-            "Identify the systemic risk indicators within the purchase ledger sub-module.",
-            "Adjust the Suspense Account allocation following a core transposition error.",
-            "Calculate the Partnership profit share ratio adjustments under current laws.",
-            "Assess Corporate Governance ethical breaches under the official IESBA framework.",
-            "Verify the Consolidated Statement adjustments for internal unrealised profits.",
-            "Compute the standard variance indicators for material and production yields."
-        ];
-
-        const difficulties = ["🟢 Difficulty: Entry Level", "🟡 Difficulty: Intermediate", "🔴 Difficulty: Professional Level"];
-
-        for (let i = 1; i <= 15; i++) {
-            let selectedScenario = scenarios[(i - 1) % scenarios.length];
-            let currentDiff = difficulties[(i - 1) % difficulties.length];
-            
-            testWindow.document.write(`
-                <div class="test-card-container">
-                    <div class="header-area">
-                        <span class="level-tag">${badgeText} • Question ${i}/15</span>
-                        <span class="difficulty-tag">${currentDiff}</span>
-                    </div>
-                    <div class="question-title">Assessment Task ${i}: Framework Scenario</div>
-                    <p style="font-size: 13.5px; color: #4B5563; margin-bottom: 15px; line-height: 1.5;">
-                        Task ${i} Analysis Focus: ${selectedScenario} Apply official UK qualifications framework regulations to identify the balance.
-                    </p>
-                    <div class="options-stack">
-                        <label class="option-row"><input type="radio" name="q${i}" value="A"> Option A: Execute direct ledger reconciliation through Prime Entry adjustments</label>
-                        <label class="option-row"><input type="radio" name="q${i}" value="B"> Option B: Account for the discrepancy directly through Suspense Control procedures</label>
-                    </div>
-                </div>
-            `);
-        }
-
-        testWindow.document.write(`
-                </div> <!-- Fine wrapper principale -->
-                <div class="action-footer">
-                    <button onclick="checkAllAnswers()" class="footer-btn btn-submit">Verify Complete Exam Card</button>
-                    <button onclick="window.print()" class="footer-btn btn-pdf">💾 Save Full Sheet as PDF / Print</button>
+                <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
+                    <div id="questions-root-wrapper" style="width: 100%;"></div>
                 </div>
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4D_15Q -->
+                <div class="osborne-footer-grid">
+                    <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
+                    <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
+                    <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
+                    <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
+                </div>
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4D -->
                 <div id="floatingCalcWidget" class="calc-widget-floating">
                     <div class="calc-widget-header" onclick="toggleCalculatorView()">
                         <span>🧮 AAT Exam Calculator</span>
@@ -309,26 +264,96 @@
                         </div>
                     </div>
                 </div>
-
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_NEW_FLOW_PART_4E_15Q -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_1 -->
                 <script>
+                    const scenarios = [
+                        { text: "Verify the balancing steps for the Sales Ledger Control Account discrepancy.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Analyze the statutory ammortisation index applied to non-current asset categories.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+                        { text: "Reconcile the opening cash book deficit against bank statement credit entries.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Compute the standard overhead absorption rate based on direct labour allocation.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Determine the correct input VAT adjustment for trade receivables.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_2 -->
+                        { text: "Evaluate closing inventory variance under FIFO valuation constraints.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Reconstruct incomplete sole trader turnover parameters using margin criteria.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
+                        { text: "Formulate the proper accounting treatment for capitalised development outlays.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Process year-end accruals for statutory utility liabilities.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Identify the systemic risk indicators within the purchase ledger sub-module.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+                        { text: "Adjust the Suspense Account allocation following a transposition error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Calculate the Partnership profit share ratio adjustments under current laws.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
+                        { text: "Assess Corporate Governance breaches under the IESBA framework.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+                        { text: "Verify the Consolidated Statement adjustments for internal unrealised profits.", correct: "A", diff: "🟡 Difficulty: Intermediate" },
+                        { text: "Compute the standard variance indicators for production yields.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
+                    ];
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_3 -->
+                    let currentActiveIndex = 0;
+                    const root = document.getElementById("questions-root-wrapper");
+
+                    scenarios.forEach((q, idx) => {
+                        const num = idx + 1;
+                        root.innerHTML += \`
+                            <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
+                                <div class="header-area">
+                                    <span class="level-tag">${badgeText} • Task \${num}/15</span>
+                                    <span class="difficulty-tag">\${q.diff}</span>
+                                </div>
+                                <div class="question-title">Assessment Task \${num}: Syllabus Module</div>
+                                <p style="font-size: 14px; color: #4B5563; margin-bottom: 20px; line-height: 1.5;">
+                                    \${q.text} Apply strict statutory UK standards to evaluate the provisions.
+                                </p>
+                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true">
+                                    <div class="option-left">
+                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A">
+                                        <label style="cursor:pointer;">Option A: Adjust parameters through Prime Entry journals</label>
+                                    </div>
+                                    <div class="feedback-marker" id="mark_\${idx}_A"></div>
+                                </div>
+                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true">
+                                    <div class="option-left">
+                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B">
+                                        <label style="cursor:pointer;">Option B: Account directly using Suspense Control procedures</label>
+                                    </div>
+                                    <div class="feedback-marker" id="mark_\${idx}_B"></div>
+                                </div>
+                            </div>
+                        \`;
+                    });
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_4 -->
+                    function changeQuestion(step) {
+                        const target = currentActiveIndex + step;
+                        if (target >= 0 && target < 15) {
+                            document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
+                            currentActiveIndex = target;
+                            document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
+                        }
+                    }
+
+                    function verifyCurrentInline() {
+                        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+                        const correctVal = activeCard.getAttribute("data-correct");
+                        const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
+                        const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
+                        const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
+                        const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
+                        mA.style.display = "none";
+                        mB.style.display = "none";
+                        if (rA.checked) {
+                            mA.style.display = "block";
+                            mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
+                        } else if (rB.checked) {
+                            mB.style.display = "block";
+                            mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
+                        }
+                    }
+
+                    function resetCurrentForm() {
+                        document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
+                        document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
+                        document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;
+                        document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
+                    }
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4E_5 -->
                     let isCalcBodyExpanded = false;
                     let calcCurrentExpressionString = "";
-
-                    function checkAllAnswers() {
-                        let answeredCount = 0;
-                        for (let i = 1; i <= 15; i++) {
-                            let radios = document.getElementsByName('q' + i);
-                            let checked = false;
-                            for (let r = 0; r < radios.length; r++) {
-                                if (radios[r].checked) { checked = true; break; }
-                            }
-                            if (checked) answeredCount++;
-                        }
-                        
-                        let scorePercentage = Math.round((answeredCount / 15) * 100);
-                        alert("Exam Evaluation Summary:\\n\\nCompleted Tasks: " + answeredCount + " / 15\\nOverall Competency Score: " + scorePercentage + "%\\n\\nReview individual balances before final HMRC/AAT export.");
-                    }
 
                     function toggleCalculatorView() {
                         const body = document.getElementById("calcWidgetBody");
@@ -352,13 +377,13 @@
 
                     function pushCalcFunction(type) {
                         const display = document.getElementById("calcDisplayScreen");
-                        let currentNumericValue = parseFloat(display.value) || 0;
+                        let val = parseFloat(display.value) || 0;
                         if (type === 'sqrt') {
-                            if (currentNumericValue < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; }
-                            currentNumericValue = Math.sqrt(currentNumericValue);
-                        } else if (type === 'pow') { currentNumericValue = Math.pow(currentNumericValue, 2); }
-                        else if (type === 'percent') { currentNumericValue = currentNumericValue / 100; }
-                        calcCurrentExpressionString = Number(currentNumericValue.toFixed(6)).toString();
+                            if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; }
+                            val = Math.sqrt(val);
+                        } else if (type === 'pow') { val = Math.pow(val, 2); }
+                        else if (type === 'percent') { val = val / 100; }
+                        calcCurrentExpressionString = Number(val.toFixed(6)).toString();
                         display.value = calcCurrentExpressionString;
                     }
 
@@ -366,14 +391,10 @@
                         const display = document.getElementById("calcDisplayScreen");
                         if (!calcCurrentExpressionString) return;
                         try {
-                            let mathematicalEvaluationOutput = new Function('return (' + calcCurrentExpressionString + ')')();
-                            if (mathematicalEvaluationOutput === Infinity || isNaN(mathematicalEvaluationOutput)) {
-                                display.value = "Error"; calcCurrentExpressionString = "";
-                            } else {
-                                calcCurrentExpressionString = Number(mathematicalEvaluationOutput.toFixed(6)).toString();
-                                display.value = calcCurrentExpressionString;
-                            }
-                        } catch (error) { display.value = "Syntax Error"; calcCurrentExpressionString = ""; }
+                            let res = new Function('return (' + calcCurrentExpressionString + ')')();
+                            if (res === Infinity || isNaN(res)) { display.value = "Error"; calcCurrentExpressionString = ""; }
+                            else { calcCurrentExpressionString = Number(res.toFixed(6)).toString(); display.value = calcCurrentExpressionString; }
+                        } catch (e) { display.value = "Syntax Error"; calcCurrentExpressionString = ""; }
                     }
                 <\/script>
             </body>
