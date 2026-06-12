@@ -315,6 +315,202 @@ function advanceQuestion() {
         document.getElementById("setupPanel").style.display = "block";
     }
 }
+<!-- RIFERIMENTO_BLOCCO: INTEGRATO_CALCOLATRICE -->
+</div> <!-- Chiude il container floating iniziale -->
+
+<style>
+    /* Floating Widget Box Constraint anchoring it to viewport */
+    .calc-widget-floating {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 280px;
+        z-index: 9999;
+        background: rgba(16, 24, 48, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 242, 254, 0.25);
+        border-radius: 10px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    /* Header Header Style mimicking institution parameters */
+    .calc-widget-header {
+        background: rgba(0, 242, 254, 0.15);
+        padding: 0.8rem 1rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #00f2fe;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+        user-select: none;
+    }
+    .calc-widget-header:hover {
+        background: rgba(0, 242, 254, 0.25);
+    }
+    .calc-widget-body {
+        padding: 1rem;
+        display: none; /* Initially collapsed to optimize viewport view */
+    }
+    /* Digital LCD Display CSS */
+    .calc-display {
+        width: 100%;
+        padding: 0.6rem;
+        background: #070b14;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        color: #00f2fe;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.4rem;
+        text-align: right;
+        margin-bottom: 1rem;
+        box-sizing: border-box;
+    }
+    /* Button Layout Grid Constraint */
+    .calc-btn-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+    .calc-btn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        padding: 0.6rem;
+        color: #f8fafc;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .calc-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .btn-sci {
+        color: #4facfe;
+        background: rgba(79, 172, 254, 0.05);
+    }
+    .btn-op {
+        color: #00f2fe;
+        background: rgba(0, 242, 254, 0.05);
+    }
+    .btn-equals {
+        background: #00f2fe;
+        color: #0a0f1d;
+        grid-row: span 1;
+    }
+    .btn-equals:hover {
+        background: #4facfe;
+        color: #fff;
+    }
+</style>
+
+<script>
+    // Inserisco qui l'HTML della calcolatrice tramite iniezione dinamica per non rompere il flusso dei tag prima dello script
+    document.body.insertAdjacentHTML('beforeend', `
+        <div id="floatingCalcWidget" class="calc-widget-floating">
+            <div class="calc-widget-header" onclick="toggleCalculatorView()">
+                <span>🧮 AAT Exam Calculator</span>
+                <span id="calcToggleArrow">▲</span>
+            </div>
+            <div id="calcWidgetBody" class="calc-widget-body">
+                <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
+                <div class="calc-btn-grid">
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
+                    <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+                    <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
+                    <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
+                    <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+                    <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
+                    <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
+                    <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+                    <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
+                    <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
+                    <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+                    <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
+                    <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
+                    <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+                </div>
+            </div>
+        </div>
+    `);
+
+    let isCalcBodyExpanded = false;
+    let calcCurrentExpressionString = "";
+
+    function toggleCalculatorView() {
+        const body = document.getElementById("calcWidgetBody");
+        const arrow = document.getElementById("calcToggleArrow");
+        isCalcBodyExpanded = !isCalcBodyExpanded;
+        if (isCalcBodyExpanded) {
+            body.style.display = "block";
+            arrow.textContent = "▼";
+        } else {
+            body.style.display = "none";
+            arrow.textContent = "▲";
+        }
+    }
+
+    function pushCalcChar(char) {
+        const display = document.getElementById("calcDisplayScreen");
+        if (display.value === "0" && char !== ".") {
+            calcCurrentExpressionString = char;
+        } else {
+            calcCurrentExpressionString += char;
+        }
+        display.value = calcCurrentExpressionString;
+    }
+
+    function clearCalcScreen() {
+        calcCurrentExpressionString = "";
+        document.getElementById("calcDisplayScreen").value = "0";
+    }
+
+    function pushCalcFunction(type) {
+        const display = document.getElementById("calcDisplayScreen");
+        let currentNumericValue = parseFloat(display.value) || 0;
+        if (type === 'sqrt') {
+            if (currentNumericValue < 0) {
+                display.value = "Error";
+                calcCurrentExpressionString = "";
+                return;
+            }
+            currentNumericValue = Math.sqrt(currentNumericValue);
+        } else if (type === 'pow') {
+            currentNumericValue = Math.pow(currentNumericValue, 2);
+        } else if (type === 'percent') {
+            currentNumericValue = currentNumericValue / 100;
+        }
+        calcCurrentExpressionString = Number(currentNumericValue.toFixed(6)).toString();
+        display.value = calcCurrentExpressionString;
+    }
+
+    function executeCalcExpression() {
+        const display = document.getElementById("calcDisplayScreen");
+        if (!calcCurrentExpressionString) return;
+        try {
+            let mathematicalEvaluationOutput = new Function(`return (${calcCurrentExpressionString})`)();
+            if (mathematicalEvaluationOutput === Infinity || isNaN(mathematicalEvaluationOutput)) {
+                display.value = "Error";
+                calcCurrentExpressionString = "";
+            } else {
+                calcCurrentExpressionString = Number(mathematicalEvaluationOutput.toFixed(6)).toString();
+                display.value = calcCurrentExpressionString;
+            }
+        } catch (error) {
+            display.value = "Syntax Error";
+            calcCurrentExpressionString = "";
+        }
+    }
 </script>
 </body>
 </html>
