@@ -1,4 +1,4 @@
-<!-- BLOCCO 1 -->
+<!-- RIFERIMENTO_BLOCCO: 1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -16,6 +16,7 @@
             --secondary: #4facfe;
             --t-green: #10b981;
             --t-red: #ef4444;
+            --accent-blue: #3b82f6;
         }
         body {
             background-color: var(--bg-dark);
@@ -58,27 +59,28 @@
             font-size: 1.4rem;
             margin-top: 1.5rem;
         }
-        .t-account {
+        .matrix-table {
             width: 100%;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
+            background: rgba(255,255,255,0.01);
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid var(--border-glass);
         }
-        .t-account th {
+        .matrix-table th {
             background: rgba(0, 242, 254, 0.1);
             color: var(--primary);
-            padding: 0.5rem;
+            padding: 0.8rem;
+            text-align: left;
             border-bottom: 2px solid var(--primary);
-        }
-        .t-account td {
-            padding: 0.6rem;
             font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .t-account td:first-child {
-            border-right: 2px solid var(--border-glass);
+        .matrix-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -87,58 +89,63 @@
         <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
         
         <div class="glass-card">
-            <h1>IASC Evaluation Models & Cost-Benefit Layouts</h1>
-            <p style="color: var(--text-muted)">Visual audit templates and investment analysis grids for system evaluation tasks.</p>
+            <h1>IASC Control Evaluation Grids & Pro-Formas</h1>
+            <p style="color: var(--text-muted)">Visual audit documentation matrices and quantitative payback modeling templates.</p>
 
-            <h2>1. System Deficiency Assessment Matrix</h2>
-            <p style="color: var(--text-muted)">The standard reporting structure used to map control gaps, business risks, and solutions.</p>
+            <h2>1. Core Internal Control Evaluation (ICE) Deficiency Matrix</h2>
+            <p style="color: var(--text-muted)">The formal layout required to process, review, and report operational control failures during systems audits.</p>
             
-            <table class="t-account">
+            <table class="matrix-table">
                 <thead>
                     <tr>
-                        <th style="text-align: left;">Identified Control Deficiency</th>
-                        <th>Associated Corporate Risk</th>
-                        <th>Recommended System Control</th>
+                        <th>Identified Deficiency Location</th>
+                        <th>Specific Corporate Risk Exposure</th>
+                        <th>Recommended Control Policy Update</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="color:var(--text-main)">Accounting staff share a single master database log-in credential.</td>
-                        <td>Total loss of individual audit trails; adjustments cannot be traced to specific users.</td>
-                        <td style="color:var(--primary)">Enforce unique individual user log-ins with mandatory monthly password resets.</td>
+                        <td style="color:var(--text-main)"><strong>Purchase Ledger Permissions</strong><br>Accounting clerks possess access rights to create new supplier entries and approve purchase invoices simultaneously.</td>
+                        <td>High fraud risk; a clerk could set up a fake supplier profile matching their personal bank details and authorize fraudulent payments to themselves.</td>
+                        <td style="color:var(--primary)">Enforce strict segregation of duties. The database must restrict clerk accounts so supplier configuration and invoice authorization are handled by separate staff.</td>
                     </tr>
                     <tr>
-                        <td style="color:var(--text-main)">Purchase ledger accounts are reconciled only once every six months.</td>
-                        <td>Delayed identification of processing errors, supplier payment issues, or duplicate billing.</td>
-                        <td style="color:var(--secondary)">Mandate monthly supplier statement reconciliations signed off by an accounting supervisor.</td>
+                        <td style="color:var(--text-main)"><strong>Sales Despatch Reconciliation</strong><br>Goods leave the shipping bays without verification against an authorized sales invoice or delivery note.</td>
+                        <td>Inventory shrinkage and loss of revenue; products could leave the facility unbilled, causing direct material losses.</td>
+                        <td style="color:var(--secondary)">Configure a gating control. Warehouses must require a sequential system check where gatekeepers scan a Goods Despatch Note (GDN) that links directly to an active invoice.</td>
                     </tr>
                     <tr>
-                        <td style="color:var(--text-main)">Physical inventory counts are overseen by warehouse managers.</td>
-                        <td>Lack of independence; risk of staff hiding stock shrinkage, damages, or theft.</td>
-                        <td style="color:var(--t-green)">Appoint independent inventory count teams not connected to warehouse staff.</td>
+                        <td style="color:var(--text-main)"><strong>Bank Reconciliation Pipeline</strong><br>General bank ledger records are matched against statements only once every six months.</td>
+                        <td>Delayed fraud and error detection; unauthorized withdrawals or banking mistakes remain hidden for months, misstating liquid cash views.</td>
+                        <td style="color:var(--t-green)">Enforce mandatory monthly bank reconciliations, compiled by an accounting team member independent of cash handling and signed off by a finance manager.</td>
                     </tr>
                 </tbody>
             </table>
-
-            <h2>2. Financial Cost-Benefit Layout for System Upgrades</h2>
-            <p style="color: var(--text-muted)">Standard pro-forma template used to justify system investments to the board of directors.</p>
+<!-- RIFERIMENTO_BLOCCO: 2 -->
+            <h2>2. Quantitative Financial Capital Outlay vs Benefit Recovery Grid</h2>
+            <p style="color: var(--text-muted)">Standard reporting template used to compute payback horizons and justify accounting software upgrades to executive directors.</p>
             
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
                 <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-Implementation Capital Outlay (Year 0 Investment):
-  Cloud Accounting Software Licensing ............   -£15,000
-  External Consultant Configuration Fees ........   - £8,500
-  Staff Training & Downtime Costs ................   - £4,000
-Total Financial Capital Outlay ............................   -<strong>£27,500</strong>
+Capital Investment Outlay (Year 0 Investment Plan):
+  Integrated Enterprise Resource Planning (ERP) SaaS License ....   -£22,000
+  External Network Integration Consultant Configuration Surcharges   - £9,500
+  Staff Redeployment Downtime & Operational Training Phases ......   - £4,500
+Total Upfront Systems Capital Expenditure (CapEx) ................   -<strong>£36,000</strong>
 
-Projected Annual Financial Improvements (Years 1-3 Benefit):
-  Reduced Invoice Reconciliation Processing Hours    +£12,000
-  Elimination of Duplicate Billing Payment Errors .   + £4,500
-  Reduction in External Audit Fee Surcharges ......   + £2,000
-Total Annual Recurring Benefit Pool .......................   +<strong>£18,500</strong>
-
-<strong>Net System Payback Horizon Period</strong> ........................    <strong>1.49 Years</strong>
+Projected Annual Financial Improvements (Years 1-3 Benefit Pools):
+  Automated Three-Way Invoice Match Staff Hour Savings ...........   +£14,000
+  Elimination of Supplier Duplicate Billing Overpayment Excesses .   + £5,500
+  Suppression of Inventory Warehousing Shrinkage Losses ..........   + £2,500
+  Reduction in External Audit Evaluation Fee Surcharges ..........   + £2,000
+Total Projected Annual Operating Cash Savings (OpEx Relief) ......   +<strong>£24,000</strong>
+═════════════════════════════════════════════════════════════════════════════════════
+<strong>SYSTEM CAPITAL BREAK-EVEN HORIZON (Payback Period)</strong> ...............    <strong>1.50 Years</strong>
                 </pre>
+            </div>
+            
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 242, 254, 0.05); border-radius: 6px; border: 1px solid var(--border-glass)">
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-main);"><strong>Strategic Alignment:</strong> The proposed system break-even point is reached in exactly 18 months, making it a highly viable capital project. Beyond Year 2, the business will secure a net cash improvement of £24,000 annually from reduced operational waste.</p>
             </div>
         </div>
     </div>
