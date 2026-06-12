@@ -1,23 +1,24 @@
-// Motore grafico condiviso per i test fissi di Level 2
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Inietta gli stili Osborne e lo sfondo scuro globale nell'head del foglio
+    // 1. Iniezione degli stili grafici e della veste a contrasto (Bolla Chiara su Sfondo Scuro)
     const styleTag = document.createElement("style");
     styleTag.innerHTML = `
         body { background-color: #0B0F19 !important; color: #F3F4F6 !important; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
-        .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF !important; color: #1E293B !important; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; margin: 0 auto; }
+        .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF !important; color: #1E293B !important; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; margin: 20px auto; }
         .test-card-container.active { display: block !important; }
         .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
         .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; background: #0D9488; }
         .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
         .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
-        .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC !important; border: 1px solid #D1D5DB !important; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; color: #334155 !important; }
-        .option-row:hover { background: #F1F5F9 !important; }
-        .option-text-left { font-size: 13.5px; font-weight: 600; }
-        .option-right-inputs { display: flex; align-items: center; gap: 12px; }
-        .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); }
-        .feedback-marker { font-size: 15px; font-weight: bold; display: none; }
+        
+        /* Input interni riallineati in stile Osborne Books */
+        .fixed-input-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 10px; }
+        .fixed-input-label { font-size: 13.5px; font-weight: 600; color: #334155; }
+        .fixed-input-field { width: 140px; padding: 8px; border: 1px solid #CBD5E1; border-radius: 4px; text-align: right; font-weight: 700; outline: none; }
+        
+        .feedback-marker { font-size: 16px; font-weight: bold; margin-left: 10px; display: inline-block; }
         .feedback-correct { color: #10B981; }
         .feedback-wrong { color: #EF4444; }
+        
         .osborne-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
         .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 4px; font-size: 11.5px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
         .osborne-btn:hover { background: #F1F5F9; }
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .btn-verify:hover { background: #0F172A; }
         .btn-solution { background: #0284C7; color: #FFFFFF; border-color: #0284C7; }
         .btn-solution:hover { background: #0369A1; }
+        
         .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; color: #FFFFFF; }
         .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
         .calc-widget-body { padding: 1rem; display: none; }
@@ -36,17 +38,67 @@ document.addEventListener("DOMContentLoaded", function() {
         .btn-equals { background: #00f2fe; color: #0a0f1d; }
     `;
     document.head.appendChild(styleTag);
-    // 2. Avvolge l'area quesiti nel wrapper corretto
-    const cards = document.querySelectorAll('.test-card-container');
-    const totalQuestions = cards.length;
-    
-    cards.forEach((el, idx) => {
-        if (idx === 0) el.classList.add('active');
-        else el.classList.remove('active');
-        el.id = "card_task_" + idx;
+    // 2. Motore algoritmico di intercettazione e avvolgimento dei quesiti sfusi
+    const bodyContent = document.body.innerHTML;
+    document.body.innerHTML = '<div id="questions-root-wrapper" style="width:100%;"></div>';
+    const rootWrapper = document.getElementById("questions-root-wrapper");
+
+    // Array di soluzioni fisse per la verifica dei test numerici della cartella level-2
+    const fixedSolutions = [
+        { q: 1, fields: [ { id: "net", ans: "900.00" }, { id: "vat", ans: "180.00" } ] },
+        { q: 2, fields: [ { id: "net", ans: "630.00" }, { id: "vat", ans: "126.00" } ] },
+        { q: 3, fields: [ { id: "vat", ans: "130.00" }, { id: "gross", ans: "990.00" } ] },
+        { q: 4, fields: [ { id: "cash", ans: "564.00" } ] },
+        { q: 5, fields: [ { id: "net", ans: "255.00" }, { id: "gross", ans: "306.00" } ] },
+        { q: 6, fields: [ { id: "gross", ans: "1600.00" } ] }
+    ];
+
+    // Splitta il testo usando l'indicatore fisso d'esame "Q" seguito dal numero progressivo
+    const questionBlocks = bodyContent.split(/Q\d+\s+of\s+15/g);
+    let validIndex = 0;
+
+    questionBlocks.forEach((blockText, idx) => {
+        if (idx === 0 || blockText.trim().length < 30) return;
+        
+        const qNum = validIndex + 1;
+        const cardDiv = document.createElement("div");
+        cardDiv.className = `test-card-container ${validIndex === 0 ? 'active' : ''}`;
+        cardDiv.id = `card_task_${validIndex}`;
+        
+        // Ricostruisce la struttura a bolla bianca con i badge di stato
+        cardDiv.innerHTML = `
+            <div class="header-area">
+                <span class="level-tag">AAT Level 2 Fixed Test • Task ${qNum}/15</span>
+                <span class="difficulty-tag">🟢 Framework Target</span>
+            </div>
+            <div class="question-title">Assessment Question Block ${qNum}</div>
+            <div style="font-size:14px; color:#4B5563; line-height:1.6; margin-bottom:20px;">
+                ${blockText.trim()}
+            </div>
+        `;
+        
+        rootWrapper.appendChild(cardDiv);
+
+        // Converte i vecchi campi di testo liberi o tabelle in righe di input Osborne ordinate
+        const inputs = cardDiv.querySelectorAll("input[type='text']");
+        inputs.forEach((input, inputIdx) => {
+            const row = document.createElement("div");
+            row.className = "fixed-input-row";
+            row.innerHTML = `
+                <span class="fixed-input-label">Accounting Ledger Value Entry #${inputIdx + 1}:</span>
+                <div style="display:flex; align-items:center;">
+                    <input type="text" class="fixed-input-field" id="user_ans_${validIndex}_${inputIdx}" placeholder="0.00">
+                    <span class="feedback-marker" id="mark_${validIndex}_${inputIdx}"></span>
+                </div>
+            `;
+            input.replaceWith(row);
+        });
+
+        validIndex++;
     });
 
-    // 3. Inietta la barra dei pulsanti Osborne inferiore
+    const totalQuestions = validIndex;
+    // 3. Generazione e iniezione della barra inferiore Osborne e della calcolatrice fluttuante ciano
     const footerGrid = document.createElement("div");
     footerGrid.className = "osborne-footer-grid";
     footerGrid.innerHTML = `
@@ -55,11 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
         <button id="osb-reset" class="osborne-btn">Reset</button>
         <button id="osb-prev" class="osborne-btn">&larr;&larr;&larr; previous question</button>
         <button id="osb-next" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
-        <button id="osborne-pdf-trigger" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B;">💾 Download as PDF</button>
     `;
     document.body.appendChild(footerGrid);
 
-    // 4. Inietta il layout della calcolatrice fluttuante ciano
     const calcWidget = document.createElement("div");
     calcWidget.id = "floatingCalcWidget";
     calcWidget.className = "calc-widget-floating";
@@ -74,27 +124,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const btnRoot = document.getElementById("calc-buttons-root");
     const layout = [
-        ['√','sci','sqrt'],['x²','sci','pow'],['%','sci','percent'],['C','sci','clear'],
-        ['7','num','7'],['8','num','8'],['9','num','9'],['/','op','/'],
-        ['4','num','4'],['5','num','5'],['6','num','6'],['*','op','*'],
-        ['1','num','1'],['2','num','2'],['3','num','3'],['-','op','-'],
-        ['0','num','0'],['.','num','.'],['=','eq','equal'],['+','op','+']
+        ['√','sqrt'],['x²','pow'],['%','percent'],['C','clear'],
+        ['7','7'],['8','8'],['9','9'],['/','/'],
+        ['4','4'],['5','5'],['6','6'],['*','*'],
+        ['1','1'],['2','2'],['3','3'],['-','-'],
+        ['0','0'],['.','.'],['=','equal'],['+','+']
     ];
     layout.forEach(b => {
         let cls = "calc-btn";
-        if(b[1]==='sci') cls += " btn-sci";
-        if(b[1]==='op') cls += " btn-op";
-        if(b[1]==='eq') cls += " btn-equals";
-        btnRoot.innerHTML += `<button class="${cls}" data-action="${b[2]}">${b[0]}</button>`;
+        if(['√','x²','%','C'].includes(b[0])) cls += " btn-sci";
+        if(['/','*','-','+'].includes(b[0])) cls += " btn-op";
+        if(b[0]==='=') cls += " btn-equals";
+        btnRoot.innerHTML += `<button class="${cls}" data-action="${b[1]}">${b[0]}</button>`;
     });
-    // 5. Attiva gli ascoltatori dei comandi
+
     let currentActiveIndex = 0;
     document.getElementById("osb-next").onclick = () => changeQuestion(1);
     document.getElementById("osb-prev").onclick = () => changeQuestion(-1);
     document.getElementById("osb-reset").onclick = () => resetCurrentForm();
     document.getElementById("osb-solution").onclick = () => showCurrentSolution();
     document.getElementById("osb-verify").onclick = () => verifyCurrentInline();
-    document.getElementById("osborne-pdf-trigger").onclick = () => window.print();
 
     function changeQuestion(step) {
         const target = currentActiveIndex + step;
@@ -103,50 +152,43 @@ document.addEventListener("DOMContentLoaded", function() {
             currentActiveIndex = target;
             document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
         }
-        document.getElementById("osborne-pdf-trigger").style.display = (currentActiveIndex === totalQuestions - 1) ? "block" : "none";
     }
 
     function showCurrentSolution() {
-        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-        const correctLetter = activeCard.getAttribute("data-correct");
-        const rows = activeCard.querySelectorAll(".option-row");
-        rows.forEach(r => r.classList.remove("reveal-correct"));
-        const targetRow = activeCard.querySelector(`.option-row[onclick*="${correctLetter}"]`);
-        if (targetRow) targetRow.classList.add("reveal-correct");
+        const sol = fixedSolutions.find(s => s.q === (currentActiveIndex + 1));
+        if (!sol) return;
+        sol.fields.forEach((f, idx) => {
+            const field = document.getElementById(`user_ans_${currentActiveIndex}_${idx}`);
+            if (field) { field.value = f.ans; field.style.backgroundColor = "#DCFCE7"; field.style.borderColor = "#10B981"; }
+        });
     }
 
     function verifyCurrentInline() {
-        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-        const correctVal = activeCard.getAttribute("data-correct");
-        ['A', 'B', 'C'].forEach(l => {
-            const r = document.getElementById(`opt_${currentActiveIndex}_${l}`);
-            const m = document.getElementById(`mark_${currentActiveIndex}_${l}`);
-            if (m) m.style.display = "none";
-            if (r && r.checked && m) {
-                m.style.display = "block";
-                m.innerHTML = (correctVal === l) ? '✔️' : '❌';
+        const sol = fixedSolutions.find(s => s.q === (currentActiveIndex + 1));
+        if (!sol) return;
+        sol.fields.forEach((f, idx) => {
+            const field = document.getElementById(`user_ans_${currentActiveIndex}_${idx}`);
+            const marker = document.getElementById(`mark_${currentActiveIndex}_${idx}`);
+            if (field && marker) {
+                marker.style.display = "inline-block";
+                const isCorrect = (parseFloat(field.value) || 0) === parseFloat(f.ans);
+                marker.innerHTML = isCorrect ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
             }
         });
     }
 
     function resetCurrentForm() {
-        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-        ['A', 'B', 'C'].forEach(l => {
-            const r = document.getElementById(`opt_${currentActiveIndex}_${l}`);
-            const m = document.getElementById(`mark_${currentActiveIndex}_${l}`);
-            if (m) m.style.display = "none";
-            if (r) r.checked = false;
-        });
-        activeCard.querySelectorAll(".option-row").forEach(r => r.classList.remove("reveal-correct"));
+        const card = document.getElementById(`card_task_${currentActiveIndex}`);
+        card.querySelectorAll(".fixed-input-field").forEach(f => { f.value = ""; f.style.backgroundColor = ""; f.style.borderColor = ""; });
+        card.querySelectorAll(".feedback-marker").forEach(m => m.style.display = "none");
     }
 
-    // Calcolatrice
-    let isCalcBodyExpanded = false;
+    let isCalcExpanded = false;
     let calcStr = "";
     document.getElementById("calc-header-trigger").onclick = () => {
-        isCalcBodyExpanded = !isCalcBodyExpanded;
-        document.getElementById("calcWidgetBody").style.display = isCalcBodyExpanded ? "block" : "none";
-        document.getElementById("calcToggleArrow").textContent = isCalcBodyExpanded ? "▼" : "▲";
+        isCalcExpanded = !isCalcExpanded;
+        document.getElementById("calcWidgetBody").style.display = isCalcExpanded ? "block" : "none";
+        document.getElementById("calcToggleArrow").textContent = isCalcExpanded ? "▼" : "▲";
     };
 
     btnRoot.querySelectorAll('button').forEach(btn => {
