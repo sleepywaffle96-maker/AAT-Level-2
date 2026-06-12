@@ -1,4 +1,4 @@
-<!-- RIFERIMENTO_BLOCCO: INDEX_HEAD_CONFIG -->
+<!-- RIFERIMENTO_BLOCCO: INDEX_HEAD_CONFIG_VINTAGE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,32 +12,30 @@
         body { font-family: 'Inter', sans-serif; background-color: #0B0F19; color: #F3F4F6; }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: INDEX_BODY_HEADER -->
+<!-- RIFERIMENTO_BLOCCO: INDEX_BODY_HEADER_VINTAGE -->
 <body class="min-h-screen bg-[#0B0F19] flex flex-col justify-between antialiased">
 
-    <!-- Container Centrale Principale -->
+    <!-- Container Principale -->
     <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
         
-        <!-- Intestazione della Suite -->
-        <div class="text-center mb-12 max-w-2xl px-4 animate-fade-in">
+        <!-- Titolo Centrale Tradizionale -->
+        <div class="text-center mb-10 max-w-2xl px-4">
             <span class="bg-indigo-950/80 text-indigo-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-indigo-900/50">
                 Official Exam Preparation Suite
             </span>
             <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight">
                 AAT Interactive Simulator
             </h1>
-            <p class="text-gray-400 text-sm md:text-base mt-2">
-                Select your path below to launch dedicated study modules or access interactive examination parameters.
+            <p class="text-gray-400 text-sm mt-2">
+                Consult full structural lessons before attempting mock exams or select static parameters below.
             </p>
         </div>
-<!-- RIFERIMENTO_BLOCCO: INDEX_DOUBLE_WHITE_HUBS -->
-        <!-- Griglia dei due Hub speculari -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl px-4">
+<!-- RIFERIMENTO_BLOCCO: INDEX_HUBS_AND_DROPDOWNS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl px-4 items-start">
             
             <!-- ================= HUB 1: AREA STUDIO (BIANCO) ================= -->
-            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-200 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-white/5">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-200 flex flex-col justify-between h-full min-h-[460px]">
                 <div>
-                    <!-- Intestazione interna con Icona Libri -->
                     <div class="flex items-center gap-4 mb-4 border-b border-gray-100 pb-4">
                         <span class="text-4xl filter drop-shadow-sm">📚</span>
                         <div>
@@ -48,23 +46,21 @@
                         </div>
                     </div>
                     <p class="text-sm text-gray-600 leading-relaxed mb-8">
-                        Consult full structural lessons, digital documentation, and official corporate guidelines tailored specifically to your active AAT level qualifications.
+                        Consult full structural lessons, digital documentation, and official corporate guidelines tailored perfectly to your active AAT level qualifications.
                     </p>
                 </div>
                 
-                <!-- Bottone Arancione Dedicato -->
-                <a href="studio.html" class="flex items-center justify-between w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3.5 px-5 rounded-xl transition-colors cursor-pointer text-sm shadow-md shadow-orange-600/20">
+                <a href="studio.html" class="flex items-center justify-between w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3.5 px-5 rounded-xl transition-colors cursor-pointer text-sm shadow-md shadow-orange-600/20 mt-auto">
                     <span>Open Study Hub</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7"/>
                     </svg>
                 </a>
             </div>
 
             <!-- ================= HUB 2: PRACTICE ROOM (BIANCO) ================= -->
-            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-200 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-white/5">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-200 flex flex-col justify-between h-full min-h-[460px]">
                 <div>
-                    <!-- Intestazione interna con Icona Pallottoliere -->
                     <div class="flex items-center gap-4 mb-4 border-b border-gray-100 pb-4">
                         <span class="text-4xl filter drop-shadow-sm">🧮</span>
                         <div>
@@ -74,26 +70,68 @@
                             </span>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-8">
-                        Launch the comprehensive randomized examination engines or drill down into step-by-step fixed testing parameters through custom selectors.
-                    </p>
+                    
+                    <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-4">Fixed Practice Tests</p>
+                    
+                    <!-- Area delle Selezioni a Tendina -->
+                    <div class="space-y-3 mb-6">
+                        <!-- Tendina Level 2 -->
+                        <div class="relative">
+                            <select onchange="if(this.value) window.location.href=this.value" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 p-3 appearance-none cursor-pointer font-medium">
+                                <option value="" selected disabled>🟠 AAT Level 2 Certificate Topics</option>
+                                <option value="level-2/cap1-test1.html">Chapter 1: Double-Entry Bookkeeping</option>
+                                <option value="level-2/cap2-test1.html">Chapter 2: Principles of Documentation</option>
+                                <option value="level-2/cap3-test1.html">Chapter 3: Bookkeeping Controls</option>
+                                <option value="level-2/cap4-test1.html">Chapter 4: Correction of Errors</option>
+                            </select>
+                        </div>
+
+                        <!-- Tendina Level 3 -->
+                        <div class="relative">
+                            <select onchange="if(this.value) window.location.href=this.value" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 p-3 appearance-none cursor-pointer font-medium">
+                                <option value="" selected disabled>🟢 AAT Level 3 Diploma Topics</option>
+                                <option value="level-3/cap1-test1.html">Chapter 1: BUAW Financial Environment</option>
+                                <option value="level-3/cap2-test1.html">Chapter 2: FAPS Financial Statements</option>
+                                <option value="level-3/cap3-test1.html">Chapter 3: MATC Management Costing</option>
+                                <option value="level-3/cap4-test1.html">Chapter 4: TPFB VAT Accounting</option>
+                                <option value="level-3/cap5-test1.html">Chapter 5: Corporate Governance</option>
+                                <option value="level-3/cap6-test1.html">Chapter 6: Internal Controls & Ethics</option>
+                            </select>
+                        </div>
+
+                        <!-- Tendina Level 4 -->
+                        <div class="relative">
+                            <select onchange="if(this.value) window.location.href=this.value" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 p-3 appearance-none cursor-pointer font-medium">
+                                <option value="" selected disabled>🟣 AAT Level 4 Diploma Topics</option>
+                                <option value="level-4/cap1-test1.html">Chapter 1: AMAC Applied Budgeting</option>
+                                <option value="level-4/cap2-test1.html">Chapter 2: AMAC Advanced Costing</option>
+                                <option value="level-4/cap3-test1.html">Chapter 3: AMAC Variance Analysis</option>
+                                <option value="level-4/cap4-test1.html">Chapter 4: DAIF Regulatory Framework</option>
+                                <option value="level-4/cap5-test1.html">Chapter 5: DAIF Consolidated Statements</option>
+                                <option value="level-4/cap6-test1.html">Chapter 6: DAIF Key Financial Ratios</option>
+                                <option value="level-4/cap7-test1.html">Chapter 7: IASC Accounting Systems</option>
+                                <option value="level-4/cap8-test1.html">Chapter 8: IASC Fraud Prevention</option>
+                                <option value="level-4/cap9-test1.html">Chapter 9: Professional Ethics</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Bottone Teal Dedicato -->
-                <a href="simulatore.html" class="flex items-center justify-between w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 px-5 rounded-xl transition-colors cursor-pointer text-sm shadow-md shadow-teal-600/20">
-                    <span>Launch Exam Engine</span>
+                <!-- Pulsante Principale Algoritmico -->
+                <a href="simulatore.html" class="flex items-center justify-between w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 px-5 rounded-xl transition-colors cursor-pointer text-sm shadow-md shadow-teal-600/20 mt-auto">
+                    <span>Launch Random Scenario Engine</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7"/>
                     </svg>
                 </a>
             </div>
 
         </div>
     </main>
-<!-- RIFERIMENTO_BLOCCO: INDEX_FOOTER_CLOSURE -->
-    <!-- Footer Istituzionale Lineare -->
-    <footer class="w-full text-center py-6 border-t border-gray-900/50 text-[11px] text-gray-500 uppercase tracking-widest bg-gray-950/20">
-        Official AAT Syllabus Alignment • Strict UK English Standards
+<!-- RIFERIMENTO_BLOCCO: INDEX_FOOTER_CLOSURE_VINTAGE -->
+    <!-- Footer Istituzionale -->
+    <footer class="w-full text-center py-6 border-t border-gray-900/40 text-[11px] text-gray-500 uppercase tracking-widest bg-gray-950/10">
+        Official AAT Syllabus Alignment • Strict UK English Standards Only
     </footer>
 
 </body>
