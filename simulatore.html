@@ -100,8 +100,9 @@
 
     </div>
 </div>
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAGINATO_PART_3 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_FIX_CHAPTER_LOCK -->
 <script>
+    // Database dei capitoli allineato rigidamente ai valori delle tendine
     const syllabusData = {
         "L2": [
             "Chapter 1: Bookkeeping Transactions",
@@ -133,6 +134,9 @@
     function updateChapters() {
         const lvl = document.getElementById("level-selector").value;
         const chapSel = document.getElementById("chapter-selector");
+        
+        // Sblocca la tendina e svuota i vecchi elementi
+        chapSel.disabled = false;
         chapSel.innerHTML = "";
         
         if (lvl === "RANDOM") {
@@ -143,11 +147,13 @@
             return;
         }
 
+        // Inserisce l'opzione jolly iniziale
         let optRand = document.createElement("option");
         optRand.value = "LEVEL_RANDOM";
         optRand.textContent = "🎲 Randomize Chapter Inside This Level";
         chapSel.appendChild(optRand);
 
+        // Popola la lista in base al livello selezionato
         if (syllabusData[lvl]) {
             syllabusData[lvl].forEach((chap, idx) => {
                 let opt = document.createElement("option");
@@ -157,7 +163,7 @@
             });
         }
     }
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4A -->
+
     function launchPaginatedTestWindow() {
         let lvl = document.getElementById("level-selector").value;
         let chap = document.getElementById("chapter-selector").value;
@@ -167,6 +173,7 @@
             return;
         }
 
+        // Estrazione casuale in caso di Random totale
         if (lvl === "RANDOM") {
             const levels = ["L2", "L3", "L4"];
             lvl = levels[Math.floor(Math.random() * levels.length)];
@@ -179,6 +186,7 @@
 
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
         const testWindow = window.open("", "_blank");
+
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4B -->
         testWindow.document.write(`
             <!DOCTYPE html>
