@@ -331,48 +331,70 @@
                         { text: "Verify the Consolidated Statement adjustments for internal unrealised profits.", correct: "A", diff: "🟡 Difficulty: Intermediate" },
                         { text: "Compute the standard variance indicators for production yields.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
                     ];
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_STYLE_4E_3 -->
+// RIFERIMENTO_BLOCCO: SIMULATORE_RISPOSTE_DINAMICHE_4E_3
                     let currentActiveIndex = 0;
                     const root = document.getElementById("questions-root-wrapper");
 
+                    // Array di risposte differenziate per ciascuna delle 15 domande
+                    const optionTexts = [
+                        { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
+                        { a: "Apply straight-line depreciation index to non-current structures", b: "Execute statutory reducing balance adjustments to current categories", c: "Reclassify non-current outlays into operational expenses" },
+                        { a: "Reconcile the opening cash book deficit against credit bank entries", b: "Transfer unpresented cheques directly to the Suspense Control account", c: "Perform a retrospective bank statement write-off analysis" },
+                        { a: "Compute standard absorption parameters based on direct labour allocation", b: "Allocate general factory overheads using floor area square coefficients", c: "Absorb marginal expenses into production yield margins" },
+                        { a: "Process bad debts write-offs under HMRC irrecoverable rules", b: "Determine the correct input VAT clawback for trade receivables", c: "Adjust the provision for doubtful debts using age analysis parameters" },
+                        { a: "Evaluate closing inventory values under strict FIFO constraints", b: "Apply AVCO index adjustments to periodic stock valuations", c: "Execute an immediate net realisable value cost write-down" },
+                        { a: "Apply the standard gross profit margin percentage to purchases data", b: "Reconstruct incomplete sole trader turnover using mark-up criteria", c: "Formulate bank summary cash drawings balancing steps" },
+                        { a: "Capitalise intangible outlays under strict IAS 38 recognition criteria", b: "Write off structural prototype expenses as immediate overhead costs", c: "Amortise research coefficients over a fixed operational cycle" },
+                        { a: "Debit relevant utility expenditure and credit the Accruals account", b: "Credit outstanding rental provisions and debit Prepayments balances", c: "Post year-end corrections directly through the Trial Balance ledger" },
+                        { a: "Segregate commercial processing duties within the purchase ledger", b: "Implement systemic risk reviews within the automated payment loop", c: "Perform an exhaustive manual audit of supplier invoice matching rules" },
+                        { a: "Debit Suspense Account and credit Sales ledger following a transposition error", b: "Adjust opening Trial Balance differences via direct general journal entries", c: "Reverse incorrect double-entry parameters across control files" },
+                        { a: "Apportion residual profits using agreed partnership salary clauses", b: "Calculate profit share ratio adjustments under current legal bases", c: "Charge nominal interest on partner capital drawings variables" },
+                        { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
+                        { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
+                        { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" }
+                    ];
+
                     scenarios.forEach((q, idx) => {
                         const num = idx + 1;
-                        root.innerHTML += \`
-                            <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
+                        // Prende il set di risposte specifico per la domanda corrente
+                        const opts = optionTexts[idx % optionTexts.length];
+
+                        root.innerHTML += `
+                            <div class="test-card-container ${idx === 0 ? 'active' : ''}" id="card_task_${idx}" data-correct="${q.correct}">
                                 <div class="header-area">
-                                    <span class="level-tag">${badgeText} • Q\${num} of 15</span>
-                                    <span class="difficulty-tag">\${q.diff}</span>
+                                    <span class="level-tag">${badgeText} • Q${num} of 15</span>
+                                    <span class="difficulty-tag">${q.diff}</span>
                                 </div>
-                                <div class="question-title">Assessment Task \${num}</div>
+                                <div class="question-title">Assessment Task ${num}</div>
                                 <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">
-                                    \${q.text}
+                                    ${q.text}
                                 </p>
                                 
-                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true">
-                                    <span class="option-text-left">Execute ledger reconciliation adjustments via prime journals</span>
+                                <div class="option-row" onclick="document.getElementById('opt_${idx}_A').checked = true">
+                                    <span class="option-text-left">${opts.a}</span>
                                     <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_\${idx}_A"></div>
-                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;">
+                                        <div class="feedback-marker" id="mark_${idx}_A"></div>
+                                        <input type="radio" name="ans_${idx}" id="opt_${idx}_A" value="A" style="cursor:pointer;">
                                     </div>
                                 </div>
                                 
-                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true">
-                                    <span class="option-text-left">Account for the discrepancy directly through Suspense Control accounts</span>
+                                <div class="option-row" onclick="document.getElementById('opt_${idx}_B').checked = true">
+                                    <span class="option-text-left">${opts.b}</span>
                                     <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_\${idx}_B"></div>
-                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;">
+                                        <div class="feedback-marker" id="mark_${idx}_B"></div>
+                                        <input type="radio" name="ans_${idx}" id="opt_${idx}_B" value="B" style="cursor:pointer;">
                                     </div>
                                 </div>
 
-                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked = true">
-                                    <span class="option-text-left">Issue a formal remittance advice note to match outstanding balances</span>
+                                <div class="option-row" onclick="document.getElementById('opt_${idx}_C').checked = true">
+                                    <span class="option-text-left">${opts.c}</span>
                                     <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_\${idx}_C"></div>
-                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;">
+                                        <div class="feedback-marker" id="mark_${idx}_C"></div>
+                                        <input type="radio" name="ans_${idx}" id="opt_${idx}_C" value="C" style="cursor:pointer;">
                                     </div>
                                 </div>
                             </div>
-                        \`;
+                        `;
                     });
 
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_SOLUTION_4E_4 -->
