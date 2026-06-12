@@ -200,7 +200,6 @@
                     .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
                     .option-right-inputs { display: flex; align-items: center; gap: 12px; }
                     
-                    /* STILE PER FARE VEDERE LA SOLUZIONE SU RICHIESTA */
                     .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); }
                     
                     .feedback-marker { font-size: 15px; font-weight: bold; display: none; }
@@ -216,6 +215,14 @@
                     .btn-solution:hover { background: #0369A1; }
                     
                     .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
+                    .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
+                    .calc-widget-body { padding: 1rem; display: none; }
+                    .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
+                    .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+                    .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
+                    .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
+                    .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
+                    .btn-equals { background: #00f2fe; color: #0a0f1d; }
                     @media print {
                         body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
                         .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
@@ -230,7 +237,6 @@
                     <div id="questions-root-wrapper" style="width: 100%;"></div>
                 </div>
 
-                <!-- GRIGLIA COMANDI CON TASTO SOLUZIONE INTEGRATO -->
                 <div class="osborne-footer-grid">
                     <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
                     <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
@@ -239,6 +245,39 @@
                     <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
                     <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Download as PDF</button>
                 </div>
+
+                <div id="floatingCalcWidget" class="calc-widget-floating">
+                    <div class="calc-widget-header" onclick="toggleCalculatorView()">
+                        <span>🧮 AAT Exam Calculator</span>
+                        <span id="calcToggleArrow">▲</span>
+                    </div>
+                    <div id="calcWidgetBody" class="calc-widget-body">
+                        <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
+                        <div class="calc-btn-grid">
+                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
+                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
+                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
+                            <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+                            <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
+                            <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
+                            <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
+                            <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+                            <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
+                            <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
+                            <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
+                            <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+                            <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
+                            <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
+                            <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
+                            <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+                            <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
+                            <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
+                            <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
+                            <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+                        </div>
+                    </div>
+                </div>
+
 
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4D -->
                 <div id="floatingCalcWidget" class="calc-widget-floating">
