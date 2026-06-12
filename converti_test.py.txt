@@ -1,7 +1,7 @@
 import os
 import re
 
-HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
+H_HEAD = """<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,6 @@ HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
         .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; background: #0D9488; }
         .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
         .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
-"""
         .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
         .option-row:hover { background: #F1F5F9; }
         .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
@@ -43,7 +42,7 @@ HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
         .btn-equals { background: #00f2fe; color: #0a0f1d; }
         @media print {
             body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
-            .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
+            .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; display: block !important; }
             .calc-widget-floating, .osborne-footer-grid { display: none !important; }
         }
     </style>
@@ -52,194 +51,4 @@ HTML_HEAD_TEMPLATE = """<!DOCTYPE html>
     <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
         <div id="questions-root-wrapper" style="width: 100%;">
 """
-HTML_FOOTER_TEMPLATE = """
-        </div>
-    </div>
-
-    <div class="osborne-footer-grid">
-        <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
-        <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
-        <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
-        <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
-        <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
-        <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B;">💾 Download as PDF</button>
-    </div>
-
-    <div id="floatingCalcWidget" class="calc-widget-floating">
-        <div class="calc-widget-header" onclick="toggleCalculatorView()">
-            <span>🧮 AAT Exam Calculator</span>
-            <span id="calcToggleArrow">▲</span>
-        </div>
-        <div id="calcWidgetBody" class="calc-widget-body">
-            <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
-            <div class="calc-btn-grid">
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
-                <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
-                <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
-                <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
-                <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
-                <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
-                <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
-                <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
-                <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
-                <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
-                <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
-                <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
-                <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
-                <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
-            </div>
-        </div>
-    </div>
-"""
-HTML_JS_TEMPLATE = """
-    <script>
-        let currentActiveIndex = 0;
-        const totalQuestions = document.querySelectorAll('.test-card-container').length;
-
-        function changeQuestion(step) {
-            const target = currentActiveIndex + step;
-            if (target >= 0 && target < totalQuestions) {
-                document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
-                currentActiveIndex = target;
-                document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
-            }
-            const pdfBtn = document.getElementById("osborne-pdf-trigger");
-            if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === totalQuestions - 1) ? "block" : "none";
-        }
-
-        function triggerAutoPDFDownload() {
-            const originalTitle = document.title;
-            document.title = "AAT_Fixed_Exam_Report";
-            window.print();
-            setTimeout(() => { document.title = originalTitle; }, 500);
-        }
-
-        function showCurrentSolution() {
-            const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-            const correctLetter = activeCard.getAttribute("data-correct");
-            const rows = activeCard.querySelectorAll(".option-row");
-            rows.forEach(r => r.classList.remove("reveal-correct"));
-            const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);
-            if (correctRadio) {
-                const targetRow = correctRadio.closest(".option-row");
-                if (targetRow) targetRow.classList.add("reveal-correct");
-            }
-        }
-"""
-HTML_CALC_TEMPLATE = """
-        function verifyCurrentInline() {
-            const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-            const correctVal = activeCard.getAttribute("data-correct");
-            const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
-            const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
-            const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
-            const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
-            const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
-            const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
-
-            if(mA) mA.style.display = "none";
-            if(mB) mB.style.display = "none";
-            if(mC) mC.style.display = "none";
-
-            if (rA && rA.checked && mA) {
-                mA.style.display = "block";
-                mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
-            } else if (rB && rB.checked && mB) {
-                mB.style.display = "block";
-                mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
-            } else if (rC && rC.checked && mC) {
-                mC.style.display = "block";
-                mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
-            }
-        }
-
-        function resetCurrentForm() {
-            const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-            if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
-            if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
-            if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
-            const rows = activeCard.querySelectorAll(".option-row");
-            rows.forEach(r => r.classList.remove("reveal-correct"));
-            ['A', 'B', 'C'].forEach(l => {
-                let rb = document.getElementById("opt_" + currentActiveIndex + "_" + l);
-                if(rb) rb.checked = false;
-            });
-        }
-
-        let isCalcBodyExpanded = false;
-        let calcCurrentExpressionString = "";
-        function toggleCalculatorView() {
-            const body = document.getElementById("calcWidgetBody");
-            const arrow = document.getElementById("calcToggleArrow");
-            isCalcBodyExpanded = !isCalcBodyExpanded;
-            body.style.display = isCalcBodyExpanded ? "block" : "none";
-            arrow.textContent = isCalcBodyExpanded ? "▼" : "▲";
-        }
-        function pushCalcChar(char) {
-            const display = document.getElementById("calcDisplayScreen");
-            if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; }
-            else { calcCurrentExpressionString += char; }
-            display.value = calcCurrentExpressionString;
-        }
-        function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }
-        function pushCalcFunction(type) {
-            const display = document.getElementById("calcDisplayScreen");
-            let val = parseFloat(display.value) || 0;
-            if (type === 'sqrt') { if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; } val = Math.sqrt(val); }
-            else if (type === 'pow') { val = Math.pow(val, 2); }
-            else if (type === 'percent') { val = val / 100; }
-            calcCurrentExpressionString = Number(val.toFixed(6)).toString();
-            display.value = val;
-        }
-        function executeCalcExpression() {
-            const display = document.getElementById("calcDisplayScreen");
-            if (!calcCurrentExpressionString) return;
-            try {
-                let res = new Function('return (' + calcCurrentExpressionString + ')')();
-                calcCurrentExpressionString = Number(res.toFixed(6)).toString();
-                display.value = calcCurrentExpressionString;
-            } catch (e) { display.value = "Error"; calcCurrentExpressionString = ""; }
-        }
-    </script>
-</body>
-</html>
-"""
-
-FULL_FOOTER = HTML_FOOTER_TEMPLATE + HTML_JS_TEMPLATE + HTML_CALC_TEMPLATE
-folder = "level-2"
-if os.path.exists(folder):
-    for file_name in os.listdir(folder):
-        if file_name.endswith(".html"):
-            path = os.path.join(folder, file_name)
-            with open(path, "r", encoding="utf-8") as f:
-                html = f.read()
-
-            cards = re.findall(r'(<div class="test-card-container".*?</div>\s*</div>)', html, re.DOTALL)
-            
-            if cards:
-                cleaned_cards = []
-                for idx, card in enumerate(cards):
-                    card = re.sub(r'id="card_task_\d+"', f'id="card_task_{idx}"', card)
-                    card = re.sub(r'name="ans_\d+"', f'name="ans_{idx}"', card)
-                    card = re.sub(r'id="opt_\d+_(.*?)"', r'id="opt_' + str(idx) + r'_\1"', card)
-                    card = re.sub(r'id="mark_\d+_(.*?)"', r'id="mark_' + str(idx) + r'_\1"', card)
-                    card = re.sub(r'onclick="document\.getElementById\(\'opt_\d+_(.*?)\'\)\.checked\s*=\s*true"', r"onclick=\"document.getElementById('opt_" + str(idx) + r"_\1').checked = true\"", card)
-                    
-                    if idx == 0:
-                        card = card.replace('test-card-container', 'test-card-container active')
-                    else:
-                        card = card.replace('test-card-container active', 'test-card-container')
-                    cleaned_cards.append(card)
-
-                    new_content = HTML_HEAD_TEMPLATE + "\n".join(cleaned_cards) + HTML_FOOTER_TEMPLATE + HTML_JS_TEMPLATE + HTML_CALC_TEMPLATE
-
-                
-                with open(path, "w", encoding="utf-8") as f:
-                    f.write(new_content)
-                print(f"✅ Migrato con successo lo stile Osborne per: {file_name}")
+vv
