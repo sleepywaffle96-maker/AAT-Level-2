@@ -228,21 +228,20 @@
                 </style>
             </head>
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_4C -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_AUTO_4C -->
             <body>
                 <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
                     <div id="questions-root-wrapper" style="width: 100%;"></div>
                 </div>
 
-                <!-- PLANCIA PULSANTI CON TASTO PDF AGGIUNTIVO PER LA FINE DEL TEST -->
+                <!-- PLANCIA PULSANTI CON TRIGGER PDF DIRETTO -->
                 <div class="osborne-footer-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
                     <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
                     <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
                     <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
                     <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
-                    <button id="osborne-pdf-trigger" onclick="window.print()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Save Full Sheet as PDF</button>
+                    <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Download Test as PDF</button>
                 </div>
-
 
 <!-- RIFERIMENTO_BLOCCO: SIMULATORE_PAG_4D -->
                 <div id="floatingCalcWidget" class="calc-widget-floating">
@@ -340,7 +339,7 @@
                         \`;
                     });
 
-<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_4E_4 -->
+<!-- RIFERIMENTO_BLOCCO: SIMULATORE_OSBORNE_PDF_AUTO_4E_4 -->
                     function changeQuestion(step) {
                         const target = currentActiveIndex + step;
                         if (target >= 0 && target < 15) {
@@ -349,13 +348,27 @@
                             document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
                         }
 
-                        // CONTROLLO AUTOMATICO FINE TEST: Mostra il tasto PDF solo sulla quindicesima domanda
+                        // Mostra il pulsante di download solo alla fine del test (Question 15)
                         const pdfBtn = document.getElementById("osborne-pdf-trigger");
                         if (currentActiveIndex === 14) {
                             pdfBtn.style.display = "block";
                         } else {
                             pdfBtn.style.display = "none";
                         }
+                    }
+
+                    function triggerAutoPDFDownload() {
+                        // Cambia dinamicamente il titolo del documento per preimpostare il nome del file nel prompt di salvataggio
+                        const originalTitle = document.title;
+                        document.title = "AAT_Official_Exam_Worksheet_" + Math.floor(Math.random() * 9000 + 1000);
+                        
+                        // Avvia il comando di esportazione/stampa
+                        window.print();
+                        
+                        // Ripristina il titolo originale subito dopo
+                        setTimeout(() => {
+                            document.title = originalTitle;
+                        }, 500);
                     }
 
                     function verifyCurrentInline() {
