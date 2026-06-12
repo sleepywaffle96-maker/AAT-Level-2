@@ -1,4 +1,3 @@
-<!-- RIFERIMENTO_BLOCCO: FULL_SIM_PART_1 -->
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -6,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AAT Accounting Hub - Interactive Simulator</title>
     <link href="https://googleapis.com" rel="stylesheet">
-<!-- RIFERIMENTO_BLOCCO: FULL_SIM_PART_2 -->
     <style>
         body {
             background-color: #0B0F19 !important;
@@ -34,7 +32,6 @@
             font-size: 14px;
         }
         .back-home:hover { text-decoration: underline; }
-<!-- RIFERIMENTO_BLOCCO: FULL_SIM_PART_3 -->
         .simulator-white-bubble {
             background: #FFFFFF !important;
             border-radius: 20px;
@@ -59,12 +56,13 @@
         .generate-btn:hover { opacity: 0.95; }
     </style>
 </head>
-<!-- RIFERIMENTO_BLOCCO: FULL_SIM_PART_4 -->
 <body>
 <div class="container">
     <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
 
+    <!-- LA GRANDE BOLLA BIANCA DI CONTRASTO -->
     <div class="simulator-white-bubble">
+        
         <div class="header-section">
             <h1>AAT Interactive Simulator</h1>
             <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
@@ -81,7 +79,6 @@
                     <option value="L4">🔸 AAT Level 4 Diploma</option>
                 </select>
             </div>
-
             <div class="select-wrapper">
                 <label class="select-label">Syllabus Chapter Unit</label>
                 <select id="chapter-selector" class="custom-select" disabled>
@@ -90,10 +87,12 @@
             </div>
         </div>
 
-        <button onclick="launchPaginatedTestWindow()" class="generate-btn">Launch Paginated Test Window &rarr;</button>
+        <button onclick="launchPaginatedTestWindow()" class="generate-btn">
+            Launch Paginated Test Window &rarr;
+        </button>
+
     </div>
 </div>
-<!-- RIFERIMENTO_BLOCCO: FULL_SIM_PART_5 -->
 <script>
     const syllabusData = {
         "L2": [
@@ -122,8 +121,7 @@
             "Chapter 9: Internal Accounting Systems and Controls"
         ]
     };
-// RIFERIMENTO_BLOCCO: FULL_SIM_PART_6
-    function updateChapters() {
+        function updateChapters() {
         const lvlSelector = document.getElementById("level-selector");
         const chapSelector = document.getElementById("chapter-selector");
         if (!lvlSelector || !chapSelector) return;
@@ -155,7 +153,6 @@
             });
         }
     }
-// RIFERIMENTO_BLOCCO: FULL_SIM_PART_7
     function launchPaginatedTestWindow() {
         const lvlSelector = document.getElementById("level-selector");
         const chapSelector = document.getElementById("chapter-selector");
@@ -180,7 +177,6 @@
 
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
         const testWindow = window.open("", "_blank");
-// RIFERIMENTO_BLOCCO: FULL_SIM_PART_8
         testWindow.document.write(`
             <!DOCTYPE html>
             <html>
@@ -222,11 +218,10 @@
                     @media print {
                         body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
                         .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
-                        .action-footer, .calc-widget-floating, .osborne-footer-grid { display: none !important; }
+                        .calc-widget-floating, .osborne-footer-grid { display: none !important; }
                     }
                 </style>
             </head>
-// RIFERIMENTO_BLOCCO: FULL_SIM_PART_9
             <body>
                 <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
                     <div id="questions-root-wrapper" style="width: 100%;"></div>
@@ -272,7 +267,6 @@
                         </div>
                     </div>
                 </div>
-// RIFERIMENTO_BLOCCO: FULL_SIM_PART_10
                 <script>
                     const scenarios = [
                         { text: "Verify the balancing steps for the Sales Ledger Control Account discrepancy.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
@@ -309,7 +303,6 @@
                         { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
                         { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" }
                     ];
-// RIFERIMENTO_BLOCCO: FULL_SIM_PART_11
                     let currentActiveIndex = 0;
                     const root = document.getElementById("questions-root-wrapper");
 
@@ -319,7 +312,7 @@
                         root.innerHTML += \`
                             <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
                                 <div class="header-area">
-                                    <span class="level-tag">${badgeText} • Task \${num}/15</span>
+                                    <span class="level-tag">${badgeText} • Q\${num} of 15</span>
                                     <span class="difficulty-tag">\${q.diff}</span>
                                 </div>
                                 <div class="question-title">Assessment Task \${num}</div>
@@ -350,7 +343,7 @@
                             </div>
                         \`;
                     });
-// RIFERIMENTO_BLOCCO: PEZZO_FINALE_12A
+
                     function changeQuestion(step) {
                         const target = currentActiveIndex + step;
                         if (target >= 0 && target < 15) {
@@ -361,14 +354,13 @@
                         const pdfBtn = document.getElementById("osborne-pdf-trigger");
                         if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
                     }
-
                     function triggerAutoPDFDownload() {
                         const originalTitle = document.title;
                         document.title = "AAT_Official_Exam_Worksheet";
                         window.print();
                         setTimeout(() => { document.title = originalTitle; }, 500);
                     }
-// RIFERIMENTO_BLOCCO: PEZZO_FINALE_12B
+
                     function showCurrentSolution() {
                         const activeCard = document.getElementById("card_task_" + currentActiveIndex);
                         const correctLetter = activeCard.getAttribute("data-correct");
@@ -406,7 +398,7 @@
                             mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
                         }
                     }
-// RIFERIMENTO_BLOCCO: PEZZO_FINALE_12C
+
                     function resetCurrentForm() {
                         const activeCard = document.getElementById("card_task_" + currentActiveIndex);
                         if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
@@ -428,7 +420,6 @@
                         body.style.display = isCalcBodyExpanded ? "block" : "none";
                         arrow.textContent = isCalcBodyExpanded ? "▼" : "▲";
                     }
-// RIFERIMENTO_BLOCCO: PEZZO_FINALE_12D
                     function pushCalcChar(char) {
                         const display = document.getElementById("calcDisplayScreen");
                         if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; }
