@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
         .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
         
-        /* Input interni riallineati in stile Osborne Books */
         .fixed-input-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 10px; }
         .fixed-input-label { font-size: 13.5px; font-weight: 600; color: #334155; }
         .fixed-input-field { width: 140px; padding: 8px; border: 1px solid #CBD5E1; border-radius: 4px; text-align: right; font-weight: 700; outline: none; }
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
         { q: 6, fields: [ { id: "gross", ans: "1600.00" } ] }
     ];
 
-    // Splitta il testo usando l'indicatore fisso d'esame "Q" seguito dal numero progressivo
     const questionBlocks = bodyContent.split(/Q\d+\s+of\s+15/g);
     let validIndex = 0;
 
@@ -65,21 +63,23 @@ document.addEventListener("DOMContentLoaded", function() {
         cardDiv.className = `test-card-container ${validIndex === 0 ? 'active' : ''}`;
         cardDiv.id = `card_task_${validIndex}`;
         
-        // Ricostruisce la struttura a bolla bianca con i badge di stato
         cardDiv.innerHTML = `
             <div class="header-area">
                 <span class="level-tag">AAT Level 2 Fixed Test • Task ${qNum}/15</span>
                 <span class="difficulty-tag">🟢 Framework Target</span>
             </div>
             <div class="question-title">Assessment Question Block ${qNum}</div>
-            <div style="font-size:14px; color:#4B5563; line-height:1.6; margin-bottom:20px;">
+            <div class="clean-block-body" style="font-size:14px; color:#4B5563; line-height:1.6; margin-bottom:20px;">
                 ${blockText.trim()}
             </div>
         `;
         
         rootWrapper.appendChild(cardDiv);
 
-        // Converte i vecchi campi di testo liberi o tabelle in righe di input Osborne ordinate
+        // RIPULITURA CHIRURGICA: Rimuove i pulsantini vecchi (Back, Check Answer, Next) e i vecchi tag button/submit rimasti dentro la bolla
+        cardDiv.querySelectorAll("button, input[type='button'], input[type='submit']").forEach(oldBtn => oldBtn.remove());
+
+        // Converte i vecchi campi di testo in righe Osborne
         const inputs = cardDiv.querySelectorAll("input[type='text']");
         inputs.forEach((input, inputIdx) => {
             const row = document.createElement("div");
@@ -132,10 +132,10 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
     layout.forEach(b => {
         let cls = "calc-btn";
-        if(['√','x²','%','C'].includes(b[0])) cls += " btn-sci";
-        if(['/','*','-','+'].includes(b[0])) cls += " btn-op";
-        if(b[0]==='=') cls += " btn-equals";
-        btnRoot.innerHTML += `<button class="${cls}" data-action="${b[1]}">${b[0]}</button>`;
+        if(['√','x²','%','C'].includes(b)) cls += " btn-sci";
+        if(['/','*','-','+'].includes(b)) cls += " btn-op";
+        if(b==='=') cls += " btn-equals";
+        btnRoot.innerHTML += `<button class="${cls}" data-action="${b}">${b}</button>`;
     });
 
     let currentActiveIndex = 0;
@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Soluzioni fisse
     function showCurrentSolution() {
         const sol = fixedSolutions.find(s => s.q === (currentActiveIndex + 1));
         if (!sol) return;
