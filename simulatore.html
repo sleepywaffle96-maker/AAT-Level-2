@@ -89,8 +89,9 @@
         <button onclick="launchPaginatedTestWindow()" class="generate-btn">Launch Paginated Test Window &rarr;</button>
     </div>
 </div>
-<!-- RIFERIMENTO_BLOCCO: FULL_SIM_MOD_3 -->
+<!-- RIFERIMENTO_BLOCCO: JAVASCRIPT_SIM_DATABASE -->
 <script>
+    // Database blindato per evitare qualsiasi mancata lettura al click
     const syllabusData = {
         "L2": [
             "Chapter 1: Bookkeeping Transactions",
@@ -119,47 +120,70 @@
         ]
     };
 
+  // RIFERIMENTO_BLOCCO: JAVASCRIPT_SIM_TENDINA_CORE
     function updateChapters() {
-        const lvl = document.getElementById("level-selector").value;
-        const chapSel = document.getElementById("chapter-selector");
-        chapSel.disabled = false;
-        chapSel.innerHTML = "";
-        if (lvl === "RANDOM") {
+        const lvlSelector = document.getElementById("level-selector");
+        const chapSelector = document.getElementById("chapter-selector");
+        
+        if (!lvlSelector || !chapSelector) return;
+        
+        const selectedLevel = lvlSelector.value;
+        
+        // Forza l'attivazione immediata e svuota le vecchie opzioni
+        chapSelector.removeAttribute("disabled");
+        chapSelector.disabled = false;
+        chapSelector.innerHTML = "";
+        
+        if (selectedLevel === "RANDOM") {
             let opt = document.createElement("option");
             opt.value = "ALL_RANDOM";
             opt.textContent = "🎲 Randomize Across All Syllabus Chapters";
-            chapSel.appendChild(opt);
+            chapSelector.appendChild(opt);
             return;
         }
+
+        // Inserisce l'opzione jolly iniziale del livello
         let optRand = document.createElement("option");
         optRand.value = "LEVEL_RANDOM";
         optRand.textContent = "🎲 Randomize Chapter Inside This Level";
-        chapSel.appendChild(optRand);
-        if (syllabusData[lvl]) {
-            syllabusData[lvl].forEach((chap, idx) => {
+        chapSelector.appendChild(optRand);
+
+                if (syllabusData[selectedLevel]) {
+            syllabusData[selectedLevel].forEach((chapName, index) => {
                 let opt = document.createElement("option");
-                opt.value = "cap" + (idx + 1);
-                opt.textContent = chap;
-                chapSel.appendChild(opt);
+                opt.value = "cap" + (index + 1);
+                opt.textContent = chapName;
+                chapSelector.appendChild(opt);
             });
         }
     }
-// RIFERIMENTO_BLOCCO: FULL_SIM_MOD_4
+
+
+// RIFERIMENTO_BLOCCO: JAVASCRIPT_SIM_LANCIO_TRIGGER
     function launchPaginatedTestWindow() {
-        let lvl = document.getElementById("level-selector").value;
-        let chap = document.getElementById("chapter-selector").value;
+        const lvlSelector = document.getElementById("level-selector");
+        const chapSelector = document.getElementById("chapter-selector");
+        
+        if (!lvlSelector || !chapSelector) return;
+        
+        let lvl = lvlSelector.value;
+        let chap = chapSelector.value;
+        
         if (!lvl || !chap) {
-            alert("Please select both parameters before launching.");
+            alert("Please select both a level and a chapter unit before generating.");
             return;
         }
+
         if (lvl === "RANDOM") {
             const levels = ["L2", "L3", "L4"];
             lvl = levels[Math.floor(Math.random() * levels.length)];
         }
+
         let badgeClass = "background: #0D9488;";
         let badgeText = "Level 2 Full Assessment";
         if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
         if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
+
         const randomEntryNum = Math.floor(Math.random() * 900 + 100);
         const testWindow = window.open("", "_blank");
 
