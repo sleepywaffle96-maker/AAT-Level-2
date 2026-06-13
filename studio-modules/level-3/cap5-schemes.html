@@ -1,136 +1,98 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 3 - Chapter 5: BUAW Schemes | AAT Accounting Hub</title>
+    <title>AAT Level 3 Advanced Diploma - Chapter 5 Schemes</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0f1d;
-            --card-glass: rgba(16, 24, 48, 0.75);
-            --border-glass: rgba(0, 242, 254, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --t-green: #10b981;
-            --t-red: #ef4444;
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --border-color: #E5E7EB;
         }
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 2rem;
+            padding: 3rem 1rem;
+            line-height: 1.7;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .nav-back {
-            color: var(--primary);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-        .glass-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glass);
+        .studio-container { max-width: 1050px; margin: 0 auto; }
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            margin-bottom: 2rem;
+            padding: 3.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
         }
-        h1 {
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            font-size: 2.2rem;
-            margin-top: 0;
-        }
-        h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-top: 1.5rem;
-        }
-        .matrix-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
-            overflow: hidden;
-            margin: 1rem 0;
-        }
-        .matrix-table th {
-            background: rgba(0, 242, 254, 0.1);
-            color: var(--primary);
-            padding: 0.8rem;
-            border-bottom: 2px solid var(--primary);
-            text-align: left;
-        }
-        .matrix-table td {
-            padding: 0.8rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
+        .financial-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .financial-table th { background-color: var(--l3-cyan-dark); color: #FFFFFF; padding: 0.75rem; font-size: 0.85rem; border: 1px solid var(--l3-cyan-dark); }
+        .financial-table td { border: 1px solid var(--border-color); padding: 0.75rem; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
-        
-        <div class="glass-card">
-            <h1>BUAW System Deficiencies & Threats Map</h1>
-            <p style="color: var(--text-muted)">Visual breakdowns of common audit failures, ethical threats, and recommended actions.</p>
+    <div class="studio-container">
+        <div class="white-bubble-container">
+            <div style="margin-bottom: 2.5rem; border-bottom: 3px solid var(--l3-cyan-light); padding-bottom: 1.5rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 4px; letter-spacing: 0.05em;">AAT LEVEL 3 ADVANCED DIPLOMA IN ACCOUNTING</span>
+                <h1 style="font-size: 2rem; margin: 0.75rem 0 0 0; color: #111827; font-weight: 700;">Chapter 5: Ethical Dilemma Resolution Flowcharts</h1>
+            </div>
 
-            <h2>1. Control Weakness Analysis Matrix</h2>
-            <table class="matrix-table">
-                <thead>
-                    <tr>
-                        <th>Identified System Weakness</th>
-                        <th>Associated Operational Risk</th>
-                        <th>Recommended Control Policy</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="color:var(--text-main)">Invoices paid without checking purchase orders.</td>
-                        <td>Paying for goods never ordered or received.</td>
-                        <td>Enforce three-way matching (Invoice, PO, GRN).</td>
-                    </tr>
-                    <tr>
-                        <td style="color:var(--text-main)">The petty cash box is kept unlocked on a desk.</td>
-                        <td>Theft of physical business cash.</td>
-                        <td>Secure inside a locked safe; assign a single custodian.</td>
-                    </tr>
-                    <tr>
-                        <td style="color:var(--text-main)">No review of staff payroll adjustments.</td>
-                        <td>Creation of ghost employees or artificial pay rises.</td>
-                        <td>Independent payroll authorization by Senior Manager.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h2>2. Visualizing Ethical Conflict Resolution</h2>
-            <p style="color: var(--text-muted)">The structured operational path recommended by the AAT when facing severe ethical dilemmas in the workplace.</p>
-            
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.5rem;">
-                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin: 0; line-height: 1.6;">
-[STEP 1: Internal Discussion] ──► Review internal facts & consult management line
-                                      │
-                                      ▼
-[STEP 2: Escalate Internally]  ──► Report to Board of Directors / Audit Committee
-                                      │
-                                      ▼
-[STEP 3: Professional Advice]  ──► Contact AAT ethical helpline for legal parameters
-                                      │
-                                      ▼
-[STEP 4: Ultimate Recourse]    ──► <strong>Resign from position</strong> if fraud remains unchecked
-                </pre>
+            <!-- SCHEMA 1: DILEMMA RESOLUTION FLOWCHART -->
+            <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📊 SCHEMA 1: IESBA ETHICAL DILEMMA ESCALATION PIPELINE</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+[ STEP 1: IDENTIFY THE BREACH ] ---------> Audit the transaction facts against fundamental principles
+                                         (Is Integrity, Objectivity or Confidentiality threatened?)
+                                                        |
+                                                        v
+[ STEP 2: INTERNAL ESCALATION ] ---------> Report the concern internally to line managers or directors
+                                         (Bypass any specific individual involved in the breach)
+                                                        |
+                                                        v
+[ STEP 3: INDEPENDENT ADVICE ] ----------> Consult the AAT Technical Ethics Helpline or legal advisors
+                                         (Keep data anonymous to protect client confidentiality)
+                                                        |
+                                                        v
+[ STEP 4: FINAL DISENGAGEMENT ] ---------> If internal fraud persists, formalize your **Resignation** 
+                                         and submit a report to relevant authorities (HMRC/NCA/AAT).
+                </div>
+            </div>
+            <!-- SCHEMA 2: THREAT AND SAFEGUARD MATRIX -->
+            <div style="margin-top: 2rem; margin-bottom: 1.5rem;">
+                <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📋 SCHEMA 2: THE THREATS AND COMPLIANCE SAFEGUARDS MATRIX</div>
+                <table class="financial-table" style="margin: 0;">
+                    <thead>
+                        <tr style="background: #0369A1; color: #FFFFFF;">
+                            <th style="text-align: left;">Ethical Conflict Scenario</th>
+                            <th>Identified Core Threat Category</th>
+                            <th>Mandatory Safeguard / Action Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600; text-align: left;">A client offers an expensive gift or lavish hospitality to the lead accountant.</td>
+                            <td style="color:#C2410C; font-weight:700;">Self-Interest Threat</td>
+                            <td>Politely decline the gift immediately. Implement a strict firm policy regarding hospitality limits.</td>
+                        </tr>
+                        <tr style="background: #FAFAFA;">
+                            <td style="font-weight: 600; text-align: left;">The firm is asked to perform the year-end audit for a financial client whose books were prepared by the same team.</td>
+                            <td style="color:#C2410C; font-weight:700;">Self-Review Threat</td>
+                            <td>Assign a completely separate team of professionals to handle the audit, or refuse the audit engagement entirely.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600; text-align: left;">The Chief Financial Officer (CFO) pressures a junior accountant to overstate asset values to secure a bank loan.</td>
+                            <td style="color:#C2410C; font-weight:700;">Intimidation Threat</td>
+                            <td>Document all correspondence. Escalate the matter to the internal audit committee, or whistleblow if blocked.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
