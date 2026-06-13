@@ -10,7 +10,7 @@
         body { background-color: #0B0F19; color: #333333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
 
         /* 2. Contenitore Principale (Bolla Bianca Protetta) */
-        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); position: relative; min-height: 550px; display: flex; flex-direction: column; justify-content: space-between; }
+        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); position: relative; min-height: 580px; display: flex; flex-direction: column; justify-content: space-between; }
 
         /* 3. Intestazione e Contatore */
         .test-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 25px; }
@@ -20,24 +20,29 @@
         /* 4. Sistema a Schede (Tabs delle Domande) */
         .question-tab { display: none; flex-direction: column; gap: 20px; flex-grow: 1; }
         .question-tab.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
-        .question-text { font-size: 16px; font-weight: 600; color: #0F172A; line-height: 1.5; }
-        .options-container { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .question-text { font-size: 16px; font-weight: 600; color: #0F172A; line-height: 1.5; margin-bottom: 10px; }
+        .options-container { display: flex; flex-direction: column; gap: 12px; }
         
-        /* 5. Box Risposte (Opzioni Radio e Campi Numerici) */
+        /* 5. Componenti Speciali: Tabelle */
+        .aat-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+        .aat-table th { background-color: #F8FAFC; color: #475569; font-weight: 700; padding: 10px; border: 1px solid #E2E8F0; text-align: left; }
+        .aat-table td { padding: 10px; border: 1px solid #E2E8F0; vertical-align: middle; }
+
+        /* 6. Box Risposte, Tendine e Input Campi */
         .option-box { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 2px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; position: relative; }
         .option-box:hover { border-color: #94A3B8; background-color: #F8FAFC; }
         .option-box input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; }
         .option-label { display: flex; align-items: center; width: 100%; font-size: 15px; font-weight: 500; }
         
-        .numeric-input-wrapper { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-        .numeric-field { width: 150px; padding: 10px; border: 2px solid #E2E8F0; border-radius: 6px; text-align: right; font-size: 16px; font-weight: 600; color: #0F172A; }
-        .numeric-field:focus { outline: none; border-color: #2563EB; }
+        .inline-select { padding: 6px 10px; border: 2px solid #CBD5E1; border-radius: 6px; font-weight: 600; color: #0F172A; font-size: 14px; background-color: #FFF; }
+        .numeric-field, .table-field { width: 120px; padding: 8px; border: 2px solid #E2E8F0; border-radius: 6px; text-align: right; font-size: 14px; font-weight: 600; color: #0F172A; }
+        .numeric-field:focus, .table-field:focus, .inline-select:focus { outline: none; border-color: #2563EB; }
 
-        /* 6. Indicatori Visivi di Feedback */
+        /* 7. Indicatori Visivi di Feedback */
         .feedback-icon { font-size: 18px; margin-left: 10px; display: none; }
         .correct-answer-highlight { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
 
-        /* 7. Pulsantiera di Controllo Inferiore (Stile Osborne) */
+        /* 8. Pulsantiera di Controllo Inferiore */
         .controls-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; border-top: 2px solid #E5E7EB; padding-top: 20px; gap: 10px; flex-wrap: wrap; }
         .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
         .btn { padding: 10px 18px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
@@ -52,7 +57,7 @@
         .btn-purple { background-color: #7C3AED; color: white; display: none; }
         .btn-purple:hover { background-color: #6D28D9; }
 
-        /* 8. Widget Calcolatrice Vetrificata Nascosta */
+        /* 9. Widget Calcolatrice Vetrificata */
         #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
         #calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         #calc-header span { color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
@@ -64,11 +69,10 @@
         .calc-btn.op { color: #00FFFF; background: rgba(0, 255, 255, 0.05); }
         .calc-btn.op:hover { background: rgba(0, 255, 255, 0.2); }
 
-        /* Trigger Circolare Calcolatrice */
         #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #2563EB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s ease, background 0.2s ease; }
         #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
 
-        /* 9. Animazioni e Regole di Stampa Clean A4 per Mobile & Desktop */
+        /* 10. Regole di Stampa Clean A4 per Mobile & Desktop */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @media print {
             @page { size: A4 portrait; margin: 0mm; }
@@ -80,131 +84,252 @@
 </head>
 <body>
     <div class="test-container">
-        <!-- Area Intestazione Contenitore -->
         <div class="test-header">
             <div class="test-title">BTRN - CHAPTER 1: INTRODUCTION TO BOOKKEEPING (TEST TWO)</div>
             <div class="question-counter">Question <span id="current-q-num">1</span> of 15</div>
         </div>
 
         <form id="quiz-form">
-            <!-- Q1: Scelta Multipla (Definizione di passività) -->
-            <div class="question-tab active" data-qindex="1" data-type="radio" data-correct="C">
-                <p class="question-text">1. A business owes a trade supplier £1,450 for raw materials delivered three weeks ago. In the accounting records, how is this balance classified?</p>
+            <!-- Q1: Frase a Completamento Partnership UK (Difficoltà: Media) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-select">
+                <p class="question-text">1. Complete the operational statement below regarding standard General Partnership regulations in the UK environment.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    In a traditional General Partnership, the firm does not have a separate legal identity, which means that the active partners bear 
+                    <select class="inline-select multi-select-field" data-ans="joint">
+                        <option value="">-- Choose liability --</option>
+                        <option value="joint">joint and several liability</option>
+                        <option value="none">no financial liability</option>
+                    </select> 
+                    for all commercial debts. To establish internal distribution rules, partners usually draw up a formal 
+                    <select class="inline-select multi-select-field" data-ans="deed">
+                        <option value="">-- Choose Document --</option>
+                        <option value="invoice">Sales Invoice</option>
+                        <option value="deed">Deed of Partnership</option>
+                    </select>.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+
+            <!-- Q2: Tabella Variazioni Equazione Inversa Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="2" data-type="multi-input">
+                <p class="question-text">2. An analyst reviews a statement showing an owner's Capital equity of £22,000 alongside active bank and mortgage Liabilities totaling £9,500. Compute the missing balancing variables below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Total Assets Balance (£)</th>
+                            <th>=</th>
+                            <th>Total Liabilities (£)</th>
+                            <th>+</th>
+                            <th>Owner's Capital (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="31500" placeholder="Assets"></td>
+                            <td style="text-align:center; font-weight:700;">=</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="9500" placeholder="Liabilities"></td>
+                            <td style="text-align:center; font-weight:700;">+</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="22000" placeholder="Capital"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q3: Griglia Classificazione Crediti e Fondi Multi-Select (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="3" data-type="multi-select">
+                <p class="question-text">3. Allocate each extracted accounting element below into its appropriate ledger classification column.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Financial Statement Item</th>
+                            <th>Accounting Classification category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Amounts owed to trade suppliers for credit purchases (Trade Payables)</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="CL">
+                                    <option value="">-- Select --</option>
+                                    <option value="CA">Current Asset</option>
+                                    <option value="CL">Current Liability</option>
+                                    <option value="NCL">Non-Current Liability</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Physical coins and banknotes kept inside the office Petty Cash box</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="CA">
+                                    <option value="">-- Select --</option>
+                                    <option value="CA">Current Asset</option>
+                                    <option value="CL">Current Liability</option>
+                                    <option value="NCA">Non-Current Asset</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+            <!-- Q4: Tabella Impatto Acquisto Macchinari Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="4" data-type="multi-input">
+                <p class="question-text">4. A company has initial Assets of £45,000 and zero Liabilities. The business buys new factory machinery for £3,500 on credit terms from a supplier. Complete the missing cells of the adjusted accounting equation below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Adjusted Assets (£)</th>
+                            <th>=</th>
+                            <th>Adjusted Liabilities (£)</th>
+                            <th>+</th>
+                            <th>Owner's Capital Equity (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="48500" placeholder="Assets"></td>
+                            <td style="text-align:center; font-weight:700;">=</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="3500" placeholder="Liabilities"></td>
+                            <td style="text-align:center; font-weight:700;">+</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="45000" placeholder="Capital"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q5: Raccordo Flussi d'Ordine Multi-Tendine (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="5" data-type="multi-select">
+                <p class="question-text">5. Map the correct internal/external operational document to each business tracking scenario listed below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Internal/External Business Scenario</th>
+                            <th>Primary Target Document</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Formally placing a credit order request with a wholesale trade supplier</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="Order">
+                                    <option value="">-- Choose Document --</option>
+                                    <option value="Order">Purchase Order</option>
+                                    <option value="Delivery">Delivery Note</option>
+                                    <option value="Statement">Statement</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Checking the list packed with the cargo to verify the items delivered</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="Delivery">
+                                    <option value="">-- Choose Document --</option>
+                                    <option value="Order">Purchase Order</option>
+                                    <option value="Delivery">Delivery Note</option>
+                                    <option value="Statement">Statement</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q6: Scelta Multipla - Credit Transactions Definition (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="B">
+                <p class="question-text">6. Which of the following statements perfectly defines the legal and operational nature of a 'Credit Transaction' within a bookkeeping framework?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="A"> Non-Current Asset</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="B"> Current Asset</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="C"> Current Liability</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q1" value="D"> Non-Current Liability</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="A"> Value is exchanged and paid for immediately using a company bank card</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="B"> Ownership or goods transfer immediately, and payment is deferred to a future date</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="C"> A cash advance is drawn by the active partner to clear emergency overheads</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q7: Scelta Multipla - Management Accounting (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="7" data-type="radio" data-correct="C">
+                <p class="question-text">7. In a commercial environment, what is the explicit baseline purpose of compiling 'Management Accounting' reports?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="A"> To file public statutory statements at Companies House for investors</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="B"> To supply historical tax evaluation matrices directly to HMRC logs</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="C"> To provide internal managers with forward-looking data for dynamic budgeting</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
-            <!-- Q2: Risposta Numerica (Calcolo Capitale Iniziale) -->
-            <div class="question-tab" data-qindex="2" data-type="input" data-correct="31500">
-                <p class="question-text">2. At the launch of a business, the total value of machinery and bank deposits is £42,000, while a mortgage loan accounts for £10,500. Calculate the owner's initial Capital equity (£).</p>
+            <!-- Q8: Tabella Classificazione Immobilizzazioni Strumentali (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-select">
+                <p class="question-text">8. Select the correct classification category for the long-term operational resources utilized inside the office facilities.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Long-Term Operational Resource</th>
+                            <th>Accounting Classification Class</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Office Computer Systems and Central Database Servers</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="NCA">
+                                    <option value="">-- Choose Class --</option>
+                                    <option value="NCA">Non-Current Asset</option>
+                                    <option value="CA">Current Asset</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Commercial Warehouse Premises owned by the enterprise</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="NCA">
+                                    <option value="">-- Choose Class --</option>
+                                    <option value="NCA">Non-Current Asset</option>
+                                    <option value="CA">Current Asset</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q9: Tabella Impatto Pagamento Fornitore Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="9" data-type="multi-input">
+                <p class="question-text">9. A business has Assets of £18,000 and Liabilities of £3,500. The business uses £1,000 of its bank cash to settle a short-term trade payable liability. Complete the adjusted balancing elements below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Total Assets After Cash Settlement (£)</th>
+                            <th>Total Liabilities After Cash Settlement (£)</th>
+                            <th>Closing Owner Capital Equity (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="17000" placeholder="Assets"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="2500" placeholder="Liabilities"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="14500" placeholder="Capital"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+            <!-- Q10: Scelta Multipla - Prompt Payment Discount Concept (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="10" data-type="radio" data-correct="C">
+                <p class="question-text">10. What is the standard purpose and definition of a 'Prompt Payment Discount' (PPD) offered on a trade invoice?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q10" value="A"> A trade reduction given automatically based on the industry size of the client</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q10" value="B"> A government tax refund applied to low-emission commercial equipment purchases</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q10" value="C"> An optional reduction offered to credit buyers to encourage early invoice payment</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q11: Risposta Numerica - Estrazione Valore Liabilities (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="11" data-type="input" data-correct="8400">
+                <p class="question-text">11. A statement of financial position highlights total business Assets worth £29,600 and an owner's Capital valuation equity of £21,200. Compute the exact value of total Liabilities (£).</p>
                 <div class="options-container">
                     <div class="option-box">
                         <div class="numeric-input-wrapper">
-                            <span>Total initial Capital (£):</span>
-                            <input type="text" class="numeric-field" name="q2" placeholder="0.00">
-                        </div>
-                        <span class="feedback-icon"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q3: Scelta Multipla (Documento d'ordine) -->
-            <div class="question-tab" data-qindex="3" data-type="radio" data-correct="A">
-                <p class="question-text">3. Which document is completed internally by a purchasing team and sent to a supplier to formally request a credit supply of inventory items?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="A"> Purchase Order</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="B"> Delivery Note</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="C"> Sales Invoice</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="D"> Remittance Advice</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-            <!-- Q4: Risposta Numerica (Effetto acquisto a pronti su Assets) -->
-            <div class="question-tab" data-qindex="4" data-type="input" data-correct="19500">
-                <p class="question-text">4. A business starts the week with total Assets of £19,500. The owner buys a new computer system for £1,200, paying immediately by business debit card. What is the total value of Assets after this transaction (£)?</p>
-                <div class="options-container">
-                    <div class="option-box">
-                        <div class="numeric-input-wrapper">
-                            <span>Total Assets (£):</span>
-                            <input type="text" class="numeric-field" name="q4" placeholder="0.00">
-                        </div>
-                        <span class="feedback-icon"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q5: Scelta Multipla (Partnership UK Regulations) -->
-            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="B">
-                <p class="question-text">5. Under UK business law, which of the following characteristics applies to a standard General Partnership structure?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="A"> The business has a completely separate legal identity from its partners</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="B"> The partners normally have unlimited liability for the debts of the business</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q5" value="C"> Financial accounts must be filed publicly at Companies House every year</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-
-            <!-- Q6: Scelta Multipla (Definizione di sconti in fattura) -->
-            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="A">
-                <p class="question-text">6. A supplier offers a reduction in the list price of goods to another business operating in the same industry. What is the standard term for this type of discount?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="A"> Trade Discount</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="B"> Prompt Payment Discount</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="C"> Cash Book Discount</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-            <!-- Q7: Scelta Multipla (Classificazione Trade Receivables) -->
-            <div class="question-tab" data-qindex="7" data-type="radio" data-correct="B">
-                <p class="question-text">7. A business sells goods to a customer on credit. How should the outstanding balance owed by the customer be classified in the seller's accounts?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="A"> Current Liability</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="B"> Current Asset</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q7" value="C"> Non-Current Asset</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-
-            <!-- Q8: Risposta Numerica (Calcolo Capitale dopo variazione passività) -->
-            <div class="question-tab" data-qindex="8" data-type="input" data-correct="22000">
-                <p class="question-text">8. A business has total Assets of £30,000 and total Liabilities of £8,000. If the business takes out an additional bank loan of £5,000 to purchase equipment, calculate the new value of Capital (£).</p>
-                <div class="options-container">
-                    <div class="option-box">
-                        <div class="numeric-input-wrapper">
-                            <span>Adjusted Capital (£):</span>
-                            <input type="text" class="numeric-field" name="q8" placeholder="0.00">
-                        </div>
-                        <span class="feedback-icon"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q9: Scelta Multipla (Management Accounting vs Financial Accounting) -->
-            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="C">
-                <p class="question-text">9. Which of the following statements best describes a key feature of 'Management Accounting' reports?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="A"> They are prepared strictly for external users like tax authorities and banks</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="B"> They must comply rigidly with external statutory accounting standards</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="C"> They provide detailed, forward-looking data to help management make internal decisions</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-            <!-- Q10: Scelta Multipla (Documento di riscontro per la consegna) -->
-            <div class="question-tab" data-qindex="10" data-type="radio" data-correct="B">
-                <p class="question-text">10. When a supplier sends goods to a customer, which document is packed with the goods to verify the actual description and quantity delivered?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q10" value="A"> Purchase Invoice</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q10" value="B"> Delivery Note</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q10" value="C"> Credit Note</span><span class="feedback-icon"></span></label>
-                </div>
-            </div>
-
-            <!-- Q11: Risposta Numerica (Calcolo degli Assets dopo i prelievi) -->
-            <div class="question-tab" data-qindex="11" data-type="input" data-correct="14300">
-                <p class="question-text">11. A sole trader has business Assets of £15,000 and Liabilities of £3,000. The owner withdraws £700 cash from the business bank account for personal use. Calculate the new total value of business Assets (£).</p>
-                <div class="options-container">
-                    <div class="option-box">
-                        <div class="numeric-input-wrapper">
-                            <span>New Total Assets (£):</span>
+                            <span>Total Liabilities (£):</span>
                             <input type="text" class="numeric-field" name="q11" placeholder="0.00">
                         </div>
                         <span class="feedback-icon"></span>
@@ -212,48 +337,94 @@
                 </div>
             </div>
 
-            <!-- Q12: Scelta Multipla (Definizione di Non-Current Liability) -->
-            <div class="question-tab" data-qindex="12" data-type="radio" data-correct="D">
-                <p class="question-text">12. Which of the following balances perfectly fits the definition of a Non-Current Liability for a trading enterprise?</p>
-                <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q12" value="A"> Trade Payables control balance</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q12" value="B"> Short-term bank overdraft</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q12" value="C"> VAT liability owed to HMRC</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q12" value="D"> 10-year commercial bank mortgage</span><span class="feedback-icon"></span></label>
-                </div>
+            <!-- Q12: Raccordo Classificazione Liquidità Multi-Select (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-select">
+                <p class="question-text">12. Match each current bank scenario below with its appropriate financial statement element class.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Bank Cash Scenario Description</th>
+                            <th>Target Element Classification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Positive ledger cash balances held in the commercial Bank deposit account</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="CA">
+                                    <option value="">-- Choose Class --</option>
+                                    <option value="CA">Current Asset</option>
+                                    <option value="CL">Current Liability</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Negative bank balance representing an overdraft facility utilized on demand</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="CL">
+                                    <option value="">-- Choose Class --</option>
+                                    <option value="CA">Current Asset</option>
+                                    <option value="CL">Current Liability</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
             </div>
-            <!-- Q13: Scelta Multipla (Definizione Petty Cash) -->
-            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="A">
-                <p class="question-text">13. A business keeps a small amount of physical cash on the premises to pay for minor, everyday office expenses like milk or stamps. How is this cash fund classified?</p>
+            <!-- Q13: Scelta Multipla - Cash Transaction Nature (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="B">
+                <p class="question-text">13. In business bookkeeping, which statement accurately reflects the operational nature of a 'Cash Transaction'?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> Current Asset</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> Current Liability</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="C"> Non-Current Asset</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> Goods are delivered immediately, and payment is postponed for 60 calendar days</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> Value is exchanged and payment is processed immediately via cash, cheque, or card</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="C"> An asset is traded directly for another asset with no monetary exchange</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
 
-            <!-- Q14: Risposta Numerica (Variazione equazione contabile complessa) -->
-            <div class="question-tab" data-qindex="14" data-type="input" data-correct="18000">
-                <p class="question-text">14. A business starts with Assets of £25,000 and Liabilities of £7,000. If the business purchases office inventory worth £1,500 on credit, calculate the new value of Capital (£).</p>
-                <div class="options-container">
-                    <div class="option-box">
-                        <div class="numeric-input-wrapper">
-                            <span>New Capital (£):</span>
-                            <input type="text" class="numeric-field" name="q14" placeholder="0.00">
-                        </div>
-                        <span class="feedback-icon"></span>
-                    </div>
-                </div>
+            <!-- Q14: Tabella Classificazione Beni Magazzino Multi-Select (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="14" data-type="multi-select">
+                <p class="question-text">14. Complete the classification map below for short-term operational goods held on the premises.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Inventory Item Description</th>
+                            <th>Target Element Classification Class</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finished goods held in stock explicitly intended for commercial resale</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="CA">
+                                    <option value="">-- Choose Class --</option>
+                                    <option value="CA">Current Asset</option>
+                                    <option value="NCA">Non-Current Asset</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Office stationery packs purchased for immediate daily office consumption</td>
+                            <td>
+                                <select class="inline-select multi-select-field" data-ans="Exp">
+                                    <option value="">-- Choose Class --</option>
+                                    <option value="CA">Current Asset</option>
+                                    <option value="Exp">Expense Overhead</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
             </div>
 
-            <!-- Q15: Scelta Multipla (Documento ricevuta) -->
+            <!-- Q15: Scelta Multipla - Remittance Advice (Difficoltà: Media) -->
             <div class="question-tab" data-qindex="15" data-type="radio" data-correct="B">
-                <p class="question-text">15. Which document acts as immediate proof of a cash transaction, issued by a seller to a buyer at the exact moment cash payment is received?</p>
+                <p class="question-text">15. Which document is sent by a buyer to a supplier along with a payment transfer to inform them exactly which invoices are being cleared?</p>
                 <div class="options-container">
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="A"> Sales Invoice</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="B"> Receipt</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="A"> Statement of Account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="B"> Remittance Advice</span><span class="feedback-icon"></span></label>
                     <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="C"> Credit Note</span><span class="feedback-icon"></span></label>
-                    <label class="option-box"><span class="option-label"><input type="radio" name="q15" value="D"> Delivery Note</span><span class="feedback-icon"></span></label>
                 </div>
             </div>
         </form>
@@ -333,52 +504,96 @@
         btnNext.addEventListener('click', () => { if (currentQuestion < totalQuestions) { currentQuestion++; updateNavigation(); } });
         btnPrev.addEventListener('click', () => { if (currentQuestion > 1) { currentQuestion--; updateNavigation(); } });
 
+        // --- MOTORE DI VERIFICA POLIMORFICO ---
         document.getElementById('btn-am-i-right').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
             const type = activeTab.getAttribute('data-type');
-            const correctAnswer = activeTab.getAttribute('data-correct');
-            
+            const feedbackSpan = activeTab.querySelector('.feedback-icon');
+            feedbackSpan.style.display = 'inline';
+
+            let isCorrect = true;
+
             if (type === 'radio') {
                 const selected = activeTab.querySelector('input[type="radio"]:checked');
-                activeTab.querySelectorAll('.feedback-icon').forEach(i => i.style.display = 'none'); 
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                activeTab.querySelectorAll('.feedback-icon').forEach(i => i.style.display = 'none');
                 if (selected) {
-                    const feedbackSpan = selected.closest('.option-box').querySelector('.feedback-icon');
-                    feedbackSpan.style.display = 'inline';
-                    feedbackSpan.innerText = selected.value === correctAnswer ? ' ✔️' : ' ❌';
-                    feedbackSpan.style.color = selected.value === correctAnswer ? '#10B981' : '#DC2626';
+                    const rFeedback = selected.closest('.option-box').querySelector('.feedback-icon');
+                    rFeedback.style.display = 'inline';
+                    rFeedback.innerText = selected.value === correctAnswer ? ' ✔️' : ' ❌';
+                    rFeedback.style.color = selected.value === correctAnswer ? '#10B981' : '#DC2626';
                 }
+                return;
             } else if (type === 'input') {
                 const inputField = activeTab.querySelector('.numeric-field');
-                const feedbackSpan = activeTab.querySelector('.feedback-icon');
-                feedbackSpan.style.display = 'inline';
-                feedbackSpan.innerText = inputField.value.trim() === correctAnswer ? ' ✔️' : ' ❌';
-                feedbackSpan.style.color = inputField.value.trim() === correctAnswer ? '#10B981' : '#DC2626';
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                isCorrect = inputField.value.trim() === correctAnswer;
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    if (field.value.trim() !== field.getAttribute('data-ans')) isCorrect = false;
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    if (select.value !== select.getAttribute('data-ans')) isCorrect = false;
+                });
             }
+
+            feedbackSpan.innerText = isCorrect ? ' ✔️ All fields correct!' : ' ❌ Some fields are incorrect';
+            feedbackSpan.style.color = isCorrect ? '#10B981' : '#DC2626';
         });
 
+        // --- VISUALIZZAZIONE DELLE SOLUZIONI COMPLESSE ---
         document.getElementById('btn-show-solution').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
             const type = activeTab.getAttribute('data-type');
-            const correctAnswer = activeTab.getAttribute('data-correct');
+
             if (type === 'radio') {
+                const correctAnswer = activeTab.getAttribute('data-correct');
                 const targetRadio = activeTab.querySelector(`input[value="${correctAnswer}"]`);
                 if (targetRadio) targetRadio.closest('.option-box').classList.add('correct-answer-highlight');
             } else if (type === 'input') {
                 const inputField = activeTab.querySelector('.numeric-field');
                 inputField.closest('.option-box').classList.add('correct-answer-highlight');
-                inputField.value = correctAnswer; 
+                inputField.value = activeTab.getAttribute('data-correct');
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    field.style.backgroundColor = '#DCFCE7';
+                    field.style.borderColor = '#10B981';
+                    field.value = field.getAttribute('data-ans');
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    select.style.backgroundColor = '#DCFCE7';
+                    select.style.borderColor = '#10B981';
+                    select.value = select.getAttribute('data-ans');
+                });
             }
         });
 
+        // --- RESET SCHERMATA ATTIVA ---
         document.getElementById('btn-reset').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            
             activeTab.querySelectorAll('.option-box').forEach(box => box.classList.remove('correct-answer-highlight'));
             activeTab.querySelectorAll('.feedback-icon').forEach(icon => { icon.style.display = 'none'; icon.innerText = ''; });
-            if (activeTab.getAttribute('data-type') === 'radio') {
+
+            if (type === 'radio') {
                 const checked = activeTab.querySelector('input[type="radio"]:checked');
                 if (checked) checked.checked = false;
-            } else {
+            } else if (type === 'input') {
                 activeTab.querySelector('.numeric-field').value = '';
+            } else if (type === 'multi-input' || type === 'multi-select') {
+                const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+                fields.forEach(field => {
+                    field.value = '';
+                    field.style.backgroundColor = '#FFF';
+                    field.style.borderColor = '#E2E8F0';
+                });
             }
         });
 
@@ -389,7 +604,7 @@
             setTimeout(() => { document.title = originalTitle; }, 150);
         });
 
-        // --- ATTIVAZIONE BLINDATA CALCOLATRICE ---
+        // --- VISIBILITÀ CALCOLATRICE ---
         const calcWidget = document.getElementById('calc-widget');
         const calcTrigger = document.getElementById('calc-toggle-trigger');
         const calcClose = document.getElementById('calc-close-btn');
@@ -409,7 +624,7 @@
         function clearCalc() { calcDisplay.innerText = '0'; }
         function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
 
-        // Drag and Drop
+        // Drag and Drop Calcolatrice
         let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
         if(calcWidget) {
             calcWidget.addEventListener('mousedown', (e) => {
