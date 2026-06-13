@@ -3,337 +3,923 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Bookkeeping - Test Two</title>
+    <title>AAT Level 3 Advanced Bookkeeping - Chapter 1 Test Two</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --danger-color: #DC2626;
+            --success-color: #059669;
+            --highlight-green: #DCFCE7;
+            --highlight-red: #FEE2E2;
+            --neon-calc-accent: #00FF66;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e3e3e3;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #ffffff;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
+            padding: 3rem 1rem;
             line-height: 1.6;
-            color: #222222;
         }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
-        }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
-        }
-        table.osborne-table {
+
+        .test-container {
+            background-color: var(--bubble-white-bg);
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
+            max-width: 850px;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            position: relative;
         }
-        table.osborne-table th {
-            background-color: #f2f2f2;
-            text-align: left;
-            font-size: 13px;
-        }
-        table.osborne-table td, table.osborne-table th {
-            border: 1px solid #aaaaaa;
-            padding: 6px;
-            font-size: 13px;
-        }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
+
+        .test-header-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
         }
-        .btn-action {
-            background-color: #f0f0f0;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
+
+        .test-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .question-counter-label {
+            font-size: 0.9rem;
+            color: var(--l3-cyan-dark);
+            font-weight: 600;
+        }
+
+        /* STRUTTURA SEQUENZIALE QUESTION TABS */
+        .question-tab {
+            display: none;
+            flex-direction: column;
+        }
+        .question-tab.active {
+            display: flex;
+        }
+
+        .task-instruction-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .task-interactive-body {
+            background-color: #FAFAFA;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* OPZIONI DI SELEZIONE RADIO */
+        .option-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            color: #333333;
+            margin-bottom: 0.75rem;
+            transition: all 0.15s ease;
         }
-        .btn-action:hover {
-            background-color: #e0e0e0;
+        .option-box:hover { background-color: #F9FAFB; }
+        .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
+        .feedback-icon { font-weight: 700; font-size: 1.1rem; }
+
+        /* MULTI-INPUT FINANCIAL TABLES */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #FFFFFF;
         }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
+        .financial-table th {
+            background-color: var(--l3-cyan-dark);
+            color: #FFFFFF;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l3-cyan-dark);
         }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .numeric-field, .multi-input-field, .multi-select-field, .select-input {
+            width: 100%;
+            padding: 0.45rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+        }
+        .numeric-field { font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .numeric-field:focus, .multi-input-field:focus, .multi-select-field:focus {
+            border-color: var(--l3-cyan-primary);
+            outline: none;
+            background-color: var(--l3-cyan-light);
+        }
+
+        /* GEOMETRIA RIGIDA PULSANTIERA INFERIORE APPENDICE TECNICA */
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            border-top: 2px solid #E5E7EB;
+            padding-top: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s ease;
+        }
+        .btn-blue { background-color: #2563EB; color: #FFFFFF; }
+        .btn-green { background-color: #059669; color: #FFFFFF; }
+        .btn-red { background-color: #DC2626; color: #FFFFFF; }
+        .btn-gray { background-color: #4B5563; color: #FFFFFF; }
+        .btn-purple { background-color: #7C3AED; color: #FFFFFF; }
+        .btn-gray:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .global-feedback-msg {
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        .msg-correct { background-color: #DEF7EC; color: #065F46; }
+        .msg-incorrect { background-color: #FDE8E8; color: #9B1C1C; }
+
+        .solution-note-panel {
+            margin-top: 1.25rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--l3-cyan-primary);
+            background-color: var(--l3-cyan-light);
+            font-size: 0.9rem;
+            color: #0369A1;
+        }
+
+        .correct-answer-highlight { background-color: var(--highlight-green) !important; border-color: var(--success-color) !important; }
+        .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
+        .hidden { display: none !important; }
+
+        /* TRIGGER FLUTTUANTE DELLA CALCOLATRICE RIGIDO IN BASSO A DESTRA SCHERMO */
+        #calc-toggle-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            z-index: 1999;
+            font-size: 20px;
+            border: none;
+        }
+
+        /* WIDGET CALCOLATRICE VETRATO SCURO */
+        #calc-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 240px;
+            z-index: 2000;
+            background: rgba(17, 24, 39, 0.92);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--l3-cyan-primary);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            display: none;
+            cursor: move;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .calc-btn {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: white;
+            background: #374151;
+            text-align: center;
+        }
+        .calc-btn.op { background: #1F2937; color: var(--l3-cyan-light); }
+        .calc-btn.eq { background: #059669; color: white; }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; margin: 0; }
+            .test-container { box-shadow: none; border: none; padding: 0; max-width: 1000px; }
+            .controls-footer, #calc-toggle-trigger, #calc-widget { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
+            .solution-note-panel { display: block !important; background: #F8FAFC !important; border: 1px solid #CBD5E1 !important; color: #000 !important; }
+        }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="header-title">Advanced Bookkeeping - Test Two</div>
+    <div class="test-container">
+        
+        <div class="test-header-row">
+            <div class="test-title">BTRN - LEVEL 3 CHAPTER 1: RECEIVABLES FRAMEWORK (TEST TWO)</div>
+            <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
+        </div>
 
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            A business purchases an integrated IT server system for £30,000. It policy is to charge depreciation at 30% per annum using the reducing balance method. Calculate the total accumulated depreciation balance at the end of the second year:<br>
-            Accumulated Depreciation Year 2: £ <input type="text" id="ans1" placeholder="0.00">
+        <form id="quiz-form" onsubmit="event.preventDefault();">
+            <!-- QUESTION 1: TIPO "radio" (Conceptual Prudence on SLCA) -->
+            <div class="question-tab active" data-qindex="1" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">1. Which financial statement value does the 'Allowance for Doubtful Debts' directly adjust to satisfy the Prudence concept under international reporting guidelines?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q1" value="A"> Gross Sales Turnover inside the SPL</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q1" value="B"> Net Realizable Value of Trade Receivables inside the SoFP</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q1" value="C"> Accumulated Cash Reserves in Current Liabilities</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The allowance acts as a contra-asset valuation account, reducing Gross Trade Receivables to reflect their true Net Realizable Value.
+                </div>
+            </div>
+
+            <!-- QUESTION 2: TIPO "input" (Specific Write-off Calculation) -->
+            <div class="question-tab" data-qindex="2" data-type="input" data-correct="24500">
+                <div class="task-instruction-text">2. A firm extracts a gross Sales Ledger Control Account (SLCA) balance of £25,000 at year-end. A specific credit customer is declared bankrupt, requiring a definitive write-off journal entry of £500. Calculate the clean unadjusted Trade Receivables pool balance. (Input value as digits only, e.g. 10000)</div>
+                <div class="task-interactive-body">
+                    <div style="display:flex; align-items:center; max-width:250px;">
+                        <span style="padding:0.45rem; background:#E5E7EB; border:1px solid #CBD5E1; border-right:none; border-radius:4px 0 0 4px; font-weight:bold;">£</span>
+                        <input type="text" class="numeric-field" name="q2" placeholder="0" style="border-radius:0 4px 4px 0;">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Specific write-offs must be subtracted directly from gross receivables: £25,000 - £500 = £24,500.
+                </div>
+            </div>
+
+            <!-- QUESTION 3: TIPO "multi-select" (Double-entry for Bad Debt Recovered) -->
+            <div class="question-tab" data-qindex="3" data-type="multi-select">
+                <div class="task-instruction-text">3. Complete the statement explaining the correct double-entry ledger path when a previously written-off debt is recovered.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        When cash is unexpectedly collected from a terminated debtor account, the bookkeeper must record the inflow by 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="debiting">
+                            <option value="">-- Choose --</option>
+                            <option value="debiting">Debiting</option>
+                            <option value="crediting">Crediting</option>
+                        </select> the Bank Account and 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="crediting">
+                            <option value="">-- Choose --</option>
+                            <option value="debiting">Debiting</option>
+                            <option value="crediting">Crediting</option>
+                        </select> the 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="recovered">
+                            <option value="">-- Choose Account --</option>
+                            <option value="slca">Trade Receivables Control Account (SLCA)</option>
+                            <option value="recovered">Irrecoverable Debts Recovered Account</option>
+                        </select>.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The double-entry requires: DR Bank (Asset ↑) and CR Irrecoverable Debts Recovered (Income ↑). The SLCA must never be re-opened for past-period written-off entities.
+                </div>
+            </div>
+
+            <!-- QUESTION 4: TIPO "multi-input" (Allowance Increase Ledger Table) -->
+            <div class="question-tab" data-qindex="4" data-type="multi-input">
+                <div class="task-instruction-text">4. A business maintains a net Trade Receivables pool of £40,000. The opening Allowance for Doubtful Debts b/f shows a credit balance of £1,200. Management requests a closing general provision rate of 4% on current debtors. Complete the table.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Allowance Adjustment Component</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">New Required Closing Allowance Target Pool Balance</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,600.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Net Differential Overhead Variance Charge posted to SPL</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="400.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Target = 4% of £40,000 = £1,600. Variance = £1,600 (Target) - £1,200 (Opening) = £400 Increase charged as an operational expense to the SPL.
+                </div>
+            </div>
+            <!-- QUESTION 5: TIPO "radio" (Allowance Decrease Effect) -->
+            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">5. If the required year-end allowance target is lower than the opening credit balance carried forward from the previous year, how does the differential variance impact the SPL?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="A"> It acts as an adjustment credit line to reduce administrative expenses (gains).</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="B"> It is treated as an extra debit overhead expense charge.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="C"> It reduces current equity asset reserves directly.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> A decrease in the allowance means the firm over-provided in the prior year; the release is credited to the SPL, acting as operating income/cost reduction.
+                </div>
+            </div>
+
+            <!-- QUESTION 6: TIPO "multi-input" (Integrated Bad Debt SPL Journal Matrix) -->
+            <div class="question-tab" data-qindex="6" data-type="multi-input">
+                <div class="task-instruction-text">6. Complete the formal double-entry general journal required to log a specific customer insolvency write-off of £800.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">General Ledger Nominal Account Name</th>
+                                <th style="width: 150px;">Debit (DR) (£)</th>
+                                <th style="width: 150px;">Credit (CR) (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="multi-input-field" data-ans="irrecoverable">
+                                        <option value="">-- Choose Account --</option>
+                                        <option value="irrecoverable">Irrecoverable Debts Account</option>
+                                        <option value="slca">Sales Ledger Control Account (SLCA)</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="multi-input-field text-right" data-ans="800.00" placeholder="0.00"></td>
+                                <td><input type="text" class="multi-input-field text-right" data-ans="-" value="-" disabled style="background:#F1F5F9; border:none; text-align:center;"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select class="multi-input-field" data-ans="slca">
+                                        <option value="">-- Choose Account --</option>
+                                        <option value="irrecoverable">Irrecoverable Debts Account</option>
+                                        <option value="slca">Sales Ledger Control Account (SLCA)</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="multi-input-field text-right" data-ans="-" value="-" disabled style="background:#F1F5F9; border:none; text-align:center;"></td>
+                                <td><input type="text" class="multi-input-field text-right" data-ans="800.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> To eliminate a bad debt: DR Irrecoverable Debts account (Expense ↑) and CR Sales Ledger Control Account / SLCA (Asset ↓).
+                </div>
+            </div>
+
+            <!-- QUESTION 7: TIPO "input" (Allowance Decrease Math) -->
+            <div class="question-tab" data-qindex="7" data-type="input" data-correct="300">
+                <div class="task-instruction-text">7. An accounting firm holds an opening Allowance balance b/f of £1,500. At the current year-end, the calculated general provision target pool required is exactly £1,200. Calculate the absolute net variation value to be released to the SPL. (Input numeric value only)</div>
+                <div class="task-interactive-body">
+                    <div style="display:flex; align-items:center; max-width:250px;">
+                        <span style="padding:0.45rem; background:#E5E7EB; border:1px solid #CBD5E1; border-right:none; border-radius:4px; font-weight:bold;">£</span>
+                        <input type="text" class="numeric-field" name="q7" placeholder="0">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Variation = Opening Credit (£1,500) - Closing Required Target (£1,200) = £300 Decrease (Credit adjustment to the SPL).
+                </div>
+            </div>
+
+            <!-- QUESTION 8: TIPO "radio" (Statement of Financial Position Disclosure) -->
+            <div class="question-tab" data-qindex="8" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">8. How is the final accumulative closing balance of the Allowance for Doubtful Debts ledger disclosed inside the Statement of Financial Position (SoFP)?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q8" value="A"> Listed separately inside the Current Liabilities block</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q8" value="B"> Deducted directly from the gross Trade Receivables balance within Current Assets</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q8" value="C"> Added back as a non-current asset component block</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> On the face of the SoFP, the ending allowance balance is shown as a negative valuation deduction from the Gross Trade Receivables line.
+                </div>
+            </div>
+
+            <!-- QUESTION 9: TIPO "multi-select" (The Cascading Percentage Trap Check) -->
+            <div class="question-tab" data-qindex="9" data-type="multi-select">
+                <div class="task-instruction-text">9. Select the regulatory sequencing order when calculating a general risk allowance percentage at the financial year-end date.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        To find the accurate provision baseline, an accountant must 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="first">
+                            <option value="">-- Choose --</option>
+                            <option value="first">First</option>
+                            <option value="second">Second</option>
+                        </select> subtract specific irrecoverable bad debt write-offs from gross customer balances, and 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="second">
+                            <option value="">-- Choose --</option>
+                            <option value="first">First</option>
+                            <option value="second">Second</option>
+                        </select> apply the provision percentage rate to that specific adjusted remaining balance pool.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Specific bad debts must always be cleared out first. Applying the rate to an unadjusted pool breaches standard accounting parameters.
+                </div>
+            </div>
+            <!-- QUESTION 10: TIPO "radio" (Journal Entry Routing) -->
+            <div class="question-tab" data-qindex="10" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">10. A net increase variance is discovered between the new required general allowance target and the opening balance b/f. Select the correct double-entry ledger routing.</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q10" value="A"> DEBIT Allowance for Doubtful Debts Account | CREDIT Irrecoverable Debts Account</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q10" value="B"> DEBIT Irrecoverable Debts Account | CREDIT Allowance for Doubtful Debts Account</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q10" value="C"> DEBIT Trade Receivables Control Account | CREDIT Irrecoverable Debts Account</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> An increase in the general allowance represents a new anticipated operating cost overhead. It must be debited to the current period's expenses (Irrecoverable Debts A/c) and credited to the contra-asset valuation pool.
+                </div>
+            </div>
+
+            <!-- QUESTION 11: TIPO "multi-select" (Specific Allowance Recovery) -->
+            <div class="question-tab" data-qindex="11" data-type="multi-select">
+                <div class="task-instruction-text">11. A specific allowance was made last year for a customer owing £800. This year, the customer pays the amount in full. Select the proper year-end ledger adjustment parameters.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        The cash receipt is recorded normally in the cash book. At year-end, the specific allowance must be 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="removed">
+                            <option value="">-- Action --</option>
+                            <option value="removed">Removed completely</option>
+                            <option value="increased">Increased further</option>
+                        </select> 
+                        from the allowance account, which creates a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="credit">
+                            <option value="">-- Effect --</option>
+                            <option value="debit">Debit adjustment</option>
+                            <option value="credit">Credit adjustment (Income)</option>
+                        </select> inside the Irrecoverable Debts ledger stream to reflect the reduction in risk.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> When a doubtful debt is paid, the specific provision is no longer required. It must be cleared out, resulting in a net decrease (Credit) in the current year's Irrecoverable Debts overhead account.
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "radio" (Aging Schedule Analysis) -->
+            <div class="question-tab" data-qindex="12" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">12. Why do companies prepare a 'Receivables Aging Schedule' (Aged Debtors Report) prior to calculating general provisions at year-end?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="A"> To match cash book bank receipts against cash sales turnover invoices.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="B"> To apply higher risk percentages to older debt categories that are statistically less likely to be collected.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="C"> To reconcile subsidiary ledgers with the main double-entry VAT return accounts.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> An aging schedule groups credit balances by time outstanding. Older debts carry higher default risks, requiring progressive provision tiers under prudent valuation guidelines.
+                </div>
+            </div>
+            <!-- QUESTION 13: TIPO "multi-input" (Receivables Ledger Audit) -->
+            <div class="question-tab" data-qindex="13" data-type="multi-input">
+                <div class="task-instruction-text">13. Gross Trade Receivables at year-end = £62,000. Opening Allowance b/f = £2,500. A review reveals a required closing allowance target of £2,100. No specific bad debts are written off. Input the requested metrics.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Valuation Variable</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Net variance credited to the SPL Account as income (Decrease)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="400.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Net Trade Receivables asset value exposed on the SoFP matrix</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="59,900.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> 1) Variance: £2,500 (Opening) - £2,100 (Target) = £400 reduction (Credit to SPL). 2) SoFP Display: Gross Receivables (£62,000) minus Closing Allowance Target (£2,100) = £59,900 net book asset value.
+                </div>
+            </div>
+
+            <!-- QUESTION 14: TIPO "radio" (Accounting Standard Scope) -->
+            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">14. Under international framework rules, the Allowance for Doubtful Debts account is explicitly classified as what type of record?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="A"> A Contra-Asset account that reduces the nominal value of trade debtors on the balance sheet.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="B"> A temporary equity reserve that cannot be modified after trial balance validation.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="C"> A current liability record settled at month-end via bank transfers.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The allowance is a contra-asset or asset valuation account. It carries a continuous credit balance used specifically to report receivables at their estimated net realizable value.
+                </div>
+            </div>
+
+            <!-- QUESTION 15: TIPO "multi-input" (Final Cumulative Asset Valuation Check) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <div class="task-instruction-text">15. Final accounting review: Pre-adjustment Trade Receivables = £18,400. Opening Allowance b/f = £600. Year-end updates: write off a specific uncollectible balance of £400, then adjust the general allowance pool to exactly 5% of net credit debtors. Compute the final statement figures.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Year-End Statement Line Metric</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Irrecoverable Debts overall charge to the SPL Account</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="700.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Net Book Value of Trade Receivables exposed on the SoFP matrix</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="17,100.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> 1) Adjusted Pool: £18,400 - £400 = £18,000. 2) Target: 5% of £18,000 = £900. 3) Variance: £900 - £600 = £300 increase. Total SPL charge = £400 (bad debt) + £300 (increase) = £700. SoFP net value = £18,000 - £900 = £17,100.
+                </div>
+            </div>
+
+        </form>
+
+        <!-- PULSANTIERA DI CONTROLLO INTERNA ALLA BOLLA BIANCA -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button type="button" class="btn btn-blue" id="btn-quiz-submit" onclick="validateCurrentTab()">Am I right?</button>
+                <button type="button" class="btn btn-green" id="btn-quiz-solution" onclick="showCurrentSolution()">Show Solution</button>
+                <button type="button" class="btn btn-red" onclick="resetCurrentTab()">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button type="button" class="btn btn-gray" id="btn-quiz-prev" onclick="navigateTab(-1)">Previous Question</button>
+                <button type="button" class="btn btn-gray" id="btn-quiz-next" onclick="navigateTab(1)">Next Question</button>
+                <button type="button" class="btn btn-purple hidden" id="btn-quiz-print" onclick="triggerPDFDownload()">Download as PDF</button>
+            </div>
+        </div>
+
+    </div> <!-- Fine .test-container -->
+
+    <!-- TRIGGER FLUTTUANTE DELLA CALCOLATRICE -->
+    <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
+
+    <!-- FLOATING CALC STRUCTURE WIDGET VETRATO DRAG & DROP -->
+    <div id="calc-widget">
+        <div id="calc-drag-handle" style="background:var(--l3-cyan-dark); color:white; font-size:0.75rem; padding:4px; margin-bottom:8px; border-radius:4px; font-weight:700; text-align:center;">DRAG TO MOVE</div>
+        <input type="text" id="calc-display-panel" style="width:100%; text-align:right; font-family:monospace; background:black; color:var(--neon-calc-accent); border:1px solid #374151; padding:8px; font-size:1.2rem; margin-bottom:8px; border-radius:4px;" readonly value="0">
+        <div class="calc-grid">
+            <button type="button" class="calc-btn op" onclick="pressClear()">C</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('pow')">x²</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('sqrt')">√</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('/')">/</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('7')">7</button>
+            <button type="button" class="calc-btn" onclick="pressChar('8')">8</button>
+            <button type="button" class="calc-btn" onclick="pressChar('9')">9</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('*')">*</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('4')">4</button>
+            <button type="button" class="calc-btn" onclick="pressChar('5')">5</button>
+            <button type="button" class="calc-btn" onclick="pressChar('6')">6</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('-')">-</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('1')">1</button>
+            <button type="button" class="calc-btn" onclick="pressChar('2')">2</button>
+            <button type="button" class="calc-btn" onclick="pressChar('3')">3</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('+')">+</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('0')">0</button>
+            <button type="button" class="calc-btn" onclick="pressChar('.')">.</button>
+            <button type="button" class="calc-btn op" onclick="pressPercent()">%</button>
+            <button type="button" class="calc-btn eq" onclick="executeCalc()">=</button>
         </div>
     </div>
-
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            A vehicle that originally cost £24,000 has a carrying amount (Net Book Value) of £9,600. It is sold through an auctioneer for £11,100 cash. Calculate the final profit or loss on disposal to be reported:<br>
-            Disposal Result Amount: £ <input type="text" id="ans2_val" placeholder="0.00"> <select id="ans2_type"><option value="">Select</option><option value="correct">Profit</option><option value="w">Loss</option></select>
-        </div>
-    </div>
-
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            On 31 March, a company's insurance expense account shows a total debit of £7,200. This balance includes a premium invoice of £4,800 paid on 1 November for a 12-month policy. Calculate the prepayments adjustment required at year-end:<br>
-            Insurance Prepayment: £ <input type="text" id="ans3" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            At the financial year-end of 30 June, the final quarter's warehouse gas heating charges of £620 remain unbilled and unpaid. State the required adjusting entry to be posted through the General Journal:<br>
-            Debit Account: <select id="ans4_deb"><option value="">Select</option><option value="correct">Gas Expense Account</option><option value="w">Accruals Account</option></select><br>
-            Credit Account: <select id="ans4_crd"><option value="">Select</option><option value="w">Prepayments Account</option><option value="correct">Accruals Account</option></select>
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            A business has an opening general allowance for doubtful debts of £4,100. At the year-end, total trade receivables stand at £115,000, which includes a specific customer debt of £3,000 that needs to be written off immediately. The general allowance is to be set at 5% of the remaining receivables. Calculate the new required closing balance of the Allowance for Doubtful Debts account:<br>
-            Closing Allowance Balance: £ <input type="text" id="ans5" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            Using the allowance data adjustments calculated in Q5, determine the net transaction entry value to be transferred to the Statement of Profit or Loss:<br>
-            Net Statement Value: £ <input type="text" id="ans6_val" placeholder="0.00"> <select id="ans6_side"><option value="">Select</option><option value="correct">Debit (Increase expense)</option><option value="w">Credit (Decrease expense)</option></select>
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            Partners C and D share profits and losses in the ratio 2:1. The net trading profit for the year is £75,000. Under the partnership deed, partner D is entitled to a fixed salary of £12,000 per annum, and partner C is entitled to an interest on capital allocation of £3,000. Calculate C's final total share of the residual profit:<br>
-            C's Residual Profit Share: £ <input type="text" id="ans7" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            An Extended Trial Balance fails to balance, resulting in a Suspense Account opened with a credit balance of £850. An audit reveals that a bank transfer fee of £425 was correctly entered in the Cash Book but completely debited twice to the Bank Charges account. Calculate the final balance of the Suspense account after processing the correction:<br>
-            Suspense Final Balance: £ <input type="text" id="ans8" placeholder="0.00">
-        </div>
-    </div>
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A manufacturing company buys a piece of equipment for £32,000 on 1 April. The straight-line depreciation method is used at a rate of 20% per annum, assuming a residual scrap value of £2,000. Calculate the total carrying amount (Net Book Value) of the equipment at the end of the second year:<br>
-            Carrying Amount Year 2: £ <input type="text" id="ans9" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A year-end closing inventory assessment on 31 March values stock at cost for £22,800. An item within this stock cost £1,500 but is found to be water-damaged and can only be sold for a Net Realisable Value (NRV) of £600 after spending £100 on repackaging. Calculate the final total inventory valuation under IAS 2 guidelines:<br>
-            Inventory Valuation: £ <input type="text" id="ans10" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            Partner B has a fixed capital account balance of £80,000. The partnership agreement allows a 6% interest on capital allocation per annum. Partner B also drew £15,000 from the business during the year. Calculate the net interest on capital to be credited to Partner B's Current Account:<br>
-            Interest on Capital: £ <input type="text" id="ans11" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            The opening allowance for doubtful debts was £1,800. At the current year-end, the required allowance is calculated to be £2,450 based on aged debtor risks. Calculate the net adjustment required in the Statement of Profit or Loss:<br>
-            Adjustment Value: £ <input type="text" id="ans12_val" placeholder="0.00"> <select id="ans12_side"><option value="">Select</option><option value="correct">Debit (Increase in expense)</option><option value="w">Credit (Income reduction of expense)</option></select>
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            On 1 September, a firm pays an annual local property tax invoice of £3,600 covering a 12-month period. If the company's financial year ends on 31 December, calculate the prepaid amount to be carried forward as an asset to the next period:<br>
-            Prepaid Property Tax: £ <input type="text" id="ans13" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            An old production machine that cost £12,000 with accumulated depreciation of £7,500 is part-exchanged for a new asset. The supplier provides a part-exchange trade-in allowance of £4,800. Calculate the profit or loss on the disposal of this machine:<br>
-            Amount: £ <input type="text" id="ans14_val" placeholder="0.00"> <select id="ans14_type"><option value="">Select</option><option value="correct">Profit</option><option value="w">Loss</option></select>
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            A bookkeeper extracts an unadjusted Trial Balance and discovers that a credit purchase invoice of £620 from an office supplier was completely recorded as £260 in both the Purchases day book and the supplier's ledger account. What type of accounting error has occurred?<br>
-            Error Type: <select id="ans15"><option value="">Select</option><option value="correct">Error of Original Entry</option><option value="w">Error of Omission</option><option value="w">Error of Principle</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
 <script>
-    let currentQ = 1;
-    const totalQ = 15;
+let currentQuestionIndex = 1;
+const totalQuestionsCount = 15;
 
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
+function updateNavigationDisplay() {
+    document.getElementById('q-counter-display').textContent = `Question ${currentQuestionIndex} of ${totalQuestionsCount}`;
+    document.getElementById('btn-quiz-prev').disabled = (currentQuestionIndex === 1);
+    
+    const nextBtn = document.getElementById('btn-quiz-next');
+    const printBtn = document.getElementById('btn-quiz-print');
+    
+    if (currentQuestionIndex === totalQuestionsCount) {
+        nextBtn.classList.add('hidden');
+        printBtn.classList.remove('hidden');
+    } else {
+        nextBtn.classList.remove('hidden');
+        printBtn.classList.add('hidden');
     }
+}
 
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
-        }
-    }
+function navigateTab(direction) {
+    const tabs = document.querySelectorAll('.question-tab');
+    let targetIndex = currentQuestionIndex + direction;
+    
+    if (targetIndex < 1 || targetIndex > totalQuestionsCount) return;
+    
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    currentQuestionIndex = targetIndex;
+    const activeTab = document.querySelector(`.question-tab[data-qindex="${currentQuestionIndex}"]`);
+    activeTab.classList.add('active');
+    
+    updateNavigationDisplay();
+}
 
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
+function validateCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const feedbackMsg = activeTab.querySelector('.global-feedback-msg');
+    let tabPassed = true;
 
-        if (currentQ === 1) {
-            let val = document.getElementById('ans1').value.trim();
-            isCorrect = (val === '14700' || val === '14700.00');
-        } else if (currentQ === 2) {
-            let val = document.getElementById('ans2_val').value.trim();
-            let type = document.getElementById('ans2_type').value;
-            isCorrect = ((val === '1500' || val === '1500.00') && type === 'correct');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '2800' || val === '2800.00');
-        } else if (currentQ === 4) {
-            let deb = document.getElementById('ans4_deb').value;
-            let crd = document.getElementById('ans4_crd').value;
-            isCorrect = (deb === 'correct' && crd === 'correct');
-        } else if (currentQ === 5) {
-            let val = document.getElementById('ans5').value.trim();
-            isCorrect = (val === '5600' || val === '5600.00');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6_val').value.trim();
-            let side = document.getElementById('ans6_side').value;
-            isCorrect = ((val === '1500' || val === '1500.00') && side === 'correct');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7').value.trim();
-            isCorrect = (val === '40000' || val === '40000.00');
-        } else if (currentQ === 8) {
-            let val = document.getElementById('ans8').value.trim();
-            isCorrect = (val === '425' || val === '425.00');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9').value.trim();
-            isCorrect = (val === '20000' || val === '20000.00');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '21900' || val === '21900.00');
-        } else if (currentQ === 11) {
-            let val = document.getElementById('ans11').value.trim();
-            isCorrect = (val === '4800' || val === '4800.00');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12_val').value.trim();
-            let side = document.getElementById('ans12_side').value;
-            isCorrect = ((val === '650' || val === '650.00') && side === 'correct');
-        } else if (currentQ === 13) {
-            let val = document.getElementById('ans13').value.trim();
-            isCorrect = (val === '2400' || val === '2400.00');
-        } else if (currentQ === 14) {
-            let val = document.getElementById('ans14_val').value.trim();
-            let type = document.getElementById('ans14_type').value;
-            isCorrect = ((val === '300' || val === '300.00') && type === 'correct');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        const selectedRadio = activeTab.querySelector('input[type="radio"]:checked');
+        const icons = activeTab.querySelectorAll('.feedback-icon');
+        
+        icons.forEach(icon => icon.textContent = '');
+        
+        if (!selectedRadio) {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Please select an answer option before verifying.";
+            feedbackMsg.classList.remove('hidden');
+            return;
         }
 
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        const chosenBox = selectedRadio.closest('.option-box');
+        const targetIcon = chosenBox.querySelector('.feedback-icon');
+
+        if (selectedRadio.value === correctAns) {
+            targetIcon.textContent = "✔️";
+            targetIcon.style.color = "var(--success-color)";
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "Correct! Well done.";
         } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+            targetIcon.textContent = "❌";
+            targetIcon.style.color = "var(--danger-color)";
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Incorrect option selected.";
+            tabPassed = false;
+        }
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        
+        fields.forEach(field => {
+            const userVal = field.value.trim().toLowerCase();
+            const correctVal = field.getAttribute('data-ans').trim().toLowerCase();
+            
+            if (userVal !== correctVal) {
+                tabPassed = false;
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field wrong-answer-highlight";
+                } else {
+                    field.className = "multi-select-field wrong-answer-highlight";
+                }
+            } else {
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field correct-answer-highlight";
+                } else {
+                    field.className = "multi-select-field correct-answer-highlight";
+                }
+            }
+        });
+
+        feedbackMsg.classList.remove('hidden');
+        if (tabPassed) {
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "All fields correct! Exceptional work.";
+        } else {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Some fields are incorrect. Review your accounting logic.";
         }
     }
+    feedbackMsg.classList.remove('hidden');
+}
 
-    updateButtons();
+function showCurrentSolution() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
+
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        activeTab.querySelectorAll('.option-box').forEach(box => {
+            const radio = box.querySelector('input[type="radio"]');
+            if (radio.value === correctAns) {
+                box.className = "option-box correct-answer-highlight";
+            }
+        });
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            const targetAns = field.getAttribute('data-ans');
+            field.value = targetAns;
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field correct-answer-highlight";
+            } else {
+                field.className = "multi-select-field correct-answer-highlight";
+            }
+        });
+    }
+
+    if (solutionPanel) solutionPanel.classList.remove('hidden');
+}
+
+function resetCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    
+    activeTab.querySelector('.global-feedback-msg').classList.add('hidden');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
+    if (solutionPanel) solutionPanel.classList.add('hidden');
+
+    if (qType === "radio") {
+        activeTab.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        activeTab.querySelectorAll('.option-box').forEach(box => box.className = "option-box");
+        activeTab.querySelectorAll('.feedback-icon').forEach(icon => icon.textContent = '');
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            field.value = '';
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field";
+            } else {
+                field.className = "multi-select-field";
+            }
+        });
+    }
+}
+
+function triggerPDFDownload() {
+    const oldTitle = document.title;
+    document.title = "AAT_Level3_Chapter1_Test2_Report";
+    window.print();
+    document.title = oldTitle;
+}
+
+// OPERAZIONI MATEMATICHE CALCOLATRICE WIDGET
+function toggleCalcWidget() {
+    const widget = document.getElementById('calc-widget');
+    widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
+}
+function pressChar(c) {
+    const p = document.getElementById('calc-display-panel');
+    p.value = (p.value === '0') ? c : p.value + c;
+}
+function pressClear() { document.getElementById('calc-display-panel').value = '0'; }
+function pressPercent() {
+    const p = document.getElementById('calc-display-panel');
+    let val = parseFloat(p.value);
+    if (!isNaN(val)) p.value = val / 100;
+}
+function pressMathOp(op) {
+    const p = document.getElementById('calc-display-panel');
+    let val = parseFloat(p.value);
+    if (isNaN(val)) return;
+    if (op === 'sqrt') p.value = Math.sqrt(val);
+    if (op === 'pow') p.value = Math.pow(val, 2);
+}
+function executeCalc() {
+    const p = document.getElementById('calc-display-panel');
+    try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
+}
+
+// CONTROLLO DRAG CALCOLATRICE
+const dragWidget = document.getElementById("calc-widget");
+const dragHandle = document.getElementById("calc-drag-handle");
+let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+dragHandle.addEventListener("mousedown", dragStart);
+document.addEventListener("mouseup", dragEnd);
+document.addEventListener("mousemove", drag);
+
+function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+    if (e.target === dragHandle) activeDrag = true;
+}
+function dragEnd() { activeDrag = false; }
+function drag(e) {
+    if (activeDrag) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        dragWidget.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+}
 </script>
-
 </body>
 </html>
