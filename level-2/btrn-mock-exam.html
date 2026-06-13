@@ -92,6 +92,9 @@
         </div>
     </div>
 <style>
+    /* ========================================== */
+    /* DESIGN SYSTEM & CORE INTERFACCIA ASSESSMENT */
+    /* ========================================== */
     :root {
         --bg-dark-external: #0B0F19;
         --bubble-white-bg: #FFFFFF;
@@ -167,7 +170,202 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         border: 1px solid var(--border-color);
     }
+
+    .exam-tabs-navigation {
+        display: flex;
+        gap: 0.35rem;
+        border-bottom: 2px solid var(--border-color);
+        margin-bottom: 2rem;
+        overflow-x: auto;
+        padding-bottom: 1px;
+    }
+
+    .tab-trigger-btn {
+        background: #F3F4F6;
+        border: 1px solid var(--border-color);
+        border-bottom: none;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        white-space: nowrap;
+        transition: all 0.15s ease;
+    }
+
+    .tab-trigger-btn:hover { background: #E5E7EB; }
+    .tab-trigger-btn.active {
+        background: var(--bubble-white-bg);
+        color: var(--l2-emerald-primary);
+        border-top: 3px solid var(--l2-emerald-primary);
+        padding-bottom: calc(0.6rem + 2px);
+        margin-bottom: -2px;
+    }
+
+    .exam-task-panel { display: none; }
+    .exam-task-panel.active { display: block; }
+
+    .task-interactive-body {
+        background-color: #FAFAFA;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .financial-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        background: #FFFFFF;
+    }
+
+    .financial-table th {
+        background-color: var(--l2-emerald-dark);
+        color: #FFFFFF;
+        padding: 0.6rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--l2-emerald-dark);
+    }
+
+    .financial-table td {
+        border: 1px solid var(--border-color);
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .table-input {
+        width: 100%;
+        padding: 0.4rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        box-sizing: border-box;
+    }
+
+    .text-right { text-align: right; }
+    .text-left { text-align: left; }
+
+    .option-label {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: #FFFFFF;
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+    }
+
+    .exam-footer-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--border-color);
+    }
+
+    .ctrl-btn {
+        padding: 0.65rem 1.25rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-secondary { background: #E5E7EB; color: var(--text-dark); }
+    .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-danger { background: var(--danger-color); color: #FFFFFF; }
+    .btn-success { background: var(--l2-emerald-primary); color: #FFFFFF; }
+    .tool-btn { background: #374151; color: #FFF; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+
+    .exam-results-card {
+        margin-top: 2rem;
+        background: #F9FAFB;
+        border: 2px solid var(--l2-emerald-primary);
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .results-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .result-metric {
+        background: #FFFFFF;
+        border: 1px solid var(--border-color);
+        padding: 1.2rem;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .metric-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .metric-value { font-size: 1.4rem; font-weight: 700; color: var(--l2-emerald-dark); }
+
+    .drag-calculator-panel {
+        position: fixed;
+        top: 85px;
+        right: 30px;
+        width: 240px;
+        background: #111827;
+        border: 2px solid var(--neon-calc-accent);
+        border-radius: 8px;
+        display: none;
+        z-index: 2000;
+    }
+
+    .calc-header {
+        background: #1F2937;
+        padding: 0.5rem;
+        color: var(--neon-calc-accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #374151;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+
+    .calc-display-input {
+        width: 100%;
+        background: #000000;
+        color: var(--neon-calc-accent);
+        border: 1px solid #374151;
+        text-align: right;
+        padding: 0.5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1.4rem;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .calc-grid-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; margin-top: 0.5rem; }
+    .calc-btn { background: #374151; color: #FFFFFF; border: none; padding: 0.55rem; cursor: pointer; font-weight: 700; border-radius: 4px; }
+    .btn-equal { background: var(--neon-calc-accent); color: #000000; grid-row: span 2; display: flex; align-items: center; justify-content: center; }
+    .hidden { display: none !important; }
+
+    @media print {
+        body { background: #FFFFFF !important; padding-top: 0 !important; color: #000000 !important; }
+        .exam-top-bar, .exam-tabs-navigation, .exam-footer-controls, .drag-calculator-panel { display: none !important; }
+        .exam-main-wrapper { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+        .white-bubble-container { border: none !important; box-shadow: none !important; padding: 0 !important; }
+        .exam-task-panel { display: block !important; page-break-after: always; }
+        .task-interactive-body { background: #FFFFFF !important; border: 1px solid #000000 !important; }
+        .exam-results-card { display: block !important; border: 2px solid #000000 !important; background: #FFFFFF !important; page-break-before: always; }
+        input { border: none !important; border-bottom: 1px solid #000000 !important; background: transparent !important; }
+    }
 </style>
+
     .exam-tabs-navigation {
         display: flex;
         gap: 0.35rem;
