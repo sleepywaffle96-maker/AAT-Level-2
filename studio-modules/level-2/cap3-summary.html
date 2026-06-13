@@ -1,180 +1,80 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 - Chapter 3: Quick Summary & Formulas</title>
+    <title>AAT Level 2 Certificate in Accounting - Chapter 3 Cheat Sheet: Cash Book Quick Matrix</title>
     <style>
-        :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --cyan: #00f2fe;
-            --teal: #4facfe;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-            --debit-color: #10b981;
-            --credit-color: #ef4444;
-            --highlight: #f59e0b;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            color: var(--cyan);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            color: var(--cyan);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        h2 {
-            color: var(--teal);
-            margin-top: 30px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-            font-size: 1.3rem;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-
-        .summary-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        .formula-display {
-            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
-            border-left: 4px solid var(--cyan);
-            padding: 12px;
-            border-radius: 0 4px 4px 0;
-            margin: 10px 0;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.95rem;
-            color: var(--cyan);
-            font-weight: bold;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 8px 0;
-        }
-
-        li {
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 6px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .badge-dr { background: rgba(16, 185, 129, 0.2); color: var(--debit-color); }
-        .badge-cr { background: rgba(239, 68, 68, 0.2); color: var(--credit-color); }
-        .badge-info { background: rgba(245, 158, 11, 0.2); color: var(--highlight); }
+        /* 1. Reset e Sfondo Design System */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #1E293B; padding: 40px 20px; display: flex; justify-content: center; }
+        .summary-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* 2. Struttura delle schede riassuntive */
+        h1 { color: #7C3AED; font-size: 26px; font-weight: 800; margin-bottom: 25px; border-bottom: 3px solid #E2E8F0; padding-bottom: 10px; text-transform: uppercase; }
+        h2 { color: #1E293B; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; }
+        .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .card-check { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; }
+        .card-check h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+        
+        /* 3. Classi di Colore per i Controlli */
+        .receipts-title { color: #2563EB; }
+        .payments-title { color: #10B981; }
+        .warning-title { color: #DC2626; }
+        ul { list-style-type: none; }
+        li { font-size: 14px; margin-bottom: 10px; font-weight: 600; color: #334155; }
+        li strong { color: #0F172A; }
+        .purple-bullet li::before { content: "• "; color: #7C3AED; font-weight: bold; font-size: 16px; }
     </style>
 </head>
 <body>
+    <div class="summary-container">
+        <h1>Chapter 3 Cheat Sheet - Cash Controls Matrix</h1>
+        <p style="font-size:14px; color:#475569; margin-bottom:20px; line-height:1.6;">Use this technical checkpoint layout as a systematic reference framework during timed simulations to instantly isolate cash flows and voucher balances.</p>
+        
+        <div class="quick-grid">
+            <!-- Card Receipts Checklist -->
+            <div class="card-check" style="border-top: 4px solid #2563EB;">
+                <h3 class="receipts-title">The DEBIT Side Checklist (Receipts)</h3>
+                <ul class="purple-bullet">
+                    <li><strong>Customer Receipts:</strong> Direct bank electronic transfers or cash settlements from trade clients.</li>
+                    <li><strong>Cash Sales:</strong> Immediate on-the-spot liquid sales turnover revenue.</li>
+                    <li><strong>Capital Injected:</strong> Funds introduced into the bank account by the business owner.</li>
+                    <li><strong>Contra Entries:</strong> Physical cash drawn from the office safe and deposited into the bank.</li>
+                </ul>
+            </div>
 
-<div class="container">
-    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
-    
-    <h1>Chapter 3: Principles of Costing Cheat Sheet</h1>
-
-    <h2>1. Primary Mathematical Cost Formulations</h2>
-    <p>Use these calculations to structure manufacturing totals and perform inventory appraisals:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-info">Prime Cost Equation</span>
-            <div class="formula-display">Prime Cost = Direct Materials + Direct Labour + Direct Expenses</div>
+            <!-- Card Payments Checklist -->
+            <div class="card-check" style="border-top: 4px solid #10B981;">
+                <h3 class="payments-title">The CREDIT Side Checklist (Payments)</h3>
+                <ul class="purple-bullet">
+                    <li><strong>Supplier Payments:</strong> Outbound electronic payments sent to settle trade invoices.</li>
+                    <li><strong>Business Expenses:</strong> Wages, commercial rent, utilities, insurance settlements.</li>
+                    <li><strong>Owner's Drawings:</strong> Financial capital extracted from bank columns for private use.</li>
+                    <li><strong>Contra Entries:</strong> Funds withdrawn from bank columns to top up physical cash safe till.</li>
+                </ul>
+            </div>
         </div>
-        <div class="summary-card">
-            <span class="badge badge-info">AVCO Inventory Pricing</span>
-            <div class="formula-display">Average Unit Cost = Total Value of Stock in Hand / Total Quantity of Stock Units</div>
-        </div>
-    </div>
-    <h2>2. Cost-Volume-Profit (CVP) Numerical Equations</h2>
-    <p>These core equations are vital for resolving algorithmic simulator problems regarding production targets:</p>
+        <h2>3. Critical Assessment Check: The Imprest Protocol Realities</h2>
+        <p style="font-size:14px; color:#475569; margin-bottom:15px; line-height:1.6;">A recurring trap in AAT liquid fund assessments is failing to isolate discrepancy effects. Use this reference block to verify balancing calculations:</p>
 
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-dr">Contribution Per Unit</span>
-            <div class="formula-display">Contribution per Unit = Selling Price per Unit - Variable Cost per Unit</div>
-        </div>
-
-        <div class="summary-card">
-            <span class="badge badge-cr">Total Contribution</span>
-            <div class="formula-display">Total Contribution = Contribution per Unit × Quantity Sold</div>
-            <div class="formula-display">Total Contribution = Fixed Overheads + Net Profit</div>
-        </div>
-    </div>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-info">Break-Even Sales Volume</span>
-            <div class="formula-display">Break-Even (Units) = Total Fixed Costs / Contribution per Unit</div>
-        </div>
-
-        <div class="summary-card">
-            <span class="badge badge-info">Margin of Safety Formulations</span>
-            <div class="formula-display">Margin of Safety (Units) = Budgeted Sales Units - Break-Even Sales Units</div>
-            <div class="formula-display">Margin of Safety % = (Margin of Safety Units / Budgeted Sales Units) × 100</div>
-        </div>
-    </div>
-    <h2>3. Labour Remuneration and Inventory Control Rules</h2>
-    <p>Operational principles for rapid validation checks within algorithmic testing modules:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card" style="grid-column: 1 / -1;">
-            <span class="badge badge-info">Core Costing Checklist</span>
-            <ul>
-                <li><strong>Overtime Premium Allocation:</strong> Treated as an <em>indirect cost</em> (overhead) unless a client requests an emergency delivery, which shifts the premium into direct costs.</li>
-                <li><strong>Idle Time Cost Allocation:</strong> Paid time with zero production output is always charged to <em>Indirect Labour</em> overheads.</li>
-                <li><strong>Variable Cost Behaviour:</strong> Variable cost per unit remains entirely *constant*, while the total variable expenditure alters in direct proportion to production scale.</li>
-                <li><strong>Fixed Cost Behaviour:</strong> Total fixed expenditure remains completely *constant*, while the fixed cost per unit declines steadily as production volume expands.</li>
+        <div class="card-check" style="border-top: 4px solid #DC2626; background-color: #FFFDFD;">
+            <h3 class="warning-title">The Continuous Imprest Checking Matrix</h3>
+            <ul style="list-style-type: none; margin: 0; padding: 0;">
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #FCA5A5; padding-bottom: 10px;">
+                    <strong>The Fundamental Balancing Theorem:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">Physical Cash remaining inside the box + Combined Gross Value of all signed vouchers = The original fixed Imprest Float level. Any variance confirms a shortage or surplus.</span>
+                </li>
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #FCA5A5; padding-bottom: 10px;">
+                    <strong>The Reimbursement Rule:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">The bank top-up cheque required to restore the pool is <strong>always exactly equal to the total value of vouchers spent</strong> during the window. A cash shortage does not reduce the top-up cheque value; it opens a variance entry.</span>
+                </li>
+                <li style="margin-bottom: 5px;">
+                    <strong>The Discrepancy Treatment Protocol:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">A cash <strong>shortage</strong> represents an unresolved financial loss and must be debited to an overhead expense account. A cash <strong>surplus</strong> represents an unexpected gain and must be credited to an income account to rebalance the ledger framework.</span>
+                </li>
             </ul>
         </div>
     </div>
-
-</div> <!-- End Container -->
-
 </body>
 </html>
