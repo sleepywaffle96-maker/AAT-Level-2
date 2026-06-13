@@ -3,338 +3,930 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management Accounting: Costing - Test One</title>
+    <title>AAT Level 3 Management Accounting: Costing - Chapter 3 Test One</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --danger-color: #DC2626;
+            --success-color: #059669;
+            --highlight-green: #DCFCE7;
+            --highlight-red: #FEE2E2;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e3e3e3;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #ffffff;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
+            padding: 3rem 1rem;
             line-height: 1.6;
-            color: #222222;
         }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
-        }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
-        }
-        table.osborne-table {
+
+        .test-container {
+            background-color: var(--bubble-white-bg);
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
+            max-width: 850px;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            position: relative;
         }
-        table.osborne-table th {
-            background-color: #f2f2f2;
-            text-align: left;
-            font-size: 13px;
-        }
-        table.osborne-table td, table.osborne-table th {
-            border: 1px solid #aaaaaa;
-            padding: 6px;
-            font-size: 13px;
-        }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
+
+        .test-header-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
         }
-        .btn-action {
-            background-color: #f0f0f0;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
+
+        .test-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .question-counter-label {
+            font-size: 0.9rem;
+            color: var(--l3-cyan-dark);
+            font-weight: 600;
+        }
+
+        /* STRUTTURA SEQUENZIALE QUESTION TABS */
+        .question-tab {
+            display: none;
+            flex-direction: column;
+        }
+        .question-tab.active {
+            display: flex;
+        }
+
+        .task-instruction-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .task-interactive-body {
+            background-color: #FAFAFA;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* OPZIONI DI SELEZIONE RADIO */
+        .option-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            color: #333333;
+            margin-bottom: 0.75rem;
+            transition: all 0.15s ease;
         }
-        .btn-action:hover {
-            background-color: #e0e0e0;
+        .option-box:hover { background-color: #F9FAFB; }
+        .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
+        .feedback-icon { font-weight: 700; font-size: 1.1rem; }
+
+        /* MULTI-INPUT FINANCIAL TABLES */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #FFFFFF;
         }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
+        .financial-table th {
+            background-color: var(--l3-cyan-dark);
+            color: #FFFFFF;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l3-cyan-dark);
         }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .numeric-field, .multi-input-field, .multi-select-field, .select-input {
+            width: 100%;
+            padding: 0.45rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+        }
+        .numeric-field { font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .numeric-field:focus, .multi-input-field:focus, .multi-select-field:focus {
+            border-color: var(--l3-cyan-primary);
+            outline: none;
+            background-color: var(--l3-cyan-light);
+        }
+
+        /* GEOMETRIA RIGIDA PULSANTIERA INFERIORE APPENDICE TECNICA */
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            border-top: 2px solid #E5E7EB;
+            padding-top: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s ease;
+        }
+        .btn-blue { background-color: #2563EB; color: #FFFFFF; }
+        .btn-green { background-color: #059669; color: #FFFFFF; }
+        .btn-red { background-color: #DC2626; color: #FFFFFF; }
+        .btn-gray { background-color: #4B5563; color: #FFFFFF; }
+        .btn-purple { background-color: #7C3AED; color: #FFFFFF; }
+        .btn-gray:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .global-feedback-msg {
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        .msg-correct { background-color: #DEF7EC; color: #065F46; }
+        .msg-incorrect { background-color: #FDE8E8; color: #9B1C1C; }
+
+        .solution-note-panel {
+            margin-top: 1.25rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--l3-cyan-primary);
+            background-color: var(--l3-cyan-light);
+            font-size: 0.9rem;
+            color: #0369A1;
+        }
+
+        .correct-answer-highlight { background-color: var(--highlight-green) !important; border-color: var(--success-color) !important; }
+        .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
+        .hidden { display: none !important; }
+
+        /* TRIGGER FLUTTUANTE DELLA CALCOLATRICE RIGIDO IN BASSO A DESTRA SCHERMO */
+        #calc-toggle-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            z-index: 1999;
+            font-size: 20px;
+            border: none;
+        }
+
+        /* WIDGET CALCOLATRICE VETRATO SCURO */
+        #calc-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 240px;
+            z-index: 2000;
+            background: rgba(17, 24, 39, 0.92);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--l3-cyan-primary);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            display: none;
+            cursor: move;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .calc-btn {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: white;
+            background: #374151;
+            text-align: center;
+        }
+        .calc-btn.op { background: #1F2937; color: var(--l3-cyan-light); }
+        .calc-btn.eq { background: #059669; color: white; }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; margin: 0; }
+            .test-container { box-shadow: none; border: none; padding: 0; max-width: 1000px; }
+            .controls-footer, #calc-toggle-trigger, #calc-widget { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
+            .solution-note-panel { display: block !important; background: #F8FAFC !important; border: 1px solid #CBD5E1 !important; color: #000 !important; }
+        }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="header-title">Management Accounting: Costing - Test One</div>
-
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            A manufacturing company has a selling price of £25.00 per unit and a variable cost of £15.00 per unit. Calculate the contribution per unit:<br>
-            Contribution per Unit: £ <input type="text" id="ans1" placeholder="0.00">
+    <div class="test-container">
+        
+        <div class="test-header-row">
+            <div class="test-title">BTRN - LEVEL 3 CHAPTER 3: MANAGEMENT COSTING TECHNIQUES (TEST ONE)</div>
+            <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
         </div>
-    </div>
 
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            Using the data from Q1, if the company incurs total fixed costs of £40,000 per period, calculate the break-even point in units:<br>
-            Break-even Point: <input type="text" id="ans2" placeholder="0"> units
+        <form id="quiz-form" onsubmit="event.preventDefault();">
+            <!-- QUESTION 1: TIPO "multi-select" (Basic Cost Behavior Definitions) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-select">
+                <div class="task-instruction-text">1. Complete the standard statements regarding manufacturing cost behaviors relative to production volume changes.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        An overhead cost that remains perfectly uniform in total aggregate value regardless of activity fluctuations is a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="fixed">
+                            <option value="">-- Select --</option>
+                            <option value="fixed">Fixed Cost</option>
+                            <option value="variable">Variable Cost</option>
+                        </select>. 
+                        Conversely, an outlay that scales in direct linear proportion to output units, leaving the unit rate constant, is classified as a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="variable">
+                            <option value="">-- Select --</option>
+                            <option value="fixed">Fixed Cost</option>
+                            <option value="variable">Variable Cost</option>
+                        </select>.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Total fixed costs stay flat within a relevant activity range. Total variable costs scale strictly with production metrics, meaning the individual unit variable cost is uniform.
+                </div>
+            </div>
+
+            <!-- QUESTION 2: TIPO "multi-input" (High-Low Method Variable Extractions) -->
+            <div class="question-tab" data-qindex="2" data-type="multi-input">
+                <div class="task-instruction-text">2. A firm records the following mixed service maintenance history: Highest node: 4,000 hours costing £14,000 | Lowest node: 1,500 hours costing £6,500. Extract the variable and fixed cost lines using the High-Low technique.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Extracted Behavioral Component</th>
+                                <th style="width: 250px;">Required Output Base (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Variable Cost Rate per individual Machine Hour</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="3.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Total Standing Fixed Cost Baseline Pool</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Variable Rate = (£14,000 - £6,500) / (4,000 hrs - 1,500 hrs) = £7,500 / 2,500 hrs = £3.00 per hour. Fixed element = £14,000 - (£3.00 × 4,000 hrs) = £2,000.
+                </div>
+            </div>
+
+            <!-- QUESTION 3: TIPO "radio" (High-Low Selection Rules) -->
+            <div class="question-tab" data-qindex="3" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">3. When choosing the extreme datasets from a multi-month schedule to run High-Low calculations, what column parameters must strictly govern your selection?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q3" value="A"> The maximum and minimum rows found strictly inside the Activity Volume column (Units/Hours).</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q3" value="B"> The peak and lowest financial values found inside the Total Cost column.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q3" value="C"> Any arbitrary random data row that carries clean rounded balances.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> High-Low points are chosen exclusively by identifying the highest and lowest **Activity Volume layers**, never by scanning monetary cells, as unexpected inflation or unique cost jumps can warp results.
+                </div>
+            </div>
+            <!-- QUESTION 4: TIPO "multi-input" (Direct Rent Apportionment Matrix) -->
+            <div class="question-tab" data-qindex="4" data-type="multi-input">
+                <div class="task-instruction-text">4. Total factory building rent stands at £24,000. The facility contains two departments: Machining occupying 3,000 square meters, and Assembly occupying 1,000 square meters. Apportion the total expense pool.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Receiving Cost Center Department</th>
+                                <th style="width: 250px;">Apportioned Rent Charge (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Machining Productive Department Pool</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="18,000.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Assembly Productive Department Pool</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="6,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Total space = 3,000 + 1,000 = 4,000 sqM. Machining allocation = £24,000 × (3,000 / 4,000) = £18,000. Assembly allocation = £24,000 × (1,000 / 4,000) = £6,000.
+                </div>
+            </div>
+
+            <!-- QUESTION 5: TIPO "radio" (Basis Selection Rule) -->
+            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">5. Which metrics provide the most equitable calculation base to apportion factory personnel staff welfare and canteen operating losses?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="A"> Kilowatt-hour electricity indicators.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="B"> Headcount / Number of employees in each department.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="C"> Net Book Value of heavy plant machinery.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Canteen and welfare services are consumed directly by people. Therefore, employee headcount represents the most logical and equitable apportionment base.
+                </div>
+            </div>
+
+            <!-- QUESTION 6: TIPO "multi-input" (Predetermined OAR Computation) -->
+            <div class="question-tab" data-qindex="6" data-type="multi-input">
+                <div class="task-instruction-text">6. The Machining center has a total budgeted overhead pool of £45,000 and has planned 15,000 budgeted machine hours. Compute the predetermined Overhead Absorption Rate (OAR).</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">OAR Operational Variable</th>
+                                <th style="width: 250px;">Required Output Rate (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Predetermined Machine Hour OAR Rate (per hour)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="3.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Predetermined OAR = Budgeted Overheads / Budgeted Hours Base = £45,000 / 15,000 hours = £3.00 per machine hour.
+                </div>
+            </div>
+            <!-- QUESTION 7: TIPO "multi-select" (OAR Denominator Principles) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-select">
+                <div class="task-instruction-text">7. Complete the rule statements regarding the selection of OAR denominator metrics.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        If a production center is heavily automated and relies on industrial hardware lines, the OAR base must be calculated using 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="machine">
+                            <option value="">-- Base --</option>
+                            <option value="labor">Direct Labor Hours</option>
+                            <option value="machine">Machine Hours</option>
+                        </select>. 
+                        Conversely, a bench assembly workshop driven by manual craftsmanship utilizes 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="labor">
+                            <option value="">-- Base --</option>
+                            <option value="labor">Direct Labor Hours</option>
+                            <option value="machine">Machine Hours</option>
+                        </select> as its absorption denominator.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> To ensure product cost precision, the absorption base must mirror the primary driver of activity in that specific department (machine hours for automation, labor hours for manual setups).
+                </div>
+            </div>
+
+            <!-- QUESTION 8: TIPO "multi-input" (Absorption Variance Equations) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <div class="task-instruction-text">8. A factory department uses a predetermined OAR of £4.00 per labor hour. Actual hours worked match 10,000 hours, while the actual overhead costs incurred stand at £42,000. Calculate the variances.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Absorption Variance Metric</th>
+                                <th style="width: 250px;">Calculated Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Predetermined Overheads Absorbed into WIP items</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="40,000.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Under-Absorption Balance Variance volume (Debit to SPL)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Absorbed pool = OAR (£4.00) × Actual Hours (10,000) = £40,000. Variance = Actual Cost (£42,000) minus Absorbed Cost (£40,000) = £2,000 under-absorption due to insufficient allocation.
+                </div>
+            </div>
+
+            <!-- QUESTION 9: TIPO "radio" (Over-Absorption Definition) -->
+            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">9. What operational condition generates an 'Over-Absorption' variance scenario at the financial period end?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="A"> Budgeted overhead outlays match actual factory expenses.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="B"> Actual overhead costs cross above the absorbed threshold limits.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="C"> Predetermined absorbed overheads exceed the actual overhead expenses incurred.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Over-absorption occurs when Absorbed Overheads > Actual Overheads Incurred. This indicates the business over-allocated product costs, requiring a credit adjustment to the Statement of Profit or Loss.
+                </div>
+            </div>
+
+            <!-- QUESTION 10: TIPO "multi-input" (Service Center Clearance Apportionment) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-input">
+                <div class="task-instruction-text">10. A non-productive Canteen center has accumulated £5,000 in overheads. It must be completely reapportioned into Machining (60%) and Assembly (40%). Compute the net clearance transfers.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Productive Department Destination</th>
+                                <th style="width: 250px;">Reapportioned Sum (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Machining Center Intake Share</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="3,000.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Assembly Center Intake Share</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Machining = £5,000 × 60% = £3,000. Assembly = £5,000 × 40% = £2,000. The Canteen's remaining balance is reduced to exactly zero.
+                </div>
+            </div>
+            <!-- QUESTION 11: TIPO "multi-select" (FIFO Valuation Behaviors) -->
+            <div class="question-tab" data-qindex="11" data-type="multi-select">
+                <div class="task-instruction-text">11. Under inflationary conditions where material acquisition prices are continuously rising, complete the analytical statements regarding the FIFO method.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        The FIFO method issues older, cheaper materials to the factory floor, which results in a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="lower">
+                            <option value="">-- Cost --</option>
+                            <option value="lower">Lower Cost of Production</option>
+                            <option value="higher">Higher Cost of Production</option>
+                        </select> 
+                        and consequently reports a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="higher">
+                            <option value="">-- Profit --</option>
+                            <option value="lower">Lower Periodic Net Profit</option>
+                            <option value="higher">Higher Periodic Net Profit</option>
+                        </select> inside the financial accounts.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> In an inflationary environment, FIFO matches older, lower-priced inventory receipts against current sales revenues, which artificially deflates the Cost of Goods Sold and expands short-term gross profit metrics.
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "radio" (Continuous AVCO Price Triggers) -->
+            <div class="question-tab" data-qindex="12" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">12. Under the continuous weighted average cost (AVCO) inventory method, when exactly must the storekeeper recalculate the average unit price?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="A"> Every single time a new batch of raw materials is issued out to production.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="B"> Every single time a new delivery shipment is received into the warehouse stores.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="C"> Exclusively at the final calendar day of the annual financial accounting cycle.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Continuous AVCO demands a recalculated unit price immediately following every new intake or receipt of material. Material issues outwards simply use the currently established average rate.
+                </div>
+            </div>
+            <!-- QUESTION 13: TIPO "multi-input" (Continuous AVCO Table Calculation) -->
+            <div class="question-tab" data-qindex="13" data-type="multi-input">
+                <div class="task-instruction-text">13. Stores Ledger Data: Opening stock = 100 units at £4.00 each. A new delivery arrives with 50 units at £7.00 each. Recalculate the updated moving average metrics for the stores ledger sheet.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">AVCO Ledger Variable</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Consolidated Monetary Value of Stock on Hand</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="750.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">New Recalculated Weighted Average Cost per Individual Unit</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="5.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Total Value = (100 units × £4.00) + (50 units × £7.00) = £400 + £350 = £750. Total physical pool = 100 + 50 = 150 units. New unit rate = £750 / 150 units = £5.00 per unit.
+                </div>
+            </div>
+
+            <!-- QUESTION 14: TIPO "radio" (IAS 2 Statutory Regulatory Banishment) -->
+            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">14. Which inventory pricing methodology can be used for internal management costing purposes but is explicitly banned by IAS 2 for external financial reporting?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="A"> LIFO (Last-In, First-Out)</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="B"> FIFO (First-In, First-Out)</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="C"> AVCO (Weighted Average Cost Method)</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> IAS 2 explicitly forbids LIFO because it results in closing inventory valuations that are locked to older historic costs, heavily understating modern current asset values on the Statement of Financial Position.
+                </div>
+            </div>
+
+            <!-- QUESTION 15: TIPO "multi-input" (Integrated FIFO Closing Value Check & PDF Download) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <div class="task-instruction-text">15. FIFO Inventory Trace: Opening inventory is zero. Batch 1 is received: 200 units at £10 each. Batch 2 is received later: 100 units at £12 each. Production requests an issue of 220 units. Compute the remaining valuation metrics.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">FIFO Statement Metric</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Monetary Cost of Materials issued to the Production floor</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2,240.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Total Financial Value of Remaining Closing Inventory Asset</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="960.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Under FIFO, the 220 units are drawn from the earliest stock: all 200 units from Batch 1 (200 × £10 = £2,000) plus 20 units from Batch 2 (20 × £12 = £240). Cost of Issues = £2,240. Remaining stock is 80 units from Batch 2 (80 × £12 = £960).
+                </div>
+            </div>
+
+        </form>
+        <!-- PULSANTIERA DI CONTROLLO INTERNA ALLA BOLLA BIANCA -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button type="button" class="btn btn-blue" id="btn-quiz-submit" onclick="validateCurrentTab()">Am I right?</button>
+                <button type="button" class="btn btn-green" id="btn-quiz-solution" onclick="showCurrentSolution()">Show Solution</button>
+                <button type="button" class="btn btn-red" onclick="resetCurrentTab()">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button type="button" class="btn btn-gray" id="btn-quiz-prev" onclick="navigateTab(-1)">Previous Question</button>
+                <button type="button" class="btn btn-gray" id="btn-quiz-next" onclick="navigateTab(1)">Next Question</button>
+                <button type="button" class="btn btn-purple hidden" id="btn-quiz-print" onclick="triggerPDFDownload()">Download as PDF</button>
+            </div>
         </div>
-    </div>
 
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            A business operates with a break-even point of 5,000 units. Its budgeted sales volume for the next quarter is 6,800 units. Calculate the budgeted margin of safety in units:<br>
-            Margin of Safety: <input type="text" id="ans3" placeholder="0"> units
+    </div> <!-- Fine .test-container -->
+
+    <!-- TRIGGER FLUTTUANTE DELLA CALCOLATRICE -->
+    <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
+
+    <!-- FLOATING CALC STRUCTURE WIDGET VETRATO DRAG & DROP -->
+    <div id="calc-widget">
+        <div id="calc-drag-handle" style="background:var(--l3-cyan-dark); color:white; font-size:0.75rem; padding:4px; margin-bottom:8px; border-radius:4px; font-weight:700; text-align:center;">DRAG TO MOVE</div>
+        <input type="text" id="calc-display-panel" style="width:100%; text-align:right; font-family:monospace; background:black; color:var(--neon-calc-accent); border:1px solid #374151; padding:8px; font-size:1.2rem; margin-bottom:8px; border-radius:4px;" readonly value="0">
+        <div class="calc-grid">
+            <button type="button" class="calc-btn op" onclick="pressClear()">C</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('pow')">x²</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('sqrt')">√</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('/')">/</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('7')">7</button>
+            <button type="button" class="calc-btn" onclick="pressChar('8')">8</button>
+            <button type="button" class="calc-btn" onclick="pressChar('9')">9</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('*')">*</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('4')">4</button>
+            <button type="button" class="calc-btn" onclick="pressChar('5')">5</button>
+            <button type="button" class="calc-btn" onclick="pressChar('6')">6</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('-')">-</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('1')">1</button>
+            <button type="button" class="calc-btn" onclick="pressChar('2')">2</button>
+            <button type="button" class="calc-btn" onclick="pressChar('3')">3</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('+')">+</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('0')">0</button>
+            <button type="button" class="calc-btn" onclick="pressChar('.')">.</button>
+            <button type="button" class="calc-btn op" onclick="pressPercent()">%</button>
+            <button type="button" class="calc-btn eq" onclick="executeCalc()">=</button>
         </div>
-    </div>
+    </div><script>
+let currentQuestionIndex = 1;
+const totalQuestionsCount = 15;
 
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            A factory budgets to produce 2,000 units using 4,000 hours of direct labour. The standard rate is £12.00 per hour. Due to an operational breakdown, the actual hours worked were 4,200 at a total cost of £48,300. Calculate the labour rate variance:<br>
-            Labour Rate Variance: £ <input type="text" id="ans4_val" placeholder="0.00"> <select id="ans4_type"><option value="">Select</option><option value="correct">Favourable</option><option value="w">Adverse</option></select>
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            Using the parameters from Q4, calculate the labour efficiency variance for the production period:<br>
-            Labour Efficiency Variance: £ <input type="text" id="ans5_val" placeholder="0.00"> <select id="ans5_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            The standard material requirement for one product unit is 3 kg at a standard price of £4.50 per kg. During the period, 1,000 units are manufactured. The actual material used was 3,100 kg costing £14,260. Calculate the material price variance:<br>
-            Material Price Variance: £ <input type="text" id="ans6_val" placeholder="0.00"> <select id="ans6_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            Using the parameters from Q6, calculate the material usage variance for the production period:<br>
-            Material Usage Variance: £ <input type="text" id="ans7_val" placeholder="0.00"> <select id="ans7_type"><option value="">Select</option><option value="w">Favourable</option><option value="correct">Adverse</option></select>
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            Under marginal costing principles, closing inventory valuations exclude any allocations for fixed production overheads.<br>
-            Is this statement True or False?<br>
-            Answer: <select id="ans8"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
-        </div>
-    </div>
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A firm uses absorption costing. Budgeted fixed overheads are £60,000 and budgeted machine hours are 3,000. In the current period, actual machine hours worked were 3,200 and actual fixed overheads were £62,500. Calculate the amount of over or under-absorption of overheads:<br>
-            Overhead Adjustment: £ <input type="text" id="ans9_val" placeholder="0.00"> <select id="ans9_type"><option value="">Select</option><option value="correct">Over-absorbed</option><option value="w">Under-absorbed</option></select>
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A product has a selling price of £50.00, variable costs of £20.00 per unit, and fixed costs are absorbed at £15.00 per unit based on standard capacity. Calculate the Contribution to Sales (C/S) percentage ratio:<br>
-            C/S Ratio: <input type="text" id="ans10" placeholder="0.00"> %
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            A company requires a target profit of £15,000. The contribution per unit is £6.00 and total fixed costs are £24,000. Calculate the total sales volume in units required to achieve this target profit:<br>
-            Target Sales Volume: <input type="text" id="ans11" placeholder="0"> units
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            A business uses the High-Low method to analyze its semi-variable maintenance costs:<br>
-            - Highest level: 4,500 hours | Total cost: £18,000<br>
-            - Lowest level: 2,000 hours | Total cost: £10,500<br>
-            Calculate the total fixed maintenance cost component per period:<br>
-            Fixed Maintenance Cost: £ <input type="text" id="ans12" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            Budgeted production for a company is 5,000 units, but actual production is 5,500 units. When preparing a flexed budget, the fixed overhead costs should be multiplied by 1.10 to reflect the higher production level.<br>
-            Is this statement True or False?<br>
-            Answer: <select id="ans13"><option value="">Select</option><option value="w">True</option><option value="correct">False</option></select>
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            The direct materials total variance is decomposed into which of the following variance pairs?<br>
-            Variance Decomposition: <select id="ans14"><option value="">Select</option><option value="correct">Price Variance and Usage Variance</option><option value="w">Rate Variance and Efficiency Variance</option><option value="w">Expenditure Variance and Volume Variance</option></select>
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            If a business opens a period with 500 units of finished stock and closes the period with 800 units, which inventory system valuation method will report a higher operating net profit?<br>
-            Stock Valuation Method: <select id="ans15"><option value="">Select</option><option value="correct">Absorption Costing</option><option value="w">Marginal Costing</option><option value="w">Both report the same profit</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
-<script>
-    let currentQ = 1;
-    const totalQ = 15;
-
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
+function updateNavigationDisplay() {
+    document.getElementById('q-counter-display').textContent = `Question ${currentQuestionIndex} of ${totalQuestionsCount}`;
+    document.getElementById('btn-quiz-prev').disabled = (currentQuestionIndex === 1);
+    
+    const nextBtn = document.getElementById('btn-quiz-next');
+    const printBtn = document.getElementById('btn-quiz-print');
+    
+    if (currentQuestionIndex === totalQuestionsCount) {
+        nextBtn.classList.add('hidden');
+        printBtn.classList.remove('hidden');
+    } else {
+        nextBtn.classList.remove('hidden');
+        printBtn.classList.add('hidden');
     }
+}
 
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
-        }
-    }
+function navigateTab(direction) {
+    const tabs = document.querySelectorAll('.question-tab');
+    let targetIndex = currentQuestionIndex + direction;
+    
+    if (targetIndex < 1 || targetIndex > totalQuestionsCount) return;
+    
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    currentQuestionIndex = targetIndex;
+    const activeTab = document.querySelector(`.question-tab[data-qindex="${currentQuestionIndex}"]`);
+    activeTab.classList.add('active');
+    
+    updateNavigationDisplay();
+}
 
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
+function validateCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const feedbackMsg = activeTab.querySelector('.global-feedback-msg');
+    let tabPassed = true;
 
-        if (currentQ === 1) {
-            let val = document.getElementById('ans1').value.trim();
-            isCorrect = (val === '10' || val === '10.00');
-        } else if (currentQ === 2) {
-            let val = document.getElementById('ans2').value.trim();
-            isCorrect = (val === '4000');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '1800');
-        } else if (currentQ === 4) {
-            let val = document.getElementById('ans4_val').value.trim();
-            let type = document.getElementById('ans4_type').value;
-            isCorrect = ((val === '2100' || val === '2100.00') && type === 'correct');
-        } else if (currentQ === 5) {
-            let val = document.getElementById('ans5_val').value.trim();
-            let type = document.getElementById('ans5_type').value;
-            isCorrect = ((val === '2400' || val === '2400.00') && type === 'correct');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6_val').value.trim();
-            let type = document.getElementById('ans6_type').value;
-            isCorrect = ((val === '310' || val === '310.00') && type === 'correct');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7_val').value.trim();
-            let type = document.getElementById('ans7_type').value;
-            isCorrect = ((val === '450' || val === '450.00') && type === 'correct');
-        } else if (currentQ === 8) {
-            isCorrect = (document.getElementById('ans8').value === 'correct');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9_val').value.trim();
-            let type = document.getElementById('ans9_type').value;
-            isCorrect = ((val === '1500' || val === '1500.00') && type === 'correct');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '60' || val === '60.00');
-        } else if (currentQ === 11) {
-            let val = document.getElementById('ans11').value.trim();
-            isCorrect = (val === '6500');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12').value.trim();
-            isCorrect = (val === '4500' || val === '4500.00');
-        } else if (currentQ === 13) {
-            isCorrect = (document.getElementById('ans13').value === 'correct');
-        } else if (currentQ === 14) {
-            isCorrect = (document.getElementById('ans14').value === 'correct');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        const selectedRadio = activeTab.querySelector('input[type="radio"]:checked');
+        const icons = activeTab.querySelectorAll('.feedback-icon');
+        
+        icons.forEach(icon => icon.textContent = '');
+        
+        if (!selectedRadio) {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Please select an answer option before verifying.";
+            feedbackMsg.classList.remove('hidden');
+            return;
         }
 
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        const chosenBox = selectedRadio.closest('.option-box');
+        const targetIcon = chosenBox.querySelector('.feedback-icon');
+
+        if (selectedRadio.value === correctAns) {
+            targetIcon.textContent = "✔️";
+            targetIcon.style.color = "var(--success-color)";
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "Correct! Well done.";
         } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+            targetIcon.textContent = "❌";
+            targetIcon.style.color = "var(--danger-color)";
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Incorrect option selected.";
+            tabPassed = false;
+        }
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        
+        fields.forEach(field => {
+            const userVal = field.value.trim().toLowerCase();
+            const correctVal = field.getAttribute('data-ans').trim().toLowerCase();
+            
+            if (userVal !== correctVal) {
+                tabPassed = false;
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field wrong-answer-highlight";
+                } else {
+                    field.className = "multi-select-field wrong-answer-highlight";
+                }
+            } else {
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field correct-answer-highlight";
+                } else {
+                    field.className = "multi-select-field correct-answer-highlight";
+                }
+            }
+        });
+
+        feedbackMsg.classList.remove('hidden');
+        if (tabPassed) {
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "All fields correct! Exceptional work.";
+        } else {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Some fields are incorrect. Review your accounting logic.";
         }
     }
+    feedbackMsg.classList.remove('hidden');
+}
+function showCurrentSolution() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
 
-    updateButtons();
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        activeTab.querySelectorAll('.option-box').forEach(box => {
+            const radio = box.querySelector('input[type="radio"]');
+            if (radio.value === correctAns) {
+                box.className = "option-box correct-answer-highlight";
+            }
+        });
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            const targetAns = field.getAttribute('data-ans');
+            field.value = targetAns;
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field correct-answer-highlight";
+            } else {
+                field.className = "multi-select-field correct-answer-highlight";
+            }
+        });
+    }
+
+    if (solutionPanel) solutionPanel.classList.remove('hidden');
+}
+
+function resetCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    
+    activeTab.querySelector('.global-feedback-msg').classList.add('hidden');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
+    if (solutionPanel) solutionPanel.classList.add('hidden');
+
+    if (qType === "radio") {
+        activeTab.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        activeTab.querySelectorAll('.option-box').forEach(box => box.className = "option-box");
+        activeTab.querySelectorAll('.feedback-icon').forEach(icon => icon.textContent = '');
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            field.value = '';
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field";
+            } else {
+                field.className = "multi-select-field";
+            }
+        });
+    }
+}
+
+function triggerPDFDownload() {
+    const oldTitle = document.title;
+    document.title = "AAT_Level3_Chapter3_Test1_Report";
+    window.print();
+    document.title = oldTitle;
+}
+
+// OPERAZIONI E LOGICA MATEMATICA CALCOLATRICE WIDGET
+function toggleCalcWidget() {
+    const widget = document.getElementById('calc-widget');
+    widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
+}
+function pressChar(c) {
+    const p = document.getElementById('calc-display-panel');
+    p.value = (p.value === '0') ? c : p.value + c;
+}
+function pressClear() { document.getElementById('calc-display-panel').value = '0'; }
+function pressPercent() {
+    const p = document.getElementById('calc-display-panel');
+    let val = parseFloat(p.value);
+    if (!isNaN(val)) p.value = val / 100;
+}
+function pressMathOp(op) {
+    const p = document.getElementById('calc-display-panel');
+    let val = parseFloat(p.value);
+    if (isNaN(val)) return;
+    if (op === 'sqrt') p.value = Math.sqrt(val);
+    if (op === 'pow') p.value = Math.pow(val, 2);
+}
+function executeCalc() {
+    const p = document.getElementById('calc-display-panel');
+    try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
+}
+
+// REALE TRASCINAMENTO DRAG AND DROP CALCOLATRICE WIDGET
+const dragWidget = document.getElementById("calc-widget");
+const dragHandle = document.getElementById("calc-drag-handle");
+let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+dragHandle.addEventListener("mousedown", dragStart);
+document.addEventListener("mouseup", dragEnd);
+document.addEventListener("mousemove", drag);
+
+function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+    if (e.target === dragHandle) activeDrag = true;
+}
+function dragEnd() { activeDrag = false; }
+function drag(e) {
+    if (activeDrag) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        dragWidget.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+}
 </script>
-
 </body>
 </html>
