@@ -3,308 +3,954 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethics for Accountants - Test One</title>
+    <title>AAT Level 3 Advanced Diploma - Chapter 5 Test One</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --danger-color: #DC2626;
+            --success-color: #059669;
+            --highlight-green: #DCFCE7;
+            --highlight-red: #FEE2E2;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e3e3e3;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #ffffff;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
+            padding: 3rem 1rem;
             line-height: 1.6;
-            color: #222222;
         }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
+
+        .test-container {
+            background-color: var(--bubble-white-bg);
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            position: relative;
         }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
-        }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
+
+        .test-header-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
         }
-        .btn-action {
-            background-color: #f0f0f0;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
+
+        .test-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .question-counter-label {
+            font-size: 0.9rem;
+            color: var(--l3-cyan-dark);
+            font-weight: 600;
+        }
+        /* STRUTTURA SEQUENZIALE QUESTION TABS */
+        .question-tab {
+            display: none;
+            flex-direction: column;
+        }
+        .question-tab.active {
+            display: flex;
+        }
+
+        .task-instruction-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .task-interactive-body {
+            background-color: #FAFAFA;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* OPZIONI DI SELEZIONE RADIO (TIPO A) */
+        .option-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            color: #333333;
+            margin-bottom: 0.75rem;
+            transition: all 0.15s ease;
         }
-        .btn-action:hover {
-            background-color: #e0e0e0;
+        .option-box:hover { background-color: #F9FAFB; }
+        .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
+        .feedback-icon { font-weight: 700; font-size: 1.1rem; }
+
+        /* TABELLE FINANZIARIE PER REGIMI IVA */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #FFFFFF;
         }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
+        .financial-table th {
+            background-color: var(--l3-cyan-dark);
+            color: #FFFFFF;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l3-cyan-dark);
+        }
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .numeric-field, .multi-input-field, .multi-select-field, .select-input {
+            width: 100%;
+            padding: 0.45rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+        }
+        .numeric-field { font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .numeric-field:focus, .multi-input-field:focus, .multi-select-field:focus {
+            border-color: var(--l3-cyan-primary);
+            outline: none;
+            background-color: var(--l3-cyan-light);
+        }
+        /* GEOMETRIA RIGIDA PULSANTIERA INFERIORE APPENDICE TECNICA */
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            border-top: 2px solid #E5E7EB;
+            padding-top: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s ease;
+        }
+        .btn-blue { background-color: #2563EB; color: #FFFFFF; }
+        .btn-green { background-color: #059669; color: #FFFFFF; }
+        .btn-red { background-color: #DC2626; color: #FFFFFF; }
+        .btn-gray { background-color: #4B5563; color: #FFFFFF; }
+        .btn-purple { background-color: #7C3AED; color: #FFFFFF; }
+        .btn-gray:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .global-feedback-msg {
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        .msg-correct { background-color: #DEF7EC; color: #065F46; }
+        .msg-incorrect { background-color: #FDE8E8; color: #9B1C1C; }
+
+        .solution-note-panel {
+            margin-top: 1.25rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--l3-cyan-primary);
+            background-color: var(--l3-cyan-light);
+            font-size: 0.9rem;
+            color: #0369A1;
+        }
+
+        .correct-answer-highlight { background-color: var(--highlight-green) !important; border-color: var(--success-color) !important; }
+        .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
+        .hidden { display: none !important; }
+
+        /* A. CALCOLATRICE: TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA */
+        #calc-toggle-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            z-index: 1999;
+            font-size: 20px;
+            transition: transform 0.2s ease, background 0.2s ease;
+            border: none;
+        }
+        #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
+
+        /* B. CALCOLATRICE: CORPO DEL WIDGET VETRATO SCURO */
+        #calc-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 240px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            z-index: 2000;
+            display: none;
+            cursor: move;
+            box-sizing: border-box;
+        }
+
+        /* C. CALCOLATRICE: HEADER CON DICITURA BRAND "Osborne Calc" */
+        #calc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            user-select: none;
+        }
+        #calc-header span {
+            color: #64748B;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #calc-close-btn {
+            background: transparent;
+            border: none;
+            color: #EF4444;
             font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
         }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
+
+        /* D. CALCOLATRICE: DISPLAY LAYOUT NERO/CIANO NEON */
+        #calc-screen {
+            width: 100%;
+            height: 45px;
+            background: #000000;
+            border-radius: 8px;
+            color: #00FFFF;
+            text-shadow: 0 0 10px #00FFFF;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: right;
+            padding: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border: 1px solid #00FFFF;
+            box-sizing: border-box;
+        }
+
+        /* E. CALCOLATRICE: GRID LAYOUT */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .calc-btn {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: white;
+            background: #334155;
+            text-align: center;
+            transition: background 0.1s ease;
+        }
+        .calc-btn:hover { background: #475569; }
+        .calc-btn.op {
+            background: rgba(0, 255, 255, 0.05);
+            color: #00FFFF;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.15); }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="header-title">Ethics for Accountants - Test One</div>
+    <div class="test-container">
+        
+        <div class="test-header-row">
+            <div class="test-title">BTRN - LEVEL 3 CHAPTER 5: SPREADSHEETS & FINAL ACCOUNTS (TEST ONE)</div>
+            <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
+        </div>
 
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            An accountant is asked by a director to inflate the company's valuation to secure a bank loan. Complying with this request would directly violate which fundamental ethical principle?<br>
-            Ethical Principle: <select id="ans1"><option value="">Select</option><option value="correct">Integrity</option><option value="w">Confidentiality</option><option value="w">Professional Behaviour</option></select>
+        <form id="quiz-form" onsubmit="event.preventDefault();">
+
+            <!-- QUESTION 1: TIPO "multi-select" (Advanced Excel Accounting Logic) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-select">
+                <div class="task-instruction-text">1. Complete the logic statements regarding the structural assembly of final accounts components inside modeling spreadsheets.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        To execute a dynamic lookup that fetches an account's trial balance debit row from an independent ledger code data table array, the most resilient accounting syntax utilizes 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="vlookup">
+                            <option value="">-- Function --</option>
+                            <option value="vlookup">VLOOKUP / XLOOKUP</option>
+                            <option value="sumif">SUMIF</option>
+                            <option value="countif">COUNTIF</option>
+                        </select>. 
+                        Conversely, to automatically aggregate cumulative payroll expenses associated only with a specific cost center code row, you must implement 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="sumif">
+                            <option value="">-- Function --</option>
+                            <option value="vlookup">VLOOKUP</option>
+                            <option value="sumif">SUMIF</option>
+                        </select>.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> VLOOKUP/XLOOKUP performs cross-sectional data retrieval based on specific codes. SUMIF/SUMIFS aggregates numeric strings dynamically that match strict cell filtering criteria.
+                </div>
+            </div>
+
+            <!-- QUESTION 2: TIPO "multi-input" (Dynamic Formula Reconciliation) -->
+            <div class="question-tab" data-qindex="2" data-type="multi-input">
+                <div class="task-instruction-text">2. Cell B10 contains the Gross Sales revenue (£120,000) and cell B11 contains the Cost of Goods Sold (£72,000). Input the exact resulting values that an automated spreadsheet will display for the following mathematical accounting fields.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Spreadsheet Formula Output Line</th>
+                                <th style="width: 250px;">Displayed Output Base (£ / %)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Result of Gross Profit cell formula (=B10-B11)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="48,000" placeholder="0"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Result of Gross Profit Margin percentage formula (=(B10-B11)/B10*100)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="40" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Gross Profit = £120,000 - £72,000 = £48,000. Gross Profit Margin percentage = (£48,000 / £120,000) * 100 = 40%.
+                </div>
+            </div>
+<!-- QUESTION 3: TIPO "multi-select" (Suspense Account Discrepancies) -->
+            <div class="question-tab" data-qindex="3" data-type="multi-select">
+                <div class="task-instruction-text">3. Complete the auditing parameters regarding the removal of ledger sbilanciamenti (trial balance errors) inside the spreadsheet model.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        An error where a purchase invoice of £500 was correctly debited to the motor vehicles account but entered as £50 on the credit side of the bank ledger creates a trial balance sbilanciamento that requires a temporary 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="suspense">
+                            <option value="">-- Account --</option>
+                            <option value="suspense">Suspense Account entry</option>
+                            <option value="control">Control Account entry</option>
+                        </select> 
+                        to balance the columns. Correcting this specific transposition error involves 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="crediting">
+                            <option value="">-- Action --</option>
+                            <option value="debiting">Debiting</option>
+                            <option value="crediting">Crediting</option>
+                        </select> the suspense line by £450.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Single-sided posting or digital keying entry errors throw the trial balance out of alignment. Resolving this requires clearing the differential value (£500 - £50 = £450) out of the Suspense account.
+                </div>
+            </div>
+
+            <!-- QUESTION 4: TIPO "input" (Trial Balance Column Balancing) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="23500">
+                <div class="task-instruction-text">4. A spreadsheet model reflects total draft debit column balances of £145,000 and total credit column balances of £121,500. What is the precise initial balancing balance required inside the opening Suspense Account cell to achieve perfect mathematical equality? (Input the numerical integer value only, no commas)</div>
+                <div class="task-interactive-body">
+                    <div style="max-width: 200px;">
+                        <input type="text" class="numeric-field" style="text-align: center;" name="q4" placeholder="0">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Suspense balance = Total Debits (£145,000) minus Total Credits (£121,500) = £23,500. It enters as a credit balance to bind the columns to equal sums.
+                </div>
+            </div>
+
+            <!-- QUESTION 5: TIPO "radio" (Error of Commission Definition) -->
+            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">5. An invoice for office utility overheads is debited to the cleaning expense account instead of the electricity expense account. How is this error classified within spreadsheet audit reviews?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="A"> Error of Commission</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="B"> Error of Principle</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="C"> Error of Omission</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> An error of commission occurs when an entry is posted to the wrong personal or nominal account ledger, but within the correct overarching class of accounts (both are operational overheads).
+                </div>
+            </div>            <!-- QUESTION 6: TIPO "multi-select" (Error of Principle Criteria) -->
+            <div class="question-tab" data-qindex="6" data-type="multi-select">
+                <div class="task-instruction-text">6. Complete the definitions separating structural error types during extended trial balance spreadsheets assembly.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        Posting the procurement cost of an industrial plant machinery asset directly into the repairs expense account constitutes an 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="principle">
+                            <option value="">-- Classification --</option>
+                            <option value="commission">Error of Commission</option>
+                            <option value="principle">Error of Principle</option>
+                        </select> 
+                        because it breaks structural accounting rules. This type of error leaves the trial balance columns completely 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="balanced">
+                            <option value="">-- Condition --</option>
+                            <option value="balanced">Balanced (Equal)</option>
+                            <option value="unbalanced">Unbalanced (Unequal)</option>
+                        </select>, hiding the mistake from automated formulas.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> An error of principle breaches fundamental accounting principles (such as confusing asset capital value with standard revenue expenses). Because correct double-entry totals match, columns remain balanced.
+                </div>
+            </div>
+
+            <!-- QUESTION 7: TIPO "multi-input" (Closing Stock Spreadsheet Adjustment) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-input">
+                <div class="task-instruction-text">7. At year-end, physical closing inventory is valued at £18,500. This data must be populated across the Extended Trial Balance columns. Complete the required field destinations.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Extended Trial Balance Column Layer</th>
+                                <th style="width: 250px;">Required Input Amount (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Closing Stock Value row entry under the Statement of Profit or Loss (Credit column)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="18,500" placeholder="0"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Closing Stock Value row entry under the Statement of Financial Position (Debit column)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="18,500" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Closing stock requires dual placement on the worksheet: it credits the SPL columns to reduce the cost of sales, and debits the SoFP columns to record the asset value.
+                </div>
+            </div>
+            <!-- QUESTION 8: TIPO "multi-input" (Draft Profit Correction Matrix) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <div class="task-instruction-text">8. An entity tracks a draft net profit figure of £45,000 inside the spreadsheet model. An audit check uncovers two year-end mistakes: an unrecorded accrued electricity expense of £1,200, and a client insurance prepayment of £400 that was completely omitted. Compute the adjusted net profit.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Financial Statement Correction Item</th>
+                                <th style="width: 250px;">Adjusted Net Profit (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Final Recalculated Net Profit Balance after adjustment additions/deductions</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="44,200" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Profit adjustment logic: Draft Profit (£45,000) minus the unrecorded accrued utility cost overhead (£1,200) plus the omitted insurance prepaid asset value (£400) = Final Corrected Profit of £44,200.
+                </div>
+            </div>
+
+            <!-- QUESTION 9: TIPO "radio" (Compensating Error Mechanics) -->
+            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">9. What operational situation defines a 'Compensating Error' during spreadsheet trial balance cross-checks?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="A"> An invoice entry is completely forgotten and left out of both debit and credit columns.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="B"> A transaction is entered into the wrong supplier personal folder.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="C"> Two separate, independent errors occur on opposite sides of the ledger, completely canceling each other out arithmetically.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Compensating errors involve separate errors (e.g., overstating a purchase debit by £100 and understating a cash credit by £100) that balance out arithmetically, hiding the mismatch from automated check formulas.
+                </div>
+            </div>
+
+            <!-- QUESTION 10: TIPO "multi-select" (Logical IF Statements) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-select">
+                <div class="task-instruction-text">10. Complete the description of spreadsheet conditional functions used to trigger financial compliance flags.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        To evaluate if the final trial balance debit and credit sums match, an accountant implements an 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="if">
+                            <option value="">-- Function --</option>
+                            <option value="if">IF statement formula</option>
+                            <option value="and">AND statement formula</option>
+                        </select> 
+                        which outputs the string text "Balanced" if the cells match, or "Unbalanced" if a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="suspense">
+                            <option value="">-- Balance --</option>
+                            <option value="suspense">Suspense balance remains</option>
+                            <option value="capital">Capital balance shifts</option>
+                        </select> to instantly flag key ledger data mismatches.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The logical =IF(condition, value_if_true, value_if_false) formula checks data entry points. If the column sums show an absolute difference, it triggers the warning text flag.
+                </div>
+            </div>
+            <!-- QUESTION 11: TIPO "radio" (Extended Trial Balance Structure) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">11. Inside an Extended Trial Balance (ETB) spreadsheet sheet, what mathematical flow determines how nominal ledger balances transfer across the worksheet columns?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="A"> Every balance must be multiplied by the quarterly VAT standard percentage rate first.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="B"> Raw ledger balances are cross-adjusted with year-end columns, then routed to either the SPL columns or the SoFP columns.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="C"> All costs and revenues are permanent and cannot be cross-adjusted once entered.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The ETB maps the final accounting pipeline: initial trial balance balances are cross-adjusted with year-end accruals/prepayments, and the net adjusted balances are routed to the final financial statements columns.
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "multi-select" (Bank Reconciliation Formatting) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-select">
+                <div class="task-instruction-text">12. Complete the logical parameters used to reconcile differences between the cash book spreadsheet cell and the bank statement data.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        Unpresented checks issued by the firm to vendors must be 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="deducted">
+                            <option value="">-- Action --</option>
+                            <option value="added">Added to</option>
+                            <option value="deducted">Deducted from</option>
+                        </select> 
+                        the balance statement balance, whereas outstanding bank deposits not yet cleared by the bank must be 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="added">
+                            <option value="">-- Action --</option>
+                            <option value="added">Added to</option>
+                            <option value="deducted">Deducted from</option>
+                        </select> that statement balance to achieve perfect reconciliation.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Unpresented checks have been deducted from the cash book but haven't hit the bank statement yet (subtract from statement balance). Outstanding deposits have been added to the cash book but are pending at the bank (add to statement balance).
+                </div>
+            </div>
+
+            <!-- QUESTION 13: TIPO "multi-input" (Reconciling Suspense Ledger Records) -->
+            <div class="question-tab" data-qindex="13" data-type="multi-input">
+                <div class="task-instruction-text">13. An unadjusted Suspense Account cell shows a credit balance of £1,500. Two errors are found: an insurance refund receipt of £500 was debited to bank but omitted from insurance income, and a equipment hire payment of £1,000 was debited twice to overheads. Calculate the adjusted suspense balance.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Suspense Resolution Audit Field</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Final Remaining Suspense Account balance cell value after adjustments</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="0" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> 1) Insurance correction credits insurance income and debits suspense by £500 (Credit drops to £1,000). 2) Rent entry correction credits rent expense and debits suspense by £1,000, bringing the balance to exactly 0.
+                </div>
+            </div>
+            <!-- QUESTION 14: TIPO "radio" (Data Validation Rule Enforcement) -->
+            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">14. What spreadsheet safety mechanism restricts inputs to an exact list of valid general ledger nominal codes, preventing manual typing mistakes?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="A"> Conditional Format Highlighting</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="B"> Data Validation Dropdown Lists</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="C"> Automated Cell Freeze Protection</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Data Validation tools allow designers to lock input fields to predefined lookup ranges, preventing users from entering non-existent ledger accounts.
+                </div>
+            </div>
+
+            <!-- QUESTION 15: TIPO "multi-input" (Integrated Worksheet Accounting Review) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <div class="task-instruction-text">15. Final accounting worksheet check: Total adjusted revenue credits = £250,000. Total adjusted operating cost debits = £185,000. Compute the final statement balancing transfer line.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Extended Trial Balance Summary Row</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Final Net Profit balancing amount cell to clear to the capital section</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="65,000" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The net profit margin value is found by calculating the difference between total worksheet income credits and cost debits (£250,000 - £185,000 = £65,000). It acts as the balancing line that links the statement sections.
+                </div>
+            </div>
+
+        </form>
+
+        <!-- PULSANTIERA DI CONTROLLO INTERNA ALLA BOLLA BIANCA (APPENDICE TECNICA) -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button type="button" class="btn btn-blue" id="btn-quiz-submit" onclick="validateCurrentTab()">Am I right?</button>
+                <button type="button" class="btn btn-green" id="btn-quiz-solution" onclick="showCurrentSolution()">Show Solution</button>
+                <button type="button" class="btn btn-red" onclick="resetCurrentTab()">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button type="button" class="btn btn-gray" id="btn-quiz-prev" onclick="navigateTab(-1)">Previous Question</button>
+                <button type="button" class="btn btn-gray" id="btn-quiz-next" onclick="navigateTab(1)">Next Question</button>
+                <button type="button" class="btn btn-purple hidden" id="btn-quiz-print" onclick="triggerPDFDownload()">Download as PDF</button>
+            </div>
+        </div>
+
+    </div> <!-- Fine .test-container -->
+    <!-- TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA SCHERMO -->
+    <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
+
+    <!-- WIDGET CALCOLATRICE VETRATO "Osborne Calc" -->
+    <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" onclick="toggleCalcWidget()" title="Hide">✕</button>
+        </div>
+        <input type="text" id="calc-screen" readonly value="0">
+        <div class="calc-grid">
+            <button type="button" class="calc-btn op" onclick="pressClear()">C</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('pow')">x²</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('sqrt')">√</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('/')">/</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('7')">7</button>
+            <button type="button" class="calc-btn" onclick="pressChar('8')">8</button>
+            <button type="button" class="calc-btn" onclick="pressChar('9')">9</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('*')">*</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('4')">4</button>
+            <button type="button" class="calc-btn" onclick="pressChar('5')">5</button>
+            <button type="button" class="calc-btn" onclick="pressChar('6')">6</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('-')">-</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('1')">1</button>
+            <button type="button" class="calc-btn" onclick="pressChar('2')">2</button>
+            <button type="button" class="calc-btn" onclick="pressChar('3')">3</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('+')">+</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('0')">0</button>
+            <button type="button" class="calc-btn" onclick="pressChar('.')">.</button>
+            <button type="button" class="calc-btn op" onclick="pressPercent()">%</button>
+            <button type="button" class="calc-btn" style="background:#059669; color:white;" onclick="executeCalc()">=</button>
         </div>
     </div>
-
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            A senior auditor is reviewing the financial statements of a company where their spouse works as the Financial Director. What category of ethical threat does this specific scenario represent?<br>
-            Type of Threat: <select id="ans2"><option value="">Select</option><option value="w">Self-review threat</option><option value="correct">Familiarity threat</option><option value="w">Advocacy threat</option></select>
-        </div>
-    </div>
-
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            Under the UK Proceeds of Crime Act (POCA), a finance professional discovers a suspicious transaction indicating money laundering but fails to report it to the MLRO. Under the maximum statutory guidelines, what is the maximum prison sentence for the offense of "failure to disclose"?<br>
-            Maximum Sentence: <input type="text" id="ans3" placeholder="0"> years
-        </div>
-    </div>
-
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            An accountant discovers that a client is engaged in tax evasion. If the accountant explicitly warns the client that they are under suspicion or that a report is being prepared for the authorities, what criminal offense has the accountant committed?<br>
-            Offense Type: <select id="ans4"><option value="">Select</option><option value="w">Laudatory Disclosure</option><option value="correct">Tipping Off</option><option value="w">Market Abuse</option></select>
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            A firm is offered an audit contract worth 45% of its total annual fee income from a single client. This extreme financial dependency creates a major ethical dilemma. What type of threat does this pose?<br>
-            Type of Threat: <select id="ans5"><option value="">Select</option><option value="correct">Self-interest threat</option><option value="w">Intimidation threat</option><option value="w">Self-review threat</option></select>
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            Under Customer Due Diligence (CDD) procedures, a firm must identify the Beneficial Owner of a corporate client. A beneficial owner is legally defined as anyone who holds more than what minimum percentage of the company's shares or voting rights?<br>
-            Minimum Percentage: <input type="text" id="ans6" placeholder="0"> %
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            An accounting technician is asked by their employer to calculate a tax provision using a method they know is outdated and incorrect. The principle of "Professional Competence and Due Care" requires the technician to refuse the task until they receive adequate training.<br>
-            Is this statement True or False?<br>
-            Answer: <select id="ans7"><option value="">Select</option><option value="correct">True</option><option value="w">False</option></select>
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            A professional accountant receives an expensive luxury holiday package as a gift from a supplier shortly before a major contract renewal audit. This situation primarily threatens the accountant's:<br>
-            Ethical Principle: <select id="ans8"><option value="">Select</option><option value="correct">Objectivity</option><option value="w">Confidentiality</option><option value="w">Professional Behaviour</option></select>
-        </div>
-    </div>
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            An accountant speaks with a friend at a social gathering and accidentally discloses sensitive financial restructuring details about a mutual corporate client. This directly violates which fundamental principle?<br>
-            Ethical Principle: <select id="ans9"><option value="">Select</option><option value="w">Integrity</option><option value="correct">Confidentiality</option><option value="w">Professional Behaviour</option></select>
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A corporate entity offers a small bribe to a local official to bypass planning regulations. Under the UK Bribery Act, what is the maximum statutory penalty for an individual found guilty of a bribery offense on indictment?<br>
-            Maximum Penalty: <input type="text" id="ans10" placeholder="0"> years imprisonment
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            An accounting firm has been asked to help promote and defend a client's position in a public court case regarding tax structures. This scenario creates a major conflict of interest known as an:<br>
-            Type of Threat: <select id="ans11"><option value="">Select</option><option value="w">Intimidation threat</option><option value="correct">Advocacy threat</option><option value="w">Self-review threat</option></select>
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            Under the Data Protection Act (GDPR), if an accounting firm suffers a serious data breach involving client financial folders, it must report the incident to the Information Commissioner's Office (ICO) within a maximum of how many hours after becoming aware of it?<br>
-            Time Limit: <input type="text" id="ans12" placeholder="0"> hours
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            A client pressures an accountant to sign off on incomplete accounts, threatening to terminate all professional contracts if they refuse. This aggressive stance creates an:<br>
-            Type of Threat: <select id="ans13"><option value="">Select</option><option value="w">Self-interest threat</option><option value="w">Familiarity threat</option><option value="correct">Intimidation threat</option></select>
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            The formal document submitted to the National Crime Agency (NCA) by a Money Laundering Reporting Officer (MLRO) when money laundering is suspected is legally known as a SAR. What does the acronym SAR stand for?<br>
-            Full Name (e.g., Suspicious Activity Report): <input type="text" id="ans14" placeholder="Suspicious Activity Report" style="text-align: left; width: 220px;">
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            An accountant leaves a professional institute but continues to use the registered letters and designation on their business cards to attract wealthier clients. This behavior directly breaches the principle of:<br>
-            Ethical Principle: <select id="ans15"><option value="">Select</option><option value="w">Objectivity</option><option value="w">Competence</option><option value="correct">Professional Behaviour</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
 <script>
-    let currentQ = 1;
-    const totalQ = 15;
+let currentQuestionIndex = 1;
+const totalQuestionsCount = 15;
 
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
+function updateNavigationDisplay() {
+    document.getElementById('q-counter-display').textContent = `Question ${currentQuestionIndex} of ${totalQuestionsCount}`;
+    document.getElementById('btn-quiz-prev').disabled = (currentQuestionIndex === 1);
+    
+    const nextBtn = document.getElementById('btn-quiz-next');
+    const printBtn = document.getElementById('btn-quiz-print');
+    
+    if (currentQuestionIndex === totalQuestionsCount) {
+        nextBtn.classList.add('hidden');
+        printBtn.classList.remove('hidden');
+    } else {
+        nextBtn.classList.remove('hidden');
+        printBtn.classList.add('hidden');
     }
+}
 
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
-        }
-    }
+function navigateTab(direction) {
+    const tabs = document.querySelectorAll('.question-tab');
+    let targetIndex = currentQuestionIndex + direction;
+    
+    if (targetIndex < 1 || targetIndex > totalQuestionsCount) return;
+    
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    currentQuestionIndex = targetIndex;
+    const activeTab = document.querySelector(`.question-tab[data-qindex="${currentQuestionIndex}"]`);
+    activeTab.classList.add('active');
+    
+    updateNavigationDisplay();
+}
 
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
+function validateCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const feedbackMsg = activeTab.querySelector('.global-feedback-msg');
+    let tabPassed = true;
 
-        if (currentQ === 1) {
-            isCorrect = (document.getElementById('ans1').value === 'correct');
-        } else if (currentQ === 2) {
-            isCorrect = (document.getElementById('ans2').value === 'correct');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '5');
-        } else if (currentQ === 4) {
-            isCorrect = (document.getElementById('ans4').value === 'correct');
-        } else if (currentQ === 5) {
-            isCorrect = (document.getElementById('ans5').value === 'correct');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6').value.trim();
-            isCorrect = (val === '25');
-        } else if (currentQ === 7) {
-            isCorrect = (document.getElementById('ans7').value === 'correct');
-        } else if (currentQ === 8) {
-            isCorrect = (document.getElementById('ans8').value === 'correct');
-        } else if (currentQ === 9) {
-            isCorrect = (document.getElementById('ans9').value === 'correct');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '10');
-        } else if (currentQ === 11) {
-            isCorrect = (document.getElementById('ans11').value === 'correct');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12').value.trim();
-            isCorrect = (val === '72');
-        } else if (currentQ === 13) {
-            isCorrect = (document.getElementById('ans13').value === 'correct');
-        } else if (currentQ === 14) {
-            let val = document.getElementById('ans14').value.trim().toLowerCase();
-            isCorrect = (val === 'suspicious activity report');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        const selectedRadio = activeTab.querySelector('input[type="radio"]:checked');
+        const icons = activeTab.querySelectorAll('.feedback-icon');
+        
+        icons.forEach(icon => icon.textContent = '');
+        
+        if (!selectedRadio) {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Please select an answer option before verifying.";
+            feedbackMsg.classList.remove('hidden');
+            return;
         }
 
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        const chosenBox = selectedRadio.closest('.option-box');
+        const targetIcon = chosenBox.querySelector('.feedback-icon');
+
+        if (selectedRadio.value === correctAns) {
+            targetIcon.textContent = "✔️";
+            targetIcon.style.color = "var(--success-color)";
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "Correct! Well done.";
         } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+            targetIcon.textContent = "❌";
+            targetIcon.style.color = "var(--danger-color)";
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Incorrect option selected.";
+            tabPassed = false;
+        }
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        
+        fields.forEach(field => {
+            const userVal = field.value.trim().toLowerCase();
+            const correctVal = field.getAttribute('data-ans').trim().toLowerCase();
+            
+            if (userVal !== correctVal) {
+                tabPassed = false;
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field wrong-answer-highlight";
+                } else {
+                    field.className = "multi-select-field wrong-answer-highlight";
+                }
+            } else {
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field correct-answer-highlight";
+                } else {
+                    field.className = "multi-select-field correct-answer-highlight";
+                }
+            }
+        });
+
+        feedbackMsg.classList.remove('hidden');
+        if (tabPassed) {
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "All fields correct! Exceptional work.";
+        } else {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Some fields are incorrect. Review your accounting logic.";
         }
     }
+    feedbackMsg.classList.remove('hidden');
+}
+function showCurrentSolution() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
 
-    updateButtons();
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        activeTab.querySelectorAll('.option-box').forEach(box => {
+            const radio = box.querySelector('input[type="radio"]');
+            if (radio.value === correctAns) {
+                box.className = "option-box correct-answer-highlight";
+            }
+        });
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            const targetAns = field.getAttribute('data-ans');
+            field.value = targetAns;
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field correct-answer-highlight";
+            } else {
+                field.className = "multi-select-field correct-answer-highlight";
+            }
+        });
+    }
+
+    if (solutionPanel) solutionPanel.classList.remove('hidden');
+}
+
+function resetCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    
+    activeTab.querySelector('.global-feedback-msg').classList.add('hidden');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
+    if (solutionPanel) solutionPanel.classList.add('hidden');
+
+    if (qType === "radio") {
+        activeTab.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        activeTab.querySelectorAll('.option-box').forEach(box => box.className = "option-box");
+        activeTab.querySelectorAll('.feedback-icon').forEach(icon => icon.textContent = '');
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            field.value = '';
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field";
+            } else {
+                field.className = "multi-select-field";
+            }
+        });
+    }
+}
+
+function triggerPDFDownload() {
+    const oldTitle = document.title;
+    document.title = "AAT_Level3_Chapter5_Test1_Report";
+    window.print();
+    document.title = oldTitle;
+}
+
+// OPERAZIONI E LOGICA MATEMATICA CALCOLATRICE WIDGET
+function toggleCalcWidget() {
+    const widget = document.getElementById('calc-widget');
+    widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
+}
+function pressChar(c) {
+    const p = document.getElementById('calc-screen');
+    p.value = (p.value === '0') ? c : p.value + c;
+}
+function pressClear() { document.getElementById('calc-screen').value = '0'; }
+function pressPercent() {
+    const p = document.getElementById('calc-screen');
+    let val = parseFloat(p.value);
+    if (!isNaN(val)) p.value = val / 100;
+}
+function pressMathOp(op) {
+    const p = document.getElementById('calc-screen');
+    let val = parseFloat(p.value);
+    if (isNaN(val)) return;
+    if (op === 'sqrt') p.value = Math.sqrt(val);
+    if (op === 'pow') p.value = Math.pow(val, 2);
+}
+function executeCalc() {
+    const p = document.getElementById('calc-screen');
+    try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
+}
+
+// LOGICA REALE DRAG MECCANICA TRASCINABILE
+const dragWidget = document.getElementById("calc-widget");
+const dragHandle = document.getElementById("calc-header");
+let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+dragHandle.addEventListener("mousedown", dragStart);
+document.addEventListener("mouseup", dragEnd);
+document.addEventListener("mousemove", drag);
+
+function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+    if (e.target.closest('#calc-header') && e.target !== document.getElementById('calc-close-btn')) activeDrag = true;
+}
+function dragEnd() { activeDrag = false; }
+function drag(e) {
+    if (activeDrag) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        dragWidget.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+}
 </script>
-
 </body>
 </html>
