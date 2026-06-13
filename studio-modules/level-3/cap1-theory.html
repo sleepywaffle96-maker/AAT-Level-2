@@ -1,150 +1,101 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 - Chapter 1: Theory Book</title>
-    <style>
-        :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --cyan: #00f2fe;
-            --teal: #4facfe;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-        }
+<!-- CAPITOLO 3 TEORIA - MACROBLOCCO 1 DI 3 -->
+<div class="aat-theory-block" id="btrn-chap3-theory-p1">
+    <h3 style="color: #059669; border-bottom: 2px solid #059669; padding-bottom: 0.6rem; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.3rem;">
+        Chapter 3.1: The Three-Column Cash Book & Main Bank Ledger Architecture
+    </h3>
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.7;
-            margin: 0;
-            padding: 20px;
-        }
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
+        Nel syllabus ufficiale AAT Level 2, il <strong>Cash Book</strong> occupa una posizione strutturale unica all'interno del sistema a partita doppia. Esso opera contemporaneamente come un <em>Book of Prime Entry</em> (libro di prima nota) e come un conto di controllo integrato nel General Ledger (Ledger Account). Ogni transazione finanziaria legata a flussi di liquidità della cassa principale o dei conti correnti bancari deve transitare obbligatoriamente da questo libro.
+    </p>
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            color: var(--cyan);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            color: var(--cyan);
-            font-size: 2.2rem;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 12px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            color: var(--teal);
-            font-size: 1.5rem;
-            margin-top: 35px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
-        }
-
-        h3 {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            margin-top: 25px;
-        }
-
-        p {
-            margin-bottom: 18px;
-            text-align: justify;
-            color: #e5e7eb;
-        }
-
-        .textbook-note {
-            background: rgba(79, 172, 254, 0.05);
-            border-left: 4px solid var(--teal);
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 0 6px 6px 0;
-            font-style: italic;
-            color: #d1d5db;
-        }
-
-        ul, ol {
-            padding-left: 25px;
-            margin-bottom: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            color: #e5e7eb;
-        }
-
-        strong {
-            color: var(--cyan);
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
+    <h4 style="color: #047857; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.1rem;">1. La Struttura Matematica del Three-Column Cash Book</h4>
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
+        Per monitorare efficientemente i diversi canali di pagamento e incasso, il Cash Book si estende orizzontalmente sia sul lato <strong>Debit (Receipts)</strong> che sul lato <strong>Credit (Payments)</strong>, implementando tre colonne monetarie distinte:
+    </p>
     
-    <h1>Chapter 1: Business Awareness — Theory Book</h1>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; background: #FAFAFA; border: 1px solid #E5E7EB;">
+        <thead>
+            <tr style="background: #047857; color: #FFFFFF;">
+                <th style="padding: 0.6rem; text-align: left; border: 1px solid #047857;">Monetary Column</th>
+                <th style="padding: 0.6rem; text-align: left; border: 1px solid #047857;">Debit Side Function (Receipts)</th>
+                <th style="padding: 0.6rem; text-align: left; border: 1px solid #047857;">Credit Side Function (Payments)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 0.6rem; font-weight: 600; border: 1px solid #E5E7EB;">Cash Column</td>
+                <td style="padding: 0.6rem; border: 1px solid #E5E7EB;">Incassi in contanti fisici (banconote/monete) nella cassaforte centrale.</td>
+                <td style="padding: 0.6rem; border: 1px solid #E5E7EB;">Esborsi di contante fisico o versamenti eseguiti in banca (Contra).</td>
+            </tr>
+            <tr style="background: #FFFFFF;">
+                <td style="padding: 0.6rem; font-weight: 600; border: 1px solid #E5E7EB;">Bank Column</td>
+                <td style="padding: 0.6rem; border: 1px solid #E5E7EB;">Bonifici (BACS/CHAPS), pagamenti con carte di debito dei clienti, assegni ricevuti.</td>
+                <td style="padding: 0.6rem; border: 1px solid #E5E7EB;">Bonifici a fornitori, Direct Debits, Standing Orders, addebiti per commissioni bancarie.</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.6rem; font-weight: 600; border: 1px solid #E5E7EB;">Discount Column</td>
+                <td style="padding: 0.6rem; border: 1px solid #E5E7EB;"><strong>Discount Allowed:</strong> Sconti di cassa concessi ai clienti per pagamenti tempestivi.</td>
+                <td style="padding: 0.6rem; border: 1px solid #E5E7EB;"><strong>Discount Received:</strong> Sconti di cassa ottenuti dai fornitori saldando in anticipo.</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <h2>1. The External Business Environment & Stakeholder Dynamics</h2>
-    <p>At Level 3, an accounting professional must look beyond individual ledger entries to understand how external economic, political, and social forces impact an organisation. Businesses do not operate in a vacuum. Changes in national interest rates, regulatory standards, or consumer trends can instantly affect cash flow forecasting and budget variances.</p>
-    
-    <p>To systematically evaluate these external influences, management accountants utilize framework tools such as **PESTLE Analysis** (Political, Economic, Social, Technological, Legal, and Environmental). Furthermore, a business must balance the competing needs of its **Stakeholders**. Internal stakeholders (such as employees and managers) seek salary growth and operational stability, whereas external stakeholders (such as shareholders, banks, HMRC, and customers) demand financial returns, debt compliance, and accurate tax transparency.</p>
+    <h4 style="color: #047857; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.1rem;">2. Il Trattamento Anomalo delle Colonne Discount</h4>
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
+        Un pilastro fondamentale dell'esame AAT Level 2 riguarda la natura tecnica delle colonne degli sconti nel Cash Book. A differenza delle colonne Cash e Bank, le colonne Discount <strong>non sono conti a partita doppia attivi all'interno del libro</strong>, ma operano esclusivamente come colonne di memoria temporanea (Memorandum Columns). I totali di fine periodo di queste colonne non si bilanciano tra loro, ma vengono trasferiti separatamente nel General Ledger: il totale dei sconti concessi (Discount Allowed) viene addebitato come costo in Dare, mentre il totale dei sconti ricevuti (Discount Received) viene accreditato come ricavo/riduzione di costo in Avere.
+    </p>
+</div>
+<!-- CAPITOLO 3 TEORIA - MACROBLOCCO 2 DI 3 -->
+<div class="aat-theory-block" id="btrn-chap3-theory-p2">
+    <h4 style="color: #047857; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.1rem; border-top: 1px dashed #E5E7EB; padding-top: 1.5rem;">
+        Chapter 3.2: The Petty Cash Book (PCB) & The Imprest System Mechanics
+    </h4>
 
-    <div class="textbook-note">
-        Syllabus Focus: A key competency in Business Awareness is identifying conflicting stakeholder interests and understanding how transparency in financial reporting maintains market trust.
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
+        Il <strong>Petty Cash Book</strong> è un libro di prima nota sussidiario utilizzato per isolare e registrare piccoli esborsi di denaro liquido (es. acquisto urgente di cancelleria, rimborsi taxi per lo staff, spese di pulizia o piccole manutenzioni). In questo modo si evita di appesantire il Cash Book principale con centinaia di transazioni di valore irrisorio.
+    </p>
+
+    <div style="background-color: #E6F4EA; border-left: 4px solid #059669; padding: 1.2rem; border-radius: 6px; margin-bottom: 1.5rem;">
+        <strong style="color: #047857; font-size: 1rem;">🛡️ Le Tre Regole d'Oro del Meccanismo Imprest:</strong>
+        <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem; margin-bottom: 0;">
+            Il sistema opera su un algoritmo contabile rigido a ciclo chiuso:<br>
+            1. <strong>The Fixed Float:</strong> All'addetto alla cassa minuta viene assegnato un fondo fisso e invariabile (es. £200.00). Questo valore rappresenta un'attività corrente (Asset) e rimane inalterato nel tempo.<br>
+            2. <strong>The Voucher Custody:</strong> Ogni uscita di cassa deve essere giustificata da un <em>Petty Cash Voucher</em> autorizzato, firmato e numerato in ordine sequenziale. In ogni istante, la somma dei contanti fisici rimasti nella cassetta (Cash in Hand) e dei voucher spesi deve eguagliare esattamente il Float fisso.<br>
+            3. <strong>The Exact Reimbursement (Top-up):</strong> Al termine del periodo di riferimento, l'addetto presenta i voucher al contabile principale. Viene emesso un assegno bancario di reintegro dal conto principale. L'importo di questo assegno <strong>deve eguagliare al centesimo il totale monetario dei voucher spesi</strong>, ripristinando fisicamente il Float iniziale.
+        </p>
     </div>
-    <h2>2. Macroeconomic Principles and Market Structures</h2>
-    <p>Macroeconomics studies the behavior of the economy as a whole. Accounting technicians must analyze core macroeconomic indicators to assess environmental risk and anticipate shifts in resource costs:</p>
-    <ul>
-        <li><strong>Gross Domestic Product (GDP):</strong> The total market value of all finished goods and services produced within a country over a specific period. It indicates the baseline economic growth rate.</li>
-        <li><strong>Inflation:</strong> The rate at which the general level of prices for goods and services rises, eroding purchasing power. High inflation impacts accounting by distorting historical cost valuations and increasing raw material budgets.</li>
-        <li><strong>Monetary Policy:</strong> Conducted by the Bank of England, this involves adjusting the base interest rate and managing money supply to control inflation. Higher interest rates increase corporate borrowing expenses and alter investment appraisal metrics.</li>
-        <li><strong>Fiscal Policy:</strong> Conducted by the UK Government, this involves manipulating taxation thresholds and public spending to influence aggregate economic demand.</li>
-    </ul>
 
-    <h3>Microeconomic Principles & Market Structures</h3>
-    <p>Microeconomics explores individual decision-making units on the demand and supply sides. The interaction of price and quantity determines market equilibrium. Accountants must recognize the distinct competitive structures in which businesses operate:</p>
-    <ul>
-        <li><strong>Perfect Competition:</strong> Many small firms selling identical products with no control over price (price takers).</li>
-        <li><strong>Monopolistic Competition:</strong> Many sellers offering differentiated products, allowing some minor pricing flexibility.</li>
-        <li><strong>Oligopoly:</strong> A market structure dominated by a small number of large, interdependent firms (often presenting high entry barriers and potential for collusion).</li>
-        <li><strong>Monopoly:</strong> A single seller dominating the entire market market supply, holding total pricing control.</li>
-    </ul>
-    <h2>3. Corporate Governance, Ethics, & Fraud Prevention</h2>
-    <p>**Corporate Governance** is the systemic framework of rules, relationships, systems, and processes by which corporations are directed and controlled. Effective governance shields organizations from catastrophic structural failures and guarantees that financial statements represent a true and fair view of performance. In the UK, public entities must adhere to the principles outlined in the **UK Corporate Governance Code**.</p>
-    
-    <p>Accountants hold an absolute duty of care as gatekeepers of governance. The internal control architecture must implement clear **Segregation of Duties** to prevent malicious financial activities. For example, the clerk who raises a purchase invoice must never be the same individual who authorizes the bank payment voucher, thereby closing opportunities for internal fraud or asset misappropriation.</p>
+    <h4 style="color: #047857; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.1rem;">La Geometria delle Colonne di Analisi (Analysis Columns)</h4>
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
+        A differenza del Cash Book principale, il Petty Cash Book presenta una struttura multicorrelata. Ha un'unica colonna in Dare (Receipts) per caricare il Float e i reintegri, una colonna per il totale pagato (Total Paid), una colonna dedicata all'imposta sul valore aggiunto (VAT column) e una serie di <strong>Analysis Columns</strong> (es. Stationery, Travel, Cleaning). Queste ultime servono a raggruppare le spese per tipologia omogenea prima che i totali vengano trasferiti sui rispettivi conti di costo nel General Ledger alla fine del mese.
+    </p>
+</div>
+<!-- CAPITOLO 3 TEORIA - MACROBLOCCO 3 DI 3 -->
+<div class="aat-theory-block" id="btrn-chap3-theory-p3">
+    <h4 style="color: #047857; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.1rem; border-top: 1px dashed #E5E7EB; padding-top: 1.5rem;">
+        Chapter 3.3: Fiscal Extraction (VAT Fraction) & The Invisible Error Encyclopedia
+    </h4>
 
-    <h3>Statutory Legal Frameworks Against Financial Crime</h3>
-    <p>Accounting technicians must understand their strict personal legal liabilities under active UK financial legislation:</p>
-    <ul>
-        <li><strong>Bribery Act 2010:</strong> Imposes criminal liability on individuals and corporations for offering, promising, giving, or accepting bribes. It introduces a corporate offense for failing to prevent bribery due to inadequate internal controls.</li>
-        <li><strong>Criminal Finances Act 2017:</strong> Establishes strict corporate criminal liability if an organization fails to prevent its employees or agents from facilitating third-party tax evasion.</li>
-        <li><strong>Money Laundering Regulations:</strong> Imposes statutory duties on accounting professionals to perform customer due diligence (Know Your Customer / KYC) and submit a **Suspicious Activity Report (SAR)** to the National Crime Agency (NCA) if they suspect money laundering or terrorist financing. Telling the client that a report has been made constitutes the criminal offense of *tipping off*.</li>
-    </ul>
-    <h2>4. Advanced Data Management & Cloud Accounting Systems</h2>
-    <p>Modern management accounting uses extensive data architectures, shifting away from standalone spreadsheets to consolidated **Enterprise Resource Planning (ERP)** networks and integrated cloud accounting platforms. This digital infrastructure facilitates the real-time reporting of key performance indicators (KPIs) across multiple business divisions simultaneously.</p>
-    
-    <p>However, automated financial networks require comprehensive validation checks to ensure data integrity. Accountants must oversee automated controls, such as automatic batch totals, range checks, and ledger interface cross-verifications. Furthermore, compliance with the **Data Protection Act 2018** requires that financial cloud storage frameworks enforce strong physical security and strict cryptographic protocols to prevent corporate espionage and data leaks.</p>
-</div> <!-- End Container -->
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; text-align: justify;">
+        Molti Petty Cash Vouchers si presentano all'addetto in formato lordo (VAT inclusive). Nel Regno Unito, l'aliquota VAT standard è fissata al <strong>20%</strong>. Il syllabus AAT L2 richiede la scomposizione matematica del lordo per isolare la quota di costo netto da inserire nelle colonne di analisi e la quota d'imposta da inserire nella colonna VAT.
+    </p>
 
-</body>
-</html>
+    <div style="background-color: #FAFAFA; border: 1px solid #E5E7EB; padding: 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; color: #111827;">
+        <strong>FORMULE DI ESTRAZIONE FISCALE (Aliquota standard 20%):</strong><br>
+        • Quota IVA (VAT Amount) = Valore Lordo × (20 / 120) = Lordo / 6<br>
+        • Quota Netta (Net Cost) = Valore Lordo × (100 / 120) = Lordo - IVA
+    </div>
+
+    <div style="background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1.2rem; border-radius: 6px; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+        <strong style="color: #B45309; font-size: 1rem;">⚠️ Enciclopedia degli Errori Invisibili Kaplan/Osborne:</strong>
+        <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem; margin-bottom: 0;">
+            • <strong>La Trappola del Top-Up Netto:</strong> In sede d'esame, un quesito classico chiede di calcolare il valore del reintegro (Top-up) fornendo la lista dei voucher con la scomposizione di Net e VAT. L'errore fatale è calcolare il reintegro sul totale Netto. Il reintegro serve a reinserire fisicamente i soldi spesi nella scatola, quindi si calcola sempre sul valore <strong>Lordo (Total Cash Paid)</strong>.<br><br>
+            • <strong>La Falsa Registrazione in Partita Doppia del Reintegro:</strong> Quando la banca emette l'assegno per ripristinare il fondo, la registrazione corretta è <em>Debit: Petty Cash Account</em> e <em>Credit: Bank Account</em>. Non bisogna assolutamente addebitare i singoli conti di costo in questa fase, perché i costi sono già stati accumulati tramite i voucher registrati nel Petty Cash Book.<br><br>
+            • <strong>Sconti Inclusi nei Registri di Cassa Minuta:</strong> Nei test d'esame avanzati, ricorda che le transazioni di Petty Cash non contengono mai colonne sconti (Discount Columns). Gli sconti di cassa (Prompt Payment Discounts) esistono esclusivamente nel Cash Book principale per le transazioni con i grandi fornitori della contabilità industriale (Purchase Ledger).
+        </p>
+    </div>
+
+    <p style="font-size: 0.95rem; line-height: 1.6; color: #4B5563; font-style: italic; text-align: center; margin-top: 1.5rem;">
+        La teoria del Capitolo 3 è completata. I dati contabili sono ora pronti per essere applicati nei flussi degli schemi grafici.
+    </p>
+</div>
