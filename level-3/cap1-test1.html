@@ -3,337 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Bookkeeping - Test One</title>
+    <title>AAT Level 3 - Chapter 1: Test 1 (Advanced Adjustments)</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* DESIGN SYSTEM INTERFACCIA LIVELLO 3 - PALETTE AZZURRO CIANO */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --danger-color: #DC2626;
+            --success-box-bg: #DEF7EC;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e3e3e3;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #ffffff;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
+            padding: 2rem 1rem;
             line-height: 1.6;
-            color: #222222;
         }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
+
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
+
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
         }
-        table.osborne-table {
+
+        .test-header {
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--l3-cyan-light);
+            padding-bottom: 1.2rem;
+        }
+
+        .task-box {
+            background-color: #FAFAFA;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .task-title {
+            font-weight: 700;
+            color: var(--l3-cyan-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .financial-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin-top: 1rem;
+            background: #FFFFFF;
         }
-        table.osborne-table th {
-            background-color: #f2f2f2;
-            text-align: left;
-            font-size: 13px;
+
+        .financial-table th {
+            background-color: var(--l3-cyan-dark);
+            color: #FFFFFF;
+            padding: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l3-cyan-dark);
         }
-        table.osborne-table td, table.osborne-table th {
-            border: 1px solid #aaaaaa;
-            padding: 6px;
-            font-size: 13px;
+
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.6rem;
+            font-size: 0.9rem;
         }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
+
+        .table-input {
+            width: 100%;
+            padding: 0.4rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        .table-input:focus {
+            border-color: var(--l3-cyan-primary);
+            outline: none;
+            background-color: var(--l3-cyan-light);
+        }
+
+        .option-label {
             display: flex;
-            justify-content: space-between;
-        }
-        .btn-action {
-            background-color: #f0f0f0;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
+            align-items: center;
+            gap: 0.75rem;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            color: #333333;
+            margin-bottom: 0.5rem;
         }
-        .btn-action:hover {
-            background-color: #e0e0e0;
+
+        .ctrl-btn {
+            padding: 0.65rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
         }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
+
+        .btn-success { background: var(--l3-cyan-primary); color: #FFFFFF; }
+        .btn-success:hover { background: var(--l3-cyan-dark); }
+
+        .feedback-box {
+            margin-top: 1.2rem;
+            padding: 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid;
         }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
+
+        .feedback-correct { background-color: var(--success-box-bg); border-color: var(--l3-cyan-primary); color: #065F46; }
+        .feedback-incorrect { background-color: #FDE8E8; border-color: var(--danger-color); color: #9B1C1C; }
+        .hidden { display: none !important; }
+        .text-right { text-align: right; }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="header-title">Advanced Bookkeeping - Test One</div>
+    <div class="test-container">
+        <div class="white-bubble-container">
+            
+            <div class="test-header">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">LEVEL 3 ASSESSMENT</span>
+                <h1 style="font-size: 1.8rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1 - Test 1: Year-End Ledger Adjustments</h1>
+            </div>
 
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            A business purchases machinery for £45,000. It policy is to charge depreciation at 20% per annum using the reducing balance method. Calculate the depreciation charge for the second year of ownership:<br>
-            Year 2 Depreciation Charge: £ <input type="text" id="ans1" placeholder="0.00">
+            <form id="l3-test-form" onsubmit="event.preventDefault();">
+                
+                <!-- TASK 1: ACCRUED EXPENSE CALCULATION -->
+                <div class="task-box" id="task-node-0">
+                    <div class="task-title">Task 1: Accrued Expense Calculation (10 Points)</div>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        A business pays its telephone expenses quarterly in arrears. The company's financial year ends on <strong>31 December</strong>. The latest telephone bill arrived in November, covering the period up to 31 October, and totaled £600. Calculate the required year-end accrual adjustment for the unbilled months and determine the final expense charge to the Statement of Profit or Loss (SPL).
+                    </p>
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>Accounting Adjustment Metric</th>
+                                <th>Required Input Value (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Year-End Accrual Closing Balance (c/d)</td>
+                                <td><input type="text" class="table-input text-right" data-ans="400.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td>Total Telephone Expense Charge to SPL</td>
+                                <td><input type="text" class="table-input text-right" data-ans="2,800.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="feedback-box hidden" id="feed-node-0"></div>
+                </div>
+
+                <!-- TASK 2: PREPAID EXPENSE POSTING -->
+                <div class="task-box" id="task-node-1">
+                    <div class="task-title">Task 2: Prepaid Expense Apportionment (10 Points)</div>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        On 1 October, a corporate entity settles an annual warehouse commercial insurance premium of £4,800 covering a 12-month contract window. The corporate financial year ends on <strong>31 December</strong>. Compute the exact prepayment adjustment to be carried forward as a current asset.
+                    </p>
+                    <div style="display:flex; align-items:center; max-width:200px; border:1px solid var(--border-color); border-radius:6px; overflow:hidden; background:#FFF;">
+                        <span style="padding:0.4rem 0.6rem; background:#F3F4F6; font-weight:bold; color:var(--text-muted);">£</span>
+                        <input type="text" class="table-input" data-ans="3,600.00" placeholder="0.00" style="border:none; width:100%; text-align:right; padding-right:10px;">
+                    </div>
+                    <div class="feedback-box hidden" id="feed-node-1"></div>
+                </div>
+
+                <!-- TASK 3: CONCEPTUAL QUESTIONS -->
+                <div class="task-box" id="task-node-2">
+                    <div class="task-title">Task 3: Regulatory Accounting Principles (10 Points)</div>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        Under <strong>IAS 1 Presentation of Financial Statements</strong>, how are closing Accrued Expenses and Prepaid Expenses classified within the Statement of Financial Position?
+                    </p>
+                    <div class="options-container">
+                        <label class="option-label"><input type="radio" name="q3" value="A"> Accruals as Current Liabilities, Prepayments as Current Assets.</label>
+                        <label class="option-label"><input type="radio" name="q3" value="B"> Accruals as Current Assets, Prepayments as Current Liabilities.</label>
+                        <label class="option-label"><input type="radio" name="q3" value="C"> Both items are recorded under Non-Current Liabilities.</label>
+                    </div>
+                    <div class="feedback-box hidden" id="feed-node-2"></div>
+                </div>
+
+            </form>
+
+            <!-- SUBMIT BAR -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2rem; border-top:2px solid var(--border-color); padding-top:1.5rem;">
+                <div id="test-score-display" style="font-size:1.2rem; font-weight:700; color:var(--l3-cyan-dark);"></div>
+                <button type="button" class="ctrl-btn btn-success" id="submit-test-btn" onclick="evaluateTest()">🏆 Submit Answers</button>
+            </div>
+
         </div>
     </div>
+    <script>
+        const solutionDatabase = [
+            {
+                id: 0, points: 10, type: "input",
+                explanation: "The telephone bill is quarterly (£600 / 3 months = £200 per month). At 31 December, 2 months are unbilled (November, December), so Accrual = £200 × 2 = £400. Total SPL charge equals the ledger payments plus the closing accrual adjustment."
+            },
+            {
+                id: 1, points: 10, type: "input",
+                explanation: "The insurance covers 12 months (£4,800 / 12 = £400 per month). 3 months belong to the current year (Oct, Nov, Dec). 9 months are prepaid for next year (Jan to Sep). Prepayment = £400 × 9 months = £3,600."
+            },
+            {
+                id: 2, points: 10, type: "radio", correct: "A",
+                explanation: "Accrued expenses represent expenses owed, creating a temporary obligation classified as a Current Liability. Prepaid expenses represent economic benefits paid in advance, classified as a Current Asset."
+            }
+        ];
 
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            An asset purchased for £20,000 has an accumulated depreciation balance of £12,500. It is sold during the year for £6,800 cash. Calculate the resulting profit or loss on disposal:<br>
-            Amount: £ <input type="text" id="ans2_val" placeholder="0.00"> <select id="ans2_type"><option value="">Select</option><option value="w">Profit</option><option value="correct">Loss</option></select>
-        </div>
-    </div>
+        let isSubmitted = false;
 
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            On 31 December, the rent account shows total payments of £18,000. This includes an invoice of £3,600 for the three-month period ending 28 February of the next financial year. Calculate the prepayment adjustment needed at year-end:<br>
-            Rent Prepayment: £ <input type="text" id="ans3" placeholder="0.00">
-        </div>
-    </div>
+        function evaluateTest() {
+            if (isSubmitted) return;
+            isSubmitted = true;
+            document.getElementById('submit-test-btn').disabled = true;
 
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            At the financial year-end of 31 March, the electricity bill for the final quarter has not yet arrived. The historical average usage suggests an accrual of £840 is required. State the adjustments required in the General Ledger ledger:<br>
-            Debit: <select id="ans4_deb"><option value="">Select</option><option value="correct">Electricity Expense Account</option><option value="w">Accruals (Liability) Account</option></select><br>
-            Credit: <select id="ans4_crd"><option value="">Select</option><option value="w">Prepayments (Asset) Account</option><option value="correct">Accruals (Liability) Account</option></select>
-        </div>
-    </div>
+            let totalAvailable = 30;
+            let totalAwarded = 0;
 
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            A business has a closing Trade Receivables balance of £85,000. The management decides to write off a specific irrecoverable debt of £2,000 and then set the general allowance for doubtful debts at 4% of the remaining receivables. Calculate the final balance of the Allowance for Doubtful Debts:<br>
-            Allowance Final Balance: £ <input type="text" id="ans5" placeholder="0.00">
-        </div>
-    </div>
+            solutionDatabase.forEach((task, index) => {
+                const node = document.getElementById(`task-node-${index}`);
+                const feedBox = document.getElementById(`feed-node-${index}`);
+                let isTaskCorrect = true;
 
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            The allowance for doubtful debts opening balance was £3,000. Following the year-end adjustments calculated in Q5, calculate the net adjustment amount to be transferred to the Statement of Profit or Loss:<br>
-            Net Adjustment: £ <input type="text" id="ans6_val" placeholder="0.00"> <select id="ans6_side"><option value="">Select</option><option value="correct">Debit (Expense)</option><option value="w">Credit (Income)</option></select>
-        </div>
-    </div>
+                if (task.type === "radio") {
+                    const selected = node.querySelector('input[type="radio"]:checked');
+                    if (!selected || selected.value !== task.correct) {
+                        isTaskCorrect = false;
+                    }
+                } else {
+                    node.querySelectorAll('input[data-ans]').forEach(input => {
+                        const userVal = input.value.trim().toLowerCase();
+                        const targetVal = input.getAttribute('data-ans').trim().toLowerCase();
+                        if (userVal !== targetVal) {
+                            isTaskCorrect = false;
+                            input.style.borderColor = "#DC2626";
+                        } else {
+                            input.style.borderColor = "#059669";
+                        }
+                        input.disabled = true;
+                    });
+                }
 
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            X and Y are in a partnership sharing profits and losses in the ratio 3:2. The net profit for the year before adjustments is £64,000. The partnership agreement allows X a salary of £8,000 per annum. Calculate X's final total share of the residual profits (excluding salary):<br>
-            X's Share of Residual Profit: £ <input type="text" id="ans7" placeholder="0.00">
-        </div>
-    </div>
+                feedBox.classList.remove('hidden');
+                if (isTaskCorrect) {
+                    totalAwarded += task.points;
+                    feedBox.className = "feedback-box feedback-correct";
+                    feedBox.innerHTML = `<strong>✅ Correct! (+${task.points} Points)</strong><br><span style="font-size:0.85rem;"><strong>Solution Note:</strong> ${task.explanation}</span>`;
+                } else {
+                    feedBox.className = "feedback-box feedback-incorrect";
+                    feedBox.innerHTML = `<strong>❌ Incorrect! (0 / ${task.points} Points)</strong><br><span style="font-size:0.85rem;"><strong>Solution Note:</strong> ${task.explanation}</span>`;
+                }
+            });
 
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            An extraction of an Extended Trial Balance shows a Suspense Account opened with a debit balance of £450. It is discovered that a cash payment for insurance was posted correctly to the Cash Book but debited to the Insurance account as £50 instead of £500. Calculate the remaining balance of the Suspense account after rectification:<br>
-            Suspense Account Final Balance: £ <input type="text" id="ans8" placeholder="0.00">
-        </div>
-    </div>
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A business bought a delivery van for £28,000 on 1 January. It uses the straight-line depreciation method at 25% per annum, assuming a residual scrap value of £4,000. Calculate the depreciation charge for the first full year of operation:<br>
-            Depreciation Charge: £ <input type="text" id="ans9" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A closing inventory check on 31 December measures stock at cost value for £14,500. However, due to minor warehouse damage, a batch of goods which cost £1,200 can only be sold for a Net Realisable Value (NRV) of £700. Under IAS 2 rules, calculate the final total inventory valuation:<br>
-            Inventory Valuation: £ <input type="text" id="ans10" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            A partnership consists of partners A and B. Partner A has a fixed capital account balance of £50,000 and is entitled to receive 5% interest on capital per annum under their agreement. Calculate the amount of interest on capital credited to Partner A's Current Account:<br>
-            Interest on Capital: £ <input type="text" id="ans11" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            The opening allowance for doubtful debts was £2,500. At the current year-end, the required allowance is calculated to be £1,900 based on credit customer risks. Calculate the net financial effect to be entered into the Statement of Profit or Loss:<br>
-            Adjustment Value: £ <input type="text" id="ans12_val" placeholder="0.00"> <select id="ans12_side"><option value="">Select</option><option value="correct">Credit (Income reduction of expense)</option><option value="w">Debit (Increase in expense)</option></select>
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            On 1 July, a business pays an annual insurance premium of £2,400 covering a 12-month period to 30 June of the following year. If the financial year ends on 31 December, calculate the insurance expense to be charged to the current year's Profit or Loss:<br>
-            Insurance Expense: £ <input type="text" id="ans13" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            A vehicle purchased for £16,000 with accumulated depreciation of £9,000 is traded in (part-exchanged) for a new model. The supplier gives a part-exchange allowance of £5,500. Calculate the profit or loss on the disposal of the old vehicle:<br>
-            Amount: £ <input type="text" id="ans14_val" placeholder="0.00"> <select id="ans14_type"><option value="">Select</option><option value="w">Profit</option><option value="correct">Loss</option></select>
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            A ledger clerk notices an Extended Trial Balance discrepancy: a sales invoice of £890 gross was debited to the Sales account and credited to the Trade Receivables account. What type of accounting error has occurred?<br>
-            Error Type: <select id="ans15"><option value="">Select</option><option value="correct">Complete Reversal Error</option><option value="w">Error of Omission</option><option value="w">Error of Principle</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
-<script>
-    let currentQ = 1;
-    const totalQ = 15;
-
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
-    }
-
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
+            const percentage = Math.round((totalAwarded / totalAvailable) * 100);
+            const scoreDisplay = document.getElementById('test-score-display');
+            scoreDisplay.textContent = `Final Score: ${percentage}% (${totalAwarded} / ${totalAvailable} Points)`;
+            
+            if (percentage >= 70) {
+                scoreDisplay.style.color = "#059669";
+            } else {
+                scoreDisplay.style.color = "#DC2626";
+            }
         }
-    }
-
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
-
-        if (currentQ === 1) {
-            let val = document.getElementById('ans1').value.trim();
-            isCorrect = (val === '7200' || val === '7200.00');
-        } else if (currentQ === 2) {
-            let val = document.getElementById('ans2_val').value.trim();
-            let type = document.getElementById('ans2_type').value;
-            isCorrect = ((val === '700' || val === '700.00') && type === 'correct');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '2400' || val === '2400.00');
-        } else if (currentQ === 4) {
-            let deb = document.getElementById('ans4_deb').value;
-            let crd = document.getElementById('ans4_crd').value;
-            isCorrect = (deb === 'correct' && crd === 'correct');
-        } else if (currentQ === 5) {
-            let val = document.getElementById('ans5').value.trim();
-            isCorrect = (val === '3320' || val === '3320.00');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6_val').value.trim();
-            let side = document.getElementById('ans6_side').value;
-            isCorrect = ((val === '320' || val === '320.00') && side === 'correct');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7').value.trim();
-            isCorrect = (val === '33600' || val === '33600.00');
-        } else if (currentQ === 8) {
-            let val = document.getElementById('ans8').value.trim();
-            isCorrect = (val === '0' || val === '0.00');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9').value.trim();
-            isCorrect = (val === '6000' || val === '6000.00');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '14000' || val === '14000.00');
-        } else if (currentQ === 11) {
-            let val = document.getElementById('ans11').value.trim();
-            isCorrect = (val === '2500' || val === '2500.00');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12_val').value.trim();
-            let side = document.getElementById('ans12_side').value;
-            isCorrect = ((val === '600' || val === '600.00') && side === 'correct');
-        } else if (currentQ === 13) {
-            let val = document.getElementById('ans13').value.trim();
-            isCorrect = (val === '1200' || val === '1200.00');
-        } else if (currentQ === 14) {
-            let val = document.getElementById('ans14_val').value.trim();
-            let type = document.getElementById('ans14_type').value;
-            isCorrect = ((val === '1500' || val === '1500.00') && type === 'correct');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
-        }
-
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
-        } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
-        }
-    }
-
-    updateButtons();
-</script>
-
+    </script>
 </body>
 </html>
