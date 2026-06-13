@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 2 Certificate in Accounting - Bookkeeping Transactions (BTRN) Capitolo 5 Test One</title>
+    <style>
+        /* 1. Reset Globale e Layout Sfondo */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #333333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+
+        /* 2. Contenitore Principale (Bolla Bianca Protetta) */
+        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); position: relative; min-height: 580px; display: flex; flex-direction: column; justify-content: space-between; }
+
+        /* 3. Intestazione e Contatore */
+        .test-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 25px; }
+        .test-title { font-size: 18px; font-weight: 700; color: #1E293B; }
+        .question-counter { font-size: 14px; font-weight: 600; color: #64748B; background: #F1F5F9; padding: 6px 12px; border-radius: 20px; }
+
+        /* 4. Sistema a Schede (Tabs delle Domande) */
+        .question-tab { display: none; flex-direction: column; gap: 20px; flex-grow: 1; }
+        .question-tab.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
+        .question-text { font-size: 16px; font-weight: 600; color: #0F172A; line-height: 1.5; margin-bottom: 10px; }
+        .options-container { display: flex; flex-direction: column; gap: 12px; }
+        
+        /* 5. Componenti Speciali: Griglie Trial Balance */
+        .aat-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+        .aat-table th { background-color: #F8FAFC; color: #475569; font-weight: 700; padding: 10px; border: 1px solid #E2E8F0; text-align: left; }
+        .aat-table td { padding: 8px; border: 1px solid #E2E8F0; vertical-align: middle; }
+        .total-row { font-weight: 800; background-color: #F1F5F9; border-top: 2px solid #0F172A !important; border-bottom: 2px double #0F172A !important; }
+        
+        /* 6. Box Risposte, Tendine e Input Campi */
+        .option-box { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 2px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; position: relative; }
+        .option-box:hover { border-color: #94A3B8; background-color: #F8FAFC; }
+        .option-box input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; }
+        .option-label { display: flex; align-items: center; width: 100%; font-size: 15px; font-weight: 500; }
+        
+        .inline-select { padding: 6px 10px; border: 2px solid #CBD5E1; border-radius: 6px; font-weight: 600; color: #0F172A; font-size: 14px; background-color: #FFF; }
+        .numeric-field, .table-field { width: 110px; padding: 6px; border: 2px solid #E2E8F0; border-radius: 6px; text-align: right; font-size: 14px; font-weight: 600; color: #0F172A; }
+        .numeric-field:focus, .table-field:focus, .inline-select:focus { outline: none; border-color: #2563EB; }
+
+        /* 7. Indicatori Visivi di Feedback */
+        .feedback-icon { font-size: 18px; margin-left: 10px; display: none; }
+        .correct-answer-highlight { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
+
+        /* 8. Pulsantiera di Controllo Inferiore */
+        .controls-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; border-top: 2px solid #E5E7EB; padding-top: 20px; gap: 10px; flex-wrap: wrap; }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+        .btn { padding: 10px 18px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
+        .btn-blue { background-color: #2563EB; color: white; }
+        .btn-blue:hover { background-color: #1D4ED8; }
+        .btn-green { background-color: #059669; color: white; }
+        .btn-green:hover { background-color: #047857; }
+        .btn-red { background-color: #DC2626; color: white; }
+        .btn-red:hover { background-color: #B91C1C; }
+        .btn-gray { background-color: #4B5563; color: white; }
+        .btn-gray:hover { background-color: #374151; }
+        .btn-purple { background-color: #7C3AED; color: white; display: none; }
+        .btn-purple:hover { background-color: #6D28D9; }
+
+        /* 9. Widget Calcolatrice Vetrificata */
+        #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
+        #calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #calc-header span { color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        #calc-close-btn { background: transparent; border: none; color: #EF4444; font-weight: bold; cursor: pointer; font-size: 14px; }
+        #calc-screen { width: 100%; height: 45px; background: #000000; border-radius: 8px; color: #00FFFF; text-shadow: 0 0 10px #00FFFF; font-family: 'Courier New', Courier, monospace; text-align: right; padding: 12px; font-size: 20px; font-weight: bold; margin-bottom: 12px; border: 1px solid #00FFFF; }
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .calc-btn { background: rgba(255, 255, 255, 0.08); border: none; color: white; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; }
+        .calc-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .calc-btn.op { color: #00FFFF; background: rgba(0, 255, 255, 0.05); }
+        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.2); }
+
+        #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #2563EB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s ease, background 0.2s ease; }
+        #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
+
+        /* 10. Regole di Stampa Clean A4 */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @media print {
+            @page { size: A4 portrait; margin: 0mm; }
+            body { padding: 15mm; background-color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .controls-footer, #calc-widget, #calc-toggle-trigger, .feedback-icon { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <div class="test-title">BTRN - CHAPTER 5: THE TRIAL BALANCE MATRIX (TEST ONE)</div>
+            <div class="question-counter">Question <span id="current-q-num">1</span> of 15</div>
+        </div>
+
+        <form id="quiz-form">
+            <!-- Q1: Frase a Completamento Finalità Strutturale (Difficoltà: Media) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-select">
+                <p class="question-text">1. Complete the professional definition regarding the explicit structural purpose of a Trial Balance schedule.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    The Trial Balance is an internal checking tool compiled by extracting the closing 
+                    <select class="inline-select multi-select-field" data-ans="b/d">
+                        <option value="">-- Choose Balance --</option>
+                        <option value="c/d">balance carried down (c/d)</option>
+                        <option value="b/d">balance brought down (b/d)</option>
+                    </select> 
+                    of every ledger profile to verify the absolute mathematical agreement of the global 
+                    <select class="inline-select multi-select-field" data-ans="double-entry">
+                        <option value="">-- Choose System --</option>
+                        <option value="double-entry">double-entry bookkeeping loop</option>
+                        <option value="memorandum">memorandum registration files</option>
+                    </select> before final statement extraction.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+
+            <!-- Q2: Estrazione Selettiva Saldi DEAD CLIC (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="2" data-type="multi-input">
+                <p class="question-text">2. Extract and allocate the following ledger balances into their correct Trial Balance column values according to the DEAD CLIC postulate: Sales Revenue £12,000, Machinery Asset £8,500, Rent Expense £1,200, Trade Payables Control (PLCA) £3,100.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Ledger Account Balance Item</th>
+                            <th>Debit Column Entry (£)</th>
+                            <th>Credit Column Entry (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Machinery Asset Account</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="8500" placeholder="£"></td>
+                            <td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td>
+                        </tr>
+                        <tr>
+                            <td>Sales Revenue Account</td>
+                            <td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="12000" placeholder="£"></td>
+                        </tr>
+                        <tr>
+                            <td>Rent Expense Account</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="1200" placeholder="£"></td>
+                            <td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td>
+                        </tr>
+                        <tr>
+                            <td>Trade Payables Control (PLCA)</td>
+                            <td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="3100" placeholder="£"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q3: Scelta Multipla - Caso Limite Bank Overdraft (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="3" data-type="radio" data-correct="C">
+                <p class="question-text">3. At the end of the calendar month, the business Cash Book reveals a credit closing balance brought down (bal b/d) of £450, representing an active bank overdraft facility. Where must this specific balance be listed?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="A"> Inside the Debit column, because the cash book is traditionally an asset</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="B"> Excluded entirely from the Trial Balance schedule as an internal variance</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="C"> Inside the Credit column, because a bank overdraft represents a Current Liability</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q4: Risposta Numerica - Calcolo Saldo Suspense (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="350">
+                <p class="question-text">4. A bookkeeper sums a Trial Balance and finds the Debit column total is £42,150, while the Credit column total is £42,500. Calculate the exact opening balance value (£) that must be entered into the temporary Suspense Account to make the schedule agree.</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Suspense Account Balance (£):</span>
+                            <input type="text" class="numeric-field" name="q4" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5: Mini Trial Balance e Calcolo Totale Symmetrical (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="5" data-type="multi-input">
+                <p class="question-text">5. Complete the basic Trial Balance below by entering the balances for Cash (£400) and Capital (£8,000) into their correct columns. Then, calculate and enter the final Grand Totals for both sides.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Ledger Account Balance Identity</th>
+                            <th>Debit Column (£)</th>
+                            <th>Credit Column (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Office Equipment Asset</td><td>7,600</td><td>-</td></tr>
+                        <tr><td>Cash in Hand Fund</td><td><input type="text" class="table-field multi-input-field" data-ans="400" placeholder="£"></td><td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td></tr>
+                        <tr><td>Owner's Capital Base</td><td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td><td><input type="text" class="table-field multi-input-field" data-ans="8000" placeholder="£"></td></tr>
+                        <tr class="total-row">
+                            <td>GRAND BALANCING TOTALS</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="8000" placeholder="Total Dr"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="8000" placeholder="Total Cr"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q6: Scelta Multipla - Trattamento Sconti Concessi Allowed (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="B">
+                <p class="question-text">6. Following month-end postings from the Cash Book, where should the total balance of the 'Discounts Allowed' nominal profile be extracted to inside the Trial Balance matrix?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="A"> Inside the Credit column, because it reduces the initial values of Trade Receivables</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="B"> Inside the Debit column, because it represents an expense/financial cost to the business</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="C"> Excluded entirely as it is classified as a subsidiary memorandum element</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q7: Testo a completamento con tendine sugli Errori Invisibili (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-select">
+                <p class="question-text">7. Complete the structural rule regarding errors that do not affect the mathematical agreement of the columns.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    An invoice posted to the correct side and class of account but into the wrong personal supplier profile forms an Error of 
+                    <select class="inline-select multi-select-field" data-ans="Commission">
+                        <option value="">-- Choose Type --</option>
+                        <option value="Commission">Commission</option>
+                        <option value="Principle">Principle</option>
+                    </select>. 
+                    Under these conditions, the final total sums of the Trial Balance will still 
+                    <select class="inline-select multi-select-field" data-ans="agree">
+                        <option value="">-- Choose Action --</option>
+                        <option value="agree">agree perfectly</option>
+                        <option value="disagree">disagree fully</option>
+                    </select> because the double-entry symmetry is intact.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+
+            <!-- Q8: Quadrante Complesso Esclusione e Bilanciamento Totale (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <p class="question-text">8. A firm extracts the following adjusted balances b/d: Premises £50,000, Purchases £12,500, Sales Revenue £18,000, Trade Payables £4,500. Calculate and complete the balancing columns below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Trial Balance Structural Column</th>
+                            <th>Calculated Aggregate Columns Sum (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Combined DEBIT Elements (Premises + Purchases)</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="62500" placeholder="Total Dr"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Combined CREDIT Elements (Sales + Payables)</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="22500" placeholder="Total Cr"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q9: Risposta Numerica - Valore Incolonnamento Resi (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="9" data-type="input" data-correct="180">
+                <p class="question-text">9. The Sales Returns nominal ledger account shows total credit notes issued to clients for £180. Calculate the value to be entered into the specific column of the Trial Balance (enter the value as a positive number) and identify its side placement via the next task.</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Trial Balance Entry Value (£):</span>
+                            <input type="text" class="numeric-field" name="q9" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Q10: Tabella Ripartizione Sconti e Imposte Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-input">
+                <p class="question-text">10. Allocate the balances b/d of Discounts Received (£240) and VAT Control Account (Net Credit Liability of £850) into the appropriate column coordinates below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Nominal Ledger Balance Element</th>
+                            <th>Debit Column Entry (£)</th>
+                            <th>Credit Column Entry (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Discounts Received nominal log</td>
+                            <td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="240" placeholder="£"></td>
+                        </tr>
+                        <tr>
+                            <td>VAT Control Account (Net Liability status)</td>
+                            <td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="850" placeholder="£"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q11: Scelta Multipla - Definizione Capitale (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="C">
+                <p class="question-text">11. Under the rules of accounting extraction, inside which column must the opening Capital balance profile of a sole trader be mapped?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="A"> Inside the Debit column, because it represents an internal resource investment</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="B"> Excluded from the ledger checklist as it forms part of the final calculations</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="C"> Inside the Credit column, adhering strictly to the CLIC rule framework</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q12: Testo a completamento con tendine su Drawings & Sales Returns (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-select">
+                <p class="question-text">12. Select the correct column placements for standard offset nominal accounts.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    The Owner's Drawings account records values taken from the business entity and must be extracted into the 
+                    <select class="inline-select multi-select-field" data-ans="Debit">
+                        <option value="">-- Choose Column --</option>
+                        <option value="Debit">Debit Column</option>
+                        <option value="Credit">Credit Column</option>
+                    </select> column, while the Purchase Returns total requires placement inside the 
+                    <select class="inline-select multi-select-field" data-ans="Credit">
+                        <option value="">-- Choose Column --</option>
+                        <option value="Debit">Debit Column</option>
+                        <option value="Credit">Credit Column</option>
+                    </select> column to decrease raw operational costs.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+            <!-- Q13: Scelta Multipla - Error of Principle Detection (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="B">
+                <p class="question-text">13. An office cleaning invoice of £250 is accidentally debited to the Office Equipment Asset Account instead of the Cleaning Expenses Account. What is the operational effect on the Trial Balance totals?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> The columns will disagree, and the Debit side will be higher by £250</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> The Trial Balance columns will still agree perfectly because the entry is on the correct side</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="C"> The columns will disagree, and a Suspense Account balance of £500 will open</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q14: Risposta Numerica - Rettifica Sbilancio Transazione Singola (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="14" data-type="input" data-correct="1500">
+                <p class="question-text">14. A credit sale invoice of £1,500 was correctly entered into the Sales Day Book and credited to the Sales Revenue account, but the bookkeeper completely forgot to post it to the customer's personal account. Calculate the mathematical difference (£) that will appear between the Trial Balance columns.</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Trial Balance Column Difference (£):</span>
+                            <input type="text" class="numeric-field" name="q14" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q15: Griglia Trial Balance Completa da Bilanciare (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <p class="question-text">15. Complete the missing cells of this Trial Balance ledger snapshot. Place the Trade Receivables balance (£2,300) on its correct side, then compute and enter the final Grand Totals for both columns to confirm the system balances.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Ledger Account Balance Element</th>
+                            <th>Debit Column Entry (£)</th>
+                            <th>Credit Column Entry (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Wages Overhead Account</td><td>4,100</td><td>-</td></tr>
+                        <tr><td>Trade Receivables Control (SLCA)</td><td><input type="text" class="table-field multi-input-field" data-ans="2300" placeholder="£"></td><td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td></tr>
+                        <tr><td>Sales Revenue Account</td><td><input type="text" class="table-field style-blank" disabled style="background:#F1F5F9; border:none;"></td><td>6,400</td></tr>
+                        <tr class="total-row">
+                            <td>GRAND QUADRATURA TOTALS</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="6400" placeholder="Total Dr"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="6400" placeholder="Total Cr"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+        </form>
+        <!-- Barra dei Pulsanti di Controllo Inferiori INTERNI -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button class="btn btn-blue" id="btn-am-i-right">Am I right?</button>
+                <button class="btn btn-green" id="btn-show-solution">Show Solution</button>
+                <button class="btn btn-red" id="btn-reset">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button class="btn btn-gray" id="btn-prev" disabled>Previous Question</button>
+                <button class="btn btn-gray" id="btn-next">Next Question</button>
+                <button class="btn btn-purple" id="btn-pdf">Download as PDF</button>
+            </div>
+        </div>
+    </div> <!-- Chiusura della bolla bianca (.test-container) -->
+
+    <!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+    <div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
+
+    <!-- WIDGET CALCOLATRICE VETRATA INTERATTIVA -->
+    <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" title="Hide">✕</button>
+        </div>
+        <div id="calc-screen">0</div>
+        <div class="calc-grid">
+            <button class="calc-btn op" onclick="clearCalc()">C</button>
+            <button class="calc-btn op" onclick="pressCalc('sq')">x²</button>
+            <button class="calc-btn op" onclick="pressCalc('rt')">√</button>
+            <button class="calc-btn op" onclick="pressCalc('/')">/</button>
+            <button class="calc-btn" onclick="pressCalc('7')">7</button>
+            <button class="calc-btn" onclick="pressCalc('8')">8</button>
+            <button class="calc-btn" onclick="pressCalc('9')">9</button>
+            <button class="calc-btn op" onclick="pressCalc('*')">*</button>
+            <button class="calc-btn" onclick="pressCalc('4')">4</button>
+            <button class="calc-btn" onclick="pressCalc('5')">5</button>
+            <button class="calc-btn" onclick="pressCalc('6')">6</button>
+            <button class="calc-btn op" onclick="pressCalc('-')">-</button>
+            <button class="calc-btn" onclick="pressCalc('1')">1</button>
+            <button class="calc-btn" onclick="pressCalc('2')">2</button>
+            <button class="calc-btn" onclick="pressCalc('3')">3</button>
+            <button class="calc-btn op" onclick="pressCalc('+')">+</button>
+            <button class="calc-btn" onclick="pressCalc('0')">0</button>
+            <button class="calc-btn" onclick="pressCalc('.')">.</button>
+            <button class="calc-btn op" onclick="pressCalc('%')">%</button>
+            <button class="calc-btn op" style="background:#059669; color: white;" onclick="calculateCalc()">=</button>
+        </div>
+    </div>
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 15;
+
+        const tabs = document.querySelectorAll('.question-tab');
+        const currentQNum = document.getElementById('current-q-num');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const btnPdf = document.getElementById('btn-pdf');
+
+        function updateNavigation() {
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.question-tab[data-qindex="${currentQuestion}"]`).classList.add('active');
+            currentQNum.innerText = currentQuestion;
+            btnPrev.disabled = currentQuestion === 1;
+            
+            if (currentQuestion === totalQuestions) {
+                btnNext.style.display = 'none';
+                btnPdf.style.display = 'inline-block';
+            } else {
+                btnNext.style.display = 'inline-block';
+                btnPdf.style.display = 'none';
+            }
+        }
+
+        btnNext.addEventListener('click', () => { if (currentQuestion < totalQuestions) { currentQuestion++; updateNavigation(); } });
+        btnPrev.addEventListener('click', () => { if (currentQuestion > 1) { currentQuestion--; updateNavigation(); } });
+
+        // --- MOTORE DI VERIFICA POLIMORFICO ---
+        document.getElementById('btn-am-i-right').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            const feedbackSpan = activeTab.querySelector('.feedback-icon');
+            feedbackSpan.style.display = 'inline';
+
+            let isCorrect = true;
+
+            if (type === 'radio') {
+                const selected = activeTab.querySelector('input[type="radio"]:checked');
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                activeTab.querySelectorAll('.feedback-icon').forEach(i => i.style.display = 'none');
+                if (selected) {
+                    const rFeedback = selected.closest('.option-box').querySelector('.feedback-icon');
+                    rFeedback.style.display = 'inline';
+                    rFeedback.innerText = selected.value === correctAnswer ? ' ✔️' : ' ❌';
+                    rFeedback.style.color = selected.value === correctAnswer ? '#10B981' : '#DC2626';
+                }
+                return;
+            } else if (type === 'input') {
+                const inputField = activeTab.querySelector('.numeric-field');
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                isCorrect = inputField.value.trim() === correctAnswer;
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    if (field.value.trim() !== field.getAttribute('data-ans')) isCorrect = false;
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    if (select.value !== select.getAttribute('data-ans')) isCorrect = false;
+                });
+            }
+
+            feedbackSpan.innerText = isCorrect ? ' ✔️ All fields correct!' : ' ❌ Some fields are incorrect';
+            feedbackSpan.style.color = isCorrect ? '#10B981' : '#DC2626';
+        });
+
+        // --- VISUALIZZAZIONE DELLE SOLUZIONI COMPLESSE ---
+        document.getElementById('btn-show-solution').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+
+            if (type === 'radio') {
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                const targetRadio = activeTab.querySelector(`input[value="${correctAnswer}"]`);
+                if (targetRadio) targetRadio.closest('.option-box').classList.add('correct-answer-highlight');
+            } else if (type === 'input') {
+                const inputField = activeTab.querySelector('.numeric-field');
+                inputField.closest('.option-box').classList.add('correct-answer-highlight');
+                inputField.value = activeTab.getAttribute('data-correct');
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    field.style.backgroundColor = '#DCFCE7';
+                    field.style.borderColor = '#10B981';
+                    field.value = field.getAttribute('data-ans');
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    select.style.backgroundColor = '#DCFCE7';
+                    select.style.borderColor = '#10B981';
+                    select.value = select.getAttribute('data-ans');
+                });
+            }
+        });
+
+        // --- RESET SCHERMATA ATTIVA ---
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            
+            activeTab.querySelectorAll('.option-box').forEach(box => box.classList.remove('correct-answer-highlight'));
+            activeTab.querySelectorAll('.feedback-icon').forEach(icon => { icon.style.display = 'none'; icon.innerText = ''; });
+
+            if (type === 'radio') {
+                const checked = activeTab.querySelector('input[type="radio"]:checked');
+                if (checked) checked.checked = false;
+            } else if (type === 'input') {
+                activeTab.querySelector('.numeric-field').value = '';
+            } else if (type === 'multi-input' || type === 'multi-select') {
+                const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+                fields.forEach(field => {
+                    field.value = '';
+                    field.style.backgroundColor = '#FFF';
+                    field.style.borderColor = '#E2E8F0';
+                });
+            }
+        });
+
+        btnPdf.addEventListener('click', () => {
+            const originalTitle = document.title;
+            document.title = "AAT_L2_BTRN_Cap5_Test_One_Completed";
+            window.print();
+            setTimeout(() => { document.title = originalTitle; }, 150);
+        });
+
+        // --- VISIBILITÀ CALCOLATRICE ---
+        const calcWidget = document.getElementById('calc-widget');
+        const calcTrigger = document.getElementById('calc-toggle-trigger');
+        const calcClose = document.getElementById('calc-close-btn');
+
+        if(calcTrigger && calcWidget && calcClose) {
+            calcTrigger.addEventListener('click', () => calcWidget.style.display = 'block');
+            calcClose.addEventListener('click', () => calcWidget.style.display = 'none');
+        }
+
+        let calcDisplay = document.getElementById('calc-screen');
+        function pressCalc(val) {
+            if (calcDisplay.innerText === '0' && !isNaN(val)) calcDisplay.innerText = '';
+            if (val === 'sq') { calcDisplay.innerText = Math.pow(eval(calcDisplay.innerText), 2); }
+            else if (val === 'rt') { calcDisplay.innerText = Math.sqrt(eval(calcDisplay.innerText)); }
+            else { calcDisplay.innerText += val; }
+        }
+        function clearCalc() { calcDisplay.innerText = '0'; }
+        function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
+
+        // Drag and Drop Calcolatrice
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        if(calcWidget) {
+            calcWidget.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('calc-btn') || e.target.id === 'calc-screen') return;
+                initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; isDragging = true;
+            });
+            document.addEventListener('mouseup', () => { isDragging = false; initialX = currentX; initialY = currentY; });
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return; e.preventDefault();
+                currentX = e.clientX - initialX; currentY = e.clientY - initialY;
+                xOffset = currentX; yOffset = currentY;
+                calcWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            });
+        }
+    </script>
+</body>
+</html>
