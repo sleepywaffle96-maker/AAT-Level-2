@@ -1,82 +1,92 @@
-<!-- CAPITOLO 3 SUMMARY - MACROBLOCCO 1 DI 2 -->
-<div class="aat-summary-block" id="btrn-chap3-summary-p1">
-    <h3 style="color: #059669; border-bottom: 2px solid #059669; padding-bottom: 0.6rem; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.3rem;">
-        Chapter 3.1 Summary: Operational Checklist & Cash Management Rules
-    </h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 3 - Advanced Bookkeeping (Chapter 1 Summary)</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --border-color: #E5E7EB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+        .studio-container { max-width: 1000px; margin: 0 auto; }
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            border: 1px solid var(--border-color);
+        }
+        .financial-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .financial-table th { background-color: var(--l3-cyan-dark); color: #FFFFFF; padding: 0.75rem; font-size: 0.85rem; border: 1px solid var(--l3-cyan-dark); }
+        .financial-table td { border: 1px solid var(--border-color); padding: 0.75rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="studio-container">
+        <div class="white-bubble-container">
+            <div style="margin-bottom: 2rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 1rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">AAT LEVEL 3 ADVANCED</span>
+                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Critical Summary & Cheat Sheet</h1>
+            </div>
 
-    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
-        Il nucleo operativo del Capitolo 3 ruota attorno al controllo e alla tracciabilità della liquidità aziendale. Di seguito viene presentata la tavola sinottica dei flussi per la revisione rapida prima dei test di livello.
-    </p>
+            <!-- ACCUMULATION BOX -->
+            <div style="background-color: var(--l3-cyan-light); border-left: 4px solid var(--l3-cyan-primary); padding: 1.2rem; border-radius: 6px; margin-bottom: 2rem;">
+                <strong style="color: var(--l3-cyan-dark); font-size: 1rem;">🎯 KEY ADAPTIVE FORMULAS & EQUATIONS:</strong>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; font-family: 'JetBrains Mono', monospace; color: #111827;">
+                    1. Expense Charge to SPL = Bank Payments + Closing Accrual - Closing Prepayment<br>
+                    2. Net Trade Receivables in SoFP = Closing Receivables Balance - Specific Write-offs - Closing Allowance
+                </p>
+            </div>
 
-    <!-- TABELLA DI RIFERIMENTO RAPIDO PER IL CASH BOOK -->
-    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
-        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
-            📌 CHECKLIST CONTABILE: REGISTRAZIONI NEL THREE-COLUMN CASH BOOK
+            <!-- FINANCIAL STATEMENT TABLE -->
+            <table class="financial-table">
+                <thead>
+                    <tr style="background: #0284C7; color: #FFFFFF;">
+                        <th style="text-align: left;">Ledger Adjustment Item</th>
+                        <th>SoFP Sub-Heading</th>
+                        <th>Nature and Balance Behavior</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 600;">Prepayments Account</td>
+                        <td style="color: #059669; font-weight: 700;">Current Assets</td>
+                        <td>Represents a deferred expense paid in advance to be consumed in future accounting years.</td>
+                    </tr>
+                    <tr style="background: #FAFAFA;">
+                        <td style="font-weight: 600;">Accruals Account</td>
+                        <td style="color: #DC2626; font-weight: 700;">Current Liabilities</td>
+                        <td>Represents an accrued debt for utilities or resources consumed but not yet invoiced.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Allowance for Doubtful Debts</td>
+                        <td style="font-weight: 700;">Current Assets (Deduction)</td>
+                        <td>A contra-asset account shown as a direct negative deduction from trade receivables nominal value.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- SINTESI DELLA REGOLA DEI RIVERSAMENTI -->
+            <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-top: 2rem;">
+                <strong style="color: #111827; display: block; margin-bottom: 0.5rem; font-size: 1rem;">The Opening Reversals Law (1st January Postings)</strong>
+                <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin: 0; color: #4B5563;">
+                    At the start of a new financial exercise (1st January), the closing balances of <em>Accruals</em> and <em>Prepayments</em> recorded on 31st December must be completely reversed into their respective expense accounts. This <strong>Opening Reversal Entry</strong> wipes out the temporary financial statement balances and guarantees that subsequent cash entries from bank statements are automatically reduced by the amount already accounted for, preventing catastrophic cost duplication errors.
+                </p>
+            </div>
         </div>
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #FFFFFF;">
-            <thead>
-                <tr style="background: #047857; color: #FFFFFF;">
-                    <th style="padding: 0.5rem; border: 1px solid #047857; text-align: left;">Evento Contabile</th>
-                    <th style="padding: 0.5rem; border: 1px solid #047857; text-align: left;">Lato Dare (Debit / Receipts)</th>
-                    <th style="padding: 0.5rem; border: 1px solid #047857; text-align: left;">Lato Avere (Credit / Payments)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; font-weight: 600;">Incasso da Clienti (SLCA)</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB;">Inserire l'importo netto ricevuto nella colonna <strong>Bank</strong>.</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; color: #6B7280;">Nessuna registrazione (il credit va nel Sales Ledger).</td>
-                </tr>
-                <tr style="background: #FAFAFA;">
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; font-weight: 600;">Sconto di Cassa Concesso</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; color: #B45309; font-weight: 600;">Inserire il valore nella colonna <strong>Discount Allowed</strong>.</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; color: #6B7280;">Nessuna registrazione.</td>
-                </tr>
-                <tr>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; font-weight: 600;">Pagamento a Fornitori (PLCA)</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; color: #6B7280;">Nessuna registrazione (il debit va nel Purchase Ledger).</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB;">Inserire l'importo erogato nella colonna <strong>Bank</strong>.</td>
-                </tr>
-                <tr style="background: #FAFAFA;">
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; font-weight: 600;">Sconto di Cassa Ricevuto</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; color: #6B7280;">Nessuna registrazione.</td>
-                    <td style="padding: 0.5rem; border: 1px solid #E5E7EB; color: #B45309; font-weight: 600;">Inserire il valore nella colonna <strong>Discount Received</strong>.</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
-
-    <h4 style="color: #047857; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.1rem;">La Regola d'Oro del Bilanciamento di Fine Mese</h4>
-    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
-        A fine periodo, le colonne <strong>Cash</strong> e <strong>Bank</strong> vengono sommate e bilanciate calcolando il saldo di chiusura (<em>Balance c/d</em>) da riportare al mese successivo (<em>Balance b/d</em>). Le colonne **Discount Allowed** e **Discount Received** non devono mai essere bilanciate tra loro: i loro totali verticali secchi vengono semplicemente sommati e trasferiti ai rispettivi conti del General Ledger, azzerando le colonne del Cash Book per il periodo successivo.
-    </p>
-</div>
-<!-- CAPITOLO 3 SUMMARY - MACROBLOCCO 2 DI 2 -->
-<div class="aat-summary-block" id="btrn-chap3-summary-p2">
-    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; margin-bottom: 1.5rem;">
-        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem; border-top: 1px dashed #E5E7EB; padding-top: 1.5rem;">
-            🎯 RECAP COMPATTO: L'IMPREST SYSTEM EQUATION
-        </div>
-        <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-            La gestione della cassa minuta risponde a un'equazione matematica fissa. Se l'equazione non quadra, significa che si è verificata un'anomalia di cassa (mancanza o eccedenza):
-        </p>
-        
-        <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #111827; margin-bottom: 1.5rem; text-align: center;">
-            <strong>Cash in Tin (Contanti rimasti) + Total Gross Vouchers = Fixed Imprest Float</strong>
-        </div>
-
-        <div style="background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1.2rem; border-radius: 6px; margin-bottom: 1rem;">
-            <strong style="color: #B45309; font-size: 0.95rem;">🔥 REVISIONE VOLANTE - CASI LIMITE PER IL TEST:</strong>
-            <ul style="font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem; padding-left: 1.2rem; color: #1F2937;">
-                <li><strong>Reintegro Monetario (Top-Up):</strong> L'importo da prelevare dalla banca è sempre pari alla somma della colonna <em>Total Paid (Gross)</em> di tutti i voucher. Non farti ingannare se il testo fornisce valori separati di imponibile e imposta.</li>
-                <li><strong>Destinazione IVA:</strong> Il totale della colonna VAT del Petty Cash Book si trasferisce in <strong>DEBIT</strong> nel <em>VAT Control Account</em> del General Ledger alla fine del mese (rappresenta un credito d'imposta verso l'erario).</li>
-                <li><strong>Il Flusso Contra:</strong> Ricorda che i movimenti di Contra non modificano mai i saldi del General Ledger. Si completano e si esauriscono interamente dentro il Cash Book a tre colonne.</li>
-                <li><strong>Sconti:</strong> Il Petty Cash Ledger non prevede in nessun caso la gestione di sconti commerciali o sconti di cassa. Qualsiasi transazione che includa sconti va inserita solo nel Cash Book principale.</li>
-            </ul>
-        </div>
-    </div>
-
-    <p style="font-size: 0.95rem; line-height: 1.6; color: #4B5563; font-style: italic; text-align: center; margin-top: 1.5rem;">
-        La sintesi del Capitolo 3 è completata. Tutti i concetti contabili sono consolidati e pronti per i test.
-    </p>
-</div>
+</body>
+</html>
