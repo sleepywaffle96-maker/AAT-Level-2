@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 3 - Advanced Accounting Final Mock Exam</title>
+    <style>
+        /* 1. Reset Globale e Layout Sfondo */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #333333; min-height: 100vh; padding: 40px 20px; padding-top: 90px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Barra Timer Persistente Superiore (Stile Ciano L3) */
+        .timer-bar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(15, 23, 42, 0.95); border-bottom: 2px solid #0284C7; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 3000; color: white; }
+        .timer-clock { font-size: 20px; font-weight: 800; color: #0284C7; text-shadow: 0 0 10px rgba(2, 132, 199, 0.4); }
+        
+        /* Contenitore Esame (Bolla Bianca Protetta) */
+        .exam-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); position: relative; }
+        .exam-header { border-bottom: 2px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Card Domande Avanzate */
+        .mock-question-card { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 25px; margin-bottom: 25px; display: block; }
+        .question-text { font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 15px; line-height: 1.6; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; }
+        
+        .option-wrapper { display: flex; align-items: center; padding: 12px 18px; border: 2px solid #E2E8F0; border-radius: 6px; background: white; cursor: pointer; transition: all 0.2s; }
+        .option-wrapper:hover { border-color: #0284C7; background-color: #F0F9FF; }
+        .option-wrapper input { margin-right: 12px; width: 18px; height: 18px; }
+        
+        .numeric-input-wrapper { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; }
+        .numeric-field { width: 130px; padding: 8px; border: 2px solid #CBD5E1; border-radius: 6px; text-align: right; font-weight: 700; font-size: 14px; color: #0F172A; }
+        .numeric-field:focus { outline: none; border-color: #0284C7; }
+
+        /* Tabelle di riepilogo interne per i quesiti L3 */
+        .aat-mini-table { border-collapse: collapse; margin: 12px 0; font-size: 13px; width: 100%; max-width: 500px; }
+        .aat-mini-table th { background: #1E293B; color: white; padding: 6px 12px; text-align: left; }
+        .aat-mini-table td { padding: 6px 12px; border: 1px solid #E2E8F0; font-weight: 600; }
+        
+        /* Pannello dei Risultati Post-Exam */
+        #results-panel { display: none; background: #F0F9FF; border: 2px solid #0284C7; border-radius: 8px; padding: 30px; margin-top: 30px; text-align: center; }
+        .score-display { font-size: 34px; font-weight: 800; color: #0369A1; margin: 15px 0; }
+        .explanation-box { background: white; border-left: 4px solid #0284C7; padding: 18px; text-align: left; margin-top: 20px; border-radius: 4px; font-size: 14px; line-height: 1.6; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .feedback-line { font-weight: bold; margin-top: 5px; }
+        
+        .btn-submit { background: #0284C7; color: white; padding: 14px 35px; font-size: 16px; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; width: 100%; margin-top: 20px; }
+        .btn-submit:hover { background: #0369A1; }
+
+        /* Componenti Grafici Calcolatrice Nativa "Osborne Calc" */
+        #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
+        #calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #calc-header span { color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        #calc-close-btn { background: transparent; border: none; color: #EF4444; font-weight: bold; cursor: pointer; font-size: 14px; }
+        #calc-screen { width: 100%; height: 45px; background: #000000; border-radius: 8px; color: #00FFFF; text-shadow: 0 0 10px #00FFFF; font-family: 'Courier New', Courier, monospace; text-align: right; padding: 12px; font-size: 20px; font-weight: bold; margin-bottom: 12px; border: 1px solid #00FFFF; }
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .calc-btn { background: rgba(255, 255, 255, 0.08); border: none; color: white; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; }
+        .calc-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .calc-btn.op { color: #00FFFF; background: rgba(0, 255, 255, 0.05); }
+        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.2); }
+        #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #0284C7; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s ease, background 0.2s ease; }
+        #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #0369A1; }
+    </style>
+</head>
+<body>
+    <!-- Barra Superiore di Controllo Esame Livello 3 -->
+    <div class="timer-bar">
+        <div style="font-weight: 700; font-size: 15px; letter-spacing: 0.5px;">AAT L3 FINANCIAL SIMULATOR — ADVANCED FINANCIAL ACCOUNTING (FAPR)</div>
+        <div class="timer-clock">Time Remaining: <span id="time-display">60:00</span></div>
+    </div>
+
+    <div class="exam-container">
+        <div class="exam-header">
+            <div style="font-size: 20px; font-weight: 800; color: #0F172A;">🏆 LEVEL 3 COMPREHENSIVE FINAL MOCK EXAMINATION</div>
+            <div style="font-weight: 600; color: #64748B; font-size: 14px;">Questions: 15 / Hard Time: 60 Min</div>
+        </div>
+
+        <p style="font-size:14px; color:#475569; margin-bottom:25px; line-height:1.5;">This exam simulates the formal AAT Level 3 core accounting evaluation. It contains 15 randomized strategic problems. Immediate verification fields are locked during testing; a comprehensive audit and rationale panel unlocks instantly upon formal submission.</p>
+
+        <!-- Form contenitore delle domande pescate casualmente -->
+        <form id="mock-exam-form">
+            <div id="dynamic-questions-placeholder"></div>
+            <button type="button" class="btn-submit" id="btn-submit-exam" onclick="processExamSubmission()">Submit Level 3 Exam</button>
+        </form>
+
+        <!-- Pannello di riepilogo visibile solo POST-SUBMIT -->
+        <div id="results-panel">
+            <h2 style="color: #0F172A; font-weight: 800; text-transform: uppercase;">AAT Performance Audit</h2>
+            <div class="score-display" id="percentage-score">0%</div>
+            <p id="pass-fail-feedback" style="font-weight: 700; font-size: 17px; margin-bottom: 25px;"></p>
+            <div id="rationales-placeholder" style="text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+    <div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
+
+    <!-- WIDGET CALCOLATRICE INTERATTIVA ORIGINAL NATIVE -->
+    <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" title="Hide">✕</button>
+        </div>
+        <div id="calc-screen">0</div>
+        <div class="calc-grid">
+            <button class="calc-btn op" onclick="clearCalc()">C</button>
+            <button class="calc-btn op" onclick="pressCalc('sq')">x²</button>
+            <button class="calc-btn op" onclick="pressCalc('rt')">√</button>
+            <button class="calc-btn op" onclick="pressCalc('/')">/</button>
+            <button class="calc-btn" onclick="pressCalc('7')">7</button>
+            <button class="calc-btn" onclick="pressCalc('8')">8</button>
+            <button class="calc-btn" onclick="pressCalc('9')">9</button>
+            <button class="calc-btn op" onclick="pressCalc('*')">*</button>
+            <button class="calc-btn" onclick="pressCalc('4')">4</button>
+            <button class="calc-btn" onclick="pressCalc('5')">5</button>
+            <button class="calc-btn" onclick="pressCalc('6')">6</button>
+            <button class="calc-btn op" onclick="pressCalc('-')">-</button>
+            <button class="calc-btn" onclick="pressCalc('1')">1</button>
+            <button class="calc-btn" onclick="pressCalc('2')">2</button>
+            <button class="calc-btn" onclick="pressCalc('3')">3</button>
+            <button class="calc-btn op" onclick="pressCalc('+')">+</button>
+            <button class="calc-btn" onclick="pressCalc('0')">0</button>
+            <button class="calc-btn" onclick="pressCalc('.')">.</button>
+            <button class="calc-btn op" onclick="pressCalc('%')">%</button>
+            <button class="calc-btn op" style="background:#059669; color: white;" onclick="calculateCalc()">=</button>
+        </div>
+    </div>
+<script>
+    // --- DATABASE QUESITI AVANZATI REALE LIVELLO 3 (AAT COMPLIANT) ---
+    const mockQuestionsDatabase = [
+        {
+            id: 1,
+            type: "input",
+            question: "A business purchase a vehicle on 1 January 2024 for £24,000. The firm uses the Reducing Balance Method of depreciation at a fixed rate of 25% per annum. Calculate the precise Depreciation Expense charge (£) to be recorded in the Statement of Profit or Loss for the second financial year ending 31 December 2025.",
+            correct: "4500",
+            rationale: "Year 1 (2024) Depreciation: £24,000 × 25% = £6,000. Net Book Value (NBV) at start of Year 2: £24,000 - £6,000 = £18,000. Year 2 (2025) Depreciation charge: £18,000 × 25% = £4,500."
+        },
+        {
+            id: 2,
+            type: "input",
+            question: "On 1 November 2025, an enterprise pays its annual commercial insurance premium of £3,600 covering a 12-month window to 31 October 2026. The full invoice was debited to the Insurance Expense account. Calculate the exact Prepayment adjustment adjustment (£) required at the financial year-end on 31 December 2025.",
+            correct: "3000",
+            rationale: "The premium covers 12 months, which equals £300 per month (£3,600 ÷ 12). At 31 December 2025, only 2 months (November and December) are consumed. The remaining 10 months (January to October 2026) are prepaid. Prepayment = 10 months × £300 = £3,000."
+        },
+        {
+            id: 3,
+            type: "input",
+            question: "A firm's financial year ends on 31 March 2026. The electricity bill is paid quarterly in arrears. The last invoice was settled up to 31 January 2026. On 15 May 2026, the firm receives an electricity bill of £900 covering February, March, and April 2026. Calculate the Accrual adjustment adjustment (£) required at year-end.",
+            correct: "600",
+            rationale: "The bill covers 3 months (Feb, Mar, Apr), making it £300 per month (£900 ÷ 3). At 31 March, the business has consumed electricity for February and March (2 months) but has not yet been invoiced. Accrual required = 2 months × £300 = £600."
+        },
+        {
+            id: 4,
+            type: "input",
+            question: "At the end of the trading period, a business has total Trade Receivables of £45,000. The bookkeeper decides to fully write off an irrecoverable debt from client X worth £1,200, and subsequently adjust the general Allowance for Doubtful Debts to be exactly 5% of the remaining receivables pool. Calculate the final balance (£) of the adjusted Allowance account.",
+            correct: "2190",
+            rationale: "Step 1: Subtract the specific written-off debt from total receivables: £45,000 - £1,200 = £43,800. Step 2: Calculate the 5% general allowance on the updated pool: £43,800 × 5% = £2,190."
+        },
+        {
+            id: 5,
+            type: "radio",
+            question: "When adjusting the general Allowance for Doubtful Debts account at year-end, it is discovered that the opening allowance balance is £1,800 and the newly required allowance is calculated as £1,450. What is the double-entry posting path to record this shift?",
+            options: [
+                "Debit Allowance for Doubtful Debts £350, Credit Irrecoverable Debts Expense £350",
+                "Debit Irrecoverable Debts Expense £350, Credit Allowance for Doubtful Debts £350",
+                "Debit Statement of Profit or Loss £1,450, Credit Allowance Account £1,450"
+            ],
+            correct: "Debit Allowance for Doubtful Debts £350, Credit Irrecoverable Debts Expense £350",
+            rationale: "The allowance needs to decrease from £1,800 to £1,450, which is a reduction of £350. To reduce an allowance account (credit standard balance), we must Debit the Allowance account and Credit the Irrecoverable Debts Expense account (acting as an income credit adjustment)."
+        },
+        {
+            id: 6,
+            type: "radio",
+            question: "An item of machinery bought for £15,000 with accumulated depreciation of £9,000 is sold on credit during the period for £4,800. What is the final net profit or net loss outcome on this disposal transaction inside the accounts?",
+            options: [
+                "A Net Profit on Disposal of £1,200",
+                "A Net Loss on Disposal of £1,200",
+                "A Net Loss on Disposal of £6,000"
+            ],
+            correct: "A Net Loss on Disposal of £1,200",
+            rationale: "Net Book Value (NBV) at disposal = Cost (£15,000) - Acc. Depreciation (£9,000) = £6,000. Disposal Proceeds = £4,800. Profit/Loss = Proceeds (£4,800) - NBV (£6,000) = -£1,200 (Net Loss on Disposal)."
+        },
+        {
+            id: 7,
+            type: "input",
+            question: "A business operates a policy of depreciating machinery at 20% per annum using the Straight-Line Method, calculated pro-rata on a monthly basis. A new cutting machine is purchased on 1 September 2025 for £18,000. Calculate the exact depreciation charge (£) for this machine for the financial year ending 31 December 2025.",
+            correct: "1200",
+            rationale: "Full annual depreciation: £18,000 × 20% = £3,600 per year. Monthly charge: £3,600 ÷ 12 = £300 per month. The machine was owned from 1 Sept to 31 Dec (September, October, November, December = 4 months). Pro-rata depreciation = 4 months × £300 = £1,200."
+        },
+        {
+            id: 8,
+            type: "radio",
+            question: "Inside an Extended Trial Balance (ETB) worksheet, into which specific columns must the ending balance of a Prepayment adjustment be transferred?",
+            options: [
+                "Statement of Profit or Loss (Debit column)",
+                "Statement of Financial Position (Debit column, representing a Current Asset)",
+                "Statement of Financial Position (Credit column, representing a Current Liability)"
+            ],
+            correct: "Statement of Financial Position (Debit column, representing a Current Asset)",
+            rationale: "A prepayment represents an expense paid in advance, which constitutes a Current Asset. Therefore, on an Extended Trial Balance, its final adjusted position must be mapped into the Statement of Financial Position Debit column."
+        },
+        {
+            id: 9,
+            type: "input",
+            question: "A partnership is formed between partner A and partner B. The partnership agreement states that partner A is entitled to an annual salary of £6,000. Residual profits are split in a 3:2 ratio respectively. The net profit for the year before adjustments is £26,000. Calculate partner B's definitive final share of residual profit (£).",
+            correct: "8000",
+            rationale: "Total Profit = £26,000. Deduct Partner A's Salary: £26,000 - £6,000 = £20,000 remaining as residual profit. Partner B's split is 2/5 of the residue (since the ratio is 3:2, total parts = 5). Partner B's Share = £20,000 × (2 ÷ 5) = £8,000."
+        },
+        {
+            id: 10,
+            type: "radio",
+            question: "Where should interest charged on partner drawings be entered inside the formal Partnership Appropriation Account?",
+            options: [
+                "As a Credit entry/Addition to the net profit because it represents an internal cost recovered from partners",
+                "As a Debit entry/Deduction from the net profit because it increases individual partner current accounts",
+                "Excluded entirely from the allocation map"
+            ],
+            correct: "As a Credit entry/Addition to the net profit because it represents an internal cost recovered from partners",
+            rationale: "Interest on drawings is a penalty or charge levied by the partnership on individual partners for taking funds out. From the perspective of the partnership entity, it increases the total pool of profit available for appropriation, so it is credited/added to net profit."
+        },
+        {
+            id: 11,
+            type: "input",
+            question: "At year-end, the closing Inventory count valued at original cost is £14,500. However, investigation reveals that a batch of damaged items originally costing £1,500 can only be sold for £900 after spending £100 on repair modifications. Calculate the final accurate valuation of Inventory (£) under IAS 2.",
+            correct: "13800",
+            rationale: "IAS 2 states inventory must be valued at the lower of Cost and Net Realizable Value (NRV). For the sound stock: £14,500 - £1,500 = £13,000. For the damaged stock, NRV = Estimated Selling Price (£900) - Repair Costs (£100) = £800. Lower of cost (£1,500) and NRV (£800) is £800. Total inventory valuation = £13,000 + £800 = £13,800."
+        },
+        {
+            id: 12,
+            type: "radio",
+            question: "If a bookkeeper accidentally records an Accrued Expense adjustment as a Prepayment on the year-end Extended Trial Balance, what is the combined structural impact on the calculated net profit?",
+            options: [
+                "Net Profit will be overstated",
+                "Net Profit will be understated",
+                "Net Profit will remain perfectly balanced"
+            ],
+            correct: "Net Profit will be overstated",
+            rationale: "An accrual increases expenses (reducing profit). A prepayment reduces expenses (increasing profit). By reversing this, the business fails to record a cost and incorrectly removes another cost, causing the final calculated Net Profit to be significantly overstated."
+        },
+        {
+            id: 13,
+            type: "input",
+            question: "A sole trader has an opening Capital balance of £35,000. During the year, the business achieves a Net Profit of £12,400 and the owner executes total cash Drawings of £4,200. Calculate the closing Capital balance (£) to be shown on the Statement of Financial Position.",
+            correct: "43200",
+            rationale: "The accounting equation expansion dictates: Closing Capital = Opening Capital + Net Profit - Drawings. Closing Capital = £35,000 + £12,400 - £4,200 = £43,200."
+        },
+        {
+            id: 14,
+            type: "radio",
+            question: "Which of the following elements is classified as a Non-Current Liability on a corporate Statement of Financial Position?",
+            options: [
+                "Bank Overdraft facility on demand",
+                "A 5-year bank loan balance",
+                "Trade Payables ledger pool balance"
+            ],
+            correct: "A 5-year bank loan balance",
+            rationale: "Bank overdrafts and trade payables are due for full settlement within 12 months, making them Current Liabilities. A 5-year loan is a long-term obligation stretching past one operating cycle, classifying it as a Non-Current Liability."
+        },
+        {
+            id: 15,
+            type: "input",
+            question: "A partnership allows 5% per annum interest on capital allocations. Partner A has a fixed Capital account balance of £40,000. Calculate the interest on capital allocation (£) to be debited to the Partnership Appropriation Account for partner A.",
+            correct: "2000",
+            rationale: "Interest on Capital allocation = Partner's fixed Capital balance × Allocation interest rate. Allocation = £40,000 × 5% = £2,000."
+        }
+    ];
+
+    let selectedQuestions = [];
+    let examTimer = null;
+    let secondsRemaining = 3600; // 60 Minuti esatti
+    // --- FUNZIONE DI INIZIALIZZAZIONE RANDOMIZZATA ---
+    window.addEventListener('DOMContentLoaded', () => {
+        // Estrae a sorte 15 domande casuali dall'intero archivio
+        let shuffled = [...mockQuestionsDatabase].sort(() => 0.5 - Math.random());
+        selectedQuestions = shuffled.slice(0, 15);
+        
+        renderExamQuestions();
+        startCountdownTimer();
+    });
+
+    function renderExamQuestions() {
+        const placeholder = document.getElementById('dynamic-questions-placeholder');
+        placeholder.innerHTML = '';
+
+        selectedQuestions.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = 'mock-question-card';
+            
+            let htmlContent = `<p class="question-text">${index + 1}. ${q.question}</p>`;
+
+            if (q.type === 'radio') {
+                htmlContent += `<div class="options-grid">`;
+                q.options.forEach(opt => {
+                    htmlContent += `
+                        <label class="option-wrapper">
+                            <input type="radio" name="mock_q_${q.id}" value="${opt}">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+                htmlContent += `</div>`;
+            } else if (q.type === 'input') {
+                htmlContent += `
+                    <div class="numeric-input-wrapper">
+                        <span>Enter numeric value (£):</span>
+                        <input type="text" class="numeric-field" name="mock_q_${q.id}" placeholder="0">
+                    </div>
+                `;
+            }
+
+            card.innerHTML = htmlContent;
+            placeholder.appendChild(card);
+        });
+    }
+
+    function startCountdownTimer() {
+        examTimer = setInterval(() => {
+            if (secondsRemaining <= 0) {
+                clearInterval(examTimer);
+                document.getElementById('time-display').innerText = "00:00";
+                alert("Time expired! Your exam will be submitted automatically.");
+                processExamSubmission();
+            } else {
+                secondsRemaining--;
+                let mins = Math.floor(secondsRemaining / 60);
+                let secs = secondsRemaining % 60;
+                document.getElementById('time-display').innerText = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    }
+    // --- MOTORE DI VALUTAZIONE E RENDERING REPORT DEIFINITIVO ---
+    function processExamSubmission() {
+        clearInterval(examTimer);
+        document.getElementById('btn-submit-exam').disabled = true;
+        document.getElementById('btn-submit-exam').style.background = '#94A3B8';
+
+        let scorePoints = 0;
+        const form = document.getElementById('mock-exam-form');
+        const rationalesContainer = document.getElementById('rationales-placeholder');
+        rationalesContainer.innerHTML = '';
+
+        selectedQuestions.forEach((q, index) => {
+            let studentInput = "";
+            if (q.type === 'radio') {
+                const picked = form.querySelector(`input[name="mock_q_${q.id}"]:checked`);
+                if (picked) studentInput = picked.value;
+            } else if (q.type === 'input') {
+                const field = form.querySelector(`input[name="mock_q_${q.id}"]`);
+                if (field) studentInput = field.value.trim();
+            }
+
+            const isMatched = studentInput === q.correct;
+            if (isMatched) scorePoints++;
+
+            // Genera la scheda di riepilogo razionale per ogni singola domanda
+            const block = document.createElement('div');
+            block.className = 'explanation-box';
+            block.innerHTML = `
+                <p style="font-weight:700; color:#0F172A;">Task ${index + 1}: ${isMatched ? '✔️ Correct' : '❌ Incorrect'}</p>
+                <p style="font-size:13.5px; color:#475569; margin: 4px 0;"><strong>Your Answer:</strong> ${studentInput || '[Blank]'} | <strong>Correct Answer:</strong> ${q.correct}</p>
+                <p style="font-size:13.5px; color:#334155; background:#F8FAFC; padding:10px; border-radius:4px; border-left:3px solid #0284C7; margin-top:6px;"><strong>Passaggio Logico:</strong> ${q.rationale}</p>
+            `;
+            rationalesContainer.appendChild(block);
+        });
+
+        // Calcola la percentuale e mostra il report
+        let successPercentage = Math.round((scorePoints / 15) * 100);
+        document.getElementById('percentage-score').innerText = `${successPercentage}%`;
+        
+        const feedbackText = document.getElementById('pass-fail-feedback');
+        if (successPercentage >= 70) {
+            feedbackText.innerText = "🎉 PASS! Excellent advanced bookkeeping control established.";
+            feedbackText.style.color = "#059669";
+        } else {
+            feedbackText.innerText = "❌ REFER. Review your adjustments and partnership appropriations before retaking.";
+            feedbackText.style.color = "#DC2626";
+        }
+
+        document.getElementById('results-panel').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('results-panel').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    // --- VISIBILITÀ E DRAG LOGIC CALCOLATRICE NATIVA ---
+    const calcWidget = document.getElementById('calc-widget');
+    const calcTrigger = document.getElementById('calc-toggle-trigger');
+    const calcClose = document.getElementById('calc-close-btn');
+
+    if(calcTrigger && calcWidget && calcClose) {
+        calcTrigger.addEventListener('click', () => calcWidget.style.display = 'block');
+        calcClose.addEventListener('click', () => calcWidget.style.display = 'none');
+    }
+
+    let calcDisplay = document.getElementById('calc-screen');
+    function pressCalc(val) {
+        if (calcDisplay.innerText === '0' && !isNaN(val)) calcDisplay.innerText = '';
+        if (val === 'sq') { calcDisplay.innerText = Math.pow(eval(calcDisplay.innerText), 2); }
+        else if (val === 'rt') { calcDisplay.innerText = Math.sqrt(eval(calcDisplay.innerText)); }
+        else { calcDisplay.innerText += val; }
+    }
+    function clearCalc() { calcDisplay.innerText = '0'; }
+    function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
+
+    let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+    if(calcWidget) {
+        calcWidget.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('calc-btn') || e.target.id === 'calc-screen') return;
+            initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; isDragging = true;
+        });
+        document.addEventListener('mouseup', () => { isDragging = false; initialX = currentX; initialY = currentY; });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return; e.preventDefault();
+            currentX = e.clientX - initialX; currentY = e.clientY - initialY;
+            xOffset = currentX; yOffset = currentY;
+            calcWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        });
+    }
+</script>
+</body>
+</html>
