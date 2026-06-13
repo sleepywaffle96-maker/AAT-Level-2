@@ -1,231 +1,113 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 - Chapter 1: Visual Schemes</title>
-    <style>
-        :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --cyan: #00f2fe;
-            --teal: #4facfe;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-            --debit-color: #10b981;
-            --credit-color: #ef4444;
-            --warn-color: #f59e0b;
-        }
+<!-- CAPITOLO 3 SCHEMES - MACROBLOCCO 1 DI 2 -->
+<div class="aat-schemes-block" id="btrn-chap3-schemes-p1">
+    <h3 style="color: #059669; border-bottom: 2px solid #059669; padding-bottom: 0.6rem; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.3rem;">
+        Chapter 3.1 Schemes: Visual Ledger Flowcharts & Three-Column Cash Book Mappings
+    </h3>
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+        Questo schema mappa visivamente l'instradamento geometrico delle transazioni liquide dal Three-Column Cash Book verso i rispettivi Ledger sussidiari e generali.
+    </p>
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            color: var(--cyan);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            color: var(--cyan);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            color: var(--teal);
-            margin-top: 35px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-        }
-
-        h3 {
-            color: var(--text-main);
-            margin-top: 25px;
-        }
-
-        .section-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.85rem;
-        }
-
-        th, td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        th {
-            background-color: #1e293b;
-            color: var(--cyan);
-        }
-
-        tr:hover {
-            background-color: #131b2e;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
-    
-    <h1>Chapter 1: Business Awareness — Schemes & Analysis Frameworks</h1>
-
-    <!-- SECTION 1: PESTLE INTERACTIVE MATRIX -->
-    <div class="section-card">
-        <h2>1. PESTLE Environmental Analysis Scheme</h2>
-        <p>This macro-environmental analysis grid displays how key external forces translate into specific corporate and bookkeeping consequences.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Environmental Dimension</th>
-                    <th>Core Strategic Driver</th>
-                    <th>Accounting & Operational Consequences</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Political</strong></td>
-                    <td>Changes in UK Government tax regimes</td>
-                    <td>Alters corporate tax provisions and payroll PAYE software metrics.</td>
-                </tr>
-                <tr>
-                    <td><strong>Economic</strong></td>
-                    <td>Bank of England interest rate hikes</td>
-                    <td style="color: var(--credit-color);">Increases cost of borrowing and shifts capital expenditure thresholds.</td>
-                </tr>
-                <tr>
-                    <td><strong>Social</strong></td>
-                    <td>Shifts in consumer ethical consumption</td>
-                    <td>Requires investment in sustainable stock chains and adjusts inventory turn.</td>
-                </tr>
-                <tr>
-                    <td><strong>Technological</strong></td>
-                    <td>Migration to advanced cloud accounting</td>
-                    <td style="color: var(--debit-color);">Enables real-time KPI data mining but requires staff training.</td>
-                </tr>
-                <tr>
-                    <td><strong>Legal</strong></td>
-                    <td>The UK Bribery Act and GDPR mandates</td>
-                    <td>Demands stricter internal audit testing and access restriction reviews.</td>
-                </tr>
-                <tr>
-                    <td><strong>Environmental</strong></td>
-                    <td>Carbon reduction legal reporting caps</td>
-                    <td>Requires transparency regarding resource usage within annual statements.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- SECTION 2: MARKET STRUCTURE MATRIX -->
-    <div class="section-card">
-        <h2>2. Structural Comparison of Microeconomic Environments</h2>
-        <p>This technical template tracks the boundaries and pricing power dynamics across different corporate market types.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Market Structure Type</th>
-                    <th>Number of Competitors</th>
-                    <th>Pricing Power Scope</th>
-                    <th>Entry Barriers Intensity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Perfect Competition</strong></td>
-                    <td>Infinite / Small Sellers</td>
-                    <td style="color: var(--text-muted);">None (Price Takers)</td>
-                    <td>Zero Barriers to Entry</td>
-                </tr>
-                <tr>
-                    <td><strong>Monopolistic Competition</strong></td>
-                    <td>Very Many Sellers</td>
-                    <td>Slight (Product Differentiation)</td>
-                    <td>Relatively Low Barriers</td>
-                </tr>
-                <tr>
-                    <td><strong>Oligopoly</strong></td>
-                    <td>Few Dominant Large Firms</td>
-                    <td style="color: var(--warn-color); font-weight: bold;">High (Interdependent Pricing)</td>
-                    <td style="color: var(--warn-color);">High Structural/Financial Barriers</td>
-                </tr>
-                <tr>
-                    <td><strong>Monopoly</strong></td>
-                    <td>Single Sole Seller</td>
-                    <td style="color: var(--credit-color); font-weight: bold;">Absolute (Price Maker)</td>
-                    <td style="color: var(--credit-color);">Near-Impenetrable Obstacles</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- SECTION 3: LEGAL SECURITY MATRIX -->
-    <div class="section-card">
-        <h2>3. Statutory Framework Compliance & Reporting Pathways</h2>
-        <p>This legal reporting layout maps out the precise operational requirements demanded under UK anti-financial crime statutes.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>UK Statute Framework</th>
-                    <th>Primary Target Risk Area</th>
-                    <th>Mandatory Accounting Reporting Pathway</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Bribery Act 2010</strong></td>
-                    <td>Corporate bribery and kickbacks</td>
-                    <td>Enforce strict corporate policy limits and independent internal audits.</td>
-                </tr>
-                <tr>
-                    <td><strong>Money Laundering Regulations</strong></td>
-                    <td>Concealing proceeds of financial crime</td>
-                    <td style="color: var(--cyan); font-weight: bold;">Submit Suspicious Activity Report (SAR) to the NCA immediately.</td>
-                </tr>
-                <tr>
-                    <td><strong>Criminal Finances Act 2017</strong></td>
-                    <td>Facilitation of third-party tax evasion</td>
-                    <td>Mandate complete verification of foreign supplier banking records via the Journal.</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- SCHEMA 1: ARCHITETTURA DEL THREE-COLUMN CASH BOOK -->
+    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
+            📊 FLOW 1: THE THREE-COLUMN GEOMETRY & LEDGER ROUTING
+        </div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+[ SIDE ]  [ COLUMN ]           [ DOUBLE ENTRY / LEDGER ROUTING INTERACTION ]
+-----------------------------------------------------------------------------------------
+DEBIT     Cash Column   -----> DEBIT Entry: Physical cash receipts coming in.
+(Receipts) Bank Column   -----> DEBIT Entry: Bank deposits, electronic receipts (BACS/Debits).
+          Discount Allowed --> MEMORANDUM ONLY: Totals debited to Discount Allowed A/c (General Ledger).
+-----------------------------------------------------------------------------------------
+CREDIT    Cash Column   -----> CREDIT Entry: Physical cash expenditure leaving safe.
+(Payments) Bank Column   -----> CREDIT Entry: Bank transfers, cheques drawn, direct debits out.
+          Discount Received -> MEMORANDUM ONLY: Totals credited to Discount Received A/c (General Ledger).
+        </div>
     </div>
 
-</div> <!-- End Container -->
+    <!-- SCHEMA 2: LA MECCANICA DELLE CONTRA ENTRIES -->
+    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
+            🔄 FLOW 2: CONTRA ENTRIES MECCANICA (Codice 'C' in Folio)
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: #4B5563;">
+            Una <em>Contra Entry</em> si verifica quando il denaro viene spostato internamente tra il conto Cassa Fisico e il Conto Corrente Bancario, senza modificare il patrimonio aziendale. La partita doppia si chiude interamente dentro il Cash Book.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px;">
+                <strong style="color: #059669; font-size: 0.85rem;">A. Versamento contanti in Banca:</strong>
+                <ul style="font-size: 0.85rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #1F2937; line-height: 1.4;">
+                    <li><strong>DEBIT:</strong> Bank Column (Aumento banca)</li>
+                    <li><strong>CREDIT:</strong> Cash Column (Diminuzione cassa)</li>
+                    <li><em>Folio Reference:</em> Inserire 'C' in Dare e Avere.</li>
+                </ul>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px;">
+                <strong style="color: #DC2626; font-size: 0.85rem;">B. Prelievo banca per cassa centrale:</strong>
+                <ul style="font-size: 0.85rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #1F2937; line-height: 1.4;">
+                    <li><strong>DEBIT:</strong> Cash Column (Aumento cassa)</li>
+                    <li><strong>CREDIT:</strong> Bank Column (Diminuzione banca)</li>
+                    <li><em>Folio Reference:</em> Inserire 'C' in Dare e Avere.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CAPITOLO 3 SCHEMES - MACROBLOCCO 2 DI 2 -->
+<div class="aat-schemes-block" id="btrn-chap3-schemes-p2">
+    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; margin-bottom: 1.5rem;">
+        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem; border-top: 1px dashed #E5E7EB; padding-top: 1.5rem;">
+            ⏱️ FLOW 3: THE IMPREST SYSTEM PIPELINE (MATHEMATICAL CYCLE)
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: #4B5563;">
+            Questo diagramma strutturale mostra la scomposizione geometrica dei voucher e il calcolo del Top-up monetario per ripristinare il fondo iniziale.
+        </p>
 
-</body>
-</html>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+[ STEP 1: INITIAL STATE ] 
+  Fixed Float Assigned (e.g., £250.00) ---> Stays as Opening Debit asset balance.
+
+[ STEP 2: OPERATIONAL PERIOD - EXPENSES RECORDING ]
+  Voucher 01 (Stationery):  £30.00 Gross  ===> Net Column: £25.00  | VAT Column: £5.00
+  Voucher 02 (Taxi Fare):   £18.00 Gross  ===> Net Column: £18.00  | VAT Column: £0.00 (Zero-Rated)
+  Voucher 03 (Cleaning):    £24.00 Gross  ===> Net Column: £20.00  | VAT Column: #4.00
+  ------------------------------------------------------------------------------------------
+  TOTAL EXPENDITURE:        £72.00 LORDO ====> Net Totals: £63.00  | VAT Total:  £9.00
+
+[ STEP 3: RECONCILIATION EQUATION ]
+  Formula: Cash Remaining in Tin (£178.00) + Total Gross Vouchers (£72.00) = Fixed Float (£250.00)
+
+[ STEP 4: BANK REIMBURSEMENT (TOP-UP) ENTRY ]
+  Amount to Draw from Main Bank = Exact Total Gross of Vouchers Spent = £72.00
+  
+  DOUBLE ENTRY LOGIC FOR THE TOP-UP CHEQUE:
+  • DEBIT  : Petty Cash Ledger Account  (£72.00)
+  • CREDIT : Main Bank Ledger Account   (£72.00)
+        </div>
+    </div>
+
+    <!-- T-ACCOUNTS VISUAL GRID PER L'INVIO DEI TOTALI -->
+    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
+            📑 FLOW 4: END-OF-MONTH DOUBLE ENTRY TRANSFER MATRIX
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: #4B5563;">
+            Al termine del periodo contabile, i totali delle colonne d'analisi del Petty Cash Book vengono trasferiti nel General Ledger tramite partita doppia formale.
+        </p>
+        
+        <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #111827;">
+            <span style="color: #059669; font-weight: 700;">FORMAL POSTING JOURNAL:</span><br><br>
+            • DEBIT  : Stationery Expense Account (Total Net)     -> £25.00<br>
+            • DEBIT  : Travel/Taxi Expense Account (Total Net)     -> £18.00<br>
+            • DEBIT  : Cleaning Expense Account (Total Net)       -> £20.00<br>
+            • DEBIT  : VAT Control Account (Total VAT Column)     -> £9.00<br><br>
+            • CREDIT : Petty Cash Control Account (Total Cash Paid) -> £72.00<br><br>
+            <span style="color: #4B5563; font-style: italic;">*Nota: Questa partita doppia di fine mese bilancia perfettamente l'estratto conto della cassa sussidiaria.</span>
+        </div>
+    </div>
+
+    <p style="font-size: 0.95rem; line-height: 1.6; color: #4B5563; font-style: italic; text-align: center; margin-top: 1.5rem;">
+        Gli schemi e i flussi visivi del Capitolo 3 sono completati.
+    </p>
+</div>
