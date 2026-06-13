@@ -1,220 +1,83 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 - Chapter 1: Quick Summary & Formulas</title>
+    <title>AAT Level 2 Certificate in Accounting - Chapter 1 Cheat Sheet: Introduction to Bookkeeping</title>
     <style>
-        :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --cyan: #00f2fe;
-            --teal: #4facfe;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-            --debit-color: #10b981;
-            --credit-color: #ef4444;
-            --highlight: #f59e0b;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            color: var(--cyan);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            color: var(--cyan);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        h2 {
-            color: var(--teal);
-            margin-top: 30px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-            font-size: 1.3rem;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-
-        .summary-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        .formula-display {
-            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
-            border-left: 4px solid var(--cyan);
-            padding: 12px;
-            border-radius: 0 4px 4px 0;
-            margin: 10px 0;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 1.1rem;
-            color: var(--cyan);
-            font-weight: bold;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 8px 0;
-        }
-
-        li {
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 6px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .badge-dr { background: rgba(16, 185, 129, 0.2); color: var(--debit-color); }
-        .badge-cr { background: rgba(239, 68, 68, 0.2); color: var(--credit-color); }
-        .badge-info { background: rgba(245, 158, 11, 0.2); color: var(--highlight); }
+        /* 1. Reset e Sfondo Design System */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #1E293B; padding: 40px 20px; display: flex; justify-content: center; }
+        .summary-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* 2. Struttura delle schede riassuntive */
+        h1 { color: #7C3AED; font-size: 26px; font-weight: 800; margin-bottom: 25px; border-bottom: 3px solid #E2E8F0; padding-bottom: 10px; text-transform: uppercase; }
+        h2 { color: #1E293B; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; }
+        .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .card-check { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; }
+        .card-check h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+        
+        /* 3. Classi di Colore per i Controlli */
+        .asset-title { color: #2563EB; }
+        .liability-title { color: #DC2626; }
+        .warning-title { color: #D97706; }
+        ul { list-style-type: none; }
+        li { font-size: 14px; margin-bottom: 10px; font-weight: 600; color: #334155; }
+        li strong { color: #0F172A; }
+        .purple-bullet li::before { content: "• "; color: #7C3AED; font-weight: bold; font-size: 16px; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
-    
-    <h1>Chapter 1: Quick Reference Cheat Sheet</h1>
-
-    <h2>1. The Core Accounting Equation Relationships</h2>
-    <p>Every single transaction entered into the General Ledger must maintain the equilibrium of the balance sheet equation. Use these variations depending on the objective target:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-info">Standard Format</span>
-            <div class="formula-display">Assets = Liabilities + Capital</div>
-        </div>
-        <div class="summary-card">
-            <span class="badge badge-info">To Find Equity</span>
-            <div class="formula-display">Capital = Assets - Liabilities</div>
-        </div>
-        <div class="summary-card">
-            <span class="badge badge-info">To Find Debts</span>
-            <div class="formula-display">Liabilities = Assets - Capital</div>
-        </div>
-    </div>
-    <h2>2. UK VAT Breakdown & Extraction Formulas</h2>
-    <p>In the UK AAT examinations, you must quickly calculate tax fractions based on an standard rate of 20%. Use the following mathematical shortcuts to jump between values:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-info">From Net to VAT Amount</span>
-            <div class="formula-display">VAT = Net × 0.20</div>
-            <ul>
-                <li>Applies when starting from the core cost/revenue figure.</li>
-                <li>Example: £500 Net × 0.20 = £100 VAT.</li>
-            </ul>
-        </div>
+    <div class="summary-container">
+        <h1>Chapter 1 Cheat Sheet - Fast Tracking Matrix</h1>
+        <p style="font-size:14px; color:#475569; margin-bottom:20px; line-height:1.6;">Use this technical cheat sheet as an immediate classification template during assessments to correctly separate elements before launching calculations.</p>
         
-        <div class="summary-card">
-            <span class="badge badge-info">From Net to Gross Total</span>
-            <div class="formula-display">Gross = Net × 1.20</div>
-            <ul>
-                <li>Calculates the final invoice total due including tax.</li>
-                <li>Example: £500 Net × 1.20 = £600 Gross.</li>
+        <div class="quick-grid">
+            <!-- Card Assets Classification Checklist -->
+            <div class="card-check" style="border-top: 4px solid #2563EB;">
+                <h3 class="asset-title">Assets Verification Checklist</h3>
+                <ul class="purple-bullet">
+                    <li><strong>Non-Current Asset:</strong> Freehold Premises (Property/Land).</li>
+                    <li><strong>Non-Current Asset:</strong> Motor Vehicles, Delivery Vans, Fleet.</li>
+                    <li><strong>Non-Current Asset:</strong> Machinery, Plant, Heavy Equipment.</li>
+                    <li><strong>Current Asset:</strong> Trading Inventory (Goods held for resale).</li>
+                    <li><strong>Current Asset:</strong> Trade Receivables Control Account (SLCA).</li>
+                    <li><strong>Current Asset:</strong> Bank Cash Deposits and physical Petty Cash fund.</li>
+                </ul>
+            </div>
+
+            <!-- Card Liabilities Classification Checklist -->
+            <div class="card-check" style="border-top: 4px solid #DC2626;">
+                <h3 class="liability-title">Liabilities Verification Checklist</h3>
+                <ul class="purple-bullet">
+                    <li><strong>Non-Current Liability:</strong> Commercial Bank Mortgage.</li>
+                    <li><strong>Non-Current Liability:</strong> 5-Year or long-term operational Bank Loans.</li>
+                    <li><strong>Current Liability:</strong> Trade Payables Control Account (PLCA).</li>
+                    <li><strong>Current Liability:</strong> Short-term Bank Overdraft due on demand.</li>
+                    <li><strong>Current Liability:</strong> Value Added Tax (VAT) net balance owed to HMRC.</li>
+                </ul>
+            </div>
+        </div>
+        <h2>3. Critical Assessment Check: Legal Status Defenses</h2>
+        <p style="font-size:14px; color:#475569; margin-bottom:15px; line-height:1.6;">A standard trap in AAT Chapter 1 tasks is testing scenarios where a sole trader claims limited liability. Use this fast reference guide to identify legal realities instantly:</p>
+
+        <div class="card-check" style="border-top: 4px solid #D97706; background-color: #FFFDFA;">
+            <h3 class="warning-title">The Legal Realities Reference Framework</h3>
+            <ul style="list-style-type: none; margin: 0; padding: 0;">
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #FCD34D; padding-bottom: 10px;">
+                    <strong>Sole Trader vs Ltd Debt Responsibility:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">If a Sole Trader business goes into liquidation, the owner is <strong>personally liable</strong> for 100% of the unpaid debts. If a Private Limited Company (Ltd) goes into liquidation, the shareholders are protected by <strong>limited liability</strong> and lose only their invested share capital.</span>
+                </li>
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #FCD34D; padding-bottom: 10px;">
+                    <strong>Separate Legal Entity Status:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">Sole Traders and standard Partnerships are <strong>not separate legal entities</strong> from their owners. A Limited Company (Ltd) is a <strong>separate legal person</strong> in the eyes of the law, independent of directors and shareholders.</span>
+                </li>
+                <li style="margin-bottom: 5px;">
+                    <strong>Public Accountability Requirements:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">Sole Traders do not publish accounts publicly. Private Limited Companies (Ltd) <strong>must file audited statutory financial statements</strong> at Companies House every single year for public inspection.</span>
+                </li>
             </ul>
         </div>
     </div>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-info">Extract VAT From Gross (Shortcut)</span>
-            <div class="formula-display">VAT = Gross / 6</div>
-            <ul>
-                <li>The standard AAT exam formula to isolate output/input tax.</li>
-                <li>Alternative: <code>(Gross / 120) × 20</code>.</li>
-                <li>Example: £600 Gross / 6 = £100 VAT.</li>
-            </ul>
-        </div>
-
-        <div class="summary-card">
-            <span class="badge badge-info">Extract Net From Gross Total</span>
-            <div class="formula-display">Net = Gross / 1.20</div>
-            <ul>
-                <li>Removes the tax layer to find the true income or expense.</li>
-                <li>Example: £600 Gross / 1.20 = £500 Net.</li>
-            </ul>
-        </div>
-    </div>
-    <h2>3. The Double-Entry Engine & Petty Cash Controls</h2>
-    <p>Core algorithmic posting rules and balancing criteria that must be memorised for instant recall during time-pressured assessments:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-dr">DEAD Accounts</span>
-            <p style="font-size: 0.85rem; margin: 8px 0;">Increases are recorded on the <strong>Debit</strong> side:</p>
-            <ul>
-                <li><strong>E</strong>xpenses (Costs incurred)</li>
-                <li><strong>A</strong>ssets (Resources owned)</li>
-                <li><strong>D</strong>rawings (Owner withdrawals)</li>
-            </ul>
-        </div>
-
-        <div class="summary-card">
-            <span class="badge badge-cr">CLIC Accounts</span>
-            <p style="font-size: 0.85rem; margin: 8px 0;">Increases are recorded on the <strong>Credit</strong> side:</p>
-            <ul>
-                <li><strong>L</strong>iabilities (Debts owed)</li>
-                <li><strong>I</strong>ncome (Revenues generated)</li>
-                <li><strong>C</strong>apital (Owner investment)</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="summary-grid">
-        <div class="summary-card" style="grid-column: 1 / -1;">
-            <span class="badge badge-info">Petty Cash Imprest Control Equation</span>
-            <div class="formula-display">Imprest Float = Physical Cash in Hand + Sum of Paid Petty Cash Vouchers</div>
-            <ul>
-                <li><strong>Reimbursement Rule:</strong> The cash amount needed to top up the tin is always <em>exactly equal</em> to the total value of the spent vouchers.</li>
-                <li><strong>Double Posting Check:</strong> Total credit sales gross value always hits the debit side of Trade Receivables; net value hits credit sales revenue; tax hits credit VAT control.</li>
-            </ul>
-        </div>
-    </div>
-
-</div> <!-- End Container -->
-
 </body>
 </html>
