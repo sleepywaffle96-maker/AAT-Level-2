@@ -56,10 +56,17 @@
         #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #2563EB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s ease, background 0.2s ease; }
         #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        @media print {
-            body { background-color: #FFFFFF; color: #000000; padding: 0; }
-            .test-container { box-shadow: none; padding: 0; max-width: 100%; }
+               @media print {
+            @page { 
+                size: A4 portrait; 
+                margin: 0mm; 
+            }
+            body { 
+                padding: 15mm; 
+                background-color: #FFFFFF !important;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;         
+            }
             .controls-footer, #calc-widget, #calc-toggle-trigger, .feedback-icon { display: none !important; }
             .question-tab { display: flex !important; page-break-after: always; }
         }
