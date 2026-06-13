@@ -3,118 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT L2 - BTRN Mock Exam</title>
+    <title>AAT Level 2 BTRN - Adaptive Mock Exam</title>
     <link href="https://googleapis.com" rel="stylesheet">
-    <!-- Il CSS del Blocco 2 andrà qui -->
+    <!-- [Il CSS del Blocco 2 andrà qui] -->
 </head>
 <body>
 
-    <!-- BARRA TIMER FISSA -->
+    <!-- BARRA FISSA SUPERIORE -->
     <div class="exam-top-bar">
-        <div style="font-weight:700; color:#FFF;">BTRN PRACTICE ASSESSMENT</div>
+        <div class="top-bar-title">🏆 AAT LEVEL 2: BTRN LIVE ASSESSMENT</div>
         <div class="timer-container">
-            <button class="tool-btn" onclick="toggleCalc()">🧮 Calculator</button>
+            <button type="button" class="tool-btn" onclick="toggleCalc()">🧮 Calculator</button>
             <div id="exam-timer" class="timer-countdown">60:00</div>
         </div>
     </div>
-
-    <!-- BOLLA BIANCA CENTRALE -->
+    <!-- CONTENITORE PRINCIPALE: LA BOLLA BIANCA PROTETTA -->
     <main class="exam-main-wrapper">
         <div class="white-bubble-container">
             
-            <!-- SCHEDE TASK -->
+            <!-- SCHEDE DI NAVIGAZIONE DELLE TASK (TABS) -->
             <div class="exam-tabs-navigation" id="exam-tabs-headers"></div>
 
-            <!-- CONTENITORE DOMANDE -->
-            <form id="mock-exam-form">
+            <!-- MODULO CONTENITORE PER I QUESITI D'ESAME -->
+            <form id="mock-exam-form" onsubmit="event.preventDefault();">
                 <div id="exam-panels-container"></div>
             </form>
 
-            <!-- PULSANTI DI CONTROLLO -->
+            <!-- PULSANTI DI NAVIGAZIONE INTERNI ALLA BOLLA -->
             <div class="exam-footer-controls">
                 <div>
-                    <button class="ctrl-btn btn-secondary" id="btn-prev" onclick="navPrev()">⬅️ Prev</button>
-                    <button class="ctrl-btn btn-secondary" id="btn-next" onclick="navNext()">Next ➡️</button>
+                    <button type="button" class="ctrl-btn btn-secondary" id="btn-prev" onclick="navPrev()">⬅️ Previous</button>
+                    <button type="button" class="ctrl-btn btn-secondary" id="btn-next" onclick="navNext()">Next ➡️</button>
                 </div>
                 <div>
-                    <button class="ctrl-btn btn-danger" onclick="resetExam()">🔄 Reset</button>
-                    <button class="ctrl-btn btn-success" onclick="submitExam()">🏆 Submit</button>
+                    <button type="button" class="ctrl-btn btn-danger" onclick="resetExam()">🔄 Reset</button>
+                    <button type="button" class="ctrl-btn btn-success" onclick="submitExam()">🏆 Submit</button>
                 </div>
             </div>
-
-            <!-- TABELLA RISULTATI (NASCURA) -->
+            <!-- SCHEDA REPORT RISULTATI FINALI (NASCROSTA DI DEFAULT) -->
             <div class="exam-results-card hidden" id="results-card">
-                <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
-                    <h2>Exam Report</h2>
-                    <button class="ctrl-btn btn-secondary" onclick="window.print()">📄 PDF (A4)</button>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px solid #E5E7EB; padding-bottom:0.5rem;">
+                    <h2 style="color:#111827; margin:0; font-size:1.3rem;">Official Performance Report</h2>
+                    <button type="button" class="ctrl-btn btn-secondary" onclick="window.print()">📄 Download as PDF (A4 Print)</button>
                 </div>
                 <div class="results-grid">
-                    <div class="result-metric">Score: <strong id="res-score">0%</strong></div>
-                    <div class="result-metric">Points: <strong id="res-points">0/40</strong></div>
+                    <div class="result-metric">
+                        <span class="metric-label">Final Grade</span>
+                        <span class="metric-value" id="res-score">0%</span>
+                    </div>
+                    <div class="result-metric">
+                        <span class="metric-label">Points Awarded</span>
+                        <span class="metric-value" id="res-points">0 / 100</span>
+                    </div>
+                    <div class="result-metric">
+                        <span class="metric-label">Outcome</span>
+                        <span class="metric-value" id="res-outcome">-</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <!-- CALCOLATRICE DRAG NEON -->
+    <!-- WIDGET CALCOLATRICE NEON POP-UP -->
     <div class="drag-calculator-panel" id="neon-calc">
-        <div class="calc-header" id="calc-header">AAT Calc <span onclick="toggleCalc()" style="cursor:pointer;">×</span></div>
-        <input type="text" id="calc-display" class="calc-display-input" readonly value="0">
-        <div class="calc-grid-buttons">
-            <button class="calc-btn" onclick="clearCalc()">C</button>
-            <button class="calc-btn" onclick="pressOp('/')">/</button>
-            <button class="calc-btn" onclick="pressOp('*')">*</button>
-            <button class="calc-btn" onclick="pressOp('-')">-</button>
-            <button class="calc-btn" onclick="pressNum('7')">7</button>
-            <button class="calc-btn" onclick="pressNum('8')">8</button>
-            <button class="calc-btn" onclick="pressNum('9')">9</button>
-            <button class="calc-btn" onclick="pressOp('+')">+</button>
-            <button class="calc-btn" onclick="pressNum('4')">4</button>
-            <button class="calc-btn" onclick="pressNum('5')">5</button>
-            <button class="calc-btn" onclick="pressNum('6')">6</button>
-            <button class="calc-btn btn-equal" onclick="calcResult()">=</button>
-            <button class="calc-btn" onclick="pressNum('1')">1</button>
-            <button class="calc-btn" onclick="pressNum('2')">2</button>
-            <button class="calc-btn" onclick="pressNum('3')">3</button>
-            <button class="calc-btn" onclick="pressNum('0')">0</button>
+        <div class="calc-header" id="calc-header">AAT SYSTEM CALCULATOR <span onclick="toggleCalc()" style="cursor:pointer; font-size:1.2rem;">×</span></div>
+        <div style="padding:0.6rem;">
+            <input type="text" id="calc-display" class="calc-display-input" readonly value="0">
+            <div class="calc-grid-buttons">
+                <button type="button" class="calc-btn" style="color:#F87171;" onclick="clearCalc()">C</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('/')">/</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('*')">*</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('-')">-</button>
+                <button type="button" class="calc-btn" onclick="pressNum('7')">7</button>
+                <button type="button" class="calc-btn" onclick="pressNum('8')">8</button>
+                <button type="button" class="calc-btn" onclick="pressNum('9')">9</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('+')">+</button>
+                <button type="button" class="calc-btn" onclick="pressNum('4')">4</button>
+                <button type="button" class="calc-btn" onclick="pressNum('5')">5</button>
+                <button type="button" class="calc-btn" onclick="pressNum('6')">6</button>
+                <button type="button" class="calc-btn btn-equal" onclick="calcResult()">=</button>
+                <button type="button" class="calc-btn" onclick="pressNum('1')">1</button>
+                <button type="button" class="calc-btn" onclick="pressNum('2')">2</button>
+                <button type="button" class="calc-btn" onclick="pressNum('3')">3</button>
+                <button type="button" class="calc-btn" style="grid-column: span 2;" onclick="pressNum('0')">0</button>
+                <button type="button" class="calc-btn" onclick="pressNum('.')">.</button>
+            </div>
         </div>
     </div>
-
-    <!-- I Blocchi JS andranno qui vicino alla chiusura del body -->
-</body>
-</html>
 <style>
-    /* STILE GLOBALE (SFONDO SCURO) */
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #0B0F19;
-        margin: 0;
-        padding-top: 70px;
-        color: #1F2937;
+    :root {
+        --bg-dark-external: #0B0F19;
+        --bubble-white-bg: #FFFFFF;
+        --l2-emerald-primary: #059669;
+        --l2-emerald-dark: #047857;
+        --l2-emerald-light: #E6F4EA;
+        --text-dark: #1F2937;
+        --text-muted: #4B5563;
+        --border-color: #E5E7EB;
+        --danger-color: #DC2626;
+        --success-box-bg: #DEF7EC;
+        --neon-calc-accent: #00FF66;
     }
 
-    /* BARRA FISSA SUPERIORE */
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-dark-external);
+        color: var(--text-dark);
+        margin: 0;
+        padding-top: 80px;
+    }
+
     .exam-top-bar {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 60px;
+        height: 65px;
         background-color: #111827;
-        border-bottom: 2px solid #059669;
+        border-bottom: 2px solid var(--l2-emerald-primary);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 1.5rem;
+        padding: 0 2rem;
         box-sizing: border-box;
         z-index: 1000;
+    }
+
+    .top-bar-title {
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
     }
 
     .timer-container {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
     .timer-countdown {
@@ -122,220 +148,314 @@
         color: #FFFFFF;
         font-weight: 700;
         background: #1F2937;
-        padding: 0.4rem 0.8rem;
-        border-radius: 4px;
+        padding: 0.4rem 1rem;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        border: 1px solid #374151;
     }
 
-    /* LA BOLLA BIANCA PROTETTA */
     .exam-main-wrapper {
-        max-width: 900px;
-        margin: 1.5rem auto;
-        padding: 0 1rem;
+        max-width: 1100px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
     }
 
     .white-bubble-container {
-        background-color: #FFFFFF;
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        background-color: var(--bubble-white-bg);
+        border-radius: 12px;
+        padding: 2.5rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        border: 1px solid var(--border-color);
     }
-
-    /* STRUTTURA SCHEDE (TABS) */
+</style>
     .exam-tabs-navigation {
         display: flex;
-        gap: 0.25rem;
-        border-bottom: 2px solid #E5E7EB;
-        margin-bottom: 1.5rem;
+        gap: 0.35rem;
+        border-bottom: 2px solid var(--border-color);
+        margin-bottom: 2rem;
+        overflow-x: auto;
+        padding-bottom: 1px;
     }
 
     .tab-trigger-btn {
         background: #F3F4F6;
-        border: 1px solid #E5E7EB;
+        border: 1px solid var(--border-color);
         border-bottom: none;
-        padding: 0.5rem 1rem;
+        padding: 0.6rem 1.2rem;
         font-weight: 600;
-        color: #4B5563;
+        font-size: 0.85rem;
+        color: var(--text-muted);
         cursor: pointer;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        white-space: nowrap;
+        transition: all 0.15s ease;
     }
 
+    .tab-trigger-btn:hover { background: #E5E7EB; }
     .tab-trigger-btn.active {
-        background: #FFFFFF;
-        color: #059669;
-        border-top: 3px solid #059669;
+        background: var(--bubble-white-bg);
+        color: var(--l2-emerald-primary);
+        border-top: 3px solid var(--l2-emerald-primary);
+        padding-bottom: calc(0.6rem + 2px);
         margin-bottom: -2px;
     }
 
-    /* STRUTTURA DOMANDE POLIMORFE */
     .exam-task-panel { display: none; }
     .exam-task-panel.active { display: block; }
 
     .task-interactive-body {
         background-color: #FAFAFA;
-        border: 1px solid #E5E7EB;
-        border-radius: 6px;
-        padding: 1rem;
-        margin: 1rem 0;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
     }
 
-    /* CAMPI TABELLE E MATRICI */
     .financial-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
+        background: #FFFFFF;
     }
 
     .financial-table th {
-        background-color: #047857;
+        background-color: var(--l2-emerald-dark);
         color: #FFFFFF;
-        padding: 0.5rem;
+        padding: 0.6rem;
         font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--l2-emerald-dark);
     }
 
     .financial-table td {
-        border: 1px solid #E5E7EB;
-        padding: 0.4rem;
-        text-align: right;
+        border: 1px solid var(--border-color);
+        padding: 0.6rem;
+        font-size: 0.9rem;
     }
 
     .table-input {
         width: 100%;
-        padding: 0.3rem;
-        border: 1px solid #E5E7EB;
+        padding: 0.4rem;
+        border: 1px solid var(--border-color);
         border-radius: 4px;
-        text-align: right;
         font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        box-sizing: border-box;
     }
 
-    /* PULSANTI DI CONTROLLO */
+    .table-input:focus {
+        border-color: var(--l2-emerald-primary);
+        outline: none;
+        background-color: var(--l2-emerald-light);
+    }
+
+    .text-right { text-align: right; }
+    .text-left { text-align: left; }
+
+    .option-label {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: #FFFFFF;
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+    }
+
     .exam-footer-controls {
         display: flex;
         justify-content: space-between;
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid #E5E7EB;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--border-color);
     }
 
     .ctrl-btn {
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
+        padding: 0.65rem 1.25rem;
+        border-radius: 6px;
         font-weight: 600;
+        font-size: 0.9rem;
         cursor: pointer;
         border: none;
     }
 
-    .btn-secondary { background: #E5E7EB; color: #1F2937; }
+    .btn-secondary { background: #E5E7EB; color: var(--text-dark); }
     .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
-    .btn-danger { background: #DC2626; color: #FFFFFF; }
-    .btn-success { background: #059669; color: #FFFFFF; }
-    .tool-btn { background: #374151; color: #FFF; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; }
+    .btn-danger { background: var(--danger-color); color: #FFFFFF; }
+    .btn-success { background: var(--l2-emerald-primary); color: #FFFFFF; }
+    .tool-btn { background: #374151; color: #FFF; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
 
-    /* WIDGET CALCOLATRICE NEON */
+    .exam-results-card {
+        margin-top: 2rem;
+        background: #F9FAFB;
+        border: 2px solid var(--l2-emerald-primary);
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .results-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .result-metric {
+        background: #FFFFFF;
+        border: 1px solid var(--border-color);
+        padding: 1.2rem;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .metric-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .metric-value { font-size: 1.4rem; font-weight: 700; color: var(--l2-emerald-dark); }
+
     .drag-calculator-panel {
         position: fixed;
-        top: 80px;
-        right: 20px;
-        width: 220px;
+        top: 85px;
+        right: 30px;
+        width: 240px;
         background: #111827;
-        border: 2px solid #00FF66;
-        padding: 0.5rem;
-        border-radius: 6px;
+        border: 2px solid var(--neon-calc-accent);
+        border-radius: 8px;
         display: none;
         z-index: 2000;
     }
 
-    .calc-header { color: #00FF66; font-size: 0.8rem; display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
-    .calc-display-input { width: 100%; background: #000; color: #00FF66; border: none; text-align: right; padding: 0.3rem; font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; }
-    .calc-grid-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.3rem; margin-top: 0.4rem; }
-    .calc-btn { background: #374151; color: #FFF; border: none; padding: 0.4rem; cursor: pointer; font-weight: bold; }
-    .btn-equal { background: #00FF66; color: #000; grid-row: span 2; }
+    .calc-header {
+        background: #1F2937;
+        padding: 0.5rem;
+        color: var(--neon-calc-accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #374151;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
 
-    /* REPORT E UTILITY */
-    .exam-results-card { background: #F9FAFB; border: 2px solid #059669; border-radius: 6px; padding: 1rem; margin-top: 1.5rem; }
+    .calc-display-input {
+        width: 100%;
+        background: #000000;
+        color: var(--neon-calc-accent);
+        border: 1px solid #374151;
+        text-align: right;
+        padding: 0.5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1.4rem;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .calc-grid-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; margin-top: 0.5rem; }
+    .calc-btn { background: #374151; color: #FFFFFF; border: none; padding: 0.55rem; cursor: pointer; font-weight: 700; border-radius: 4px; }
+    .btn-equal { background: var(--neon-calc-accent); color: #000000; grid-row: span 2; display: flex; align-items: center; justify-content: center; }
     .hidden { display: none !important; }
 
-    /* SUPPORTO STAMPA A4 PULITA */
     @media print {
-        body { background: #FFF !important; padding-top: 0; }
+        body { background: #FFFFFF !important; padding-top: 0 !important; color: #000000 !important; }
         .exam-top-bar, .exam-tabs-navigation, .exam-footer-controls, .drag-calculator-panel { display: none !important; }
+        .exam-main-wrapper { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+        .white-bubble-container { border: none !important; box-shadow: none !important; padding: 0 !important; }
         .exam-task-panel { display: block !important; page-break-after: always; }
-        .exam-results-card { display: block !important; page-break-before: always; }
+        .task-interactive-body { background: #FFFFFF !important; border: 1px solid #000000 !important; }
+        .exam-results-card { display: block !important; border: 2px solid #000000 !important; background: #FFFFFF !important; page-break-before: always; }
+        input { border: none !important; border-bottom: 1px solid #000000 !important; background: transparent !important; }
     }
-</style>
 <script>
-// 1. DATABASE DEI QUESITI
 const questionsDatabase = [
     {
-        id: 1,
-        chapter: 1,
-        type: "radio",
-        points: 10,
-        instruction: "Identify the correct definition of a liability from the options below.",
+        id: 1, chapter: 1, type: "radio", points: 20,
+        instruction: "Identify the correct accounting framework definition.",
         content: `
-            <div style="margin-bottom:0.5rem;">Which of the following describes an accounting <strong>Liability</strong>?</div>
-            <div style="display:flex; flex-direction:column; gap:0.4rem;">
-                <label><input type="radio" name="q1" value="A"> A present obligation arising from past events, resulting in an outflow of economic benefits.</label>
-                <label><input type="radio" name="q1" value="B"> A resource controlled by the entity as a result of past events from which benefits are expected.</label>
-                <label><input type="radio" name="q1" value="C"> The residual interest in the assets of the entity after deducting all its liabilities.</label>
+            <div style="margin-bottom:0.5rem;">Which of the following choices correctly defines a <strong>Liability</strong> according to the AAT syllabus?</div>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q1" value="A"> A present obligation arising from past events, resulting in an outflow of resources.</label>
+                <label class="option-label"><input type="radio" name="q1" value="B"> A resource controlled by the entity from which future economic benefits flow.</label>
+                <label class="option-label"><input type="radio" name="q1" value="C"> The residual interest in the assets of the entity after deducting all liabilities.</label>
             </div>
-        `,
-        correct: "A",
-        explanation: "A liability represents an obligation resulting in an outflow of resources. Option B defines an asset; Option C defines equity."
+        `, correct: "A",
+        explanation: "A liability represents an obligation resulting in an outflow of economic resources. Choice B defines an asset, Choice C defines equity."
     },
     {
-        id: 2,
-        chapter: 2,
-        type: "multi-input",
-        points: 15,
-        instruction: "Calculate and fill the missing cells for this Credit Invoice entry.",
+        id: 2, chapter: 2, type: "multi-input", points: 20,
+        instruction: "Process and cast the columns of the Sales Day Book.",
         content: `
-            <div style="margin-bottom:0.5rem;">An invoice shows Goods Net of £400.00. Calculate the VAT (20%) and Total Gross.</div>
+            <div style="margin-bottom:0.5rem;">Calculate the missing VAT (20%) and Total Gross amounts, then perform the final vertical casting.</div>
             <table class="financial-table">
-                <thead><tr><th>Goods Net (£)</th><th>VAT (20%) (£)</th><th>Total Gross (£)</th></tr></thead>
-                <tbody><tr><td>400.00</td><td><input type="text" class="table-input" data-ans="80.00" placeholder="0.00"></td><td><input type="text" class="table-input" data-ans="480.00" placeholder="0.00"></td></tr></tbody>
+                <thead><tr><th class="text-left">Customer</th><th>Goods Net (£)</th><th>VAT (20%) (£)</th><th>Total Gross (£)</th></tr></thead>
+                <tbody>
+                    <tr><td class="text-left">Alpha Traders</td><td>450.00</td><td><input type="text" class="table-input text-right" data-ans="90.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="540.00" placeholder="0.00"></td></tr>
+                    <tr><td class="text-left">Omega & Co</td><td>820.00</td><td><input type="text" class="table-input text-right" data-ans="164.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="984.00" placeholder="0.00"></td></tr>
+                    <tr style="background:#F9FAFB; font-weight:700;"><td class="text-left">TOTALS</td><td>1,270.00</td><td><input type="text" class="table-input text-right" data-ans="254.00" placeholder="Total VAT"></td><td><input type="text" class="table-input text-right" data-ans="1,524.00" placeholder="Total Gross"></td></tr>
+                </tbody>
             </table>
-        `,
-        explanation: "VAT is £400.00 * 20% = £80.00. Total Gross is Net + VAT = £480.00."
+        `, explanation: "VAT is 20%: £450 * 0.20 = £90, £820 * 0.20 = £164. Column totals: VAT = £254.00, Gross = £1,524.00."
     },
     {
-        id: 3,
-        chapter: 3,
-        type: "input",
-        points: 15,
-        instruction: "Calculate the total cash reimbursement required under the imprest system.",
+        id: 3, chapter: 3, type: "input", points: 20,
+        instruction: "Reconcile the Petty Cash Book under the Imprest System.",
         content: `
-            <div style="margin-bottom:0.5rem;">A petty cash float is fixed at £200.00. Vouchers paid: Stationery £15.00, Taxi £12.50. Enter top-up needed.</div>
-            <div style="display:flex; align-items:center; max-width:150px; border:1px solid #E5E7EB; border-radius:4px;">
-                <span style="padding:0.3rem 0.5rem; background:#E5E7EB; font-weight:bold;">£</span>
-                <input type="text" class="table-input" id="q3_ans" data-ans="27.50" placeholder="0.00" style="border:none;">
+            <div style="margin-bottom:0.5rem;">A petty cash float is fixed at £250.00. Vouchers paid during the period: Stationery £34.50, Cleaning £20.00, Travel £18.20. Enter top-up needed.</div>
+            <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+                <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold;">£</span>
+                <input type="text" class="table-input" id="q3_ans" data-ans="72.70" placeholder="0.00" style="border:none; width:100%;">
             </div>
-        `,
-        explanation: "Under the imprest system, the top-up must match the total cash spent: £15.00 + £12.50 = £27.50."
+        `, explanation: "The reimbursement amount must exactly match the total sum of cash vouchers paid out: £34.50 + £20.00 + £18.20 = £72.70."
+    },
+    {
+        id: 4, chapter: 4, type: "multi-input", points: 20,
+        instruction: "Record correction of errors within the General Journal.",
+        content: `
+            <div style="margin-bottom:0.5rem;">A credit sale of £480 to J. Green was mistakenly posted to P. Green. Complete the journal grid to correct this error of commission.</div>
+            <table class="financial-table">
+                <thead><tr><th class="text-left">Account Name</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
+                <tbody>
+                    <tr><td><input type="text" class="table-input" data-ans="J. Green" placeholder="Account" style="text-align:left;"></td><td><input type="text" class="table-input text-right" data-ans="480.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
+                    <tr><td><input type="text" class="table-input" data-ans="P. Green" placeholder="Account" style="text-align:left;"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td><td><input type="text" class="table-input text-right" data-ans="480.00" placeholder="0.00"></td></tr>
+                </tbody>
+            </table>
+        `, explanation: "Debit J. Green (open correct asset) and credit P. Green (eliminate the incorrect debit balance)."
+    },
+    {
+        id: 5, chapter: 5, type: "multi-input", points: 20,
+        instruction: "Construct and balance the Trial Balance Matrix using DEAD CLIC.",
+        content: `
+            <div style="margin-bottom:0.5rem;">Allocate the ledger balances and calculate the required Suspense Account balance to reconcile the draft matrix.</div>
+            <table class="financial-table">
+                <thead><tr><th class="text-left">Account Details</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
+                <tbody>
+                    <tr><td class="text-left">Sales Revenue Account</td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td><td><input type="text" class="table-input text-right" data-ans="12,500.00" placeholder="0.00"></td></tr>
+                    <tr><td class="text-left">Purchases Account</td><td><input type="text" class="table-input text-right" data-ans="7,400.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
+                    <tr><td class="text-left">Trade Receivables Control Account</td><td><input type="text" class="table-input text-right" data-ans="3,200.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
+                    <tr style="background:#FFFBEB;"><td class="text-left" style="font-weight:700;">Suspense Account</td><td><input type="text" class="table-input text-right" data-ans="1,900.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
+                </tbody>
+            </table>
+        `, explanation: "Sales is Income (CR = £12,500). Purchases is Expense (DR = £7,400). Receivables is Asset (DR = £3,200). Suspense needs £1,900 on Debit side to match columns."
     }
 ];
 
-// 2. STATO GLOBALE
 let examQuestions = []; 
 let currentTabActive = 0;
 let timeRemainingSeconds = 3600;
 let examTimerInterval = null;
 let isExamSubmitted = false;
 
-window.addEventListener('DOMContentLoaded', () => {
-    initExamEngine();
-});
-
-// 3. MOTORE DI RENDERING
+window.addEventListener('DOMContentLoaded', () => { initExamEngine(); });
 function initExamEngine() {
     examQuestions = [...questionsDatabase].sort(() => Math.random() - 0.5);
-    generateExamTabs();
-    generateExamPanels();
+    generateTabs();
+    generatePanels();
     activateTab(0);
     startExamTimer();
 }
 
-function generateExamTabs() {
+function generateTabs() {
     const container = document.getElementById('exam-tabs-headers');
     if (!container) return;
     container.innerHTML = '';
@@ -344,7 +464,7 @@ function generateExamTabs() {
     });
 }
 
-function generateExamPanels() {
+function generatePanels() {
     const container = document.getElementById('exam-panels-container');
     if (!container) return;
     container.innerHTML = '';
@@ -354,9 +474,9 @@ function generateExamPanels() {
                 <div style="font-size:0.75rem; color:#6B7280; font-weight:600; margin-bottom:0.25rem;">CHAPTER ${q.chapter} Focus</div>
                 <div style="font-weight:600; margin-bottom:0.75rem;">${q.instruction}</div>
                 <div class="task-interactive-body">${q.content}</div>
-                <div class="exam-results-card hidden" id="feedback-panel-${index}">
+                <div class="feedback-box hidden" id="feedback-panel-${index}">
                     <div id="feedback-title-${index}" style="font-weight:700; margin-bottom:0.25rem;"></div>
-                    <div style="font-size:0.85rem; color:#4B5563; padding-top:0.4rem; border-top:1px dashed #E5E7EB;"><strong>Solution:</strong> ${q.explanation}</div>
+                    <div style="font-size:0.85rem; color:#4B5563; padding-top:0.4rem; border-top:1px dashed rgba(0,0,0,0.15);"><strong>Solution Note:</strong> ${q.explanation}</div>
                 </div>
             </div>`;
     });
@@ -375,8 +495,6 @@ function activateTab(index) {
 
 function navPrev() { if (currentTabActive > 0) activateTab(currentTabActive - 1); }
 function navNext() { if (currentTabActive < examQuestions.length - 1) activateTab(currentTabActive + 1); }
-
-// 4. LOGICA DI VALUTAZIONE
 function submitExam() {
     if (isExamSubmitted) return;
     clearInterval(examTimerInterval);
@@ -401,18 +519,17 @@ function submitExam() {
                 } else {
                     i.style.borderColor = "#059669";
                 }
+                i.disabled = true; // Blocca i campi alla consegna
             });
         }
 
         if (isCorrect) {
             awarded += q.points;
-            feedbackBox.style.backgroundColor = "#DEF7EC";
+            feedbackBox.className = "feedback-box feedback-correct";
             feedbackTitle.innerHTML = `✅ Correct! (+${q.points} Pts)`;
-            feedbackTitle.style.color = "#065F46";
         } else {
-            feedbackBox.style.backgroundColor = "#FDE8E8";
+            feedbackBox.className = "feedback-box feedback-incorrect";
             feedbackTitle.innerHTML = `❌ Incorrect! (0 / ${q.points} Pts)`;
-            feedbackTitle.style.color = "#9B1C1C";
         }
         feedbackBox.classList.remove('hidden');
     });
@@ -420,11 +537,22 @@ function submitExam() {
     const score = available > 0 ? Math.round((awarded / available) * 100) : 0;
     document.getElementById('res-score').textContent = `${score}%`;
     document.getElementById('res-points').textContent = `${awarded} / ${available}`;
+    
+    const outcomeField = document.getElementById('res-outcome');
+    if (score >= 70) {
+        outcomeField.textContent = "PASS (Competent)";
+        outcomeField.style.color = "#059669";
+    } else {
+        outcomeField.textContent = "FAIL (Not Yet Competent)";
+        outcomeField.style.color = "#DC2626";
+    }
+
     document.getElementById('results-card').classList.remove('hidden');
+    alert(`Assessment submitted! Your score is ${score}%`);
 }
 
 function resetExam() {
-    if (confirm("Reset current exam session?")) {
+    if (confirm("Reset current exam session? All inputs will be wiped.")) {
         clearInterval(examTimerInterval);
         isExamSubmitted = false;
         timeRemainingSeconds = 3600;
@@ -434,7 +562,6 @@ function resetExam() {
     }
 }
 
-// 5. TIMER & CALCOLATRICE
 function startExamTimer() {
     const display = document.getElementById('exam-timer');
     examTimerInterval = setInterval(() => {
