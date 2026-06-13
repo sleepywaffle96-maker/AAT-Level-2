@@ -310,11 +310,12 @@
         function updateNavigation() {
             tabs.forEach(tab => tab.classList.remove('active'));
             document.querySelector(`.question-tab[data-qindex="${currentQuestion}"]`).classList.add('active');
+            
             currentQNum.innerText = currentQuestion;
             btnPrev.disabled = currentQuestion === 1;
             
             if (currentQuestion === totalQuestions) {
-                btnNext.style.style.display = 'none';
+                btnNext.style.display = 'none';
                 btnPdf.style.display = 'inline-block';
             } else {
                 btnNext.style.display = 'inline-block';
@@ -324,6 +325,14 @@
 
         btnNext.addEventListener('click', () => { if (currentQuestion < totalQuestions) { currentQuestion++; updateNavigation(); } });
         btnPrev.addEventListener('click', () => { if (currentQuestion > 1) { currentQuestion--; updateNavigation(); } });
+
+        // Gestore del titolo pulito per il salvataggio in PDF
+        btnPdf.addEventListener('click', () => {
+            const originalTitle = document.title;
+            document.title = "AAT_L2_BTRN_Test_One_Completed";
+            window.print();
+            setTimeout(() => { document.title = originalTitle; }, 100);
+        });
 
         document.getElementById('btn-am-i-right').addEventListener('click', () => {
             const activeTab = document.querySelector('.question-tab.active');
