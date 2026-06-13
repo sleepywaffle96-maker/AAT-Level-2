@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 2 Certificate in Accounting - Chapter 5 Schemes: Applied Trial Balance Models</title>
+    <style>
+        /* 1. Reset e Impostazioni Sfondo Globale */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #1E293B; padding: 40px 20px; display: flex; justify-content: center; }
+        .schemes-container { background-color: #FFFFFF; width: 100%; max-width: 900px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* 2. Elementi Grafici Modulari */
+        h1 { color: #0F172A; font-size: 26px; font-weight: 800; margin-bottom: 25px; border-bottom: 3px solid #E2E8F0; padding-bottom: 10px; text-transform: uppercase; }
+        h2 { color: #2563EB; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 35px; margin-bottom: 15px; }
+        p { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 15px; }
+        
+        /* 3. Diagramma a blocchi */
+        .flow-wrapper { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; background: #F8FAFC; padding: 25px; border-radius: 8px; border: 1px dashed #CBD5E1; }
+        .flow-step { background: white; border: 2px solid #1E293B; padding: 14px; border-radius: 6px; text-align: center; font-weight: 700; font-size: 14px; color: #0F172A; }
+        .flow-arrow { text-align: center; font-size: 18px; color: #2563EB; font-weight: bold; }
+        
+        /* 4. Tabella Pro Forma di fine livello */
+        .grid-tb { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .grid-tb th { background: #1E293B; color: white; padding: 12px; border: 1px solid #334155; text-align: left; }
+        .grid-tb td { padding: 12px; border: 1px solid #E2E8F0; }
+        .grid-tb tr:nth-child(even) { background-color: #F8FAFC; }
+        .total-row { font-weight: 800; background: #E2E8F0 !important; border-top: 2px solid #0F172A !important; border-bottom: 3px double #0F172A !important; }
+    </style>
+</head>
+<body>
+    <div class="schemes-container">
+        <h1>Chapter 5 Schemes & Strategic Data Mappings</h1>
+        <p>This section provides a clear visual blueprint of how operational balances move into the trial balance schedule, alongside a fully formatted AAT workbook model.</p>
+        
+        <h2>1. The Financial Audit Trail (Data Pipeline Flowchart)</h2>
+        <div class="flow-wrapper">
+            <div class="flow-step">1. Day-to-Day Source Documents (Credit Invoices, Receipts, Vouchers issued)</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-step">2. Books of Prime Entry (Day books compile net totals, Cash Book lists ledger cash flows)</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-step">3. General Ledger Framework (Accounts are periodically cross-posted and balanced via c/d & b/d)</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-step" style="background: #2563EB; color: white; border-color: #1D4ED8;">4. THE TRIAL BALANCE SCHEDULE (Verification of Global Double-Entry Agreement)</div>
+        </div>
+
+        <h2>2. Comprehensive Worked Example (AAT Pro Forma Blueprint)</h2>
+        <p>Below is an extracted Trial Balance model for a sole trader enterprise, displaying the exact column destinations under the DEAD CLIC architecture.</p>
+        
+        <table class="grid-tb">
+            <thead>
+                <tr>
+                    <th>Ledger Account Balance Identity</th>
+                    <th>DEAD CLIC Class</th>
+                    <th style="width: 140px; text-align: right;">Debit Column (£)</th>
+                    <th style="width: 140px; text-align: right;">Credit Column (£)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Freehold Premises (Property Asset)</td><td>Asset</td><td style="text-align: right; font-weight:600; color:#1E40AF;">45,000</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Office Machinery & Equipment</td><td>Asset</td><td style="text-align: right; font-weight:600; color:#1E40AF;">8,200</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Trade Receivables Control Account (SLCA)</td><td>Asset</td><td style="text-align: right; font-weight:600; color:#1E40AF;">3,650</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Purchases Ledger Account Balance</td><td>Expense</td><td style="text-align: right; font-weight:600; color:#1E40AF;">14,100</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Rent & Business Rates Overhead</td><td>Expense</td><td style="text-align: right; font-weight:600; color:#1E40AF;">2,400</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Wages & Salaries Overhead</td><td>Expense</td><td style="text-align: right; font-weight:600; color:#1E40AF;">5,150</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Sales Returns Account</td><td>Expense (Offset)</td><td style="text-align: right; font-weight:600; color:#1E40AF;">320</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Owner's Drawings Account</td><td>Drawings</td><td style="text-align: right; font-weight:600; color:#1E40AF;">1,800</td><td style="text-align: right;">-</td></tr>
+                <tr><td>Trade Payables Control Account (PLCA)</td><td>Liability</td><td style="text-align: right;">-</td><td style="text-align: right; font-weight:600; color:#166534;">5,240</td></tr>
+                <tr><td>10-Year Commercial Bank Loan Balance</td><td>Liability</td><td style="text-align: right;">-</td><td style="text-align: right; font-weight:600; color:#166534;">12,000</td></tr>
+                <tr><td>Bank Overdraft Account Balance</td><td>Liability</td><td style="text-align: right;">-</td><td style="text-align: right; font-weight:600; color:#166534;">1,180</td></tr>
+                <tr><td>Sales Revenue Account Balance</td><td>Income</td><td style="text-align: right;">-</td><td style="text-align: right; font-weight:600; color:#166534;">32,200</td></tr>
+                <tr><td>Owner's Capital Account (Equity Base)</td><td>Capital</td><td style="text-align: right;">-</td><td style="text-align: right; font-weight:600; color:#166534;">30,000</td></tr>
+                <tr class="total-row">
+                    <td>GRAND AGGREGATED SYSTEM TOTALS</td>
+                    <td>Pareggio</td>
+                    <td style="text-align: right; color:#1E40AF;">80,620</td>
+                    <td style="text-align: right; color:#166534;">80,620</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
