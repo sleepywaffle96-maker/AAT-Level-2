@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 Advanced Diploma - Chapter 6 Test One</title>
+    <title>AAT Level 3 - Chapter 6: Business Awareness (Test One)</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
@@ -104,67 +104,7 @@
         .option-box:hover { background-color: #F9FAFB; }
         .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
         .feedback-icon { font-weight: 700; font-size: 1.1rem; }
-        .test-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
 
-        .test-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #111827;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-
-        .question-counter-label {
-            font-size: 0.9rem;
-            color: var(--l3-cyan-dark);
-            font-weight: 600;
-        }
-
-        .question-tab {
-            display: none;
-            flex-direction: column;
-        }
-        .question-tab.active {
-            display: flex;
-        }
-
-        .task-instruction-text {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #111827;
-        }
-
-        .task-interactive-body {
-            background-color: #FAFAFA;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .option-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #FFFFFF;
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-bottom: 0.75rem;
-            transition: all 0.15s ease;
-        }
-        .option-box:hover { background-color: #F9FAFB; }
-        .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
-        .feedback-icon { font-weight: 700; font-size: 1.1rem; }
         .financial-table {
             width: 100%;
             border-collapse: collapse;
@@ -184,7 +124,6 @@
             padding: 0.75rem;
             font-size: 0.95rem;
         }
-
         .numeric-field, .multi-input-field, .multi-select-field, .select-input {
             width: 100%;
             padding: 0.45rem;
@@ -229,6 +168,7 @@
         .btn-gray { background-color: #4B5563; color: #FFFFFF; }
         .btn-purple { background-color: #7C3AED; color: #FFFFFF; }
         .btn-gray:disabled { opacity: 0.3; cursor: not-allowed; }
+
         .global-feedback-msg {
             padding: 1rem;
             border-radius: 6px;
@@ -340,153 +280,84 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
         }
-        .calc-btn {
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            color: white;
-            background: #334155;
-            text-align: center;
-            transition: background 0.1s ease;
-        }
-        .calc-btn:hover { background: #475569; }
-        .calc-btn.op {
-            background: rgba(0, 255, 255, 0.05);
-            color: #00FFFF;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.15); }
 
         @media print {
             body { background: #FFFFFF; padding: 0; margin: 0; }
             .test-container { box-shadow: none; border: none; padding: 0; max-width: 1000px; }
             .controls-footer, #calc-toggle-trigger, #calc-widget { display: none !important; }
             .question-tab { display: flex !important; page-break-after: always; }
-            .solution-note-panel { display: block !important; background: #F8FAFC !important; border: 1px solid #CBD5E1 !important; color: #000 !important; }
         }
     </style>
 </head>
 <body>
+
     <div class="test-container">
-        
         <div class="test-header-row">
-            <div class="test-title">BTRN - LEVEL 3 CHAPTER 6: BUSINESS AWARENESS & ETHICS (TEST ONE)</div>
+            <div class="test-title">UNIT: BUSINESS AWARENESS (TEST ONE)</div>
             <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
         </div>
-
         <form id="quiz-form" onsubmit="event.preventDefault();">
-
-            <!-- QUESTION 1: TIPO "multi-select" (The 5 Fundamental Principles) -->
+            <!-- QUESTION 1: TIPO "multi-select" (Money Laundering Stages) -->
             <div class="question-tab active" data-qindex="1" data-type="multi-select">
-                <div class="task-instruction-text">1. Complete the operational statements regarding fundamental principles from the AAT Code of Professional Ethics.</div>
+                <div class="task-instruction-text">1. Complete the operational statements regarding the statutory stages of Money Laundering under UK compliance frameworks.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        An accounting technician who maintains complete honesty and refuses to sign off on a report containing intentionally distorted figures is adhering to 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="integrity">
-                            <option value="">-- Choose Principle --</option>
-                            <option value="integrity">Integrity</option>
-                            <option value="objectivity">Objectivity</option>
-                            <option value="behaviour">Professional Behaviour</option>
-                        </select>. 
-                        Conversely, ensuring that personal bias, commercial conflicts of interest, or third-party pressure do not override accounting analysis is a direct demonstration of 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="objectivity">
-                            <option value="">-- Choose Principle --</option>
-                            <option value="integrity">Integrity</option>
-                            <option value="objectivity">Objectivity</option>
-                            <option value="competence">Professional Competence</option>
-                        </select>.
-                    </p>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Integrity forces members to be straightforward and truthful. Objectivity mandates that accountants never let bias, conflicts of interest, or undue external influence dictate corporate reporting.
-                </div>
-            </div>
-            <!-- QUESTION 2: TIPO "radio" (Overriding Confidentiality) -->
-            <div class="question-tab" data-qindex="2" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">2. Under which legal or regulatory scenario must an AAT member explicitly override the principle of Confidentiality and disclose internal books?</div>
-                <div class="task-interactive-body">
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q2" value="A"> When a local commercial competitor requests ledger figures during an informal meeting.</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q2" value="B"> When there is a clear statutory legal duty or mandate, such as an active anti-money laundering investigation by the authorities.</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q2" value="C"> Automatically at the end of each payroll cycle to assist trade unions with wage matching.</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Confidentiality is a binding obligation, but it must be overridden when UK statutory law dictates disclosure, such as reporting suspected criminal proceeds under the Money Laundering Regulations.
-                </div>
-            </div>
-            <!-- QUESTION 3: TIPO "multi-select" (Familiarity Threat Vectors) -->
-            <div class="question-tab" data-qindex="3" data-type="multi-select">
-                <div class="task-instruction-text">3. Complete the compliance scenario involving third-party relationship interactions.</div>
-                <div class="task-interactive-body">
-                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Accepting high-value, lavish personal gifts or expensive hospitality vouchers from a long-standing corporate client generates a severe 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="familiarity">
-                            <option value="">-- Choose Threat --</option>
-                            <option value="familiarity">Familiarity Threat</option>
-                            <option value="intimidation">Intimidation Threat</option>
-                            <option value="advocacy">Advocacy Threat</option>
+                        The process of introducing illicit or criminally obtained cash proceeds into a legitimate financial bank account structure represents the 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="placement">
+                            <option value="">-- Choose Stage --</option>
+                            <option value="placement">Placement Stage</option>
+                            <option value="layering">Layering Stage</option>
+                            <option value="integration">Integration Stage</option>
                         </select> 
-                        which compromises professional judgment. The mandatory course of action to protect accounting objectivity is to 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="decline">
-                            <option value="">-- Action --</option>
-                            <option value="accept">Accept and register as profit</option>
-                            <option value="decline">Politely decline the offer</option>
-                        </select> immediately.
+                        of money laundering. Conversely, passing those funds through a maze of complex commercial transactions or bank transfers to obscure the source trail is known as the 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="layering">
+                            <option value="">-- Choose Stage --</option>
+                            <option value="placement">Placement Stage</option>
+                            <option value="layering">Layering Stage</option>
+                            <option value="integration">Integration Stage</option>
+                        </select> phase.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Lavish gifts threaten objectivity by creating a Familiarity scenario where the bookkeeper becomes overly sympathetic to the client, clouding independent professional verification.
+                    <strong>Solution Note:</strong> Money laundering has 3 distinct statutory phases: Placement (initial entry of dirty cash), Layering (shuffling funds through multi-layered ledger operations to block detection), and Integration (re-entry as clean corporate assets).
                 </div>
             </div>
-            <!-- QUESTION 4: TIPO "radio" (Self-Interest Threat Mechanism) -->
-            <div class="question-tab" data-qindex="4" data-type="radio" data-correct="C">
-                <div class="task-instruction-text">4. An accounting technician is offered an engagement where their fee is structured as a percentage of the total corporate tax reduction achieved. What category of ethical threat occurs?</div>
+            <!-- QUESTION 2: TIPO "radio" (Suspicious Activity Report Authority) -->
+            <div class="question-tab" data-qindex="2" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">2. When a firm's Money Laundering Reporting Officer (MLRO) validates a suspicion of criminal funding inside the sales book, to which statutory UK regulatory body must a formal SAR be submitted?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q4" value="A"> Advocacy Threat</span>
+                        <span class="option-label"><input type="radio" name="q2" value="A"> The Financial Conduct Authority (FCA)</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q4" value="B"> Self-Review Threat</span>
+                        <span class="option-label"><input type="radio" name="q2" value="B"> The National Crime Agency (NCA)</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q4" value="C"> Self-Interest Threat</span>
+                        <span class="option-label"><input type="radio" name="q2" value="C"> HM Revenue & Customs (HMRC) Disciplinary Board</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Contingent fees generate a direct financial incentive to maximize reductions unethically. This creates a Self-Interest Threat, severely compromising objectivity.
+                    <strong>Solution Note:</strong> Under the Proceeds of Crime Act (POCA), all external Suspicious Activity Reports (SARs) must be securely filed directly with the National Crime Agency (NCA), the national intelligence body coordinating financial crime responses.
                 </div>
             </div>
-            <!-- QUESTION 5: TIPO "multi-select" (Anti-Money Laundering Liability) -->
-            <div class="question-tab" data-qindex="5" data-type="multi-select">
-                <div class="task-instruction-text">5. Complete the legislative definitions regarding standard UK Anti-Money Laundering compliance boundaries.</div>
+            <!-- QUESTION 3: TIPO "multi-select" (Failure to Disclose vs Tipping Off) -->
+            <div class="question-tab" data-qindex="3" data-type="multi-select">
+                <div class="task-instruction-text">3. Complete the legislative definitions regarding severe compliance liabilities under the Proceeds of Crime Act.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Informing a corporate client that their transactional accounts are under internal review or that an official report has been filed is the criminal offense of 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="tipping-off">
+                        Possessing explicit knowledge or reasonable grounds to suspect money laundering within the client ledger but intentionally failing to report it internally represents the offense of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="failure">
                             <option value="">-- Offense --</option>
                             <option value="tipping-off">Tipping Off</option>
-                            <option value="omission">Failure to Disclose</option>
+                            <option value="failure">Failure to Disclose</option>
                         </select>. 
-                        Conversely, having concrete knowledge or suspicion of illicit funds within the ledger but failing to report it to the MLRO represents 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="failure">
+                        Conversely, informing a suspect client or any third party that an active financial investigation is underway constitutes the criminal act of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="tipping-off">
                             <option value="">-- Offense --</option>
                             <option value="tipping-off">Tipping Off</option>
                             <option value="failure">Failure to Disclose</option>
@@ -495,245 +366,282 @@
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Under the Proceeds of Crime Act, 'Tipping Off' alerts the suspect, risking evidence destruction. 'Failure to Disclose' binds accountants to report any criminal suspicions internally immediately.
+                    <strong>Solution Note:</strong> POCA enforces strict criminal liabilities: 'Failure to Disclose' applies to practitioners who remain silent about financial crimes. 'Tipping Off' alerts the target client, compromising law enforcement traces.
                 </div>
             </div>
-            <!-- QUESTION 6: TIPO "radio" (Intimidation and Dismissal Pressure) -->
-            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="A">
-                <div class="task-instruction-text">6. A company director strongly hints that the firm's accounting contract will be terminated unless the bookkeeper agrees to hide an unrecorded cash director loan. What threat is active?</div>
+            <!-- QUESTION 4: TIPO "input" (HMRC Penalty System Points) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="4">
+                <div class="task-instruction-text">4. Under HMRC's aligned penalty framework, how many penalty points must a quarterly taxpayer accumulate for late submissions before a compulsory £200 financial penalty is triggered? (Input the numerical digit only)</div>
+                <div class="task-interactive-body">
+                    <div style="max-width: 200px;">
+                        <input type="text" class="numeric-field" style="text-align: center;" name="q4" placeholder="0">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> HMRC applies a points-based late filing penalty threshold tailored to the filing frequency: annual submitters require 2 points, quarterly submitters require 4 points, and monthly submitters require 5 points to trigger the initial £200 fine.
+                </div>
+            </div>
+            <!-- QUESTION 5: TIPO "radio" (HMRC Overdue Tax Interest Rules) -->
+            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">5. How exactly does HMRC calculate and apply interest charges on late or outstanding business tax liabilities?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q6" value="A"> Intimidation Threat</span>
+                        <span class="option-label"><input type="radio" name="q5" value="A"> As a fixed one-off administrative surcharge applied on the day the filing window closes.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q6" value="B"> Self-Review Threat</span>
+                        <span class="option-label"><input type="radio" name="q5" value="B"> Daily interest calculated from the date the payment was originally due until the final balance is paid in full.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q6" value="C"> Advocacy Threat</span>
+                        <span class="option-label"><input type="radio" name="q5" value="C"> Interest is calculated only if the client crosses past the 4-point penalty threshold limit.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Coercion, explicit threats of contract termination, or career damage create an Intimidation Threat. The accountant must stand firm, document everything, and seek external advice if needed.
+                    <strong>Solution Note:</strong> Late payment interest is entirely separate from submission points. HMRC applies interest daily at the statutory rate on any unpaid tax balance, tracking right from the original payment due date until the day it clears.
                 </div>
             </div>
-            <!-- QUESTION 7: TIPO "multi-select" (ESG Metrics & Greenwashing) -->
-            <div class="question-tab" data-qindex="7" data-type="multi-select">
-                <div class="task-instruction-text">7. Complete the statements assessing sustainability metrics integrated into modern advanced management reports.</div>
+            <!-- QUESTION 6: TIPO "multi-select" (Data Protection Principles) -->
+            <div class="question-tab" data-qindex="6" data-type="multi-select">
+                <div class="task-instruction-text">6. Complete the regulatory parameters governing corporate financial and client data handling under the UK Data Protection Act / GDPR.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        The deceptive corporate practice of fabricating or intentionally overstating a business entity's environmental credentials within performance summaries is known as 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="greenwashing">
-                            <option value="">-- Practice --</option>
-                            <option value="greenwashing">Greenwashing</option>
-                            <option value="arbitrage">Carbon Arbitrage</option>
-                        </select>. 
-                        Accountants must evaluate environmental investments under the fundamental principle of 
+                        To comply with data safety laws, personal and financial records must be processed using encryption and secure databases to fulfill the principle of 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="integrity">
                             <option value="">-- Principle --</option>
-                            <option value="integrity">Integrity (Truthful representation)</option>
-                            <option value="advocacy">Advocacy</option>
-                        </select> to ensure compliance care.
-                    </p>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Greenwashing manipulates ESG disclosures. Modern accounting requires verifying eco-claims with the same rigor as financial ledger cells to ensure a true and fair view.
-                </div>
-            </div>
-            <!-- QUESTION 8: TIPO "radio" (Suspicious Activity Report Authority) -->
-            <div class="question-tab" data-qindex="8" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">8. When an internal MLRO confirms that an enterprise's financial ledger exhibits patterns indicative of money laundering, to which external UK body must the formal SAR be transmitted?</div>
-                <div class="task-interactive-body">
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q8" value="A"> The Financial Conduct Authority (FCA)</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q8" value="B"> The National Crime Agency (NCA)</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q8" value="C"> The Financial Reporting Council (FRC)</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The National Crime Agency (NCA) is the sole intelligence authority designated to receive external Suspicious Activity Reports (SARs) within the UK anti-money laundering system.
-                </div>
-            </div>
-            <!-- QUESTION 9: TIPO "multi-select" (Competence & CPD Sbarramenti) -->
-            <div class="question-tab" data-qindex="9" data-type="multi-select">
-                <div class="task-instruction-text">9. Complete the compliance rule describing technical qualifications and skill updates.</div>
-                <div class="task-interactive-body">
-                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        The requirement to continually update legislative tax knowledge and technical accounting methods through structured Continuing Professional Development (CPD) reflects the principle of 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="competence">
-                            <option value="">-- Principle --</option>
-                            <option value="competence">Professional Competence and Due Care</option>
-                            <option value="behaviour">Professional Behaviour</option>
+                            <option value="integrity">Integrity and Confidentiality (Security)</option>
+                            <option value="minimisation">Data Minimisation</option>
                         </select>. 
-                        Accepting complex auditing tasks for which the practitioner lacks proper training violates this principle, creating a severe operational 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="risk">
-                            <option value="">-- Outcome --</option>
-                            <option value="risk">Risk of negligence liability</option>
-                            <option value="advocacy">Advocacy threat</option>
-                        </select>.
+                        Furthermore, firms must ensure that personal data is retained only for as long as is strictly 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="necessary">
+                            <option value="">-- Retention --</option>
+                            <option value="necessary">Necessary for the specified legal purpose</option>
+                            <option value="possible">Possible up to an infinite timeline</option>
+                        </select> under the storage limitation directive.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Professional Competence requires maintaining an expert level of skills and knowledge. Accepting work beyond one's capability violates due care, inviting high professional negligence exposures.
+                    <strong>Solution Note:</strong> GDPR mandates strict compliance: Integrity and Confidentiality forces companies to protect data from unauthorized access or hacks. Storage Limitation blocks keeping records longer than necessary for active compliance tasks.
                 </div>
             </div>
-            <!-- QUESTION 10: TIPO "radio" (Whistleblowing and Internal Escalation) -->
-            <div class="question-tab" data-qindex="10" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">10. An employee discovers that their corporate employer is intentionally falsifying waste disposal logs to hide hazardous spills. Which structural protection framework shields the worker if they report this breach?</div>
+            <!-- QUESTION 7: TIPO "radio" (The Hazard of Greenwashing) -->
+            <div class="question-tab" data-qindex="7" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">7. Within modern Environmental, Social, and Governance (ESG) frameworks, how is the corporate malpractice known as 'Greenwashing' defined?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q10" value="A"> The Data Protection Act validation matrices.</span>
+                        <span class="option-label"><input type="radio" name="q7" value="A"> Making exaggerated, unprovable, or deceptive claims regarding a company's environmental or eco-friendly credentials.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q10" value="B"> Public Interest Disclosure Act (PIDA) whistleblowing protections.</span>
+                        <span class="option-label"><input type="radio" name="q7" value="B"> Failing to register a commercial warehouse entity for mandatory quarterly VAT returns.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q10" value="C"> The Cash Accounting Scheme boundary guidelines.</span>
+                        <span class="option-label"><input type="radio" name="q7" value="C"> Aggregating mixed overhead costs line-by-line using the High-Low method matrix.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Whistleblowing under PIDA protects employees from unfair dismissal or commercial reprisal when reporting genuine, serious internal corporate wrongdoings in the public interest.
+                    <strong>Solution Note:</strong> Greenwashing is the unethical manipulation of non-financial sustainability reporting. It involves fabricating eco-credentials to deceive consumers, shareholders, or regulators, and accountants audit these lines to ensure transparency.
                 </div>
             </div>
-
-            <!-- QUESTION 11: TIPO "multi-select" (Advocacy Threat Mechanisms) -->
-            <div class="question-tab" data-qindex="11" data-type="multi-select">
-                <div class="task-instruction-text">11. Complete the operational parameters regarding promotion-driven compliance risks.</div>
+            <!-- QUESTION 8: TIPO "multi-select" (ESG Metrics Quantification) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-select">
+                <div class="task-instruction-text">8. Complete the statement regarding the tracking of non-financial data inside contemporary management accounts.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Acting as an aggressive legal representative or corporate promoter for a client firm in a high-stakes litigation dispute triggers an 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="advocacy">
-                            <option value="">-- Choose Threat --</option>
-                            <option value="advocacy">Advocacy Threat</option>
-                            <option value="self-review">Self-Review Threat</option>
-                        </select> 
-                        which compromises reporting independence. This happens because the practitioner promotes the client's financial stance to the point where 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="objectivity">
-                            <option value="">-- Element --</option>
-                            <option value="objectivity">Objectivity is completely impaired</option>
-                            <option value="confidentiality">Confidentiality is automatically broken</option>
-                        </select>.
+                        Modern corporate reporting tasks accounting technicians with auditing environmental impacts. To assess sustainable production efficiency, a business calculates its carbon emissions intensity factor by taking total greenhouse gas emissions and dividing them by total 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="output">
+                            <option value="">-- Denominator --</option>
+                            <option value="output">Output production volume (Units/Hours)</option>
+                            <option value="revenue">Gross monetary sales revenue</option>
+                        </select>. 
+                        This ensures that sustainability metrics are backed by verifiable 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="quantitative">
+                            <option value="">-- Data Type --</option>
+                            <option value="qualitative">Qualitative narratives</option>
+                            <option value="quantitative">Quantitative operational metrics</option>
+                        </select> evidence.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Advocacy occurs when an accountant promotes a client's position to the point that their independent professional objectivity is compromised, aligning their views too closely with the client's corporate aims.
+                    <strong>Solution Note:</strong> Carbon emissions intensity links environmental damage directly to real production volumes (e.g., tonnes of CO2 per unit). Accountants track these indicators to provide quantitative verification for ESG statement pages.
                 </div>
             </div>
 
-            <!-- QUESTION 12: TIPO "radio" (The Primacy of Public Interest) -->
-            <div class="question-tab" data-qindex="12" data-type="radio" data-correct="C">
-                <div class="task-instruction-text">12. Under the overarching framework rules of the AAT professional code, whose interests must a certified practitioner prioritize above all else?</div>
+            <!-- QUESTION 9: TIPO "radio" (Whistleblowing Statutory Framework) -->
+            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">9. A ledger clerk discovers that senior management is deliberately dumping industrial contaminants into a local river and falsifying disposal logs. Which statutory framework provides direct legal protection from commercial retaliation if they report this?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q12" value="A"> The immediate financial profitability of the local corporate client.</span>
+                        <span class="option-label"><input type="radio" name="q9" value="A"> The Data Protection Act (GDPR) enforcement guidelines.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q12" value="B"> Personal commercial bonuses tied to volume metrics.</span>
+                        <span class="option-label"><input type="radio" name="q9" value="B"> Public Interest Disclosure Act (PIDA) whistleblowing protections.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q12" value="C"> The Public Interest, which commands absolute truthfulness to protect tax integrity and fair markets.</span>
+                        <span class="option-label"><input type="radio" name="q9" value="C"> The Proceeds of Crime Act asset seizure matrix.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> An accounting practitioner's primary duty is to the public interest. This duty overrides narrow client loyalty if that loyalty involves participating in fraud or deliberate tax evasion.
+                    <strong>Solution Note:</strong> Whistleblowing under PIDA protects employees from unfair dismissal or company victimisation when making a protected disclosure regarding serious workplace wrongdoing (such as environmental crimes or illegal fraud) in the public interest.
                 </div>
             </div>
-            <!-- QUESTION 13: TIPO "multi-select" (Self-Review Threat Parameters) -->
-            <div class="question-tab" data-qindex="13" data-type="multi-select">
-                <div class="task-instruction-text">13. Complete the description of accounting reviews that lead to independent evaluation threats.</div>
+
+            <!-- QUESTION 10: TIPO "multi-select" (POCA Moratorium Periods) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-select">
+                <div class="task-instruction-text">10. Complete the statutory timeline rules applied when an enterprise MLRO submits a SAR to the National Crime Agency.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Accepting a corporate project to audit and verify a series of financial statements that you compiled yourself triggers a severe 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="self-review">
-                            <option value="">-- Choose Threat --</option>
-                            <option value="self-review">Self-Review Threat</option>
-                            <option value="familiarity">Familiarity Threat</option>
-                        </select> 
-                        because you cannot evaluate your own work with absolute detachment. To mitigate this risk, the firm must assign an 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="independent">
-                            <option value="">-- Safeguard --</option>
-                            <option value="independent">Independent review team completely separate from the drafting process</option>
-                            <option value="advocate">Advocate partner to defend the entries</option>
-                        </select>.
+                        Once a Suspicious Activity Report seeking consent to process funds is filed, the NCA enforces an initial notice period freeze window of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="7">
+                            <option value="">-- Notice Period --</option>
+                            <option value="7">7 working days</option>
+                            <option value="14">14 working days</option>
+                        </select>. 
+                        If the agency formally refuses consent to clear the transaction, an automatic moratorium period extension of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="31">
+                            <option value="">-- Moratorium --</option>
+                            <option value="14">14 calendar days</option>
+                            <option value="31">31 calendar days</option>
+                        </select> triggers to allow investigative asset traces.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Self-Review threats arise when an accountant evaluates their own previous work. Proper safeguards require a separate, independent individual to perform the verification.
+                    <strong>Solution Note:</strong> Under POCA laws, money laundering reports force a 7-working-day freeze. If the NCA blocks the deal, a 31-day extension locks the capital, allowing state agencies to secure restraint orders without corporate interference.
                 </div>
             </div>
-
-            <!-- QUESTION 14: TIPO "radio" (Professional Behaviour Definition) -->
-            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">14. An accountant posts offensive, unprofessional commentary on a public digital platform regarding a tax dispute. Which core principle is breached here?</div>
+            <!-- QUESTION 11: TIPO "radio" (HMRC Surcharge Progression) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">11. A corporate taxpayer repeatedly defaults on its VAT liabilities. What is the progressive penalty framework applied by HMRC for multiple payment failures within a surcharge liability period?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="A"> Technical Competence</span>
+                        <span class="option-label"><input type="radio" name="q11" value="A"> A fixed flat administrative fee of £50 per default event.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="B"> Professional Behaviour</span>
+                        <span class="option-label"><input type="radio" name="q11" value="B"> A scaling percentage surcharge (ranging from 2% up to 15%) applied directly to the outstanding tax balance based on default frequency.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="C"> Corporate Objectivity</span>
+                        <span class="option-label"><input type="radio" name="q11" value="C"> An automatic pointsaccumulation leading to immediate corporate liquidation.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Professional Behaviour requires members to comply with laws and conduct themselves in a manner that protects the reputation of the profession, avoiding any actions that discredit it.
+                    <strong>Solution Note:</strong> HMRC's default surcharge system operates on a sliding ladder: 1st default = 0% (Surcharge Liability Notice), 2nd default = 2%, 3rd default = 5%, 4th default = 10%, and 5th default = 15% of the unpaid tax amount.
                 </div>
             </div>
 
-            <!-- QUESTION 15: TIPO "multi-input" (HMRC Late Filing Points Accumulation) -->
-            <div class="question-tab" data-qindex="15" data-type="multi-input">
-                <div class="task-instruction-text">15. A firm misses tax return deadlines across multiple periods. Complete the statutory threshold point parameters used to monitor late submission flags before automatic penalty fines apply.</div>
+            <!-- QUESTION 12: TIPO "multi-input" (HMRC Negligence Penalty Rates) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-input">
+                <div class="task-instruction-text">12. HMRC applies penal financial percentages based on the taxpayer's intent when compiling faulty returns. Input the standard penalty ranges applied to the Potential Lost Revenue (PLR) for prompted disclosures.</div>
                 <div class="task-interactive-body">
                     <table class="financial-table">
                         <thead>
                             <tr>
-                                <th style="text-align: left;">Compliance Return Frequency Module</th>
-                                <th style="width: 250px;">Penalty Point Trigger Cap</th>
+                                <th style="text-align: left;">HMRC Proven Error Intent (Prompted Scenario)</th>
+                                <th style="width: 250px;">Statutory Penalty Range (%)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="text-align: left;">Points threshold required to trigger a financial fine for MONTHLY submitters</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="5" placeholder="0"></td>
+                                <td style="text-align: left;">Careless error caused by a lack of reasonable bookkeeping care</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="15% - 30%" placeholder="0% - 0%"></td>
                             </tr>
                             <tr>
-                                <td style="text-align: left;">Points threshold required to trigger a financial fine for ANNUAL submitters</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2" placeholder="0"></td>
+                                <td style="text-align: left;">Deliberate but unconcealed return falsification mistake</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="35% - 70%" placeholder="0% - 0%"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> HMRC's points-based framework scales by filing frequency: annual filers have a 2-point cap, quarterly filers have a 4-point cap, and monthly filers hit automatic fines on the 5th point.
+                    <strong>Solution Note:</strong> Intent dictates the penalty bands. Under HMRC guidelines, a prompted disclosure for a careless mistake is penalized between 15% and 30%. A deliberate but unconcealed error shifts the range upwards to between 35% and 70% of the lost tax revenue.
+                </div>
+            </div>
+
+            <!-- QUESTION 13: TIPO "radio" (POCA Maximum Sentencing Limits) -->
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">13. Under the provisions of the UK Proceeds of Crime Act, what is the maximum statutory prison sentence for an individual convicted of a primary money laundering offense (such as concealing, disguising, or converting criminal property)?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q13" value="A"> A maximum ceiling of 2 years imprisonment.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q13" value="B"> A maximum ceiling of 5 years imprisonment.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q13" value="C"> A maximum ceiling of 14 years imprisonment alongside unlimited financial fines.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The core offenses of money laundering (actively assisting, concealing, or shifting criminal assets) are treated with maximum severity by UK criminal courts, carrying a maximum sentence of 14 years in prison.
+                </div>
+            </div>
+
+            <!-- QUESTION 14: TIPO "multi-select" (Data Protection Accountability) -->
+            <div class="question-tab" data-qindex="14" data-type="multi-select">
+                <div class="task-instruction-text">14. Complete the data security governance statements regarding commercial enterprise liabilities.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        Under the Data Protection Act framework, the overarching mandate that obligates a corporation to actively prove its ongoing security compliance and internal audit controls is known as the 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="accountability">
+                            <option value="">-- Principle --</option>
+                            <option value="accountability">Accountability Principle</option>
+                            <option value="minimisation">Data Minimisation Principle</option>
+                        </select> 
+                        concept. Severe organizational breaches can trigger statutory Information Commissioner's Office (ICO) administrative fines up to a maximum cap of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="17.5">
+                            <option value="">-- Fines Cap --</option>
+                            <option value="8.7">£8.7 million (or 2% global turnover)</option>
+                            <option value="17.5">£17.5 million (or 4% global turnover)</option>
+                        </select>.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Accountability forces businesses to actively demonstrate GDPR compliance. Serious breaches face the higher tier statutory penalty cap: up to £17.5 million or 4% of global annual turnover, whichever is greater.
+                </div>
+            </div>
+
+            <!-- QUESTION 15: TIPO "radio" (Spreadsheet Data Validation Controls) -->
+            <div class="question-tab" data-qindex="15" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">15. When designing corporate accounting spreadsheet tools, which safety mechanism prevents users from keying in non-existent tax codes or illegal formatting text?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q15" value="A"> Dynamic Conditional Formula Highlighting</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q15" value="B"> Data Validation Dropdown Rules</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q15" value="C"> Automated Macro Formula Hiding</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Data Validation dropdown filters restrict active spreadsheet cell inputs to a specific, authorized ledger range array, ensuring data integrity before calculation loops execute.
                 </div>
             </div>
 
@@ -983,7 +891,7 @@ function executeCalc() {
     try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
 }
 
-// LOGICA REALE DRAG MECCANICA TRASCINABILE
+// REALE TRASCINAMENTO DRAG AND DROP CALCOLATRICE WIDGET
 const dragWidget = document.getElementById("calc-widget");
 const dragHandle = document.getElementById("calc-header");
 let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
