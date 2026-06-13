@@ -1,263 +1,98 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 - Chapter 3: Visual Schemes</title>
+    <title>AAT Level 2 Certificate in Accounting - Chapter 3 Schemes: Cash Book & Petty Cash Flows</title>
     <style>
-        :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --cyan: #00f2fe;
-            --teal: #4facfe;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-            --debit-color: #10b981;
-            --credit-color: #ef4444;
-            --warn-color: #f59e0b;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            color: var(--cyan);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            color: var(--cyan);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            color: var(--teal);
-            margin-top: 35px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-        }
-
-        h3 {
-            color: var(--text-main);
-            margin-top: 25px;
-        }
-
-        .section-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Cost Layout Specific Stilling */
-        .cost-tree {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .tree-node {
-            background: #0f1423;
-            border: 1px solid var(--border);
-            padding: 15px;
-            border-radius: 6px;
-        }
-
-        .tree-header {
-            font-weight: bold;
-            color: var(--cyan);
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 4px;
-            margin-bottom: 8px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.85rem;
-        }
-
-        th, td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        th {
-            background-color: #1e293b;
-            color: var(--cyan);
-        }
-
-        tr:hover {
-            background-color: #131b2e;
-        }
+        /* 1. Reset Globale e Impostazioni Sfondo */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #1E293B; padding: 40px 20px; display: flex; justify-content: center; }
+        .schemes-container { background-color: #FFFFFF; width: 100%; max-width: 900px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* 2. Elementi Grafici Modulari */
+        h1 { color: #0F172A; font-size: 26px; font-weight: 800; margin-bottom: 25px; border-bottom: 3px solid #E2E8F0; padding-bottom: 10px; text-transform: uppercase; }
+        h2 { color: #2563EB; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 35px; margin-bottom: 15px; }
+        p { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 15px; }
+        
+        /* 3. Diagramma della Pipeline di Cassa */
+        .pipeline-wrapper { display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 20px; border-radius: 8px; border: 1px dashed #CBD5E1; margin: 20px 0; overflow-x: auto; gap: 10px; }
+        .pipe-block { background: white; border: 2px solid #475569; padding: 12px; border-radius: 6px; text-align: center; min-width: 140px; font-size: 13px; font-weight: bold; }
+        .pipe-block.highlight { border-color: #7C3AED; background-color: #FAF5FF; color: #6D28D9; }
+        .pipe-arrow { font-size: 18px; color: #2563EB; font-weight: bold; }
+        
+        /* 4. Tabella Layout Pro Forma */
+        .grid-post { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .grid-post th { background: #1E293B; color: white; padding: 12px; border: 1px solid #334155; text-align: left; }
+        .grid-post td { padding: 12px; border: 1px solid #E2E8F0; }
+        .grid-post tr:nth-child(even) { background-color: #F8FAFC; }
+        .dr-text { color: #1E40AF; font-weight: 700; }
+        .cr-text { color: #166534; font-weight: 700; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
-    
-    <h1>Chapter 3: Cost Classification & CVP Analysis — Schemes</h1>
-
-    <!-- SECTION 1: COST ACCUMULATION TREE -->
-    <div class="section-card">
-        <h2>1. Prime Cost and Total Cost Building Blocks</h2>
-        <p>The layout below details how individual direct and indirect components accumulate to construct a comprehensive corporate cost profile.</p>
+    <div class="schemes-container">
+        <h1>Chapter 3 Schemes & Financial Mappings</h1>
+        <p>This technical mapping framework traces the cyclical pipeline of the petty cash imprest system and outlines the dual double-entry routing for multi-column cash book records.</p>
         
-        <div class="cost-tree">
-            <div class="tree-node">
-                <div class="tree-header">Prime Cost (Direct Accumulation)</div>
-                <div>Direct Materials + Direct Labour + Direct Expenses = <strong>Prime Cost</strong></div>
-            </div>
-            <div style="text-align: center; color: var(--teal);">+</div>
-            <div class="tree-node">
-                <div class="tree-header">Production Overheads (Indirect Manufacturing Layer)</div>
-                <div>Indirect Factory Materials + Indirect Factory Wages + Factory Shared Utility Expenses</div>
-            </div>
-            <div style="text-align: center; color: var(--teal); font-weight: bold;">= Production Cost (Gross Cost of Product)</div>
-            <div style="text-align: center; color: var(--teal);">+</div>
-            <div class="tree-node">
-                <div class="tree-header">Non-Production Overheads (Commercial Support Layer)</div>
-                <div>Administrative Overheads + Distribution Costs + Marketing and Sales Expenses</div>
-            </div>
-            <div style="text-align: center; color: var(--cyan); font-weight: bold; font-size: 1.1rem;">= Total Cost of the Business Entity</div>
+        <h2>1. The Continuous Imprest System Loop (Operational Lifecycle)</h2>
+        <p>The petty cash fund behaves like an unbroken mathematical circuit. At each milestone, values must be restored completely back to the opening float level baseline:</p>
+        
+        <div class="pipeline-wrapper">
+            <div class="pipe-block">1. Fixed Imprest Float<br><small style="color:#64748B; font-weight:500;">Opening Base Cash</small></div>
+            <div class="pipe-arrow">➔</div>
+            <div class="pipe-block">2. Authorized Vouchers<br><small style="color:#64748B; font-weight:500;">Payments Issued</small></div>
+            <div class="pipe-arrow">➔</div>
+            <div class="pipe-block highlight">3. Actual Cash in Box<br><small style="color:#6D28D9; font-weight:600;">Hand Counted</small></div>
+            <div class="pipe-arrow">➔</div>
+            <div class="pipe-block">4. Bank Top-Up Cheque<br><small style="color:#64748B; font-weight:500;">Value = Vouchers</small></div>
+            <div class="pipe-arrow">➔</div>
+            <div class="pipe-block highlight" style="border-color:#10B981; background-color:#F0FDF4; color:#166534;">5. Float Restored<br><small style="color:#166534; font-weight:600;">System Rebalanced</small></div>
         </div>
-    </div>
-    <!-- SECTION 2: INVENTORY VALUATION COMPARISON -->
-    <div class="section-card">
-        <h2>2. Ledger Effects of Valuation Layouts (Inflationary Trends)</h2>
-        <p>This comparison scheme maps out how picking an inventory framework alters financial outputs when raw goods purchase rates are rising.</p>
+        <h2>2. Master Cash Book Routing Grid (Double-Entry Matrix)</h2>
+        <p>This master matrix mapping displays how aggregate book totals are split and targeted into the nominal ledger accounts at period-end:</p>
         
-        <table>
+        <table class="grid-post">
             <thead>
                 <tr>
-                    <th>Valuation Model</th>
-                    <th>Cost of Production Pricing Mode</th>
-                    <th>Closing Inventory Valuation Effect</th>
-                    <th>Net Profit Generation Impact</th>
+                    <th>Cash Book column Source</th>
+                    <th>System Side Location</th>
+                    <th>General Ledger Destination Profile</th>
+                    <th>Double-Entry Action</th>
+                    <th>Accounting Nature and Functional Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>FIFO</strong> (First-In, First-Out)</td>
-                    <td style="color: var(--debit-color);">Lower (Uses older cheaper prices)</td>
-                    <td style="color: var(--cyan); font-weight: bold;">Higher (Current market value)</td>
-                    <td style="color: var(--cyan);">Higher reported operational profit</td>
+                    <td style="font-weight:700;">Bank Column (Receipts)</td>
+                    <td class="dr-text">Debit Side (Left)</td>
+                    <td>Bank Account (General Ledger)</td>
+                    <td class="dr-text">DEBIT (Increases Asset)</td>
+                    <td>Records cash and automated electronic funds entering the entity.</td>
                 </tr>
                 <tr>
-                    <td><strong>LIFO</strong> (Last-In, First-Out)</td>
-                    <td style="color: var(--credit-color);">Higher (Uses current expensive prices)</td>
-                    <td style="color: var(--text-muted);">Lower (Tied to historical stock costs)</td>
-                    <td style="color: var(--credit-color);">Lower reported operational profit</td>
+                    <td style="font-weight:700;">Bank Column (Payments)</td>
+                    <td class="cr-text">Credit Side (Right)</td>
+                    <td>Bank Account (General Ledger)</td>
+                    <td class="cr-text">CREDIT (Decreases Asset)</td>
+                    <td>Records outbound electronic vendor settlements and overhead disbursements.</td>
                 </tr>
                 <tr>
-                    <td><strong>AVCO</strong> (Weighted Average)</td>
-                    <td>Blended mid-range pricing scale</td>
-                    <td>Averages all stock receipts together</td>
-                    <td>Smooths out short-term market spikes</td>
+                    <td style="font-weight:700; border-top:2px solid #1E293B;">Discounts Allowed Column</td>
+                    <td class="dr-text" style="border-top:2px solid #1E293B;">Debit Side (Left)</td>
+                    <td style="border-top:2px solid #1E293B;">Discounts Allowed Account</td>
+                    <td class="dr-text" style="border-top:2px solid #1E293B;">DEBIT (Creates Expense)</td>
+                    <td style="border-top:2px solid #1E293B;"><strong>Memorandum Total:</strong> Posted independently to close the prompt payment loop.</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;">Discounts Received Column</td>
+                    <td class="cr-text">Credit Side (Right)</td>
+                    <td>Discounts Received Account</td>
+                    <td class="cr-text">CREDIT (Creates Income)</td>
+                    <td><strong>Memorandum Total:</strong> Extracted independently to map the financial benefit gained.</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <!-- SECTION 3: LABOUR COST ALLOCATION MATRIX -->
-    <div class="section-card">
-        <h2>3. Remuneration and Overtime Premium Classification</h2>
-        <p>Overtime hourly pay contains two components. This matrix illustrates how to allocate basic rates versus premiums to keep cost structures precise.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Labour Payment Scenario Element</th>
-                    <th>Direct Labour Account Classification</th>
-                    <th>Indirect Labour Account (Overhead)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Basic hours worked by assembly line craftsmen</td>
-                    <td style="color: var(--debit-color); font-weight: bold;">100% Allocated Here</td>
-                    <td>Excluded</td>
-                </tr>
-                <tr>
-                    <td>Basic hours worked by factory clean-up crews</td>
-                    <td>Excluded</td>
-                    <td style="color: var(--warn-color);">100% Allocated Here</td>
-                </tr>
-                <tr>
-                    <td><strong>Overtime Premium</strong> (General production run)</td>
-                    <td>Excluded</td>
-                    <td style="color: var(--warn-color); font-weight: bold;">Allocated as Factory Overhead</td>
-                </tr>
-                <tr>
-                    <td><strong>Overtime Premium</strong> (Customer urgent request)</td>
-                    <td style="color: var(--debit-color); font-weight: bold;">Allocated as Direct Cost</td>
-                    <td>Excluded</td>
-                </tr>
-                <tr>
-                    <td><strong>Idle Time Hours</strong> (Power cut disruption)</td>
-                    <td>Excluded</td>
-                    <td style="color: var(--warn-color); font-weight: bold;">Allocated as Factory Overhead</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- SECTION 4: BREAK-EVEN ACCOUNTING LAYOUT -->
-    <div class="section-card">
-        <h2>4. Cost-Volume-Profit Linear Relationship Model</h2>
-        <p>This layout visualizes the accounting interaction of margins and fixed costs required to establish the operational break-even boundary.</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Operational Volume Threshold Level</th>
-                    <th>Financial Performance Output State</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sales are *below* the Break-Even Point</td>
-                    <td style="color: var(--credit-color); font-weight: bold;">Total Contribution &lt; Fixed Overheads (Net Loss State)</td>
-                </tr>
-                <tr style="background: #1e293b; font-weight: bold; border: 1px solid var(--cyan);">
-                    <td>Sales are *at* the Break-Even Point</td>
-                    <td style="color: var(--cyan); font-weight: bold;">Total Contribution = Fixed Overheads (Zero Profit/Loss Boundary)</td>
-                </tr>
-                <tr>
-                    <td>Sales are *above* the Break-Even Point</td>
-                    <td style="color: var(--debit-color); font-weight: bold;">Total Contribution &gt; Fixed Overheads (Net Profit State)</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div> <!-- End Container -->
-
 </body>
 </html>
