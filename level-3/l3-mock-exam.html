@@ -5,63 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AAT Level 3 - FAPR Live Assessment Simulator</title>
     <style>
-        /* Reset Globale e Layout Base */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        body { background-color: #0B0F19; min-height: 100vh; padding: 30px 20px; padding-top: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        /* 1. Reset e Struttura Base AAT */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: #0B0F19; min-height: 100vh; padding: 30px 20px; padding-top: 85px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
         /* Barra Superiore Scura Ufficiale */
-        .top-assessment-bar { position: fixed; top: 0; left: 0; width: 100%; background-color: #111827; border-bottom: 2px solid #1F2937; padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 4000; color: #FFFFFF; font-size: 13px; font-weight: bold; letter-spacing: 0.5px; }
-        .top-right-controls { display: flex; align-items: center; gap: 15px; }
-        .top-calc-btn { background-color: #374151; color: #F3F4F6; border: 1px solid #4B5563; padding: 6px 14px; border-radius: 4px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .top-assessment-bar { position: fixed; top: 0; left: 0; width: 100%; background-color: #111827; border-bottom: 1px solid #1F2937; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 4000; color: #FFFFFF; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
+        .top-right-controls { display: flex; align-items: center; gap: 12px; }
+        .top-calc-btn { background-color: #374151; color: #E5E7EB; border: 1px solid #4B5563; padding: 5px 12px; border-radius: 3px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: bold; }
         .top-calc-btn:hover { background-color: #4B5563; }
-        .top-timer { background-color: #000000; border: 1px solid #374151; padding: 6px 16px; border-radius: 4px; color: #FFFFFF; font-size: 14px; font-family: monospace; font-weight: bold; }
+        .top-timer { background-color: #000000; border: 1px solid #374151; padding: 5px 14px; border-radius: 3px; color: #FFFFFF; font-size: 13px; font-family: monospace; font-weight: bold; }
 
-        /* Contenitore Principale (Bolla Bianca Protetta) */
-        .assessment-container { background-color: #FFFFFF; width: 100%; max-width: 1000px; border-radius: 8px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); min-height: 540px; display: flex; flex-direction: column; justify-content: space-between; }
+        /* Contenitore Principale (Bolla Bianca) */
+        .assessment-container { background-color: #FFFFFF; width: 100%; max-width: 1050px; border-radius: 6px; padding: 25px 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); min-height: 540px; display: flex; flex-direction: column; justify-content: space-between; }
 
-        /* Griglia Orizzontale dei Task (Top Navigation Corretta) */
-        .tasks-nav-scroll { display: flex; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 12px; margin-bottom: 25px; width: 100%; overflow-x: auto; gap: 8px; scroll-behavior: smooth; }
-        .tasks-nav-scroll::-webkit-scrollbar { height: 4px; }
-        .tasks-nav-scroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 2px; }
-        
-        .task-tab-btn { background: #F3F4F6; border: 1px solid #E5E7EB; border-radius: 4px; padding: 10px 16px; font-size: 12px; font-weight: bold; color: #374151; cursor: pointer; text-align: center; min-width: 95px; white-space: nowrap; }
-        .task-tab-btn.active { background-color: #059669; color: white; border-color: #059669; }
+        /* Navigazione Orizzontale dei Task Superiori */
+        .tasks-nav-scroll { display: flex; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 14px; margin-bottom: 25px; width: 100%; overflow-x: auto; gap: 6px; }
+        .task-tab-btn { background: #F3F4F6; border: 1px solid #D1D5DB; border-radius: 3px; padding: 8px 12px; font-size: 11px; font-weight: bold; color: #374151; cursor: pointer; text-align: center; min-width: 90px; white-space: nowrap; transition: all 0.15s; }
+        .task-tab-btn .pt-lbl { display: block; font-size: 9px; font-weight: normal; color: #6B7280; margin-top: 3px; }
+        .task-tab-btn.active { background-color: #059669; color: #FFFFFF; border-color: #059669; }
+        .task-tab-btn.active .pt-lbl { color: rgba(255,255,255,0.8); }
 
-        /* Area dei Contenuti dei Task (Testi Più Grandi) */
-        .task-panel-wrapper { flex-grow: 1; display: flex; flex-direction: column; }
+        /* Area dei Contenuti dei Task */
+        .task-panel-wrapper { flex-grow: 1; display: flex; flex-direction: column; padding: 5px 0; }
         .task-panel { display: none; flex-direction: column; }
         .task-panel.active { display: flex; }
-        
-        .focus-header { font-size: 12px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-        .focus-instruction { font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 22px; }
-        .task-question-text { font-size: 15px; color: #334155; margin-bottom: 22px; line-height: 1.6; text-align: justify; }
+        /* Testi e Focus Gestione */
+        .focus-header { font-size: 11px; font-weight: bold; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .focus-instruction { font-size: 14px; font-weight: bold; color: #0F172A; margin-bottom: 25px; }
+        .task-question-text { font-size: 13.5px; color: #334155; margin-bottom: 20px; line-height: 1.6; }
 
-        /* Box Opzioni e Input Numerici */
-        .option-box-row { display: flex; align-items: center; padding: 14px 18px; border: 1px solid #E5E7EB; border-radius: 6px; background-color: #F9FAFB; cursor: pointer; margin-bottom: 12px; transition: background 0.15s; }
-        .option-box-row:hover { background-color: #F3F4F6; border-color: #CBD5E1; }
-        .option-box-row input[type="radio"] { margin-right: 12px; width: 16px; height: 16px; cursor: pointer; }
-        .option-text-label { font-size: 14px; color: #1F2937; font-weight: 500; }
+        /* Componenti di Input e Campi Opzioni */
+        .option-box-row { display: flex; align-items: center; padding: 12px 16px; border: 1px solid #E5E7EB; border-radius: 4px; background-color: #FFFFFF; cursor: pointer; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+        .option-box-row:hover { background-color: #F9FAFB; border-color: #D1D5DB; }
+        .option-box-row input[type="radio"] { margin-right: 12px; width: 15px; height: 15px; cursor: pointer; }
+        .option-text-label { font-size: 13px; color: #1F2937; font-weight: 500; }
         
-        .input-box-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border: 1px solid #E5E7EB; border-radius: 6px; background-color: #F9FAFB; max-width: 400px; }
-        .input-box-row span { font-size: 14px; color: #4B5563; font-weight: 600; }
-        .numeric-field { width: 130px; padding: 6px 10px; border: 1px solid #CBD5E1; border-radius: 4px; text-align: right; font-weight: 700; font-size: 14px; }
-        .numeric-field:focus { outline: none; border-color: #2563EB; }
+        .input-box-row { display: flex; align-items: center; gap: 15px; padding: 15px 20px; border: 1px solid #E5E7EB; border-radius: 4px; background-color: #F9FAFB; max-width: 440px; margin-top: 10px; }
+        .input-box-row span { font-size: 13px; color: #374151; font-weight: bold; }
+        .numeric-field { width: 140px; padding: 7px 10px; border: 1px solid #CBD5E1; border-radius: 3px; text-align: right; font-weight: bold; font-size: 13.5px; color: #0F172A; }
 
-        /* Footer Pulsantiera Divisa Simmetricamente (Riallineamento Colori) */
-        .assessment-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #E5E7EB; padding-top: 25px; margin-top: 30px; }
-        .footer-group { display: flex; gap: 12px; }
-        .btn-action { padding: 10px 22px; font-size: 13.5px; font-weight: 700; border-radius: 4px; border: 1px solid #CBD5E1; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-        .btn-action:disabled { opacity: 0.4; cursor: not-allowed; }
+        /* Footer Pulsantiera Separata Simmetrica Reale AAT */
+        .assessment-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #E5E7EB; padding-top: 20px; margin-top: 20px; }
+        .footer-group { display: flex; gap: 10px; }
         
-        /* Correzione Bottoni Navigazione: Bianchi/Grigi come richiesto */
-        .btn-nav-prev { background-color: #F3F4F6; color: #4B5563; }
-        .btn-nav-next { background-color: #F3F4F6; color: #1F2937; }
-        .btn-util-reset { background-color: #EF4444; color: white; border: none; }
-        .btn-util-submit { background-color: #059669; color: white; border: none; }
+        /* Stile base dei bottoni d'azione dell'esame */
+        .btn-action { height: 36px; padding: 0 16px; font-size: 12.5px; font-weight: bold; border-radius: 3px; border: 1px solid #D1D5DB; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+        .btn-action:disabled { opacity: 0.3; cursor: not-allowed; }
+        
+        /* I due bottoni di navigazione grigio/bianchi con testo scuro */
+        .btn-nav-prev { background-color: #FFFFFF; color: #4B5563; padding-left: 8px; }
+        .btn-nav-next { background-color: #FFFFFF; color: #1F2937; padding-right: 8px; }
+        
+        /* Le micro-icone quadrate interne ai bottoni per le frecce */
+        .btn-icon-sq { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; border-radius: 2px; margin: 0 6px; }
+        .bg-gray-icon { background-color: #E5E7EB; color: #4B5563; margin-left: 0; margin-right: 8px; }
+        .bg-blue-icon { background-color: #3B82F6; color: #FFFFFF; margin-right: 0; margin-left: 8px; }
 
-        /* Pannello Risultati Audit */
-        #results-panel { display: none; background: #EEF2F6; border: 2px solid #94A3B8; border-radius: 6px; padding: 25px; margin-top: 25px; }
-        .explanation-box { background: white; border-left: 4px solid #0284C7; padding: 15px; margin-top: 15px; border-radius: 4px; font-size: 14px; line-height: 1.6; }
+        /* Tasti Utility Destra Utili */
+        .btn-util-reset { background-color: #EF4444; color: #FFFFFF; border: none; padding: 0 20px; }
+        .btn-util-reset:hover { background-color: #DC2626; }
+        .btn-util-submit { background-color: #059669; color: #FFFFFF; border: none; padding: 0 20px; }
+        .btn-util-submit:hover { background-color: #047857; }
+
+        /* Audit Report Tab */
+        #results-panel { display: none; background: #EEF2F6; border: 1px solid #CBD5E1; border-radius: 4px; padding: 25px; margin-top: 25px; }
+        .explanation-box { background: white; border-left: 4px solid #0284C7; padding: 15px; margin-top: 15px; border-radius: 3px; font-size: 13px; line-height: 1.6; }
 
         /* Calcolatrice "Osborne Calc" */
         #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
@@ -79,9 +88,9 @@
 <body>
     <!-- Barra Superiore Scura Assestment AAT -->
     <div class="top-assessment-bar">
-        <div>📌 AAT LEVEL 3: FAPR LIVE ASSESSMENT</div>
+        <div>AAT LEVEL 3: FAPR LIVE ASSESSMENT</div>
         <div class="top-right-controls">
-            <button class="top-calc-btn" id="top-calc-trigger">🧮 Calculator</button>
+            <button class="top-calc-btn" id="top-calc-trigger">Calculator</button>
             <div class="top-timer" id="time-display">60:00</div>
         </div>
     </div>
@@ -90,272 +99,226 @@
     <div class="assessment-container">
         <form id="mock-assessment-form" onsubmit="return false;">
             
-            <!-- Barra di Navigazione Orizzontale dei Task (Allineata al 100% allo screenshot) -->
+            <!-- Barra di Navigazione Orizzontale dei Task (Identica al Software Reale) -->
             <div class="tasks-nav-scroll" id="tasks-buttons-container">
-                <button type="button" class="task-tab-btn active" data-target="1">Task 1 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="2">Task 2 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="3">Task 3 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="4">Task 4 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="5">Task 5 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="6">Task 6 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="7">Task 7 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="8">Task 8 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="9">Task 9 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="10">Task 10 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="11">Task 11 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="12">Task 12 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="13">Task 13 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="14">Task 14 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
-                <button type="button" class="task-tab-btn" data-target="15">Task 15 <span style="display:block; font-size:9px; font-weight:normal; opacity:0.7; margin-top:2px;">10pt</span></button>
+                <button type="button" class="task-tab-btn active" data-target="1">Task 1 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="2">Task 2 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="3">Task 3 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="4">Task 4 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="5">Task 5 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="6">Task 6 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="7">Task 7 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="8">Task 8 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="9">Task 9 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="10">Task 10 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="11">Task 11 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="12">Task 12 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="13">Task 13 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="14">Task 14 <span class="pt-lbl">10pt</span></button>
+                <button type="button" class="task-tab-btn" data-target="15">Task 15 <span class="pt-lbl">10pt</span></button>
             </div>
 
-            <!-- Contenitore Principale statico dei Task per evitare bug di caricamento vacanti -->
+            <!-- Contenitore Principale dove risiedono i Panel dei Task scritti in HTML Statico -->
             <div class="task-panel-wrapper" id="dynamic-tasks-placeholder">
-                <!-- TASK 1: Reducing Balance Method -->
+                <!-- TASK 1: INPUT NUMERICO AMMORTAMENTO -->
                 <div class="task-panel active" data-panel-index="1">
                     <div class="focus-header">CHAPTER 1 FOCUS: NON-CURRENT ASSETS ADJUSTMENTS</div>
                     <div class="focus-instruction">Calculate the second-year depreciation expense charge using the Reducing Balance framework.</div>
                     <p class="task-question-text">A business purchases a production vehicle on 1 January 2024 for £24,000. The firm applies the Reducing Balance Method of depreciation at a fixed rate of 25% per annum. Calculate the precise Depreciation Expense charge (£) to be recorded in the Statement of Profit or Loss for the second financial year ending 31 December 2025.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_1" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_1" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 2: Prepayment Calculation -->
+                <!-- TASK 2: INPUT NUMERICO RISCONTI -->
                 <div class="task-panel" data-panel-index="2">
                     <div class="focus-header">CHAPTER 1 FOCUS: YEAR-END OVERHEAD ADJUSTMENTS</div>
                     <div class="focus-instruction">Calculate the exact Prepayment value required for the Statement of Financial Position.</div>
                     <p class="task-question-text">On 1 November 2025, an enterprise pays its annual commercial insurance premium of £3,600 covering a 12-month window to 31 October 2026. The full invoice was debited to the Insurance Expense account. Calculate the exact Prepayment adjustment amount (£) required at the financial year-end on 31 December 2025.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_2" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_2" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 3: Accrual Accounting -->
+                <!-- TASK 3: INPUT NUMERICO RATEI -->
                 <div class="task-panel" data-panel-index="3">
                     <div class="focus-header">CHAPTER 1 FOCUS: ACCRUAL ACCOUNTING OVERHEADS</div>
                     <div class="focus-instruction">Isolate the unpaid consumed cost to form the year-end Accrual correction entry.</div>
                     <p class="task-question-text">A firm's financial year ends on 31 March 2026. The electricity bill is paid quarterly in arrears. The last invoice was settled up to 31 January 2026. On 15 May 2026, the firm receives an electricity bill of £900 covering February, March, and April 2026. Calculate the Accrual adjustment (£) required at year-end.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_3" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_3" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 4: Receivables Adjustments -->
+                <!-- TASK 4: INPUT NUMERICO SVALUTAZIONE CREDITI -->
                 <div class="task-panel" data-panel-index="4">
                     <div class="focus-header">CHAPTER 2 FOCUS: VALUATION OF TRADE RECEIVABLES</div>
                     <div class="focus-instruction">Execute specific write-offs before computing the updated general Allowance balance.</div>
                     <p class="task-question-text">At the end of the trading period, a business has total Trade Receivables of £45,000. The bookkeeper decides to fully write off an irrecoverable debt from client X worth £1,200, and subsequently adjust the general Allowance for Doubtful Debts to be exactly 5% of the remaining receivables pool. Calculate the final balance (£) of the adjusted Allowance account.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_4" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_4" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 5: Allowance Posting Path -->
+                <!-- TASK 5: RADIO BUTTON POSTAZIONE FONDO CREDITI -->
                 <div class="task-panel" data-panel-index="5">
                     <div class="focus-header">CHAPTER 2 FOCUS: ALLOWANCE FOR DOUBTFUL DEBTS LOGIC</div>
                     <div class="focus-instruction">Identify the correct ledger posting path to record a decrease in the general allowance pool.</div>
                     <p class="task-question-text">When adjusting the general Allowance for Doubtful Debts account at year-end, it is discovered that the opening allowance balance is £1,800 and the newly required allowance is calculated as £1,450. What is the double-entry posting path to record this shift?</p>
                     <div class="options-container">
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_5" value="A">
-                            <span class="option-text-label">Debit Allowance for Doubtful Debts £350, Credit Irrecoverable Debts Expense £350</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_5" value="B">
-                            <span class="option-text-label">Debit Irrecoverable Debts Expense £350, Credit Allowance for Doubtful Debts £350</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_5" value="C">
-                            <span class="option-text-label">Debit Statement of Profit or Loss £1,450, Credit Allowance Account £1,450</span>
-                        </label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_5" value="A"><span class="option-text-label">Debit Allowance for Doubtful Debts £350, Credit Irrecoverable Debts Expense £350</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_5" value="B"><span class="option-text-label">Debit Irrecoverable Debts Expense £350, Credit Allowance for Doubtful Debts £350</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_5" value="C"><span class="option-text-label">Debit Statement of Profit or Loss £1,450, Credit Allowance Account £1,450</span></label>
                     </div>
                 </div>
-                <!-- TASK 6: Non-Current Assets Disposal -->
+
+                <!-- TASK 6: RADIO BUTTON ALIENAZIONE ASSET -->
                 <div class="task-panel" data-panel-index="6">
                     <div class="focus-header">CHAPTER 3 FOCUS: DISPOSAL OF NON-CURRENT ASSETS</div>
                     <div class="focus-instruction">Determine the final net profit or loss outcome on the disposal of machinery accounts.</div>
                     <p class="task-question-text">An item of machinery bought for £15,000 with accumulated depreciation of £9,000 is sold on credit during the period for £4,800. What is the final net profit or net loss outcome on this disposal transaction inside the accounts?</p>
                     <div class="options-container">
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_6" value="A">
-                            <span class="option-text-label">A Net Profit on Disposal of £1,200</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_6" value="B">
-                            <span class="option-text-label">A Net Loss on Disposal of £1,200</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_6" value="C">
-                            <span class="option-text-label">A Net Loss on Disposal of £6,000</span>
-                        </label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_6" value="A"><span class="option-text-label">A Net Profit on Disposal of £1,200</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_6" value="B"><span class="option-text-label">A Net Loss on Disposal of £1,200</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_6" value="C"><span class="option-text-label">A Net Loss on Disposal of £6,000</span></label>
                     </div>
                 </div>
 
-                <!-- TASK 7: Pro-Rata Depreciation -->
+                <!-- TASK 7: INPUT NUMERICO PRO-RATA AMMORTAMENTO -->
                 <div class="task-panel" data-panel-index="7">
                     <div class="focus-header">CHAPTER 3 FOCUS: PRO-RATA DEPRECIATION CALCULATIONS</div>
                     <div class="focus-instruction">Compute the exact monthly pro-rata straight-line depreciation charge for a mid-year machine purchase.</div>
                     <p class="task-question-text">A business operates a policy of depreciating machinery at 20% per annum using the Straight-Line Method, calculated pro-rata on a monthly basis. A new cutting machine is purchased on 1 September 2025 for £18,000. Calculate the exact depreciation charge (£) for this machine for the financial year ending 31 December 2025.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_7" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_7" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 8: ETB Routing -->
+                <!-- TASK 8: RADIO BUTTON EXTENDED TRIAL BALANCE (ETB) -->
                 <div class="task-panel" data-panel-index="8">
                     <div class="focus-header">CHAPTER 4 FOCUS: EXTENDED TRIAL BALANCE (ETB) ROUTING</div>
                     <div class="focus-instruction">Map the correct destination columns for year-end prepayment elements.</div>
                     <p class="task-question-text">Inside an Extended Trial Balance (ETB) worksheet, into which specific columns must the ending balance of a Prepayment adjustment be transferred?</p>
                     <div class="options-container">
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_8" value="A">
-                            <span class="option-text-label">Statement of Profit or Loss (Debit column)</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_8" value="B">
-                            <span class="option-text-label">Statement of Financial Position (Debit column, representing a Current Asset)</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_8" value="C">
-                            <span class="option-text-label">Statement of Financial Position (Credit column, representing a Current Liability)</span>
-                        </label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_8" value="A"><span class="option-text-label">Statement of Profit or Loss (Debit column)</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_8" value="B"><span class="option-text-label">Statement of Financial Position (Debit column, representing a Current Asset)</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_8" value="C"><span class="option-text-label">Statement of Financial Position (Credit column, representing a Current Liability)</span></label>
                     </div>
                 </div>
-
-                <!-- TASK 9: Partnership Profits -->
+                <!-- TASK 9: INPUT NUMERICO PARTNERSHIP REIDUO -->
                 <div class="task-panel" data-panel-index="9">
                     <div class="focus-header">CHAPTER 5 FOCUS: PARTNERSHIP APPROPRIATION ACCOUNTS</div>
                     <div class="focus-instruction">Calculate the residual profit allocation for individual partners following salary deductions.</div>
                     <p class="task-question-text">A partnership is formed between partner A and partner B. The partnership agreement states that partner A is entitled to an annual salary of £6,000. Residual profits are split in a 3:2 ratio respectively. The net profit for the year before adjustments is £26,000. Calculate partner B's definitive final share of residual profit (£).</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_9" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_9" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 10: Interest on Drawings -->
+                <!-- TASK 10: RADIO BUTTON INTERESSI SU PRELIEVI -->
                 <div class="task-panel" data-panel-index="10">
                     <div class="focus-header">CHAPTER 5 FOCUS: INTEREST ON PARTNER DRAWINGS</div>
                     <div class="focus-instruction">Identify the internal accounting treatment of penalties charged on partner private drawings.</div>
                     <p class="task-question-text">Where should interest charged on partner drawings be entered inside the formal Partnership Appropriation Account?</p>
                     <div class="options-container">
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_10" value="A">
-                            <span class="option-text-label">As a Credit entry/Addition to the net profit because it represents an internal cost recovered from partners</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_10" value="B">
-                            <span class="option-text-label">As a Debit entry/Deduction from the net profit because it increases individual partner current accounts</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_10" value="C">
-                            <span class="option-text-label">Excluded entirely from the allocation map</span>
-                        </label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_10" value="A"><span class="option-text-label">As a Credit entry/Addition to the net profit because it represents an internal cost recovered from partners</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_10" value="B"><span class="option-text-label">As a Debit entry/Deduction from the net profit because it increases individual partner current accounts</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_10" value="C"><span class="option-text-label">Excluded entirely from the allocation map</span></label>
                     </div>
                 </div>
-                <!-- TASK 11: IAS 2 Inventory -->
+
+                <!-- TASK 11: INPUT NUMERICO IAS 2 RIMANENZE -->
                 <div class="task-panel" data-panel-index="11">
                     <div class="focus-header">CHAPTER 4 FOCUS: IAS 2 INVENTORY VALUATION CRITERIA</div>
                     <div class="focus-instruction">Apply the lower of Cost and Net Realizable Value (NRV) protocol to valuate inventory stocks.</div>
                     <p class="task-question-text">At year-end, the closing Inventory count valued at original cost is £14,500. However, investigation reveals that a batch of damaged items originally costing £1,500 can only be sold for £900 after spending £100 on repair modifications. Calculate the final accurate valuation of Inventory (£) under IAS 2.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_11" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_11" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 12: Profit Adjustments Domino -->
+                <!-- TASK 12: RADIO BUTTON DOMINO EFFETTO ERRORE RETTIFICA -->
                 <div class="task-panel" data-panel-index="12">
                     <div class="focus-header">CHAPTER 4 FOCUS: ADJUSTMENTS DIRECT NET PROFIT DOMINO EFFECT</div>
                     <div class="focus-instruction">Analyze the financial impact on net profit when reversing accruals and prepayments.</div>
                     <p class="task-question-text">If a bookkeeper accidentally records an Accrued Expense adjustment as a Prepayment on the year-end Extended Trial Balance, what is the combined structural impact on the calculated net profit?</p>
                     <div class="options-container">
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_12" value="A">
-                            <span class="option-text-label">Net Profit will be overstated</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_12" value="B">
-                            <span class="option-text-label">Net Profit will be understated</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_12" value="C">
-                            <span class="option-text-label">Net Profit will remain perfectly balanced</span>
-                        </label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_12" value="A"><span class="option-text-label">Net Profit will be overstated</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_12" value="B"><span class="option-text-label">Net Profit will be understated</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_12" value="C"><span class="option-text-label">Net Profit will remain perfectly balanced</span></label>
                     </div>
                 </div>
 
-                <!-- TASK 13: Statement of Financial Position -->
+                <!-- TASK 13: INPUT NUMERICO EQUAZIONE CAPITALE SOFP -->
                 <div class="task-panel" data-panel-index="13">
                     <div class="focus-header">CHAPTER 3 FOCUS: SOFP CAPITAL STRUCTURE VALIDATION</div>
                     <div class="focus-instruction">Execute the closing owner equity calculation base expansion.</div>
                     <p class="task-question-text">A sole trader has an opening Capital balance of £35,000. During the year, the business achieves a Net Profit of £12,400 and the owner executes total cash Drawings of £4,200. Calculate the closing Capital balance (£) to be shown on the Statement of Financial Position.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_13" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_13" placeholder="0">
                     </div>
                 </div>
 
-                <!-- TASK 14: Non-Current Liabilities -->
+                <!-- TASK 14: RADIO BUTTON CLASSIFICAZIONE PASSIVITÀ -->
                 <div class="task-panel" data-panel-index="14">
                     <div class="focus-header">CHAPTER 1 FOCUS: ELEMENT CLASSIFICATION PROTOCOLS</div>
                     <div class="focus-instruction">Identify long-term strategic obligations inside financial report structures.</div>
                     <p class="task-question-text">Which of the following elements is classified as a Non-Current Liability on a corporate Statement of Financial Position?</p>
                     <div class="options-container">
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_14" value="A">
-                            <span class="option-text-label">Bank Overdraft facility on demand</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_14" value="B">
-                            <span class="option-text-label">A 5-year bank loan balance</span>
-                        </label>
-                        <label class="option-box-row">
-                            <input type="radio" name="mock_q_14" value="C">
-                            <span class="option-text-label">Trade Payables ledger pool balance</span>
-                        </label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_14" value="A"><span class="option-text-label">Bank Overdraft facility on demand</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_14" value="B"><span class="option-text-label">A 5-year bank loan balance</span></label>
+                        <label class="option-box-row"><input type="radio" name="mock_ans_14" value="C"><span class="option-text-label">Trade Payables ledger pool balance</span></label>
                     </div>
                 </div>
 
-                <!-- TASK 15: Interest on Capital -->
+                <!-- TASK 15: INPUT NUMERICO INTERESSI SU CAPITALE -->
                 <div class="task-panel" data-panel-index="15">
                     <div class="focus-header">CHAPTER 5 FOCUS: INTEREST ON FIXED CAPITAL POOLS</div>
                     <div class="focus-instruction">Compute fixed internal financing allocations credited to individual partner channels.</div>
                     <p class="task-question-text">A partnership allows 5% per annum interest on capital allocations. Partner A has a fixed Capital account balance of £40,000. Calculate the interest on capital allocation (£) to be debited to the Partnership Appropriation Account for partner A.</p>
                     <div class="input-box-row">
                         <span>Calculated Balance (£):</span>
-                        <input type="text" class="numeric-field" name="mock_q_15" placeholder="0">
+                        <input type="text" class="numeric-field mock-field" name="mock_ans_15" placeholder="0">
                     </div>
                 </div>
-            </div> <!-- Chiusura di .task-panel-wrapper -->
+            </div> <!-- Chiusura del task-panel-wrapper -->
         </form>
 
-        <!-- Barra di Controllo Inferiore Simmetrica AAT (Esattamente abbinata allo screenshot) -->
+        <!-- Barra di Controllo Inferiore Simmetrica AAT (Coerente al 100% con la foto) -->
         <div class="assessment-footer">
             <div class="footer-group">
-                <button type="button" class="btn-action btn-nav-prev" id="btn-prev" disabled>⏮️ Previous</button>
-                <button type="button" class="btn-action btn-nav-next" id="btn-next">Next ⏭️</button>
+                <button type="button" class="btn-action btn-nav-prev" id="btn-prev" disabled>
+                    <div class="btn-icon-sq bg-gray-icon">&#9664;</div> Previous
+                </button>
+                <button type="button" class="btn-action btn-nav-next" id="btn-next">
+                    Next <div class="btn-icon-sq bg-blue-icon">&#9654;</div>
+                </button>
             </div>
             <div class="footer-group">
-                <button type="button" class="btn-action btn-util-reset" id="btn-reset">🔄 Reset</button>
-                <button type="button" class="btn-action btn-util-submit" id="btn-submit">🔏 Submit</button>
+                <button type="button" class="btn-action btn-util-reset" id="btn-reset">Reset</button>
+                <button type="button" class="btn-action btn-util-submit" id="btn-submit">Submit</button>
             </div>
         </div>
 
-        <!-- Report dei Passaggi Logici sbloccato solo Post-Consegna -->
+        <!-- Pannello dei Risultati e Audit del Report dei Razionali -->
         <div id="results-panel">
-            <h2 style="color: #0F172A; font-weight: 800; font-size: 20px; text-align: center; margin-bottom: 10px;">EXAM PERFORMANCE AUDIT REPORT</h2>
-            <div style="font-size: 36px; font-weight: 800; color: #0284C7; text-align: center; margin: 15px 0;" id="percentage-score">0%</div>
-            <p id="pass-fail-feedback" style="font-weight: 700; font-size: 16px; text-align: center; margin-bottom: 25px;"></p>
+            <h2 style="color: #0F172A; font-weight: 800; font-size: 19px; text-align: center; margin-bottom: 10px;">EXAM PERFORMANCE AUDIT REPORT</h2>
+            <div style="font-size: 36px; font-weight: 800; color: #0369A1; text-align: center; margin: 15px 0;" id="percentage-score">0%</div>
+            <p id="pass-fail-feedback" style="font-weight: 700; font-size: 15px; text-align: center; margin-bottom: 25px;"></p>
             <div id="rationales-placeholder"></div>
         </div>
-    </div>
+    </div> <!-- Chiusura .assessment-container -->
+
+    <!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+    <div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
 
     <!-- WIDGET CALCOLATRICE INTERATTIVA ORIGINAL NATIVE "Osborne Calc" -->
     <div id="calc-widget">
@@ -388,32 +351,33 @@
         </div>
     </div>
 <script>
-    // --- DATABASE DELLE CORREZIONI SBLOCCATE POST-ESAME ---
-    const rationalesDatabase = {
-        1: { correct: "4500", rationale: "Year 1 Depreciation: £24,000 × 25% = £6,000. NBV start of Year 2: £24,000 - £6,000 = £18,000. Year 2 charge: £18,000 × 25% = £4,500." },
-        2: { correct: "3000", rationale: "Annual premium is £3,600 (£300/month). As of 31 December, 2 months are consumed. The remaining 10 months are prepaid: 10 × £300 = £3,000." },
-        3: { correct: "600", rationale: "Quarterly bill is £900 (£300/month). At 31 March, electricity for February and March has been consumed but not invoiced. Accrual = 2 × £300 = £600." },
-        4: { correct: "2190", rationale: "Adjusted receivables pool: £45,000 - £1,200 = £43,800. General allowance: £43,800 × 5% = £2,190." },
-        5: { correct: "A", rationale: "Allowance must decrease from £1,800 to £1,450 (reduction of £350). Debit Allowance and Credit Irrecoverable Debts Expense." },
-        6: { correct: "B", rationale: "NBV at disposal = £15,000 - £9,000 = £6,000. Proceeds = £4,800. Net Loss on Disposal = £4,800 - £6,000 = -£1,200." },
-        7: { correct: "1200", rationale: "Annual charge: £18,000 × 20% = £3,600 (£300/month). Machine held for 4 months (Sept-Dec): 4 × £300 = £1,200." },
-        8: { correct: "B", rationale: "A prepayment represents an asset balance. Therefore, it is mapped to the Statement of Financial Position Debit column." },
-        9: { correct: "8000", rationale: "Net Profit: £26,000. Deduct salary: £26,000 - £6,000 = £20,000 residual profit. Partner B's split (2/5): £20,000 × 0.4 = £8,000." },
-        10: { correct: "A", rationale: "Interest charged on drawings is an income recovered from partners, which adds to the profit available for appropriation." },
-        11: { correct: "13800", rationale: "Sound inventory: £13,000. Damaged stock lower of cost (£1,500) and NRV (£900 - £100 = £800) is £800. Total valuation = £13,000 + £800 = £13,800." },
-        12: { correct: "A", rationale: "Failing to record an accrual omits an expense, and wrongly adding a prepayment removes another cost, overstating net profit." },
-        13: { correct: "43200", rationale: "Closing Capital equation: Opening Capital (£35,000) + Net Profit (£12,400) - Drawings (£4,200) = £43,200." },
-        14: { correct: "B", rationale: "Bank overdrafts and trade payables are current items. A 5-year bank loan represents a long-term Non-Current Liability." },
-        15: { correct: "2000", rationale: "Interest on Capital allocation: Partner fixed capital balance (£40,000) × 5% allocation rate = £2,000." }
-    };
-
     let currentTaskIndex = 1;
-    let secondsRemaining = 3600;
+    let secondsRemaining = 3600; // 60 Minuti
     let examTimer = null;
+
+    // Definizioni chiavi di correzione statiche
+    const solutionsKeys = {
+        1: { type: "input", correct: "4500", rationale: "Year 1 Depreciation: £24,000 × 25% = £6,000. NBV at start of Year 2: £24,000 - £6,000 = £18,000. Year 2 (2025) Depreciation: £18,000 × 25% = £4,500." },
+        2: { type: "input", correct: "3000", rationale: "Monthly premium: £3,600 ÷ 12 = £300. At year-end, 10 months are prepaid (Jan-Oct 2026). Prepayment = 10 months × £300 = £3,000." },
+        3: { type: "input", correct: "600", rationale: "The invoice covers 3 months (Feb, Mar, Apr), making it £300/month. Accrual for Feb and Mar (2 months) = 2 × £300 = £600." },
+        4: { type: "input", correct: "2190", rationale: "Receivables pool after write-off: £45,000 - £1,200 = £43,800. General Allowance = £43,800 × 5% = £2,190." },
+        5: { type: "radio", correct: "A", rationale: "The allowance needs to decrease from £1,800 to £1,450, a reduction of £350. We Debit the Allowance account and Credit Irrecoverable Debts Expense." },
+        6: { type: "radio", correct: "B", rationale: "NBV at disposal = £15,000 - £9,000 = £6,000. Proceeds = £4,800. Net Loss on Disposal = £4,800 - £6,000 = -£1,200." },
+        7: { type: "input", correct: "1200", rationale: "Annual dep: £18,000 × 20% = £3,600. Monthly: £300. Owned for 4 months (Sept-Dec). Pro-rata charge = 4 × £300 = £1,200." },
+        8: { type: "radio", correct: "B", rationale: "A prepayment represents an expense paid in advance, which is classified as a Current Asset. It must be mapped into the SOFP Debit column." },
+        9: { type: "input", correct: "8000", rationale: "Residual profit after salary: £26,000 - £6,000 = £20,000. Partner B's split (2/5) = £20,000 × 0.4 = £8,000." },
+        10: { type: "radio", correct: "A", rationale: "Interest on drawings is collected from partners by the partnership, increasing the total profit available for appropriation (Credit entry/Addition)." },
+        11: { type: "input", correct: "13800", rationale: "Sound stock: £13,000. Damaged stock NRV = £900 - £100 = £800 (lower than cost of £1,500). Total valuation = £13,000 + £800 = £13,800." },
+        12: { type: "radio", correct: "A", rationale: "By treating an accrual as a prepayment, an expense is omitted and another is removed, severely understating overheads and overstating profit." },
+        13: { type: "input", correct: "43200", rationale: "Closing Capital = Opening Capital (£35,000) + Net Profit (£12,400) - Drawings (£4,200) = £43,200." },
+        14: { type: "radio", correct: "B", rationale: "Bank overdrafts and trade payables are Current Liabilities. A 5-year loan is a long-term obligation, classifying it as a Non-Current Liability." },
+        15: { type: "input", correct: "2000", rationale: "Interest on Capital allocation for Partner A = Fixed Capital balance (£40,000) × 5% = £2,000." }
+    };
 
     window.addEventListener('DOMContentLoaded', () => {
         startCountdownTimer();
         setupNavigationListeners();
+        updateExamState();
     });
 
     function startCountdownTimer() {
@@ -434,7 +398,15 @@
     }
 
     function setupNavigationListeners() {
-        // Navigazione tramite pulsanti superiori (Tab horizontal link)
+        // Navigazione tramite i bottoni Next e Previous
+        document.getElementById('btn-next').addEventListener('click', () => {
+            if (currentTaskIndex < 15) { currentTaskIndex++; updateExamState(); }
+        });
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            if (currentTaskIndex > 1) { currentTaskIndex--; updateExamState(); }
+        });
+
+        // Navigazione cliccando direttamente sui Tab superiori Task 1...Task 15
         document.querySelectorAll('.task-tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentTaskIndex = parseInt(btn.getAttribute('data-target'));
@@ -442,14 +414,17 @@
             });
         });
 
-        document.getElementById('btn-next').addEventListener('click', () => {
-            if (currentTaskIndex < 15) { currentTaskIndex++; updateExamState(); }
-        });
-
-        document.getElementById('btn-prev').addEventListener('click', () => {
-            if (currentTaskIndex > 1) { currentTaskIndex--; updateExamState(); }
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            const activePanel = document.querySelector(`.task-panel[data-panel-index="${currentTaskIndex}"]`);
+            if (activePanel) {
+                const radio = activePanel.querySelector('input[type="radio"]:checked');
+                if (radio) radio.checked = false;
+                const field = activePanel.querySelector('.numeric-field');
+                if (field) field.value = '';
+            }
         });
     }
+
     function updateExamState() {
         document.querySelectorAll('.task-panel').forEach(p => {
             p.classList.remove('active');
@@ -467,11 +442,18 @@
         document.getElementById('btn-prev').disabled = (currentTaskIndex === 1);
         document.getElementById('btn-next').disabled = (currentTaskIndex === 15);
     }
-
+</script>
+<script>
     function processExamSubmission() {
+        if (!confirm("Are you sure you want to submit your assessment? This will finalize your grade.")) return;
+        
         clearInterval(examTimer);
+        
+        // Nasconde la navigazione e i bottoni
         document.querySelector('.assessment-footer').style.display = 'none';
         document.getElementById('tasks-buttons-container').style.display = 'none';
+        
+        // Sblocca la visualizzazione simultanea verticale di tutte le risposte
         document.querySelectorAll('.task-panel').forEach(p => p.classList.add('active'));
 
         let scorePoints = 0;
@@ -481,23 +463,32 @@
 
         for (let i = 1; i <= 15; i++) {
             let studentInput = "";
-            const data = rationalesDatabase[i];
+            let qKey = solutionsKeys[i];
 
-            const radioChecked = form.querySelector(`input[name="mock_q_${i}"]:checked`);
-            const inputField = form.querySelector(`input[name="mock_q_${i}"]`);
+            if (qKey.type === 'radio') {
+                const picked = form.querySelector(`input[name="mock_ans_${i}"]:checked`);
+                if (picked) studentInput = picked.value;
+            } else if (qKey.type === 'input') {
+                const field = form.querySelector(`input[name="mock_ans_${i}"]`);
+                if (field) studentInput = field.value.trim();
+            }
 
-            if (radioChecked) studentInput = radioChecked.value;
-            else if (inputField) studentInput = inputField.value.trim();
+            let isMatched = false;
+            if (qKey.type === 'radio') {
+                // Per le scelte multiple, controlliamo la lettera corrispondente (A, B, C)
+                isMatched = studentInput === qKey.correct;
+            } else {
+                isMatched = studentInput === qKey.correct;
+            }
 
-            const isMatched = studentInput === data.correct;
             if (isMatched) scorePoints++;
 
             const block = document.createElement('div');
             block.className = 'explanation-box';
             block.innerHTML = `
-                <p style="font-weight:700; color:#0F172A; font-size:14px;">Task ${i}: ${isMatched ? '<span style="color:#059669;">✔️ Correct</span>' : '<span style="color:#DC2626;">❌ Incorrect</span>'}</p>
-                <p style="font-size:13px; color:#475569; margin: 4px 0;"><strong>Your Input:</strong> ${studentInput || '[Blank]'} | <strong>Correct Key:</strong> ${data.correct}</p>
-                <p style="font-size:13px; color:#334155; background:#F8FAFC; padding:12px; border-radius:4px; border-left:3px solid #0284C7; margin-top:6px;"><strong>Audit Trail Rationale:</strong> ${data.rationale}</p>
+                <p style="font-weight:bold; color:#0F172A; font-size:14px;">Task ${i}: ${isMatched ? '<span style="color:#059669;">✔️ Correct</span>' : '<span style="color:#DC2626;">❌ Incorrect</span>'}</p>
+                <p style="font-size:13px; color:#475569; margin: 4px 0;"><strong>Your Entry:</strong> ${studentInput || '[Blank]'} | <strong>Correct Key:</strong> ${qKey.correct}</p>
+                <p style="font-size:13px; color:#334155; background:#F8FAFC; padding:12px; border-radius:4px; border-left:3px solid #0284C7; margin-top:6px;"><strong>Audit Log:</strong> ${qKey.rationale}</p>
             `;
             rationalesContainer.appendChild(block);
         }
@@ -515,10 +506,10 @@
         }
 
         document.getElementById('results-panel').style.display = 'block';
-        window.scrollTo({ top: document.getElementById('results-panel').offsetTop - 60, behavior: 'smooth' });
+        window.scrollTo({ top: document.getElementById('results-panel').offsetTop - 50, behavior: 'smooth' });
     }
 
-    // --- MANIPOLAZIONE CALCOLATRICE ORIGINAL NATIVE ---
+    // --- LOGIC CALCOLATRICE ORIGINAL NATIVE ---
     const calcWidget = document.getElementById('calc-widget');
     const topTrigger = document.getElementById('top-calc-trigger');
     const calcClose = document.getElementById('calc-close-btn');
@@ -528,30 +519,4 @@
         calcClose.addEventListener('click', () => calcWidget.style.display = 'none');
     }
 
-    let calcDisplay = document.getElementById('calc-screen');
-    function pressCalc(val) {
-        if (calcDisplay.innerText === '0' && !isNaN(val)) calcDisplay.innerText = '';
-        if (val === 'sq') { calcDisplay.innerText = Math.pow(eval(calcDisplay.innerText), 2); }
-        else if (val === 'rt') { calcDisplay.innerText = Math.sqrt(eval(calcDisplay.innerText)); }
-        else { calcDisplay.innerText += val; }
-    }
-    function clearCalc() { calcDisplay.innerText = '0'; }
-    function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
-
-    let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
-    if(calcWidget) {
-        calcWidget.addEventListener('mousedown', (e) => {
-            if (e.target.classList.contains('calc-btn') || e.target.id === 'calc-screen') return;
-            initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; isDragging = true;
-        });
-        document.addEventListener('mouseup', () => { isDragging = false; initialX = currentX; initialY = currentY; });
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return; e.preventDefault();
-            currentX = e.clientX - initialX; currentY = e.clientY - initialY;
-            xOffset = currentX; yOffset = currentY;
-            calcWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        });
-    }
-</script>
-</body>
-</html>
+    let calcDisplay = document.getElementById('calc
