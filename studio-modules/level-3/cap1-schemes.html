@@ -1,113 +1,325 @@
-<!-- CAPITOLO 3 SCHEMES - MACROBLOCCO 1 DI 2 -->
-<div class="aat-schemes-block" id="btrn-chap3-schemes-p1">
-    <h3 style="color: #059669; border-bottom: 2px solid #059669; padding-bottom: 0.6rem; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.3rem;">
-        Chapter 3.1 Schemes: Visual Ledger Flowcharts & Three-Column Cash Book Mappings
-    </h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 3 - Advanced Bookkeeping (Chapter 1 Studio)</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        /* DESIGN SYSTEM INTERFACCIA LIVELLO 3 - PALETTE AZZURRO CIANO */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --warning-box-bg: #FFFBEB;
+            --warning-box-border: #F59E0B;
+        }
 
-    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
-        Questo schema mappa visivamente l'instradamento geometrico delle transazioni liquide dal Three-Column Cash Book verso i rispettivi Ledger sussidiari e generali.
-    </p>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 2rem 1rem;
+        }
 
-    <!-- SCHEMA 1: ARCHITETTURA DEL THREE-COLUMN CASH BOOK -->
-    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
-        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
-            📊 FLOW 1: THE THREE-COLUMN GEOMETRY & LEDGER ROUTING
-        </div>
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
-[ SIDE ]  [ COLUMN ]           [ DOUBLE ENTRY / LEDGER ROUTING INTERACTION ]
------------------------------------------------------------------------------------------
-DEBIT     Cash Column   -----> DEBIT Entry: Physical cash receipts coming in.
-(Receipts) Bank Column   -----> DEBIT Entry: Bank deposits, electronic receipts (BACS/Debits).
-          Discount Allowed --> MEMORANDUM ONLY: Totals debited to Discount Allowed A/c (General Ledger).
------------------------------------------------------------------------------------------
-CREDIT    Cash Column   -----> CREDIT Entry: Physical cash expenditure leaving safe.
-(Payments) Bank Column   -----> CREDIT Entry: Bank transfers, cheques drawn, direct debits out.
-          Discount Received -> MEMORANDUM ONLY: Totals credited to Discount Received A/c (General Ledger).
-        </div>
-    </div>
+        .studio-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-    <!-- SCHEMA 2: LA MECCANICA DELLE CONTRA ENTRIES -->
-    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
-        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
-            🔄 FLOW 2: CONTRA ENTRIES MECCANICA (Codice 'C' in Folio)
-        </div>
-        <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: #4B5563;">
-            Una <em>Contra Entry</em> si verifica quando il denaro viene spostato internamente tra il conto Cassa Fisico e il Conto Corrente Bancario, senza modificare il patrimonio aziendale. La partita doppia si chiude interamente dentro il Cash Book.
-        </p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-            <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px;">
-                <strong style="color: #059669; font-size: 0.85rem;">A. Versamento contanti in Banca:</strong>
-                <ul style="font-size: 0.85rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #1F2937; line-height: 1.4;">
-                    <li><strong>DEBIT:</strong> Bank Column (Aumento banca)</li>
-                    <li><strong>CREDIT:</strong> Cash Column (Diminuzione cassa)</li>
-                    <li><em>Folio Reference:</em> Inserire 'C' in Dare e Avere.</li>
-                </ul>
-            </div>
-            <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px;">
-                <strong style="color: #DC2626; font-size: 0.85rem;">B. Prelievo banca per cassa centrale:</strong>
-                <ul style="font-size: 0.85rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #1F2937; line-height: 1.4;">
-                    <li><strong>DEBIT:</strong> Cash Column (Aumento cassa)</li>
-                    <li><strong>CREDIT:</strong> Bank Column (Diminuzione banca)</li>
-                    <li><em>Folio Reference:</em> Inserire 'C' in Dare e Avere.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- CAPITOLO 3 SCHEMES - MACROBLOCCO 2 DI 2 -->
-<div class="aat-schemes-block" id="btrn-chap3-schemes-p2">
-    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; margin-bottom: 1.5rem;">
-        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem; border-top: 1px dashed #E5E7EB; padding-top: 1.5rem;">
-            ⏱️ FLOW 3: THE IMPREST SYSTEM PIPELINE (MATHEMATICAL CYCLE)
-        </div>
-        <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: #4B5563;">
-            Questo diagramma strutturale mostra la scomposizione geometrica dei voucher e il calcolo del Top-up monetario per ripristinare il fondo iniziale.
-        </p>
+        /* LA BOLLA BIANCA PROTETTA */
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            border: 1px solid var(--border-color);
+        }
 
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
-[ STEP 1: INITIAL STATE ] 
-  Fixed Float Assigned (e.g., £250.00) ---> Stays as Opening Debit asset balance.
+        /* BARRA DEI PULSANTI DI NAVIGAZIONE INTERNA */
+        .studio-nav-bar {
+            display: flex;
+            gap: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
 
-[ STEP 2: OPERATIONAL PERIOD - EXPENSES RECORDING ]
-  Voucher 01 (Stationery):  £30.00 Gross  ===> Net Column: £25.00  | VAT Column: £5.00
-  Voucher 02 (Taxi Fare):   £18.00 Gross  ===> Net Column: £18.00  | VAT Column: £0.00 (Zero-Rated)
-  Voucher 03 (Cleaning):    £24.00 Gross  ===> Net Column: £20.00  | VAT Column: #4.00
-  ------------------------------------------------------------------------------------------
-  TOTAL EXPENDITURE:        £72.00 LORDO ====> Net Totals: £63.00  | VAT Total:  £9.00
+        .btn-l3-study {
+            background-color: #F3F4F6;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.65rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
 
-[ STEP 3: RECONCILIATION EQUATION ]
-  Formula: Cash Remaining in Tin (£178.00) + Total Gross Vouchers (£72.00) = Fixed Float (£250.00)
+        .btn-l3-study:hover {
+            background-color: #E5E7EB;
+            color: var(--text-dark);
+        }
 
-[ STEP 4: BANK REIMBURSEMENT (TOP-UP) ENTRY ]
-  Amount to Draw from Main Bank = Exact Total Gross of Vouchers Spent = £72.00
-  
-  DOUBLE ENTRY LOGIC FOR THE TOP-UP CHEQUE:
-  • DEBIT  : Petty Cash Ledger Account  (£72.00)
-  • CREDIT : Main Bank Ledger Account   (£72.00)
-        </div>
-    </div>
+        .btn-l3-study.active {
+            background-color: var(--l3-cyan-primary);
+            color: #FFFFFF;
+            border-color: var(--l3-cyan-dark);
+        }
 
-    <!-- T-ACCOUNTS VISUAL GRID PER L'INVIO DEI TOTALI -->
-    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
-        <div style="font-weight: 700; color: #047857; margin-bottom: 1rem; font-size: 1rem;">
-            📑 FLOW 4: END-OF-MONTH DOUBLE ENTRY TRANSFER MATRIX
-        </div>
-        <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: #4B5563;">
-            Al termine del periodo contabile, i totali delle colonne d'analisi del Petty Cash Book vengono trasferiti nel General Ledger tramite partita doppia formale.
-        </p>
+        /* STRUTTURE DELLE TABELLE FINANZIARIE ED ELEMENTI ADATTIVI */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: #FFFFFF;
+        }
+
+        .financial-table th {
+            background-color: var(--l3-cyan-dark);
+            color: #FFFFFF;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l3-cyan-dark);
+        }
+
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .text-right { text-align: right; }
+        .text-left { text-align: left; }
+        .hidden { display: none !important; }
         
-        <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #111827;">
-            <span style="color: #059669; font-weight: 700;">FORMAL POSTING JOURNAL:</span><br><br>
-            • DEBIT  : Stationery Expense Account (Total Net)     -> £25.00<br>
-            • DEBIT  : Travel/Taxi Expense Account (Total Net)     -> £18.00<br>
-            • DEBIT  : Cleaning Expense Account (Total Net)       -> £20.00<br>
-            • DEBIT  : VAT Control Account (Total VAT Column)     -> £9.00<br><br>
-            • CREDIT : Petty Cash Control Account (Total Cash Paid) -> £72.00<br><br>
-            <span style="color: #4B5563; font-style: italic;">*Nota: Questa partita doppia di fine mese bilancia perfettamente l'estratto conto della cassa sussidiaria.</span>
+        .section-panel {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="studio-container">
+        <div class="white-bubble-container">
+            
+            <!-- INTESTAZIONE TITOLO (STILE L3) -->
+            <div style="margin-bottom: 1.5rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">AAT LEVEL 3</span>
+                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Advanced Bookkeeping & Year-End Framework</h1>
+            </div>
+
+            <!-- INTERFACCIA A TRE PULSANTI COORDINATI PER LO SWITCH DELLE SEZIONI -->
+            <div class="studio-nav-bar">
+                <button type="button" class="btn-l3-study active" id="btn-theory" onclick="switchSection('theory')">📘 Theory Lessons</button>
+                <button type="button" class="btn-l3-study" id="btn-schemes" onclick="switchSection('schemes')">📊 Ledger Schemes</button>
+                <button type="button" class="btn-l3-study" id="btn-summary" onclick="switchSection('summary')">📝 Critical Summary</button>
+            </div>
+
+            <!-- CONTENITORE CONTENUTI DINAMICI -->
+            <div id="studio-content-wrapper">
+                <!-- ========================================== -->
+                <!-- SEZIONE 1: TEORIA CONTABILE AVANZATA (THEORY) -->
+                <!-- ========================================== -->
+                <div class="section-panel" id="panel-theory">
+                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">1.1 Financial Accounting Framework & International Standards (IAS/IFRS)</h2>
+                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                        Nel passaggio al <strong>Livello 3 Advanced Accounting</strong>, la contabilità cessa di essere un processo puramente meccanico e si trasforma in una disciplina regolata dai principi contabili internazionali (IAS/IFRS). Il focus si sposta sulle rettifiche di fine anno (Year-End Adjustments), necessarie per determinare il profitto effettivo e la reale consistenza patrimoniale dell'entità prima della chiusura definitiva dei conti d'esercizio.
+                    </p>
+
+                    <h3 style="color: var(--l3-cyan-dark); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Il Principio di Competenza Economica (The Accruals Basis - IAS 1)</h3>
+                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                        Secondo lo standard internazionale <strong>IAS 1</strong>, gli effetti delle transazioni e degli altri eventi economico-aziendali sono riconosciuti quando si verificano e non quando la relativa liquidità viene incassata o pagata. I costi e i ricavi devono essere associati e contrapposti ("matching concept") nel medesimo esercizio economico in cui si manifesta la loro utilità. Questo framework impone due tipologie fondamentali di assestamento sui conti di costo e ricavo:
+                    </p>
+                    <ul style="line-height: 1.6; margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                        <li><strong>Accrued Expenses (Ratei Passivi):</strong> Costi legati a servizi o risorse già consumati nell'anno in corso, ma per i quali non è ancora pervenuta la relativa fattura o non è stato eseguito il pagamento. Costituiscono una <strong>Current Liability</strong> nello Statement of Financial Position (SoFP).</li>
+                        <li><strong>Prepaid Expenses (Risconti Attivi):</strong> Costi che sono già stati pagati finanziariamente nell'anno in corso, ma che si riferiscono a servizi o risorse di cui l'azienda usufruirà materialmente nell'anno successivo. Costituiscono un <strong>Current Asset</strong> nello SoFP.</li>
+                    </ul>
+
+                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1rem;">1.2 Technical Mechanics of Accruals and Prepayments</h2>
+                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                        A fine anno aziendale (Year-End), i conti di costo presentano quasi sempre anomalie dovute a fatture non ancora ricevute o pagate in anticipo. Il syllabus AAT Level 3 richiede di calcolare la quota esatta di costo di competenza usando la ripartizione pro-rata temporis, basata sui mesi effettivi di godimento del servizio.
+                    </p>
+                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                        La stessa identica logica geometrica si applica simmetricamente ai ricavi (Income): l'<em>Accrued Income</em> (ricavo guadagnato per servizi già resi ma non ancora incassato o fatturato) costituisce un Current Asset, mentre il <em>Prepaid Income / Deferred Income</em> (ricavo incassato in anticipo per servizi da erogare nell'esercizio futuro) si configura come una Current Liability.
+                    </p>
+
+                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1rem;">1.3 Criteri di Valutazione dei Crediti Commerciali (Trade Receivables)</h2>
+                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1rem;">
+                        In linea con il principio di prudenza (Prudence Concept) stabilito dal Framework IASB, le attività non devono essere sovrastimate. Se un client fallisce, diventa insolvente o irreperibile, il relativo credito viene considerato inesigibile. Deve essere rimosso immediatamente dai registri come costo secco mediante la procedura di <strong>Irrecoverable Debt write-off</strong>, accreditando il conto del cliente.
+                    </p>
+                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                        Se invece esiste un'incertezza generica sul recupero di una determinata fetta dei crediti aziendali residui, si istituisce un fondo rettificativo denominato <strong>Allowance for Doubtful Debts</strong> (Fondo svalutazione crediti). L'adeguamento di questo fondo prevede che solo la *variazione* differenziale (aumento o diminuzione rispetto al saldo dell'anno precedente) vada a impattare i costi del Conto Economico dell'anno in corso.
+                    </p>
+
+                    <div style="background-color: var(--warning-box-bg); border-left: 4px solid var(--warning-box-border); padding: 1.2rem; border-radius: 6px; margin: 1.5rem 0;">
+                        <strong style="color: var(--l3-cyan-dark); font-size: 1rem;">⚠️ Enciclopedia degli Errori Invisibili Livello 3 (Kaplan/Osborne Style):</strong>
+                        <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem; margin-bottom: 0;">
+                            • <strong>L'Errore del Calcolo in Cascata dell'Allowance:</strong> Un errore critico da esame consiste nel calcolare la percentuale del fondo svalutazione (es. 5%) direttamente sul totale dei Trade Receivables fornito dalla traccia iniziale, scordandosi che prima bisogna **sottrarre i crediti inesigibili specifici (Write-offs)** scoperti a fine anno. Calcolare l'allowance sul valore lordo iniziale azzera il punteggio del Task.<br><br>
+                            • <strong>La Confusione tra Saldo del Fondo e Impatto a Bilancio:</strong> Ricorda che l'intero importo accumulato nel fondo <em>Allowance for Doubtful Debts</em> va a ridurre l'attivo circolante nello Stato Patrimoniale (Trade Receivables meno Allowance). Nel Conto Economico (SPL), invece, va registrata solo ed esclusivamente la **variazione netta** rispetto al fondo dell'anno precedente. L'intero saldo del fondo non viene mai azzerato a fine anno.
+                        </p>
+                    </div>
+                </div>
+                <!-- ========================================== -->
+                <!-- SEZIONE 2: ALBERI DI POSTING & MASTRI (SCHEMES) -->
+                <!-- ========================================== -->
+                <div class="section-panel hidden" id="panel-schemes">
+                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">2. Advanced Double-Entry Adjustment Schemes</h2>
+                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Di seguito viene schematizzata la partita doppia formale delle scritture di assestamento e la struttura geometrica dei mastri a T (T-Accounts) nel General Ledger.</p>
+
+                    <!-- SCHEMA 1: MASTRO A T ADATTIVO PER I COSTI -->
+                    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📊 THE EXPENSE GENERAL LEDGER PIPELINE (e.g., Electricity Account)</div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+==================================================================================================
+              DEBIT (DR) LATO ENTRATA COSTO                     CREDIT (CR) LATO RETTIFICA/CHIUSURA
+==================================================================================================
+Opening Accrual b/f (Prior Year)       -        | Opening Prepayment b/f (Prior Year)    £650
+Bank Payments (Total paid in year)   £4,800     | Prepayment c/d (Next Year Adjustment)  £420
+Accrual c/d (Current Year Owed)      £590       | Transfer to Statement of Profit or Loss £5,620
+                                                | (Costo effettivo di competenza a SPL)
+--------------------------------------------------------------------------------------------------
+TOTAL                                £5,390     | TOTAL                                  £5,390
+==================================================================================================
         </div>
     </div>
 
-    <p style="font-size: 0.95rem; line-height: 1.6; color: #4B5563; font-style: italic; text-align: center; margin-top: 1.5rem;">
-        Gli schemi e i flussi visivi del Capitolo 3 sono completati.
-    </p>
-</div>
+                    <!-- SCHEMA 2: MATRICE DI POSTING A GIORNALE -->
+                    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📌 THE YEAR-END JOURNAL ADJUSTMENT MATRIX</div>
+                        <table class="financial-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Adjustment Category</th>
+                                    <th>Debit Entry (DR)</th>
+                                    <th>Credit Entry (CR)</th>
+                                    <th>Financial Statement Position</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left" style="font-weight: 600;">Accrued Expense (Rateo Passivo)</td>
+                                    <td style="font-family: monospace;">Expense Account (Costo ↑)</td>
+                                    <td style="font-family: monospace;">Accruals A/c (Liability ↑)</td>
+                                    <td style="font-weight: 600; color: #DC2626;">SoFP: Current Liability</td>
+                                </tr>
+                                <tr style="background: #FAFAFA;">
+                                    <td class="text-left" style="font-weight: 600;">Prepaid Expense (Risconto Attivo)</td>
+                                    <td style="font-family: monospace;">Prepayments A/c (Asset ↑)</td>
+                                    <td style="font-family: monospace;">Expense Account (Costo ↓)</td>
+                                    <td style="font-weight: 600; color: #059669;">SoFP: Current Asset</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- SCHEMA 3: DIAGRAMMA DI FLUSSO CREDITI INESIGIBILI -->
+                    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📉 TRADE RECEIVABLES & ALLOWANCE ADJUSTMENT PIPELINE</div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+[ PHASE 1: WRITE OFF AN IRRECOVERABLE DEBT ]
+  • DEBIT  : Irrecoverable Debts Account (Expense ↑)           £500
+  • CREDIT : Trade Receivables Control Account / SLCA (Asset ↓) £500
+
+[ PHASE 2: NET RECEIVABLES CALCULATION FOR ALLOWANCE POOL ]
+  Formula: Closing Trade Receivables (£42,500) - Irrecoverable Debt written off (£500) = Net Pool £42,000
+
+[ PHASE 3: EVALUATE ALLOWANCE ADJUSTMENT (Differential Flow) ]
+  Calculate Required Allowance: Net Pool (£42,000) × New Rate (5%) = £2,100
+  Compare with Opening Balance (£1,800) ===> Variance = £300 INCREASE
+  • DEBIT  : Irrecoverable Debts Account (Expense ↑)           £300
+  • CREDIT : Allowance for Doubtful Debts Account (Contro-Asset ↑) £300
+                        </div>
+                    </div>
+                </div>
+                <!-- ========================================== -->
+                <!-- SEZIONE 3: RIEPILOGO CRITICO CASI LIMITE (SUMMARY) -->
+                <!-- ========================================== -->
+                <div class="section-panel hidden" id="panel-summary">
+                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">3. Year-End Critical Review Matrix</h2>
+                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Sintesi analitica dei criteri di esposizione e delle formule di sbarramento per il ripasso rapido prima dei test.</p>
+                    
+                    <div style="background-color: var(--l3-cyan-light); border-left: 4px solid var(--l3-cyan-primary); padding: 1.2rem; border-radius: 6px; margin-bottom: 1.5rem;">
+                        <strong style="color: var(--l3-cyan-dark); font-size: 1rem;">🎯 KEY ACCUMULATION EQUATIONS:</strong>
+                        <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; font-family: 'JetBrains Mono', monospace;">
+                            1. Expense Charge to SPL = Bank Payments + Closing Accrual - Closing Prepayment<br>
+                            2. Net Trade Receivables in SoFP = Closing Receivables Balance - Specific Write-offs - Closing Allowance
+                        </p>
+                    </div>
+
+                    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📋 FINANCIAL STATEMENT TAXONOMY SUMMARY</div>
+                        <table class="financial-table">
+                            <thead>
+                                <tr style="background: #0284C7; color: #FFFFFF;">
+                                    <th class="text-left">Ledger Adjustment Item</th>
+                                    <th>SoFP Sub-Heading</th>
+                                    <th>Nature and Behavior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left" style="font-weight: 600;">Prepayments Account</td>
+                                    <td style="color: #059669; font-weight: 700;">Current Assets</td>
+                                    <td>Rappresenta un costo sospeso pagato in anticipo da godere in futuro.</td>
+                                </tr>
+                                <tr style="background: #FAFAFA;">
+                                    <td class="text-left" style="font-weight: 600;">Accruals Account</td>
+                                    <td style="color: #DC2626; font-weight: 700;">Current Liabilities</td>
+                                    <td>Rappresenta un debito aziendale latente per servizi già consumati.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left" style="font-weight: 600;">Allowance for Doubtful Debts</td>
+                                    <td style="font-weight: 700;">Current Assets (Deduction)</td>
+                                    <td style="color: var(--text-muted);">Contro-Attività esposta in detrazione diretta dei Trade Receivables.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="background:#FAFAFA; border:1px solid #E5E7EB; border-radius:8px; padding:1.2rem; margin-top:1rem;">
+                        <strong style="color:var(--text-dark); display:block; margin-bottom:0.5rem;">Regola del Riversamento (Opening Reversals):</strong>
+                        <p style="font-size:0.9rem; line-height:1.5; color:var(--text-muted); margin:0;">
+                            All'apertura del nuovo anno contabile (1° Gennaio), i saldi di <em>Accruals</em> e <em>Prepayments</em> calcolati al 31 Dicembre devono essere **stornati all'opposto (Reversal Entries)**. Questa manovra azzera i conti patrimoniali temporanei e garantisce che i futuri pagamenti bancari vengano decurtati della quota già imputata, preservando la geometria della competenza.
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- Fine #studio-content-wrapper -->
+        </div> <!-- Fine .white-bubble-container -->
+    </div> <!-- Fine .studio-container -->
+
+    <!-- ========================================== -->
+    <!-- MOTORINO JAVASCRIPT DI CONTROLLO SCHEDE    -->
+    <!-- ========================================== -->
+    <script>
+        function switchSection(sectionId) {
+            // Nasconde tutti i pannelli ad accordion interni alla bolla bianca
+            document.querySelectorAll('.section-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            
+            // Disattiva lo stato visivo di tutti i bottoni
+            document.querySelectorAll('.btn-l3-study').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Attiva solo la sezione e il pulsante selezionati
+            document.getElementById(`panel-${sectionId}`).classList.remove('hidden');
+            document.getElementById(`btn-${sectionId}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
