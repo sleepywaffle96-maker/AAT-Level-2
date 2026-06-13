@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 BTRN - Official Style Mock Exam</title>
+    <title>AAT Level 3 FAPR - Official Style Mock Exam</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* ========================================== */
@@ -22,7 +22,6 @@
             --success-box-bg: #DEF7EC;
             --neon-calc-accent: #00FF66;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark-external);
@@ -30,7 +29,6 @@
             margin: 0;
             padding-top: 80px;
         }
-
         .exam-top-bar {
             position: fixed;
             top: 0;
@@ -46,20 +44,17 @@
             box-sizing: border-box;
             z-index: 1000;
         }
-
         .top-bar-title {
             color: #FFFFFF;
             font-weight: 700;
             font-size: 0.95rem;
             letter-spacing: 0.05em;
         }
-
         .timer-container {
             display: flex;
             align-items: center;
             gap: 1.5rem;
         }
-
         .timer-countdown {
             font-family: 'JetBrains Mono', monospace;
             color: #FFFFFF;
@@ -70,13 +65,11 @@
             font-size: 1.1rem;
             border: 1px solid #374151;
         }
-
         .exam-main-wrapper {
             max-width: 1100px;
             margin: 2rem auto;
             padding: 0 1.5rem;
         }
-
         .white-bubble-container {
             background-color: var(--bubble-white-bg);
             border-radius: 12px;
@@ -84,7 +77,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             border: 1px solid var(--border-color);
         }
-
         .exam-tabs-navigation {
             display: flex;
             gap: 0.35rem;
@@ -93,7 +85,6 @@
             overflow-x: auto;
             padding-bottom: 1px;
         }
-
         .tab-trigger-btn {
             background: #F3F4F6;
             border: 1px solid var(--border-color);
@@ -108,7 +99,6 @@
             white-space: nowrap;
             transition: all 0.15s ease;
         }
-
         .tab-trigger-btn:hover { background: #E5E7EB; }
         .tab-trigger-btn.active {
             background: var(--bubble-white-bg);
@@ -117,10 +107,8 @@
             padding-bottom: calc(0.6rem + 2px);
             margin-bottom: -2px;
         }
-
         .exam-task-panel { display: none; }
         .exam-task-panel.active { display: block; }
-
         .task-interactive-body {
             background-color: #FAFAFA;
             border: 1px solid var(--border-color);
@@ -128,14 +116,12 @@
             padding: 1.5rem;
             margin: 1.5rem 0;
         }
-
         .financial-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
             background: #FFFFFF;
         }
-
         .financial-table th {
             background-color: var(--l2-emerald-dark);
             color: #FFFFFF;
@@ -144,13 +130,11 @@
             font-weight: 600;
             border: 1px solid var(--l2-emerald-dark);
         }
-
         .financial-table td {
             border: 1px solid var(--border-color);
             padding: 0.6rem;
             font-size: 0.9rem;
         }
-
         .table-input {
             width: 100%;
             padding: 0.4rem;
@@ -160,10 +144,8 @@
             font-size: 0.9rem;
             box-sizing: border-box;
         }
-
         .text-right { text-align: right; }
         .text-left { text-align: left; }
-
         .option-label {
             display: flex;
             align-items: center;
@@ -175,7 +157,6 @@
             cursor: pointer;
             margin-bottom: 0.5rem;
         }
-
         .exam-footer-controls {
             display: flex;
             justify-content: space-between;
@@ -183,7 +164,6 @@
             padding-top: 1.5rem;
             border-top: 2px solid var(--border-color);
         }
-
         .ctrl-btn {
             padding: 0.65rem 1.25rem;
             border-radius: 6px;
@@ -192,13 +172,11 @@
             cursor: pointer;
             border: none;
         }
-
         .btn-secondary { background: #E5E7EB; color: var(--text-dark); }
         .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
         .btn-danger { background: var(--danger-color); color: #FFFFFF; }
         .btn-success { background: var(--l2-emerald-primary); color: #FFFFFF; }
         .tool-btn { background: #374151; color: #FFF; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
-
         .exam-results-card {
             margin-top: 2rem;
             background: #F9FAFB;
@@ -206,14 +184,12 @@
             border-radius: 8px;
             padding: 1.5rem;
         }
-
         .results-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-top: 1rem;
         }
-
         .result-metric {
             background: #FFFFFF;
             border: 1px solid var(--border-color);
@@ -221,10 +197,8 @@
             border-radius: 6px;
             text-align: center;
         }
-
         .metric-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem; }
         .metric-value { font-size: 1.4rem; font-weight: 700; color: var(--l2-emerald-dark); }
-
         .drag-calculator-panel {
             position: fixed;
             top: 85px;
@@ -236,7 +210,6 @@
             display: none;
             z-index: 2000;
         }
-
         .calc-header {
             background: #1F2937;
             padding: 0.5rem;
@@ -249,7 +222,6 @@
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
         }
-
         .calc-display-input {
             width: 100%;
             background: #000000;
@@ -262,18 +234,10 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
         .calc-grid-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; margin-top: 0.5rem; }
         .calc-btn { background: #374151; color: #FFFFFF; border: none; padding: 0.55rem; cursor: pointer; font-weight: 700; border-radius: 4px; }
         .btn-equal { background: var(--neon-calc-accent); color: #000000; grid-row: span 2; display: flex; align-items: center; justify-content: center; }
-        
-        .feedback-box {
-            margin-top: 1.2rem;
-            padding: 1.2rem;
-            border-radius: 6px;
-            border-left: 4px solid;
-        }
-        
+        .feedback-box { margin-top: 1.2rem; padding: 1.2rem; border-radius: 6px; border-left: 4px solid; }
         .hidden { display: none !important; }
 
         @media print {
@@ -289,10 +253,9 @@
     </style>
 </head>
 <body>
-
     <!-- BARRA FISSA SUPERIORE -->
     <div class="exam-top-bar">
-        <div class="top-bar-title">🏆 AAT LEVEL 2: BTRN LIVE ASSESSMENT</div>
+        <div class="top-bar-title">🏆 AAT LEVEL 3: FAPR LIVE ASSESSMENT</div>
         <div class="timer-container">
             <button type="button" class="tool-btn" onclick="toggleCalc()">🧮 Calculator</button>
             <div id="exam-timer" class="timer-countdown">60:00</div>
@@ -302,15 +265,14 @@
     <!-- BOLLA BIANCA CENTRALE -->
     <main class="exam-main-wrapper">
         <div class="white-bubble-container">
-            
             <!-- SCHEDE TASK -->
             <div class="exam-tabs-navigation" id="exam-tabs-headers"></div>
-
+            
             <!-- CONTENITORE DOMANDE -->
             <form id="mock-exam-form" onsubmit="event.preventDefault();">
                 <div id="exam-panels-container"></div>
             </form>
-
+            
             <!-- PULSANTI DI CONTROLLO -->
             <div class="exam-footer-controls">
                 <div>
@@ -318,8 +280,8 @@
                     <button type="button" class="ctrl-btn btn-secondary" id="btn-next" onclick="navNext()">Next ➡️</button>
                 </div>
                 <div>
-                    <button type="button" class="ctrl-btn btn-danger" onclick="resetExam()">🔄 Reset</button>
-                    <button type="button" class="ctrl-btn btn-success" onclick="submitExam()">🏆 Submit</button>
+                    <button type="button" class="ctrl-btn btn-danger" onclick="resetExam()">Reset</button>
+                    <button type="button" class="ctrl-btn btn-success" onclick="submitExam()">Submit</button>
                 </div>
             </div>
 
@@ -327,7 +289,7 @@
             <div class="exam-results-card hidden" id="results-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px solid #E5E7EB; padding-bottom:0.5rem;">
                     <h2 style="color:#111827; margin:0; font-size:1.3rem;">Official Performance Report</h2>
-                    <button type="button" class="ctrl-btn btn-secondary" onclick="window.print()">📄 Download as PDF (A4 Print)</button>
+                    <button type="button" class="ctrl-btn btn-secondary" onclick="window.print()">Download as PDF (A4 Print)</button>
                 </div>
                 <div class="results-grid">
                     <div class="result-metric">
@@ -344,13 +306,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
     <!-- WIDGET CALCOLATRICE NEON POP-UP -->
     <div class="drag-calculator-panel" id="neon-calc">
-        <div class="calc-header" id="calc-header">AAT SYSTEM CALCULATOR <span onclick="toggleCalc()" style="cursor:pointer; font-size:1.2rem;">×</span></div>
+        <div class="calc-header" id="calc-header">AAT SYSTEM CALCULATOR <span onclick="toggleCalc()" style="cursor:pointer; font-size:1.2rem;">✕</span></div> 
         <div style="padding:0.6rem;">
             <input type="text" id="calc-display" class="calc-display-input" readonly value="0">
             <div class="calc-grid-buttons">
@@ -361,7 +322,7 @@
                 <button type="button" class="calc-btn" onclick="pressNum('7')">7</button>
                 <button type="button" class="calc-btn" onclick="pressNum('8')">8</button>
                 <button type="button" class="calc-btn" onclick="pressNum('9')">9</button>
-                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('+')">+</button>
+                <button type="button" class="calc-btn style-plus" style="color:#00FF66;" onclick="pressOp('+')">+</button>
                 <button type="button" class="calc-btn" onclick="pressNum('4')">4</button>
                 <button type="button" class="calc-btn" onclick="pressNum('5')">5</button>
                 <button type="button" class="calc-btn" onclick="pressNum('6')">6</button>
@@ -377,142 +338,132 @@
 <script>
 const questionsDatabase = [
     {
-        id: 1, chapter: 1, type: "radio", points: 10,
-        instruction: "Identify the correct regulatory definitions and accounting frameworks.",
+        id: 1, chapter: 1, type: "input", points: 10,
+        instruction: "Calculate the second-year depreciation expense charge using the Reducing Balance framework.",
         content: `
-            <div style="margin-bottom:0.5rem;">Which of the following choices correctly defines a <strong>Liability</strong> according to the AAT syllabus?</div>
-            <div class="options-container">
-                <label class="option-label"><input type="radio" name="q1" value="A"> A present obligation of the entity arising from past events, resulting in an outflow of economic benefits.</label>
-                <label class="option-label"><input type="radio" name="q1" value="B"> A resource controlled by the entity as a result of past events from which future benefits flow.</label>
-                <label class="option-label"><input type="radio" name="q1" value="C"> The residual interest in the assets of the entity after deducting all its liabilities.</label>
-            </div>
-        `, correct: "A",
-        explanation: "According to the AAT syllabus and IASB framework, a liability represents a present obligation from past events resulting in an outflow of economic resources. Option B defines an asset, Option C defines equity."
-    },
-    {
-        id: 2, chapter: 2, type: "multi-input", points: 10,
-        instruction: "Process financial documents and cast the columns of the Sales Day Book.",
-        content: `
-            <div style="margin-bottom:0.5rem;">Calculate the missing VAT (20%) and Total Gross amounts for each credit invoice transaction, then perform the final vertical casting.</div>
-            <table class="financial-table">
-                <thead><tr><th class="text-left">Customer</th><th>Goods Net (£)</th><th>VAT (20%) (£)</th><th>Total Gross (£)</th></tr></thead>
-                <tbody>
-                    <tr><td class="text-left">Alpha Traders</td><td>450.00</td><td><input type="text" class="table-input text-right" data-ans="90.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="540.00" placeholder="0.00"></td></tr>
-                    <tr><td class="text-left">Omega & Co</td><td>820.00</td><td><input type="text" class="table-input text-right" data-ans="164.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="984.00" placeholder="0.00"></td></tr>
-                    <tr style="background:#F9FAFB; font-weight:700;"><td class="text-left">TOTALS</td><td>1,270.00</td><td><input type="text" class="table-input text-right" data-ans="254.00" placeholder="Total VAT"></td><td><input type="text" class="table-input text-right" data-ans="1,524.00" placeholder="Total Gross"></td></tr>
-                </tbody>
-            </table>
-        `, explanation: "VAT is calculated at 20% on the net value: £450.00 * 0.20 = £90.00 (Total £540.00) and £820.00 * 0.20 = £164.00 (Total £984.00). Casting columns vertically gives: Total VAT = £254.00, Total Gross = £1,524.00."
-    },
-    {
-        id: 3, chapter: 3, type: "input", points: 10,
-        instruction: "Reconcile the Petty Cash Book under the Imprest System.",
-        content: `
-            <div style="margin-bottom:0.5rem;">A petty cash float is fixed at <strong>£250.00</strong>. During the month, the following expenditure vouchers were recorded:<br>• Stationery: £34.50 (inc. VAT)<br>• Window Cleaning: £20.00 (no VAT)<br>• Travel: £18.20 (no VAT)<br><br>Enter the cash top-up needed to restore the imprest float.</div>
-            <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
-                <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
-                <input type="text" class="table-input" id="q3_ans" data-ans="72.70" placeholder="0.00" style="border:none; width:100%;">
-            </div>
+        <div style="margin-bottom:0.5rem;">A business purchases a production vehicle on 1 January 2024 for £24,000. The firm applies the Reducing Balance Method of depreciation at a fixed rate of 25% per annum. Enter the precise Depreciation Expense charge (£) to be recorded in the Statement of Profit or Loss for the second financial year ending 31 December 2025.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q1" data-ans="4500" placeholder="0.00" style="border:none; width:100%;">
+        </div>
         `,
-        explanation: "Under the imprest system, the amount required to restore the float always equals the exact sum of the cash vouchers paid out: £34.50 + £20.00 + £18.20 = £72.70."
+        explanation: "Year 1 Depreciation: £24,000 * 25% = £6,000. NBV at start of Year 2: £24,000 - £6,000 = £18,000. Year 2 Depreciation charge: £18,000 * 25% = £4,500."
     },
     {
-        id: 4, chapter: 4, type: "multi-input", points: 10,
-        instruction: "Record correction of errors within the General Journal.",
+        id: 2, chapter: 1, type: "input", points: 10,
+        instruction: "Calculate the exact Prepayment adjustment required at year-end.",
         content: `
-            <div style="margin-bottom:0.5rem;">A credit sale of £480.00 to J. Green was mistakenly posted to P. Green's ledger account. No error was made in Sales. Fill the journal grid to correct this error of commission.</div>
-            <table class="financial-table">
-                <thead><tr><th class="text-left">Account Name</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
-                <tbody>
-                    <tr><td><input type="text" class="table-input" data-ans="J. Green" placeholder="Account Name" style="text-align:left;"></td><td><input type="text" class="table-input text-right" data-ans="480.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
-                    <tr><td><input type="text" class="table-input" data-ans="P. Green" placeholder="Account Name" style="text-align:left;"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td><td><input type="text" class="table-input text-right" data-ans="480.00" placeholder="0.00"></td></tr>
-                </tbody>
-            </table>
+        <div style="margin-bottom:0.5rem;">On 1 November 2025, an enterprise pays its annual commercial insurance premium of £3,600 covering a 12-month window to 31 October 2026. Enter the exact Prepayment adjustment amount (£) required at the financial year-end on 31 December 2025.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q2" data-ans="3000" placeholder="0.00" style="border:none; width:100%;">
+        </div>
         `,
-        explanation: "This is an error of commission. To rectify it, we must debit the correct account (J. Green) to establish the asset and credit the incorrect account (P. Green) to cancel the original erroneous entry."
+        explanation: "Premium is £300/month (£3,600 / 12). At 31 Dec, 2 months are consumed. 10 months are prepaid: 10 * £300 = £3,000."
     },
     {
-        id: 5, chapter: 5, type: "multi-input", points: 10,
-        instruction: "Construct and balance the Trial Balance Matrix using DEAD CLIC.",
+        id: 3, chapter: 1, type: "input", points: 10,
+        instruction: "Isolate the unpaid consumed cost to form the year-end Accrual correction entry.",
         content: `
-            <div style="margin-bottom:0.5rem;">Allocate the ledger balances using the <strong>DEAD CLIC</strong> framework, then calculate the necessary Suspense Account balance required to reconcile the draft matrix.</div>
-            <table class="financial-table">
-                <thead><tr><th class="text-left">Account Details</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
-                <tbody>
-                    <tr><td class="text-left">Sales Revenue Account</td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td><td><input type="text" class="table-input text-right" data-ans="12,500.00" placeholder="0.00"></td></tr>
-                    <tr><td class="text-left">Purchases Account</td><td><input type="text" class="table-input text-right" data-ans="7,400.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
-                    <tr><td class="text-left">Trade Receivables Control Account</td><td><input type="text" class="table-input text-right" data-ans="3,200.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
-                    <tr style="background:#FFFBEB;"><td class="text-left" style="font-weight:700; color:#B45309;">Suspense Account Balance</td><td><input type="text" class="table-input text-right" data-ans="1,900.00" placeholder="0.00" style="font-weight:700;"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
-                </tbody>
-            </table>
+        <div style="margin-bottom:0.5rem;">A firm's financial year ends on 31 March 2026. The electricity bill is paid quarterly in arrears. The last invoice was settled up to 31 January 2026. On 15 May 2026, the firm receives an electricity bill of £900 covering February, March, and April 2026. Enter the Accrual adjustment (£) required at year-end.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q3" data-ans="600" placeholder="0.00" style="border:none; width:100%;">
+        </div>
         `,
-        explanation: "Sales is Income (Credit = £12,500.00). Purchases is Expense (Debit = £7,400.00). Receivables is Asset (Debit = £3,200.00). Total temporary Debits = £10,600.00 against Credits of £12,500.00. The Suspense Account requires a Debit balance of £1,900.00 to balance the matrix."
+        explanation: "Bill is £300/month (£900 / 3). For Feb and Mar (2 months), electricity is consumed but unpaid at year-end: 2 * £300 = £600."
     },
     {
-        id: 6, chapter: 2, type: "radio", points: 10,
-        instruction: "Identify the correct entry for a Purchase Return transaction.",
+        id: 4, chapter: 2, type: "input", points: 10,
+        instruction: "Execute specific write-offs before computing the updated general Allowance balance.",
         content: `
-            <div style="margin-bottom:0.5rem;">When a business returns goods bought on credit to a supplier, which day book is used to record the transaction?</div>
-            <div class="options-container">
-                <label class="option-label"><input type="radio" name="q6" value="A"> Purchase Returns Day Book</label>
-                <label class="option-label"><input type="radio" name="q6" value="B"> Sales Returns Day Book</label>
-                <label class="option-label"><input type="radio" name="q6" value="C"> General Journal</label>
-            </div>
-        `, correct: "A",
-        explanation: "Credit notes received from suppliers for returned goods are systematically entered into the Purchase Returns Day Book."
+        <div style="margin-bottom:0.5rem;">At the end of the trading period, a business has total Trade Receivables of £45,000. The bookkeeper decides to fully write off an irrecoverable debt from client X worth £1,200, and subsequently adjust the general Allowance for Doubtful Debts to be exactly 5% of the remaining receivables pool. Enter the final balance (£) of the adjusted Allowance account.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q4" data-ans="2190" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Receivables base: £45,000 - £1,200 = £43,800. General allowance: £43,800 * 5% = £2,190."
     },
     {
-        id: 7, chapter: 3, type: "multi-input", points: 10,
-        instruction: "Record Cash Book receipts and calculate bank balance.",
+        id: 5, chapter: 2, type: "radio", points: 10,
+        instruction: "Identify the correct ledger posting path to record a decrease in the general allowance pool.",
         content: `
-            <div style="margin-bottom:0.5rem;">An opening bank balance is £1,200.00 (DR). The business receives a customer cheque of £350.00 and pays a supplier £400.00. Enter the closing balance.</div>
-            <table class="financial-table">
-                <thead><tr><th>Opening DR (£)</th><th>Receipts (£)</th><th>Payments (£)</th><th>Closing DR Balance (£)</th></tr></thead>
-                <tbody>
-                    <tr><td>1,200.00</td><td>350.00</td><td>400.00</td><td><input type="text" class="table-input text-right" data-ans="1,150.00" placeholder="0.00"></td></tr>
-                </tbody>
-            </table>
-        `, explanation: "Closing debit balance calculation: £1,200 + £350 - £400 = £1,150.00."
+        <div style="margin-bottom:0.5rem;">When adjusting the general Allowance for Doubtful Debts account at year-end, it is discovered that the opening allowance balance is £1,800 and the newly required allowance is calculated as £1,450. What is the double-entry posting path to record this shift?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q5" value="A"> Debit Allowance for Doubtful Debts £350, Credit Irrecoverable Debts Expense £350</label>
+            <label class="option-label"><input type="radio" name="q5" value="B"> Debit Irrecoverable Debts Expense £350, Credit Allowance for Doubtful Debts £350</label>
+            <label class="option-label"><input type="radio" name="q5" value="C"> Debit Statement of Profit or Loss £1,450, Credit Allowance Account £1,450</label>
+        </div>
+        `,
+        correct: "A",
+        explanation: "The allowance decreases by £350 (£1,800 - £1,450). To reduce an allowance (credit balance), we Debit the Allowance account and Credit Irrecoverable Debts Expense."
+    },
+    {
+        id: 6, chapter: 3, type: "radio", points: 10,
+        instruction: "Determine the final net profit or loss outcome on the disposal of machinery accounts.",
+        content: `
+        <div style="margin-bottom:0.5rem;">An item of machinery bought for £15,000 with accumulated depreciation of £9,000 is sold on credit during the period for £4,800. What is the final net profit or net loss outcome on this disposal transaction inside the accounts?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q6" value="A"> A Net Profit on Disposal of £1,200</label>
+            <label class="option-label"><input type="radio" name="q6" value="B"> A Net Loss on Disposal of £1,200</label>
+            <label class="option-label"><input type="radio" name="q6" value="C"> A Net Loss on Disposal of £6,000</label>
+        </div>
+        `,
+        correct: "B",
+        explanation: "Net Book Value (NBV) = £15,000 - £9,000 = £6,000. Sale proceeds = £4,800. Profit/Loss = £4,800 - £6,000 = -£1,200 (Net Loss on Disposal)."
+    },
+    {
+        id: 7, chapter: 3, type: "input", points: 10,
+        instruction: "Compute the exact monthly pro-rata straight-line depreciation charge.",
+        content: `
+        <div style="margin-bottom:0.5rem;">A business operates a policy of depreciating machinery at 20% per annum using the Straight-Line Method, calculated pro-rata on a monthly basis. A new cutting machine is purchased on 1 September 2025 for £18,000. Enter the exact depreciation charge (£) for this machine for the financial year ending 31 December 2025.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q7" data-ans="1200" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Annual depreciation: £18,000 * 20% = £3,600. Monthly: £300. Owned from 1 Sept to 31 Dec (4 months): 4 * £300 = £1,200."
     },
     {
         id: 8, chapter: 4, type: "radio", points: 10,
-        instruction: "Classify errors that do not affect the Trial Balance agreement.",
+        instruction: "Map the correct destination columns for year-end prepayment elements.",
         content: `
-            <div style="margin-bottom:0.5rem;">A transaction is completely omitted from the accounting records. What type of error is this?</div>
-            <div class="options-container">
-                <label class="option-label"><input type="radio" name="q8" value="A"> Error of Omission</label>
-                <label class="option-label"><input type="radio" name="q8" value="B"> Error of Commission</label>
-                <label class="option-label"><input type="radio" name="q8" value="C"> Error of Principle</label>
-            </div>
-        `, correct: "A",
-        explanation: "When a transaction is completely left out of the financial records, it is classified as an Error of Omission."
+        <div style="margin-bottom:0.5rem;">Inside an Extended Trial Balance (ETB) worksheet, into which specific columns must the ending balance of a Prepayment adjustment be transferred?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q8" value="A"> Statement of Profit or Loss (Debit column)</label>
+            <label class="option-label"><input type="radio" name="q8" value="B"> Statement of Financial Position (Debit column, representing a Current Asset)</label>
+            <label class="option-label"><input type="radio" name="q8" value="C"> Statement of Financial Position (Credit column, representing a Current Liability)</label>
+        </div>
+        `,
+        correct: "B",
+        explanation: "A prepayment represents an expense paid in advance, which is a Current Asset. Therefore, its final adjusted position must be mapped into the Statement of Financial Position Debit column."
     },
     {
-        id: 9, chapter: 4, type: "multi-input", points: 10,
-        instruction: "Correct an error of principle in the General Journal.",
+        id: 9, chapter: 5, type: "input", points: 10,
+        instruction: "Calculate the residual profit allocation for individual partners following salary deductions.",
         content: `
-            <div style="margin-bottom:0.5rem;">The purchase of a motor vehicle (£5,000) was incorrectly debited to the Motor Expenses account. Complete the journal entries to rectify this error of principle.</div>
-            <table class="financial-table">
-                <thead><tr><th class="text-left">Account Name</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
-                <tbody>
-                    <tr><td><input type="text" class="table-input" data-ans="Motor Vehicles" placeholder="Account" style="text-align:left;"></td><td><input type="text" class="table-input text-right" data-ans="5,000.00" placeholder="0.00"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td></tr>
-                    <tr><td><input type="text" class="table-input" data-ans="Motor Expenses" placeholder="Account" style="text-align:left;"></td><td><input type="text" class="table-input text-right" data-ans="" placeholder="-"></td><td><input type="text" class="table-input text-right" data-ans="5,000.00" placeholder="0.00"></td></tr>
-                </tbody>
-            </table>
-        `, explanation: "Debit Motor Vehicles to open the asset account, and credit Motor Expenses to remove the wrong expense entry."
+        <div style="margin-bottom:0.5rem;">A partnership is formed between partner A and partner B. The partnership agreement states that partner A is entitled to an annual salary of £6,000. Residual profits are split in a 3:2 ratio respectively. The net profit for the year before adjustments is £26,000. Enter partner B's definitive final share of residual profit (£).</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q9" data-ans="8000" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Residual profit: £26,000 - £6,000 = £20,000. Partner B's share (2/5): £20,000 * (2 / 5) = £8,000."
     },
     {
         id: 10, chapter: 5, type: "radio", points: 10,
         instruction: "Understand the purpose of the Trade Payables Control Account (TPCA).",
         content: `
-            <div style="margin-bottom:0.5rem;">Which of the following describes the main purpose of the Trade Payables Control Account?</div>
-            <div class="options-container">
-                <label class="option-label"><input type="radio" name="q10" value="A"> To check the arithmetic accuracy of the Purchase Ledger.</label>
-                <label class="option-label"><input type="radio" name="q10" value="B"> To record credit sales made to financial customers.</label>
-                <label class="option-label"><input type="radio" name="q10" value="C"> To calculate the value of cash inventory held.</label>
-            </div>
-        `, correct: "A",
-        explanation: "The control account acts as a summary check to verify the overall mathematical correctness of individual accounts within the Purchase Ledger."
+        <div style="margin-bottom:0.5rem;">Where should interest charged on partner drawings be entered inside the formal Partnership Appropriation Account?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q10" value="A"> As a Credit entry/Addition to the net profit because it represents an internal cost recovered from partners</label>
+            <label class="option-label"><input type="radio" name="q10" value="B"> As a Debit entry/Deduction from the net profit because it increases individual partner current accounts</label>
+            <label class="option-label"><input type="radio" name="q10" value="C"> Excluded entirely from the allocation map</label>
+        </div>
+        `,
+        correct: "A",
+        explanation: "Interest on drawings increases the total pool of profit available for appropriation from the partnership's perspective, so it is credited/added to net profit."
     }
 ];
 
@@ -521,8 +472,8 @@ let currentTabActive = 0;
 let timeRemainingSeconds = 3600;
 let examTimerInterval = null;
 let isExamSubmitted = false;
-
 window.addEventListener('DOMContentLoaded', () => { initExamEngine(); });
+
 function initExamEngine() {
     examQuestions = [...questionsDatabase].sort(() => Math.random() - 0.5);
     generateTabs();
@@ -551,16 +502,16 @@ function generatePanels() {
         panel.id = `task-panel-${index}`;
         
         panel.innerHTML = `
-            <div style="font-size:0.75rem; color:#6B7280; font-weight:600; margin-bottom:0.25rem; text-transform: uppercase;">CHAPTER ${q.chapter} Focus</div>
-            <div style="font-weight:600; margin-bottom:0.75rem; color:#111827;">${q.instruction}</div>
-            <div class="task-interactive-body">${q.content}</div>
-            
-            <div class="feedback-box hidden" id="feedback-panel-${index}" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 6px;">
-                <div id="feedback-title-${index}" style="font-weight:700; margin-bottom:0.5rem;"></div>
-                <div style="font-size:0.85rem; color:#4B5563; padding-top:0.5rem; border-top:1px dashed rgba(0,0,0,0.15);">
-                    <strong>Solution Note:</strong> ${q.explanation}
-                </div>
+        <div style="font-size:0.75rem; color:#6B7280; font-weight:600; margin-bottom:0.25rem; text-transform: uppercase;">CHAPTER ${q.chapter} Focus</div>
+        <div style="font-weight:600; margin-bottom:0.75rem; color:#111827;">${q.instruction}</div>
+        <div class="task-interactive-body">${q.content}</div>
+        
+        <div class="feedback-box hidden" id="feedback-panel-${index}" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 6px;">
+            <div id="feedback-title-${index}" style="font-weight:700; margin-bottom:0.5rem;"></div>
+            <div style="font-size:0.85rem; color:#4B5563; padding-top:0.5rem; border-top:1px dashed rgba(0,0,0,0.15);">
+                <strong>Solution Note:</strong> ${q.explanation}
             </div>
+        </div>
         `;
         container.appendChild(panel);
     });
@@ -592,7 +543,7 @@ function submitExam() {
     clearInterval(examTimerInterval);
     isExamSubmitted = true;
     let available = 0, awarded = 0;
-
+    
     examQuestions.forEach((q, index) => {
         const panel = document.getElementById(`task-panel-${index}`);
         const feedbackBox = document.getElementById(`feedback-panel-${index}`);
@@ -614,7 +565,7 @@ function submitExam() {
                 i.disabled = true;
             });
         }
-
+        
         feedbackBox.style.display = 'block';
         feedbackBox.classList.remove('hidden');
         
@@ -622,7 +573,7 @@ function submitExam() {
             awarded += q.points;
             feedbackBox.style.backgroundColor = "#DEF7EC";
             feedbackBox.style.borderLeft = "4px solid #059669";
-            feedbackTitle.innerHTML = `✅ Correct! (+${q.points} Pts)`;
+            feedbackTitle.innerHTML = `✔️ Correct! (+${q.points} Pts)`;
             feedbackTitle.style.color = "#065F46";
         } else {
             feedbackBox.style.backgroundColor = "#FDE8E8";
@@ -631,7 +582,7 @@ function submitExam() {
             feedbackTitle.style.color = "#9B1C1C";
         }
     });
-
+    
     const score = available > 0 ? Math.round((awarded / available) * 100) : 0;
     document.getElementById('res-score').textContent = `${score}%`;
     document.getElementById('res-points').textContent = `${awarded} / ${available}`;
@@ -644,12 +595,11 @@ function submitExam() {
         outcomeField.textContent = "FAIL (Not Yet Competent)";
         outcomeField.style.color = "#DC2626";
     }
-
+    
     document.querySelectorAll('.feedback-box').forEach(fb => {
         fb.style.display = 'block';
         fb.classList.remove('hidden');
     });
-
     document.getElementById('results-card').classList.remove('hidden');
     alert(`Assessment submitted! Your score is ${score}%`);
 }
@@ -684,15 +634,40 @@ function toggleCalc() {
     const c = document.getElementById('neon-calc');
     c.style.display = (c.style.display === 'block') ? 'none' : 'block';
 }
+
 function pressNum(n) {
     const d = document.getElementById('calc-display');
     d.value = (d.value === '0') ? n : d.value + n;
 }
+
 function pressOp(o) { document.getElementById('calc-display').value += o; }
 function clearCalc() { document.getElementById('calc-display').value = '0'; }
 function calcResult() {
     const d = document.getElementById('calc-display');
     try { d.value = eval(d.value); } catch(e) { d.value = 'Error'; }
+}
+
+// Logica di trascinamento Drag and Drop per la calcolatrice originale
+const calcPanel = document.getElementById('neon-calc');
+const calcHeader = document.getElementById('calc-header');
+let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+if (calcHeader && calcPanel) {
+    calcHeader.addEventListener('mousedown', (e) => {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+        activeDrag = true;
+    });
+    document.addEventListener('mouseup', () => { activeDrag = false; });
+    document.addEventListener('mousemove', (e) => {
+        if (!activeDrag) return;
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        calcPanel.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    });
 }
 </script>
 </body>
