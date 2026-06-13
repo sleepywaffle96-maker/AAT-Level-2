@@ -1,133 +1,155 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 3 - Chapter 2: FAPS Theory | AAT Accounting Hub</title>
+    <title>AAT Level 3 Advanced Bookkeeping - Chapter 2 Theory (Comprehensive)</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0f1d;
-            --card-glass: rgba(16, 24, 48, 0.75);
-            --border-glass: rgba(0, 242, 254, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --accent-green: #10b981;
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --warning-box-bg: #FFFBEB;
+            --warning-box-border: #F59E0B;
+            --formula-bg: #F8FAFC;
         }
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 2rem;
+            padding: 3rem 1rem;
+            line-height: 1.7;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .nav-back {
-            color: var(--primary);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-        .glass-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glass);
+        .studio-container { max-width: 1050px; margin: 0 auto; }
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
             border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            margin-bottom: 2rem;
+            padding: 3.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
         }
-        h1 {
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            font-size: 2.5rem;
-            margin-top: 0;
-        }
-        h2 {
-            color: var(--primary);
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 0.5rem;
-            margin-top: 2rem;
-        }
-        h3 {
-            color: var(--secondary);
-        }
-        p, li {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-        strong {
-            color: var(--text-main);
-        }
-        .syllabus-box {
-            border-left: 4px solid var(--accent-green);
-            background: rgba(16, 185, 129, 0.05);
-            padding: 1rem 1.5rem;
+        .academic-quote {
+            border-left: 4px solid var(--l3-cyan-primary);
+            background-color: var(--l3-cyan-light);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
             border-radius: 0 8px 8px 0;
-            margin-bottom: 2rem;
+            font-style: italic;
         }
+        .formula-block {
+            background-color: var(--formula-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            color: #0F172A;
+        }
+        h2 { color: var(--l3-cyan-primary); font-size: 1.45rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.2rem; font-weight: 700; }
+        h3 { color: var(--l3-cyan-dark); font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
+        p { text-align: justify; margin-bottom: 1.5rem; font-size: 1rem; }
+        ul, ol { margin-left: 2rem; margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
-        
-        <article class="glass-card">
-            <h1>Financial Accounting: Preparing Financial Statements (FAPS)</h1>
-            <div class="syllabus-box">
-                <p style="margin:0; color:var(--text-main);"><strong>AAT Syllabus Context:</strong> This chapter covers the conceptual framework, accounting principles, and the generation of final accounts for sole traders and partnerships from incomplete records and trial balances.</p>
+    <div class="studio-container">
+        <div class="white-bubble-container">
+            <div style="margin-bottom: 2.5rem; border-bottom: 3px solid var(--l3-cyan-light); padding-bottom: 1.5rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 4px; letter-spacing: 0.05em;">AAT LEVEL 3 ADVANCED DIPLOMA IN ACCOUNTING</span>
+                <h1 style="font-size: 2rem; margin: 0.75rem 0 0 0; color: #111827; font-weight: 700;">Unit: Financial Accounting - Chapter 2: Non-Current Assets & Depreciation</h1>
             </div>
 
-            <h2>1. The Conceptual Framework and Accounting Principles</h2>
-            <p>The preparation of financial statements is governed by international accounting standards adopted in the UK (IFRS/UK GAAP). Financial reporting must provide high-quality, transparent, and comparable information to stakeholders such as lenders, investors, and HM Revenue & Customs (HMRC).</p>
-            
-            <h3>Qualitative Characteristics</h3>
-            <p>Under the IASB Conceptual Framework, financial information must possess fundamental and enhancing qualitative characteristics:</p>
+            <h2>Lesson 2.1: Non-Current Assets Classification & Capital vs Revenue Expenditure</h2>
+            <p>
+                Under the AAT Level 3 Advanced Bookkeeping syllabus, the accounting treatment of long-term economic resources is governed strictly by <strong>IAS 16: Property, Plant and Equipment</strong>. Non-current assets are defined as identifiable, tangible resources controlled by an entity as a result of past events, which are held for use in the production or supply of goods, for rental to others, or for administrative purposes, and are expected to be utilized for more than one single 12-month accounting period.
+            </p>
+            <p>
+                A core accounting competency requires the absolute segregation between <strong>Capital Expenditure</strong> and <strong>Revenue Expenditure</strong>. Misclassifying these items constitutes an accounting error that materially distorts both the periodic net profit in the Statement of Profit or Loss (SPL) and the asset valuations in the Statement of Financial Position (SoFP).
+            </p>
             <ul>
-                <li><strong>Relevance:</strong> Information must be capable of making a difference in the decisions made by users. It has predictive or confirmatory value.</li>
-                <li><strong>Faithful Representation:</strong> The information must faithfully represent the economic phenomena it purports to represent. It must be complete, neutral, and free from error.</li>
-                <li><strong>Comparability:</strong> Enables users to identify and understand similarities in, and differences among, items across periods or entities.</li>
-                <li><strong>Verifiability:</strong> Assures users that information faithfully represents the economic phenomena it purports to represent.</li>
-                <li><strong>Timeliness:</strong> Having information available to decision-makers in time to be capable of influencing their decisions.</li>
-                <li><strong>Understandability:</strong> Classifying, characterising, and presenting information clearly and concisely makes it understandable.</li>
+                <li><strong>Capital Expenditure:</strong> Spending that results in the acquisition, construction, or non-routine improvement of a non-current asset. This includes the purchase price, legal delivery fees, non-refundable import duties, site preparation costs, and initial professional installation fees. Capital expenditure is capitalized, meaning it is added directly to the Asset account on the SoFP.</li>
+                <li><strong>Revenue Expenditure:</strong> Spending incurred on the day-to-day operations, repair, maintenance, insurance, or routine servicing of a non-current asset to preserve its standard operating capacity. These outflows do not add long-term structural value and must be treated directly as an operational overhead expense within the current year's SPL.</li>
             </ul>
-            <h2>2. Capital and Revenue Expenditure</h2>
-            <p>Distinguishing correctly between capital and revenue items is vital to avoid material misstatements in the Statement of Profit or Loss (SoPL) and the Statement of Financial Position (SoFP).</p>
-            <p><strong>Capital Expenditure</strong> results in the acquisition or improvement of non-current assets. This includes the purchase price, legal fees, delivery costs, and installation costs. It is capitalised on the SoFP.</p>
-            <p><strong>Revenue Expenditure</strong> relates to the day-to-day running costs of the business, such as repairs, maintenance, insurance, and wages. These items are expensed directly to the SoPL.</p>
+            <div class="academic-quote">
+                "IAS 16 dictates that initial costs of an asset include any expenditure directly attributable to bringing that asset to the location and condition necessary for it to be capable of operating in the manner intended by corporate management."
+            </div>
+            <p>
+                Depreciation is the systematic allocation of the depreciable amount of a tangible non-current asset over its estimated **Useful Economic Life (UEL)**. In compliance with the <strong>Matching Principle</strong>, depreciation does not represent an accumulation of cash to replace the asset, nor does it attempt to track the immediate secondary market resale values. Its single purpose is to spread the net historic cost of the asset as an annual overhead expense across the specific financial exercises that benefit from its operational usage.
+            </p>
+            <h2>Lesson 2.2: Depreciation Methods and Mathematical Computations</h2>
+            <p>
+                The corporate entity must choose an depreciation method that reflects the exact pattern in which the asset's economic benefits are expected to be consumed by the business. The AAT Level 3 syllabus examines two structural accounting methods:
+            </p>
 
-            <h2>3. Adjustments for Financial Statements</h2>
-            <p>Before final financial statements can be produced from a Trial Balance, several year-end adjustments must be processed via ledger entries:</p>
-            
-            <h3>Accruals and Prepayments</h3>
-            <p>Based on the <strong>accruals concept</strong> (matching principle), income and expenses must be recognised in the period they occur, not when cash changes hands.</p>
-            <ul>
-                <li><strong>Accrued Expenses:</strong> Expenses incurred but not yet invoiced or paid at year-end. (Liability on SoFP).</li>
-                <li><strong>Prepaid Expenses:</strong> Expenses paid in advance for the next accounting period. (Current Asset on SoFP).</li>
-            </ul>
+            <h3>1. The Straight-Line Method (Equal Allocation)</h3>
+            <p>
+                The <strong>Straight-Line Method</strong> assumes that the asset delivers an equal amount of economic utility during each financial exercise of its operational lifespan. Consequently, the depreciation charge remains constant every full year. The calculation can be expressed as a fixed percentage applied directly to the original <strong>Historic Cost</strong>, or derived by subtracting the estimated **Residual Value (Scrap Value)** from the original cost and dividing by the Useful Economic Life (UEL) in years.
+            </p>
+            <div class="formula-block">
+                <strong>STRAIGHT-LINE METRIC WORKED EXAMPLE (MONTHLY APPORTIONMENT):</strong><br>
+                • Non-Current Asset: Machinery purchased on 1 April for £24,000<br>
+                • Estimated Residual Value: £4,000 | Useful Economic Life: 5 Years<br>
+                • Accounting Year End: 31 December (First year of ownership)<br><br>
+                <strong>STEP-BY-STEP APPORTIONMENT CALCULATION:</strong><br>
+                1. Calculate Full Annual Depreciation: (£24,000 - £4,000) / 5 Years = £4,000 per annum.<br>
+                2. Calculate Monthly Apportionment Rate: £4,000 / 12 Months = £333.33 per month.<br>
+                3. Apportion for months owned (April to December = 9 Months): £333.33 × 9 Months = £3,000.<br><br>
+                <strong>YEAR 1 CHARGE:</strong> SPL Expense = £3,000 | Ending Accumulated Depreciation = £3,000
+            </div>
 
-            <h3>Irrecoverable Debts and Allowance for Doubtful Debts</h3>
-            <p>When a customer is definitely unable to pay, the balance must be written off as an <strong>irrecoverable debt</strong> expense in the SoPL. If there is uncertainty regarding future collections, an <strong>allowance for doubtful debts</strong> is created or adjusted based on the prudence concept, reducing trade receivables on the SoFP.</p>
+            <h3>2. The Reducing Balance Method (Accelerated Allocation)</h3>
+            <p>
+                The <strong>Reducing Balance Method</strong> is an accelerated depreciation mechanism designed for non-current assets that lose value rapidly in their initial years or derive higher operational efficiency when new (e.g., motor vehicles, computer networks). This method applies a fixed percentage to the asset's <strong>Net Book Value (NBV)</strong> rather than its historic cost. The Net Book Value is defined as the original Historic Cost minus the total **Accumulated Depreciation** recorded up to the start of the current exercise. As a result, the depreciation expense decreases progressively every financial year.
+            </p>
+            <div class="formula-block">
+                <strong>REDUCING BALANCE METRIC WORKED EXAMPLE (COMPARTMENTALIZED YEARS):</strong><br>
+                • Non-Current Asset: Commercial Fleet Vehicle purchased at start of Year 1: £20,000<br>
+                • Depreciation Rate: 30% per annum using the Reducing Balance Method<br><br>
+                <strong>YEAR 1 COMPUTATION:</strong><br>
+                • Opening Net Book Value: £20,000 (No prior accumulated depreciation)<br>
+                • Depreciation Expense Charge: £20,000 × 30% = £6,000<br>
+                • Closing Accumulated Depreciation Pool: £6,000 | Closing NBV: £14,000<br><br>
+                <strong>YEAR 2 COMPUTATION:</strong><br>
+                • Opening Net Book Value: £14,000 (Cost £20,000 - Accum. Dep. £6,000)<br>
+                • Depreciation Expense Charge: £14,000 × 30% = £4,200<br>
+                • Closing Accumulated Depreciation Pool: £6,000 + £4,200 = £10,200<br>
+                • Closing Net Book Value (Carried Forward): £20,000 - £10,200 = £9,800
+            </div>
+            <p>
+                <em>Critical Exam Note:</em> Unlike the Straight-Line method, residual scrap values are completely ignored when calculating annual depreciation under the Reducing Balance method. The diminishing nature of the equation automatically accounts for the remaining unamortized residual baseline over time.
+            </p>
+            <h2>Lesson 2.3: Double-Entry Ledger Architecture & Year-End Reporting Positions</h2>
+            <p>
+                To maintain comprehensive historic tracking, the bookkeeping system does not credit depreciation directly to the non-current asset cost account. Doing so would overwrite the historical cost data required by IAS 16 transparency guidelines. Instead, the accounts are structurally split into two separate ledger records:
+            </p>
+            <ol>
+                <li><strong>The Non-Current Asset Cost Account:</strong> Holds a continuous debit balance representing the total original historic cost of capital expenditure items currently owned by the entity.</li>
+                <li><strong>The Accumulated Depreciation Account:</strong> A permanent credit balance valuation contra-account that accumulates all annual depreciation charges posted over the lifetime of those assets.</li>
+            </ol>
+            <p>
+                At the end of every financial period, the annual depreciation expense calculation is posted to the ledger system via a formal closing journal entry: <strong>DEBIT Depreciation Expense Account</strong> (Operating overhead inside the SPL) and <strong>CREDIT Accumulated Depreciation Account</strong> (Contra-asset inside the SoFP).
+            </p>
 
-            <h2>4. Partnership Accounting</h2>
-            <p>Partnerships require distinct accounting structures to allocate profits among owners according to a <strong>Partnership Agreement</strong>. If no agreement exists, the Partnership Act 1890 applies (equal profit split, no interest on capital).</p>
-            <p>Profits are allocated using a <strong>Partnership Appropriation Account</strong> after calculating the net trading profit. Adjustments include:</p>
-            <ul>
-                <li><strong>Salaries to Partners:</strong> Deducted from total profit before general distribution.</li>
-                <li><strong>Interest on Capital:</strong> Rewards partners for their capital investment.</li>
-                <li><strong>Interest on Drawings:</strong> Penalises excessive withdrawals from the firm.</li>
-            </ul>
-            <p>Each partner has a <strong>Capital Account</strong> (fixed investment) and a <strong>Current Account</strong> (day-to-day transactions, drawings, and share of profits).</p>
-        </article>
+            <div style="background-color: var(--warning-box-bg); border-left: 4px solid var(--warning-box-border); padding: 1.5rem; border-radius: 8px; margin: 2.5rem 0;">
+                <strong style="color: var(--l3-cyan-dark); font-size: 1.05rem;">⚠️ Non-Current Assets Invisible Error Encyclopedia:</strong>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; text-align: justify;">
+                    • <strong>The Reducing Balance Cost Trait Trap:</strong> A catastrophic mistake made in exam scenarios is applying the reducing balance percentage to the original asset cost column during Year 2 or Year 3 assessments, completely overlooking the accumulated depreciation pool. This error treats the question as straight-line, resulting in massive valuation distortions across the final accounts.<br><br>
+                    • <strong>The Mid-Year Apportionment Policy Discrepancy:</strong> Always verify the corporate depreciation policy text provided in the question details. AAT exams apply two strict policy variations: <br>
+                    1. <em>Pro-rata monthly basis:</em> Calculate depreciation based on the exact number of months the asset was owned during the year.<br>
+                    2. <em>Full year in year of acquisition, none in year of disposal:</em> Charge a complete 12-month depreciation block regardless of whether the asset was bought on the first or last day of the financial year. Applying month apportionment under a full-year policy will completely invalidate your score.<br><br>
+                    • <strong>The Capitalization of Maintenance Fees:</strong> Routine servicing contracts, delivery truck fuel or vehicle licensing fees must never be added to the asset cost account. These are strictly revenue expenditure and must be posted into independent operating expense ledger streams.
+                </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
