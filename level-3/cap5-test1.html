@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 Advanced Diploma - Chapter 5 Test One</title>
+    <title>AAT Level 3 - Chapter 5: Ethics for Accountants (Test One)</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
@@ -66,7 +66,7 @@
             color: var(--l3-cyan-dark);
             font-weight: 600;
         }
-        /* STRUTTURA SEQUENZIALE QUESTION TABS */
+
         .question-tab {
             display: none;
             flex-direction: column;
@@ -90,7 +90,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* OPZIONI DI SELEZIONE RADIO (TIPO A) */
         .option-box {
             display: flex;
             align-items: center;
@@ -107,7 +106,6 @@
         .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
         .feedback-icon { font-weight: 700; font-size: 1.1rem; }
 
-        /* TABELLE FINANZIARIE PER REGIMI IVA */
         .financial-table {
             width: 100%;
             border-collapse: collapse;
@@ -144,7 +142,7 @@
             outline: none;
             background-color: var(--l3-cyan-light);
         }
-        /* GEOMETRIA RIGIDA PULSANTIERA INFERIORE APPENDICE TECNICA */
+
         .controls-footer {
             display: flex;
             justify-content: space-between;
@@ -197,7 +195,7 @@
         .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
         .hidden { display: none !important; }
 
-        /* A. CALCOLATRICE: TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA */
+        /* OSBORNE CALC DESIGN COMPONENTS */
         #calc-toggle-trigger {
             position: fixed;
             bottom: 30px;
@@ -219,7 +217,6 @@
         }
         #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
 
-        /* B. CALCOLATRICE: CORPO DEL WIDGET VETRATO SCURO */
         #calc-widget {
             position: fixed;
             bottom: 90px;
@@ -238,7 +235,6 @@
             box-sizing: border-box;
         }
 
-        /* C. CALCOLATRICE: HEADER CON DICITURA BRAND "Osborne Calc" */
         #calc-header {
             display: flex;
             justify-content: space-between;
@@ -265,7 +261,6 @@
             padding: 0;
         }
 
-        /* D. CALCOLATRICE: DISPLAY LAYOUT NERO/CIANO NEON */
         #calc-screen {
             width: 100%;
             height: 45px;
@@ -283,405 +278,221 @@
             box-sizing: border-box;
         }
 
-        /* E. CALCOLATRICE: GRID LAYOUT */
-        .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+        @media print {
+            body { background: #FFFFFF; padding: 0; margin: 0; }
+            .test-container { box-shadow: none; border: none; padding: 0; max-width: 1000px; }
+            .controls-footer, #calc-toggle-trigger, #calc-widget { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
         }
-        .calc-btn {
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            color: white;
-            background: #334155;
-            text-align: center;
-            transition: background 0.1s ease;
-        }
-        .calc-btn:hover { background: #475569; }
-        .calc-btn.op {
-            background: rgba(0, 255, 255, 0.05);
-            color: #00FFFF;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.15); }
     </style>
 </head>
 <body>
 
     <div class="test-container">
-        
         <div class="test-header-row">
-            <div class="test-title">BTRN - LEVEL 3 CHAPTER 5: SPREADSHEETS & FINAL ACCOUNTS (TEST ONE)</div>
+            <div class="test-title">UNIT: ETHICS FOR ACCOUNTANTS (TEST ONE)</div>
             <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
         </div>
-
         <form id="quiz-form" onsubmit="event.preventDefault();">
-
-            <!-- QUESTION 1: TIPO "multi-select" (Advanced Excel Accounting Logic) -->
+            <!-- QUESTION 1: TIPO "multi-select" (The 5 Fundamental Principles) -->
             <div class="question-tab active" data-qindex="1" data-type="multi-select">
-                <div class="task-instruction-text">1. Complete the logic statements regarding the structural assembly of final accounts components inside modeling spreadsheets.</div>
+                <div class="task-instruction-text">1. Complete the operational statements regarding the fundamental principles from the AAT Code of Professional Ethics.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        To execute a dynamic lookup that fetches an account's trial balance debit row from an independent ledger code data table array, the most resilient accounting syntax utilizes 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="vlookup">
-                            <option value="">-- Function --</option>
-                            <option value="vlookup">VLOOKUP / XLOOKUP</option>
-                            <option value="sumif">SUMIF</option>
-                            <option value="countif">COUNTIF</option>
+                        An accounting technician who maintains complete honesty and refuses to sign off on financial records containing distorted figures is adhering to 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="integrity">
+                            <option value="">-- Choose Principle --</option>
+                            <option value="integrity">Integrity</option>
+                            <option value="objectivity">Objectivity</option>
+                            <option value="behaviour">Professional Behaviour</option>
                         </select>. 
-                        Conversely, to automatically aggregate cumulative payroll expenses associated only with a specific cost center code row, you must implement 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="sumif">
-                            <option value="">-- Function --</option>
-                            <option value="vlookup">VLOOKUP</option>
-                            <option value="sumif">SUMIF</option>
+                        Conversely, ensuring that personal bias, commercial conflicts of interest, or third-party pressure do not override accounting analysis is a direct demonstration of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="objectivity">
+                            <option value="">-- Choose Principle --</option>
+                            <option value="integrity">Integrity</option>
+                            <option value="objectivity">Objectivity</option>
+                            <option value="competence">Professional Competence</option>
                         </select>.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> VLOOKUP/XLOOKUP performs cross-sectional data retrieval based on specific codes. SUMIF/SUMIFS aggregates numeric strings dynamically that match strict cell filtering criteria.
+                    <strong>Solution Note:</strong> Integrity requires absolute honesty and truthfulness. Objectivity dictates that an accountant's professional judgment must never be overridden by bias, conflict of interest, or undue third-party influence.
                 </div>
             </div>
 
-            <!-- QUESTION 2: TIPO "multi-input" (Dynamic Formula Reconciliation) -->
-            <div class="question-tab" data-qindex="2" data-type="multi-input">
-                <div class="task-instruction-text">2. Cell B10 contains the Gross Sales revenue (£120,000) and cell B11 contains the Cost of Goods Sold (£72,000). Input the exact resulting values that an automated spreadsheet will display for the following mathematical accounting fields.</div>
+            <!-- QUESTION 2: TIPO "radio" (Professional Competence and Due Care) -->
+            <div class="question-tab" data-qindex="2" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">2. Which scenario directly violates the principle of Professional Competence and Due Care under the ethical framework?</div>
                 <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">Spreadsheet Formula Output Line</th>
-                                <th style="width: 250px;">Displayed Output Base (£ / %)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Result of Gross Profit cell formula (=B10-B11)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="48,000" placeholder="0"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;">Result of Gross Profit Margin percentage formula (=(B10-B11)/B10*100)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="40" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q2" value="A"> Refusing to disclose a client's payroll data during an official statutory investigation.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q2" value="B"> Accepting a complex corporate tax planning project without the necessary training, expertise, or legislative updates.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q2" value="C"> Declining an expensive corporate gift voucher offered by a long-standing client.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Gross Profit = £120,000 - £72,000 = £48,000. Gross Profit Margin percentage = (£48,000 / £120,000) * 100 = 40%.
+                    <strong>Solution Note:</strong> Professional Competence and Due Care requires maintaining professional knowledge and skill at the level required to ensure that a client receives competent professional services based on current law.
                 </div>
             </div>
-<!-- QUESTION 3: TIPO "multi-select" (Suspense Account Discrepancies) -->
+
+            <!-- QUESTION 3: TIPO "multi-select" (Confidentiality Boundaries) -->
             <div class="question-tab" data-qindex="3" data-type="multi-select">
-                <div class="task-instruction-text">3. Complete the auditing parameters regarding the removal of ledger sbilanciamenti (trial balance errors) inside the spreadsheet model.</div>
+                <div class="task-instruction-text">3. Complete the statement regarding the disclosure of sensitive company records.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        An error where a purchase invoice of £500 was correctly debited to the motor vehicles account but entered as £50 on the credit side of the bank ledger creates a trial balance sbilanciamento that requires a temporary 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="suspense">
-                            <option value="">-- Account --</option>
-                            <option value="suspense">Suspense Account entry</option>
-                            <option value="control">Control Account entry</option>
-                        </select> 
-                        to balance the columns. Correcting this specific transposition error involves 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="crediting">
-                            <option value="">-- Action --</option>
-                            <option value="debiting">Debiting</option>
-                            <option value="crediting">Crediting</option>
-                        </select> the suspense line by £450.
-                    </p>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Single-sided posting or digital keying entry errors throw the trial balance out of alignment. Resolving this requires clearing the differential value (£500 - £50 = £450) out of the Suspense account.
-                </div>
-            </div>
-
-            <!-- QUESTION 4: TIPO "input" (Trial Balance Column Balancing) -->
-            <div class="question-tab" data-qindex="4" data-type="input" data-correct="23500">
-                <div class="task-instruction-text">4. A spreadsheet model reflects total draft debit column balances of £145,000 and total credit column balances of £121,500. What is the precise initial balancing balance required inside the opening Suspense Account cell to achieve perfect mathematical equality? (Input the numerical integer value only, no commas)</div>
-                <div class="task-interactive-body">
-                    <div style="max-width: 200px;">
-                        <input type="text" class="numeric-field" style="text-align: center;" name="q4" placeholder="0">
-                    </div>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Suspense balance = Total Debits (£145,000) minus Total Credits (£121,500) = £23,500. It enters as a credit balance to bind the columns to equal sums.
-                </div>
-            </div>
-
-            <!-- QUESTION 5: TIPO "radio" (Error of Commission Definition) -->
-            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="A">
-                <div class="task-instruction-text">5. An invoice for office utility overheads is debited to the cleaning expense account instead of the electricity expense account. How is this error classified within spreadsheet audit reviews?</div>
-                <div class="task-interactive-body">
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q5" value="A"> Error of Commission</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q5" value="B"> Error of Principle</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q5" value="C"> Error of Omission</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> An error of commission occurs when an entry is posted to the wrong personal or nominal account ledger, but within the correct overarching class of accounts (both are operational overheads).
-                </div>
-            </div>            <!-- QUESTION 6: TIPO "multi-select" (Error of Principle Criteria) -->
-            <div class="question-tab" data-qindex="6" data-type="multi-select">
-                <div class="task-instruction-text">6. Complete the definitions separating structural error types during extended trial balance spreadsheets assembly.</div>
-                <div class="task-interactive-body">
-                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Posting the procurement cost of an industrial plant machinery asset directly into the repairs expense account constitutes an 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="principle">
-                            <option value="">-- Classification --</option>
-                            <option value="commission">Error of Commission</option>
-                            <option value="principle">Error of Principle</option>
-                        </select> 
-                        because it breaks structural accounting rules. This type of error leaves the trial balance columns completely 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="balanced">
+                        The principle of Confidentiality prevents an accountant from sharing a client's financial information with outsiders. However, this obligation is completely overridden when there is a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="legal">
                             <option value="">-- Condition --</option>
-                            <option value="balanced">Balanced (Equal)</option>
-                            <option value="unbalanced">Unbalanced (Unequal)</option>
-                        </select>, hiding the mistake from automated formulas.
+                            <option value="commercial">Commercial commercial request</option>
+                            <option value="legal">Legal or professional duty to disclose</option>
+                        </select> 
+                        such as producing source data under a court order or reporting suspected criminal funds, which must be executed 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="without">
+                            <option value="">-- Authorization --</option>
+                            <option value="with">Only with client consent</option>
+                            <option value="without">Without needing client consent</option>
+                        </select>.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> An error of principle breaches fundamental accounting principles (such as confusing asset capital value with standard revenue expenses). Because correct double-entry totals match, columns remain balanced.
+                    <strong>Solution Note:</strong> Confidentiality is a core pillar, but an accountant must disclose information if required by law or when a professional duty overrides the client's right to privacy.
+                </div>
+            </div>
+            <!-- QUESTION 4: TIPO "radio" (Professional Behaviour Definition) -->
+            <div class="question-tab" data-qindex="4" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">4. Which action is a direct breach of the principle of Professional Behaviour?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q4" value="A"> Charging a fixed professional fee instead of hourly billing rates.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q4" value="B"> Requesting independent peer verification before submitting final accounts.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q4" value="C"> Making exaggerated promotional claims or derogatory remarks that discredit the reputation of the accounting profession.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Professional Behaviour mandates compliance with relevant laws and regulations, requiring members to conduct themselves in a manner that avoids any action that brings discredit to the profession.
                 </div>
             </div>
 
-            <!-- QUESTION 7: TIPO "multi-input" (Closing Stock Spreadsheet Adjustment) -->
-            <div class="question-tab" data-qindex="7" data-type="multi-input">
-                <div class="task-instruction-text">7. At year-end, physical closing inventory is valued at £18,500. This data must be populated across the Extended Trial Balance columns. Complete the required field destinations.</div>
+            <!-- QUESTION 5: TIPO "multi-input" (Conceptual Framework Approach) -->
+            <div class="question-tab" data-qindex="5" data-type="multi-input">
+                <div class="task-instruction-text">5. The IESBA / AAT ethical conceptual framework rejects static checklists and requires active risk management. Complete the three mandatory sequential steps of this framework.</div>
                 <div class="task-interactive-body">
                     <table class="financial-table">
                         <thead>
                             <tr>
-                                <th style="text-align: left;">Extended Trial Balance Column Layer</th>
-                                <th style="width: 250px;">Required Input Amount (£)</th>
+                                <th style="text-align: left;">Framework Execution Step</th>
+                                <th style="width: 300px;">Required Regulatory Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="text-align: left;">Closing Stock Value row entry under the Statement of Profit or Loss (Credit column)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="18,500" placeholder="0"></td>
+                                <td style="text-align: left;">Step 1: Identify compliance issues</td>
+                                <td><input type="text" class="multi-input-field" data-ans="Identify threats" placeholder="Action word..."></td>
                             </tr>
                             <tr>
-                                <td style="text-align: left;">Closing Stock Value row entry under the Statement of Financial Position (Debit column)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="18,500" placeholder="0"></td>
+                                <td style="text-align: left;">Step 2: Measure threat significance</td>
+                                <td><input type="text" class="multi-input-field" data-ans="Evaluate threats" placeholder="Action word..."></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Step 3: Eliminate or minimize risks</td>
+                                <td><input type="text" class="multi-input-field" data-ans="Apply safeguards" placeholder="Action word..."></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Closing stock requires dual placement on the worksheet: it credits the SPL columns to reduce the cost of sales, and debits the SoFP columns to record the asset value.
+                    <strong>Solution Note:</strong> The conceptual framework follows a strict sequence: 1) Identify threats to compliance; 2) Evaluate the significance of the threats identified; 3) Apply safeguards to eliminate or reduce threats to an acceptable level.
                 </div>
             </div>
-            <!-- QUESTION 8: TIPO "multi-input" (Draft Profit Correction Matrix) -->
-            <div class="question-tab" data-qindex="8" data-type="multi-input">
-                <div class="task-instruction-text">8. An entity tracks a draft net profit figure of £45,000 inside the spreadsheet model. An audit check uncovers two year-end mistakes: an unrecorded accrued electricity expense of £1,200, and a client insurance prepayment of £400 that was completely omitted. Compute the adjusted net profit.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">Financial Statement Correction Item</th>
-                                <th style="width: 250px;">Adjusted Net Profit (£)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Final Recalculated Net Profit Balance after adjustment additions/deductions</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="44,200" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Profit adjustment logic: Draft Profit (£45,000) minus the unrecorded accrued utility cost overhead (£1,200) plus the omitted insurance prepaid asset value (£400) = Final Corrected Profit of £44,200.
-                </div>
-            </div>
-
-            <!-- QUESTION 9: TIPO "radio" (Compensating Error Mechanics) -->
-            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="C">
-                <div class="task-instruction-text">9. What operational situation defines a 'Compensating Error' during spreadsheet trial balance cross-checks?</div>
+            <!-- QUESTION 6: TIPO "radio" (Self-Interest Threat & Financial Stake) -->
+            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">6. A senior practitioner is tasked with auditing the financial statements of a company where they hold a significant personal stock portfolio. What specific category of threat triggers here?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q9" value="A"> An invoice entry is completely forgotten and left out of both debit and credit columns.</span>
+                        <span class="option-label"><input type="radio" name="q6" value="A"> Self-Interest Threat</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q9" value="B"> A transaction is entered into the wrong supplier personal folder.</span>
+                        <span class="option-label"><input type="radio" name="q6" value="B"> Advocacy Threat</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q9" value="C"> Two separate, independent errors occur on opposite sides of the ledger, completely canceling each other out arithmetically.</span>
+                        <span class="option-label"><input type="radio" name="q6" value="C"> Self-Review Threat</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Compensating errors involve separate errors (e.g., overstating a purchase debit by £100 and understating a cash credit by £100) that balance out arithmetically, hiding the mismatch from automated check formulas.
+                    <strong>Solution Note:</strong> A Self-Interest Threat arises when a financial or personal interest inappropriately influences an accountant's professional judgment, clouding independent evaluation.
                 </div>
             </div>
 
-            <!-- QUESTION 10: TIPO "multi-select" (Logical IF Statements) -->
-            <div class="question-tab" data-qindex="10" data-type="multi-select">
-                <div class="task-instruction-text">10. Complete the description of spreadsheet conditional functions used to trigger financial compliance flags.</div>
+            <!-- QUESTION 7: TIPO "multi-select" (Self-Review Threat Parameters) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-select">
+                <div class="task-instruction-text">7. Complete the description of independent review conflicts inside a professional firm.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        To evaluate if the final trial balance debit and credit sums match, an accountant implements an 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="if">
-                            <option value="">-- Function --</option>
-                            <option value="if">IF statement formula</option>
-                            <option value="and">AND statement formula</option>
+                        Accepting a commercial engagement to audit or verify a series of ledger data summaries that you compiled yourself earlier in the year triggers a severe 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="self-review">
+                            <option value="">-- Choose Threat --</option>
+                            <option value="self-review">Self-Review Threat</option>
+                            <option value="familiarity">Familiarity Threat</option>
                         </select> 
-                        which outputs the string text "Balanced" if the cells match, or "Unbalanced" if a 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="suspense">
-                            <option value="">-- Balance --</option>
-                            <option value="suspense">Suspense balance remains</option>
-                            <option value="capital">Capital balance shifts</option>
-                        </select> to instantly flag key ledger data mismatches.
+                        because you cannot assess your own work with absolute objectivity. To reduce this risk, the firm must implement an 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="independent">
+                            <option value="">-- Safeguard --</option>
+                            <option value="internal">Internal advocate partner</option>
+                            <option value="independent">Independent review team separate from drafting</option>
+                        </select>.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The logical =IF(condition, value_if_true, value_if_false) formula checks data entry points. If the column sums show an absolute difference, it triggers the warning text flag.
+                    <strong>Solution Note:</strong> A Self-Review Threat occurs when an accountant evaluates the results of a previous judgment or service performed by themselves. Safeguards require a completely separate team or external review.
                 </div>
             </div>
-            <!-- QUESTION 11: TIPO "radio" (Extended Trial Balance Structure) -->
-            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">11. Inside an Extended Trial Balance (ETB) spreadsheet sheet, what mathematical flow determines how nominal ledger balances transfer across the worksheet columns?</div>
+
+            <!-- QUESTION 8: TIPO "radio" (Advocacy Threat Core Mechanism) -->
+            <div class="question-tab" data-qindex="8" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">8. An accountant acts as a high-profile promoter for a corporate client during a public equity funding dispute, making aggressive statements to support the client's position. Which threat is active?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q11" value="A"> Every balance must be multiplied by the quarterly VAT standard percentage rate first.</span>
+                        <span class="option-label"><input type="radio" name="q8" value="A"> Intimidation Threat</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q11" value="B"> Raw ledger balances are cross-adjusted with year-end columns, then routed to either the SPL columns or the SoFP columns.</span>
+                        <span class="option-label"><input type="radio" name="q8" value="B"> Advocacy Threat</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q11" value="C"> All costs and revenues are permanent and cannot be cross-adjusted once entered.</span>
+                        <span class="option-label"><input type="radio" name="q8" value="C"> Familiarity Threat</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The ETB maps the final accounting pipeline: initial trial balance balances are cross-adjusted with year-end accruals/prepayments, and the net adjusted balances are routed to the final financial statements columns.
+                    <strong>Solution Note:</strong> An Advocacy Threat occurs when an accountant promotes a client’s position to the point that their independent objectivity is compromised, aligning their views too closely with the client's corporate aims.
                 </div>
             </div>
-
-            <!-- QUESTION 12: TIPO "multi-select" (Bank Reconciliation Formatting) -->
-            <div class="question-tab" data-qindex="12" data-type="multi-select">
-                <div class="task-instruction-text">12. Complete the logical parameters used to reconcile differences between the cash book spreadsheet cell and the bank statement data.</div>
-                <div class="task-interactive-body">
-                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Unpresented checks issued by the firm to vendors must be 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="deducted">
-                            <option value="">-- Action --</option>
-                            <option value="added">Added to</option>
-                            <option value="deducted">Deducted from</option>
-                        </select> 
-                        the balance statement balance, whereas outstanding bank deposits not yet cleared by the bank must be 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="added">
-                            <option value="">-- Action --</option>
-                            <option value="added">Added to</option>
-                            <option value="deducted">Deducted from</option>
-                        </select> that statement balance to achieve perfect reconciliation.
-                    </p>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Unpresented checks have been deducted from the cash book but haven't hit the bank statement yet (subtract from statement balance). Outstanding deposits have been added to the cash book but are pending at the bank (add to statement balance).
-                </div>
-            </div>
-
-            <!-- QUESTION 13: TIPO "multi-input" (Reconciling Suspense Ledger Records) -->
-            <div class="question-tab" data-qindex="13" data-type="multi-input">
-                <div class="task-instruction-text">13. An unadjusted Suspense Account cell shows a credit balance of £1,500. Two errors are found: an insurance refund receipt of £500 was debited to bank but omitted from insurance income, and a equipment hire payment of £1,000 was debited twice to overheads. Calculate the adjusted suspense balance.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">Suspense Resolution Audit Field</th>
-                                <th style="width: 250px;">Required Balance (£)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Final Remaining Suspense Account balance cell value after adjustments</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="0" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> 1) Insurance correction credits insurance income and debits suspense by £500 (Credit drops to £1,000). 2) Rent entry correction credits rent expense and debits suspense by £1,000, bringing the balance to exactly 0.
-                </div>
-            </div>
-            <!-- QUESTION 14: TIPO "radio" (Data Validation Rule Enforcement) -->
-            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">14. What spreadsheet safety mechanism restricts inputs to an exact list of valid general ledger nominal codes, preventing manual typing mistakes?</div>
-                <div class="task-interactive-body">
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="A"> Conditional Format Highlighting</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="B"> Data Validation Dropdown Lists</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="C"> Automated Cell Freeze Protection</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Data Validation tools allow designers to lock input fields to predefined lookup ranges, preventing users from entering non-existent ledger accounts.
-                </div>
-            </div>
-
-            <!-- QUESTION 15: TIPO "multi-input" (Integrated Worksheet Accounting Review) -->
-            <div class="question-tab" data-qindex="15" data-type="multi-input">
-                <div class="task-instruction-text">15. Final accounting worksheet check: Total adjusted revenue credits = £250,000. Total adjusted operating cost debits = £185,000. Compute the final statement balancing transfer line.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">Extended Trial Balance Summary Row</th>
-                                <th style="width: 250px;">Required Balance (£)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Final Net Profit balancing amount cell to clear to the capital section</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="65,000" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The net profit margin value is found by calculating the difference between total worksheet income credits and cost debits (£250,000 - £185,000 = £65,000). It acts as the balancing line that links the statement sections.
-                </div>
-            </div>
-
-        </form>
-
         <!-- PULSANTIERA DI CONTROLLO INTERNA ALLA BOLLA BIANCA (APPENDICE TECNICA) -->
         <div class="controls-footer">
             <div class="btn-group-left">
@@ -697,6 +508,7 @@
         </div>
 
     </div> <!-- Fine .test-container -->
+
     <!-- TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA SCHERMO -->
     <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
 
@@ -838,6 +650,7 @@ function validateCurrentTab() {
     }
     feedbackMsg.classList.remove('hidden');
 }
+
 function showCurrentSolution() {
     const activeTab = document.querySelector('.question-tab.active');
     const qType = activeTab.getAttribute('data-type');
@@ -899,7 +712,7 @@ function triggerPDFDownload() {
     document.title = oldTitle;
 }
 
-// OPERAZIONI E LOGICA MATEMATICA CALCOLATRICE WIDGET
+// OPERAZIONI CALCOLATRICE WIDGET
 function toggleCalcWidget() {
     const widget = document.getElementById('calc-widget');
     widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
@@ -926,7 +739,7 @@ function executeCalc() {
     try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
 }
 
-// LOGICA REALE DRAG MECCANICA TRASCINABILE
+// LOGICA MOUSE DRAG TRASCINABILE
 const dragWidget = document.getElementById("calc-widget");
 const dragHandle = document.getElementById("calc-header");
 let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
