@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 - Chapter 1: Test 1 (Advanced Adjustments)</title>
+    <title>AAT Level 3 Advanced Bookkeeping - Chapter 1 Test One</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* DESIGN SYSTEM INTERFACCIA LIVELLO 3 - PALETTE AZZURRO CIANO */
+        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO (ALLINEATO A STANDARD HOMEPAGE) */
         :root {
             --bg-dark-external: #0B0F19;
             --bubble-white-bg: #FFFFFF;
@@ -18,6 +18,7 @@
             --border-color: #E5E7EB;
             --danger-color: #DC2626;
             --success-box-bg: #DEF7EC;
+            --neon-calc-accent: #00FF66;
         }
 
         body {
@@ -25,13 +26,36 @@
             background-color: var(--bg-dark-external);
             color: var(--text-dark);
             margin: 0;
-            padding: 2rem 1rem;
-            line-height: 1.6;
+            padding-top: 80px;
         }
 
-        .test-container {
+        .exam-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background-color: #111827;
+            border-bottom: 2px solid var(--l3-cyan-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .top-bar-title {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .exam-main-wrapper {
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
         }
 
         .white-bubble-container {
@@ -42,25 +66,25 @@
             border: 1px solid var(--border-color);
         }
 
-        .test-header {
-            margin-bottom: 2rem;
-            border-bottom: 3px solid var(--l3-cyan-light);
-            padding-bottom: 1.2rem;
+        /* STRUTTURA PANNELLO QUESITO MONO SELEZIONATO */
+        .exam-task-panel { display: none; }
+        .exam-task-panel.active { display: block; }
+
+        .question-meta-header {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--l3-cyan-dark);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.05em;
         }
 
-        .task-box {
+        .task-interactive-body {
             background-color: #FAFAFA;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .task-title {
-            font-weight: 700;
-            color: var(--l3-cyan-dark);
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
+            margin: 1.5rem 0;
         }
 
         .financial-table {
@@ -82,7 +106,7 @@
         .financial-table td {
             border: 1px solid var(--border-color);
             padding: 0.6rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .table-input {
@@ -95,10 +119,13 @@
             box-sizing: border-box;
         }
 
-        .table-input:focus {
-            border-color: var(--l3-cyan-primary);
-            outline: none;
-            background-color: var(--l3-cyan-light);
+        .select-input {
+            width: 100%;
+            padding: 0.4rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background-color: #FFFFFF;
         }
 
         .option-label {
@@ -113,17 +140,28 @@
             margin-bottom: 0.5rem;
         }
 
+        .exam-footer-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border-color);
+        }
+
         .ctrl-btn {
-            padding: 0.65rem 1.5rem;
+            padding: 0.65rem 1.25rem;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             border: none;
         }
 
-        .btn-success { background: var(--l3-cyan-primary); color: #FFFFFF; }
-        .btn-success:hover { background: var(--l3-cyan-dark); }
+        .btn-primary { background: var(--l3-cyan-primary); color: #FFFFFF; }
+        .btn-success { background: #059669; color: #FFFFFF; }
+        .btn-secondary { background: #E5E7EB; color: var(--text-dark); }
+        .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .tool-btn { background: #374151; color: #FFF; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
 
         .feedback-box {
             margin-top: 1.2rem;
@@ -131,160 +169,333 @@
             border-radius: 6px;
             border-left: 4px solid;
         }
-
-        .feedback-correct { background-color: var(--success-box-bg); border-color: var(--l3-cyan-primary); color: #065F46; }
+        .feedback-correct { background-color: var(--success-box-bg); border-color: #059669; color: #065F46; }
         .feedback-incorrect { background-color: #FDE8E8; border-color: var(--danger-color); color: #9B1C1C; }
+
+        .exam-results-card {
+            margin-top: 2rem;
+            background: #F9FAFB;
+            border: 2px solid var(--l3-cyan-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem; }
+        .result-metric { background: #FFFFFF; border: 1px solid var(--border-color); padding: 1.2rem; border-radius: 6px; text-align: center; }
+        .metric-value { font-size: 1.4rem; font-weight: 700; color: var(--l3-cyan-dark); }
         .hidden { display: none !important; }
         .text-right { text-align: right; }
     </style>
 </head>
 <body>
 
-    <div class="test-container">
+    <div class="exam-top-bar">
+        <div class="top-bar-title">🏆 AAT LEVEL 3: ADVANCED BOOKKEEPING ASSESSMENT</div>
+        <div class="timer-container">
+            <button type="button" class="tool-btn" onclick="toggleCalc()">🧮 Calculator</button>
+        </div>
+    </div>
+
+    <main class="exam-main-wrapper">
         <div class="white-bubble-container">
             
-            <div class="test-header">
-                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">LEVEL 3 ASSESSMENT</span>
-                <h1 style="font-size: 1.8rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1 - Test 1: Year-End Ledger Adjustments</h1>
+            <div style="margin-bottom: 2rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 1rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">ASSESSMENT ENVIRONMENT</span>
+                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Year-End Adjustments & Receivables (Test One)</h1>
             </div>
 
-            <form id="l3-test-form" onsubmit="event.preventDefault();">
-                
-                <!-- TASK 1: ACCRUED EXPENSE CALCULATION -->
-                <div class="task-box" id="task-node-0">
-                    <div class="task-title">Task 1: Accrued Expense Calculation (10 Points)</div>
-                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
-                        A business pays its telephone expenses quarterly in arrears. The company's financial year ends on <strong>31 December</strong>. The latest telephone bill arrived in November, covering the period up to 31 October, and totaled £600. Calculate the required year-end accrual adjustment for the unbilled months and determine the final expense charge to the Statement of Profit or Loss (SPL).
-                    </p>
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th>Accounting Adjustment Metric</th>
-                                <th>Required Input Value (£)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Year-End Accrual Closing Balance (c/d)</td>
-                                <td><input type="text" class="table-input text-right" data-ans="400.00" placeholder="0.00"></td>
-                            </tr>
-                            <tr>
-                                <td>Total Telephone Expense Charge to SPL</td>
-                                <td><input type="text" class="table-input text-right" data-ans="2,800.00" placeholder="0.00"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="feedback-box hidden" id="feed-node-0"></div>
-                </div>
-
-                <!-- TASK 2: PREPAID EXPENSE POSTING -->
-                <div class="task-box" id="task-node-1">
-                    <div class="task-title">Task 2: Prepaid Expense Apportionment (10 Points)</div>
-                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
-                        On 1 October, a corporate entity settles an annual warehouse commercial insurance premium of £4,800 covering a 12-month contract window. The corporate financial year ends on <strong>31 December</strong>. Compute the exact prepayment adjustment to be carried forward as a current asset.
-                    </p>
-                    <div style="display:flex; align-items:center; max-width:200px; border:1px solid var(--border-color); border-radius:6px; overflow:hidden; background:#FFF;">
-                        <span style="padding:0.4rem 0.6rem; background:#F3F4F6; font-weight:bold; color:var(--text-muted);">£</span>
-                        <input type="text" class="table-input" data-ans="3,600.00" placeholder="0.00" style="border:none; width:100%; text-align:right; padding-right:10px;">
-                    </div>
-                    <div class="feedback-box hidden" id="feed-node-1"></div>
-                </div>
-
-                <!-- TASK 3: CONCEPTUAL QUESTIONS -->
-                <div class="task-box" id="task-node-2">
-                    <div class="task-title">Task 3: Regulatory Accounting Principles (10 Points)</div>
-                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
-                        Under <strong>IAS 1 Presentation of Financial Statements</strong>, how are closing Accrued Expenses and Prepaid Expenses classified within the Statement of Financial Position?
-                    </p>
-                    <div class="options-container">
-                        <label class="option-label"><input type="radio" name="q3" value="A"> Accruals as Current Liabilities, Prepayments as Current Assets.</label>
-                        <label class="option-label"><input type="radio" name="q3" value="B"> Accruals as Current Assets, Prepayments as Current Liabilities.</label>
-                        <label class="option-label"><input type="radio" name="q3" value="C"> Both items are recorded under Non-Current Liabilities.</label>
-                    </div>
-                    <div class="feedback-box hidden" id="feed-node-2"></div>
-                </div>
-
+            <form id="aat-test-form" onsubmit="event.preventDefault();">
+                <div id="dynamic-questions-container"></div>
             </form>
+<script>
+// DATABASE COMPLETO DEI QUESITI STRUTTURATI 1:1 SECONDO I TEST OSBORNE BOOKS
+const questionsPool = [
+    {
+        type: "dropdown",
+        instruction: "Complete the regulatory statements regarding year-end adjustments classifications according to IAS 1 framework parameters.",
+        htmlContent: `
+            <div style="line-height: 2; font-size: 1.05rem;">
+                An overhead expense that has been consumed by the entity during the current period but remains unbilled at the year-end date constitutes an 
+                <select class="select-input" style="width: auto; display: inline-block;" data-ans="accrual">
+                    <option value="">-- Choose Adjustment --</option>
+                    <option value="accrual">Accrued Expense (Accrual)</option>
+                    <option value="prepayment">Prepaid Expense (Prepayment)</option>
+                </select> 
+                which must be systematically reported as a 
+                <select class="select-input" style="width: auto; display: inline-block;" data-ans="liability">
+                    <option value="">-- Choose Element --</option>
+                    <option value="asset">Current Asset</option>
+                    <option value="liability">Current Liability</option>
+                </select>. 
+                Conversely, an expense paid in advance covering next year's service window represents a 
+                <select class="select-input" style="width: auto; display: inline-block;" data-ans="prepayment">
+                    <option value="">-- Choose Adjustment --</option>
+                    <option value="accrual">Accrued Expense (Accrual)</option>
+                    <option value="prepayment">Prepaid Expense (Prepayment)</option>
+                </select> 
+                classified as a 
+                <select class="select-input" style="width: auto; display: inline-block;" data-ans="asset">
+                    <option value="">-- Choose Element --</option>
+                    <option value="asset">Current Asset</option>
+                    <option value="liability">Current Liability</option>
+                </select>.
+            </div>
+        `, explanation: "Under IAS 1 framework parameters, accrued expenses reflect unbilled legal obligations owed to third parties (Current Liabilities). Prepaid expenses reflect controlled economic values paid upfront to be enjoyed in future cycles (Current Assets)."
+    },
+    {
+        type: "table",
+        instruction: "A business pays its telephone overheads quarterly in arrears. The financial year ends on 31 December. The total bank payments made during the year stand at £4,200. The last quarter bill arrived in November (covering Aug, Sep, Oct) totaling £900. Input the requested year-end metrics.",
+        htmlContent: `
+            <table class="financial-table">
+                <thead><tr><th>Accounting Variable Item</th><th style="width:250px;">Required Balance (£)</th></tr></thead>
+                <tbody>
+                    <tr><td>Year-End Accrued Expense Closing Balance (c/d)</td><td><input type="text" class="table-input text-right" data-ans="600.00" placeholder="0.00"></td></tr>
+                    <tr><td>Total Net Telephone Expense Charge to SPL Account</td><td><input type="text" class="table-input text-right" data-ans="4,800.00" placeholder="0.00"></td></tr>
+                </tbody>
+            </table>
+        `, explanation: "The quarterly bill is £900 / 3 months = £200/month. For Nov and Dec, the overhead is unbilled (2 months × £200 = £600 Accrual c/d). The total profit or loss expense charge is: £4,200 + £600 = £4,800."
+    },
+    {
+        type: "table",
+        instruction: "On 1 October, a corporate entity settles an annual insurance policy premium of £4,800. The corporate financial year ends on 31 December. Calculate the required year-end adjustments.",
+        htmlContent: `
+            <table class="financial-table">
+                <thead><tr><th>Accounting Adjustment Metric</th><th style="width:250px;">Required Balance (£)</th></tr></thead>
+                <tbody>
+                    <tr><td>Prepaid Expense Adjustment Balance (c/d Current Asset)</td><td><input type="text" class="table-input text-right" data-ans="3,600.00" placeholder="0.00"></td></tr>
+                    <tr><td>Net Insurance Expense Overhead Charge to SPL Account</td><td><input type="text" class="table-input text-right" data-ans="1,200.00" placeholder="0.00"></td></tr>
+                </tbody>
+            </table>
+        `, explanation: "The policy is £4,800 / 12 = £400/month. 3 months apply to the current year (Oct, Nov, Dec = £1,200 charge). 9 months apply to next year (Jan-Sep = £3,600 Prepayment asset)."
+    },
+    {
+        type: "table",
+        instruction: "At 31 December year-end, a firm extracts a gross Trade Receivables balance of £30,500 and an opening Allowance b/f of £1,100. A specific customer debt of £500 must be written off as irrecoverable. Management directs that a closing general allowance of 5% must be established. Complete the adjusted values.",
+        htmlContent: `
+            <table class="financial-table">
+                <thead><tr><th>Receivables Ledger Valuation Step</th><th style="width:250px;">Required Balance (£)</th></tr></thead>
+                <tbody>
+                    <tr><td>Adjusted Net Receivables Pool for Allowance calculations</td><td><input type="text" class="table-input text-right" data-ans="30,000.00" placeholder="0.00"></td></tr>
+                    <tr><td>New Required Closing Allowance Target Pool Balance</td><td><input type="text" class="table-input text-right" data-ans="1,500.00" placeholder="0.00"></td></tr>
+                    <tr><td>Net Differential Allowance Variance posted to SPL (Increase)</td><td><input type="text" class="table-input text-right" data-ans="400.00" placeholder="0.00"></td></tr>
+                </tbody>
+            </table>
+        `, explanation: "1) Adjusted Pool: £30,500 - £500 = £30,000. 2) Target: 5% of £30,000 = £1,500. 3) Variance increase to SPL: £1,500 (Target) - £1,100 (Opening b/f) = £400."
+    },
+    {
+        type: "radio",
+        instruction: "A customer whose balance was written off as an irrecoverable debt in a previous financial year suddenly pays the business £350 cash to settle their account. Select the correct accounting entry.",
+        htmlContent: `
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q5" value="A"> DEBIT Bank Account £350 | CREDIT Irrecoverable Debts Recovered Account £350</label>
+                <label class="option-label"><input type="radio" name="q5" value="B"> DEBIT Bank Account £350 | CREDIT Trade Receivables Control Account (SLCA) £350</label>
+                <label class="option-label"><input type="radio" name="q5" value="C"> DEBIT Irrecoverable Debts Account £350 | CREDIT Bank Account £350</label>
+            </div>
+        `, correct: "A",
+        explanation: "Since the original customer account was terminated in a previous year, the unexpected collection cannot hit the SLCA pool. It is double-booked as a credit to the Irrecoverable Debts Recovered account, generating direct operating income in the SPL."
+    }
+];
+            <!-- PULSANTI DI CONTROLLO OPERATIVO INTERNI ALLA BOLLA -->
+            <div class="exam-footer-controls">
+                <div>
+                    <button type="button" class="ctrl-btn btn-secondary" id="action-prev" onclick="movePrev()">Previous Question</button>
+                    <button type="button" class="ctrl-btn btn-secondary" id="action-next" onclick="moveNext()">Next Question</button>
+                </div>
+                <div>
+                    <button type="button" class="ctrl-btn btn-primary" id="action-submit" onclick="processValidation()">Am I right?</button>
+                    <button type="button" class="ctrl-btn btn-success hidden" id="action-solution" onclick="exposeSolutions()">Show Solution</button>
+                    <button type="button" class="ctrl-btn btn-secondary" onclick="restartSession()">Reset</button>
+                </div>
+            </div>
 
-            <!-- SUBMIT BAR -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2rem; border-top:2px solid var(--border-color); padding-top:1.5rem;">
-                <div id="test-score-display" style="font-size:1.2rem; font-weight:700; color:var(--l3-cyan-dark);"></div>
-                <button type="button" class="ctrl-btn btn-success" id="submit-test-btn" onclick="evaluateTest()">🏆 Submit Answers</button>
+            <!-- TABELLA DI PERFORMANCE REPORT FINALE -->
+            <div class="exam-results-card hidden" id="test-results-block">
+                <h3 style="margin: 0 0 1rem 0; color: var(--text-dark);">Performance Assessment Report</h3>
+                <div class="results-grid">
+                    <div class="result-metric">
+                        <span style="font-size:0.8rem; color:var(--text-muted); display:block;">Percentage Score</span>
+                        <span class="metric-value" id="final-percentage-span">0%</span>
+                    </div>
+                    <div class="result-metric">
+                        <span style="font-size:0.8rem; color:var(--text-muted); display:block;">Assessment Outcome</span>
+                        <span class="metric-value" id="final-outcome-span">-</span>
+                    </div>
+                </div>
             </div>
 
         </div>
+    </main>
+
+    <!-- WIDGET CALCOLATRICE NEON POP-UP -->
+    <div id="neon-calc" style="position:fixed; bottom:20px; right:20px; width:220px; background:#111827; border:2px solid var(--l3-cyan-primary); border-radius:8px; display:none; padding:10px; z-index:2000;">
+        <input type="text" id="calc-display" style="width:100%; text-align:right; font-family:monospace; background:black; color:var(--neon-calc-accent); border:none; padding:5px; font-size:1.2rem; margin-bottom:5px;" readonly value="0">
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:5px;">
+            <button type="button" onclick="clearCalc()" style="background:#374151; color:white; border:none; padding:5px;">C</button>
+            <button type="button" onclick="pressOp('/')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">/</button>
+            <button type="button" onclick="pressOp('*')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">*</button>
+            <button type="button" onclick="pressOp('-')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">-</button>
+            <button type="button" onclick="pressNum('7')" style="background:#4B5563; color:white; border:none; padding:5px;">7</button>
+            <button type="button" onclick="pressNum('8')" style="background:#4B5563; color:white; border:none; padding:5px;">8</button>
+            <button type="button" onclick="pressNum('9')" style="background:#4B5563; color:white; border:none; padding:5px;">9</button>
+            <button type="button" onclick="pressOp('+')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">+</button>
+            <button type="button" onclick="pressNum('4')" style="background:#4B5563; color:white; border:none; padding:5px;">4</button>
+            <button type="button" onclick="pressNum('5')" style="background:#4B5563; color:white; border:none; padding:5px;">5</button>
+            <button type="button" onclick="pressNum('6')" style="background:#4B5563; color:white; border:none; padding:5px;">6</button>
+            <button type="button" onclick="calcResult()" style="grid-row: span 2; background:var(--neon-calc-accent); color:black; border:none; font-weight:bold;">=</button>
+            <button type="button" onclick="pressNum('1')" style="background:#4B5563; color:white; border:none; padding:5px;">1</button>
+            <button type="button" onclick="pressNum('2')" style="background:#4B5563; color:white; border:none; padding:5px;">2</button>
+            <button type="button" onclick="pressNum('3')" style="background:#4B5563; color:white; border:none; padding:5px;">3</button>
+            <button type="button" onclick="pressNum('0')" style="grid-column: span 2; background:#4B5563; color:white; border:none; padding:5px;">0</button>
+            <button type="button" onclick="pressNum('.')" style="background:#4B5563; color:white; border:none; padding:5px;">.</button>
+        </div>
     </div>
-    <script>
-        const solutionDatabase = [
-            {
-                id: 0, points: 10, type: "input",
-                explanation: "The telephone bill is quarterly (£600 / 3 months = £200 per month). At 31 December, 2 months are unbilled (November, December), so Accrual = £200 × 2 = £400. Total SPL charge equals the ledger payments plus the closing accrual adjustment."
-            },
-            {
-                id: 1, points: 10, type: "input",
-                explanation: "The insurance covers 12 months (£4,800 / 12 = £400 per month). 3 months belong to the current year (Oct, Nov, Dec). 9 months are prepaid for next year (Jan to Sep). Prepayment = £400 × 9 months = £3,600."
-            },
-            {
-                id: 2, points: 10, type: "radio", correct: "A",
-                explanation: "Accrued expenses represent expenses owed, creating a temporary obligation classified as a Current Liability. Prepaid expenses represent economic benefits paid in advance, classified as a Current Asset."
-            }
-        ];
 
-        let isSubmitted = false;
+<script>
+let activeQuestionIndex = 0;
+let testSubmittedState = false;
 
-        function evaluateTest() {
-            if (isSubmitted) return;
-            isSubmitted = true;
-            document.getElementById('submit-test-btn').disabled = true;
+window.addEventListener('DOMContentLoaded', () => {
+    buildQuestionsDOM();
+    displayActiveQuestion(0);
+});
 
-            let totalAvailable = 30;
-            let totalAwarded = 0;
+function buildQuestionsDOM() {
+    const wrapper = document.getElementById('dynamic-questions-container');
+    if (!wrapper) return;
+    wrapper.innerHTML = '';
 
-            solutionDatabase.forEach((task, index) => {
-                const node = document.getElementById(`task-node-${index}`);
-                const feedBox = document.getElementById(`feed-node-${index}`);
-                let isTaskCorrect = true;
+    questionsPool.forEach((q, index) => {
+        const panel = document.createElement('div');
+        panel.className = 'exam-task-panel';
+        panel.id = `panel-node-${index}`;
 
-                if (task.type === "radio") {
-                    const selected = node.querySelector('input[type="radio"]:checked');
-                    if (!selected || selected.value !== task.correct) {
-                        isTaskCorrect = false;
-                    }
-                } else {
-                    node.querySelectorAll('input[data-ans]').forEach(input => {
-                        const userVal = input.value.trim().toLowerCase();
-                        const targetVal = input.getAttribute('data-ans').trim().toLowerCase();
-                        if (userVal !== targetVal) {
-                            isTaskCorrect = false;
-                            input.style.borderColor = "#DC2626";
-                        } else {
-                            input.style.borderColor = "#059669";
-                        }
-                        input.disabled = true;
-                    });
-                }
-
-                feedBox.classList.remove('hidden');
-                if (isTaskCorrect) {
-                    totalAwarded += task.points;
-                    feedBox.className = "feedback-box feedback-correct";
-                    feedBox.innerHTML = `<strong>✅ Correct! (+${task.points} Points)</strong><br><span style="font-size:0.85rem;"><strong>Solution Note:</strong> ${task.explanation}</span>`;
-                } else {
-                    feedBox.className = "feedback-box feedback-incorrect";
-                    feedBox.innerHTML = `<strong>❌ Incorrect! (0 / ${task.points} Points)</strong><br><span style="font-size:0.85rem;"><strong>Solution Note:</strong> ${task.explanation}</span>`;
-                }
-            });
-
-            const percentage = Math.round((totalAwarded / totalAvailable) * 100);
-            const scoreDisplay = document.getElementById('test-score-display');
-            scoreDisplay.textContent = `Final Score: ${percentage}% (${totalAwarded} / ${totalAvailable} Points)`;
+        panel.innerHTML = `
+            <div class="question-meta-header">Question ${index + 1} of ${questionsPool.length}</div>
+            <div style="font-weight: 600; margin-bottom: 1rem; color: #111827;">${q.instruction}</div>
+            <div class="task-interactive-body">${q.htmlContent}</div>
             
-            if (percentage >= 70) {
-                scoreDisplay.style.color = "#059669";
-            } else {
-                scoreDisplay.style.color = "#DC2626";
-            }
+            <div class="feedback-box hidden" id="feedback-node-${index}">
+                <div id="feedback-title-${index}" style="font-weight:700; margin-bottom:0.4rem;"></div>
+                <div id="feedback-note-${index}" style="font-size:0.85rem; color:#4B5563; padding-top:0.4rem; border-top:1px dashed rgba(0,0,0,0.15);">
+                    <strong>Solution Note:</strong> ${q.explanation}
+                </div>
+            </div>
+        `;
+        wrapper.appendChild(panel);
+    });
+}
+
+function displayActiveQuestion(index) {
+    if (index < 0 || index >= questionsPool.length) return;
+    
+    document.querySelectorAll('.exam-task-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(`panel-node-${index}`).classList.add('active');
+    
+    activeQuestionIndex = index;
+    document.getElementById('action-prev').disabled = (index === 0);
+    document.getElementById('action-next').disabled = (index === questionsPool.length - 1);
+}
+
+function movePrev() { if (activeQuestionIndex > 0) displayActiveQuestion(activeQuestionIndex - 1); }
+function moveNext() { if (activeQuestionIndex < questionsPool.length - 1) displayActiveQuestion(activeQuestionIndex + 1); }
+
+function processValidation() {
+    if (testSubmittedState) return;
+    testSubmittedState = true;
+    document.getElementById('action-submit').disabled = true;
+
+    let totalTasksCount = questionsPool.length;
+    let totalCorrectCount = 0;
+
+    questionsPool.forEach((q, index) => {
+        const panel = document.getElementById(`panel-node-${index}`);
+        const feedBox = document.getElementById(`feedback-node-${index}`);
+        const feedTitle = document.getElementById(`feedback-title-${index}`);
+        let isCorrect = true;
+
+        if (q.type === "radio") {
+            const checkedRadio = panel.querySelector(`input[name="q${index + 1}"]:checked`);
+            isCorrect = (checkedRadio && checkedRadio.value === q.correct);
+        } else {
+            panel.querySelectorAll('input[data-ans], select[data-ans]').forEach(element => {
+                const userVal = element.value.trim().toLowerCase();
+                const targetVal = element.getAttribute('data-ans').trim().toLowerCase();
+                
+                if (userVal !== targetVal) {
+                    isCorrect = false;
+                    element.style.borderColor = "#DC2626";
+                } else {
+                    element.style.borderColor = "#059669";
+                }
+                element.disabled = true;
+            });
         }
-    </script>
+
+        if (isCorrect) {
+            totalCorrectCount++;
+            feedBox.className = "feedback-box feedback-correct";
+            feedTitle.innerHTML = "✅ Correct Answer";
+        } else {
+            feedBox.className = "feedback-box feedback-incorrect";
+            feedTitle.innerHTML = "❌ Incorrect Answer";
+        }
+    });
+
+    const finalPercentage = Math.round((totalCorrectCount / totalTasksCount) * 100);
+    document.getElementById('final-percentage-span').textContent = `${finalPercentage}%`;
+    
+    const outcomeSpan = document.getElementById('final-outcome-span');
+    if (finalPercentage >= 70) {
+        outcomeSpan.textContent = "PASS (Competent)";
+        outcomeSpan.style.color = "#059669";
+    } else {
+        outcomeSpan.textContent = "FAIL (Not Yet Competent)";
+        outcomeSpan.style.color = "#DC2626";
+    }
+
+    document.getElementById('test-results-block').classList.remove('hidden');
+    document.getElementById('action-solution').classList.remove('hidden');
+}
+
+function exposeSolutions() {
+    document.querySelectorAll('.feedback-box').forEach(fb => {
+        fb.classList.remove('hidden');
+    });
+}
+
+function restartSession() {
+    if (confirm("Reset this test session? All inputs will be wiped.")) {
+        testSubmittedState = false;
+        document.getElementById('action-submit').disabled = false;
+        document.getElementById('test-results-block').classList.add('hidden');
+        document.getElementById('action-solution').classList.add('hidden');
+        buildQuestionsDOM();
+        displayActiveQuestion(0);
+    }
+}
+// // STRUTTURA MATEMATICA CALCOLATRICE WIDGET
+function toggleCalc() {
+    const calc = document.getElementById('neon-calc');
+    calc.style.display = (calc.style.display === 'block') ? 'none' : 'block';
+}
+function pressNum(n) {
+    const d = document.getElementById('calc-display');
+    d.value = (d.value === '0') ? n : d.value + n;
+}
+function pressOp(o) { 
+    document.getElementById('calc-display').value += o; 
+}
+function clearCalc() { 
+    document.getElementById('calc-display').value = '0'; 
+}
+function calcResult() {
+    const d = document.getElementById('calc-display');
+    try { 
+        d.value = eval(d.value); 
+    } catch(e) { 
+        d.value = 'Error'; 
+    }
+}
+</script>
 </body>
 </html>
