@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Level 3 FAPR - Official Style Mock Exam</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        /* ========================================== */
+        /* DESIGN SYSTEM & CORE INTERFACCIA ASSESSMENT */
+        /* ========================================== */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l2-emerald-primary: #059669;
+            --l2-emerald-dark: #047857;
+            --l2-emerald-light: #E6F4EA;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --danger-color: #DC2626;
+            --success-box-bg: #DEF7EC;
+            --neon-calc-accent: #00FF66;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
+            margin: 0;
+            padding-top: 80px;
+        }
+        .exam-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background-color: #111827;
+            border-bottom: 2px solid var(--l2-emerald-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        .top-bar-title {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .timer-countdown {
+            font-family: 'JetBrains Mono', monospace;
+            color: #FFFFFF;
+            font-weight: 700;
+            background: #1F2937;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            border: 1px solid #374151;
+        }
+        .exam-main-wrapper {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+        }
+        .exam-tabs-navigation {
+            display: flex;
+            gap: 0.35rem;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 1px;
+        }
+        .tab-trigger-btn {
+            background: #F3F4F6;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .tab-trigger-btn:hover { background: #E5E7EB; }
+        .tab-trigger-btn.active {
+            background: var(--bubble-white-bg);
+            color: var(--l2-emerald-primary);
+            border-top: 3px solid var(--l2-emerald-primary);
+            padding-bottom: calc(0.6rem + 2px);
+            margin-bottom: -2px;
+        }
+        .exam-task-panel { display: none; }
+        .exam-task-panel.active { display: block; }
+        .task-interactive-body {
+            background-color: #FAFAFA;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: #FFFFFF;
+        }
+        .financial-table th {
+            background-color: var(--l2-emerald-dark);
+            color: #FFFFFF;
+            padding: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l2-emerald-dark);
+        }
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.6rem;
+            font-size: 0.9rem;
+        }
+        .table-input {
+            width: 100%;
+            padding: 0.4rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+        .text-right { text-align: right; }
+        .text-left { text-align: left; }
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+        .exam-footer-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border-color);
+        }
+        .ctrl-btn {
+            padding: 0.65rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-secondary { background: #E5E7EB; color: var(--text-dark); }
+        .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-danger { background: var(--danger-color); color: #FFFFFF; }
+        .btn-success { background: var(--l2-emerald-primary); color: #FFFFFF; }
+        .tool-btn { background: #374151; color: #FFF; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+        .exam-results-card {
+            margin-top: 2rem;
+            background: #F9FAFB;
+            border: 2px solid var(--l2-emerald-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .result-metric {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .metric-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+        .metric-value { font-size: 1.4rem; font-weight: 700; color: var(--l2-emerald-dark); }
+        .drag-calculator-panel {
+            position: fixed;
+            top: 85px;
+            right: 30px;
+            width: 240px;
+            background: #111827;
+            border: 2px solid var(--neon-calc-accent);
+            border-radius: 8px;
+            display: none;
+            z-index: 2000;
+        }
+        .calc-header {
+            background: #1F2937;
+            padding: 0.5rem;
+            color: var(--neon-calc-accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #374151;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        .calc-display-input {
+            width: 100%;
+            background: #000000;
+            color: var(--neon-calc-accent);
+            border: 1px solid #374151;
+            text-align: right;
+            padding: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .calc-grid-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; margin-top: 0.5rem; }
+        .calc-btn { background: #374151; color: #FFFFFF; border: none; padding: 0.55rem; cursor: pointer; font-weight: 700; border-radius: 4px; }
+        .btn-equal { background: var(--neon-calc-accent); color: #000000; grid-row: span 2; display: flex; align-items: center; justify-content: center; }
+        .feedback-box { margin-top: 1.2rem; padding: 1.2rem; border-radius: 6px; border-left: 4px solid; }
+        .hidden { display: none !important; }
+
+        @media print {
+            body { background: #FFFFFF !important; padding-top: 0 !important; color: #000000 !important; }
+            .exam-top-bar, .exam-tabs-navigation, .exam-footer-controls, .drag-calculator-panel { display: none !important; }
+            .exam-main-wrapper { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+            .white-bubble-container { border: none !important; box-shadow: none !important; padding: 0 !important; }
+            .exam-task-panel { display: block !important; page-break-after: always; }
+            .task-interactive-body { background: #FFFFFF !important; border: 1px solid #000000 !important; }
+            .exam-results-card { display: block !important; border: 2px solid #000000 !important; background: #FFFFFF !important; page-break-before: always; }
+            input { border: none !important; border-bottom: 1px solid #000000 !important; background: transparent !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- BARRA FISSA SUPERIORE -->
+    <div class="exam-top-bar">
+        <div class="top-bar-title">🏆 AAT LEVEL 3: FAPR LIVE ASSESSMENT</div>
+        <div class="timer-container">
+            <button type="button" class="tool-btn" onclick="toggleCalc()">🧮 Calculator</button>
+            <div id="exam-timer" class="timer-countdown">60:00</div>
+        </div>
+    </div>
+
+    <!-- BOLLA BIANCA CENTRALE -->
+    <main class="exam-main-wrapper">
+        <div class="white-bubble-container">
+            <!-- SCHEDE TASK -->
+            <div class="exam-tabs-navigation" id="exam-tabs-headers"></div>
+            
+            <!-- CONTENITORE DOMANDE -->
+            <form id="mock-exam-form" onsubmit="event.preventDefault();">
+                <div id="exam-panels-container"></div>
+            </form>
+            
+            <!-- PULSANTI DI CONTROLLO -->
+            <div class="exam-footer-controls">
+                <div>
+                    <button type="button" class="ctrl-btn btn-secondary" id="btn-prev" onclick="navPrev()">⬅️ Previous</button>
+                    <button type="button" class="ctrl-btn btn-secondary" id="btn-next" onclick="navNext()">Next ➡️</button>
+                </div>
+                <div>
+                    <button type="button" class="ctrl-btn btn-danger" onclick="resetExam()">Reset</button>
+                    <button type="button" class="ctrl-btn btn-success" onclick="submitExam()">Submit</button>
+                </div>
+            </div>
+
+            <!-- TABELLA RISULTATI (NASCROSTA DI DEFAULT) -->
+            <div class="exam-results-card hidden" id="results-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px solid #E5E7EB; padding-bottom:0.5rem;">
+                    <h2 style="color:#111827; margin:0; font-size:1.3rem;">Official Performance Report</h2>
+                    <button type="button" class="ctrl-btn btn-secondary" onclick="window.print()">Download as PDF (A4 Print)</button>
+                </div>
+                <div class="results-grid">
+                    <div class="result-metric">
+                        <span class="metric-label">Final Grade</span>
+                        <span class="metric-value" id="res-score">0%</span>
+                    </div>
+                    <div class="result-metric">
+                        <span class="metric-label">Points Awarded</span>
+                        <span class="metric-value" id="res-points">0 / 100</span>
+                    </div>
+                    <div class="result-metric">
+                        <span class="metric-label">Outcome</span>
+                        <span class="metric-value" id="res-outcome">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- WIDGET CALCOLATRICE NEON POP-UP -->
+    <div class="drag-calculator-panel" id="neon-calc">
+        <div class="calc-header" id="calc-header">AAT SYSTEM CALCULATOR <span onclick="toggleCalc()" style="cursor:pointer; font-size:1.2rem;">✕</span></div> 
+        <div style="padding:0.6rem;">
+            <input type="text" id="calc-display" class="calc-display-input" readonly value="0">
+            <div class="calc-grid-buttons">
+                <button type="button" class="calc-btn" style="color:#F87171;" onclick="clearCalc()">C</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('/')">/</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('*')">*</button>
+                <button type="button" class="calc-btn" style="color:#00FF66;" onclick="pressOp('-')">-</button>
+                <button type="button" class="calc-btn" onclick="pressNum('7')">7</button>
+                <button type="button" class="calc-btn" onclick="pressNum('8')">8</button>
+                <button type="button" class="calc-btn" onclick="pressNum('9')">9</button>
+                <button type="button" class="calc-btn style-plus" style="color:#00FF66;" onclick="pressOp('+')">+</button>
+                <button type="button" class="calc-btn" onclick="pressNum('4')">4</button>
+                <button type="button" class="calc-btn" onclick="pressNum('5')">5</button>
+                <button type="button" class="calc-btn" onclick="pressNum('6')">6</button>
+                <button type="button" class="calc-btn btn-equal" onclick="calcResult()">=</button>
+                <button type="button" class="calc-btn" onclick="pressNum('1')">1</button>
+                <button type="button" class="calc-btn" onclick="pressNum('2')">2</button>
+                <button type="button" class="calc-btn" onclick="pressNum('3')">3</button>
+                <button type="button" class="calc-btn" style="grid-column: span 2;" onclick="pressNum('0')">0</button>
+                <button type="button" class="calc-btn" onclick="pressNum('.')">.</button>
+            </div>
+        </div>
+    </div>
+<script>
+const questionsDatabase = [
+    {
+        id: 1, chapter: 1, type: "input", points: 10,
+        instruction: "Calculate the second-year depreciation expense charge using the Reducing Balance framework.",
+        content: `
+        <div style="margin-bottom:0.5rem;">A business purchases a production vehicle on 1 January 2024 for £24,000. The firm applies the Reducing Balance Method of depreciation at a fixed rate of 25% per annum. Enter the precise Depreciation Expense charge (£) to be recorded in the Statement of Profit or Loss for the second financial year ending 31 December 2025.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q1" data-ans="4500" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Year 1 Depreciation: £24,000 * 25% = £6,000. NBV at start of Year 2: £24,000 - £6,000 = £18,000. Year 2 Depreciation charge: £18,000 * 25% = £4,500."
+    },
+    {
+        id: 2, chapter: 1, type: "input", points: 10,
+        instruction: "Calculate the exact Prepayment adjustment required at year-end.",
+        content: `
+        <div style="margin-bottom:0.5rem;">On 1 November 2025, an enterprise pays its annual commercial insurance premium of £3,600 covering a 12-month window to 31 October 2026. Enter the exact Prepayment adjustment amount (£) required at the financial year-end on 31 December 2025.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q2" data-ans="3000" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Premium is £300/month (£3,600 / 12). At 31 Dec, 2 months are consumed. 10 months are prepaid: 10 * £300 = £3,000."
+    },
+    {
+        id: 3, chapter: 1, type: "input", points: 10,
+        instruction: "Isolate the unpaid consumed cost to form the year-end Accrual correction entry.",
+        content: `
+        <div style="margin-bottom:0.5rem;">A firm's financial year ends on 31 March 2026. The electricity bill is paid quarterly in arrears. The last invoice was settled up to 31 January 2026. On 15 May 2026, the firm receives an electricity bill of £900 covering February, March, and April 2026. Enter the Accrual adjustment (£) required at year-end.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q3" data-ans="600" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Bill is £300/month (£900 / 3). For Feb and Mar (2 months), electricity is consumed but unpaid at year-end: 2 * £300 = £600."
+    },
+    {
+        id: 4, chapter: 2, type: "input", points: 10,
+        instruction: "Execute specific write-offs before computing the updated general Allowance balance.",
+        content: `
+        <div style="margin-bottom:0.5rem;">At the end of the trading period, a business has total Trade Receivables of £45,000. The bookkeeper decides to fully write off an irrecoverable debt from client X worth £1,200, and subsequently adjust the general Allowance for Doubtful Debts to be exactly 5% of the remaining receivables pool. Enter the final balance (£) of the adjusted Allowance account.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q4" data-ans="2190" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Receivables base: £45,000 - £1,200 = £43,800. General allowance: £43,800 * 5% = £2,190."
+    },
+    {
+        id: 5, chapter: 2, type: "radio", points: 10,
+        instruction: "Identify the correct ledger posting path to record a decrease in the general allowance pool.",
+        content: `
+        <div style="margin-bottom:0.5rem;">When adjusting the general Allowance for Doubtful Debts account at year-end, it is discovered that the opening allowance balance is £1,800 and the newly required allowance is calculated as £1,450. What is the double-entry posting path to record this shift?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q5" value="A"> Debit Allowance for Doubtful Debts £350, Credit Irrecoverable Debts Expense £350</label>
+            <label class="option-label"><input type="radio" name="q5" value="B"> Debit Irrecoverable Debts Expense £350, Credit Allowance for Doubtful Debts £350</label>
+            <label class="option-label"><input type="radio" name="q5" value="C"> Debit Statement of Profit or Loss £1,450, Credit Allowance Account £1,450</label>
+        </div>
+        `,
+        correct: "A",
+        explanation: "The allowance decreases by £350 (£1,800 - £1,450). To reduce an allowance (credit balance), we Debit the Allowance account and Credit Irrecoverable Debts Expense."
+    },
+    {
+        id: 6, chapter: 3, type: "radio", points: 10,
+        instruction: "Determine the final net profit or loss outcome on the disposal of machinery accounts.",
+        content: `
+        <div style="margin-bottom:0.5rem;">An item of machinery bought for £15,000 with accumulated depreciation of £9,000 is sold on credit during the period for £4,800. What is the final net profit or net loss outcome on this disposal transaction inside the accounts?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q6" value="A"> A Net Profit on Disposal of £1,200</label>
+            <label class="option-label"><input type="radio" name="q6" value="B"> A Net Loss on Disposal of £1,200</label>
+            <label class="option-label"><input type="radio" name="q6" value="C"> A Net Loss on Disposal of £6,000</label>
+        </div>
+        `,
+        correct: "B",
+        explanation: "Net Book Value (NBV) = £15,000 - £9,000 = £6,000. Sale proceeds = £4,800. Profit/Loss = £4,800 - £6,000 = -£1,200 (Net Loss on Disposal)."
+    },
+    {
+        id: 7, chapter: 3, type: "input", points: 10,
+        instruction: "Compute the exact monthly pro-rata straight-line depreciation charge.",
+        content: `
+        <div style="margin-bottom:0.5rem;">A business operates a policy of depreciating machinery at 20% per annum using the Straight-Line Method, calculated pro-rata on a monthly basis. A new cutting machine is purchased on 1 September 2025 for £18,000. Enter the exact depreciation charge (£) for this machine for the financial year ending 31 December 2025.</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q7" data-ans="1200" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Annual depreciation: £18,000 * 20% = £3,600. Monthly: £300. Owned from 1 Sept to 31 Dec (4 months): 4 * £300 = £1,200."
+    },
+    {
+        id: 8, chapter: 4, type: "radio", points: 10,
+        instruction: "Map the correct destination columns for year-end prepayment elements.",
+        content: `
+        <div style="margin-bottom:0.5rem;">Inside an Extended Trial Balance (ETB) worksheet, into which specific columns must the ending balance of a Prepayment adjustment be transferred?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q8" value="A"> Statement of Profit or Loss (Debit column)</label>
+            <label class="option-label"><input type="radio" name="q8" value="B"> Statement of Financial Position (Debit column, representing a Current Asset)</label>
+            <label class="option-label"><input type="radio" name="q8" value="C"> Statement of Financial Position (Credit column, representing a Current Liability)</label>
+        </div>
+        `,
+        correct: "B",
+        explanation: "A prepayment represents an expense paid in advance, which is a Current Asset. Therefore, its final adjusted position must be mapped into the Statement of Financial Position Debit column."
+    },
+    {
+        id: 9, chapter: 5, type: "input", points: 10,
+        instruction: "Calculate the residual profit allocation for individual partners following salary deductions.",
+        content: `
+        <div style="margin-bottom:0.5rem;">A partnership is formed between partner A and partner B. The partnership agreement states that partner A is entitled to an annual salary of £6,000. Residual profits are split in a 3:2 ratio respectively. The net profit for the year before adjustments is £26,000. Enter partner B's definitive final share of residual profit (£).</div>
+        <div style="display:flex; align-items:center; max-width:180px; border:1px solid #E5E7EB; border-radius:6px; overflow:hidden;">
+            <span style="padding:0.4rem 0.6rem; background:#E5E7EB; font-weight:bold; color:#4B5563;">£</span>
+            <input type="text" class="table-input text-right" name="q9" data-ans="8000" placeholder="0.00" style="border:none; width:100%;">
+        </div>
+        `,
+        explanation: "Residual profit: £26,000 - £6,000 = £20,000. Partner B's share (2/5): £20,000 * (2 / 5) = £8,000."
+    },
+    {
+        id: 10, chapter: 5, type: "radio", points: 10,
+        instruction: "Understand the purpose of the Trade Payables Control Account (TPCA).",
+        content: `
+        <div style="margin-bottom:0.5rem;">Where should interest charged on partner drawings be entered inside the formal Partnership Appropriation Account?</div>
+        <div class="options-container">
+            <label class="option-label"><input type="radio" name="q10" value="A"> As a Credit entry/Addition to the net profit because it represents an internal cost recovered from partners</label>
+            <label class="option-label"><input type="radio" name="q10" value="B"> As a Debit entry/Deduction from the net profit because it increases individual partner current accounts</label>
+            <label class="option-label"><input type="radio" name="q10" value="C"> Excluded entirely from the allocation map</label>
+        </div>
+        `,
+        correct: "A",
+        explanation: "Interest on drawings increases the total pool of profit available for appropriation from the partnership's perspective, so it is credited/added to net profit."
+    }
+];
+
+let examQuestions = []; 
+let currentTabActive = 0;
+let timeRemainingSeconds = 3600;
+let examTimerInterval = null;
+let isExamSubmitted = false;
+window.addEventListener('DOMContentLoaded', () => { initExamEngine(); });
+
+function initExamEngine() {
+    examQuestions = [...questionsDatabase].sort(() => Math.random() - 0.5);
+    generateTabs();
+    generatePanels();
+    activateTab(0);
+    startExamTimer();
+}
+
+function generateTabs() {
+    const container = document.getElementById('exam-tabs-headers');
+    if (!container) return;
+    container.innerHTML = '';
+    examQuestions.forEach((q, index) => {
+        container.innerHTML += `<button type="button" class="tab-trigger-btn" id="tab-trigger-${index}" onclick="activateTab(${index})">Task ${index + 1} <span style="font-size:0.7rem; background:#E5E7EB; padding:1px 3px; border-radius:2px;">${q.points}pt</span></button>`;
+    });
+}
+
+function generatePanels() {
+    const container = document.getElementById('exam-panels-container');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    examQuestions.forEach((q, index) => {
+        const panel = document.createElement('div');
+        panel.className = 'exam-task-panel';
+        panel.id = `task-panel-${index}`;
+        
+        panel.innerHTML = `
+        <div style="font-size:0.75rem; color:#6B7280; font-weight:600; margin-bottom:0.25rem; text-transform: uppercase;">CHAPTER ${q.chapter} Focus</div>
+        <div style="font-weight:600; margin-bottom:0.75rem; color:#111827;">${q.instruction}</div>
+        <div class="task-interactive-body">${q.content}</div>
+        
+        <div class="feedback-box hidden" id="feedback-panel-${index}" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 6px;">
+            <div id="feedback-title-${index}" style="font-weight:700; margin-bottom:0.5rem;"></div>
+            <div style="font-size:0.85rem; color:#4B5563; padding-top:0.5rem; border-top:1px dashed rgba(0,0,0,0.15);">
+                <strong>Solution Note:</strong> ${q.explanation}
+            </div>
+        </div>
+        `;
+        container.appendChild(panel);
+    });
+}
+
+function activateTab(index) {
+    if (index < 0 || index >= examQuestions.length) return;
+    document.querySelectorAll('.tab-trigger-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.exam-task-panel').forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none';
+    });
+    
+    document.getElementById(`tab-trigger-${index}`).classList.add('active');
+    const activePanel = document.getElementById(`task-panel-${index}`);
+    activePanel.classList.add('active');
+    activePanel.style.display = 'block';
+    
+    currentTabActive = index;
+    document.getElementById('btn-prev').disabled = (index === 0);
+    document.getElementById('btn-next').disabled = (index === examQuestions.length - 1);
+}
+
+function navPrev() { if (currentTabActive > 0) activateTab(currentTabActive - 1); }
+function navNext() { if (currentTabActive < examQuestions.length - 1) activateTab(currentTabActive + 1); }
+
+function submitExam() {
+    if (isExamSubmitted) return;
+    clearInterval(examTimerInterval);
+    isExamSubmitted = true;
+    let available = 0, awarded = 0;
+    
+    examQuestions.forEach((q, index) => {
+        const panel = document.getElementById(`task-panel-${index}`);
+        const feedbackBox = document.getElementById(`feedback-panel-${index}`);
+        const feedbackTitle = document.getElementById(`feedback-title-${index}`);
+        available += q.points;
+        let isCorrect = true;
+
+        if (q.type === "radio") {
+            const sel = panel.querySelector(`input[name="q${q.id}"]:checked`);
+            isCorrect = (sel && sel.value === q.correct);
+        } else {
+            panel.querySelectorAll('input[data-ans]').forEach(i => {
+                if (i.value.trim().toLowerCase() !== i.getAttribute('data-ans').trim().toLowerCase()) {
+                    isCorrect = false;
+                    i.style.borderColor = "#DC2626";
+                } else {
+                    i.style.borderColor = "#059669";
+                }
+                i.disabled = true;
+            });
+        }
+        
+        feedbackBox.style.display = 'block';
+        feedbackBox.classList.remove('hidden');
+        
+        if (isCorrect) {
+            awarded += q.points;
+            feedbackBox.style.backgroundColor = "#DEF7EC";
+            feedbackBox.style.borderLeft = "4px solid #059669";
+            feedbackTitle.innerHTML = `✔️ Correct! (+${q.points} Pts)`;
+            feedbackTitle.style.color = "#065F46";
+        } else {
+            feedbackBox.style.backgroundColor = "#FDE8E8";
+            feedbackBox.style.borderLeft = "4px solid #DC2626";
+            feedbackTitle.innerHTML = `❌ Incorrect! (0 / ${q.points} Pts)`;
+            feedbackTitle.style.color = "#9B1C1C";
+        }
+    });
+    
+    const score = available > 0 ? Math.round((awarded / available) * 100) : 0;
+    document.getElementById('res-score').textContent = `${score}%`;
+    document.getElementById('res-points').textContent = `${awarded} / ${available}`;
+    
+    const outcomeField = document.getElementById('res-outcome');
+    if (score >= 70) {
+        outcomeField.textContent = "PASS (Competent)";
+        outcomeField.style.color = "#059669";
+    } else {
+        outcomeField.textContent = "FAIL (Not Yet Competent)";
+        outcomeField.style.color = "#DC2626";
+    }
+    
+    document.querySelectorAll('.feedback-box').forEach(fb => {
+        fb.style.display = 'block';
+        fb.classList.remove('hidden');
+    });
+    document.getElementById('results-card').classList.remove('hidden');
+    alert(`Assessment submitted! Your score is ${score}%`);
+}
+
+function resetExam() {
+    if (confirm("Reset current exam session? All inputs will be wiped.")) {
+        clearInterval(examTimerInterval);
+        isExamSubmitted = false;
+        timeRemainingSeconds = 3600;
+        document.getElementById('exam-timer').style.color = "#FFFFFF";
+        document.getElementById('results-card').classList.add('hidden');
+        initExamEngine();
+    }
+}
+
+function startExamTimer() {
+    const display = document.getElementById('exam-timer');
+    examTimerInterval = setInterval(() => {
+        if (timeRemainingSeconds <= 0) {
+            clearInterval(examTimerInterval);
+            submitExam();
+        } else {
+            timeRemainingSeconds--;
+            let min = Math.floor(timeRemainingSeconds / 60), sec = timeRemainingSeconds % 60;
+            display.textContent = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+            if (timeRemainingSeconds < 300) display.style.color = "#DC2626";
+        }
+    }, 1000);
+}
+
+function toggleCalc() {
+    const c = document.getElementById('neon-calc');
+    c.style.display = (c.style.display === 'block') ? 'none' : 'block';
+}
+
+function pressNum(n) {
+    const d = document.getElementById('calc-display');
+    d.value = (d.value === '0') ? n : d.value + n;
+}
+
+function pressOp(o) { document.getElementById('calc-display').value += o; }
+function clearCalc() { document.getElementById('calc-display').value = '0'; }
+function calcResult() {
+    const d = document.getElementById('calc-display');
+    try { d.value = eval(d.value); } catch(e) { d.value = 'Error'; }
+}
+
+// Logica di trascinamento Drag and Drop per la calcolatrice originale
+const calcPanel = document.getElementById('neon-calc');
+const calcHeader = document.getElementById('calc-header');
+let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+if (calcHeader && calcPanel) {
+    calcHeader.addEventListener('mousedown', (e) => {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+        activeDrag = true;
+    });
+    document.addEventListener('mouseup', () => { activeDrag = false; });
+    document.addEventListener('mousemove', (e) => {
+        if (!activeDrag) return;
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        calcPanel.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    });
+}
+</script>
+</body>
+</html>
