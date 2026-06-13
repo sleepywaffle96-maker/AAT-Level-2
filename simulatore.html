@@ -268,27 +268,8 @@
                     </div>
                 </div>
                 <script>
-                    const scenarios = [
-                        { text: "Verify the balancing steps for the Sales Ledger Control Account discrepancy.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Analyze the statutory ammortisation index applied to non-current asset categories.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Reconcile the opening cash book deficit against bank statement credit entries.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Compute the standard overhead absorption rate based on direct labour allocation.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Determine the correct input VAT adjustment for trade receivables.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Evaluate closing inventory variance under FIFO valuation constraints.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Reconstruct incomplete sole trader turnover parameters using margin criteria.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
-                        { text: "Formulate the proper accounting treatment for capitalised development outlays.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Process year-end accruals for statutory utility liabilities.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Identify the systemic risk indicators within the purchase ledger sub-module.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Adjust the Suspense Account allocation following a transposition error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Calculate the Partnership profit share ratio adjustments under current laws.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
-                        { text: "Assess Corporate Governance breaches under the IESBA framework.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "Verify the Consolidated Statement adjustments for internal unrealised profits.", correct: "A", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "Compute the standard variance indicators for production yields.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
-                        { text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", correct: "Liabilities, Income (Sales), and Capital Base", diff: "🔴 Difficulty: Professional Level" },
-                        { text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", correct: "450", diff: "🟡 Difficulty: Intermediate" },
-                        { text: "If an office stationery invoice for £150 is debited to the Machinery Asset account, what category of error is formed?", correct: "Error of Principle", diff: "🟢 Difficulty: Entry Level" },
-                        { text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "The Credit column, because a bank overdraft represents an active Current Liability", diff: "🟡 Difficulty: Intermediate" },
-                    ];
+    const targetChapterNum = parseInt(chap.replace("cap", ""));
+    const scenarios = questionsDatabase.filter(q => q.level === lvl1 && q.chapter === targetChapterNum);
 
                     const optionTexts = [
                         { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
@@ -306,6 +287,11 @@
                         { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
                         { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
                         { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" }
+                            ,
+    { id: "l2_c5_q1", level: "L2", chapter: 5, text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", options: { a: "Expenses, Assets, and Drawings", b: "Liabilities, Income (Sales), and Capital Base", c: "Assets, Liabilities, and Sales Returns" }, correct: "B", diff: "🔴 Difficulty: Professional Level" },
+    { id: "l2_c5_q2", level: "L2", chapter: 5, text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", options: { a: "450", b: "250", c: "150" }, correct: "A", diff: "🟡 Difficulty: Intermediate" },
+    { id: "l2_c5_q3", level: "L2", chapter: 5, text: "If an office stationery invoice for £150 is debited to the Machinery Asset account instead of Stationery Expenses, what category of error is formed?", options: { a: "Error of Omission", b: "Error of Principle", c: "Error of Commission" }, correct: "B", diff: "🟢 Difficulty: Entry Level" }
+
                     ];
                     let currentActiveIndex = 0;
                     const root = document.getElementById("questions-root-wrapper");
