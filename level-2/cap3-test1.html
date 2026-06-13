@@ -3,345 +3,561 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principles of Costing - Test One</title>
+    <title>AAT Level 2 Certificate in Accounting - Bookkeeping Transactions (BTRN) Capitolo 3 Test One</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0B0F19;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+        /* 1. Reset Globale e Layout Sfondo */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #333333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+
+        /* 2. Contenitore Principale (Bolla Bianca Protetta) */
+        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); position: relative; min-height: 580px; display: flex; flex-direction: column; justify-content: space-between; }
+
+        /* 3. Intestazione e Contatore */
+        .test-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 25px; }
+        .test-title { font-size: 18px; font-weight: 700; color: #1E293B; }
+        .question-counter { font-size: 14px; font-weight: 600; color: #64748B; background: #F1F5F9; padding: 6px 12px; border-radius: 20px; }
+
+        /* 4. Sistema a Schede (Tabs delle Domande) */
+        .question-tab { display: none; flex-direction: column; gap: 20px; flex-grow: 1; }
+        .question-tab.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
+        .question-text { font-size: 16px; font-weight: 600; color: #0F172A; line-height: 1.5; margin-bottom: 10px; }
+        .options-container { display: flex; flex-direction: column; gap: 12px; }
+        
+        /* 5. Componenti Speciali: Tabelle Analisi Cassa */
+        .aat-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        .aat-table th { background-color: #F8FAFC; color: #475569; font-weight: 700; padding: 8px; border: 1px solid #E2E8F0; text-align: left; }
+        .aat-table td { padding: 8px; border: 1px solid #E2E8F0; vertical-align: middle; }
+        
+        .t-account-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #CBD5E1; background: #FFF; margin-top: 15px; }
+        .t-side { padding: 15px; min-height: 160px; }
+        .t-side-left { border-right: 2px solid #1E293B; position: relative; }
+        .t-header { font-size: 13px; font-weight: 800; text-align: center; color: #475569; border-bottom: 1px solid #E2E8F0; padding-bottom: 6px; margin-bottom: 12px; text-transform: uppercase; }
+        .t-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; }
+
+        /* 6. Box Risposte, Tendine e Input Campi */
+        .option-box { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 2px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; position: relative; }
+        .option-box:hover { border-color: #94A3B8; background-color: #F8FAFC; }
+        .option-box input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; }
+        .option-label { display: flex; align-items: center; width: 100%; font-size: 15px; font-weight: 500; }
+        
+        .inline-select { padding: 6px 10px; border: 2px solid #CBD5E1; border-radius: 6px; font-weight: 600; color: #0F172A; font-size: 14px; background-color: #FFF; }
+        .numeric-field, .table-field { width: 100px; padding: 6px; border: 2px solid #E2E8F0; border-radius: 6px; text-align: right; font-size: 14px; font-weight: 600; color: #0F172A; }
+        .numeric-field:focus, .table-field:focus, .inline-select:focus { outline: none; border-color: #2563EB; }
+
+        /* 7. Indicatori Visivi di Feedback */
+        .feedback-icon { font-size: 18px; margin-left: 10px; display: none; }
+        .correct-answer-highlight { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
+
+        /* 8. Pulsantiera di Controllo Inferiore */
+        .controls-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; border-top: 2px solid #E5E7EB; padding-top: 20px; gap: 10px; flex-wrap: wrap; }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+        .btn { padding: 10px 18px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
+        .btn-blue { background-color: #2563EB; color: white; }
+        .btn-blue:hover { background-color: #1D4ED8; }
+        .btn-green { background-color: #059669; color: white; }
+        .btn-green:hover { background-color: #047857; }
+        .btn-red { background-color: #DC2626; color: white; }
+        .btn-red:hover { background-color: #B91C1C; }
+        .btn-gray { background-color: #4B5563; color: white; }
+        .btn-gray:hover { background-color: #374151; }
+        .btn-purple { background-color: #7C3AED; color: white; display: none; }
+        .btn-purple:hover { background-color: #6D28D9; }
+
+        /* 9. Widget Calcolatrice Vetrificata */
+        #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
+        #calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #calc-header span { color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        #calc-close-btn { background: transparent; border: none; color: #EF4444; font-weight: bold; cursor: pointer; font-size: 14px; }
+        #calc-screen { width: 100%; height: 45px; background: #000000; border-radius: 8px; color: #00FFFF; text-shadow: 0 0 10px #00FFFF; font-family: 'Courier New', Courier, monospace; text-align: right; padding: 12px; font-size: 20px; font-weight: bold; margin-bottom: 12px; border: 1px solid #00FFFF; }
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .calc-btn { background: rgba(255, 255, 255, 0.08); border: none; color: white; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; }
+        .calc-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .calc-btn.op { color: #00FFFF; background: rgba(0, 255, 255, 0.05); }
+        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.2); }
+
+        #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #2563EB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s ease, background 0.2s ease; }
+        #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
+
+        /* 10. Regole di Stampa Clean A4 */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @media print {
+            @page { size: A4 portrait; margin: 0mm; }
+            body { padding: 15mm; background-color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .controls-footer, #calc-widget, #calc-toggle-trigger, .feedback-icon { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
         }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #0B0F19;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #222222;
-        }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
-        }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
-        }
-        table.osborne-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        table.osborne-table th {
-            background-color: #0B0F19;
-            text-align: left;
-            font-size: 13px;
-        }
-        table.osborne-table td, table.osborne-table th {
-            border: 1px solid #aaaaaa;
-            padding: 6px;
-            font-size: 13px;
-        }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .btn-action {
-            background-color: #0B0F19;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
-            cursor: pointer;
-            color: #333333;
-        }
-        .btn-action:hover {
-            background-color: #0B0F19;
-        }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
     </style>
 </head>
 <body>
+    <div class="test-container">
+        <div class="test-header">
+            <div class="test-title">BTRN - CHAPTER 3: CASH BOOK AND PETTY CASH (TEST ONE)</div>
+            <div class="question-counter">Question <span id="current-q-num">1</span> of 15</div>
+        </div>
 
-<div class="quiz-container">
-    <div class="header-title">Principles of Costing - Test One</div>
+        <form id="quiz-form">
+            <!-- Q1: Frase a Completamento Imprest System (Difficoltà: Media) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-select">
+                <p class="question-text">1. Complete the operational statement below regarding the core management mechanics of a Petty Cash Imprest System.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    Under a rigorous imprest framework, the petty cashier starts the period with a fixed cash allocation known as the float. At the end of the window, the main cashier will top up the fund by an amount exactly equal to the total value of 
+                    <select class="inline-select multi-select-field" data-ans="vouchers">
+                        <option value="">-- Choose Term --</option>
+                        <option value="float">original float</option>
+                        <option value="vouchers">vouchers spent</option>
+                        <option value="advances">cash advances</option>
+                    </select> 
+                    to systematically restore the fund back to its initial 
+                    <select class="inline-select multi-select-field" data-ans="float">
+                        <option value="">-- Choose Term --</option>
+                        <option value="balance">ledger balance</option>
+                        <option value="float">imprest float level</option>
+                    </select>.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
 
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            A manufacturing company has the following stock records for a raw material:<br>
-            - 1 June: Opening stock 100 units @ £5.00 each<br>
-            - 8 June: Purchased 150 units @ £6.00 each<br>
-            - 15 June: Issued 120 units to production<br>
-            Calculate the value of the 120 units issued using the First-In, First-Out (FIFO) method:<br>
-            Value of Materials Issued: £ <input type="text" id="ans1" placeholder="0.00">
+            <!-- Q2: Tabella Petty Cash Restore Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="2" data-type="multi-input">
+                <p class="question-text">2. A business sets its initial petty cash imprest float at £200. During the week, the petty cashier pays for office milk (£12 net + £0 VAT) and postage stamps (£45, exempt from VAT). Complete the monitoring cells below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Total Net Expenses (£)</th>
+                            <th>Total VAT Amount (£)</th>
+                            <th>Total Cash Spent (£)</th>
+                            <th>Restoration Check (Reimbursement Needed) (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="57" placeholder="Net"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="0" placeholder="VAT"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="57" placeholder="Spent"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="57" placeholder="Reimburse"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q3: Scelta Multipla - Trattamento Cash Discounts (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="3" data-type="radio" data-correct="B">
+                <p class="question-text">3. When a business settles a credit invoice early to take advantage of prompt payment terms, how is the resulting financial discount received recorded inside the multi-column Cash Book?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="A"> Debited to the Cash column as income received</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="B"> Entered inside a separate memorandum column on the credit side</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q3" value="C"> Deducted directly from the Bank column on the debit side</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q4: Risposta Numerica - Saldo Cash Book (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="1650">
+                <p class="question-text">4. A business has a bank opening balance of £1,200 (Debit). During the day, it receives £850 cash from credit customers and pays trade suppliers £400 via electronic transfer. Calculate the closing bank balance (£).</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Closing Bank Balance (£):</span>
+                            <input type="text" class="numeric-field" name="q4" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5: Mastro Petty Cash Control Account (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="5" data-type="multi-input">
+                <p class="question-text">5. Complete the double-entry inside the Petty Cash Control Account to record the reimbursement from the main bank account to restore the float by £65.</p>
+                <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 15px; color: #1E293B;">Petty Cash Control Account</div>
+                <div class="t-account-wrapper">
+                    <div class="t-side t-side-left">
+                        <div class="t-header">Debit</div>
+                        <div class="t-row">
+                            <select class="inline-select multi-input-field" data-ans="Bank" style="width: 110px; padding: 4px;">
+                                <option value="">-- Entry --</option>
+                                <option value="Bank">Bank</option>
+                                <option value="Expenses">Expenses</option>
+                                <option value="Sales">Sales</option>
+                            </select>
+                            <input type="text" class="table-field multi-input-field" data-ans="65" placeholder="£0.00" style="width: 90px; padding: 4px;">
+                        </div>
+                    </div>
+                    <div class="t-side">
+                        <div class="t-header">Credit</div>
+                        <div class="t-row"><span>Opening Balance b/d</span><span style="font-weight: 700;">£135</span></div>
+                    </div>
+                </div>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q6: Scelta Multipla - Doppia Natura Cash Book (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="C">
+                <p class="question-text">6. Why is the Cash Book uniquely classified as both a book of prime entry and a ledger account within the accounting system?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="A"> It only lists transactions that are exempt from statutory Value Added Tax</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="B"> It operates purely as a memorandum register to help credit controllers</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="C"> It records initial cash flows and contains the actual double-entry bank accounts</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q7: Testo a completamento con tendine (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-select">
+                <p class="question-text">7. Complete the description regarding internal authorization for minor business disbursements.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    Before any physical money is released from the petty cash box, an internal 
+                    <select class="inline-select multi-select-field" data-ans="voucher">
+                        <option value="">-- Choose --</option>
+                        <option value="invoice">invoice</option>
+                        <option value="voucher">petty cash voucher</option>
+                    </select> must be filled out and signed by the claimant, which acts as the primary book of prime entry resource to 
+                    <select class="inline-select multi-select-field" data-ans="authorize">
+                        <option value="">-- Choose --</option>
+                        <option value="authorize">authorize</option>
+                        <option value="postpone">postpone</option>
+                    </select> the disbursement.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+
+            <!-- Q8: Analisi Colonne Spese Petty Cash (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <p class="question-text">8. A petty cashier enters a voucher for office cleaning: Total cash paid £36, which includes standard VAT at 20%. Complete the ledger distribution columns below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Total Voucher (£)</th>
+                            <th>Cleaning Expense Column (£)</th>
+                            <th>VAT Ledger Column (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>£36.00</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="30" placeholder="Expense"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="6" placeholder="VAT"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q9: Scelta Multipla - Cash Discounts Allowed (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="B">
+                <p class="question-text">9. Where is the total value of 'Discounts Allowed' summarized at the end of a window to complete the general ledger post?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="A"> Credited to the Sales Revenue Account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="B"> Debited to the Discounts Allowed Account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q9" value="C"> Debited to the Trade Payables Control Account</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q10: Tabella Controllo Float vs Speso (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-input">
+                <p class="question-text">10. At the weekend, the petty cash ledger shows a fixed float of £250. The total value of authorized vouchers inside the box is £184. Complete the monitoring values below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Imprest Float (£)</th>
+                            <th>Actual Cash in Hand (£)</th>
+                            <th>Reimbursement Cheque Value (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>£250.00</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="66" placeholder="Cash Left"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="184" placeholder="Top-up"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q11: Scelta Multipla - Trattamento Assegni Emessi (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="B">
+                <p class="question-text">11. When a business writes an electronic cheque to pay a trade creditor, where should this step be recorded immediately within the Cash Book?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="A"> On the debit side, inside the Bank column</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="B"> On the credit side, inside the Bank column</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="C"> On the credit side, inside the Cash column</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q12: Testo a completamento con tendine (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-select">
+                <p class="question-text">12. Select the correct description regarding Cash Book column posting rules.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    The debit side of a standard Cash Book gathers all cash 
+                    <select class="inline-select multi-select-field" data-ans="receipts">
+                        <option value="">-- Choose Flow --</option>
+                        <option value="receipts">receipts entering the business</option>
+                        <option value="payments">payments leaving the business</option>
+                    </select>, meaning a positive balance in the cash book acts as a current 
+                    <select class="inline-select multi-select-field" data-ans="asset">
+                        <option value="">-- Choose Classification --</option>
+                        <option value="asset">asset</option>
+                        <option value="liability">liability</option>
+                    </select> on the balance sheet.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+            <!-- Q13: Scelta Multipla - Storno Fondi (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="B">
+                <p class="question-text">13. When cash is physically taken from the main bank account to top up the office petty cash box, how is this internal transfer recorded in the multi-column Cash Book?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> Debited to Bank column, Credited to Cash column</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> Credited to Bank column, Debited to Petty Cash Account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="C"> Credited to Petty Cash column, Debited to Bank column</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q14: Risposta Numerica - Scorporo IVA Petty Cash (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="14" data-type="input" data-correct="15">
+                <p class="question-text">14. A petty cash voucher shows a total gross payment of £18.00 for office fuel, which includes standard 20% VAT. Calculate the net amount to be debited to the Motor Expenses account (£).</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Net Expense Amount (£):</span>
+                            <input type="text" class="numeric-field" name="q14" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q15: T-Account Mastro Cassa Generale Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <p class="question-text">15. Complete the missing side details and numerical value to record a cash sale of £350 paid directly into the business Cash box.</p>
+                <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 15px; color: #1E293B;">Cash Account (General Ledger)</div>
+                <div class="t-account-wrapper">
+                    <div class="t-side t-side-left">
+                        <div class="t-header">Debit</div>
+                        <div class="t-row">
+                            <select class="inline-select multi-input-field" data-ans="Sales" style="width: 110px; padding: 4px;">
+                                <option value="">-- Entry --</option>
+                                <option value="Sales">Sales Revenue</option>
+                                <option value="Bank">Bank</option>
+                                <option value="Drawings">Drawings</option>
+                            </select>
+                            <input type="text" class="table-field multi-input-field" data-ans="350" placeholder="£0.00" style="width: 90px; padding: 4px;">
+                        </div>
+                    </div>
+                    <div class="t-side">
+                        <div class="t-header">Credit</div>
+                        <div class="t-row"><span>Opening Balance b/d</span><span style="font-weight: 700;">£0.00</span></div>
+                    </div>
+                </div>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+        </form>
+        <!-- Barra dei Pulsanti di Controllo Inferiori INTERNI -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button class="btn btn-blue" id="btn-am-i-right">Am I right?</button>
+                <button class="btn btn-green" id="btn-show-solution">Show Solution</button>
+                <button class="btn btn-red" id="btn-reset">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button class="btn btn-gray" id="btn-prev" disabled>Previous Question</button>
+                <button class="btn btn-gray" id="btn-next">Next Question</button>
+                <button class="btn btn-purple" id="btn-pdf">Download as PDF</button>
+            </div>
+        </div>
+    </div> <!-- Chiusura della bolla bianca (.test-container) -->
+
+    <!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+    <div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
+
+    <!-- WIDGET CALCOLATRICE VETRATA INTERATTIVA -->
+    <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" title="Hide">✕</button>
+        </div>
+        <div id="calc-screen">0</div>
+        <div class="calc-grid">
+            <button class="calc-btn op" onclick="clearCalc()">C</button>
+            <button class="calc-btn op" onclick="pressCalc('sq')">x²</button>
+            <button class="calc-btn op" onclick="pressCalc('rt')">√</button>
+            <button class="calc-btn op" onclick="pressCalc('/')">/</button>
+            <button class="calc-btn" onclick="pressCalc('7')">7</button>
+            <button class="calc-btn" onclick="pressCalc('8')">8</button>
+            <button class="calc-btn" onclick="pressCalc('9')">9</button>
+            <button class="calc-btn op" onclick="pressCalc('*')">*</button>
+            <button class="calc-btn" onclick="pressCalc('4')">4</button>
+            <button class="calc-btn" onclick="pressCalc('5')">5</button>
+            <button class="calc-btn" onclick="pressCalc('6')">6</button>
+            <button class="calc-btn op" onclick="pressCalc('-')">-</button>
+            <button class="calc-btn" onclick="pressCalc('1')">1</button>
+            <button class="calc-btn" onclick="pressCalc('2')">2</button>
+            <button class="calc-btn" onclick="pressCalc('3')">3</button>
+            <button class="calc-btn op" onclick="pressCalc('+')">+</button>
+            <button class="calc-btn" onclick="pressCalc('0')">0</button>
+            <button class="calc-btn" onclick="pressCalc('.')">.</button>
+            <button class="calc-btn op" onclick="pressCalc('%')">%</button>
+            <button class="calc-btn op" style="background:#059669; color: white;" onclick="calculateCalc()">=</button>
         </div>
     </div>
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 15;
 
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            Using the same inventory records from Q1, calculate the total value of the closing stock remaining at the end of June using the FIFO method:<br>
-            Value of Closing Stock: £ <input type="text" id="ans2" placeholder="0.00">
-        </div>
-    </div>
+        const tabs = document.querySelectorAll('.question-tab');
+        const currentQNum = document.getElementById('current-q-num');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const btnPdf = document.getElementById('btn-pdf');
 
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            An employee is paid a basic rate of £10.50 per hour for a standard 37-hour week. Overtime is paid at time-and-a-half. During a busy week, the employee works 43 hours. Calculate their gross weekly wage:<br>
-            Gross Weekly Wage: £ <input type="text" id="ans3" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            A factory worker is paid under a piecework scheme with a guaranteed minimum weekly wage of £350.00. The basic rate paid is £2.40 per completed unit. During a week, the worker completes 160 units. Calculate their final gross earnings for that week:<br>
-            Gross Earnings: £ <input type="text" id="ans4" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            A business analyses its total production costs at two different output levels:<br>
-            - Output 1: 1,500 units | Total cost: £7,500<br>
-            - Output 2: 2,500 units | Total cost: £11,500<br>
-            Using the High-Low method, calculate the variable cost per unit:<br>
-            Variable Cost per Unit: £ <input type="text" id="ans5" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            Using the calculation data from Q5, work backwards to determine the fixed cost element of the total production cost:<br>
-            Total Fixed Cost: £ <input type="text" id="ans6" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            Factory rent of £18,000 needs to be allocated between three production departments based on floor area (sq. meters):<br>
-            - Machining: 500 sq. m | Assembly: 300 sq. m | Finishing: 200 sq. m<br>
-            Calculate the overhead cost allocated to the Machining department:<br>
-            Machining Allocation: £ <input type="text" id="ans7" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            Classify the cost of depreciation of factory machinery calculated on a straight-line basis over a monthly period:<br>
-            Classification: <select id="ans8"><option value="">Select</option><option value="correct">Fixed Cost</option><option value="w">Variable Cost</option><option value="w">Semi-Variable Cost</option></select>
-        </div>
-    </div>
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A firm uses the Weighted Average Cost (AVCO) method to value its stock. Using the same records as Q1:<br>
-            - 1 June: Opening stock 100 units @ £5.00 each<br>
-            - 8 June: Purchased 150 units @ £6.00 each<br>
-            Calculate the exact average cost per unit before the issue on 15 June (round to 2 decimal places):<br>
-            AVCO Unit Cost: £ <input type="text" id="ans9" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A production line records 120 total hours of labor for a week. 15 of these hours were idle time due to a machinery breakdown. The standard labor rate is £12.00 per hour. Calculate the indirect labor cost to be charged to production overheads:<br>
-            Indirect Labor Cost: £ <input type="text" id="ans10" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            A company budget estimates production overheads of £45,000 for the upcoming period. Total budgeted direct labor hours are 2,500. Calculate the predetermined Overhead Absorption Rate (OAR) per labor hour:<br>
-            OAR per hour: £ <input type="text" id="ans11" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            A product requires 4 kg of raw materials @ £3.50/kg and 2 hours of direct labor @ £11.00/hour. Production overheads are absorbed at £4.00 per direct labor hour. Calculate the total prime cost of producing one unit:<br>
-            Prime Cost: £ <input type="text" id="ans12" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            Using the data from Q12, calculate the final total production cost for one unit of the product (Prime Cost + Absorbed Overheads):<br>
-            Total Production Cost: £ <input type="text" id="ans13" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            A business uses the Last-In, First-Out (LIFO) method for stock valuation. Using the data from Q1:<br>
-            - 1 June: Opening stock 100 units @ £5.00 each<br>
-            - 8 June: Purchased 150 units @ £6.00 each<br>
-            Calculate the value of the 120 units issued to production on 15 June using LIFO:<br>
-            Value of Materials Issued: £ <input type="text" id="ans14" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            The total cost of electricity for a factory is analyzed. There is a fixed quarterly standing charge of £150.00, plus a variable rate of £0.12 per kilowatt-hour consumed. How is this entire electricity expense classified?<br>
-            Cost Classification: <select id="ans15"><option value="">Select</option><option value="w">Fixed Cost</option><option value="w">Variable Cost</option><option value="correct">Semi-Variable Cost</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
-<script>
-    let currentQ = 1;
-    const totalQ = 15;
-
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
-    }
-
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
+        function updateNavigation() {
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.question-tab[data-qindex="${currentQuestion}"]`).classList.add('active');
+            currentQNum.innerText = currentQuestion;
+            btnPrev.disabled = currentQuestion === 1;
+            
+            if (currentQuestion === totalQuestions) {
+                btnNext.style.display = 'none';
+                btnPdf.style.display = 'inline-block';
+            } else {
+                btnNext.style.display = 'inline-block';
+                btnPdf.style.display = 'none';
+            }
         }
-    }
 
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
+        btnNext.addEventListener('click', () => { if (currentQuestion < totalQuestions) { currentQuestion++; updateNavigation(); } });
+        btnPrev.addEventListener('click', () => { if (currentQuestion > 1) { currentQuestion--; updateNavigation(); } });
 
-        if (currentQ === 1) {
-            let val = document.getElementById('ans1').value.trim();
-            isCorrect = (val === '620' || val === '620.00');
-        } else if (currentQ === 2) {
-            let val = document.getElementById('ans2').value.trim();
-            isCorrect = (val === '780' || val === '780.00');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '483' || val === '483.00');
-        } else if (currentQ === 4) {
-            let val = document.getElementById('ans4').value.trim();
-            isCorrect = (val === '384' || val === '384.00');
-        } else if (currentQ === 5) {
-            let val = document.getElementById('ans5').value.trim();
-            isCorrect = (val === '4' || val === '4.00');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6').value.trim();
-            isCorrect = (val === '1500' || val === '1500.00');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7').value.trim();
-            isCorrect = (val === '9000' || val === '9000.00');
-        } else if (currentQ === 8) {
-            isCorrect = (document.getElementById('ans8').value === 'correct');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9').value.trim();
-            isCorrect = (val === '5.6' || val === '5.60');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '180' || val === '180.00');
-        } else if (currentQ === 11) {
-            let val = document.getElementById('ans11').value.trim();
-            isCorrect = (val === '18' || val === '18.00');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12').value.trim();
-            isCorrect = (val === '36' || val === '36.00');
-        } else if (currentQ === 13) {
-            let val = document.getElementById('ans13').value.trim();
-            isCorrect = (val === '44' || val === '44.00');
-        } else if (currentQ === 14) {
-            let val = document.getElementById('ans14').value.trim();
-            isCorrect = (val === '720' || val === '720.00');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
+        // --- MOTORE DI VERIFICA POLIMORFICO ---
+        document.getElementById('btn-am-i-right').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            const feedbackSpan = activeTab.querySelector('.feedback-icon');
+            feedbackSpan.style.display = 'inline';
+
+            let isCorrect = true;
+
+            if (type === 'radio') {
+                const selected = activeTab.querySelector('input[type="radio"]:checked');
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                activeTab.querySelectorAll('.feedback-icon').forEach(i => i.style.display = 'none');
+                if (selected) {
+                    const rFeedback = selected.closest('.option-box').querySelector('.feedback-icon');
+                    rFeedback.style.display = 'inline';
+                    rFeedback.innerText = selected.value === correctAnswer ? ' ✔️' : ' ❌';
+                    rFeedback.style.color = selected.value === correctAnswer ? '#10B981' : '#DC2626';
+                }
+                return;
+            } else if (type === 'input') {
+                const inputField = activeTab.querySelector('.numeric-field');
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                isCorrect = inputField.value.trim() === correctAnswer;
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    if (field.value.trim() !== field.getAttribute('data-ans')) isCorrect = false;
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    if (select.value !== select.getAttribute('data-ans')) isCorrect = false;
+                });
+            }
+
+            feedbackSpan.innerText = isCorrect ? ' ✔️ All fields correct!' : ' ❌ Some fields are incorrect';
+            feedbackSpan.style.color = isCorrect ? '#10B981' : '#DC2626';
+        });
+
+        // --- VISUALIZZAZIONE DELLE SOLUZIONI COMPLESSE ---
+        document.getElementById('btn-show-solution').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+
+            if (type === 'radio') {
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                const targetRadio = activeTab.querySelector(`input[value="${correctAnswer}"]`);
+                if (targetRadio) targetRadio.closest('.option-box').classList.add('correct-answer-highlight');
+            } else if (type === 'input') {
+                const inputField = activeTab.querySelector('.numeric-field');
+                inputField.closest('.option-box').classList.add('correct-answer-highlight');
+                inputField.value = activeTab.getAttribute('data-correct');
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    field.style.backgroundColor = '#DCFCE7';
+                    field.style.borderColor = '#10B981';
+                    field.value = field.getAttribute('data-ans');
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    select.style.backgroundColor = '#DCFCE7';
+                    select.style.borderColor = '#10B981';
+                    select.value = select.getAttribute('data-ans');
+                });
+            }
+        });
+
+        // --- RESET SCHERMATA ATTIVA ---
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            
+            activeTab.querySelectorAll('.option-box').forEach(box => box.classList.remove('correct-answer-highlight'));
+            activeTab.querySelectorAll('.feedback-icon').forEach(icon => { icon.style.display = 'none'; icon.innerText = ''; });
+
+            if (type === 'radio') {
+                const checked = activeTab.querySelector('input[type="radio"]:checked');
+                if (checked) checked.checked = false;
+            } else if (type === 'input') {
+                activeTab.querySelector('.numeric-field').value = '';
+            } else if (type === 'multi-input' || type === 'multi-select') {
+                const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+                fields.forEach(field => {
+                    field.value = '';
+                    field.style.backgroundColor = '#FFF';
+                    field.style.borderColor = '#E2E8F0';
+                });
+            }
+        });
+
+        btnPdf.addEventListener('click', () => {
+            const originalTitle = document.title;
+            document.title = "AAT_L2_BTRN_Cap3_Test_One_Completed";
+            window.print();
+            setTimeout(() => { document.title = originalTitle; }, 150);
+        });
+
+        // --- VISIBILITÀ CALCOLATRICE ---
+        const calcWidget = document.getElementById('calc-widget');
+        const calcTrigger = document.getElementById('calc-toggle-trigger');
+        const calcClose = document.getElementById('calc-close-btn');
+
+        if(calcTrigger && calcWidget && calcClose) {
+            calcTrigger.addEventListener('click', () => calcWidget.style.display = 'block');
+            calcClose.addEventListener('click', () => calcWidget.style.display = 'none');
         }
 
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
-        } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        let calcDisplay = document.getElementById('calc-screen');
+        function pressCalc(val) {
+            if (calcDisplay.innerText === '0' && !isNaN(val)) calcDisplay.innerText = '';
+            if (val === 'sq') { calcDisplay.innerText = Math.pow(eval(calcDisplay.innerText), 2); }
+            else if (val === 'rt') { calcDisplay.innerText = Math.sqrt(eval(calcDisplay.innerText)); }
+            else { calcDisplay.innerText += val; }
         }
-    }
+        function clearCalc() { calcDisplay.innerText = '0'; }
+        function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
 
-    updateButtons();
-</script>
-
+        // Drag and Drop Calcolatrice
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        if(calcWidget) {
+            calcWidget.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('calc-btn') || e.target.id === 'calc-screen') return;
+                initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; isDragging = true;
+            });
+            document.addEventListener('mouseup', () => { isDragging = false; initialX = currentX; initialY = currentY; });
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return; e.preventDefault();
+                currentX = e.clientX - initialX; currentY = e.clientY - initialY;
+                xOffset = currentX; yOffset = currentY;
+                calcWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            });
+        }
+    </script>
 </body>
 </html>
