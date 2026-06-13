@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 Advanced Diploma - Chapter 6 Test Two</title>
+    <title>AAT Level 3 - Chapter 6: Business Awareness (Test Two)</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
@@ -43,7 +43,6 @@
             box-sizing: border-box;
             position: relative;
         }
-
         .test-header-row {
             display: flex;
             justify-content: space-between;
@@ -66,7 +65,7 @@
             color: var(--l3-cyan-dark);
             font-weight: 600;
         }
-        /* STRUTTURA SEQUENZIALE QUESTION TABS */
+
         .question-tab {
             display: none;
             flex-direction: column;
@@ -90,7 +89,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* OPZIONI DI SELEZIONE RADIO (TIPO A) */
         .option-box {
             display: flex;
             align-items: center;
@@ -107,7 +105,6 @@
         .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
         .feedback-icon { font-weight: 700; font-size: 1.1rem; }
 
-        /* TABELLE FINANZIARIE PER REGIMI IVA / ETICA */
         .financial-table {
             width: 100%;
             border-collapse: collapse;
@@ -127,7 +124,6 @@
             padding: 0.75rem;
             font-size: 0.95rem;
         }
-
         .numeric-field, .multi-input-field, .multi-select-field, .select-input {
             width: 100%;
             padding: 0.45rem;
@@ -144,7 +140,7 @@
             outline: none;
             background-color: var(--l3-cyan-light);
         }
-        /* GEOMETRIA RIGIDA PULSANTIERA INFERIORE APPENDICE TECNICA */
+
         .controls-footer {
             display: flex;
             justify-content: space-between;
@@ -197,7 +193,6 @@
         .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
         .hidden { display: none !important; }
 
-        /* A. CALCOLATRICE: TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA */
         #calc-toggle-trigger {
             position: fixed;
             bottom: 30px;
@@ -219,7 +214,6 @@
         }
         #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
 
-        /* B. CALCOLATRICE: CORPO DEL WIDGET VETRATO SCURO */
         #calc-widget {
             position: fixed;
             bottom: 90px;
@@ -238,7 +232,6 @@
             box-sizing: border-box;
         }
 
-        /* C. CALCOLATRICE: HEADER CON DICITURA BRAND "Osborne Calc" */
         #calc-header {
             display: flex;
             justify-content: space-between;
@@ -265,7 +258,6 @@
             padding: 0;
         }
 
-        /* D. CALCOLATRICE: DISPLAY LAYOUT NERO/CIANO NEON */
         #calc-screen {
             width: 100%;
             height: 45px;
@@ -283,107 +275,87 @@
             box-sizing: border-box;
         }
 
-        /* E. CALCOLATRICE: GRID LAYOUT */
         .calc-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
         }
-        .calc-btn {
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            color: white;
-            background: #334155;
-            text-align: center;
-            transition: background 0.1s ease;
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; margin: 0; }
+            .test-container { box-shadow: none; border: none; padding: 0; max-width: 1000px; }
+            .controls-footer, #calc-toggle-trigger, #calc-widget { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
         }
-        .calc-btn:hover { background: #475569; }
-        .calc-btn.op {
-            background: rgba(0, 255, 255, 0.05);
-            color: #00FFFF;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.15); }
     </style>
 </head>
 <body>
 
     <div class="test-container">
-        
         <div class="test-header-row">
-            <div class="test-title">BTRN - LEVEL 3 CHAPTER 6: CORPORATE GOVERNANCE & ETHICS (TEST TWO)</div>
+            <div class="test-title">UNIT: BUSINESS AWARENESS (TEST TWO)</div>
             <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
         </div>
-
         <form id="quiz-form" onsubmit="event.preventDefault();">
-
-            <!-- QUESTION 1: TIPO "multi-input" (HMRC Civil Mistake Surcharges) -->
+            <!-- QUESTION 1: TIPO "multi-input" (HMRC Deliberate Penalty Rates) -->
             <div class="question-tab active" data-qindex="1" data-type="multi-input">
-                <div class="task-instruction-text">1. HMRC establishes concrete penalty bands for corporate financial reporting errors. If an audit uncovers an accounting error determined to be 'careless but completely unconcealed', input the standard minimum and maximum penalty rates applied to the potential lost revenue.</div>
+                <div class="task-instruction-text">1. HMRC establishes penal financial percentages based on intent and transparency. If an audit uncovers an accounting error determined to be 'deliberate and actively concealed' (prompted disclosure), input the standard minimum and maximum penalty rates applied to the Potential Lost Revenue (PLR).</div>
                 <div class="task-interactive-body">
                     <table class="financial-table">
                         <thead>
                             <tr>
-                                <th style="text-align: left;">HMRC Careless Mistake Penalty Layer</th>
+                                <th style="text-align: left;">HMRC Concealed Fraud Penalty Layer (Prompted)</th>
                                 <th style="width: 250px;">Penalty Percentage Rate (%)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="text-align: left;">Minimum baseline penalty rate for a prompted careless error disclosure</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="15" placeholder="0"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;">Maximum baseline penalty rate for a prompted careless error disclosure</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="30" placeholder="0"></td>
+                                <td style="text-align: left;">Minimum statutory penalty rate for prompted deliberate and concealed fraud</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="50% - 100%" placeholder="0% - 0%"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Under the statutory HMRC compliance framework, a prompted disclosure for an error caused by negligence or lack of reasonable care carries a penalty range between 15% and 30% of the potential lost tax revenue.
+                    <strong>Solution Note:</strong> Active falsification or fraud concealment faces maximum severity. A prompted disclosure for a deliberate and concealed error carries an absolute statutory penalty range of 50% to 100% of the lost tax revenue.
                 </div>
             </div>
-
-            <!-- QUESTION 2: TIPO "radio" (AML Immediate Reporting Pathway) -->
+            <!-- QUESTION 2: TIPO "radio" (Mandatory KYC Verification) -->
             <div class="question-tab" data-qindex="2" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">2. An accounting technician discovers unexplainable large cash receipts from an anonymous overseas entity. What is the immediate compliant reporting pathway required by law?</div>
+                <div class="task-instruction-text">2. Under the Money Laundering Regulations, when exactly must a firm perform mandatory Customer Due Diligence (CDD / KYC) verification checks?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q2" value="A"> Confront the company's chief executive officer directly to request a personal explanation.</span>
+                        <span class="option-label"><input type="radio" name="q2" value="A"> Only if the corporate client's annual net profit passes the £1.6 million cash scheme threshold.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q2" value="B"> Draft an internal report containing all source details and submit it directly to the firm's Money Laundering Reporting Officer (MLRO).</span>
+                        <span class="option-label"><input type="radio" name="q2" value="B"> Before establishing a formal business relationship or when an occasional high-value transaction exceeds specific thresholds.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q2" value="C"> Log an adjustment entry inside the suspense account to hide the mismatch until month-end.</span>
+                        <span class="option-label"><input type="radio" name="q2" value="C"> Exclusively during the final quarter of the financial accounting cycle.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> To ensure compliance and prevent tipping off, any suspected money laundering activity must be reported internally via an immediate escalation report to the designated corporate MLRO.
+                    <strong>Solution Note:</strong> Statutory compliance commands that Know Your Customer (KYC) identification and background verification must be successfully executed before any corporate ongoing commercial link or transaction contract begins.
                 </div>
             </div>
-            <!-- QUESTION 3: TIPO "multi-select" (Tipping Off Penalty Scenarios) -->
+            <!-- QUESTION 3: TIPO "multi-select" (Criminal Penalties and Sentences) -->
             <div class="question-tab" data-qindex="3" data-type="multi-select">
-                <div class="task-instruction-text">3. Complete the legislative hazard parameters governing professional anti-money laundering liability.</div>
+                <div class="task-instruction-text">3. Complete the statements regarding maximum statutory prison sentences under UK anti-money laundering legislation.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Accidentally or intentionally alerting a suspect client that an internal investigation is active or that a report has been sent to the NCA is the severe offense of 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="tipping-off">
-                            <option value="">-- Offense --</option>
-                            <option value="tipping-off">Tipping Off</option>
-                            <option value="fraud">Fraudulent Trading</option>
-                        </select>. 
-                        Under UK statutory criminal legislation, a conviction for this specific offense carries a maximum prison term of up to 
+                        An accountant convicted of a primary money laundering offense (such as concealing or converting criminal property) faces a prison term of up to 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="14">
+                            <option value="">-- Maximum Term --</option>
+                            <option value="5">5 years</option>
+                            <option value="7">7 years</option>
+                            <option value="14">14 years</option>
+                        </select> years. 
+                        Conversely, a practitioner convicted of failing to disclose a suspicion or knowledge of illicit funds to the MLRO faces a maximum sentence of up to 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="5">
                             <option value="">-- Maximum Term --</option>
                             <option value="2">2 years</option>
@@ -394,294 +366,283 @@
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Tipping off can prejudice a criminal investigation. Under the Proceeds of Crime Act (POCA), it is treated as a separate criminal offense carrying a maximum penalty of 5 years in prison.
+                    <strong>Solution Note:</strong> The Proceeds of Crime Act enforces strict maximum sentencing boundaries: 14 years for primary laundering acts (concealing, disguising, transferring) and 5 years for failing to report a known or suspected offense within the regulated sector.
                 </div>
             </div>
-
-            <!-- QUESTION 4: TIPO "input" (POCA Maximum Crime Sentence) -->
-            <div class="question-tab" data-qindex="4" data-type="input" data-correct="14">
-                <div class="task-instruction-text">4. What is the maximum statutory prison sentence under the UK Proceeds of Crime Act for individuals convicted of the primary offense of actively laundering money or concealing criminal property? (Input the numerical digit only)</div>
+            <!-- QUESTION 4: TIPO "input" (HMRC Interest Application Baseline) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="daily">
+                <div class="task-instruction-text">4. Under aligned tax administration rules, on what mechanical baseline frequency does HMRC calculate late payment interest charges on overdue company liabilities? (Input the single tracking frequency word, e.g., 'monthly' or 'daily')</div>
                 <div class="task-interactive-body">
                     <div style="max-width: 200px;">
-                        <input type="text" class="numeric-field" style="text-align: center;" name="q4" placeholder="0">
+                        <input type="text" class="multi-input-field" style="text-align: center;" name="q4" placeholder="frequency...">
                     </div>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The core criminal acts of money laundering—including concealing, disguising, converting, transferring, or removing criminal property from the UK—carry a maximum prison sentence of 14 years.
+                    <strong>Solution Note:</strong> HMRC late payment interest charges accumulate on a strict daily tracking baseline, running from the very first day the tax payment becomes overdue right until the final outstanding balance clears in full.
                 </div>
             </div>
-
-            <!-- QUESTION 5: TIPO "radio" (ESG Information Metrics) -->
+            <!-- QUESTION 5: TIPO "radio" (ICO Statutory Fines Thresholds) -->
             <div class="question-tab" data-qindex="5" data-type="radio" data-correct="C">
-                <div class="task-instruction-text">5. Within modern Environmental, Social, and Governance (ESG) corporate reporting frameworks, what type of metrics are accountants primarily tasked with verifying?</div>
+                <div class="task-instruction-text">5. Under the UK Data Protection Act (GDPR alignment), what is the maximum standard penalty cap that the Information Commissioner's Office (ICO) can apply to an enterprise for serious systemic data protection failures?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q5" value="A"> Exclusively internal petty cash distribution summaries.</span>
+                        <span class="option-label"><input type="radio" name="q5" value="A"> A maximum ceiling of £100,000 kept private from database records.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q5" value="B"> The depreciable market value of intangible goodwill portfolios.</span>
+                        <span class="option-label"><input type="radio" name="q5" value="B"> A fixed penalty up to £8.7 million or 2% of global annual turnover.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q5" value="C"> Quantifiable operational data, including total carbon emissions intensity, waste output tracking, and supply chain modern slavery checks.</span>
+                        <span class="option-label"><input type="radio" name="q5" value="C"> Up to £17.5 million or 4% of global annual turnover, whichever is the higher amount.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Modern professional accounting has expanded to include non-financial audit metrics. Accountants verify ESG parameters to ensure sustainable resource investments are reported transparently and truthfully.
+                    <strong>Solution Note:</strong> The higher tier statutory penalty cap for major processing violations, cross-border breaches, or ignoring enforcement orders allows the ICO to fine entities up to £17.5 million or 4% of global annual turnover.
                 </div>
             </div>
-            <!-- QUESTION 6: TIPO "multi-select" (Whistleblowing Statutory Qualification) -->
+            <!-- QUESTION 6: TIPO "multi-select" (PIDA Qualifying Disclosures) -->
             <div class="question-tab" data-qindex="6" data-type="multi-select">
-                <div class="task-instruction-text">6. Complete the statutory operational parameters governing protected disclosures under the Public Interest Disclosure Act (PIDA).</div>
+                <div class="task-instruction-text">6. Complete the statutory operational rules qualifying a worker for protected whistleblowing status.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        To qualify for full whistleblowing immunity and legal protection against commercial retaliation, the corporate disclosure must be made in the 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="public">
-                            <option value="">-- Interest base --</option>
-                            <option value="private">Private Interest of a rival group</option>
-                            <option value="public">Public Interest (covering crimes or breaches)</option>
+                        To claim full legal protection from corporate retaliation under the Public Interest Disclosure Act (PIDA), the employee's concern must cover qualifying disclosures such as a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="criminal">
+                            <option value="">-- Incident Class --</option>
+                            <option value="personal">Personal employment grievance</option>
+                            <option value="criminal">Criminal offense or health danger</option>
                         </select> 
-                        and must reasonably expose a breach of legal obligation or a 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="miscarriage">
-                            <option value="">-- Event --</option>
-                            <option value="miscarriage">Miscarriage of justice / environmental danger</option>
-                            <option value="variance">Standard trial balance ledger variance</option>
+                        and must be reasonably believed to be made in the absolute interest of the 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="public">
+                            <option value="">-- Target Group --</option>
+                            <option value="directors">Corporate director board</option>
+                            <option value="public">General Public interest</option>
                         </select>.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Whistleblowing protections trigger under PIDA only if the disclosure targets serious matters (criminal acts, health dangers, environmental damage) and is made in good faith for the public interest.
+                    <strong>Solution Note:</strong> PIDA explicitly excludes private employment contract rows. Legal immunity protects individuals only when reporting broad, serious concerns (e.g., fraud, legal breaches, eco-hazards) affecting the wider public interest.
                 </div>
             </div>
-
-            <!-- QUESTION 7: TIPO "multi-input" (HMRC Late Payment Interest Metrics) -->
-            <div class="question-tab" data-qindex="7" data-type="multi-input">
-                <div class="task-instruction-text">7. A business misses its corporation tax deadline. The outstanding tax balance is £40,000, and it remains overdue for exactly 30 days. Assume HMRC applies a daily statutory interest penalty rate base equivalent to an annualized rate of 7.3%. Compute the required interest metrics using a standard 365-day year model.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">HMRC Interest Calculation Line</th>
-                                <th style="width: 250px;">Required Balance (£)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Total calculated late payment interest charge due on the overdue tax (rounded to nearest pound)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="240" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Annual Interest = £40,000 × 7.3% = £2,920. Daily Interest Rate = £2,920 / 365 days = £8.00 per day. For 30 overdue days: Total Interest = 30 days × £8.00 = £240.
-                </div>
-            </div>
-            <!-- QUESTION 8: TIPO "multi-input" (NCA Statutory Moratorium Timeline) -->
-            <div class="question-tab" data-qindex="8" data-type="multi-input">
-                <div class="task-instruction-text">8. When an MLRO transmits a Suspicious Activity Report (SAR) requesting consent to process a transaction, the National Crime Agency (NCA) enforces a strict initial notice period, followed by a potential extension period if consent is refused. Input the standard statutory durations.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">HMRC / NCA Compliance Timeline Layer</th>
-                                <th style="width: 250px;">Statutory Duration (Days)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Initial statutory notice period window during which the transaction must be frozen</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="7" placeholder="0"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;">Standard statutory moratorium period extension window if the NCA refuses consent</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="31" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Under the Proceeds of Crime Act (POCA), once a SAR is submitted, the NCA has a 7-working-day notice period to respond. If consent is refused, an automatic 31-day moratorium period triggers to allow investigations.
-                </div>
-            </div>
-
-            <!-- QUESTION 9: TIPO "radio" (IESBA Conceptual Framework Steps) -->
-            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="A">
-                <div class="task-instruction-text">9. When an accounting technician faces a complex professional dilemma, what are the three mandatory steps required by the IESBA / AAT Conceptual Framework?</div>
+            <!-- QUESTION 7: TIPO "radio" (The Mechanics of Carbon Auditing) -->
+            <div class="question-tab" data-qindex="7" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">7. When an advanced accountant reviews an enterprise's integrated sustainability statements, what structural control helps verify environmental performance?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q9" value="A"> Identify the threats to compliance, evaluate the significance of those threats, and apply safeguards to eliminate or reduce them.</span>
+                        <span class="option-label"><input type="radio" name="q7" value="A"> Verifying that carbon offsets are multiplied by the flat rate scheme percentage.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q9" value="B"> Request an immediate financial advance from management, adjust the ledger, and clear the files.</span>
+                        <span class="option-label"><input type="radio" name="q7" value="B"> Tracking verifiable quantitative metrics, such as greenhouse gas emissions intensity calculated relative to real output volumes.</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q9" value="C"> Complete a standard VAT return form, execute a contra entry, and apply flat rate scheme rules.</span>
+                        <span class="option-label"><input type="radio" name="q7" value="C"> Moving all ecological spending adjustments line-by-line into the suspense account.</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The standard ethical framework requires three steps: 1) Identify threats to compliance; 2) Evaluate the significance of the threats identified; 3) Apply safeguards to reduce or eliminate them.
+                    <strong>Solution Note:</strong> Sustainable accounting avoids vague, qualitative claims. Performance checks rest on hard quantitative data (e.g., carbon tonnes divided by manufacturing volume), enabling auditors to prevent greenwashing.
                 </div>
             </div>
-
-            <!-- QUESTION 10: TIPO "multi-select" (NCA Failure to Disclose Liability) -->
-            <div class="question-tab" data-qindex="10" data-type="multi-select">
-                <div class="task-instruction-text">10. Complete the parameters describing personal criminal liability under the UK Proceeds of Crime Act framework.</div>
+            <!-- QUESTION 8: TIPO "multi-select" (NCA Statutory Notice Period Freeze) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-select">
+                <div class="task-instruction-text">8. Complete the timeline rules applied by the National Crime Agency (NCA) following the submission of a Suspicious Activity Report (SAR).</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Having reasonable suspicion or concrete knowledge of illicit financial funding inside an enterprise's books but deliberately failing to report it internally creates the offense of 
+                        Upon filing a SAR requesting consent to process a suspicious fund transfer, the NCA enforces an initial freeze notice period window of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="7">
+                            <option value="">-- Days --</option>
+                            <option value="7">7 working days</option>
+                            <option value="14">14 working days</option>
+                        </select>. 
+                        If the intelligence agency explicitly refuses transaction consent, an automatic extension moratorium period of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="31">
+                            <option value="">-- Extension --</option>
+                            <option value="14">14 calendar days</option>
+                            <option value="31">31 calendar days</option>
+                        </select> triggers to allow assets tracing.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> POCA guidelines command a 7-working-day notice period. If consent is refused, the transaction must remain frozen for a 31-day moratorium period to allow law enforcement agencies to obtain formal restraint orders.
+                </div>
+            </div>
+
+            <!-- QUESTION 9: TIPO "radio" (HMRC Default Surcharge Progression Rates) -->
+            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">9. A business fails to settle its outstanding corporate tax liabilities on multiple occasions. What progressive surcharge framework applies for repeated late payments?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="A"> A fixed flat rate penalty of £100 applied at the end of each fiscal calendar month.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="B"> A scaling percentage surcharge ranging progressively from 2% up to a maximum cap of 15% applied to the unpaid tax amount.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="C"> Immediate suspension of the corporate digital bank account lines.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> HMRC's historic payment default system tracks frequency within a surcharge period: 1st default = 0% (warning notice), 2nd default = 2%, 3rd default = 5%, 4th default = 10%, and 5th default = 15% of the outstanding balance.
+                </div>
+            </div>
+
+            <!-- QUESTION 10: TIPO "multi-select" (Spreadsheet Data Validation Security) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-select">
+                <div class="task-instruction-text">10. Complete the statement assessing data entry safety parameters within commercial modeling sheets.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        To guarantee structural compliance and protect automated summaries, the designer implements 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="validation">
+                            <option value="">-- Tool --</option>
+                            <option value="validation">Data Validation dropdown controls</option>
+                            <option value="conditional">Conditional Formatting highlighters</option>
+                        </select> 
+                        to restrict user inputs to a specific ledger range. To safeguard core calculation cells and macro formulas from deletion, the worksheet must be 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="protected">
+                            <option value="">-- Security --</option>
+                            <option value="protected">Locked and Protected with a secure password</option>
+                            <option value="hidden">Hidden completely from view</option>
+                        </select>.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Data validation restricts inputs to clean criteria arrays, while sheet protection blocks users from modifying or breaking nested formulas, maintaining the overall system integrity.
+                </div>
+            </div>
+            <!-- QUESTION 11: TIPO "radio" (Money Laundering Layering Stage) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">11. A firm observes an entity shuffling corporate funds between multiple international shell companies via complex, unnecessary wire transfers. What stage of money laundering does this mirror?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="A"> Layering Stage</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="B"> Placement Stage</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="C"> Integration Stage</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Layering shuffles cash through multiple transactions, accounts, or countries to distance the money from its criminal source and make it as difficult as possible to track.
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "multi-input" (ESG Metric Quantifications) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-input">
+                <div class="task-instruction-text">12. Advanced accountants quantify environmental footprint performance. Complete the carbon footprint reporting table parameters based on operational volume rows.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Corporate Sustainability Metric Row</th>
+                                <th style="width: 300px;">Required Formula / Metric Class</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Calculation denominator linking greenhouse gas tonnes directly to real activity volumes</td>
+                                <td><input type="text" class="multi-input-field" data-ans="Emissions Intensity" placeholder="Intensity factor term..."></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Carbon emissions intensity links environmental output directly to an asset volume denominator (tonnes of CO2 per production unit), moving reporting past qualitative claims into quantitative audit fields.
+                </div>
+            </div>
+
+            <!-- QUESTION 13: TIPO "radio" (GDPR Storage Limitation Rule) -->
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">13. Under the strict principles of the UK Data Protection Act, how long are commercial enterprises legally permitted to store personal or historical client data records?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q13" value="A"> Permanently and indefinitely to build historical database backups.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q13" value="B"> For no longer than is strictly necessary for the explicitly specified compliance purposes for which it was gathered.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q13" value="C"> Max ceiling limit of exactly 12 months after the contract relationship expires.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The Storage Limitation principle dictates that data must be purged once its active legal or commercial purpose expires, avoiding large data liabilities and compliance penalties.
+                </div>
+            </div>
+
+            <!-- QUESTION 14: TIPO "multi-select" (POCA Penalties - Failure to Disclose) -->
+            <div class="question-tab" data-qindex="14" data-type="multi-select">
+                <div class="task-instruction-text">14. Complete the description of personal criminal liabilities under the Proceeds of Crime Act.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        An accounting professional working within the regulated sector who uncovers suspicious transactions but chooses to stay silent commits the offense of 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="failure">
                             <option value="">-- Offense --</option>
-                            <option value="tipping-off">Tipping Off</option>
                             <option value="failure">Failure to Disclose</option>
+                            <option value="tipping-off">Tipping Off</option>
                         </select>. 
-                        Under UK statutory criminal legislation, a conviction for this failure to disclose carries a maximum prison term of up to 
+                        Upon formal conviction in a crown court, this omission carries a maximum prison sentence of up to 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="5">
-                            <option value="">-- Maximum Sentence --</option>
+                            <option value="">-- Maximum Term --</option>
                             <option value="2">2 years</option>
                             <option value="5">5 years</option>
                             <option value="14">14 years</option>
-                        </select> years.
+                        </select> years alongside unlimited civil fines.
                     </p>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Accountants work within the regulated sector. Failure to report a suspicion or knowledge of money laundering to the MLRO represents a criminal offense under POCA, carrying a maximum sentence of 5 years.
-                </div>
-            </div>
-            <!-- QUESTION 11: TIPO "radio" (Advocacy Threat Core Mappings) -->
-            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">11. An accountant is requested to promote the corporate client's shares to investment banks during a secondary equity funding round. What threat triggers?</div>
-                <div class="task-interactive-body">
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q11" value="A"> Self-Review Threat</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q11" value="B"> Advocacy Threat</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                    <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q11" value="C"> Intimidation Threat</span>
-                        <span class="feedback-icon"></span>
-                    </label>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Actively promoting or underwriting a client's commercial position or security stakes creates an Advocacy Threat, compromising the professional detachment required for objective valuation.
+                    <strong>Solution Note:</strong> Failing to disclose known or suspected laundering activity inside the regulated sector represents a direct criminal offense under POCA, carrying a maximum penalty of 5 years in prison.
                 </div>
             </div>
 
-            <!-- QUESTION 12: TIPO "multi-select" (Data Protection & GDPR Core Controls) -->
-            <div class="question-tab" data-qindex="12" data-type="multi-select">
-                <div class="task-instruction-text">12. Complete the regulatory parameters defining data handling under the UK Data Protection Act (GDPR alignment).</div>
-                <div class="task-interactive-body">
-                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        Storing client financial details on an unencrypted personal drive breaches data legislation. Under these frameworks, personal data must be processed 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="securely">
-                            <option value="">-- Condition --</option>
-                            <option value="freely">Freely across cloud links</option>
-                            <option value="securely">Securely using technical encryption</option>
-                        </select> 
-                        and kept for no longer than is strictly 
-                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="necessary">
-                            <option value="">-- Duration --</option>
-                            <option value="necessary">Necessary for the specified purpose</option>
-                            <option value="possible">Possible indefinitely</option>
-                        </select> to prevent massive data breach corporate fines.
-                    </p>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Data legislation demands strict security, transparency, purpose limitation, and storage minimization. Retaining personal data without an active legal basis violates compliance guidelines.
-                </div>
-            </div>
-
-            <!-- QUESTION 13: TIPO "multi-input" (ESG Carbon Intensity Calculations) -->
-            <div class="question-tab" data-qindex="13" data-type="multi-input">
-                <div class="task-instruction-text">13. A factory tracks total carbon emissions of 12,000 tonnes during a reporting period. Total output volume manufactured is 3,000 units. Compute the environmental performance efficiency metric for the integrated management report.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">ESG Carbon Intensity Factor</th>
-                                <th style="width: 250px;">Calculated Output Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Emissions Intensity Factor (expressed in tonnes of CO2 per individual unit)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="4" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Carbon Emissions Intensity is calculated by dividing total greenhouse gases generated by the activity output base: 12,000 tonnes / 3,000 units = 4 tonnes of CO2 per unit produced.
-                </div>
-            </div>
-            <!-- QUESTION 14: TIPO "radio" (Money Laundering Placement Stage) -->
-            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="A">
-                <div class="task-instruction-text">14. A business uncovers cash revenue that is split into small deposits across multiple bank branches to avoid triggering automated reporting limits. What stage of money laundering does this reflect?</div>
+            <!-- QUESTION 15: TIPO "radio" (GDPR Accountability Principle) -->
+            <div class="question-tab" data-qindex="15" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">15. Which core principle under the UK GDPR framework legally forces a commercial enterprise to actively document and prove its internal data protection safety controls?</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="A"> Placement Stage</span>
+                        <span class="option-label"><input type="radio" name="q15" value="A"> Data Minimisation Principle</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="B"> Layering Stage</span>
+                        <span class="option-label"><input type="radio" name="q15" value="B"> Storage Limitation Principle</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q14" value="C"> Integration Stage</span>
+                        <span class="option-label"><input type="radio" name="q15" value="C"> Accountability Principle</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Money laundering follows three stages: Placement (introducing dirty cash into the financial system), Layering (moving funds through complex links to hide the trail), and Integration (reintroducing the clean cash into the economy). Splitting deposits is a Placement technique.
-                </div>
-            </div>
-
-            <!-- QUESTION 15: TIPO "multi-input" (Integrated Sustainable Return Report) -->
-            <div class="question-tab" data-qindex="15" data-type="multi-input">
-                <div class="task-instruction-text">15. Final Assessment Check: Total operational corporate overheads run at £150,000. Environmental green compliance audit expenditures amount to £6,000. Compute the sustainability investment factor percentage.</div>
-                <div class="task-interactive-body">
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left;">Integrated Performance Reporting Row</th>
-                                <th style="width: 250px;">Required Output Value (%)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: left;">Green compliance expenditure percentage factor relative to total overhead cost base</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="4" placeholder="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="global-feedback-msg hidden"></div>
-                <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Green Expenditure Ratio = (Green Audit Expenses / Total Overheads) * 100. Calculation: (£6,000 / £150,000) * 100 = 0.04 * 100 = 4.00%.
+                    <strong>Solution Note:</strong> The Accountability Principle demands that organizations not only comply with data protection rules but also actively keep records, logs, and audit maps to prove their compliance to the ICO.
                 </div>
             </div>
 
         </form>
-
         <!-- PULSANTIERA DI CONTROLLO INTERNA ALLA BOLLA BIANCA (APPENDICE TECNICA) -->
         <div class="controls-footer">
             <div class="btn-group-left">
@@ -697,6 +658,7 @@
         </div>
 
     </div> <!-- Fine .test-container -->
+
     <!-- TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA SCHERMO -->
     <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
 
@@ -926,7 +888,7 @@ function executeCalc() {
     try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
 }
 
-// LOGICA REALE DRAG MECCANICA TRASCINABILE
+// REALE TRASCINAMENTO DRAG AND DROP CALCOLATRICE WIDGET
 const dragWidget = document.getElementById("calc-widget");
 const dragHandle = document.getElementById("calc-header");
 let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
