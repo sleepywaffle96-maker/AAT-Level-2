@@ -1,198 +1,135 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 3 - Chapter 2: FAPS Schemes | AAT Accounting Hub</title>
+    <title>AAT Level 3 Advanced Bookkeeping - Chapter 2 Schemes</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* DESIGN SYSTEM INTERFACCIA LIVELLO 3 - PALETTE AZZURRO CIANO */
         :root {
-            --bg-dark: #0a0f1d;
-            --card-glass: rgba(16, 24, 48, 0.75);
-            --border-glass: rgba(0, 242, 254, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --t-green: #10b981;
-            --t-red: #ef4444;
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --border-color: #E5E7EB;
         }
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 2rem;
+            padding: 3rem 1rem;
+            line-height: 1.7;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .nav-back {
-            color: var(--primary);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-        .glass-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glass);
+        .studio-container { max-width: 1050px; margin: 0 auto; }
+        .white-bubble-container {
+            background-color: var(--bubble-white-bg);
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            margin-bottom: 2rem;
+            padding: 3.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
         }
-        h1 {
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            font-size: 2.2rem;
-            margin-top: 0;
-        }
-        h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-top: 1.5rem;
-        }
-        .t-account {
-            width: 100%;
-            max-width: 480px;
-            margin: 1rem 0;
-            border-collapse: collapse;
-            background: rgba(255,255,255,0.02);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .t-account th {
-            background: rgba(0, 242, 254, 0.1);
-            color: var(--primary);
-            padding: 0.5rem;
-            border-bottom: 2px solid var(--primary);
-        }
-        .t-account td {
-            padding: 0.6rem;
-            width: 50%;
-            font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .t-account td:first-child {
-            border-right: 2px solid var(--border-glass);
-        }
-        .side-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-        .flex-grid {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
+        .financial-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .financial-table th { background-color: var(--l3-cyan-dark); color: #FFFFFF; padding: 0.75rem; font-size: 0.85rem; border: 1px solid var(--l3-cyan-dark); }
+        .financial-table td { border: 1px solid var(--border-color); padding: 0.75rem; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../../studio.html" class="nav-back">← Back to Study Hub</a>
-        
-        <div class="glass-card">
-            <h1>FAPS Visual Layouts & T-Accounts</h1>
-            <p style="color: var(--text-muted)">Visual frameworks for posting adjustments and mapping incomplete records structures.</p>
-
-            <h2>1. Ledger Adjustments: Accruals and Prepayments</h2>
-            <div class="flex-grid">
-                <!-- Expense Ledger T-Account -->
-                <table class="t-account">
-                    <thead>
-                        <tr><th colspan="2">Electricity Expense Account</th></tr>
-                        <tr>
-                            <th class="side-title">Debit (Dr)</th>
-                            <th class="side-title">Credit (Cr)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Bank (Cash Paid) <span style="color:var(--t-green)">£1,200</span></td>
-                            <td>Prepaid b/f (Opening) <span style="color:var(--t-red)">£150</span></td>
-                        </tr>
-                        <tr>
-                            <td>Accrued c/f (Closing) <span style="color:var(--t-green)">£200</span></td>
-                            <td><strong>SoPL (Balancing Figure)</strong> <span style="color:var(--text-main)">£1,250</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="studio-container">
+        <div class="white-bubble-container">
+            <div style="margin-bottom: 2.5rem; border-bottom: 3px solid var(--l3-cyan-light); padding-bottom: 1.5rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 4px; letter-spacing: 0.05em;">AAT LEVEL 3 ADVANCED DIPLOMA IN ACCOUNTING</span>
+                <h1 style="font-size: 2rem; margin: 0.75rem 0 0 0; color: #111827; font-weight: 700;">Chapter 2: Visual Ledger Schemes & Depreciation Mastri</h1>
             </div>
-            <h2>2. Incomplete Records Control Frameworks</h2>
-            <p style="color: var(--text-muted)">Use these ledger frameworks to find missing figures like credit sales, credit purchases, or cash takings.</p>
-            
-            <div class="flex-grid">
-                <!-- Receivables Ledger Control Account -->
-                <table class="t-account">
-                    <thead>
-                        <tr><th colspan="2">Sales Ledger Control Account (SLCA)</th></tr>
-                        <tr>
-                            <th class="side-title">Debit (Dr)</th>
-                            <th class="side-title">Credit (Cr)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Opening Balance b/f <span style="color:var(--text-main)">£4,500</span></td>
-                            <td>Bank (Cash Received) <span style="color:var(--t-red)">£22,000</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Credit Sales (Missing Fig)</strong> <span style="color:var(--primary)">£23,800</span></td>
-                            <td>Irrecoverable Debts <span style="color:var(--t-red)">£300</span></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Closing Balance c/f <span style="color:var(--text-main)">£6,000</span></td>
-                        </tr>
-                    </tbody>
-                </table>
 
-                <!-- Partnership Appropriation Allocation Map -->
-                <table class="t-account">
+            <!-- SCHEMA 1: THE ACCUMULATED DEPRECIATION T-ACCOUNT PIPELINE -->
+            <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📊 THE DUAL-LEDGER SYSTEM MECCANICA (VALUATION CONTRA-ACCOUNT)</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+==================================================================================================
+              GENERAL LEDGER: ACCUMULATED DEPRECIATION ACCOUNT (CONTRA-ASSET)
+==================================================================================================
+              DEBIT (DR) LATO DISMISSIONE/STORNO                CREDIT (CR) LATO ACCUMULO STRUTTURALE
+==================================================================================================
+                                                | Balance b/f (Prior accumulated pool)   £6,000
+                                                | Depreciation Charge for Year 2         £4,200
+                                                | (New annual internal expense transfer)
+--------------------------------------------------------------------------------------------------
+                                                | Closing Balance c/d (To SoFP Matrix)  £10,200
+==================================================================================================
+                </div>
+            </div>
+
+            <!-- SCHEMA 2: THE SPL EXPENSE ACCOUNT PIPELINE -->
+            <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📉 THE NOMINAL DEPRECIATION EXPENSE PIPELINE (ANNUAL SPL overhead)</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+==================================================================================================
+              GENERAL LEDGER: DEPRECIATION EXPENSE ACCOUNT (NOMINAL INCOME STATEMENT)
+==================================================================================================
+              DEBIT (DR) OVERHEAD CHARGE SIDE                   CREDIT (CR) YEAR-END CLOSING SIDE
+==================================================================================================
+Year-End Adjustment Post        £4,200     | Transfer to Statement of Profit or Loss  £4,200
+(From Accumulated Dep. A/c)                     | (Clears nominal ledger account balance to 0)
+--------------------------------------------------------------------------------------------------
+TOTAL                           £4,200     | TOTAL                                    £4,200
+==================================================================================================
+                </div>
+            </div>
+            <!-- SCHEMA 3: JOURNAL & REPORT EXPOSURE MATRIX -->
+            <div style="margin-top: 2rem; margin-bottom: 2rem;">
+                <table class="financial-table">
                     <thead>
-                        <tr><th colspan="2">Partnership Appropriation Summary</th></tr>
                         <tr>
-                            <th class="side-title">Add / Credit to Pool</th>
-                            <th class="side-title">Deduct / Debit Pool</th>
+                            <th style="text-align: left;">Transaction Category</th>
+                            <th>Debit Entry (DR)</th>
+                            <th>Credit Entry (CR)</th>
+                            <th>Financial Statement Allocation</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Net Profit from SoPL <span style="color:var(--t-green)">£50,000</span></td>
-                            <td>Partners' Salaries <span style="color:var(--t-red)">£12,000</span></td>
+                            <td style="font-weight: 600;">Annual Depreciation Overhead Allocation</td>
+                            <td style="font-family: monospace; color: #C2410C;">Depreciation Expense A/c</td>
+                            <td style="font-family: monospace; color: #0369A1;">Accumulated Depreciation A/c</td>
+                            <td style="font-weight: 600; color: #DC2626;">SPL Overheads / SoFP Asset Deduction</td>
+                        </tr>
+                        <tr style="background: #FAFAFA;">
+                            <td style="font-weight: 600;">Capital Expenditure (Asset Purchase)</td>
+                            <td style="font-family: monospace; color: #0369A1;">Non-Current Asset Cost A/c</td>
+                            <td style="font-family: monospace;">Bank Account</td>
+                            <td style="font-weight: 600; color: #059669;">SoFP: Non-Current Assets (Cost ↑)</td>
                         </tr>
                         <tr>
-                            <td>Interest on Drawings <span style="color:var(--t-green)">£1,500</span></td>
-                            <td>Interest on Capital <span style="color:var(--t-red)">£4,000</span></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><strong>Residual Profit Split</strong> <span style="color:var(--primary)">£35,500</span></td>
+                            <td style="font-weight: 600;">Revenue Expenditure (Asset Repair)</td>
+                            <td style="font-family: monospace; color: #C2410C;">Repairs & Maintenance A/c</td>
+                            <td style="font-family: monospace;">Bank Account</td>
+                            <td style="font-weight: 600; color: #DC2626;">SPL: Operating Overhead Expenses</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h2>3. Financial Statements Pro-Forma Layout (Extracts)</h2>
-            <div style="background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 6px; border: 1px solid var(--border-glass);">
-                <span style="color: var(--secondary); font-weight: bold;">Statement of Financial Position - Equity Section (Partnership)</span>
-                <pre style="color: var(--text-muted); font-family: monospace; font-size: 0.95rem; margin-top: 0.5rem;">
-Capital Accounts:
-   Partner A ....................................... £40,000
-   Partner B ....................................... £30,000   £70,000
-
-Current Accounts:
-   Partner A (Op. Bal + Share - Drawings) ..........  £4,200
-   Partner B (Op. Bal + Share - Drawings) ..........  £(1,100)  £3,100
-Total Equity ............................................... £73,100
-                </pre>
+            <!-- SCHEMA 4: STATEMENT OF FINANCIAL POSITION VISUAL BALANCING GRID -->
+            <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📊 STATEMENT OF FINANCIAL POSITION (SoFP) DEDUCTION GRID</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
+==================================================================================================
+STATEMENT OF FINANCIAL POSITION EXTRACT (ASSET VALUATION DISPLAY)
+==================================================================================================
+NON-CURRENT ASSETS BASKET         |    COST (£)   |  ACCUMULATED DEP. (£)  |     NBV (£)
+--------------------------------------------------------------------------------------------------
+Property Asset Pool               |   £150,000    |         £0             |    £150,000
+Plant & Machinery Asset Pool      |    £45,000    |      £15,000           |     £30,000
+Motor Vehicles Fleet Pool         |    £20,000    |      £10,200           |      £9,800
+--------------------------------------------------------------------------------------------------
+TOTAL NON-CURRENT ASSETS NET VALUE|   £215,000    |      £25,200           |    £189,800
+==================================================================================================
+*Note: Net Book Value (NBV) represents the continuous amortized baseline reported to stakeholders.
+                </div>
             </div>
         </div>
     </div>
