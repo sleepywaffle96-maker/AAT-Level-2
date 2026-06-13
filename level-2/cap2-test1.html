@@ -3,340 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookkeeping Controls - Test One</title>
+    <title>AAT Level 2 Certificate in Accounting - Bookkeeping Transactions (BTRN) Capitolo 2 Test One</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0B0F19;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+        /* 1. Reset Globale e Layout Sfondo */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #333333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+
+        /* 2. Contenitore Principale (Bolla Bianca Protetta) */
+        .test-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); position: relative; min-height: 580px; display: flex; flex-direction: column; justify-content: space-between; }
+
+        /* 3. Intestazione e Contatore */
+        .test-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 15px; margin-bottom: 25px; }
+        .test-title { font-size: 18px; font-weight: 700; color: #1E293B; }
+        .question-counter { font-size: 14px; font-weight: 600; color: #64748B; background: #F1F5F9; padding: 6px 12px; border-radius: 20px; }
+
+        /* 4. Sistema a Schede (Tabs delle Domande) */
+        .question-tab { display: none; flex-direction: column; gap: 20px; flex-grow: 1; }
+        .question-tab.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
+        .question-text { font-size: 16px; font-weight: 600; color: #0F172A; line-height: 1.5; margin-bottom: 10px; }
+        .options-container { display: flex; flex-direction: column; gap: 12px; }
+        
+        /* 5. Componenti Speciali: Tabelle Osborne e T-Accounts */
+        .aat-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+        .aat-table th { background-color: #F8FAFC; color: #475569; font-weight: 700; padding: 10px; border: 1px solid #E2E8F0; text-align: left; }
+        .aat-table td { padding: 10px; border: 1px solid #E2E8F0; vertical-align: middle; }
+        
+        .t-account-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #CBD5E1; background: #FFF; margin-top: 15px; }
+        .t-side { padding: 15px; min-height: 160px; }
+        .t-side-left { border-right: 2px solid #1E293B; position: relative; }
+        .t-header { font-size: 13px; font-weight: 800; text-align: center; color: #475569; border-bottom: 1px solid #E2E8F0; padding-bottom: 6px; margin-bottom: 12px; text-transform: uppercase; }
+        .t-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; }
+
+        /* 6. Box Risposte, Tendine e Input Campi */
+        .option-box { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 2px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; position: relative; }
+        .option-box:hover { border-color: #94A3B8; background-color: #F8FAFC; }
+        .option-box input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; }
+        .option-label { display: flex; align-items: center; width: 100%; font-size: 15px; font-weight: 500; }
+        
+        .inline-select { padding: 6px 10px; border: 2px solid #CBD5E1; border-radius: 6px; font-weight: 600; color: #0F172A; font-size: 14px; background-color: #FFF; }
+        .numeric-field, .table-field { width: 120px; padding: 8px; border: 2px solid #E2E8F0; border-radius: 6px; text-align: right; font-size: 14px; font-weight: 600; color: #0F172A; }
+        .numeric-field:focus, .table-field:focus, .inline-select:focus { outline: none; border-color: #2563EB; }
+
+        /* 7. Indicatori Visivi di Feedback */
+        .feedback-icon { font-size: 18px; margin-left: 10px; display: none; }
+        .correct-answer-highlight { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
+
+        /* 8. Pulsantiera di Controllo Inferiore */
+        .controls-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; border-top: 2px solid #E5E7EB; padding-top: 20px; gap: 10px; flex-wrap: wrap; }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+        .btn { padding: 10px 18px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
+        .btn-blue { background-color: #2563EB; color: white; }
+        .btn-blue:hover { background-color: #1D4ED8; }
+        .btn-green { background-color: #059669; color: white; }
+        .btn-green:hover { background-color: #047857; }
+        .btn-red { background-color: #DC2626; color: white; }
+        .btn-red:hover { background-color: #B91C1C; }
+        .btn-gray { background-color: #4B5563; color: white; }
+        .btn-gray:hover { background-color: #374151; }
+        .btn-purple { background-color: #7C3AED; color: white; display: none; }
+        .btn-purple:hover { background-color: #6D28D9; }
+
+        /* 9. Widget Calcolatrice Vetrificata */
+        #calc-widget { position: fixed; bottom: 90px; right: 30px; width: 240px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 2000; display: none; cursor: move; }
+        #calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #calc-header span { color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        #calc-close-btn { background: transparent; border: none; color: #EF4444; font-weight: bold; cursor: pointer; font-size: 14px; }
+        #calc-screen { width: 100%; height: 45px; background: #000000; border-radius: 8px; color: #00FFFF; text-shadow: 0 0 10px #00FFFF; font-family: 'Courier New', Courier, monospace; text-align: right; padding: 12px; font-size: 20px; font-weight: bold; margin-bottom: 12px; border: 1px solid #00FFFF; }
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .calc-btn { background: rgba(255, 255, 255, 0.08); border: none; color: white; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; }
+        .calc-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .calc-btn.op { color: #00FFFF; background: rgba(0, 255, 255, 0.05); }
+        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.2); }
+
+        #calc-toggle-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: #2563EB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); cursor: pointer; z-index: 1999; font-size: 20px; transition: transform 0.2s ease, background 0.2s ease; }
+        #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
+
+        /* 10. Regole di Stampa Clean A4 */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @media print {
+            @page { size: A4 portrait; margin: 0mm; }
+            body { padding: 15mm; background-color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .controls-footer, #calc-widget, #calc-toggle-trigger, .feedback-icon { display: none !important; }
+            .question-tab { display: flex !important; page-break-after: always; }
         }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #0B0F19;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #222222;
-        }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
-        }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
-        }
-        table.osborne-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        table.osborne-table th {
-            background-color: #0B0F19;
-            text-align: left;
-            font-size: 13px;
-        }
-        table.osborne-table td, table.osborne-table th {
-            border: 1px solid #aaaaaa;
-            padding: 6px;
-            font-size: 13px;
-        }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .btn-action {
-            background-color: #0B0F19;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
-            cursor: pointer;
-            color: #333333;
-        }
-        .btn-action:hover {
-            background-color: #0B0F19;
-        }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
     </style>
 </head>
 <body>
+    <div class="test-container">
+        <div class="test-header">
+            <div class="test-title">BTRN - CHAPTER 2: SALES AND PURCHASE DAY BOOKS (TEST ONE)</div>
+            <div class="question-counter">Question <span id="current-q-num">1</span> of 15</div>
+        </div>
 
-<div class="quiz-container">
-    <div class="header-title">Bookkeeping Controls - Test One</div>
+        <form id="quiz-form">
+            <!-- Q1: Frase a Completamento Multi-Tendine (Difficoltà: Media) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-select">
+                <p class="question-text">1. Complete the operational statement below regarding credit documents tracking by selecting the appropriate technical entries.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    The total entries summarized within the Sales Day Book are systematically posted at regular intervals as a debit entry to the 
+                    <select class="inline-select multi-select-field" data-ans="SLCA">
+                        <option value="">-- Choose Account --</option>
+                        <option value="SLCA">Sales Ledger Control Account (SLCA)</option>
+                        <option value="PLCA">Purchase Ledger Control Account (PLCA)</option>
+                        <option value="VAT">VAT Account</option>
+                    </select> 
+                    and as a total credit entry to the 
+                    <select class="inline-select multi-select-field" data-ans="Sales">
+                        <option value="">-- Choose Account --</option>
+                        <option value="Bank">Bank Account</option>
+                        <option value="Sales">Sales Revenue Account</option>
+                        <option value="Purchases">Purchases Account</option>
+                    </select> in the General Ledger.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
 
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            The Sales Ledger Control Account (SLCA) has an opening debit balance of £24,500. During the month, credit sales totals from the Sales Day Book are £18,200, sales returns are £1,400, and cash received from credit customers equals £19,800. Calculate the closing debit balance of the SLCA:<br>
-            Closing SLCA Balance: £ <input type="text" id="ans1" placeholder="0.00">
+            <!-- Q2: Tabella del Diario Vendite Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="2" data-type="multi-input">
+                <p class="question-text">2. An invoice is issued to a customer for goods with a total net value of £1,250 subject to standard VAT at 20%. Complete the row of the Sales Day Book entry below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Net Amount (£)</th>
+                            <th>VAT (20%) (£)</th>
+                            <th>Gross Total (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>H. Green Ltd</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="1250" placeholder="Net"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="250" placeholder="VAT"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="1500" placeholder="Gross"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q3: Mastro Contabile T-Account Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="3" data-type="multi-input">
+                <p class="question-text">3. Complete the missing side and numerical value to record a total cash receipt of £850 from credit customers within the Sales Ledger Control Account (SLCA).</p>
+                <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 15px; color: #1E293B;">Sales Ledger Control Account</div>
+                <div class="t-account-wrapper">
+                    <div class="t-side t-side-left">
+                        <div class="t-header">Debit</div>
+                        <div class="t-row"><span>Opening Balance b/d</span><span style="font-weight: 700;">£1,200</span></div>
+                    </div>
+                    <div class="t-side">
+                        <div class="t-header">Credit</div>
+                        <div class="t-row">
+                            <!-- Inserimento testo/raccordo e cifra a destra -->
+                            <select class="inline-select multi-input-field" data-ans="Bank" style="width: 110px; padding: 4px;">
+                                <option value="">-- Entry --</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Bank">Bank / Cash</option>
+                                <option value="Returns">Returns</option>
+                            </select>
+                            <input type="text" class="table-field multi-input-field" data-ans="850" placeholder="£0.00" style="width: 90px; padding: 4px;">
+                        </div>
+                    </div>
+                </div>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+            <!-- Q4: Risposta Numerica - Scorporo IVA (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="600">
+                <p class="question-text">4. A business receives a utility invoice with a gross total of £720, which includes standard VAT at 20%. Calculate the net amount before tax to be recorded as an overhead expense (£).</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Calculated Net Amount (£):</span>
+                            <input type="text" class="numeric-field" name="q4" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5: Tabella del Purchase Returns Day Book (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="5" data-type="multi-input">
+                <p class="question-text">5. Faulty goods with a list price of £400 are returned to a credit supplier. The supplier offers a 10% trade discount. Complete the systematic entry for the Purchase Returns Day Book row below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>Supplier Name</th>
+                            <th>Net Return (£)</th>
+                            <th>VAT (20%) (£)</th>
+                            <th>Gross Credit (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alpha Wholesalers</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="360" placeholder="Net"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="72" placeholder="VAT"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="432" placeholder="Gross"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q6: Scelta Multipla - Flusso IVA (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="6" data-type="radio" data-correct="B">
+                <p class="question-text">6. When a business makes a credit purchase of inventory from a VAT-registered supplier, how is the VAT component on the invoice classified by the buyer?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="A"> Output VAT (Liability)</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="B"> Input VAT (Recoverable Asset)</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q6" value="C"> Exempt VAT (No Entry)</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+            <!-- Q7: Testo a completamento con tendine (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-select">
+                <p class="question-text">7. Complete the technical rule for checking source documents against day book balances.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    Trade discounts are always deducted 
+                    <select class="inline-select multi-select-field" data-ans="before">
+                        <option value="">-- Choose --</option>
+                        <option value="before">before</option>
+                        <option value="after">after</option>
+                    </select> VAT is calculated on the face of a purchase invoice, meaning the net total represents the value 
+                    <select class="inline-select multi-select-field" data-ans="excluding">
+                        <option value="">-- Choose --</option>
+                        <option value="including">including</option>
+                        <option value="excluding">excluding</option>
+                    </select> the tax amount.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+
+            <!-- Q8: T-Account Bilanciamento Conto IVA (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <p class="question-text">8. Balance the VAT T-Account below for the week by entering the missing closing balance item (c/d) to equate the debit and credit sides.</p>
+                <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 15px; color: #1E293B;">VAT Control Account</div>
+                <div class="t-account-wrapper">
+                    <div class="t-side t-side-left">
+                        <div class="t-header">Debit (Input)</div>
+                        <div class="t-row"><span>Purchases VAT</span><span style="font-weight: 700;">£400</span></div>
+                        <div class="t-row" style="margin-top: 15px; border-top: 1px dashed #CCC; padding-top: 5px;">
+                            <span>Balance c/d</span>
+                            <input type="text" class="table-field multi-input-field" data-ans="500" placeholder="£0.00" style="width: 90px; padding: 4px;">
+                        </div>
+                    </div>
+                    <div class="t-side">
+                        <div class="t-header">Credit (Output)</div>
+                        <div class="t-row"><span>Sales VAT</span><span style="font-weight: 700;">£900</span></div>
+                    </div>
+                </div>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q9: Risposta Numerica - Totale Giornale Acquisti (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="9" data-type="input" data-correct="1200">
+                <p class="question-text">9. The Purchase Day Book shows three net entries: Supplier X £500, Supplier Y £450, and Supplier Z £250. Calculate the total credit posted to the Purchases Account in the General Ledger (£).</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>Total Purchases Posting (£):</span>
+                            <input type="text" class="numeric-field" name="q4" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Q10: Tabella con Trade Discount ed IVA (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-input">
+                <p class="question-text">10. A batch of inventory items has a list price of £2,000, subject to a 20% trade discount and 20% standard VAT. Complete the accounting components below.</p>
+                <table class="aat-table">
+                    <thead>
+                        <tr>
+                            <th>List Price</th>
+                            <th>Net (After 20% Disc)</th>
+                            <th>VAT (20%)</th>
+                            <th>Gross Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>£2,000</td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="1600" placeholder="Net"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="320" placeholder="VAT"></td>
+                            <td><input type="text" class="table-field multi-input-field" data-ans="1920" placeholder="Gross"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+
+            <!-- Q11: Scelta Multipla - Registri Sezionali (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="A">
+                <p class="question-text">11. Where are the individual credit transactions of specific suppliers recorded to monitor personal accounts within a modular ledger framework?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="A"> Purchase Ledger</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="B"> Sales Ledger</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q11" value="C"> General Ledger</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q12: Testo a completamento con tendine (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-select">
+                <p class="question-text">12. Select the correct accounting destination for transactions extracted from day books.</p>
+                <div class="options-container" style="background-color: #F8FAFC; padding: 20px; border-radius: 8px; line-height: 2;">
+                    Individual invoice details are posted day-by-day to the subsidiary ledgers, which act purely as 
+                    <select class="inline-select multi-select-field" data-ans="memorandum">
+                        <option value="">-- Choose Type --</option>
+                        <option value="double-entry">double-entry</option>
+                        <option value="memorandum">memorandum</option>
+                    </select> records, while the double-entry completion occurs entirely within the 
+                    <select class="inline-select multi-select-field" data-ans="General">
+                        <option value="">-- Choose Ledger --</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Purchase">Purchase</option>
+                        <option value="General">General</option>
+                    </select> Ledger accounts.
+                </div>
+                <span class="feedback-icon" style="margin-top: 10px;"></span>
+            </div>
+            <!-- Q13: Scelta Multipla - Trattamento Resi Vendite (Difficoltà: Facile) -->
+            <div class="question-tab" data-qindex="13" data-type="radio" data-correct="A">
+                <p class="question-text">13. When a sales return credit note is issued to a customer, which account in the General Ledger must be debited to reverse the revenue?</p>
+                <div class="options-container">
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="A"> Sales Returns Account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="B"> Sales Revenue Account</span><span class="feedback-icon"></span></label>
+                    <label class="option-box"><span class="option-label"><input type="radio" name="q13" value="C"> Purchase Ledger Control Account</span><span class="feedback-icon"></span></label>
+                </div>
+            </div>
+
+            <!-- Q14: Risposta Numerica - Calcolo IVA a Credito (Difficoltà: Media) -->
+            <div class="question-tab" data-qindex="14" data-type="input" data-correct="180">
+                <p class="question-text">14. A business purchases machinery on credit for a net price of £900 plus standard VAT at 20%. Calculate the entry value to be debited to the VAT Control Account (£).</p>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="numeric-input-wrapper">
+                            <span>VAT Entry Value (£):</span>
+                            <input type="text" class="numeric-field" name="q14" placeholder="0.00">
+                        </div>
+                        <span class="feedback-icon"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q15: T-Account Mastro Fornitore Multi-Input (Difficoltà: Alta) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <p class="question-text">15. Complete the missing transaction details and balance to record a new credit purchase invoice of £600 from supplier K. Vance within their personal Purchase Ledger account.</p>
+                <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 15px; color: #1E293B;">K. Vance Account (Purchase Ledger)</div>
+                <div class="t-account-wrapper">
+                    <div class="t-side t-side-left">
+                        <div class="t-header">Debit</div>
+                        <div class="t-row"><span>Opening Balance b/d</span><span style="font-weight: 700;">£0.00</span></div>
+                    </div>
+                    <div class="t-side">
+                        <div class="t-header">Credit</div>
+                        <div class="t-row">
+                            <select class="inline-select multi-input-field" data-ans="Invoice" style="width: 110px; padding: 4px;">
+                                <option value="">-- Entry --</option>
+                                <option value="Invoice">Purchase Invoice</option>
+                                <option value="Bank">Bank / Cash</option>
+                                <option value="Returns">Returns</option>
+                            </select>
+                            <input type="text" class="table-field multi-input-field" data-ans="600" placeholder="£0.00" style="width: 90px; padding: 4px;">
+                        </div>
+                    </div>
+                </div>
+                <span class="feedback-icon" style="margin-top: 15px;"></span>
+            </div>
+        </form>
+        <!-- Barra dei Pulsanti di Controllo Inferiori INTERNI -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button class="btn btn-blue" id="btn-am-i-right">Am I right?</button>
+                <button class="btn btn-green" id="btn-show-solution">Show Solution</button>
+                <button class="btn btn-red" id="btn-reset">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button class="btn btn-gray" id="btn-prev" disabled>Previous Question</button>
+                <button class="btn btn-gray" id="btn-next">Next Question</button>
+                <button class="btn btn-purple" id="btn-pdf">Download as PDF</button>
+            </div>
+        </div>
+    </div> <!-- Chiusura della bolla bianca (.test-container) -->
+
+    <!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+    <div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
+
+    <!-- WIDGET CALCOLATRICE VETRATA INTERATTIVA -->
+    <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" title="Hide">✕</button>
+        </div>
+        <div id="calc-screen">0</div>
+        <div class="calc-grid">
+            <button class="calc-btn op" onclick="clearCalc()">C</button>
+            <button class="calc-btn op" onclick="pressCalc('sq')">x²</button>
+            <button class="calc-btn op" onclick="pressCalc('rt')">√</button>
+            <button class="calc-btn op" onclick="pressCalc('/')">/</button>
+            <button class="calc-btn" onclick="pressCalc('7')">7</button>
+            <button class="calc-btn" onclick="pressCalc('8')">8</button>
+            <button class="calc-btn" onclick="pressCalc('9')">9</button>
+            <button class="calc-btn op" onclick="pressCalc('*')">*</button>
+            <button class="calc-btn" onclick="pressCalc('4')">4</button>
+            <button class="calc-btn" onclick="pressCalc('5')">5</button>
+            <button class="calc-btn" onclick="pressCalc('6')">6</button>
+            <button class="calc-btn op" onclick="pressCalc('-')">-</button>
+            <button class="calc-btn" onclick="pressCalc('1')">1</button>
+            <button class="calc-btn" onclick="pressCalc('2')">2</button>
+            <button class="calc-btn" onclick="pressCalc('3')">3</button>
+            <button class="calc-btn op" onclick="pressCalc('+')">+</button>
+            <button class="calc-btn" onclick="pressCalc('0')">0</button>
+            <button class="calc-btn" onclick="pressCalc('.')">.</button>
+            <button class="calc-btn op" onclick="pressCalc('%')">%</button>
+            <button class="calc-btn op" style="background:#059669; color: white;" onclick="calculateCalc()">=</button>
         </div>
     </div>
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 15;
 
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            The balance of the Purchase Ledger Control Account (PLCA) is £14,820. A contra entry of £350 needs to be processed to offset a balance between the Sales Ledger and Purchase Ledger. Calculate the revised PLCA balance:<br>
-            Revised PLCA Balance: £ <input type="text" id="ans2" placeholder="0.00">
-        </div>
-    </div>
+        const tabs = document.querySelectorAll('.question-tab');
+        const currentQNum = document.getElementById('current-q-num');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const btnPdf = document.getElementById('btn-pdf');
 
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            An extraction of individual customer accounts from the Sales Ledger shows a total sum of £12,450. However, the Sales Ledger Control Account shows a balance of £12,680. It is discovered that a sales invoice of £230 was omitted from the individual customer's account. Calculate the reconciled final balance:<br>
-            Reconciled Balance: £ <input type="text" id="ans3" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            An office equipment purchase of £1,200 net plus 20% VAT was mistakenly debited to the Purchases account instead of the Equipment asset account. Complete the journal entry parameters to correct this error of principle:<br>
-            Account to Debit: <select id="ans4_deb"><option value="">Select</option><option value="correct">Equipment Account</option><option value="w">Purchases Account</option></select><br>
-            Account to Credit: <select id="ans4_crd"><option value="">Select</option><option value="w">VAT Control Account</option><option value="correct">Purchases Account</option></select>
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            The total of the discounts allowed column in the Cash Book equals £420. Select the correct double entry posting required in the General Ledger:<br>
-            Debit: <select id="ans5_deb"><option value="">Select</option><option value="correct">Discounts Allowed Account</option><option value="w">Sales Ledger Control Account</option></select><br>
-            Credit: <select id="ans5_crd"><option value="">Select</option><option value="w">Discounts Received Account</option><option value="correct">Sales Ledger Control Account</option></select>
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            A Trial Balance fails to balance; the total debits exceed total credits by £360. A Suspense Account is opened to clear the initial discrepancy. State the starting balance of the Suspense Account:<br>
-            Suspense Account Balance: £ <input type="text" id="ans6" placeholder="0.00"> <select id="ans6_side"><option value="">Side</option><option value="w">Debit</option><option value="correct">Credit</option></select>
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            A bank reconciliation check indicates that bank charges of £75 and a standing order of £120 have not been processed in the business records. If the unadjusted Cash Book balance is £3,400 (debit), calculate the corrected Cash Book balance:<br>
-            Corrected Cash Book Balance: £ <input type="text" id="ans7" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            A credit sales transaction of £450 to J. Green was mistakenly posted to the individual ledger account of J. Greene. What type of accounting error has occurred?<br>
-            Type of Error: <select id="ans8"><option value="">Select</option><option value="w">Error of Principle</option><option value="correct">Error of Commission</option><option value="w">Error of Omission</option></select>
-        </div>
-    </div>
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A suspense account contains a credit balance of £180 caused by a cash receipt from a credit customer being correctly entered into the Cash Book but completely omitted from the Sales Ledger Control Account. Calculate the journal adjustment needed to clear the suspense account:<br>
-            Amount to adjust: £ <input type="text" id="ans9_val" placeholder="0.00"><br>
-            Account to Debit: <select id="ans9_deb"><option value="">Select</option><option value="correct">Suspense Account</option><option value="w">Sales Ledger Control Account</option></select>
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            Before preparing the final trial balance, the VAT Control Account has a debit balance of £4,200 (Input VAT) and a credit balance of £6,850 (Output VAT). Calculate the net VAT balance to be reported:<br>
-            Net VAT Amount: £ <input type="text" id="ans10_val" placeholder="0.00"><br>
-            Position: <select id="ans10_side"><option value="">Select</option><option value="w">VAT Recoverable (Asset)</option><option value="correct">VAT Payable (Liability)</option></select>
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            A purchase invoice from a supplier for £560 was completely omitted from the Purchase Day Book. What type of accounting error has occurred?<br>
-            Type of Error: <select id="ans11"><option value="">Select</option><option value="w">Error of Original Entry</option><option value="w">Error of Principle</option><option value="correct">Error of Omission</option></select>
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            An extract of the wages summary shows: Gross Wages £8,500, PAYE Deductions £1,200, National Insurance Deductions £650. Calculate the Net Wages amount that will be credited to the Bank account when wages are paid:<br>
-            Net Wages Payable: £ <input type="text" id="ans12" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            The totals of the discounts received column in the Purchase Book equal £290. State the exact effect this total has on the Purchase Ledger Control Account (PLCA):<br>
-            The PLCA must be: <select id="ans13"><option value="">Select</option><option value="correct">Debited</option><option value="w">Credited</option></select> for £ 290.00
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            A sales invoice of £384 was incorrectly recorded in the Sales Day Book as £348. To correct this error through the General Journal, what amount must be posted to restore the true value?<br>
-            Correction Value: £ <input type="text" id="ans14_val" placeholder="0.00"><br>
-            Account to Debit: <select id="ans14_deb"><option value="">Select</option><option value="correct">Sales Ledger Control Account</option><option value="w">Sales Account</option></select>
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            The final reconciled balance of the Sales Ledger Control Account is £18,450. The total of the individual customers' lists matches this amount exactly. This confirms that all transactions have been posted to the correct individual customer accounts.<br>
-            Is the statement above True or False? (Remember that compensating errors or errors of commission do not disrupt control totals)<br>
-            Answer: <select id="ans15"><option value="">Select</option><option value="w">True</option><option value="correct">False</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
-<script>
-    let currentQ = 1;
-    const totalQ = 15;
-
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
-    }
-
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
+        function updateNavigation() {
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.question-tab[data-qindex="${currentQuestion}"]`).classList.add('active');
+            currentQNum.innerText = currentQuestion;
+            btnPrev.disabled = currentQuestion === 1;
+            
+            if (currentQuestion === totalQuestions) {
+                btnNext.style.display = 'none';
+                btnPdf.style.display = 'inline-block';
+            } else {
+                btnNext.style.display = 'inline-block';
+                btnPdf.style.display = 'none';
+            }
         }
-    }
 
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
+        btnNext.addEventListener('click', () => { if (currentQuestion < totalQuestions) { currentQuestion++; updateNavigation(); } });
+        btnPrev.addEventListener('click', () => { if (currentQuestion > 1) { currentQuestion--; updateNavigation(); } });
 
-        if (currentQ === 1) {
-            let val = document.getElementById('ans1').value.trim();
-            isCorrect = (val === '21500' || val === '21500.00');
-        } else if (currentQ === 2) {
-            let val = document.getElementById('ans2').value.trim();
-            isCorrect = (val === '14470' || val === '14470.00');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '12680' || val === '12680.00');
-        } else if (currentQ === 4) {
-            let deb = document.getElementById('ans4_deb').value;
-            let crd = document.getElementById('ans4_crd').value;
-            isCorrect = (deb === 'correct' && crd === 'correct');
-        } else if (currentQ === 5) {
-            let deb = document.getElementById('ans5_deb').value;
-            let crd = document.getElementById('ans5_crd').value;
-            isCorrect = (deb === 'correct' && crd === 'correct');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6').value.trim();
-            let side = document.getElementById('ans6_side').value;
-            isCorrect = ((val === '360' || val === '360.00') && side === 'correct');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7').value.trim();
-            isCorrect = (val === '3205' || val === '3205.00');
-        } else if (currentQ === 8) {
-            isCorrect = (document.getElementById('ans8').value === 'correct');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9_val').value.trim();
-            let deb = document.getElementById('ans9_deb').value;
-            isCorrect = ((val === '180' || val === '180.00') && deb === 'correct');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10_val').value.trim();
-            let side = document.getElementById('ans10_side').value;
-            isCorrect = ((val === '2650' || val === '2650.00') && side === 'correct');
-        } else if (currentQ === 11) {
-            isCorrect = (document.getElementById('ans11').value === 'correct');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12').value.trim();
-            isCorrect = (val === '6650' || val === '6650.00');
-        } else if (currentQ === 13) {
-            isCorrect = (document.getElementById('ans13').value === 'correct');
-        } else if (currentQ === 14) {
-            let val = document.getElementById('ans14_val').value.trim();
-            let deb = document.getElementById('ans14_deb').value;
-            isCorrect = ((val === '36' || val === '36.00') && deb === 'correct');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
+        // --- MOTORE DI VERIFICA POLIMORFICO (Supporta Multi-Input) ---
+        document.getElementById('btn-am-i-right').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            const feedbackSpan = activeTab.querySelector('.feedback-icon');
+            feedbackSpan.style.display = 'inline';
+
+            let isCorrect = true;
+
+            if (type === 'radio') {
+                const selected = activeTab.querySelector('input[type="radio"]:checked');
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                activeTab.querySelectorAll('.feedback-icon').forEach(i => i.style.display = 'none');
+                if (selected) {
+                    const rFeedback = selected.closest('.option-box').querySelector('.feedback-icon');
+                    rFeedback.style.display = 'inline';
+                    rFeedback.innerText = selected.value === correctAnswer ? ' ✔️' : ' ❌';
+                    rFeedback.style.color = selected.value === correctAnswer ? '#10B981' : '#DC2626';
+                }
+                return;
+            } else if (type === 'input') {
+                const inputField = activeTab.querySelector('.numeric-field');
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                isCorrect = inputField.value.trim() === correctAnswer;
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    if (field.value.trim() !== field.getAttribute('data-ans')) isCorrect = false;
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    if (select.value !== select.getAttribute('data-ans')) isCorrect = false;
+                });
+            }
+
+            feedbackSpan.innerText = isCorrect ? ' ✔️ All fields correct!' : ' ❌ Some fields are incorrect';
+            feedbackSpan.style.color = isCorrect ? '#10B981' : '#DC2626';
+        });
+
+        // --- VISUALIZZAZIONE DELLE SOLUZIONI COMPLESSE ---
+        document.getElementById('btn-show-solution').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+
+            if (type === 'radio') {
+                const correctAnswer = activeTab.getAttribute('data-correct');
+                const targetRadio = activeTab.querySelector(`input[value="${correctAnswer}"]`);
+                if (targetRadio) targetRadio.closest('.option-box').classList.add('correct-answer-highlight');
+            } else if (type === 'input') {
+                const inputField = activeTab.querySelector('.numeric-field');
+                inputField.closest('.option-box').classList.add('correct-answer-highlight');
+                inputField.value = activeTab.getAttribute('data-correct');
+            } else if (type === 'multi-input') {
+                const fields = activeTab.querySelectorAll('.multi-input-field');
+                fields.forEach(field => {
+                    field.style.backgroundColor = '#DCFCE7';
+                    field.style.borderColor = '#10B981';
+                    field.value = field.getAttribute('data-ans');
+                });
+            } else if (type === 'multi-select') {
+                const selects = activeTab.querySelectorAll('.multi-select-field');
+                selects.forEach(select => {
+                    select.style.backgroundColor = '#DCFCE7';
+                    select.style.borderColor = '#10B981';
+                    select.value = select.getAttribute('data-ans');
+                });
+            }
+        });
+
+        // --- RESET SCHERMATA ATTIVA ---
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            const activeTab = document.querySelector('.question-tab.active');
+            const type = activeTab.getAttribute('data-type');
+            
+            activeTab.querySelectorAll('.option-box').forEach(box => box.classList.remove('correct-answer-highlight'));
+            activeTab.querySelectorAll('.feedback-icon').forEach(icon => { icon.style.display = 'none'; icon.innerText = ''; });
+
+            if (type === 'radio') {
+                const checked = activeTab.querySelector('input[type="radio"]:checked');
+                if (checked) checked.checked = false;
+            } else if (type === 'input') {
+                activeTab.querySelector('.numeric-field').value = '';
+            } else if (type === 'multi-input' || type === 'multi-select') {
+                const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+                fields.forEach(field => {
+                    field.value = '';
+                    field.style.backgroundColor = '#FFF';
+                    field.style.borderColor = '#E2E8F0';
+                });
+            }
+        });
+
+        btnPdf.addEventListener('click', () => {
+            const originalTitle = document.title;
+            document.title = "AAT_L2_BTRN_Cap2_Test_One_Completed";
+            window.print();
+            setTimeout(() => { document.title = originalTitle; }, 150);
+        });
+
+        // --- VISIBILITÀ CALCOLATRICE ---
+        const calcWidget = document.getElementById('calc-widget');
+        const calcTrigger = document.getElementById('calc-toggle-trigger');
+        const calcClose = document.getElementById('calc-close-btn');
+
+        if(calcTrigger && calcWidget && calcClose) {
+            calcTrigger.addEventListener('click', () => calcWidget.style.display = 'block');
+            calcClose.addEventListener('click', () => calcWidget.style.display = 'none');
         }
 
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
-        } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+        let calcDisplay = document.getElementById('calc-screen');
+        function pressCalc(val) {
+            if (calcDisplay.innerText === '0' && !isNaN(val)) calcDisplay.innerText = '';
+            if (val === 'sq') { calcDisplay.innerText = Math.pow(eval(calcDisplay.innerText), 2); }
+            else if (val === 'rt') { calcDisplay.innerText = Math.sqrt(eval(calcDisplay.innerText)); }
+            else { calcDisplay.innerText += val; }
         }
-    }
+        function clearCalc() { calcDisplay.innerText = '0'; }
+        function calculateCalc() { try { calcDisplay.innerText = eval(calcDisplay.innerText); } catch(e) { calcDisplay.innerText = 'Error'; } }
 
-    updateButtons();
-</script>
-
+        // Drag and Drop Calcolatrice
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        if(calcWidget) {
+            calcWidget.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('calc-btn') || e.target.id === 'calc-screen') return;
+                initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; isDragging = true;
+            });
+            document.addEventListener('mouseup', () => { isDragging = false; initialX = currentX; initialY = currentY; });
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return; e.preventDefault();
+                currentX = e.clientX - initialX; currentY = e.clientY - initialY;
+                xOffset = currentX; yOffset = currentY;
+                calcWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            });
+        }
+    </script>
 </body>
 </html>
