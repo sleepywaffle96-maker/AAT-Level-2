@@ -6,7 +6,7 @@
     <title>AAT Level 3 Advanced Bookkeeping - Chapter 1 Test One</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO (ALLINEATO A STANDARD HOMEPAGE) */
+        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO UNIFICATA */
         :root {
             --bg-dark-external: #0B0F19;
             --bubble-white-bg: #FFFFFF;
@@ -66,7 +66,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* STRUTTURA PANNELLO QUESITO MONO SELEZIONATO */
         .exam-task-panel { display: none; }
         .exam-task-panel.active { display: block; }
 
@@ -190,7 +189,7 @@
 <body>
 
     <div class="exam-top-bar">
-        <div class="top-bar-title">🏆 AAT LEVEL 3: ADVANCED BOOKKEEPING ASSESSMENT</div>
+        <div class="top-bar-title">🏆 AAT LEVEL 3: ADVANCED BOOKKEEPING ASSESSMENT ENVIRONMENT</div>
         <div class="timer-container">
             <button type="button" class="tool-btn" onclick="toggleCalc()">🧮 Calculator</button>
         </div>
@@ -201,14 +200,14 @@
             
             <div style="margin-bottom: 2rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 1rem;">
                 <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">ASSESSMENT ENVIRONMENT</span>
-                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Year-End Adjustments & Receivables (Test One)</h1>
+                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Advanced Year-End Adjustments (Test One)</h1>
             </div>
 
             <form id="aat-test-form" onsubmit="event.preventDefault();">
                 <div id="dynamic-questions-container"></div>
             </form>
 <script>
-// DATABASE COMPLETO DEI QUESITI STRUTTURATI 1:1 SECONDO I TEST OSBORNE BOOKS
+// DATABASE DEI QUESITI STRUTTURATI 1:1 CON L'ESAME REALE OSBORNE
 const questionsPool = [
     {
         type: "dropdown",
@@ -295,62 +294,6 @@ const questionsPool = [
         explanation: "Since the original customer account was terminated in a previous year, the unexpected collection cannot hit the SLCA pool. It is double-booked as a credit to the Irrecoverable Debts Recovered account, generating direct operating income in the SPL."
     }
 ];
-            <!-- PULSANTI DI CONTROLLO OPERATIVO INTERNI ALLA BOLLA -->
-            <div class="exam-footer-controls">
-                <div>
-                    <button type="button" class="ctrl-btn btn-secondary" id="action-prev" onclick="movePrev()">Previous Question</button>
-                    <button type="button" class="ctrl-btn btn-secondary" id="action-next" onclick="moveNext()">Next Question</button>
-                </div>
-                <div>
-                    <button type="button" class="ctrl-btn btn-primary" id="action-submit" onclick="processValidation()">Am I right?</button>
-                    <button type="button" class="ctrl-btn btn-success hidden" id="action-solution" onclick="exposeSolutions()">Show Solution</button>
-                    <button type="button" class="ctrl-btn btn-secondary" onclick="restartSession()">Reset</button>
-                </div>
-            </div>
-
-            <!-- TABELLA DI PERFORMANCE REPORT FINALE -->
-            <div class="exam-results-card hidden" id="test-results-block">
-                <h3 style="margin: 0 0 1rem 0; color: var(--text-dark);">Performance Assessment Report</h3>
-                <div class="results-grid">
-                    <div class="result-metric">
-                        <span style="font-size:0.8rem; color:var(--text-muted); display:block;">Percentage Score</span>
-                        <span class="metric-value" id="final-percentage-span">0%</span>
-                    </div>
-                    <div class="result-metric">
-                        <span style="font-size:0.8rem; color:var(--text-muted); display:block;">Assessment Outcome</span>
-                        <span class="metric-value" id="final-outcome-span">-</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- WIDGET CALCOLATRICE NEON POP-UP -->
-    <div id="neon-calc" style="position:fixed; bottom:20px; right:20px; width:220px; background:#111827; border:2px solid var(--l3-cyan-primary); border-radius:8px; display:none; padding:10px; z-index:2000;">
-        <input type="text" id="calc-display" style="width:100%; text-align:right; font-family:monospace; background:black; color:var(--neon-calc-accent); border:none; padding:5px; font-size:1.2rem; margin-bottom:5px;" readonly value="0">
-        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:5px;">
-            <button type="button" onclick="clearCalc()" style="background:#374151; color:white; border:none; padding:5px;">C</button>
-            <button type="button" onclick="pressOp('/')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">/</button>
-            <button type="button" onclick="pressOp('*')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">*</button>
-            <button type="button" onclick="pressOp('-')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">-</button>
-            <button type="button" onclick="pressNum('7')" style="background:#4B5563; color:white; border:none; padding:5px;">7</button>
-            <button type="button" onclick="pressNum('8')" style="background:#4B5563; color:white; border:none; padding:5px;">8</button>
-            <button type="button" onclick="pressNum('9')" style="background:#4B5563; color:white; border:none; padding:5px;">9</button>
-            <button type="button" onclick="pressOp('+')" style="background:#374151; color:var(--neon-calc-accent); border:none; padding:5px;">+</button>
-            <button type="button" onclick="pressNum('4')" style="background:#4B5563; color:white; border:none; padding:5px;">4</button>
-            <button type="button" onclick="pressNum('5')" style="background:#4B5563; color:white; border:none; padding:5px;">5</button>
-            <button type="button" onclick="pressNum('6')" style="background:#4B5563; color:white; border:none; padding:5px;">6</button>
-            <button type="button" onclick="calcResult()" style="grid-row: span 2; background:var(--neon-calc-accent); color:black; border:none; font-weight:bold;">=</button>
-            <button type="button" onclick="pressNum('1')" style="background:#4B5563; color:white; border:none; padding:5px;">1</button>
-            <button type="button" onclick="pressNum('2')" style="background:#4B5563; color:white; border:none; padding:5px;">2</button>
-            <button type="button" onclick="pressNum('3')" style="background:#4B5563; color:white; border:none; padding:5px;">3</button>
-            <button type="button" onclick="pressNum('0')" style="grid-column: span 2; background:#4B5563; color:white; border:none; padding:5px;">0</button>
-            <button type="button" onclick="pressNum('.')" style="background:#4B5563; color:white; border:none; padding:5px;">.</button>
-        </div>
-    </div>
-
-<script>
 let activeQuestionIndex = 0;
 let testSubmittedState = false;
 
@@ -398,7 +341,6 @@ function displayActiveQuestion(index) {
 
 function movePrev() { if (activeQuestionIndex > 0) displayActiveQuestion(activeQuestionIndex - 1); }
 function moveNext() { if (activeQuestionIndex < questionsPool.length - 1) displayActiveQuestion(activeQuestionIndex + 1); }
-
 function processValidation() {
     if (testSubmittedState) return;
     testSubmittedState = true;
@@ -473,7 +415,8 @@ function restartSession() {
         displayActiveQuestion(0);
     }
 }
-// // STRUTTURA MATEMATICA CALCOLATRICE WIDGET
+
+// LOGICA STRUTTURATA DELLA CALCOLATRICE WIDGET
 function toggleCalc() {
     const calc = document.getElementById('neon-calc');
     calc.style.display = (calc.style.display === 'block') ? 'none' : 'block';
@@ -482,19 +425,11 @@ function pressNum(n) {
     const d = document.getElementById('calc-display');
     d.value = (d.value === '0') ? n : d.value + n;
 }
-function pressOp(o) { 
-    document.getElementById('calc-display').value += o; 
-}
-function clearCalc() { 
-    document.getElementById('calc-display').value = '0'; 
-}
+function pressOp(o) { document.getElementById('calc-display').value += o; }
+function clearCalc() { document.getElementById('calc-display').value = '0'; }
 function calcResult() {
     const d = document.getElementById('calc-display');
-    try { 
-        d.value = eval(d.value); 
-    } catch(e) { 
-        d.value = 'Error'; 
-    }
+    try { d.value = eval(d.value); } catch(e) { d.value = 'Error'; }
 }
 </script>
 </body>
