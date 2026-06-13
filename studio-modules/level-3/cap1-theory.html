@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 3 - Advanced Bookkeeping (Chapter 1 Studio)</title>
+    <title>AAT Level 3 - Advanced Bookkeeping (Chapter 1 Theory)</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* DESIGN SYSTEM INTERFACCIA LIVELLO 3 - AZZURRO CIANO */
         :root {
             --bg-dark-external: #0B0F19;
             --bubble-white-bg: #FFFFFF;
@@ -16,8 +15,9 @@
             --text-dark: #1F2937;
             --text-muted: #4B5563;
             --border-color: #E5E7EB;
+            --warning-box-bg: #FFFBEB;
+            --warning-box-border: #F59E0B;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark-external);
@@ -25,13 +25,7 @@
             margin: 0;
             padding: 2rem 1rem;
         }
-
-        .studio-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* LA BOLLA BIANCA PROTETTA */
+        .studio-container { max-width: 1000px; margin: 0 auto; }
         .white-bubble-container {
             background-color: var(--bubble-white-bg);
             border-radius: 12px;
@@ -39,231 +33,68 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.25);
             border: 1px solid var(--border-color);
         }
-
-        /* BARRA DEI PULSANTI DI CONTROLLO INTERNI */
-        .studio-nav-bar {
-            display: flex;
-            gap: 0.75rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn-l3-study {
-            background-color: #F3F4F6;
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            padding: 0.65rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .btn-l3-study:hover {
-            background-color: #E5E7EB;
-            color: var(--text-dark);
-        }
-
-        .btn-l3-study.active {
-            background-color: var(--l3-cyan-primary);
-            color: #FFFFFF;
-            border-color: var(--l3-cyan-dark);
-        }
-
-        /* STRUTTURE DELLE TABELLE E MASTRI DEL LIVELLO 3 */
-        .financial-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: #FFFFFF;
-        }
-
-        .financial-table th {
-            background-color: var(--l3-cyan-dark);
-            color: #FFFFFF;
-            padding: 0.6rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--l3-cyan-dark);
-        }
-
-        .financial-table td {
-            border: 1px solid var(--border-color);
-            padding: 0.6rem;
-            font-size: 0.9rem;
-        }
-
-        .text-right { text-align: right; }
-        .text-left { text-align: left; }
-        .hidden { display: none !important; }
-        
-        .section-panel {
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
-
     <div class="studio-container">
         <div class="white-bubble-container">
+            <div style="margin-bottom: 2rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 1rem;">
+                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">AAT LEVEL 3 ADVANCED</span>
+                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Theory Lesson - Financial Reporting Framework</h1>
+            </div>
+
+            <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; margin-bottom: 1rem;">Lesson 1.1: The Accounting Principles & Accruals Basis (IAS 1)</h2>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                When transitioning from Level 2 to <strong>AAT Level 3 Advanced Bookkeeping</strong>, financial records operations evolve from purely mechanical data entry into critical financial evaluation regulated by international accounting frameworks. The entire core architecture of final statement preparation relies heavily on the execution of Year-End Adjustments. These adjustments are mathematically necessary to calculate the true financial profit or loss performance of a business and to display the exact financial position within the corporate ledgers.
+            </p>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                In accordance with <strong>International Accounting Standard 1 (IAS 1) Presentation of Financial Statements</strong>, an entity must prepare its financial statements, except for cash flow information, using the <strong>Accruals Basis of Accounting</strong>. Under this regulatory basis, the effects of transactions and other economic corporate events are recognized when they occur (when goods are delivered or services are consumed) and not when cash or its liquid equivalent is received or paid. Expenses incurred must be strictly matched against the revenues generated in the exact same accounting period to comply with the <strong>Matching Principle</strong>.
+            </p>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                This accounting principle dictates that financial statements must capture resource changes over time accurately. If a service has been utilized by the company before the year-end date but the supplier invoice has not arrived, the ledger cannot ignore this cost simply because no transaction has hit the bank account. Symmetrically, if an expense is paid covering periods beyond the accounting horizon, the excess portion must be safely extracted to prevent artificial distortions of the annual net profit.
+            </p>
+            <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-top: 1px dashed var(--border-color); padding-top: 1.5rem; margin-top: 2rem; margin-bottom: 1rem;">Lesson 1.2: Technical Calculations of Accruals and Prepayments</h2>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                At the financial year-end date, expense accounts in the trial balance rarely represent the precise economic consumption of the year. To resolve timing variances, bookkeepers execute pro-rata temporis time apportionment calculations based on months. The fiscal year always contains exactly twelve months, and all calculations must identify how many months fall inside the current reporting window and how many fall into the next.
+            </p>
             
-            <div style="margin-bottom: 1.5rem;">
-                <span style="background: var(--l3-cyan-primary); color: #FFF; font-weight: 700; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px;">AAT LEVEL 3</span>
-                <h1 style="font-size: 1.6rem; margin: 0.5rem 0 0 0; color: #111827;">Chapter 1: Advanced Bookkeeping & Year-End Framework</h1>
+            <h3 style="color: var(--l3-cyan-dark); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">1. Accrued Expenses (Liability Adjustment)</h3>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                An Accrued Expense represents a cost that has been incurred during the current financial period but has not yet been paid or invoiced by the supplier. For example, if a business consumes electricity from October to December, but the utility provider will not issue the invoice until January of the next year, the business owes that amount at the balance sheet date. To apply the matching principle, this missing cost must be calculated (often by estimating from prior bills) and added to the expense account. Because this represents an obligation to pay, it creates a temporary credit balance in the <strong>Accruals Account</strong>, exposed as a <strong>Current Liability</strong> within the Statement of Financial Position (SoFP).
+            </p>
+
+            <h3 style="color: var(--l3-cyan-dark); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2. Prepaid Expenses (Asset Adjustment)</h3>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                A Prepaid Expense occurs when an expense has been paid during the current accounting period, but the payment covers a time frame that extends beyond the financial year-end date. A classic textbook example is commercial business insurance or rent paid in advance. If a 12-month insurance premium of £2,400 is paid on 1st October, and the financial year ends on 31st December, only 3 months (October, November, December) belong to the current year. The remaining 9 months (January to September of the next year) represent an economic benefit controlled by the company. This unused portion (£2,400 × 9/12 = £1,800) must be deducted from the expense account and debited to the <strong>Prepayments Account</strong>, which stands as a <strong>Current Asset</strong> in the SoFP.
+            </p>
+
+            <h3 style="color: var(--l3-cyan-dark); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">3. Revenue Adjustments: Accrued and Prepaid Income</h3>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                Symmetrically, adjustments must be applied to incoming revenue accounts. <strong>Accrued Income</strong> represents revenue that has been earned by providing services or delivering goods before the year-end, but has not yet been invoiced or received. This unrecorded revenue must be added to the income account, establishing a temporary debit balance classified as a <strong>Current Asset</strong>. Conversely, <strong>Prepaid Income (or Deferred Income)</strong> represents cash received from a customer in advance for services that the business will not perform until the next financial year. This unearned revenue must be removed from the current income account and credited to a liability account, forming a <strong>Current Liability</strong> because the business owes the service to the client.
+            </p>
+            <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-top: 1px dashed var(--border-color); padding-top: 1.5rem; margin-top: 2rem; margin-bottom: 1rem;">Lesson 1.3: Management and Valuation of Trade Receivables Pools</h2>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                In strict compliance with the **Prudence Concept** outlined in the IASB Conceptual Framework, financial assets must never be overstated on corporate records, and anticipated credit losses must be recognized immediately. Within the Sales Ledger, the total amount owed by credit customers is aggregated in the **Trade Receivables Control Account (SLCA)**. At the end of the year, this asset pool must be reviewed and adjusted to ensure it reflects a realistic realizable collection value.
+            </p>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                If a specific credit customer becomes insolvent, files for bankruptcy, or disappears without settling their outstanding balance, the debt is deemed completely uncollectible. This transaction is treated as a realized financial loss. The bookkeeper must execute a specific write-off procedure: the customer's nominal balance is completely wiped out by debiting the **Irrecoverable Debts Account** (an expense account in the SPL) and crediting the Trade Receivables Control Account to reduce the asset value.
+            </p>
+            <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+                Beyond specific bankruptcies, a prudent business must also acknowledge that a small historical percentage of its general credit customers will inevitably fail to pay. To account for this general, non-specific risk without removing active customers from the ledgers, companies create a contra-asset account called the <strong>Allowance for Doubtful Debts</strong>. When adjusting this allowance at year-end, the required ending balance is calculated by applying a management-determined risk percentage (e.g., 2% or 5%) to the outstanding receivables. Crucially, only the **net variation (the increase or decrease)** between the new required target and the existing opening balance is posted to the Irrecoverable Debts expense account at year-end.
+            </p>
+
+            <div style="background-color: var(--warning-box-bg); border-left: 4px solid var(--warning-box-border); padding: 1.2rem; border-radius: 6px; margin: 2rem 0;">
+                <strong style="color: var(--l3-cyan-dark); font-size: 1rem;">⚠️ Invisible Error Encyclopedia - Advanced Bookkeeping (Kaplan/Osborne Style):</strong>
+                <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem; margin-bottom: 0; text-align: justify;">
+                    • <strong>The Cascading Receivables Calculation Trap:</strong> A fatal exam mistake is calculating the general allowance for doubtful debts percentage directly on the gross opening Trade Receivables balance provided in the initial trial balance. You must **always deduct any specific year-end irrecoverable debt write-offs first** to find the net outstanding receivables pool. Only then can you apply the allowance risk percentage to that adjusted pool figure. Forgetting this step will cause errors in both the SPL and the SoFP.<br><br>
+                    • <strong>The Provision Balance Misallocation Error:</strong> Do not post the full required allowance target balance directly as an expense to the Statement of Profit or Loss. The allowance account itself is an asset valuation account that carries over its balance across years. The SPL account only receives the differential variance. If the opening allowance is £1,500 and the new required target is £1,800, you only debit the expense account for the £300 increase, not the full £1,800.
+                </p>
             </div>
-
-            <!-- INTERFACCIA A TRE PULSANTI COORDINATI -->
-            <div class="studio-nav-bar">
-                <button type="button" class="btn-l3-study active" id="btn-theory" onclick="switchSection('theory')">📘 Theory Lessons</button>
-                <button type="button" class="btn-l3-study" id="btn-schemes" onclick="switchSection('schemes')">📊 Ledger Schemes</button>
-                <button type="button" class="btn-l3-study" id="btn-summary" onclick="switchSection('summary')">📝 Critical Summary</button>
-            </div>
-
-            <div id="studio-content-wrapper">
-                <!-- ========================================== -->
-                <!-- SEZIONE 1: TEORIA CONTABILE AVANZATA (THEORY) -->
-                <!-- ========================================== -->
-                <div class="section-panel" id="panel-theory">
-                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">1. The Financial Accounting Regulatory Framework</h2>
-                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
-                        Nel passaggio al <strong>Livello 3 Advanced Accounting</strong>, la contabilità cessa di essere un processo puramente meccanico e si trasforma in una disciplina regolata dai principi contabili internazionali (IAS/IFRS). Il focus si sposta sulle rettifiche di fine anno (Year-End Adjustments), necessarie per determinare il profitto effettivo e la reale consistenza patrimoniale dell'entità prima della chiusura definitiva dei conti.
-                    </p>
-
-                    <h3 style="color: var(--l3-cyan-dark); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Il Principio di Competenza Economica (The Accruals Basis - IAS 1)</h3>
-                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
-                        Secondo lo standard **IAS 1**, gli effetti delle transazioni e degli altri eventi sono riconosciuti quando si verificano (e non quando la liquidità viene incassata o pagata). I costi e i ricavi devono essere associati ("matched") nel medesimo esercizio economico in cui si manifesta la loro utilità. Questo impone due tipologie fondamentali di assestamento:
-                    </p>
-                    <ul style="line-height: 1.6; margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                        <li><strong>Accrued Expenses (Ratei Passivi):</strong> Costi legati a servizi già consumati nell'anno in corso, ma per i quali non è ancora pervenuta la fattura o non è stato eseguito il pagamento. Costituiscono una <strong>Current Liability</strong> nello Statement of Financial Position (SoFP).</li>
-                        <li><strong>Prepaid Expenses (Risconti Attivi):</strong> Costi che sono già stati pagati finanziariamente, ma che si riferiscono a servizi di cui l'azienda usufruirà nell'anno successivo. Costituiscono un <strong>Current Asset</strong> nello SoFP.</li>
-                    </ul>
-
-                    <h3 style="color: var(--l3-cyan-dark); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Criteri di Valutazione dei Crediti Commerciali (Trade Receivables)</h3>
-                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1rem;">
-                        In linea con il principio di prudenza (Prudence Concept), le attività non devono essere sovrastimate. Se un cliente fallisce o diventa irreperibile, il relativo credito deve essere rimosso immediatamente dai registri come costo secco mediante la procedura di **Irrecoverable Debt write-off**.
-                    </p>
-                    <p style="line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
-                        Se invece esiste un'incertezza generica sul recupero di una fetta dei crediti aziendali, si istituisce un fondo rettificativo denominato **Allowance for Doubtful Debts**. L'adeguamento di questo fondo prevede che solo la *variazione* differenziale (aumento o diminuzione rispetto all'anno precedente) vada a impattare i costi del Conto Economico dell'anno in corso.
-                    </p>
-
-                    <div style="background-color: #FFFBEB; border-left: 4px solid var(--l3-cyan-primary); padding: 1.2rem; border-radius: 6px; margin: 1.5rem 0;">
-                        <strong style="color: var(--l3-cyan-dark); font-size: 1rem;">⚠️ Enciclopedia degli Errori Invisibili Livello 3 (Kaplan Style):</strong>
-                        <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem; margin-bottom: 0;">
-                            • <strong>L'Errore del Calcolo in Cascata dell'Allowance:</strong> Un errore tipico da esame consiste nel calcolare la percentuale del fondo svalutazione (es. 5%) direttamente sul totale dei Trade Receivables fornito dalla traccia, scordandosi che prima bisogna **sottrarre i crediti inesigibili specifici (Write-offs)** scoperti a fine anno. Calcolare l'allowance sul valore lordo iniziale azzera il punteggio del Task.<br><br>
-                            • <strong>La Confusione tra Saldo del Fondo e Impatto a Bilancio:</strong> Ricorda che l'intero importo accumulato nel fondo <em>Allowance for Doubtful Debts</em> va a ridurre l'attivo circolante nello Stato Patrimoniale (Trade Receivables meno Allowance). Nel Conto Economico (SPL), invece, va registrata solo ed esclusivamente la **variazione netta** rispetto al fondo dell'anno precedente.
-                        </p>
-                    </div>
-                </div>
-                <!-- ========================================== -->
-                <!-- SEZIONE 2: ALBERI DI POSTING & MASTRI (SCHEMES) -->
-                <!-- ========================================== -->
-                <div class="section-panel hidden" id="panel-schemes">
-                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">2. Advanced Double-Entry Adjustment Schemes</h2>
-                    
-                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Di seguito viene schematizzata la partita doppia formale delle scritture di assestamento sui mastri del General Ledger.</p>
-
-                    <!-- SCHEMA A ALBERO MASTRO INTERATTIVO -->
-                    <div style="background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
-                        <div style="font-weight: 700; color: var(--l3-cyan-dark); margin-bottom: 1rem; font-size: 1rem;">📊 ACCOUNT SYSTEM: EXPENSE LEDGER PIPELINE</div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #111827; background: #FFFFFF; padding: 1rem; border-radius: 4px; border: 1px solid #D1D5DB; overflow-x: auto; white-space: pre;">
-                                     GENERAL LEDGER: EXPENSE ACCOUNT
-==================================================================================================
-               DEBIT (DR)                                        CREDIT (CR)
---------------------------------------------------------------------------------------------------
-Bank Payments (Total paid)      £12,000  |  Prepayment Year-End (Costo anticipato)   £2,000
-Accrual Year-End (Costo dovuto)  £1,500  |  Transfer to Statement of Profit or Loss  £11,500
-                                         |  (Competenza economica d'esercizio)
---------------------------------------------------------------------------------------------------
-TOTAL                           £13,500  |  TOTAL                                    £13,500
-==================================================================================================
+            
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); font-style: italic; text-align: center; margin-top: 2rem;">
+                AAT Level 3 Advanced Bookkeeping - Chapter 1 Theory Lesson is fully concluded.
+            </p>
         </div>
     </div>
-
-                    <!-- SCHEMA COMPORTAMENTO ADJUSTMENTS -->
-                    <table class="financial-table">
-                        <thead>
-                            <tr>
-                                <th class="text-left">Adjustment Type</th>
-                                <th>Account to Debit</th>
-                                <th>Account to Credit</th>
-                                <th>Financial Statement Impact</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-left" style="font-weight:600;">Accrued Expense</td>
-                                <td>Relevant Expense Account</td>
-                                <td>Accruals Account</td>
-                                <td>Increases Expenses (SPL) / Current Liability (SoFP)</td>
-                            </tr>
-                            <tr style="background:#FAFAFA;">
-                                <td class="text-left" style="font-weight:600;">Prepaid Expense</td>
-                                <td>Prepayments Account</td>
-                                <td>Relevant Expense Account</td>
-                                <td>Decreases Expenses (SPL) / Current Asset (SoFP)</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left" style="font-weight:600;">Allowance Increase</td>
-                                <td>Irrecoverable Debts Account</td>
-                                <td>Allowance for Doubtful Debts</td>
-                                <td>Increases Expenses (SPL) / Reduces Receivables (SoFP)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- ========================================== -->
-                <!-- SEZIONE 3: RIEPILOGO CRITICO CASI LIMITE (SUMMARY) -->
-                <!-- ========================================== -->
-                <div class="section-panel hidden" id="panel-summary">
-                    <h2 style="color: var(--l3-cyan-primary); font-size: 1.3rem; border-bottom: 2px solid var(--l3-cyan-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">3. Year-End Critical Review Matrix</h2>
-                    
-                    <div style="background-color: var(--l3-cyan-light); border-left: 4px solid var(--l3-cyan-primary); padding: 1.2rem; border-radius: 6px; margin-bottom: 1.5rem;">
-                        <strong style="color: var(--l3-cyan-dark); font-size: 1rem;">🎯 FORMULE CHIAVE DI CONTROLLO MATEMATICO:</strong>
-                        <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; font-family: 'JetBrains Mono', monospace;">
-                            1. Expense Charge to SPL = Bank Payments + Closing Accrual - Closing Prepayment<br>
-                            2. Net Trade Receivables in SoFP = Closing Receivables Balance - Specific Write-offs - Closing Allowance
-                        </p>
-                    </div>
-
-                    <div style="background:#FAFAFA; border:1px solid #E5E7EB; border-radius:8px; padding:1.2rem; margin-top:1rem;">
-                        <strong style="color:var(--text-dark); display:block; margin-bottom:0.5rem;">Regola del Riversamento (Opening Reversals):</strong>
-                        <p style="font-size:0.9rem; line-height:1.5; color:var(--text-muted); margin:0;">
-                            All'apertura del nuovo anno contabile (1° Gennaio), i ratei e i risconti calcolati al 31 Dicembre devono essere **stornati all'opposto (Reversal Entries)**. Questo azzera i conti patrimoniali temporanei e impedisce che i futuri pagamenti bancari duplichino i costi all'interno dell'anno nuovo, preservando la geometria della competenza.
-                        </p>
-                    </div>
-                </div>
-
-            </div> <!-- Fine content wrapper -->
-        </div> <!-- Fine white bubble -->
-    </div> <!-- Fine container -->
-
-    <!-- ========================================== -->
-    <!-- MOTORINO JAVASCRIPT DI CONTROLLO SCHEDE    -->
-    <!-- ========================================== -->
-    <script>
-        function switchSection(sectionId) {
-            // Nasconde tutti i pannelli ad accordion interni alla bolla bianca
-            document.querySelectorAll('.section-panel').forEach(panel => {
-                panel.classList.add('hidden');
-            });
-            
-            // Disattiva lo stato visivo di tutti i bottoni
-            document.querySelectorAll('.btn-l3-study').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Attiva solo la sezione e il pulsante selezionati
-            document.getElementById(`panel-${sectionId}`).classList.remove('hidden');
-            document.getElementById(`btn-${sectionId}`).classList.add('active');
-        }
-    </script>
 </body>
 </html>
