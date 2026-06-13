@@ -91,7 +91,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* TIPOLOGIA A: SCELTA MULTIPLA RADIO */
+        /* SCELTA MULTIPLA RADIO CONTENITORI */
         .option-box {
             display: flex;
             align-items: center;
@@ -108,7 +108,7 @@
         .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
         .feedback-icon { font-weight: 700; font-size: 1.1rem; }
 
-        /* TABELLE CONTABILI E CAMPI */
+        /* TABELLE FINANZIARIE */
         .financial-table {
             width: 100%;
             border-collapse: collapse;
@@ -146,7 +146,7 @@
             background-color: var(--l3-cyan-light);
         }
 
-        /* STRUTTURA PULSANTIERA INFERIORE INTERNA */
+        /* STRUTTURA CONTROLLI INFERIORI INTERNA */
         .controls-footer {
             display: flex;
             justify-content: space-between;
@@ -172,7 +172,6 @@
         .btn-dark { background-color: #374151; color: #FFFFFF; }
         .btn-dark:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        /* FEEDBACK E NOTA DI SOLUZIONE */
         .global-feedback-msg {
             padding: 1rem;
             border-radius: 6px;
@@ -197,13 +196,13 @@
         .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
         .hidden { display: none !important; }
 
-        /* WIDGET CALCOLATRICE VETRATO SCURO TRASCINABILE */
+        /* CALCOLATRICE VETRATA TRASCINABILE */
         #calc-widget {
             position: fixed;
             bottom: 90px;
             right: 25px;
             width: 240px;
-            background: rgba(17, 24, 39, 0.85);
+            background: rgba(17, 24, 39, 0.9);
             backdrop-filter: blur(10px);
             border: 2px solid var(--l3-cyan-primary);
             border-radius: 8px;
@@ -233,7 +232,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* REGOLE DI STAMPA PDF COMPLETA IN FORMATO A4 PORTRAIT */
         @media print {
             body { background: #FFFFFF; padding: 0; margin: 0; }
             .test-container { box-shadow: none; border: none; padding: 0; max-width: 1000px; }
@@ -249,34 +247,34 @@
         
         <div class="test-header-row">
             <div class="test-title">BTRN - LEVEL 3 CHAPTER 1: ADVANCED ADJUSTMENTS (TEST ONE)</div>
-            <div class="question-counter-label" id="q-counter-display">Question 1 of 5</div>
+            <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
         </div>
 
         <form id="quiz-form" onsubmit="event.preventDefault();">
-            <!-- QUESTION 1: TIPO "multi-select" (Text Completion with Dropdowns) -->
+            <!-- QUESTION 1: TIPO "multi-select" (Text Completion Dropdowns) -->
             <div class="question-tab active" data-qindex="1" data-type="multi-select">
-                <div class="task-instruction-text">1. Complete the operational statements regarding year-end adjustments classifications according to IAS 1 framework parameters.</div>
+                <div class="task-instruction-text">1. Complete the statements regarding accounting adjustments under IAS 1.</div>
                 <div class="task-interactive-body">
                     <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
-                        An overhead expense that has been consumed by the entity during the current period but remains unbilled at the year-end date constitutes an 
+                        An overhead resource consumed but completely unbilled at year-end constitutes an 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="accrual">
                             <option value="">-- Choose Adjustment --</option>
                             <option value="accrual">Accrued Expense (Accrual)</option>
                             <option value="prepayment">Prepaid Expense (Prepayment)</option>
                         </select> 
-                        which must be systematically reported as a 
+                        reported as a 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="liability">
                             <option value="">-- Choose Element --</option>
                             <option value="asset">Current Asset</option>
                             <option value="liability">Current Liability</option>
                         </select>. 
-                        Conversely, an expense paid in advance covering next year's service window represents a 
+                        Conversely, an upfront settlement covering future windows is a 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="prepayment">
                             <option value="">-- Choose Adjustment --</option>
                             <option value="accrual">Accrued Expense (Accrual)</option>
                             <option value="prepayment">Prepaid Expense (Prepayment)</option>
                         </select> 
-                        classified as a 
+                        reported as a 
                         <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="asset">
                             <option value="">-- Choose Element --</option>
                             <option value="asset">Current Asset</option>
@@ -286,73 +284,55 @@
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Under IAS 1 framework parameters, accrued expenses reflect unbilled legal obligations owed to third parties (Current Liabilities). Prepaid expenses reflect controlled economic values paid upfront to be enjoyed in future cycles (Current Assets).
+                    <strong>Solution Note:</strong> Accrued expenses are obligations for resources consumed (Current Liability). Prepayments are deferred assets for cash values paid in advance (Current Asset).
                 </div>
             </div>
 
-            <!-- QUESTION 2: TIPO "multi-input" (Financial Apportionment Table) -->
+            <!-- QUESTION 2: TIPO "multi-input" (Gas Overhead Tabular Apportionment) -->
             <div class="question-tab" data-qindex="2" data-type="multi-input">
-                <div class="task-instruction-text">2. A business pays its telephone overheads quarterly in arrears. The financial year ends on 31 December. The total bank payments made during the year stand at £4,200. The last quarter bill arrived in November (covering Aug, Sep, Oct) totaling £900. Complete the fundamental adjustment cells below.</div>
+                <div class="task-instruction-text">2. A company settles gas quarterly in arrears. Total cash book outlays in the year stand at £4,200. The last unbilled period (Nov-Dec) is estimated pro-rata from the previous £900 autumn bill (covering Aug, Sep, Oct). Enter required balances.</div>
                 <div class="task-interactive-body">
                     <table class="financial-table">
                         <thead>
-                            <tr>
-                                <th style="text-align: left;">Accounting Variable Item</th>
-                                <th style="width: 250px;">Required Balance (£)</th>
-                            </tr>
+                            <tr><th>Accounting Variable Item</th><th style="width: 250px;">Required Balance (£)</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="text-align: left;">Year-End Accrued Expense Closing Balance (c/d)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="600.00" placeholder="0.00"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;">Total Net Telephone Expense Charge to SPL Account</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="4,800.00" placeholder="0.00"></td>
-                            </tr>
+                            <tr><td>Year-End Accrued Expense Closing Balance (c/d)</td><td><input type="text" class="multi-input-field numeric-field" data-ans="600" placeholder="0.00"></td></tr>
+                            <tr><td>Total Net Gas Overhead Charge to SPL Account</td><td><input type="text" class="multi-input-field numeric-field" data-ans="4800" placeholder="0.00"></td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The quarterly rate is £900 / 3 months = £300/month. For Nov and Dec, the overhead is unbilled (2 months × £300 = £600 Accrual). Total profit or loss expense charge is: £4,200 (Bank) + £600 (Accrual) = £4,800.
+                    <strong>Solution Note:</strong> Monthly base cost = £900 / 3 = £300. Unbilled period = 2 months (Nov/Dec) × £300 = £600 closing accrual. SPL Total Charge = £4,200 + £600 = £4,800.
                 </div>
             </div>
 
-            <!-- QUESTION 3: TIPO "multi-input" (Prepayment Calculations Table) -->
+            <!-- QUESTION 3: TIPO "multi-input" (Insurance Policy Prepayment) -->
             <div class="question-tab" data-qindex="3" data-type="multi-input">
-                <div class="task-instruction-text">3. On 1 October, a corporate entity settles an annual insurance policy premium of £4,800. The corporate financial year ends on 31 December. Calculate the missing values of the adjusted variables below.</div>
+                <div class="task-instruction-text">3. On 1 October, a corporate firm settles an annual warehouse property insurance contract totaling £3,600. The reporting year ends on 31 December. Calculate closing balances.</div>
                 <div class="task-interactive-body">
                     <table class="financial-table">
                         <thead>
-                            <tr>
-                                <th style="text-align: left;">Accounting Adjustment Metric</th>
-                                <th style="width: 250px;">Required Balance (£)</th>
-                            </tr>
+                            <tr><th>Accounting Metric Variable</th><th style="width: 250px;">Required Balance (£)</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="text-align: left;">Prepaid Expense Adjustment Balance (c/d Current Asset)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="3,600.00" placeholder="0.00"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;">Net Insurance Expense Overhead Charge to SPL Account</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,200.00" placeholder="0.00"></td>
-                            </tr>
+                            <tr><td>Prepaid Expense Balance (c/d Current Asset)</td><td><input type="text" class="multi-input-field numeric-field" data-ans="2700" placeholder="0.00"></td></tr>
+                            <tr><td>Net Insurance Expense Overhead Charge to SPL</td><td><input type="text" class="multi-input-field numeric-field" data-ans="900" placeholder="0.00"></td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The policy is £4,800 / 12 = £400/month. 3 months apply to the current year (Oct, Nov, Dec = £1,200 charge). 9 months apply to next year (Jan-Sep = £3,600 Prepayment asset).
+                    <strong>Solution Note:</strong> Monthly base = £3,600 / 12 = £300. Current year usage = 3 months (Oct, Nov, Dec) = £900 SPL overhead. Prepaid next-period months = 9 months × £300 = £2,700 asset prepayment.
                 </div>
             </div>
-            <!-- QUESTION 4: TIPO "radio" (Conceptual Matching Principle) -->
+            <!-- QUESTION 4: TIPO "radio" (Matching Principle Identification) -->
             <div class="question-tab" data-qindex="4" data-type="radio" data-correct="B">
-                <div class="task-instruction-text">4. Which accounting concept dictates that expenses must be matched against the revenues they help generate in the exact same reporting period, rather than when the physical cash transaction occurs?</div>
+                <div class="task-instruction-text">4. Identify the structural accounting concept governing the ledger deployment of Accruals and Prepayments.</div>
                 <div class="task-interactive-body">
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q4" value="A"> Business Entity Concept</span>
+                        <span class="option-label"><input type="radio" name="q4" value="A"> Historical Cost Axiom</span>
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
@@ -360,52 +340,345 @@
                         <span class="feedback-icon"></span>
                     </label>
                     <label class="option-box">
-                        <span class="option-label"><input type="radio" name="q4" value="C"> Going Concern Concept</span>
+                        <span class="option-label"><input type="radio" name="q4" value="C"> Money Measurement Concept</span>
                         <span class="feedback-icon"></span>
                     </label>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> The Accruals Basis (or Matching Principle) under IAS 1 requires costs and revenues to be logged in the period they occur, independent of cash movements.
+                    <strong>Solution Note:</strong> The Accruals principle under IAS 1 forces economic events to match within their usage window regardless of parallel cash book activity.
                 </div>
             </div>
 
-            <!-- QUESTION 5: TIPO "multi-input" (Cascading Debtors Pool & Windows Print PDF) -->
-            <div class="question-tab" data-qindex="5" data-type="multi-input">
-                <div class="task-instruction-text">5. At 31 December year-end, a firm extracts a gross Trade Receivables balance of £30,500 and an opening Allowance b/f of £1,100. A specific customer debt of £500 must be written off as irrecoverable. Management directs that a closing general allowance of 5% must be established. Complete the adjusted values below.</div>
+            <!-- QUESTION 5: TIPO "multi-select" (Revenue Adjustments Exposure Taxonomy) -->
+            <div class="question-tab" data-qindex="5" data-type="multi-select">
+                <div class="task-instruction-text">5. Select the appropriate Statement of Financial Position (SoFP) taxonomy headings for the incoming revenue adjustments.</div>
                 <div class="task-interactive-body">
                     <table class="financial-table">
                         <thead>
-                            <tr>
-                                <th style="text-align: left;">Receivables Ledger Valuation Step</th>
-                                <th style="width: 250px;">Required Balance (£)</th>
-                            </tr>
+                            <tr><th>Revenue Ledger Balances</th><th>SoFP Financial Element Classification</th></tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="text-align: left;">Adjusted Net Receivables Pool for Allowance calculations</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="30,000.00" placeholder="0.00"></td>
+                                <td>Accrued Income (Revenue earned but completely unbilled at year-end)</td>
+                                <td>
+                                    <select class="multi-select-field" data-ans="asset">
+                                        <option value="">-- Choose Heading --</option>
+                                        <option value="asset">Current Asset</option>
+                                        <option value="liability">Current Liability</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
-                                <td style="text-align: left;">New Required Closing Allowance Target Pool Balance</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,500.00" placeholder="0.00"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;">Net Differential Allowance Variance posted to SPL (Increase)</td>
-                                <td><input type="text" class="multi-input-field numeric-field" data-ans="400.00" placeholder="0.00"></td>
+                                <td>Prepaid / Deferred Income (Cash received in advance for next period)</td>
+                                <td>
+                                    <select class="multi-select-field" data-ans="liability">
+                                        <option value="">-- Choose Heading --</option>
+                                        <option value="asset">Current Asset</option>
+                                        <option value="liability">Current Liability</option>
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="global-feedback-msg hidden"></div>
                 <div class="solution-note-panel hidden">
-                    <strong>Solution Note:</strong> Adjusted Pool: £30,500 - £500 = £30,000. Target: 5% of £30,000 = £1,500. Variance increase to SPL: £1,500 (Target) - £1,100 (Opening b/f) = £400.
+                    <strong>Solution Note:</strong> Accrued income is an earned asset benefit (Current Asset). Deferred income reflects unfulfilled cash receipts representing operational obligations (Current Liability).
+                </div>
+            </div>
+
+            <!-- QUESTION 6: TIPO "input" (Opening Apportionment Reversals Formula) -->
+            <div class="question-tab" data-qindex="6" data-type="input" data-correct="3000">
+                <div class="task-instruction-text">6. A company starts its year with an opening Prepayment b/f for warehouse rent of £400. During the cycle, cash book outflows for rent total £3,200. At the 31 December year-end, the closing prepayment c/d is evaluated as £600. Compute the final net rent overhead charge transferred to the Statement of Profit or Loss.</div>
+                <div class="task-interactive-body">
+                    <div style="display:flex; align-items:center; max-width:250px;">
+                        <span style="padding:0.45rem; background:#E5E7EB; border:1px solid #CBD5E1; border-right:none; font-weight:700;">£</span>
+                        <input type="text" class="numeric-field" name="q6" placeholder="0">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Core expense equation: Opening Prepayment b/f (£400) + Bank Cash Outflows (£3,200) - Closing Prepayment c/d (£600) = £3,000 net SPL charge.
+                </div>
+            </div>
+            <!-- QUESTION 7: TIPO "radio" (The Reversal Law Day One entries) -->
+            <div class="question-tab" data-qindex="7" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">7. What structural entry is required on day one of a fresh accounting exercise regarding temporary year-end accruals balances?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q7" value="A"> Immediate capitalization straight to the Non-Current Asset accounts</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q7" value="B"> Post an Opening Reversal entry directly into the nominal expense ledger</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q7" value="C"> Hold balance static until the next audit review</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Opening reversal postings on day one clear down temporary balance sheet accounts and prevent expense duplication.
+                </div>
+            </div>
+
+            <!-- QUESTION 8: TIPO "multi-input" (Trade Receivables Bad Debt Write-Off) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <div class="task-instruction-text">8. A high-street credit customer owing £750 declares legal insolvency. The accounting team must process an immediate total write-off. Complete the double entry journal lines below.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr><th>General Ledger Target Account</th><th>Entry Side (DR/CR)</th><th style="width:180px;">Value (£)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="multi-input-field select-input" data-ans="irrecoverable">
+                                        <option value="">-- Choose Account --</option>
+                                        <option value="irrecoverable">Irrecoverable Debts Account (Expense)</option>
+                                        <option value="slca">Trade Receivables Control (SLCA)</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="multi-input-field" data-ans="DR" placeholder="DR or CR" style="text-align:center;"></td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="750" placeholder="0"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select class="multi-input-field select-input" data-ans="slca">
+                                        <option value="">-- Choose Account --</option>
+                                        <option value="irrecoverable">Irrecoverable Debts Account (Expense)</option>
+                                        <option value="slca">Trade Receivables Control (SLCA)</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="multi-input-field" data-ans="CR" placeholder="DR or CR" style="text-align:center;"></td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="750" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Wiping out specific uncollectible debtor cards requires loading the cost to expenses: DEBIT Irrecoverable Debts Account £750 and removing the asset asset: CREDIT Trade Receivables Control (SLCA) £750.
+                </div>
+            </div>
+
+            <!-- QUESTION 9: TIPO "multi-input" (Cascading Receivables Pool & Allowance Target) -->
+            <div class="question-tab" data-qindex="9" data-type="multi-input">
+                <div class="task-instruction-text">9. Gross closing Trade Receivables stand at £51,200. Specific year-end bankruptcies to write off total £1,200. Opening Allowance b/f from the prior exercise balances at £1,800. Management mandates a 4% general closing allowance. Calculate the adjusted states.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr><th>Receivables Ledger Adjustment Pipeline Step</th><th style="width:250px;">Required Balance (£)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Adjusted Net Receivables Base Pool for Allowance calculations</td><td><input type="text" class="multi-input-field numeric-field" data-ans="50000" placeholder="0"></td></tr>
+                            <tr><td>New Required Closing Allowance Target Pool Balance</td><td><input type="text" class="multi-input-field numeric-field" data-ans="2000" placeholder="0"></td></tr>
+                            <tr><td>Net Differential Allowance Variance posted to SPL (Increase)</td><td><input type="text" class="multi-input-field numeric-field" data-ans="200" placeholder="0"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Clean Pool Base = £51,200 - £1,200 = £50,000. Required Target = 4% of £50,000 = £2,000. Differential variance increase sent as expense to SPL = £2,000 - £1,800 = £200.
+                </div>
+            </div>
+            <!-- QUESTION 10: TIPO "multi-input" (Allowance Reduction Differential scenario) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-input">
+                <div class="task-instruction-text">10. At year-end, the net adjusted customer receivables pool is calculated as £40,000. The company needs to establish a 3% general allowance. The opening allowance ledger b/f currently shows a credit balance of £1,500. Compute the valuation outcomes.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr><th>Valuation Account Element</th><th style="width:250px;">Required Balance (£)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>New Required Closing Allowance Target Pool Balance</td><td><input type="text" class="multi-input-field numeric-field" data-ans="1200" placeholder="0"></td></tr>
+                            <tr><td>Net Differential Variance posted to SPL (Decrease / Credit)</td><td><input type="text" class="multi-input-field numeric-field" data-ans="300" placeholder="0"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Target = 3% of £40,000 = £1,200. Since the opening provision b/f (£1,500) exceeds the new risk threshold target, the entity posts a credit reduction variance of £300 to release profits inside the SPL.
+                </div>
+            </div>
+
+            <!-- QUESTION 11: TIPO "input" (Total Integrated SPL Overheads Charge) -->
+            <div class="question-tab" data-qindex="11" data-type="input" data-correct="1400">
+                <div class="task-instruction-text">11. A firm executes a specific bad debt write-off of £600 at year-end. Simultaneously, the recalculation of its general allowance account reveals a necessary net increase variance of £800. Calculate the total combined charge reported under Irrecoverable Debts inside the current year Statement of Profit or Loss.</div>
+                <div class="task-interactive-body">
+                    <div style="display:flex; align-items:center; max-width:250px;">
+                        <span style="padding:0.45rem; background:#E5E7EB; border:1px solid #CBD5E1; border-right:none; font-weight:700;">£</span>
+                        <input type="text" class="numeric-field" name="q11" placeholder="0">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Total operating overhead charge under Irrecoverable Debts equals the sum of specific write-offs plus the general provision increase variance: £600 + £800 = £1,400.
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "radio" (Bad Debt Recovered from Legacy Years) -->
+            <div class="question-tab" data-qindex="12" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">12. An old trade client whose invoice was completely written off as irrecoverable during a prior financial exercise suddenly pays the company £500 cash. What is the correct entry?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="A"> DEBIT Bank Account £500 | CREDIT Irrecoverable Debts Recovered Account £500</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="B"> DEBIT Bank Account £500 | CREDIT Trade Receivables Control Account (SLCA) £500</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="C"> DEBIT Allowance for Doubtful Debts £500 | CREDIT Bank Account £500</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Because the historical customer subsidiary account was terminated in a prior year, the recovery cash receipt cannot touch current receivables pools. It is treated as independent operating revenue via the Irrecoverable Debts Recovered account.
+                </div>
+            </div>
+            <!-- QUESTION 11: TIPO "multi-select" (Accrued Income Framework) -->
+            <div class="question-tab" data-qindex="11" data-type="multi-select">
+                <div class="task-instruction-text">11. At Year-End, a business has earned £1,500 of commission revenue that has not yet been invoiced or paid by the client. Select the appropriate classification parameters.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        This transaction represents an 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="accrued-income">
+                            <option value="">-- Choose Category --</option>
+                            <option value="accrued-income">Accrued Income</option>
+                            <option value="prepaid-income">Prepaid/Deferred Income</option>
+                        </select> 
+                        which must be accounted for by 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="debiting">
+                            <option value="">-- Action --</option>
+                            <option value="debiting">Debiting</option>
+                            <option value="crediting">Crediting</option>
+                        </select> 
+                        the temporary asset account and reported under 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="current-assets">
+                            <option value="">-- Heading --</option>
+                            <option value="current-assets">Current Assets</option>
+                            <option value="current-liabilities">Current Liabilities</option>
+                        </select> in the Statement of Financial Position.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Accrued income is revenue earned but not yet documented. It is a Current Asset (Debit entry to Accrued Income account, Credit to Revenue account).
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "radio" (Irrecoverable Debt Recovery Definition) -->
+            <div class="question-tab" data-qindex="12" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">12. A debt written off as irrecoverable in a previous financial period is suddenly collected in cash during the current year. How should this be treated?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="A"> Credit the customer's personal account inside the Sales Ledger.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="B"> Deduct the amount from the opening Allowance for Doubtful Debts pool.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q12" value="C"> Credit the Irrecoverable Debts Recovered account as separate operational income in the SPL.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Since the individual ledger record was already closed out, the cash input must be recognized as specific standalone operating income (Credit Irrecoverable Debts Recovered A/c).
+                </div>
+            </div>
+
+            <!-- QUESTION 13: TIPO "multi-input" (Rent Income Ledger Table) -->
+            <div class="question-tab" data-qindex="13" data-type="multi-input">
+                <div class="task-instruction-text">13. A company receives rental income from a sub-let property. Total cash bank receipts during the year are £12,000. At year-end on 31 December, the tenant has prepaid rent for January of the next year totaling £1,000. Complete the adjustment line cells below.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Rental Income Variable</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Year-End Prepaid/Deferred Income Balance c/d (Liability)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,000.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Total Net Rental Income credited to the SPL Account</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="11,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Rent received in advance must be extracted to prevent profit inflation. Closing Prepaid Income = £1,000 (Current Liability). Net match sent to SPL = £12,000 - £1,000 = £11,000.
+                </div>
+            </div>
+            <!-- QUESTION 14: TIPO "radio" (The Prudence Concept Asymmetry) -->
+            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">14. Why does the general allowance mechanism apply a risk percentage to potential defaults while ignoring potential unexpected windfall revenues?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="A"> Due to the Prudence Concept, which requires immediate entry for anticipated losses but bars unearned profits.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="B"> Due to historical cost conventions which value assets at initial procurement margins.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="C"> Because general allowances are reported inside the equity section.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The principle of Prudence mandates asymmetrical caution: recognize liabilities and losses as soon as they are realistically anticipated, but never anticipate revenues.
+                </div>
+            </div>
+
+            <!-- QUESTION 15: TIPO "multi-input" (Final Integrated Ledger Check & PDF Print Ready) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <div class="task-instruction-text">15. Review of a final expense pipeline: Initial unadjusted water ledger payments = £2,400. Year-end checks reveal an opening accrual b/f from last year of £300, and an unpaid current invoice of £500. Compute the finalized metrics below to complete your AAT return.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Integrated Water Expense Line</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Net Water Cost Overhead Transferred to SPL</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2,600.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Closing Current Liability balance reported on the SoFP</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="500.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Water account math: Bank payments (£2,400) minus Opening Accrual reversal (£300) plus Closing Accrual c/d (£500) = £2,600 SPL charge. The closing accrual of £500 goes to Current Liabilities.
                 </div>
             </div>
 
         </form>
 
-        <!-- FOOTER PULSANTIERA INTEGRATA INTERNA ALLA BOLLA -->
+        <!-- FOOTER PULSANTIERA INTEGRATA INTERNA ALLA BOLLA BIANCA -->
         <div class="controls-footer">
             <div class="controls-left">
                 <button type="button" class="ctrl-btn btn-blue" id="btn-quiz-submit" onclick="validateCurrentTab()">Am I right?</button>
@@ -421,10 +694,10 @@
 
     </div> <!-- Fine .test-container -->
 
-    <!-- COMPONENTE ACCESSORE FLUTTUANTE: TRIGGER CALCOLATRICE NATIVA -->
+    <!-- TRIGGER FLUTTUANTE DELLA CALCOLATRICE -->
     <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
 
-    <!-- FLOATING CALC STRUCTURE WIDGET VETRATO DRAG & DROP -->
+    <!-- WIDGET INTERATTIVO CALCOLATRICE TRASCINABILE -->
     <div id="calc-widget">
         <div id="calc-drag-handle" style="background:var(--l3-cyan-dark); color:white; font-size:0.75rem; padding:4px; margin-bottom:8px; border-radius:4px; font-weight:700; text-align:center;">DRAG TO MOVE</div>
         <input type="text" id="calc-display-panel" style="width:100%; text-align:right; font-family:monospace; background:black; color:var(--neon-calc-accent); border:1px solid #374151; padding:8px; font-size:1.2rem; margin-bottom:8px; border-radius:4px;" readonly value="0">
@@ -452,17 +725,18 @@
     </div>
 <script>
 let currentQuestionIndex = 1;
-const totalQuestionsCount = 5;
+const totalQuestionsCount = 15;
 
 function updateNavigationDisplay() {
     document.getElementById('q-counter-display').textContent = `Question ${currentQuestionIndex} of ${totalQuestionsCount}`;
     
-    // Gestione visibilità pulsanti di navigazione destra
+    // Controllo disabilitazione dinamica pulsante precedente alla prima domanda
     document.getElementById('btn-quiz-prev').disabled = (currentQuestionIndex === 1);
     
     const nextBtn = document.getElementById('btn-quiz-next');
     const printBtn = document.getElementById('btn-quiz-print');
     
+    // Al quindicesimo tab scompare il tasto Next Question e compare Download as PDF
     if (currentQuestionIndex === totalQuestionsCount) {
         nextBtn.classList.add('hidden');
         printBtn.classList.remove('hidden');
@@ -471,7 +745,7 @@ function updateNavigationDisplay() {
         printBtn.classList.add('hidden');
     }
 
-    // Reset visibilità pulsante soluzioni per la nuova scheda attiva
+    // Occulta permanentemente il tasto soluzioni fino a nuova validazione
     document.getElementById('btn-quiz-solution').classList.add('hidden');
 }
 
@@ -489,7 +763,6 @@ function navigateTab(direction) {
     
     updateNavigationDisplay();
 }
-
 function validateCurrentTab() {
     const activeTab = document.querySelector('.question-tab.active');
     const qType = activeTab.getAttribute('data-type');
@@ -526,19 +799,26 @@ function validateCurrentTab() {
             tabPassed = false;
         }
     } else {
-        // Scansione per multi-input e multi-select
-        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+        // Scansione analitica per campi numerici, tabelle multi-input e menu a tendina
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
         
         fields.forEach(field => {
             const userVal = field.value.trim().toLowerCase();
             const correctVal = field.getAttribute('data-ans').trim().toLowerCase();
             
             if (userVal !== correctVal) {
-                isCorrect = false;
                 tabPassed = false;
-                field.className = field.classList.contains('numeric-field') ? "multi-input-field numeric-field wrong-answer-highlight" : "multi-select-field wrong-answer-highlight";
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field wrong-answer-highlight";
+                } else {
+                    field.className = "multi-select-field wrong-answer-highlight";
+                }
             } else {
-                field.className = field.classList.contains('numeric-field') ? "multi-input-field numeric-field correct-answer-highlight" : "multi-select-field correct-answer-highlight";
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field correct-answer-highlight";
+                } else {
+                    field.className = "multi-select-field correct-answer-highlight";
+                }
             }
         });
 
@@ -548,7 +828,7 @@ function validateCurrentTab() {
             feedbackMsg.textContent = "All fields correct! Exceptional work.";
         } else {
             feedbackMsg.className = "global-feedback-msg msg-incorrect";
-            feedbackMsg.textContent = "Some fields are incorrect. Review your ledger figures.";
+            feedbackMsg.textContent = "Some fields are incorrect. Review your accounting logic.";
         }
     }
 
@@ -569,11 +849,15 @@ function showCurrentSolution() {
             }
         });
     } else {
-        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
         fields.forEach(field => {
             const targetAns = field.getAttribute('data-ans');
             field.value = targetAns;
-            field.className = field.classList.contains('numeric-field') ? "multi-input-field numeric-field correct-answer-highlight" : "multi-select-field correct-answer-highlight";
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field correct-answer-highlight";
+            } else {
+                field.className = "multi-select-field correct-answer-highlight";
+            }
         });
     }
 
@@ -593,23 +877,26 @@ function resetCurrentTab() {
         activeTab.querySelectorAll('.option-box').forEach(box => box.className = "option-box");
         activeTab.querySelectorAll('.feedback-icon').forEach(icon => icon.textContent = '');
     } else {
-        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field');
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
         fields.forEach(field => {
             field.value = '';
-            field.className = field.classList.contains('numeric-field') ? "multi-input-field numeric-field" : "multi-select-field";
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field";
+            } else {
+                field.className = "multi-select-field";
+            }
         });
     }
 }
 
 function triggerPDFDownload() {
-    // Forza temporaneamente il titolo del documento per la stampa PDF
     const oldTitle = document.title;
     document.title = "AAT_Level3_Chapter1_Assessment_Report";
     window.print();
     document.title = oldTitle;
 }
 
-// DRAG AND DROP MECCANICA CALCOLATRICE WIDGET
+// OPERAZIONI MATEMATICHE CALCOLATRICE WIDGET
 function toggleCalcWidget() {
     const widget = document.getElementById('calc-widget');
     widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
@@ -631,7 +918,7 @@ function executeCalc() {
     try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
 }
 
-// LOGICA DRAG ENGINE DI SBARRAMENTO
+// LOGICA MOUSE DRAG AND DROP CALCOLATRICE WIDGET
 const dragWidget = document.getElementById("calc-widget");
 const dragHandle = document.getElementById("calc-drag-handle");
 let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
