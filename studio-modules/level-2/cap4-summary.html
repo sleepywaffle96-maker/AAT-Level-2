@@ -1,159 +1,81 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Level 2 - Chapter 4: Quick Summary & Formulas</title>
+    <title>AAT Level 2 Certificate in Accounting - Chapter 4 Cheat Sheet: General Journal & Error Matrix</title>
     <style>
-        :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --cyan: #00f2fe;
-            --teal: #4facfe;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-            --debit-color: #10b981;
-            --credit-color: #ef4444;
-            --highlight: #f59e0b;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            color: var(--cyan);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            color: var(--cyan);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        h2 {
-            color: var(--teal);
-            margin-top: 30px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-            font-size: 1.3rem;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-
-        .summary-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        .formula-display {
-            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
-            border-left: 4px solid var(--cyan);
-            padding: 12px;
-            border-radius: 0 4px 4px 0;
-            margin: 10px 0;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.95rem;
-            color: var(--cyan);
-            font-weight: bold;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 8px 0;
-        }
-
-        li {
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 6px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .badge-dr { background: rgba(16, 185, 129, 0.2); color: var(--debit-color); }
-        .badge-cr { background: rgba(239, 68, 68, 0.2); color: var(--credit-color); }
-        .badge-info { background: rgba(245, 158, 11, 0.2); color: var(--highlight); }
+        /* 1. Reset e Sfondo Design System */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0B0F19; color: #1E293B; padding: 40px 20px; display: flex; justify-content: center; }
+        .summary-container { background-color: #FFFFFF; width: 100%; max-width: 850px; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* 2. Struttura delle schede riassuntive */
+        h1 { color: #7C3AED; font-size: 26px; font-weight: 800; margin-bottom: 25px; border-bottom: 3px solid #E2E8F0; padding-bottom: 10px; text-transform: uppercase; }
+        h2 { color: #1E293B; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; }
+        .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .card-check { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; }
+        .card-check h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+        
+        /* 3. Classi di Colore per i Controlli */
+        .agrees-title { color: #10B981; }
+        .disagrees-title { color: #DC2626; }
+        .warning-title { color: #D97706; }
+        ul { list-style-type: none; }
+        li { font-size: 14px; margin-bottom: 10px; font-weight: 600; color: #334155; }
+        li strong { color: #0F172A; }
+        .purple-bullet li::before { content: "• "; color: #7C3AED; font-weight: bold; font-size: 16px; }
     </style>
 </head>
 <body>
+    <div class="summary-container">
+        <h1>Chapter 4 Cheat Sheet - Error Correction Matrix</h1>
+        <p style="font-size:14px; color:#475569; margin-bottom:20px; line-height:1.6;">Use this technical checkpoint layout as a systematic reference framework during timed simulations to instantly determine suspense and profit requirements.</p>
+        
+        <div class="quick-grid">
+            <!-- Card Errors that Agree Checklist -->
+            <div class="card-check" style="border-top: 4px solid #10B981;">
+                <h3 class="agrees-title">Errors Where Trial Balance AGREES</h3>
+                <ul class="purple-bullet">
+                    <li><strong>Omission:</strong> Whole entry is completely missing from all nominal accounts.</li>
+                    <li><strong>Commission:</strong> Symmetrical posting into the wrong customer/supplier name.</li>
+                    <li><strong>Principle:</strong> Symmetrical posting into the wrong asset/expense class.</li>
+                    <li><strong>Original Entry:</strong> The correct accounts are used but with a matching wrong value.</li>
+                    <li><strong>Reversal:</strong> Debits and credits are fully swapped on both active sides.</li>
+                </ul>
+            </div>
 
-<div class="container">
-    <a href="../../studio.html" class="back-btn">← Back to Study Hub</a>
-    
-    <h1>Chapter 4: Developing Lifelong Learning Cheat Sheet</h1>
-
-    <h2>1. The Fundamental Principles of the Ethical Architecture</h2>
-    <p>Memorise these core ethical building blocks for instant validation checks within simulation text modules:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <span class="badge badge-dr">Integrity & Objectivity</span>
-            <ul>
-                <li><strong>Integrity:</strong> Uncompromising honesty and straightforwardness in all statements.</li>
-                <li><strong>Objectivity:</strong> Complete suppression of professional bias, emotional conflict, or managerial pressure.</li>
-            </ul>
+            <!-- Card Errors that Disagree Checklist -->
+            <div class="card-check" style="border-top: 4px solid #DC2626;">
+                <h3 class="disagrees-title">Errors Where Trial Balance DISAGREES</h3>
+                <ul class="purple-bullet">
+                    <li><strong>Casting Error:</strong> Addition mistakes inside day books or cash columns.</li>
+                    <li><strong>Single-Sided Entry:</strong> Posting the debit side but completely omitting the credit.</li>
+                    <li><strong>Transposition:</strong> Reversing digits on one ledger profile only (e.g., £54 vs £45).</li>
+                    <li><strong>Double Posting:</strong> Debiting two separate nominal accounts with no credit entry.</li>
+                </ul>
+            </div>
         </div>
+        <h2>3. Critical Assessment Check: Net Profit Adjustment Rules</h2>
+        <p style="font-size:14px; color:#475569; margin-bottom:15px; line-height:1.6;">A recurring trap in AAT journal assessments is miscalculating profit adjustments. Use this checklist to determine net income modifications instantly:</p>
 
-        <div class="summary-card">
-            <span class="badge badge-cr">Competence & Confidentiality</span>
-            <ul>
-                <li><strong>Competence:</strong> Keeping technical knowledge up to date through strict continuous study cycles.</li>
-                <li><strong>Confidentiality:</strong> Zero unauthorized disclosure of secure operational numbers.</li>
+        <div class="card-check" style="border-top: 4px solid #D97706; background-color: #FFFDFA;">
+            <h3 class="warning-title">The Net Profit Adjustment Protocol</h3>
+            <ul style="list-style-type: none; margin: 0; padding: 0;">
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #FCD34D; padding-bottom: 10px;">
+                    <strong>The Nominal Expense Rule:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">If a journal correction requires a <strong>DEBIT</strong> to an expense account or a revenue account, the net profit will <strong>DECREASE</strong> because overheads increase or turnover drops.</span>
+                </li>
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #FCD34D; padding-bottom: 10px;">
+                    <strong>The Nominal Income Rule:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">If a journal correction requires a <strong>CREDIT</strong> to an expense account or a revenue account, the net profit will <strong>INCREASE</strong> because overheads decrease or sales turnover expands.</span>
+                </li>
+                <li style="margin-bottom: 5px;">
+                    <strong>The Balance Sheet Exclusion Principle:</strong><br>
+                    <span style="font-weight:500; font-size:13.5px; color:#556375;">If an adjusting entry only modifies <em>Assets, Liabilities, Capital, or Suspense</em> parameters (e.g., correcting an error of commission between two customer accounts), the company's Net Profit remains <strong>completely unaffected</strong>.</span>
+                </li>
             </ul>
         </div>
     </div>
-    <h2>2. Data Security & Continuing Professional Development Frameworks</h2>
-    <p>Key checkpoints to ensure immediate accuracy during time-pressured theoretical questions:</p>
-
-    <div class="summary-grid">
-        <div class="summary-card" style="grid-column: 1 / -1;">
-            <span class="badge badge-info">Core Operational Checklist</span>
-            <ul>
-                <li><strong>The 4 CPD Cycle Stages:</strong> Remember the exact chronological path: <code>Planning → Action → Evaluation → Reflection</code>.</li>
-                <li><strong>Role-Based Access Control (RBAC):</strong> Restricting software entry vectors based strictly on job specification to preserve UK GDPR compliance.</li>
-                <li><strong>The Accountability Principle:</strong> Financial entities must not only follow data laws but actively prove compliance via detailed system access tracking logs.</li>
-                <li><strong>Corporate Written Trailing:</strong> Financial summaries, threshold shifts, and balance updates always require written execution to establish a permanent audit trail.</li>
-            </ul>
-        </div>
-    </div>
-
-</div> <!-- End Container -->
-
 </body>
 </html>
