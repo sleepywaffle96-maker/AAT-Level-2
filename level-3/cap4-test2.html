@@ -3,331 +3,956 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indirect Tax - Test Two</title>
+    <title>AAT Level 3 Advanced Diploma - Chapter 4 Test Two</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* DESIGN SYSTEM LIVELLO 3 - PALETTE AZZURRO CIANO ED APPENDICE TECNICA RIGIDA */
+        :root {
+            --bg-dark-external: #0B0F19;
+            --bubble-white-bg: #FFFFFF;
+            --l3-cyan-primary: #0284C7;
+            --l3-cyan-dark: #0369A1;
+            --l3-cyan-light: #E0F2FE;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --danger-color: #DC2626;
+            --success-color: #059669;
+            --highlight-green: #DCFCE7;
+            --highlight-red: #FEE2E2;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e3e3e3;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-external);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .quiz-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: #ffffff;
-            border: 1px solid #999999;
-            padding: 25px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
-        .header-title {
-            color: #006633;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid #006633;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        .question-page {
-            display: none;
-            min-height: 220px;
-        }
-        .question-page.active {
-            display: block;
-        }
-        .question-counter {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .question-body {
-            font-size: 14px;
+            padding: 3rem 1rem;
             line-height: 1.6;
-            color: #222222;
         }
-        select, input[type="text"] {
-            padding: 4px;
-            font-size: 13px;
-            border: 1px solid #999999;
-            border-radius: 2px;
-            margin: 4px 0;
-        }
-        input[type="text"] {
-            width: 110px;
-            text-align: right;
-            font-family: monospace;
-        }
-        table.osborne-table {
+
+        .test-container {
+            background-color: var(--bubble-white-bg);
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
+            max-width: 850px;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            position: relative;
         }
-        table.osborne-table th {
-            background-color: #f2f2f2;
-            text-align: left;
-            font-size: 13px;
-        }
-        table.osborne-table td, table.osborne-table th {
-            border: 1px solid #aaaaaa;
-            padding: 6px;
-            font-size: 13px;
-        }
-        .nav-buttons {
-            margin-top: 30px;
-            border-top: 1px solid #cccccc;
-            padding-top: 15px;
+
+        .test-header-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
         }
-        .btn-action {
-            background-color: #f0f0f0;
-            border: 1px solid #999999;
-            padding: 4px 14px;
-            font-size: 13px;
+
+        .test-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .question-counter-label {
+            font-size: 0.9rem;
+            color: var(--l3-cyan-dark);
+            font-weight: 600;
+        }
+        /* STRUTTURA SEQUENZIALE QUESTION TABS */
+        .question-tab {
+            display: none;
+            flex-direction: column;
+        }
+        .question-tab.active {
+            display: flex;
+        }
+
+        .task-instruction-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .task-interactive-body {
+            background-color: #FAFAFA;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* OPZIONI DI SELEZIONE RADIO (TIPO A) */
+        .option-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            color: #333333;
+            margin-bottom: 0.75rem;
+            transition: all 0.15s ease;
         }
-        .btn-action:hover {
-            background-color: #e0e0e0;
+        .option-box:hover { background-color: #F9FAFB; }
+        .option-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
+        .feedback-icon { font-weight: 700; font-size: 1.1rem; }
+
+        /* TABELLE FINANZIARIE PER REGIMI IVA */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #FFFFFF;
         }
-        .feedback {
-            margin-top: 15px;
-            font-size: 14px;
+        .financial-table th {
+            background-color: var(--l3-cyan-dark);
+            color: #FFFFFF;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--l3-cyan-dark);
+        }
+        .financial-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .numeric-field, .multi-input-field, .multi-select-field, .select-input {
+            width: 100%;
+            padding: 0.45rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+        }
+        .numeric-field { font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .numeric-field:focus, .multi-input-field:focus, .multi-select-field:focus {
+            border-color: var(--l3-cyan-primary);
+            outline: none;
+            background-color: var(--l3-cyan-light);
+        }
+        /* GEOMETRIA RIGIDA PULSANTIERA INFERIORE APPENDICE TECNICA */
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            border-top: 2px solid #E5E7EB;
+            padding-top: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-group-left, .btn-group-right { display: flex; gap: 10px; }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s ease;
+        }
+        .btn-blue { background-color: #2563EB; color: #FFFFFF; }
+        .btn-green { background-color: #059669; color: #FFFFFF; }
+        .btn-red { background-color: #DC2626; color: #FFFFFF; }
+        .btn-gray { background-color: #4B5563; color: #FFFFFF; }
+        .btn-purple { background-color: #7C3AED; color: #FFFFFF; }
+        .btn-gray:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .global-feedback-msg {
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        .msg-correct { background-color: #DEF7EC; color: #065F46; }
+        .msg-incorrect { background-color: #FDE8E8; color: #9B1C1C; }
+
+        .solution-note-panel {
+            margin-top: 1.25rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--l3-cyan-primary);
+            background-color: var(--l3-cyan-light);
+            font-size: 0.9rem;
+            color: #0369A1;
+        }
+
+        .correct-answer-highlight { background-color: var(--highlight-green) !important; border-color: var(--success-color) !important; }
+        .wrong-answer-highlight { background-color: var(--highlight-red) !important; border-color: var(--danger-color) !important; }
+        .hidden { display: none !important; }
+
+        /* A. CALCOLATRICE: TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA */
+        #calc-toggle-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            z-index: 1999;
+            font-size: 20px;
+            transition: transform 0.2s ease, background 0.2s ease;
+            border: none;
+        }
+        #calc-toggle-trigger:hover { transform: scale(1.08); background-color: #1D4ED8; }
+
+        /* B. CALCOLATRICE: CORPO DEL WIDGET VETRATO SCURO */
+        #calc-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 240px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            z-index: 2000;
+            display: none;
+            cursor: move;
+            box-sizing: border-box;
+        }
+
+        /* C. CALCOLATRICE: HEADER CON DICITURA BRAND "Osborne Calc" */
+        #calc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            user-select: none;
+        }
+        #calc-header span {
+            color: #64748B;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #calc-close-btn {
+            background: transparent;
+            border: none;
+            color: #EF4444;
             font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
         }
-        .correct { color: #006633; }
-        .incorrect { color: #cc0000; }
+
+        /* D. CALCOLATRICE: DISPLAY LAYOUT NERO/CIANO NEON */
+        #calc-screen {
+            width: 100%;
+            height: 45px;
+            background: #000000;
+            border-radius: 8px;
+            color: #00FFFF;
+            text-shadow: 0 0 10px #00FFFF;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: right;
+            padding: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border: 1px solid #00FFFF;
+            box-sizing: border-box;
+        }
+
+        /* E. CALCOLATRICE: GRID LAYOUT */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .calc-btn {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: white;
+            background: #334155;
+            text-align: center;
+            transition: background 0.1s ease;
+        }
+        .calc-btn:hover { background: #475569; }
+        .calc-btn.op {
+            background: rgba(0, 255, 255, 0.05);
+            color: #00FFFF;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        .calc-btn.op:hover { background: rgba(0, 255, 255, 0.15); }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="header-title">Indirect Tax (Finance Act) - Test Two</div>
+    <div class="test-container">
+        
+        <div class="test-header-row">
+            <div class="test-title">BTRN - LEVEL 3 CHAPTER 4: INDIRECT TAX / VAT (TEST TWO)</div>
+            <div class="question-counter-label" id="q-counter-display">Question 1 of 15</div>
+        </div>
 
-    <!-- Q1 -->
-    <div id="page1" class="question-page active">
-        <div class="question-counter">Q1 of 15</div>
-        <div class="question-body">
-            A business sells standard-rated electronics for £60,000 gross (inclusive of 20% VAT). Calculate the underlying Output VAT amount that needs to be declared in Box 1 of the VAT Return:<br>
-            VAT Due on Sales (Box 1): £ <input type="text" id="ans1" placeholder="0.00">
+        <form id="quiz-form" onsubmit="event.preventDefault();">
+
+            <!-- QUESTION 1: TIPO "multi-input" (Prompt Payment Discount - PPD Calculation) -->
+            <div class="question-tab active" data-qindex="1" data-type="multi-input">
+                <div class="task-instruction-text">1. A business issues a sales invoice for goods with a list price of £5,000 subject to standard 20% VAT. The terms offer a 5% Prompt Payment Discount (PPD) if paid within 7 days. Under modern HMRC regulations, calculate the initial output VAT to enter on the invoice text.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Invoice Structural Component</th>
+                                <th style="width: 250px;">Required Value (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Initial Output VAT to charge on the face of the invoice (calculated on full net value)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Under current HMRC rules, VAT on invoices featuring a cash discount must be calculated on the full net price (£5,000 × 20% = £1,000). Credit notes or adjustment adjustments are issued later only if the customer actually triggers the discount window.
+                </div>
+            </div>
+
+            <!-- QUESTION 2: TIPO "radio" (HMRC Error Behavior Penalties) -->
+            <div class="question-tab" data-qindex="2" data-type="radio" data-correct="C">
+                <div class="task-instruction-text">2. During an audit, HMRC discovers an understatement of VAT liability. The error is determined to be 'deliberate but concealed'. What is the maximum statutory penalty percentage that can be applied to the potential lost revenue?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q2" value="A"> Maximum of 30% if the business cooperates during disclosure.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q2" value="B"> Maximum of 70% if the error was due to general care negligence.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q2" value="C"> Up to 100% of the potential lost revenue, as it involves active falsification.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> HMRC applies sliding penalty bands based on intent: careless errors face a 0%-30% range, deliberate but unconcealed face 20%-70%, and deliberate and concealed errors face the maximum 30%-100% penalty assessment.
+                </div>
+            </div>
+            <!-- QUESTION 3: TIPO "multi-select" (Limited Cost Trader Test) -->
+            <div class="question-tab" data-qindex="3" data-type="multi-select">
+                <div class="task-instruction-text">3. Complete the financial threshold statements regarding the HMRC Flat Rate Scheme 'Limited Cost Trader' anti-avoidance test.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        A business using the Flat Rate Scheme is classified as a Limited Cost Trader if its expenditure on relevant goods is less than 2% of its gross turnover, or less than 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="250">
+                            <option value="">-- Limit --</option>
+                            <option value="100">£100 per quarter</option>
+                            <option value="250">£250 per quarter</option>
+                            <option value="500">£500 per quarter</option>
+                        </select>. 
+                        Once classified, the business must immediately drop its sector-specific rate and apply a flat compulsory rate of 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="16.5">
+                            <option value="">-- Percentage --</option>
+                            <option value="12.0">12.0%</option>
+                            <option value="14.5">14.5%</option>
+                            <option value="16.5">16.5%</option>
+                        </select> to its gross sales pool.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> To prevent service companies with minimal overheads from profiting from the scheme, HMRC applies a 16.5% flat rate if relevant goods expenses are under 2% of turnover or below £250 in a quarter.
+                </div>
+            </div>
+
+            <!-- QUESTION 4: TIPO "input" (HMRC VAT Record Retention Timeline) -->
+            <div class="question-tab" data-qindex="4" data-type="input" data-correct="6">
+                <div class="task-instruction-text">4. Under standard HMRC compliance laws, for how many minimum consecutive years must a VAT-registered enterprise securely retain all digital source invoices, vouchers, and accounts summaries? (Input the numerical digit only)</div>
+                <div class="task-interactive-body">
+                    <div style="max-width: 200px;">
+                        <input type="text" class="numeric-field" style="text-align: center;" name="q4" placeholder="0">
+                    </div>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Statutory tax rules command that all documentation related to corporate indirect tax filings must be archived and available for inspection for a minimum of 6 years.
+                </div>
+            </div>
+
+            <!-- QUESTION 5: TIPO "radio" (Annual Accounting Intakes) -->
+            <div class="question-tab" data-qindex="5" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">5. A company using the Annual Accounting Scheme chooses the 9 monthly installment option. What is the standard value of each advance intermediate payment under HMRC rules?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="A"> Exactly 10% of the previous year's total net VAT liability.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="B"> Exactly 25% of the estimated current quarterly sales.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q5" value="C"> A fixed flat figure of £500 per month independent of volume.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Under the 9-monthly payment framework, each payment represents 10% of the prior year's historic liability (paid from month 4 to month 12), leaving a final 10% balancing payment to clear when filing the annual return in month 14.
+                </div>
+            </div>
+            <!-- QUESTION 6: TIPO "multi-select" (The Definition of Relevant Goods) -->
+            <div class="question-tab" data-qindex="6" data-type="multi-select">
+                <div class="task-instruction-text">6. When executing the Limited Cost Trader calculation, complete the statutory criteria defining what items constitute 'Relevant Goods'.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        Expenses incurred on raw processing materials and direct stock items represent relevant goods, whereas costs for office stationery or printable brochures are 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="included">
+                            <option value="">-- Selection --</option>
+                            <option value="included">Fully Included</option>
+                            <option value="excluded">Strictly Excluded</option>
+                        </select>. 
+                        Furthermore, expenditures on capital equipment, vehicle fuel, or software licenses are 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="excluded">
+                            <option value="">-- Selection --</option>
+                            <option value="included">Fully Included</option>
+                            <option value="excluded">Strictly Excluded</option>
+                        </select> from the calculation base by law.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> HMRC's definition of 'relevant goods' excludes office equipment, professional service costs (such as accountancy fees), software, and motoring fuels to ensure businesses with minimal physical requirements cannot exploit the scheme.
+                </div>
+            </div>
+
+            <!-- QUESTION 7: TIPO "multi-input" (Quarterly Partial Exemption Cap Test) -->
+            <div class="question-tab" data-qindex="7" data-type="multi-input">
+                <div class="task-instruction-text">7. A partly exempt enterprise calculates its quarterly summary: Total Input VAT directly associated with exempt supplies is £1,500. The calculated portion of residual Input VAT assigned to exempt supplies is £450. Calculate the total exempt input tax and determine if it meets the quarterly De Minimis ceiling threshold.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Exempt Apportionment Check Line</th>
+                                <th style="width: 250px;">Required Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Cumulative Exempt Input VAT allocated for the quarter</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,950.00" placeholder="0.00"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">HMRC Maximum Permitted Exempt Quarter Threshold Limit (Ceiling)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="1,875.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Total exempt input tax = £1,500 + £450 = £1,950. The quarterly threshold cap is £1,875 (£625/month × 3 months). Since the total (£1,950) exceeds the threshold (£1,875), the business fails the test and cannot recover this exempt input tax.
+                </div>
+            </div>
+            <!-- QUESTION 8: TIPO "multi-input" (HMRC Default Surcharge Thresholds) -->
+            <div class="question-tab" data-qindex="8" data-type="multi-input">
+                <div class="task-instruction-text">8. A business fails to settle its VAT liability on time for multiple consecutive periods. Complete the progressive surcharge rates applied by HMRC based on default frequency.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">HMRC Default Surcharge Frequency Layer</th>
+                                <th style="width: 250px;">Surcharge Percentage (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Surcharge rate applied on the 2nd default within the surcharge period</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="2" placeholder="0"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Surcharge rate applied on the 4th default within the surcharge period</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="10" placeholder="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> HMRC's historic default surcharge ladder for late payments scales progressively: 1st default = 0% (Surcharge Liability Notice), 2nd default = 2%, 3rd default = 5%, 4th default = 10%, and 5th default = 15%.
+                </div>
+            </div>
+
+            <!-- QUESTION 9: TIPO "radio" (HMRC Late Payment Interest) -->
+            <div class="question-tab" data-qindex="9" data-type="radio" data-correct="A">
+                <div class="task-instruction-text">9. Under the modern alignment rules, how does HMRC apply interest charges on unpaid indirect tax liabilities?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="A"> Late payment interest is calculated daily from the date the payment was due until it is paid in full.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="B"> Interest is applied as a single flat charge on the first day of the subsequent quarter.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q9" value="C"> Interest is waived completely if the company has accumulated fewer than 4 penalty points.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> HMRC applies late payment interest daily on any outstanding balance from the official due date until the liability is completely settled, unlinked to the late submission points system.
+                </div>
+            </div>
+
+            <!-- QUESTION 10: TIPO "multi-select" (PPD Customer Activation Treatment) -->
+            <div class="question-tab" data-qindex="10" data-type="multi-select">
+                <div class="task-instruction-text">10. Complete the accounting adjustments required when a customer decides to take advantage of an offered Prompt Payment Discount.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        If the buyer triggers the PPD window within the 7-day threshold, the supplying enterprise must reduce its previously recorded output tax by issuing a 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="credit-note">
+                            <option value="">-- Document --</option>
+                            <option value="debit-note">Debit Note</option>
+                            <option value="credit-note">Credit Note (or specific PPD receipt)</option>
+                        </select> 
+                        which will effectively 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="decrease">
+                            <option value="">-- Action --</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select> the total Box 1 obligation on the current HMRC return.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> When a cash discount is utilized, a formal credit note or an invoice statement containing the adjusted tax breakdown must be processed to scale down both the accounts receivable asset and the output VAT obligation.
+                </div>
+            </div>
+            <!-- QUESTION 11: TIPO "radio" (Domestic Reverse Charge for Gold) -->
+            <div class="question-tab" data-qindex="11" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">11. Why does HMRC enforce a mandatory Domestic Reverse Charge mechanism on bulk wholesale transactions of gold or mobile processing chips between UK businesses?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="A"> To encourage standard retail procurement inside local enterprise zones.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="B"> To combat missing trader intra-community (MTIC) fraud and carousel evasion schemes.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q11" value="C"> To reduce the administrative burden on non-registered zero-rated suppliers.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> High-value, low-volume goods like wholesale chips and gold are susceptible to missing trader carousel fraud. The reverse charge shifts the VAT reporting duty to the buyer, eliminating the fraudulent cash loop.
+                </div>
+            </div>
+
+            <!-- QUESTION 12: TIPO "multi-select" (Flat Rate Joining Conditions) -->
+            <div class="question-tab" data-qindex="12" data-type="multi-select">
+                <div class="task-instruction-text">12. Complete the regulatory limits governing entrance parameters for the standard HMRC Flat Rate Scheme.</div>
+                <div class="task-interactive-body">
+                    <p style="line-height: 2; font-size: 1.05rem; margin: 0;">
+                        A business can apply to join the Flat Rate Scheme if its estimated taxable turnover for the next 12 months is no more than 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="150000">
+                            <option value="">-- Threshold --</option>
+                            <option value="90000">£90,000</option>
+                            <option value="150000">£150,000</option>
+                            <option value="230000">£230,000</option>
+                        </select> 
+                        excluding exempt supplies. Once inside, it can remain in the scheme until total gross turnover crosses above 
+                        <select class="multi-select-field" style="width: auto; display: inline-block;" data-ans="230000">
+                            <option value="">-- Exit threshold --</option>
+                            <option value="150000">£150,000</option>
+                            <option value="230000">£230,000</option>
+                            <option value="160000">£160,000</option>
+                        </select>.
+                    </p>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> The entry limit for the Flat Rate Scheme is £150,000 of expected taxable turnover. A business must leave the scheme if its total turnover on a rolling 12-month basis breaches £230,000.
+                </div>
+            </div>
+
+            <!-- QUESTION 13: TIPO "multi-input" (Capital Asset Over £2,000 FRS Rule) -->
+            <div class="question-tab" data-qindex="13" data-type="multi-input">
+                <div class="task-instruction-text">13. A company on the Flat Rate Scheme purchases a heavy commercial packaging machine for £2,500 net plus £500 standard VAT. Calculate the input VAT recovery allowance permitted under special scheme constraints.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Flat Rate Scheme Exception Line</th>
+                                <th style="width: 250px;">Permitted Balance (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Input VAT amount allowed to be explicitly reclaimed in Box 4</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="500.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> While regular input VAT is blocked under the Flat Rate Scheme, a specific exception allows a business to reclaim input tax on capital expenditures if the gross purchase price of the single transaction is £2,000 or more.
+                </div>
+            </div>
+            <!-- QUESTION 14: TIPO "radio" (Annual Accounting Scheme Thresholds) -->
+            <div class="question-tab" data-qindex="14" data-type="radio" data-correct="B">
+                <div class="task-instruction-text">14. What are the maximum turnover entry limits to join the HMRC Annual Accounting Scheme framework?</div>
+                <div class="task-interactive-body">
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="A"> Expected taxable supplies must be under the registration line of £90,000.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="B"> Expected taxable turnover must not exceed £1,350,000 over the coming 12 months.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                    <label class="option-box">
+                        <span class="option-label"><input type="radio" name="q14" value="C"> Taxable supplies must match the flat rate cap threshold of £150,000.</span>
+                        <span class="feedback-icon"></span>
+                    </label>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Both the Cash Accounting Scheme and the Annual Accounting Scheme share the same entry threshold of £1.35 million. The exit threshold to leave the annual filing arrangement is £1.6 million.
+                </div>
+            </div>
+
+            <!-- QUESTION 15: TIPO "multi-input" (De Minimis Annual Adjustment Check) -->
+            <div class="question-tab" data-qindex="15" data-type="multi-input">
+                <div class="task-instruction-text">15. Annual Partial Exemption Review: A firm passed all quarterly De Minimis tests during the year. However, the annual recalculation shows total exempt input tax is £8,000, which exceeds the annual threshold limit of £7,500. Compute the required clawback entry.</div>
+                <div class="task-interactive-body">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">HMRC Annual Review Requirement</th>
+                                <th style="width: 250px;">Clawback Value (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">Total Input VAT previously recovered that must now be repaid to HMRC (Clawback)</td>
+                                <td><input type="text" class="multi-input-field numeric-field" data-ans="8,000.00" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="global-feedback-msg hidden"></div>
+                <div class="solution-note-panel hidden">
+                    <strong>Solution Note:</strong> Passing quarterly tests is provisional. If the annual review fails the de minimis threshold (£7,500 for the full year), the status is revoked: **all** exempt input tax recovered during the year (£8,000) must be repaid to HMRC.
+                </div>
+            </div>
+
+        </form>
+
+        <!-- PULSANTIERA DI CONTROLLO INTERNA ALLA BOLLA BIANCA (APPENDICE TECNICA) -->
+        <div class="controls-footer">
+            <div class="btn-group-left">
+                <button type="button" class="btn btn-blue" id="btn-quiz-submit" onclick="validateCurrentTab()">Am I right?</button>
+                <button type="button" class="btn btn-green" id="btn-quiz-solution" onclick="showCurrentSolution()">Show Solution</button>
+                <button type="button" class="btn btn-red" onclick="resetCurrentTab()">Reset</button>
+            </div>
+            <div class="btn-group-right">
+                <button type="button" class="btn btn-gray" id="btn-quiz-prev" onclick="navigateTab(-1)">Previous Question</button>
+                <button type="button" class="btn btn-gray" id="btn-quiz-next" onclick="navigateTab(1)">Next Question</button>
+                <button type="button" class="btn btn-purple hidden" id="btn-quiz-print" onclick="triggerPDFDownload()">Download as PDF</button>
+            </div>
+        </div>
+
+    </div> <!-- Fine .test-container -->
+    <!-- TRIGGER CIRCOLARE FLUTTUANTE ANCORATO IN BASSO A DESTRA SCHERMO -->
+    <button type="button" id="calc-toggle-trigger" onclick="toggleCalcWidget()">🧮</button>
+
+    <!-- WIDGET CALCOLATRICE VETRATO "Osborne Calc" -->
+    <div id="calc-widget">
+        <div id="calc-header">
+            <span>Osborne Calc</span>
+            <button id="calc-close-btn" onclick="toggleCalcWidget()" title="Hide">✕</button>
+        </div>
+        <input type="text" id="calc-screen" readonly value="0">
+        <div class="calc-grid">
+            <button type="button" class="calc-btn op" onclick="pressClear()">C</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('pow')">x²</button>
+            <button type="button" class="calc-btn op" onclick="pressMathOp('sqrt')">√</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('/')">/</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('7')">7</button>
+            <button type="button" class="calc-btn" onclick="pressChar('8')">8</button>
+            <button type="button" class="calc-btn" onclick="pressChar('9')">9</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('*')">*</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('4')">4</button>
+            <button type="button" class="calc-btn" onclick="pressChar('5')">5</button>
+            <button type="button" class="calc-btn" onclick="pressChar('6')">6</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('-')">-</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('1')">1</button>
+            <button type="button" class="calc-btn" onclick="pressChar('2')">2</button>
+            <button type="button" class="calc-btn" onclick="pressChar('3')">3</button>
+            <button type="button" class="calc-btn op" onclick="pressChar('+')">+</button>
+            
+            <button type="button" class="calc-btn" onclick="pressChar('0')">0</button>
+            <button type="button" class="calc-btn" onclick="pressChar('.')">.</button>
+            <button type="button" class="calc-btn op" onclick="pressPercent()">%</button>
+            <button type="button" class="calc-btn" style="background:#059669; color:white;" onclick="executeCalc()">=</button>
         </div>
     </div>
-
-    <!-- Q2 -->
-    <div id="page2" class="question-page">
-        <div class="question-counter">Q2 of 15</div>
-        <div class="question-body">
-            During a tax quarter, a startup purchases tools with a total net value of £14,500 subject to standard rate VAT (20%). Calculate the reclaimable Input VAT amount for Box 4:<br>
-            VAT Reclaimable (Box 4): £ <input type="text" id="ans2" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q3 -->
-    <div id="page3" class="question-page">
-        <div class="question-counter">Q3 of 15</div>
-        <div class="question-body">
-            A company's quarterly ledger records show Box 1 equals £12,500 and Box 4 equals £14,100. Calculate the final net VAT amount and the position to be reported in Box 5 (use a minus sign if it is a repayment claim from HMRC):<br>
-            Net VAT Amount (Box 5): £ <input type="text" id="ans3" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q4 -->
-    <div id="page4" class="question-page">
-        <div class="question-counter">Q4 of 15</div>
-        <div class="question-body">
-            A used-car dealer purchases a secondhand car for £4,000 and sells it later for £5,500. Under the VAT Margin Scheme, VAT is calculated at the standard fractional rate (1/6) only on the gross profit margin. Calculate the VAT due on this sale:<br>
-            Margin VAT Due: £ <input type="text" id="ans4" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div id="page5" class="question-page">
-        <div class="question-counter">Q5 of 15</div>
-        <div class="question-body">
-            A company buys production machinery from a supplier for £15,000 net plus standard rate VAT. State the final value entry contribution for Box 7 (Total value of purchases excluding VAT) for this specific acquisition:<br>
-            Box 7 Value Contribution: £ <input type="text" id="ans5" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div id="page6" class="question-page">
-        <div class="question-counter">Q6 of 15</div>
-        <div class="question-body">
-            A manufacturer has a taxable turnover of £120,000 and zero-rated turnover of £30,000. It also has exempt turnover of £50,000. Calculate the percentage of recovery allowed for mixed common input overheads under partial exemption rules (round up to the nearest whole percentage as per HMRC guidelines):<br>
-            Recovery Percentage: <input type="text" id="ans6" placeholder="0"> %
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div id="page7" class="question-page">
-        <div class="question-counter">Q7 of 15</div>
-        <div class="question-body">
-            A trader issues a credit note to a client to correct an overcharge error of £600 net plus standard VAT (20%). State the exact reduction value to be subtracted from Box 1 (or added to Box 4) to balance the return:<br>
-            VAT Adjustment Amount: £ <input type="text" id="ans7" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div id="page8" class="question-page">
-        <div class="question-counter">Q8 of 15</div>
-        <div class="question-body">
-            A business purchases fuel for a company delivery van. The total gross cost is £120.00 inclusive of 20% VAT. If the van is used 100% for eligible business freight transport, calculate the maximum amount of input VAT that can be reclaimed:<br>
-            Reclaimable VAT Amount: £ <input type="text" id="ans8" placeholder="0.00">
-        </div>
-    </div>
-          
-    <!-- Q9 -->
-    <div id="page9" class="question-page">
-        <div class="question-counter">Q9 of 15</div>
-        <div class="question-body">
-            A small firm is considering voluntary VAT deregulation. According to current HMRC guidelines, a business can apply to cancel its VAT registration if its expected taxable turnover for the next 12 months falls below what de-registration threshold?<br>
-            De-registration Threshold: £ <input type="text" id="ans9" placeholder="88000">
-        </div>
-    </div>
-
-    <!-- Q10 -->
-    <div id="page10" class="question-page">
-        <div class="question-counter">Q10 of 15</div>
-        <div class="question-body">
-            A business uses the standard accruals/invoice basis for VAT. During the quarter, it issues invoices total £36,000 gross but only receives £20,000 in cash from customers. It receives supplier invoices total £18,000 gross but pays only £12,000. All transactions include standard rate VAT (20%). Calculate the net VAT payable to HMRC:<br>
-            Net VAT Payable: £ <input type="text" id="ans10" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q11 -->
-    <div id="page11" class="question-page">
-        <div class="question-counter">Q11 of 15</div>
-        <div class="question-body">
-            Under the HMRC points-based penalty system for quarterly filings, if a business continues to submit late returns after reaching the 4-point threshold, every subsequent late submission triggers an immediate financial penalty of what flat amount?<br>
-            Penalty Amount: £ <input type="text" id="ans11" placeholder="200">
-        </div>
-    </div>
-
-    <!-- Q12 -->
-    <div id="page12" class="question-page">
-        <div class="question-counter">Q12 of 15</div>
-        <div class="question-body">
-            An accounting technician is calculating the quarterly flat rate VAT return. The business flat rate sector percentage is 10%. If the total gross sales (including standard rate VAT) equals £45,000, calculate the Flat Rate VAT due:<br>
-            Flat Rate VAT Due: £ <input type="text" id="ans12" placeholder="0.00">
-        </div>
-    </div>
-
-    <!-- Q13 -->
-    <div id="page13" class="question-page">
-        <div class="question-counter">Q13 of 15</div>
-        <div class="question-body">
-            To qualify for the Cash Accounting Scheme, a business must reasonably expect its taxable turnover for the next 12 months to be no more than what maximum statutory entry threshold?<br>
-            Maximum Entry Threshold: £ <input type="text" id="ans13" placeholder="1350000">
-        </div>
-    </div>
-
-    <!-- Q14 -->
-    <div id="page14" class="question-page">
-        <div class="question-counter">Q14 of 15</div>
-        <div class="question-body">
-            A business discovers an error from the previous year where input VAT was overclaimed by £15,500. Can this error be corrected by simply adjusting the current quarterly VAT return? (Remember the £10,000 limit for automatic error correction without direct notification)<br>
-            Answer: <select id="ans14"><option value="">Select</option><option value="w">Yes, it is below the mandatory cap</option><option value="correct">No, it requires direct notification to HMRC</option></select>
-        </div>
-    </div>
-
-    <!-- Q15 -->
-    <div id="page15" class="question-page">
-        <div class="question-counter">Q15 of 15</div>
-        <div class="question-body">
-            A UK company purchases books and educational materials from a supplier. Select the correct current VAT rating applied to books under UK tax regulations:<br>
-            VAT Rating: <select id="ans15"><option value="">Select</option><option value="correct">Zero rated (0%)</option><option value="w">Standard rated (20%)</option><option value="w">Exempt</option></select>
-        </div>
-    </div>
-
-    <!-- Feedback e Navigazione -->
-    <div id="feedbackBox" class="feedback"></div>
-
-    <div class="nav-buttons">
-        <button class="btn-action" id="backBtn" onclick="changePage(-1)">Back</button>
-        <button class="btn-action" onclick="checkCurrentAnswer()">Check Answer</button>
-        <button class="btn-action" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-</div>
-
 <script>
-    let currentQ = 1;
-    const totalQ = 15;
+let currentQuestionIndex = 1;
+const totalQuestionsCount = 15;
 
-    function updateButtons() {
-        document.getElementById('backBtn').style.visibility = (currentQ === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').style.visibility = (currentQ === totalQ) ? 'hidden' : 'visible';
-        document.getElementById('feedbackBox').innerText = '';
+function updateNavigationDisplay() {
+    document.getElementById('q-counter-display').textContent = `Question ${currentQuestionIndex} of ${totalQuestionsCount}`;
+    document.getElementById('btn-quiz-prev').disabled = (currentQuestionIndex === 1);
+    
+    const nextBtn = document.getElementById('btn-quiz-next');
+    const printBtn = document.getElementById('btn-quiz-print');
+    
+    if (currentQuestionIndex === totalQuestionsCount) {
+        nextBtn.classList.add('hidden');
+        printBtn.classList.remove('hidden');
+    } else {
+        nextBtn.classList.remove('hidden');
+        printBtn.classList.add('hidden');
     }
+}
 
-    function changePage(step) {
-        if ((currentQ + step) >= 1 && (currentQ + step) <= totalQ) {
-            document.getElementById(`page${currentQ}`).classList.remove('active');
-            currentQ += step;
-            document.getElementById(`page${currentQ}`).classList.add('active');
-            updateButtons();
-        }
-    }
+function navigateTab(direction) {
+    const tabs = document.querySelectorAll('.question-tab');
+    let targetIndex = currentQuestionIndex + direction;
+    
+    if (targetIndex < 1 || targetIndex > totalQuestionsCount) return;
+    
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    currentQuestionIndex = targetIndex;
+    const activeTab = document.querySelector(`.question-tab[data-qindex="${currentQuestionIndex}"]`);
+    activeTab.classList.add('active');
+    
+    updateNavigationDisplay();
+}
 
-    function checkCurrentAnswer() {
-        let isCorrect = false;
-        let feedback = document.getElementById('feedbackBox');
+function validateCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const feedbackMsg = activeTab.querySelector('.global-feedback-msg');
+    let tabPassed = true;
 
-        if (currentQ === 1) {
-            let val = document.getElementById('ans1').value.trim();
-            isCorrect = (val === '10000' || val === '10000.00');
-        } else if (currentQ === 2) {
-            let val = document.getElementById('ans2').value.trim();
-            isCorrect = (val === '2900' || val === '2900.00');
-        } else if (currentQ === 3) {
-            let val = document.getElementById('ans3').value.trim();
-            isCorrect = (val === '-1600' || val === '-1600.00');
-        } else if (currentQ === 4) {
-            let val = document.getElementById('ans4').value.trim();
-            isCorrect = (val === '250' || val === '250.00');
-        } else if (currentQ === 5) {
-            let val = document.getElementById('ans5').value.trim();
-            isCorrect = (val === '15000' || val === '15000.00');
-        } else if (currentQ === 6) {
-            let val = document.getElementById('ans6').value.trim();
-            isCorrect = (val === '75');
-        } else if (currentQ === 7) {
-            let val = document.getElementById('ans7').value.trim();
-            isCorrect = (val === '120' || val === '120.00');
-        } else if (currentQ === 8) {
-            let val = document.getElementById('ans8').value.trim();
-            isCorrect = (val === '20' || val === '20.00');
-        } else if (currentQ === 9) {
-            let val = document.getElementById('ans9').value.trim();
-            isCorrect = (val === '88000');
-        } else if (currentQ === 10) {
-            let val = document.getElementById('ans10').value.trim();
-            isCorrect = (val === '3000' || val === '3000.00');
-        } else if (currentQ === 11) {
-            let val = document.getElementById('ans11').value.trim();
-            isCorrect = (val === '200');
-        } else if (currentQ === 12) {
-            let val = document.getElementById('ans12').value.trim();
-            isCorrect = (val === '4500' || val === '4500.00');
-        } else if (currentQ === 13) {
-            let val = document.getElementById('ans13').value.trim();
-            isCorrect = (val === '1350000');
-        } else if (currentQ === 14) {
-            isCorrect = (document.getElementById('ans14').value === 'correct');
-        } else if (currentQ === 15) {
-            isCorrect = (document.getElementById('ans15').value === 'correct');
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        const selectedRadio = activeTab.querySelector('input[type="radio"]:checked');
+        const icons = activeTab.querySelectorAll('.feedback-icon');
+        
+        icons.forEach(icon => icon.textContent = '');
+        
+        if (!selectedRadio) {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Please select an answer option before verifying.";
+            feedbackMsg.classList.remove('hidden');
+            return;
         }
 
-        if (isCorrect) {
-            feedback.innerHTML = '<span class="correct">Correct! Well done.</span>';
+        const chosenBox = selectedRadio.closest('.option-box');
+        const targetIcon = chosenBox.querySelector('.feedback-icon');
+
+        if (selectedRadio.value === correctAns) {
+            targetIcon.textContent = "✔️";
+            targetIcon.style.color = "var(--success-color)";
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "Correct! Well done.";
         } else {
-            feedback.innerHTML = '<span class="incorrect">Incorrect. Please try again.</span>';
+            targetIcon.textContent = "❌";
+            targetIcon.style.color = "var(--danger-color)";
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Incorrect option selected.";
+            tabPassed = false;
+        }
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        
+        fields.forEach(field => {
+            const userVal = field.value.trim().toLowerCase();
+            const correctVal = field.getAttribute('data-ans').trim().toLowerCase();
+            
+            if (userVal !== correctVal) {
+                tabPassed = false;
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field wrong-answer-highlight";
+                } else {
+                    field.className = "multi-select-field wrong-answer-highlight";
+                }
+            } else {
+                if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                    field.className = "multi-input-field numeric-field correct-answer-highlight";
+                } else {
+                    field.className = "multi-select-field correct-answer-highlight";
+                }
+            }
+        });
+
+        feedbackMsg.classList.remove('hidden');
+        if (tabPassed) {
+            feedbackMsg.className = "global-feedback-msg msg-correct";
+            feedbackMsg.textContent = "All fields correct! Exceptional work.";
+        } else {
+            feedbackMsg.className = "global-feedback-msg msg-incorrect";
+            feedbackMsg.textContent = "Some fields are incorrect. Review your accounting logic.";
         }
     }
+    feedbackMsg.classList.remove('hidden');
+}
+function showCurrentSolution() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
 
-    updateButtons();
+    if (qType === "radio") {
+        const correctAns = activeTab.getAttribute('data-correct');
+        activeTab.querySelectorAll('.option-box').forEach(box => {
+            const radio = box.querySelector('input[type="radio"]');
+            if (radio.value === correctAns) {
+                box.className = "option-box correct-answer-highlight";
+            }
+        });
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            const targetAns = field.getAttribute('data-ans');
+            field.value = targetAns;
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field correct-answer-highlight";
+            } else {
+                field.className = "multi-select-field correct-answer-highlight";
+            }
+        });
+    }
+
+    if (solutionPanel) solutionPanel.classList.remove('hidden');
+}
+
+function resetCurrentTab() {
+    const activeTab = document.querySelector('.question-tab.active');
+    const qType = activeTab.getAttribute('data-type');
+    
+    activeTab.querySelector('.global-feedback-msg').classList.add('hidden');
+    const solutionPanel = activeTab.querySelector('.solution-note-panel');
+    if (solutionPanel) solutionPanel.classList.add('hidden');
+
+    if (qType === "radio") {
+        activeTab.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        activeTab.querySelectorAll('.option-box').forEach(box => box.className = "option-box");
+        activeTab.querySelectorAll('.feedback-icon').forEach(icon => icon.textContent = '');
+    } else {
+        const fields = activeTab.querySelectorAll('.multi-input-field, .multi-select-field, .numeric-field');
+        fields.forEach(field => {
+            field.value = '';
+            if (field.classList.contains('numeric-field') || field.classList.contains('multi-input-field')) {
+                field.className = "multi-input-field numeric-field";
+            } else {
+                field.className = "multi-select-field";
+            }
+        });
+    }
+}
+
+function triggerPDFDownload() {
+    const oldTitle = document.title;
+    document.title = "AAT_Level3_Chapter4_Test2_Report";
+    window.print();
+    document.title = oldTitle;
+}
+
+// OPERAZIONI E LOGICA MATEMATICA CALCOLATRICE WIDGET
+function toggleCalcWidget() {
+    const widget = document.getElementById('calc-widget');
+    widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
+}
+function pressChar(c) {
+    const p = document.getElementById('calc-screen');
+    p.value = (p.value === '0') ? c : p.value + c;
+}
+function pressClear() { document.getElementById('calc-screen').value = '0'; }
+function pressPercent() {
+    const p = document.getElementById('calc-screen');
+    let val = parseFloat(p.value);
+    if (!isNaN(val)) p.value = val / 100;
+}
+function pressMathOp(op) {
+    const p = document.getElementById('calc-screen');
+    let val = parseFloat(p.value);
+    if (isNaN(val)) return;
+    if (op === 'sqrt') p.value = Math.sqrt(val);
+    if (op === 'pow') p.value = Math.pow(val, 2);
+}
+function executeCalc() {
+    const p = document.getElementById('calc-screen');
+    try { p.value = eval(p.value); } catch(e) { p.value = 'Error'; }
+}
+
+// LOGICA REALE DRAG MECCANICA TRASCINABILE
+const dragWidget = document.getElementById("calc-widget");
+const dragHandle = document.getElementById("calc-header");
+let activeDrag = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+dragHandle.addEventListener("mousedown", dragStart);
+document.addEventListener("mouseup", dragEnd);
+document.addEventListener("mousemove", drag);
+
+function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+    if (e.target.closest('#calc-header') && e.target !== document.getElementById('calc-close-btn')) activeDrag = true;
+}
+function dragEnd() { activeDrag = false; }
+function drag(e) {
+    if (activeDrag) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        dragWidget.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+}
 </script>
-
 </body>
 </html>
