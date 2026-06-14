@@ -1,386 +1,1529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Interactive Simulator Matrix</title>
-    <style>
-        :root { --bg-dark: #0B0F19; --card-white: #FFFFFF; --primary-teal: #117A71; --primary-hover: #0E635C; --text-dark: #1F2937; --text-muted: #64748B; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: sans-serif; background-color: var(--bg-dark); color: var(--text-dark); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .dashboard-container { width: 100%; max-width: 600px; background: var(--card-white); padding: 40px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .back-link { display: inline-block; color: #0284C7; text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
-        h1 { font-size: 32px; font-weight: 800; text-align: center; color: #0F172A; margin-bottom: 8px; }
-        .subtitle { font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 32px; line-height: 1.5; }
-        .form-group { margin-bottom: 24px; }
-        label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; }
-        select { width: 100%; padding: 14px 16px; font-size: 15px; border: 1px solid #CBD5E1; border-radius: 8px; background-color: #F8FAFC; color: #0F172A; cursor: pointer; }
-        .launch-btn { width: 100%; background-color: var(--primary-teal); color: white; border: none; padding: 16px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer; margin-top: 32px; }
-        .launch-btn:hover { background-color: var(--primary-hover); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAT Interactive Simulator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:#0B0F19;
+    color:#E2E8F0;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:40px 20px;
+}
+
+a{
+    color:#60A5FA;
+    text-decoration:none;
+}
+
+a:hover{
+    color:#93C5FD;
+}
+
+.back-link{
+    align-self:flex-start;
+    margin-bottom:30px;
+    font-size:.95rem;
+}
+
+.simulator-container{
+    background:linear-gradient(145deg,#1E293B,#0F172A);
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:40px 50px;
+    max-width:520px;
+    width:100%;
+    box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+
+.simulator-container h1{
+    text-align:center;
+    margin-bottom:12px;
+    color:#F8FAFC;
+}
+
+.simulator-container p{
+    text-align:center;
+    color:#94A3B8;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+.form-group{
+    margin-bottom:24px;
+}
+
+.form-group label{
+    display:block;
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    font-weight:600;
+    color:#94A3B8;
+    margin-bottom:8px;
+}
+
+.form-group select{
+    width:100%;
+    padding:14px 16px;
+    border-radius:8px;
+    border:1px solid #475569;
+    background:#1E293B;
+    color:#E2E8F0;
+    font-size:1rem;
+    cursor:pointer;
+    appearance:none;
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394A3B8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+}
+
+.form-group select:hover{
+    border-color:#60A5FA;
+}
+
+.form-group select:focus{
+    outline:none;
+    border-color:#3B82F6;
+    box-shadow:0 0 0 3px rgba(59,130,246,.3);
+}
+
+.form-group select:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.launch-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:1rem;
+    font-weight:600;
+    color:white;
+    background:linear-gradient(135deg,#3B82F6,#2563EB);
+    transition:.2s;
+}
+
+.launch-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(59,130,246,.4);
+}
+
+.launch-btn:active{
+    transform:translateY(0);
+}
     </style>
 </head>
+
 <body>
-    <div class="dashboard-container">
-        <a href="javascript:history.back();" class="back-link">← Back to Dashboard</a>
-        <h1>AAT Interactive Simulator</h1>
-        <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
-        
-        <div class="form-group">
-            <label>Target Assessment Level</label>
-            <select id="level-select" onchange="updateChapters()">
-                <option value="" selected disabled>Select Qualification Level...</option>
-                <option value="RANDOM">🎲 Randomize All Levels - Mixed Scenario</option>
-                <option value="L2">📊 AAT Level 2 Certificate</option>
-                <option value="L3">🔷 AAT Level 3 Diploma</option>
-                <option value="L4">🔶 AAT Level 4 Diploma</option>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <label>Syllabus Chapter Unit</label>
-            <select id="chapter-select" disabled>
-                <option value="" selected disabled>Select a level first...</option>
-            </select>
-        </div>
+<a href="javascript:history.back();" class="back-link">
+← Back to Dashboard
+</a>
 
-        <button class="launch-btn" onclick="launchPaginatedTestWindow()">
-            Launch Paginated Test Window →
-        </button>
+<div class="simulator-container">
+
+    <h1>AAT Interactive Simulator</h1>
+
+    <p>
+        Configure your criteria parameters below to generate
+        a dynamic 15-task paginated mock assessment.
+    </p>
+
+    <div class="form-group">
+        <label for="level-select">
+            Target Assessment Level
+        </label>
+
+        <select id="level-select" onchange="updateChapters()">
+            <option value="">
+                Select Qualification Level...
+            </option>
+
+            <option value="L2">
+                Level 2 – Foundation
+            </option>
+
+            <option value="L3">
+                Level 3 – Advanced
+            </option>
+
+            <option value="L4">
+                Level 4 – Professional
+            </option>
+
+            <option value="random">
+                Random (Mixed Levels)
+            </option>
+        </select>
     </div>
+
+    <div class="form-group">
+        <label for="chapter-select">
+            Syllabus Chapter Unit
+        </label>
+
+        <select id="chapter-select" disabled>
+            <option value="">
+                Select a level first...
+            </option>
+        </select>
+    </div>
+
+    <button
+        class="launch-btn"
+        onclick="launchPaginatedTestWindow()">
+
+        Launch Paginated Test Window →
+    </button>
+
+</div>
+
 <script>
- const syllabusData = {
- "L2": [
- "Chapter 1: Bookkeeping Transactions",
- "Chapter 2: Bookkeeping Controls",
- "Chapter 3: Principles of Costing",
- "Chapter 4: Work Effectively in Finance",
- "Chapter 5: The Trial Balance Matrix & DEAD CLIC"
- ],
- "L3": [
- "Chapter 1: Advanced Bookkeeping",
- "Chapter 2: Final Accounts Preparation",
- "Chapter 3: Management Accounting: Costing",
- "Chapter 4: Indirect Tax",
- "Chapter 5: Ethics for Accountants",
- "Chapter 6: Business Awareness"
- ],
- "L4": [
- "Chapter 1: Financial Statements of Limited Companies",
- "Chapter 2: Management Accounting: Budgeting",
- "Chapter 3: Management Accounting: Decision and Control",
- "Chapter 4: External Auditing",
- "Chapter 5: Cash and Treasury Management",
- "Chapter 6: Credit Management",
- "Chapter 7: Personal Tax",
- "Chapter 8: Business Tax",
- "Chapter 9: Internal Accounting Systems and Controls"
- ]
- };
- function updateChapters() {
- const lvlSelector = document.getElementById("level-select");
- const chapSelector = document.getElementById("chapter-select");
- if (!lvlSelector || !chapSelector) return;
- 
- const selectedLevel = lvlSelector.value;
- chapSelector.removeAttribute("disabled");
- chapSelector.disabled = false;
- chapSelector.innerHTML = "";
- 
- if (selectedLevel === "RANDOM") {
- let opt = document.createElement("option");
- opt.value = "ALL_RANDOM";
- opt.textContent = "🎲 Randomize Across All Syllabus Chapters";
- chapSelector.appendChild(opt);
- return;
- }
- let optRand = document.createElement("option");
- optRand.value = "LEVEL_RANDOM";
- optRand.textContent = "🎲 Randomize Chapter Inside This Level";
- chapSelector.appendChild(optRand);
- if (syllabusData[selectedLevel]) {
- syllabusData[selectedLevel].forEach((chapName, index) => {
- let opt = document.createElement("option");
- opt.value = "cap" + (index + 1);
- opt.textContent = chapName;
- chapSelector.appendChild(opt);
- });
- }
- }
- function launchPaginatedTestWindow() {
- const lvlSelector = document.getElementById("level-select");
- const chapSelector = document.getElementById("chapter-select");
- if (!lvlSelector || !chapSelector) return;
- 
- let lvl = lvlSelector.value;
- let chap = chapSelector.value;
- if (!lvl || !chap) {
- alert("Please select both parameters before launching.");
- return;
- }
- if (lvl === "RANDOM") {
- const levels = ["L2", "L3", "L4"];
- lvl = levels[Math.floor(Math.random() * levels.length)];
- }
- let badgeClass = "background: #0D9488;";
- let badgeText = "Level 2 Full Assessment";
- if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
- if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
- const testWindow = window.open("", "_blank");
- 
- testWindow.document.write(`
- <!DOCTYPE html>
- <html>
- <head>
- <title>AAT Paginated Exam - Assessment Entry</title>
- <style>
- body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
- .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
- .test-card-container.active { display: block; }
- .header-area { border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
- .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; \${badgeClass} }
- .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
- .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
- .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
- .option-row:hover { background: #F1F5F9; }
- .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
- .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
- .feedback-marker { font-size: 15px; font-weight: bold; display: none; margin-right: 8px; }
- .feedback-correct { color: #10B981; } .feedback-wrong { color: #EF4444; }
- .osborne-footer-grid { display: flex; gap: 10px; width: 100%; margin-top: 24px; padding-top: 18px; border-top: 1px solid #E2E8F0; justify-content: space-between; }
- .left-btns, .right-btns { display: flex; gap: 8px; }
- .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; }
- .btn-verify { background: #2563EB; } .btn-verify:hover { background: #1D4ED8; }
- .btn-solution { background: #059669; } .btn-solution:hover { background: #047857; }
- .btn-reset { background: #DC2626; } .btn-reset:hover { background: #B91C1C; }
- .btn-nav { background: #475569; } .btn-nav:hover { background: #334155; }
- .btn-pdf { background: #7C3AED; } .btn-pdf:hover { background: #6D28D9; }
- .calc-icon-trigger { position: fixed; bottom: 20px; right: 20px; width: 52px; height: 52px; z-index: 9999; background: #0F172A; border: 2px solid #00f2fe; border-radius: 50%; box-shadow: 0 0 15px #00f2fe; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; user-select: none; }
- .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.5); border-radius: 10px; box-shadow: 0 0 25px rgba(0, 242, 254, 0.6); overflow: hidden; display: none; transition: transform 0.3s ease; }
- .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
- .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
- .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
- .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
- .calc-btn:hover { background: rgba(255, 255, 255, 0.1); }
- .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
- .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
- .btn-equals { background: #00f2fe; color: #0a0f1d; }
- </style>
- </head>
- <body>
- <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
- <div id="questions-root-wrapper" style="width: 100%;"></div>
- </div>
- `);
- testWindow.document.write(`
- </body>
- </html>
- `);
- testWindow.document.write(`
- <script>
- const scenarios = [
- { text: "A company purchased goods on credit for £1,200 plus 20% VAT. Calculate the exact gross entry value to be posted in the Purchase Day Book.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Calculate the total credit sales from the Sales Day Book if net sales are £45,000 and standard 20% VAT is applied to all invoices.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "The Petty Cash box has a fixed imprest of £250. Vouchers total £184. Compute the exact amount required to restore the imprest value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A bank reconciliation reveals an unpresented cheque of £450 and an uncredited lodgement of £300. If the ledger balance is £1,200, find the correct balance per bank statement.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A credit customer balance of £850 was posted to the wrong individual ledger account. Classify this specific book-keeping error type.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "Closing inventory valuation under FIFO shows 120 units at £15 cost per unit. Realisable value drops to £12. Calculate the correct valuation adjustment.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A sole trader has a gross mark-up of 25% on cost. If the total cost of sales amounts to £16,000, calculate the total expected turnover value.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
- { text: "An office computer invoice for £1,500 was debited to the Office Stationery Expenses account. Identify this category of ledger accounting error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Process the year-end accrual entry if a business receives an electricity bill for £360 covering a 3-month period, but 1 month belongs to the next accounting year.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Under the DEAD CLIC matrix framework, which group of nominal accounts have debit balances extracted in a Trial Balance?", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "A Trial Balance shows a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening entry value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Calculate the adjusted Partnership profit share for Partner A under a 3:2 ratio if the net residue profit to be split is exactly £45,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
- { text: "An invoice of £150 is recorded in the Sales Day Book as £105. Name this type of original entry mistake.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A company carries a bank overdraft of £1,850 at month-end. In which Trial Balance ledger column must this balance be extracted?", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "Calculate the net profit percentage if a trader has sales of £120,000, cost of sales of £80,000, and additional overhead expenses of £16,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
- ];
- const optionTexts = [
- { a: "£1,440 Gross total value", b: "£1,200 Net total value", c: "£240 Input VAT value only" },
- { a: "£45,000 Gross total", b: "£54,000 Gross total value with VAT included", c: "£9,000 Output VAT component" },
- { a: "£184 to replenish cash spent", b: "£66 cash remaining value", c: "£250 full imprest amount" },
- { a: "£1,350 adjusted bank balance", b: "£1,050 bank ledger statement balance", c: "£1,500 unadjusted ledger total" },
- { a: "Error of Principle", b: "Error of Commission within customer accounts", c: "Complete Reversal of entries" },
- { a: "£1,440 total value adjustment", b: "£1,800 asset book value", c: "£360 cost down-valuation reduction" },
- { a: "£20,000 sales value", b: "£20,000 turnover using mark-up logic", c: "£4,000 gross margin value" },
- { a: "Error of Principle (Asset vs Expense)", b: "Error of Commission", c: "Compensating Error pattern" },
- { a: "Debit relevant utility expenditure £240 and credit Accruals £240", b: "Credit outstanding rental provisions £120", c: "Post year-end corrections £360 directly" },
- { a: "Liabilities, Income, and Capital", b: "Debit: Expenses, Assets, and Drawings (DEAD)", c: "Credit: Liabilities, Income, and Capital (CLIC) only" },
- { a: "£450 Opening Credit Balance in Suspense Account", b: "£24,650 Opening Credit Entry", c: "£200 Debit Reconciliation Entry" },
- { a: "£27,000 profit share allocated", b: "£27,000 calculated profit using ratio rules", c: "£18,000 residual profit share" },
- { a: "Error of Original Entry", b: "Error of Omission", c: "Complete Reversal of Double Entry" },
- { a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" },
- { a: "33.3% Gross Margin", b: "20.0% Net Profit Margin", c: "13.3% Total Expense Coefficient" }
- ];
- let currentActiveIndex = 0;
- const root = document.getElementById("questions-root-wrapper");
- scenarios.forEach((q, idx) => {
- const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
- root.innerHTML += `
- <div class="test-card-container ${idx === 0 ? 'active' : ''}" id="card_task_${idx}" data-correct="${q.correct}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q${num} of 15</span><span class="difficulty-tag">${q.diff}</span></div>
- <div class="question-title">Assessment Task ${num}</div>
- <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">${q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_${idx}_A"></div><span class="option-text-left">${opts.a}</span></div><input type="radio" name="ans_${idx}" id="opt_${idx}_A" value="A" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_${idx}_B"></div><span class="option-text-left">${opts.b}</span></div><input type="radio" name="ans_${idx}" id="opt_${idx}_B" value="B" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_${idx}_C"></div><span class="option-text-left">${opts.c}</span></div><input type="radio" name="ans_${idx}" id="opt_${idx}_C" value="C" style="cursor:pointer;"></div>
- <div class="osborne-footer-grid">
-     <div class="left-btns">
-         <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
-         <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
-         <button onclick="resetCurrentForm()" class="osborne-btn btn-reset">Reset</button>
-     </div>
-     <div class="right-btns">
-         <button onclick="changeQuestion(-1)" class="osborne-btn btn-nav">Previous Question</button>
-         <button id="next-btn-toggle_${idx}" onclick="changeQuestion(1)" class="osborne-btn btn-nav">Next Question</button>
-         <button id="osborne-pdf-trigger_${idx}" onclick="triggerAutoPDFDownload()" class="osborne-btn btn-pdf" style="display: none;">Download as PDF</button>
-     </div>
- </div>
- </div>`;
- });
- function changeQuestion(s) { 
- const t = currentActiveIndex + s; 
- if (t >= 0 && t < scenarios.length) { 
- document.getElementById("card_task_" + currentActiveIndex).classList.remove("active"); 
- currentActiveIndex = t; 
- document.getElementById("card_task_" + currentActiveIndex).classList.add("active"); 
- } 
- const nextBtn = document.getElementById("next-btn-toggle_" + currentActiveIndex);
- const pdfBtn = document.getElementById("osborne-pdf-trigger_" + currentActiveIndex);
- if (nextBtn && pdfBtn) {
- if (currentActiveIndex === scenarios.length - 1) { nextBtn.style.display = "none"; pdfBtn.style.display = "block"; }
- else { nextBtn.style.display = "block"; pdfBtn.style.display = "none"; }
- }
- }
- function triggerAutoPDFDownload() { const o = document.title; document.title = "AAT_Official_Exam_Worksheet"; window.print(); setTimeout(() => { document.title = o; }, 500); }
- function showCurrentSolution() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); document.getElementById("card_task_"+currentActiveIndex).querySelectorAll(".option-row").forEach(r=>r.classList.remove("reveal-correct")); const r=document.getElementById("opt_"+currentActiveIndex+"_"+c); if(r) r.closest(".option-row").classList.add("reveal-correct"); }
- function verifyCurrentInline() {
- const activeCard = document.getElementById("card_task_" + currentActiveIndex);
- const correctVal = activeCard.getAttribute("data-correct");
- const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
- const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
- const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
- const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
- const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
- const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
- if(mA) mA.style.display = "none"; if(mB) mB.style.display = "none"; if(mC) mC.style.display = "none";
- if (rA && rA.checked && mA) { mA.style.display = "block"; mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- else if (rB && rB.checked && mB) { mB.style.display = "block"; mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- else if (rC && rC.checked && mC) { mC.style.display = "block"; mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- }
- function resetCurrentForm() { 
- if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
- if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
- if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
- const rows = document.getElementById("card_task_" + currentActiveIndex).querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct"));
- document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; 
- }
- function toggleCalculatorView(show) {
- const w = document.getElementById("floatingCalcWidget"); const i = document.getElementById("calc-icon-trigger-id");
- if (show) { w.style.display = "block"; i.style.display = "none"; } else { w.style.display = "none"; i.style.display = "flex"; }
- }
- let calcCurrentExpressionString = "";
- function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
- function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
- function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let n = parseFloat(d.value) || 0; if (t === 'sqrt') { if (n < 0) { d.value = "Error"; calcCurrentExpressionString = ""; return; } n = Math.sqrt(n); } else if (t === 'pow') { n = Math.pow(n, 2); } else if (t === 'percent') { n = n / 100; } calcCurrentExpressionString = Number(n.toFixed(6)).toString(); d.value = calcCurrentExpressionString; }
- function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let o = new Function(\`return (\${calcCurrentExpressionString})\`)(); if (o === Infinity || isNaN(o)) { d.value = "Error"; calcCurrentExpressionString = ""; } else { calcCurrentExpressionString = Number(o.toFixed(6)).toString(); d.value = calcCurrentExpressionString; } } catch (e) { d.value = "Syntax Error"; calcCurrentExpressionString = ""; } }
-    // Inietto la calcolatrice fluttuante a icona con effetto fosforico direttamente nel popup d'esame
-    testWindow.document.body.insertAdjacentHTML('beforeend', `
-        <div id="calc-icon-trigger-id" class="calc-icon-trigger" onclick="toggleCalculatorView(true)">🧮</div>
-        <div id="floatingCalcWidget" class="calc-widget-floating">
-            <div class="calc-widget-header" onclick="toggleCalculatorView(false)">
-                <span>🧮 AAT Exam Calculator</span>
-                <span id="calcToggleArrow">▲</span>
-            </div>
-            <div id="calcWidgetBody" class="calc-widget-body">
-                <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
-                <div class="calc-btn-grid">
-                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
-                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
-                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
-                    <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
-                    <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
-                    <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
-                    <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
-                    <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
-                    <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
-                    <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
-                    <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
-                    <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
-                    <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
-                    <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
-                    <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
-                    <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
-                    <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
-                    <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
-                    <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
-                    <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
-                </div>
-            </div>
-        </div>
-    `);
 
-    // Inietto le funzioni operative della calcolatrice all'interno del contesto del popup d'esame
-    testWindow.toggleCalculatorView = function(show) {
-        const w = testWindow.document.getElementById("floatingCalcWidget");
-        const i = testWindow.document.getElementById("calc-icon-trigger-id");
-        if (w && i) {
-            if (show) { w.style.display = "block"; i.style.display = "none"; }
-            else { w.style.display = "none"; i.style.display = "flex"; }
+const syllabusData = {
+
+    L2: [
+        {
+            value:"L2-CH1",
+            label:"Chapter 1 – Business Transactions & Documentation"
+        },
+        {
+            value:"L2-CH2",
+            label:"Chapter 2 – Double-Entry Bookkeeping"
+        },
+        {
+            value:"L2-CH3",
+            label:"Chapter 3 – Ledger Accounts & Balancing"
+        },
+        {
+            value:"L2-CH4",
+            label:"Chapter 4 – Control Accounts & Reconciliations"
+        },
+        {
+            value:"L2-CH5",
+            label:"Chapter 5 – Trial Balance & DEAD CLIC Matrix"
+        },
+        {
+            value:"L2-random",
+            label:"Random (All L2 Chapters)"
         }
-    };
+    ],
 
-    testWindow.calcCurrentExpressionString = "";
-
-    testWindow.pushCalcChar = function(c) {
-        const d = testWindow.document.getElementById("calcDisplayScreen");
-        if (!d) return;
-        if (d.value === "0" && c !== ".") { testWindow.calcCurrentExpressionString = c; }
-        else { testWindow.calcCurrentExpressionString += c; }
-        d.value = testWindow.calcCurrentExpressionString;
-    };
-
-    testWindow.clearCalcScreen = function() {
-        testWindow.calcCurrentExpressionString = "";
-        const d = testWindow.document.getElementById("calcDisplayScreen");
-        if (d) d.value = "0";
-    };
-
-    testWindow.pushCalcFunction = function(t) {
-        const d = testWindow.document.getElementById("calcDisplayScreen");
-        if (!d) return;
-        let n = parseFloat(d.value) || 0;
-        if (t === 'sqrt') {
-            if (n < 0) { d.value = "Error"; testWindow.calcCurrentExpressionString = ""; return; }
-            n = Math.sqrt(n);
-        } else if (t === 'pow') {
-            n = Math.pow(n, 2);
-        } else if (t === 'percent') {
-            n = n / 100;
+    L3: [
+        {
+            value:"L3-CH1",
+            label:"Chapter 1 – Advanced Bookkeeping Principles"
+        },
+        {
+            value:"L3-CH2",
+            label:"Chapter 2 – Final Accounts Preparation"
+        },
+        {
+            value:"L3-CH3",
+            label:"Chapter 3 – VAT Calculations & Returns"
+        },
+        {
+            value:"L3-CH4",
+            label:"Chapter 4 – Payroll Computations"
+        },
+        {
+            value:"L3-CH5",
+            label:"Chapter 5 – Extended Trial Balance & Adjustments"
+        },
+        {
+            value:"L3-random",
+            label:"Random (All L3 Chapters)"
         }
-        testWindow.calcCurrentExpressionString = Number(n.toFixed(6)).toString();
-        d.value = testWindow.calcCurrentExpressionString;
-    };
+    ],
 
-    testWindow.executeCalcExpression = function() {
-        const d = testWindow.document.getElementById("calcDisplayScreen");
-        if (!d || !testWindow.calcCurrentExpressionString) return;
-        try {
-            let o = new testWindow.Function('return (' + testWindow.calcCurrentExpressionString + ')')();
-            if (o === Infinity || isNaN(o)) {
-                d.value = "Error"; testWindow.calcCurrentExpressionString = "";
-            } else {
-                testWindow.calcCurrentExpressionString = Number(o.toFixed(6)).toString();
-                d.value = testWindow.calcCurrentExpressionString;
-            }
-        } catch (e) {
-            d.value = "Syntax Error"; testWindow.calcCurrentExpressionString = "";
+    L4: [
+        {
+            value:"L4-CH1",
+            label:"Chapter 1 – Financial Statements Analysis"
+        },
+        {
+            value:"L4-CH2",
+            label:"Chapter 2 – Budgeting & Forecasting"
+        },
+        {
+            value:"L4-CH3",
+            label:"Chapter 3 – Internal Controls & Audit"
+        },
+                {
+            value:"L4-CH4",
+            label:"Chapter 4 – Management Accounting Techniques"
+        },
+        {
+            value:"L4-CH5",
+            label:"Chapter 5 – Cash Flow & Financial Performance"
+        },
+        {
+            value:"L4-random",
+            label:"Random (All L4 Chapters)"
         }
-    };
+    ],
 
-    // Chiudo correttamente i tag script rimasti aperti nel document.write iniziale
-    testWindow.document.write('<\/script></body></html>');
+    random:[
+        {
+            value:"all-random",
+            label:"Random (All Levels & Chapters)"
+        }
+    ]
+};
+
+function updateChapters(){
+
+    const levelSelect =
+        document.getElementById("level-select");
+
+    const chapterSelect =
+        document.getElementById("chapter-select");
+
+    const selectedLevel =
+        levelSelect.value;
+
+    chapterSelect.innerHTML = "";
+
+    if(!selectedLevel){
+
+        chapterSelect.innerHTML =
+        '<option value="">Select a level first...</option>';
+
+        chapterSelect.disabled = true;
+        return;
+    }
+
+    chapterSelect.disabled = false;
+
+    const chapters =
+        syllabusData[selectedLevel] || [];
+
+    const defaultOption =
+        document.createElement("option");
+
+    defaultOption.value = "";
+    defaultOption.textContent =
+        "Select a chapter...";
+
+    chapterSelect.appendChild(defaultOption);
+
+    chapters.forEach(ch => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = ch.value;
+        option.textContent = ch.label;
+
+        chapterSelect.appendChild(option);
+    });
+}
+
+function rand(min,max){
+
+    return Math.floor(
+        Math.random()*(max-min+1)
+    ) + min;
+}
+
+function shuffle(array){
+
+    for(let i=array.length-1;i>0;i--){
+
+        const j =
+        Math.floor(Math.random()*(i+1));
+
+        [array[i],array[j]] =
+        [array[j],array[i]];
+    }
+
+    return array;
+}
+
+function currency(v){
+
+    return "£" +
+    Number(v).toFixed(2);
+}
+
+/* ------------------------
+   LEVEL 2 QUESTION BANK
+------------------------ */
+
+function generateL2CH1(){
+
+    const amount = rand(120,950);
+
+    const correct =
+        amount;
+
+    const options =
+        shuffle([
+            correct,
+            correct + 50,
+            correct - 40,
+            correct + 90
+        ]);
+
+    return {
+
+        question:
+        `A cash sale of ${currency(amount)}
+         was completed today.
+         What value should be recorded
+         in the sales account?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(correct)
+    };
+}
+
+function generateL2CH2(){
+
+    const amount = rand(150,1200);
+
+    const correct =
+        "Debit Purchases";
+
+    const options =
+        shuffle([
+            correct,
+            "Credit Purchases",
+            "Debit Sales",
+            "Credit Cash"
+        ]);
+
+    return {
+
+        question:
+        `Inventory costing ${currency(amount)}
+         was purchased on credit.
+         Which entry follows
+         double-entry principles?`,
+
+        options,
+        correct:
+        options.indexOf(correct)
+    };
+}
+    function generateL2CH3(){
+
+    const debit = rand(800,3000);
+    const credit = rand(200,700);
+
+    const balance = debit - credit;
+
+    const options =
+        shuffle([
+            balance,
+            balance + 100,
+            balance - 100,
+            balance + 250
+        ]);
+
+    return {
+
+        question:
+        `A ledger account shows total debits
+         of ${currency(debit)} and total credits
+         of ${currency(credit)}.
+
+         What is the closing balance?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(balance)
+    };
+}
+
+function generateL2CH4(){
+
+    const customer = rand(1200,5000);
+    const control = customer;
+
+    const options =
+        shuffle([
+            control,
+            control + 300,
+            control - 250,
+            control + 150
+        ]);
+
+    return {
+
+        question:
+        `The sum of all customer balances
+         equals ${currency(customer)}.
+
+         What should the receivables
+         control account equal?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(control)
+    };
+}
+
+function generateL2CH5(){
+
+    const options =
+        shuffle([
+            "Expenses increase with Debits",
+            "Expenses increase with Credits",
+            "Assets increase with Credits",
+            "Drawings increase with Credits"
+        ]);
+
+    return {
+
+        question:
+        `According to the DEAD CLIC matrix,
+         which statement is correct?`,
+
+        options,
+
+        correct:
+        options.indexOf(
+            "Expenses increase with Debits"
+        )
+    };
+}
+
+/* ------------------------
+   LEVEL 3 QUESTION BANK
+------------------------ */
+
+function generateL3CH1(){
+
+    const purchase = rand(1000,6000);
+    const depreciation = Math.round(
+        purchase * 0.10
+    );
+
+    const options =
+        shuffle([
+            depreciation,
+            depreciation + 100,
+            depreciation - 50,
+            depreciation + 250
+        ]);
+
+    return {
+
+        question:
+        `An asset costing
+         ${currency(purchase)}
+         is depreciated at 10%.
+
+         What is the annual charge?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(depreciation)
+    };
+}
+
+function generateL3CH2(){
+
+    const revenue = rand(10000,40000);
+    const expenses = rand(3000,9000);
+
+    const profit =
+        revenue - expenses;
+
+    const options =
+        shuffle([
+            profit,
+            profit + 500,
+            profit - 500,
+            profit + 1000
+        ]);
+
+    return {
+
+        question:
+        `Revenue equals
+         ${currency(revenue)}
+         and expenses equal
+         ${currency(expenses)}.
+
+         What is the profit?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(profit)
+    };
+}
+    function generateL3CH3(){
+
+    const net = rand(500,8000);
+
+    const vat =
+        Number((net * 0.20).toFixed(2));
+
+    const options =
+        shuffle([
+            vat,
+            vat + 20,
+            vat - 20,
+            vat + 40
+        ]);
+
+    return {
+
+        question:
+        `Calculate VAT at 20%
+         on a taxable value of
+         ${currency(net)}.`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(vat)
+    };
+}
+
+function generateL3CH4(){
+
+    const gross = rand(1800,3500);
+
+    const tax =
+        Math.round(gross * 0.20);
+
+    const options =
+        shuffle([
+            tax,
+            tax + 50,
+            tax - 50,
+            tax + 100
+        ]);
+
+    return {
+
+        question:
+        `An employee earns
+         ${currency(gross)} gross pay.
+
+         Assuming deductions at 20%,
+         how much tax is withheld?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(tax)
+    };
+}
+
+function generateL3CH5(){
+
+    const debit = rand(5000,12000);
+    const credit = debit - rand(100,900);
+
+    const difference =
+        debit - credit;
+
+    const options =
+        shuffle([
+            difference,
+            difference + 100,
+            difference - 100,
+            difference + 200
+        ]);
+
+    return {
+
+        question:
+        `An extended trial balance
+         shows debits of
+         ${currency(debit)}
+         and credits of
+         ${currency(credit)}.
+
+         What is the balancing difference?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(difference)
+    };
+}
+
+/* ------------------------
+   LEVEL 4 QUESTION BANK
+------------------------ */
+
+function generateL4CH1(){
+
+    const profit = rand(5000,25000);
+    const revenue = rand(40000,90000);
+
+    const margin =
+        Number(
+            ((profit/revenue)*100)
+            .toFixed(1)
+        );
+
+    const options =
+        shuffle([
+            margin,
+            margin + 2,
+            margin - 2,
+            margin + 4
+        ]);
+
+    return {
+
+        question:
+        `Profit equals
+         ${currency(profit)}
+         and revenue equals
+         ${currency(revenue)}.
+
+         Calculate the profit margin %.`,
+
+        options:
+        options.map(v=>v + "%"),
+
+        correct:
+        options.indexOf(margin)
+    };
+}
+
+function generateL4CH2(){
+
+    const budget = rand(15000,50000);
+    const actual = budget + rand(-3000,3000);
+
+    const variance =
+        actual - budget;
+
+    const options =
+        shuffle([
+            variance,
+            variance + 500,
+            variance - 500,
+            variance + 1000
+        ]);
+
+    return {
+
+        question:
+        `Budgeted spending was
+         ${currency(budget)}
+         while actual spending was
+         ${currency(actual)}.
+
+         What is the variance?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(variance)
+    };
+}
+    function generateL4CH3(){
+
+    const controls = [
+        "Segregation of duties",
+        "Monthly bank reconciliation",
+        "Management review",
+        "Authorised approvals"
+    ];
+
+    const correct =
+        "Segregation of duties";
+
+    const options =
+        shuffle([
+            correct,
+            "Personal use of company funds",
+            "No approval process",
+            "Shared passwords"
+        ]);
+
+    return {
+
+        question:
+        `Which of the following is
+         considered a strong
+         internal control?`,
+
+        options,
+
+        correct:
+        options.indexOf(correct)
+    };
+}
+
+function generateL4CH4(){
+
+    const units =
+        rand(1000,5000);
+
+    const fixed =
+        rand(3000,12000);
+
+    const variable =
+        rand(2,8);
+
+    const total =
+        fixed + (units * variable);
+
+    const options =
+        shuffle([
+            total,
+            total + 1000,
+            total - 1000,
+            total + 2000
+        ]);
+
+    return {
+
+        question:
+        `Fixed costs are
+         ${currency(fixed)}.
+
+         Variable cost per unit is
+         ${currency(variable)}.
+
+         Production volume is
+         ${units} units.
+
+         What is total cost?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(total)
+    };
+}
+
+function generateL4CH5(){
+
+    const inflow =
+        rand(10000,50000);
+
+    const outflow =
+        rand(5000,25000);
+
+    const net =
+        inflow - outflow;
+
+    const options =
+        shuffle([
+            net,
+            net + 1000,
+            net - 1000,
+            net + 2000
+        ]);
+
+    return {
+
+        question:
+        `Cash inflows total
+         ${currency(inflow)}
+         and cash outflows total
+         ${currency(outflow)}.
+
+         What is the net cash flow?`,
+
+        options:
+        options.map(v=>currency(v)),
+
+        correct:
+        options.indexOf(net)
+    };
+}
+
+/* ------------------------
+   QUESTION GENERATOR
+------------------------ */
+
+function buildQuestionPool(){
+
+    return {
+
+        "L2-CH1":generateL2CH1,
+        "L2-CH2":generateL2CH2,
+        "L2-CH3":generateL2CH3,
+        "L2-CH4":generateL2CH4,
+        "L2-CH5":generateL2CH5,
+
+        "L3-CH1":generateL3CH1,
+        "L3-CH2":generateL3CH2,
+        "L3-CH3":generateL3CH3,
+        "L3-CH4":generateL3CH4,
+        "L3-CH5":generateL3CH5,
+
+        "L4-CH1":generateL4CH1,
+        "L4-CH2":generateL4CH2,
+        "L4-CH3":generateL4CH3,
+        "L4-CH4":generateL4CH4,
+        "L4-CH5":generateL4CH5
+    };
+}
+
+function createExamQuestions(){
+
+    const level =
+        document.getElementById(
+            "level-select"
+        ).value;
+
+    const chapter =
+        document.getElementById(
+            "chapter-select"
+        ).value;
+
+    const pool =
+        buildQuestionPool();
+
+    let generators = [];
+
+    if(level === "random"){
+
+        generators =
+        Object.values(pool);
+    }
+        else if(
+        chapter &&
+        !chapter.includes("random")
+    ){
+
+        generators = [
+            pool[chapter]
+        ];
+    }
+
+    else{
+
+        generators =
+        Object.entries(pool)
+        .filter(([key]) =>
+            key.startsWith(level)
+        )
+        .map(([,fn]) => fn);
+    }
+
+    const questions = [];
+
+    for(let i=0;i<15;i++){
+
+        const generator =
+            generators[
+                rand(
+                    0,
+                    generators.length-1
+                )
+            ];
+
+        questions.push(generator());
+    }
+
+    return questions;
+}
+
+/* ------------------------
+   POPUP TEST WINDOW
+------------------------ */
+
+function launchPaginatedTestWindow(){
+
+    const level =
+    document.getElementById(
+        "level-select"
+    ).value;
+
+    if(!level){
+
+        alert(
+            "Please select a level."
+        );
+
+        return;
+    }
+
+    const examQuestions =
+        createExamQuestions();
+
+    const testWindow =
+        window.open(
+            "",
+            "_blank",
+            "width=1200,height=850"
+        );
+
+    testWindow.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AAT Assessment</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:40px;
+    background:#0B0F19;
+    font-family:Segoe UI,sans-serif;
+}
+
+.test-card-container{
+
+    background:white;
+
+    max-width:900px;
+
+    margin:auto;
+
+    border-radius:18px;
+
+    padding:40px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.25);
+
+    min-height:500px;
+}
+
+.question-counter{
+
+    color:#64748B;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}
+
+.question-title{
+
+    color:#0F172A;
+
+    font-size:1.2rem;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+}
+
+.option-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    margin-bottom:10px;
+}
+
+.option-row:hover{
+
+    background:#F1F5F9;
+}
+
+.feedback-marker{
+
+    font-weight:700;
+
+    margin-left:10px;
+}
+
+.reveal-correct{
+
+    background:#DCFCE7;
+
+    border:2px solid #16A34A;
+}
+
+.action-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.action-buttons button{
+
+    border:none;
+
+    color:white;
+
+    padding:12px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+.btn-check{
+    background:#1D4ED8;
+}
+
+.btn-solution{
+    background:#047857;
+}
+
+.btn-reset{
+    background:#B91C1C;
+}
+
+.btn-nav{
+    background:#334155;
+}
+
+.btn-pdf{
+    background:#6D28D9;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="quiz-root"></div>
+
+<script>
+
+const questions =
+${JSON.stringify(examQuestions)};
+
+let currentQuestion = 0;
+
+function renderQuestion(){
+
+    const q =
+    questions[currentQuestion];
+
+    let optionsHTML = "";
+
+    q.options.forEach((option,index)=>{
+
+        optionsHTML +=
+        '<div class="option-row">' +
+        '<input type="radio" ' +
+        'name="answer" ' +
+        'value="'+index+'">' +
+
+        '<span>'+option+'</span>' +
+
+        '<span class="feedback-marker" ' +
+        'id="marker-'+index+'"></span>' +
+
+        '</div>';
+    });
+
+    const lastQuestion =
+    currentQuestion ===
+    questions.length - 1;
+
+    document.getElementById(
+        "quiz-root"
+    ).innerHTML =
+
+    '<div class="test-card-container">' +
+
+    '<div class="question-counter">' +
+    'Task ' +
+    (currentQuestion+1) +
+    ' of ' +
+    questions.length +
+    '</div>' +
+
+    '<div class="question-title">' +
+    q.question +
+    '</div>' +
+
+    optionsHTML +
+
+    '<div class="action-buttons">' +
+
+    '<button class="btn-check" ' +
+    'onclick="checkAnswer()">' +
+    'Am I Right?' +
+    '</button>' +
+
+    '<button class="btn-solution" ' +
+    'onclick="showSolution()">' +
+    'Show Solution' +
+    '</button>' +
+
+    '<button class="btn-reset" ' +
+    'onclick="resetQuestion()">' +
+    'Reset' +
+    '</button>' +
+
+    '<button class="btn-nav" ' +
+    'onclick="previousQuestion()">' +
+    'Previous Question' +
+    '</button>' +
+
+    (
+        lastQuestion
+        ?
+        '<button class="btn-pdf" onclick="window.print()">' +
+        'Download as PDF' +
+        '</button>'
+        :
+        '<button class="btn-nav" onclick="nextQuestion()">' +
+        'Next Question' +
+        '</button>'
+    ) +
+
+    '</div>' +
+
+    '</div>';
+}
+function checkAnswer(){
+
+    const selected =
+    document.querySelector(
+        'input[name="answer"]:checked'
+    );
+
+    if(!selected){
+        return;
+    }
+
+    const chosen =
+    Number(selected.value);
+
+    const correct =
+    questions[currentQuestion]
+    .correct;
+
+    const marker =
+    document.getElementById(
+        "marker-" + chosen
+    );
+
+    marker.textContent =
+    chosen === correct
+    ? "✔"
+    : "❌";
+
+    marker.style.color =
+    chosen === correct
+    ? "#16A34A"
+    : "#DC2626";
+}
+
+function showSolution(){
+
+    const correct =
+    questions[currentQuestion]
+    .correct;
+
+    const rows =
+    document.querySelectorAll(
+        ".option-row"
+    );
+
+    rows[correct]
+    .classList.add(
+        "reveal-correct"
+    );
+}
+
+function resetQuestion(){
+
+    document
+    .querySelectorAll(
+        'input[name="answer"]'
+    )
+    .forEach(el=>{
+        el.checked = false;
+    });
+
+    document
+    .querySelectorAll(
+        ".feedback-marker"
+    )
+    .forEach(el=>{
+        el.textContent = "";
+    });
+
+    document
+    .querySelectorAll(
+        ".option-row"
+    )
+    .forEach(el=>{
+        el.classList.remove(
+            "reveal-correct"
+        );
+    });
+}
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        renderQuestion();
+    }
+}
+
+function nextQuestion(){
+
+    if(
+        currentQuestion <
+        questions.length - 1
+    ){
+
+        currentQuestion++;
+
+        renderQuestion();
+    }
+}
+
+renderQuestion();
+
+/* ------------------------
+   OSBORNE CALC
+------------------------ */
+
+window.insertCalculator =
+function(){
+
+document.body.insertAdjacentHTML(
+"beforeend",
+`
+<div id="calc-launcher"
+style="
+position:fixed;
+right:20px;
+bottom:20px;
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+cursor:pointer;
+background:#0F172A;
+box-shadow:0 0 15px #00f2fe;
+z-index:9999;
+"
+onclick="openCalculator()">
+
+🧮
+
+</div>
+
+<div id="calc-widget"
+style="
+display:none;
+position:fixed;
+right:20px;
+bottom:20px;
+width:320px;
+padding:20px;
+border-radius:18px;
+background:rgba(16,24,48,.85);
+backdrop-filter:blur(16px);
+border:1px solid rgba(0,242,254,.5);
+box-shadow:0 0 25px rgba(0,242,254,.6);
+z-index:9999;
+">
+`
+);
+};
+<div style="margin-bottom:12px;">
+<input
+id="calc-screen"
+type="text"
+readonly
+style="
+width:100%;
+height:60px;
+background:#000;
+color:#00f2fe;
+border:none;
+border-radius:10px;
+padding:12px;
+font-size:24px;
+text-align:right;
+font-weight:700;
+box-shadow:inset 0 0 10px rgba(0,242,254,.4);
+">
+</div>
+
+<div
+style="
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+">
+
+<button onclick="clearCalcScreen()">C</button>
+<button onclick="pushCalcChar('**2')">x²</button>
+<button onclick="pushCalcChar('Math.sqrt(')">√</button>
+<button onclick="pushCalcChar('/')">/</button>
+
+<button onclick="pushCalcChar('7')">7</button>
+<button onclick="pushCalcChar('8')">8</button>
+<button onclick="pushCalcChar('9')">9</button>
+<button onclick="pushCalcChar('*')">×</button>
+
+<button onclick="pushCalcChar('4')">4</button>
+<button onclick="pushCalcChar('5')">5</button>
+<button onclick="pushCalcChar('6')">6</button>
+<button onclick="pushCalcChar('-')">−</button>
+
+<button onclick="pushCalcChar('1')">1</button>
+<button onclick="pushCalcChar('2')">2</button>
+<button onclick="pushCalcChar('3')">3</button>
+<button onclick="pushCalcChar('+')">+</button>
+
+<button onclick="pushCalcChar('%')">%</button>
+<button onclick="pushCalcChar('0')">0</button>
+<button onclick="pushCalcChar('.')">.</button>
+<button onclick="executeCalcExpression()">=</button>
+
+</div>
+
+</div>
+`
+);
+
+const calcButtons =
+document
+.querySelectorAll(
+"#calc-widget button"
+);
+
+calcButtons.forEach(btn=>{
+
+    btn.style.height = "50px";
+    btn.style.border = "none";
+    btn.style.borderRadius = "8px";
+    btn.style.cursor = "pointer";
+    btn.style.fontWeight = "700";
+    btn.style.background = "#0F172A";
+    btn.style.color = "#00f2fe";
+    btn.style.boxShadow =
+    "0 0 8px rgba(0,242,254,.35)";
+});
+
+};
+
+window.openCalculator =
+function(){
+
+    document.getElementById(
+        "calc-launcher"
+    ).style.display = "none";
+
+    document.getElementById(
+        "calc-widget"
+    ).style.display = "block";
+};
+
+window.pushCalcChar =
+function(value){
+
+    const screen =
+    document.getElementById(
+        "calc-screen"
+    );
+
+    screen.value += value;
+};
+
+window.clearCalcScreen =
+function(){
+
+    document.getElementById(
+        "calc-screen"
+    ).value = "";
+};
+
+window.executeCalcExpression =
+function(){
+
+    const screen =
+    document.getElementById(
+        "calc-screen"
+    );
+
+    try{
+
+        let expression =
+        screen.value;
+
+        expression =
+        expression.replace(
+            /(\d+)%/g,
+            "($1/100)"
+        );
+
+        screen.value =
+        Function(
+            '"use strict"; return (' +
+            expression +
+            ')'
+        )();
+
+    }catch(error){
+
+        screen.value = "Error";
+    }
+};
+
+insertCalculator();
+
+</script>
+
+</body>
+</html>
+`);
+
     testWindow.document.close();
 }
+
 </script>
 </body>
 </html>
