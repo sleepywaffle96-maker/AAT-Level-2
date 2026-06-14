@@ -136,7 +136,7 @@
  body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
  .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
  .test-card-container.active { display: block; }
- .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+ .header-area { border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
  .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; \${badgeClass} }
  .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
  .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
@@ -151,21 +151,21 @@
  .osborne-footer-grid { display: flex; gap: 10px; width: 100%; max-width: 720px; margin-top: 20px; justify-content: space-between; }
  .left-btns { display: flex; gap: 8px; }
  .right-btns { display: flex; gap: 8px; }
- .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; transition: background 0.2s; }
- .btn-verify { background: #2563EB; } .btn-verify:hover { background: #1D4ED8; }
- .btn-solution { background: #059669; } .btn-solution:hover { background: #047857; }
- .btn-reset { background: #DC2626; } .btn-reset:hover { background: #B91C1C; }
- .btn-nav { background: #475569; } .btn-nav:hover { background: #334155; }
- .btn-pdf { background: #00796B; } .btn-pdf:hover { background: #004D40; }
- .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 260px; z-index: 9999; background: #0F172A; border: 1px solid #1E293B; border-radius: 12px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
- .calc-widget-header { background: #1E293B; padding: 0.8rem 1rem; font-weight: 700; font-size: 0.85rem; color: #38BDF8; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.05em; }
- .calc-widget-body { padding: 1rem; display: block; }
- .calc-display { width: 100%; padding: 0.6rem; background: #020617; border: 1px solid #1E293B; border-radius: 6px; color: #10B981; font-family: monospace; font-size: 1.6rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; font-weight: bold; }
- .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
- .calc-btn { background: #1E293B; border: none; border-radius: 6px; padding: 0.8rem; color: #F8FAFC; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.15s; }
- .calc-btn:hover { background: #334155; }
- .btn-sci { color: #38BDF8; background: #1E293B; }
- .btn-equals { background: #10B981; color: #020617; } .btn-equals:hover { background: #059669; }
+ .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; }
+ .btn-verify { background: #1D4ED8; } .btn-verify:hover { background: #1E40AF; }
+ .btn-solution { background: #047857; } .btn-solution:hover { background: #065F46; }
+ .btn-reset { background: #B91C1C; } .btn-reset:hover { background: #991B1B; }
+ .btn-nav { background: #334155; } .btn-nav:hover { background: #1E293B; }
+ .btn-pdf { background: #6D28D9; } .btn-pdf:hover { background: #5B21B6; }
+ .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 250px; z-index: 9999; background: #111827; border: 1px solid #374151; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); overflow: hidden; }
+ .calc-widget-header { background: #1F2937; padding: 10px; font-weight: 700; font-size: 12px; color: #38BDF8; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #374151; }
+ .calc-widget-body { padding: 10px; }
+ .calc-display { width: 100%; padding: 10px; background: #030712; border: 1px solid #374151; border-radius: 4px; color: #10B981; font-family: monospace; font-size: 24px; text-align: right; margin-bottom: 10px; box-sizing: border-box; font-weight: bold; }
+ .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+ .calc-btn { background: #1F2937; border: 1px solid #374151; border-radius: 4px; padding: 12px 0; color: #F9FAFB; font-size: 14px; font-weight: bold; cursor: pointer; text-align: center; }
+ .calc-btn:hover { background: #374151; }
+ .btn-sci { color: #38BDF8; background: #1F2937; }
+ .btn-equals { background: #10B981; color: #030712; border: 1px solid #059669; } .btn-equals:hover { background: #059669; }
  </style>
  </head>
  <body>
@@ -211,7 +211,7 @@
  <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
  <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
  <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
- <button class="calc-btn btn-equals" onclick="executeCalcExpression('=')">=</button>
+ <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
  </div>
  </div>
  </div>
@@ -257,7 +257,7 @@
  scenarios.forEach((q, idx) => {
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
- <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
+ <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\text{\${q.correct}}">
  <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
  <div class="question-title">Assessment Task \${num}</div>
  <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
