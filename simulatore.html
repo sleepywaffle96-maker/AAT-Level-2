@@ -46,21 +46,13 @@
  border-bottom: 1px solid #E2E8F0;
  padding-bottom: 20px;
  }
- h1 { color: #0F172A !important; margin: 0 0 8px 0; font-size: 2.2rem; 
-font-weight: 800; letter-spacing: -0.5px; }
+ h1 { color: #0F172A !important; margin: 0 0 8px 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
  .subtitle { font-size: 14px; color: #64748B; margin: 0; }
- .filter-group { display: flex; flex-direction: column; gap: 12px; 
-margin-bottom: 25px; }
+ .filter-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
  .select-wrapper { display: flex; flex-direction: column; gap: 6px; }
- .select-label { font-size: 12px; font-weight: 700; text-transform: 
-uppercase; color: #64748B; letter-spacing: 0.5px; }
- .custom-select { width: 100%; background-color: #F8FAFC; border: 1px 
-solid #D1D5DB; color: #1E293B; font-size: 14px; border-radius: 10px; padding: 
-14px; font-weight: 700; cursor: pointer; outline: none; }
- .generate-btn { display: block; width: 100%; background: linear-gradient(135deg, #0D9488, #0F766E); color: #FFFFFF !important; border: none; 
-border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 700; cursor: 
-pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 14px 
-rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
+ .select-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.5px; }
+ .custom-select { width: 100%; background-color: #F8FAFC; border: 1px solid #D1D5DB; color: #1E293B; font-size: 14px; border-radius: 10px; padding: 14px; font-weight: 700; cursor: pointer; outline: none; }
+ .generate-btn { display: block; width: 100%; background: linear-gradient(135deg, #0D9488, #0F766E); color: #FFFFFF !important; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  .generate-btn:hover { opacity: 0.95; }
  </style>
 </head>
@@ -78,10 +70,10 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  <label class="select-label">Target Assessment Level</label>
  <select id="level-selector" class="custom-select" onchange="updateChapters()">
  <option value="" selected disabled>Select Qualification Level...</option>
- <option value="RANDOM"> Randomize All Levels (Mixed 🎲 Scenario)</option>
- <option value="L2"> AAT Level 2 Certificate</option>
- <option value="L3"> AAT Level 3 Diploma</option>
- <option value="L4"> AAT Level 4 Diploma</option>
+ <option value="RANDOM">🎲 Randomize All Levels - Mixed Scenario</option>
+ <option value="L2">📊 AAT Level 2 Certificate</option>
+ <option value="L3">🔷 AAT Level 3 Diploma</option>
+ <option value="L4">🔶 AAT Level 4 Diploma</option>
  </select>
  </div>
  <div class="select-wrapper">
@@ -96,67 +88,6 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  </button>
  </div>
 </div>
-
-<script>
- const syllabusData = {
- "L2": [
- "Chapter 1: Bookkeeping Transactions",
- "Chapter 2: Bookkeeping Controls",
- "Chapter 3: Principles of Costing",
- "Chapter 4: Work Effectively in Finance",
- "Chapter 5: Trial Balance Matrix & DEAD CLIC" // <--- INSERITO IL TUO NUOVO CAPITOLO 5
- ],
- "L3": [
- "Chapter 1: Advanced Bookkeeping",
- "Chapter 2: Final Accounts Preparation",
- "Chapter 3: Management Accounting: Costing",
- "Chapter 4: Indirect Tax",
- "Chapter 5: Ethics for Accountants",
- "Chapter 6: Business Awareness"
- ],
- "L4": [
- "Chapter 1: Financial Statements of Limited Companies",
- "Chapter 2: Management Accounting: Budgeting",
- "Chapter 3: Management Accounting: Decision and Control",
- "Chapter 4: External Auditing",
- "Chapter 5: Cash and Treasury Management",
- "Chapter 6: Credit Management",
- "Chapter 7: Personal Tax",
- "Chapter 8: Business Tax",
- "Chapter 9: Internal Accounting Systems and Controls"
- ]
- };
-
- function updateChapters() {
- const lvlSelector = document.getElementById("level-selector");
- const chapSelector = document.getElementById("chapter-selector");
- if (!lvlSelector || !chapSelector) return;
- 
- const selectedLevel = lvlSelector.value;
- chapSelector.removeAttribute("disabled");
- chapSelector.disabled = false;
- chapSelector.innerHTML = "";
- 
- if (selectedLevel === "RANDOM") {
- let opt = document.createElement("option");
- opt.value = "ALL_RANDOM";
- opt.textContent = " Randomize Across All Syllabus Chapters";
- chapSelector.appendChild(opt);
- return;
- }
- let optRand = document.createElement("option");
- optRand.value = "LEVEL_RANDOM";
- optRand.textContent = " Randomize Chapter Inside This Level";
- chapSelector.appendChild(optRand);
- if (syllabusData[selectedLevel]) {
- syllabusData[selectedLevel].forEach((chapName, index) => {
- let opt = document.createElement("option");
- opt.value = "cap" + (index + 1);
- opt.textContent = chapName;
- chapSelector.appendChild(opt);
- });
- }
- }
 <script>
  const syllabusData = {
  "L2": [
@@ -199,13 +130,13 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  if (selectedLevel === "RANDOM") {
  let opt = document.createElement("option");
  opt.value = "ALL_RANDOM";
- opt.textContent = " Randomize Across All Syllabus Chapters";
+ opt.textContent = "🎲 Randomize Across All Syllabus Chapters";
  chapSelector.appendChild(opt);
  return;
  }
  let optRand = document.createElement("option");
  optRand.value = "LEVEL_RANDOM";
- optRand.textContent = " Randomize Chapter Inside This Level";
+ optRand.textContent = "🎲 Randomize Chapter Inside This Level";
  chapSelector.appendChild(optRand);
  if (syllabusData[selectedLevel]) {
  syllabusData[selectedLevel].forEach((chapName, index) => {
@@ -241,14 +172,14 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  <!DOCTYPE html>
  <html>
  <head>
- <title>AAT Paginated Exam - Entry #${randomEntryNum}</title>
+ <title>AAT Paginated Exam - Entry #\${randomEntryNum}</title>
  <link href="https://googleapis.com" rel="stylesheet">
  <style>
  body { background-color: #0B0F19; color: #F3F4F6; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
  .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
  .test-card-container.active { display: block; }
  .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
- .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
+ .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; \${badgeClass} }
  .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
  .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
  .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
@@ -296,7 +227,7 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  </div>
  <div id="floatingCalcWidget" class="calc-widget-floating">
  <div class="calc-widget-header" onclick="toggleCalculatorView()">
- <span> AAT Exam Calculator</span>
+ <span> AAT Exam Calculator</span> 🧮
  <span id="calcToggleArrow">▲</span>
  </div>
  <div id="calcWidgetBody" class="calc-widget-body">
@@ -345,7 +276,7 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  { text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", correct: "A", diff: " Difficulty: 🔴 Professional Level" },
  { text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", correct: "B", diff: " Difficulty: Intermediate" },
  { text: "If an office stationery invoice for £150 is debited to the Machinery Asset account, what category of error is formed?", correct: "C", diff: "🟢 Difficulty: Entry Level" },
- { text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "B", diff: " Difficulty: Intermediate" }
+ { text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "A", diff: " Difficulty: Intermediate" }
  ];
  const optionTexts = [
  { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
@@ -363,39 +294,68 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
  { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
  { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" },
- { a: "Liabilities, Income (Sales), and Capital Base", b: "Expenses, Assets, and Drawings accounts", c: "Only Depreciation Provisions and Active Trade Payables Control" },
- { a: "£450 Credit balance opening inside general ledger", b: "£450 Debit balance opening inside general ledger", c: "No Suspense entry is compiled because errors compensate" },
- { a: "Error of Omission", b: "Error of Commission", c: "Error of Principle" },
- { a: "The Debit column, because cash always acts as an active resource", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "Suspense Account allocation workspace" }
+ { a: "Liabilities, Income (Sales), and Capital Base", b: "Expenses, Assets, and Drawings", c: "Assets, Capital, and Revenue accounts" },
+ { a: "£450 Debit Balance", b: "£450 Credit Balance", c: "£48,850 Balance" },
+ { a: "Error of Commission", b: "Error of Omission", c: "Error of Principle" },
+ { a: "The Credit column, because a bank overdraft represents an active Current Liability", b: "The Debit column, because all balances with bank institutions are assets", c: "Suspense Account Balance" }
  ];
  let currentActiveIndex = 0;
  const root = document.getElementById("questions-root-wrapper");
- 
- let selectedQuestions = [];
- if (lvl === "RANDOM" || chap === "ALL_RANDOM") {
-     selectedQuestions = scenarios.sort(() => 0.5 - Math.random()).slice(0, 15);
- } else if (chap === "LEVEL_RANDOM") {
-     let levelFilter = scenarios.filter(q => q.diff.includes(lvl) || (lvl === "L2" && scenarios.indexOf(q) >= 15));
-     selectedQuestions = levelFilter.sort(() => 0.5 - Math.random()).slice(0, 15);
- } else {
-     let chapIndex = parseInt(chap.replace("cap", ""), 10);
-     if (lvl === "L2" && chapIndex === 5) {
-         selectedQuestions = scenarios.slice(15, 19);
-     } else if (lvl === "L2") {
-         selectedQuestions = scenarios.slice(0, 15).sort(() => 0.5 - Math.random()).slice(0, 15);
-     } else {
-         selectedQuestions = scenarios.sort(() => 0.5 - Math.random()).slice(0, 15);
-     }
- }
-
- selectedQuestions.forEach((q, idx) => {
+ scenarios.forEach((q, idx) => {
  const num = idx + 1;
- const masterIdx = scenarios.findIndex(s => s.text === q.text);
- const opts = optionTexts[masterIdx !== -1 ? masterIdx : idx % optionTexts.length];
+ const opts = optionTexts[idx % optionTexts.length];
+ root.innerHTML += `
+ <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
+ <div class="header-area">
+ <span class="level-tag">${badgeText} • Q\${num} of 15</span>
+ <span class="difficulty-tag">\${q.diff}</span>
+ </div>
+ <div class="question-title">Assessment Task \${num}</div>
+ <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">\${q.text}</p>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true">
+ <span class="option-text-left">\${opts.a}</span>
+ <div class="option-right-inputs">
+ <div class="feedback-marker" id="mark_\${idx}_A"></div>
+ <input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;">
+ </div>
+ </div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true">
+ <span class="option-text-left">\${opts.b}</span>
+ <div class="option-right-inputs">
+ <div class="feedback-marker" id="mark_\${idx}_B"></div>
+ <input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;">
+ </div>
+ </div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked = true">
+ <span class="option-text-left">\${opts.c}</span>
+ <div class="option-right-inputs">
+ <div class="feedback-marker" id="mark_\${idx}_C"></div>
+ <input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;">
+ </div>
+ </div>
+ </div>
+ `;
+ });
+
+ function changeQuestion(step) {
+ const target = currentActiveIndex + step;
+ if (target >= 0 && target < 15) {
+ document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
+ currentActiveIndex = target;
+ document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
+ }
+ const pdfBtn = document.getElementById("osborne-pdf-trigger");
+ if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
+ }
+ let currentActiveIndex = 0;
+ const root = document.getElementById("questions-root-wrapper");
+ scenarios.forEach((q, idx) => {
+ const num = idx + 1;
+ const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += `
  <div class="test-card-container ${idx === 0 ? 'active' : ''}" id="card_task_${idx}" data-correct="${q.correct}">
  <div class="header-area">
- <span class="level-tag">${badgeText} • Q${num} of ${selectedQuestions.length}</span>
+ <span class="level-tag">${badgeText} • Q${num} of 15</span>
  <span class="difficulty-tag">${q.diff}</span>
  </div>
  <div class="question-title">Assessment Task ${num}</div>
@@ -428,14 +388,15 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  });
  function changeQuestion(step) {
  const target = currentActiveIndex + step;
- if (target >= 0 && target < selectedQuestions.length) {
+ if (target >= 0 && target < 15) {
  document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
  currentActiveIndex = target;
  document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
  }
  const pdfBtn = document.getElementById("osborne-pdf-trigger");
- if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === selectedQuestions.length - 1) ? "block" : "none";
+ if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
  }
+
  function triggerAutoPDFDownload() {
  const originalTitle = document.title;
  document.title = "AAT_Official_Exam_Worksheet";
@@ -453,6 +414,7 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  if (targetRow) targetRow.classList.add("reveal-correct");
  }
  }
+
  function verifyCurrentInline() {
  const activeCard = document.getElementById("card_task_" + currentActiveIndex);
  const correctVal = activeCard.getAttribute("data-correct");
@@ -487,6 +449,7 @@ rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
  document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
  document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
  }
+
  let isCalcBodyExpanded = false;
  let calcCurrentExpressionString = "";
  function toggleCalculatorView() {
