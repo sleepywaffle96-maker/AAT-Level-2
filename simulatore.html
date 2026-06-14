@@ -1737,7 +1737,53 @@ function nextQuestion(){
 }
 
 renderQuestion();
+}
 
+/* CALCOLATRICE */
+
+const calcWidget = document.getElementById("calc-widget");
+const calcTrigger = document.getElementById("calc-toggle-trigger");
+const calcClose = document.getElementById("calc-close-btn");
+const calcDisplay = document.getElementById("calc-screen");
+
+calcTrigger.onclick = () => {
+    calcWidget.style.display = "block";
+};
+
+calcClose.onclick = () => {
+    calcWidget.style.display = "none";
+};
+
+function pressCalc(val){
+    if(calcDisplay.innerText === "0" && !isNaN(val)){
+        calcDisplay.innerText = "";
+    }
+
+    if(val === "sq"){
+        calcDisplay.innerText =
+            Math.pow(eval(calcDisplay.innerText),2);
+    }
+    else if(val === "rt"){
+        calcDisplay.innerText =
+            Math.sqrt(eval(calcDisplay.innerText));
+    }
+    else{
+        calcDisplay.innerText += val;
+    }
+}
+
+function clearCalc(){
+    calcDisplay.innerText = "0";
+}
+
+function calculateCalc(){
+    try{
+        calcDisplay.innerText =
+            eval(calcDisplay.innerText);
+    }
+    catch(e){
+        calcDisplay.innerText = "Error";
+    }
 }
 
 <\/script>
