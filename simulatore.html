@@ -82,14 +82,17 @@
  "Chapter 9: Internal Accounting Systems and Controls"
  ]
  };
+
  function updateChapters() {
  const lvlSelector = document.getElementById("level-selector");
  const chapSelector = document.getElementById("chapter-selector");
  if (!lvlSelector || !chapSelector) return;
+ 
  const selectedLevel = lvlSelector.value;
  chapSelector.removeAttribute("disabled");
  chapSelector.disabled = false;
  chapSelector.innerHTML = "";
+ 
  if (selectedLevel === "RANDOM") {
  let opt = document.createElement("option");
  opt.value = "ALL_RANDOM";
@@ -114,6 +117,7 @@
  const lvlSelector = document.getElementById("level-selector");
  const chapSelector = document.getElementById("chapter-selector");
  if (!lvlSelector || !chapSelector) return;
+ 
  let lvl = lvlSelector.value;
  let chap = chapSelector.value;
  if (!lvl || !chap) {
@@ -130,14 +134,14 @@
  if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
  const randomEntryNum = Math.floor(Math.random() * 900 + 100);
  const testWindow = window.open("", "_blank");
+ 
  testWindow.document.write(`
  <!DOCTYPE html>
  <html>
  <head>
  <title>AAT Paginated Exam - Entry #\${randomEntryNum}</title>
- <link href="https://googleapis.com" rel="stylesheet">
  <style>
- body { background-color: #0B0F19; color: #F3F4F6; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
+ body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
  .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
  .test-card-container.active { display: block; }
  .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
@@ -162,17 +166,12 @@
  .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
  .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
  .calc-widget-body { padding: 1rem; display: none; }
- .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
+ .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
  .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
  .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
  .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
  .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
  .btn-equals { background: #00f2fe; color: #0a0f1d; }
- @media print {
- body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
- .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
- .calc-widget-floating, .osborne-footer-grid { display: none !important; }
- }
  </style>
  </head>
  <body>
@@ -185,183 +184,157 @@
  <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
  <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
  <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
- <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);"> Download as PDF</button>
+ <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B;"> Download as PDF</button>
  </div>
  <div id="floatingCalcWidget" class="calc-widget-floating">
- <div class="calc-widget-header" onclick="toggleCalculatorView()"><span> AAT Exam Calculator</span> 🧮<span id="calcToggleArrow">▲</span></div>
+ <div class="calc-widget-header" onclick="toggleCalculatorView()">
+ <span> AAT Exam Calculator</span> 🧮
+ <span id="calcToggleArrow">▲</span>
+ </div>
  <div id="calcWidgetBody" class="calc-widget-body">
  <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
  <div class="calc-btn-grid">
- <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button><button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button><button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button><button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
- <button class="calc-btn" onclick="pushCalcChar('7')">7</button><button class="calc-btn" onclick="pushCalcChar('8')">8</button><button class="calc-btn" onclick="pushCalcChar('9')">9</button><button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
- <button class="calc-btn" onclick="pushCalcChar('4')">4</button><button class="calc-btn" onclick="pushCalcChar('5')">5</button><button class="calc-btn" onclick="pushCalcChar('6')">6</button><button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
- <button class="calc-btn" onclick="pushCalcChar('1')">1</button><button class="calc-btn" onclick="pushCalcChar('2')">2</button><button class="calc-btn" onclick="pushCalcChar('3')">3</button><button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
- <button class="calc-btn" onclick="pushCalcChar('0')">0</button><button class="calc-btn" onclick="pushCalcChar('.')">.</button><button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button><button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+ <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
+ <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
+ <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
+ <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+ <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
+ <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
+ <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
+ <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+ <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
+ <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
+ <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
+ <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+ <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
+ <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
+ <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
+ <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+ <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
+ <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
+ <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
+ <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
  </div>
  </div>
  </div>
- <script>
- const scenarios = [
- { text: "Verify the balancing steps for the Sales Ledger Control Account discrepancy.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Analyze the statutory ammortisation index applied to non-current asset categories.", correct: "B", diff: " Difficulty: Intermediate" },
- { text: "Reconcile the opening cash book deficit against bank statement credit entries.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Compute the standard overhead absorption rate based on direct labour allocation.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Determine the correct input VAT adjustment for trade receivables.", correct: "B", diff: " Difficulty: Intermediate" },
- { text: "Evaluate closing inventory variance under FIFO valuation constraints.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Reconstruct incomplete sole trader turnover parameters using margin criteria.", correct: "B", diff: " Difficulty: 🔴 Professional Level" },
- { text: "Formulate the proper accounting treatment for capitalised development outlays.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Process year-end accruals for statutory utility liabilities.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Identify the systemic risk indicators within the purchase ledger sub-module.", correct: "B", diff: " Difficulty: Intermediate" },
- { text: "Adjust the Suspense Account allocation following a transposition error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Calculate the Partnership profit share ratio adjustments under current laws.", correct: "B", diff: " Difficulty: 🔴 Professional Level" },
- { text: "Assess Corporate Governance breaches under the IESBA framework.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Verify the Consolidated Statement adjustments for internal unrealised profits.", correct: "A", diff: " Difficulty: Intermediate" },
- { text: "Compute the standard variance indicators for production yields.", correct: "B", diff: " Difficulty: Professional Level" },
- { text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", correct: "A", diff: " Difficulty: 🔴 Professional Level" },
- { text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", correct: "B", diff: " Difficulty: Intermediate" },
- { text: "If an office stationery invoice for £150 is debited to the Machinery Asset account, what category of error is formed?", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "B", diff: " Difficulty: Intermediate" }
- ];
- const optionTexts = [
- { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
- { a: "Apply straight-line depreciation index to non-current structures", b: "Execute statutory reducing balance adjustments to current categories", c: "Reclassify non-current outlays into operational expenses" },
- { a: "Reconcile the opening cash book deficit against credit bank entries", b: "Transfer unpresented cheques directly to the Suspense Control account", c: "Perform a retrospective bank statement write-off analysis" },
- { a: "Compute standard absorption parameters based on direct labour allocation", b: "Allocate general factory overheads using floor area square coefficients", c: "Absorb marginal expenses into production yield margins" },
- { a: "Process bad debts write-offs under HMRC irrecoverable rules", b: "Determine the correct input VAT clawback for trade receivables", c: "Adjust the provision for doubtful debts using age analysis parameters" },
- { a: "Evaluate closing inventory values under strict FIFO constraints", b: "Apply AVCO index adjustments to periodic stock valuations", c: "Execute an immediate net realisable value cost write-down" },
- { a: "Apply the standard gross profit margin percentage to purchases data", b: "Reconstruct incomplete sole trader turnover using mark-up criteria", c: "Formulate bank summary cash drawings balancing steps" },
- { a: "Capitalise intangible outlays under strict IAS 38 recognition criteria", b: "Write off structural prototype expenses as immediate overhead costs", c: "Amortise research coefficients over a fixed operational cycle" },
- { a: "Debit relevant utility expenditure and credit the Accruals account", b: "Credit outstanding rental provisions and debit Prepayments balances", c: "Post year-end corrections directly through the Trial Balance ledger" },
- { a: "Segregate commercial processing duties within the purchase ledger", b: "Implement systemic risk reviews within the automated payment loop", c: "Perform an exhaustive manual audit of supplier invoice matching rules" },
- { a: "Debit Suspense Account and credit Sales ledger following a transposition error", b: "Adjust opening Trial Balance differences via direct general journal entries", c: "Reverse incorrect double-entry parameters across control files" },
- { a: "Apportion residual profits using agreed partnership salary clauses", b: "Calculate profit share ratio adjustments under current legal bases", c: "Charge nominal interest on partner capital drawings variables" },
- { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
- { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
- { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" },
- { a: "Liabilities, Income (Sales), and Capital Base", b: "Assets, Expenses, and Drawings Accounts", c: "Sales Revenue, Purchases Ledger, and Suspense Accounts" },
- { a: "£24,650 Opening Credit Entry", b: "£450 Opening Credit Balance in Suspense Account", c: "£200 Debit Reconciliation Entry" },
- { a: "Error of Principle", b: "Error of Omission", c: "Compensating Ledger Balancing Error" },
- { a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" }
- ];
- let currentActiveIndex = 0;
- const root = document.getElementById("questions-root-wrapper");
- scenarios.forEach((q, idx) => {
- const num = idx + 1;
- const opts = optionTexts[idx % optionTexts.length];
- root.innerHTML += `
- <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
- <div class="header-area">
- <span class="level-tag">${badgeText} • Q\${num} of 15</span>
- <span class="difficulty-tag">\${q.diff}</span>
- </div>
- <div class="question-title">Assessment Task \${num}</div>
- <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">\${q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true"><span class="option-text-left">\Token_A_Text\${opts.a}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_\${idx}_A"></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true"><span class="option-text-left">\Token_B_Text\${opts.b}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_\${idx}_B"></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked = true"><span class="option-text-left">\Token_C_Text\${opts.c}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_\${idx}_C"></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div></div>
- </div>\`;
- });
- function changeQuestion(step) {
- const target = currentActiveIndex + step;
- if (target >= 0 && target < 15) {
- document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
- currentActiveIndex = target;
- document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
- }
- const pdfBtn = document.getElementById("osborne-pdf-trigger");
- if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
- }
- function triggerAutoPDFDownload() {
- const originalTitle = document.title;
- document.title = "AAT_Official_Exam_Worksheet";
- window.print();
- setTimeout(() => { document.title = originalTitle; }, 500);
- }
- function showCurrentSolution() {
- const activeCard = document.getElementById("card_task_" + currentActiveIndex);
- const correctLetter = activeCard.getAttribute("data-correct");
- const rows = activeCard.querySelectorAll(".option-row");
- rows.forEach(r => r.classList.remove("reveal-correct"));
- const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);
- if (correctRadio) {
- const targetRow = correctRadio.closest(".option-row");
- if (targetRow) targetRow.classList.add("reveal-correct");
- }
- }
- function verifyCurrentInline() {
- const activeCard = document.getElementById("card_task_" + currentActiveIndex);
- const correctVal = activeCard.getAttribute("data-correct");
- const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
- const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
- const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
- const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
- const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
- const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
- if(mA) mA.style.display = "none";
- if(mB) mB.style.display = "none";
- if(mC) mC.style.display = "none";
- if (rA && rA.checked && mA) {
- mA.style.display = "block";
- mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔</span>' : '<span class="feedback-wrong">❌</span>';
- } else if (rB && rB.checked && mB) {
- mB.style.display = "block";
- mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔</span>' : '<span class="feedback-wrong">❌</span>';
- } else if (rC && rC.checked && mC) {
- mC.style.display = "block";
- mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔</span>' : '<span class="feedback-wrong">❌</span>';
- }
- }
- function resetCurrentForm() {
- const activeCard = document.getElementById("card_task_" + currentActiveIndex);
- if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
- if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
- if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
- const rows = activeCard.querySelectorAll(".option-row");
- rows.forEach(r => r.classList.remove("reveal-correct"));
- document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;
- document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
- document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
- }
- let isCalcBodyExpanded = false;
- let calcCurrentExpressionString = "";
- function toggleCalculatorView() {
- const body = document.getElementById("calcWidgetBody");
- const arrow = document.getElementById("calcToggleArrow");
- isCalcBodyExpanded = !isCalcBodyExpanded;
- body.style.display = isCalcBodyExpanded ? "block" : "none";
- arrow.textContent = isCalcBodyExpanded ? "▼" : "▲";
- }
- function pushCalcChar(char) {
- const display = document.getElementById("calcDisplayScreen");
- if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; }
- else { calcCurrentExpressionString += char; }
- display.value = calcCurrentExpressionString;
- }
- function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }
- function pushCalcFunction(type) {
- const display = document.getElementById("calcDisplayScreen");
- let val = parseFloat(display.value) || 0;
- if (type === 'sqrt') { if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; } val = Math.sqrt(val); }
- else if (type === 'pow') { val = Math.pow(val, 2); }
- else if (type === 'percent') { val = val / 100; }
- calcCurrentExpressionString = Number(val.toFixed(6)).toString();
- display.value = calcCurrentExpressionString;
- }
- function executeCalcExpression() {
- const display = document.getElementById("calcDisplayScreen");
- if (!calcCurrentExpressionString) return;
- try {
- let res = new Function('return (' + calcCurrentExpressionString + ')')();
- calcCurrentExpressionString = Number(res.toFixed(6)).toString();
- display.value = calcCurrentExpressionString;
- } catch (e) { display.value = "Error"; calcCurrentExpressionString = ""; }
- }
- </script>
- </body>
- </html>
- `);
- testWindow.document.close();
- }
+`);
+testWindow.document.write('<script>');
+testWindow.document.write('const scenarios = [');
+testWindow.document.write('{ text: "Verify the balancing steps for the Sales Ledger Control Account discrepancy.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Analyze the statutory ammortisation index applied to non-current asset categories.", correct: "B", diff: "Difficulty: Intermediate" },');
+testWindow.document.write('{ text: "Reconcile the opening cash book deficit against bank statement credit entries.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Compute the standard overhead absorption rate based on direct labour allocation.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Determine the correct input VAT adjustment for trade receivables.", correct: "B", diff: "Difficulty: Intermediate" },');
+testWindow.document.write('{ text: "Evaluate closing inventory variance under FIFO valuation constraints.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Reconstruct incomplete sole trader turnover parameters using margin criteria.", correct: "B", diff: "Difficulty: 🔴 Professional Level" },');
+testWindow.document.write('{ text: "Formulate the proper accounting treatment for capitalised development outlays.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Process year-end accruals for statutory utility liabilities.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Identify the systemic risk indicators within the purchase ledger sub-module.", correct: "B", diff: "Difficulty: Intermediate" },');
+testWindow.document.write('{ text: "Adjust the Suspense Account allocation following a transposition error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Calculate the Partnership profit share ratio adjustments under current laws.", correct: "B", diff: "Difficulty: 🔴 Professional Level" },');
+testWindow.document.write('{ text: "Assess Corporate Governance breaches under the IESBA framework.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "Verify the Consolidated Statement adjustments for internal unrealised profits.", correct: "A", diff: "Difficulty: Intermediate" },');
+testWindow.document.write('{ text: "Compute the standard variance indicators for production yields.", correct: "B", diff: "Difficulty: Professional Level" },');
+testWindow.document.write('{ text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", correct: "A", diff: "Difficulty: 🔴 Professional Level" },');
+testWindow.document.write('{ text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", correct: "B", diff: "Difficulty: Intermediate" },');
+testWindow.document.write('{ text: "If an office stationery invoice for £150 is debited to the Machinery Asset account, what category of error is formed?", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
+testWindow.document.write('{ text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "B", diff: "Difficulty: Intermediate" }');
+testWindow.document.write('];');
+testWindow.document.write('const optionTexts = [');
+testWindow.document.write('{ a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },');
+testWindow.document.write('{ a: "Apply straight-line depreciation index to non-current structures", b: "Execute statutory reducing balance adjustments to current categories", c: "Reclassify non-current outlays into operational expenses" },');
+testWindow.document.write('{ a: "Reconcile the opening cash book deficit against credit bank entries", b: "Transfer unpresented cheques directly to the Suspense Control account", c: "Perform a retrospective bank statement write-off analysis" },');
+testWindow.document.write('{ a: "Compute standard absorption parameters based on direct labour allocation", b: "Allocate general factory overheads using floor area square coefficients", c: "Absorb marginal expenses into production yield margins" },');
+testWindow.document.write('{ a: "Process bad debts write-offs under HMRC irrecoverable rules", b: "Determine the correct input VAT clawback for trade receivables", c: "Adjust the provision for doubtful debts using age analysis parameters" },');
+testWindow.document.write('{ a: "Evaluate closing inventory values under strict FIFO constraints", b: "Apply AVCO index adjustments to periodic stock valuations", c: "Execute an immediate net realisable value cost write-down" },');
+testWindow.document.write('{ a: "Apply the standard gross profit margin percentage to purchases data", b: "Reconstruct incomplete sole trader turnover using mark-up criteria", c: "Formulate bank summary cash drawings balancing steps" },');
+testWindow.document.write('{ a: "Capitalise intangible outlays under strict IAS 38 recognition criteria", b: "Write off structural prototype expenses as immediate overhead costs", c: "Amortise research coefficients over a fixed operational cycle" },');
+testWindow.document.write('{ a: "Debit relevant utility expenditure and credit the Accruals account", b: "Credit outstanding rental provisions and debit Prepayments balances", c: "Post year-end corrections directly through the Trial Balance ledger" },');
+testWindow.document.write('{ a: "Segregate commercial processing duties within the purchase ledger", b: "Implement systemic risk reviews within the automated payment loop", c: "Perform an exhaustive manual audit of supplier invoice matching rules" },');
+testWindow.document.write('{ a: "Debit Suspense Account and credit Sales ledger following a transposition error", b: "Adjust opening Trial Balance differences via direct general journal entries", c: "Reverse incorrect double-entry parameters across control files" },');
+testWindow.document.write('{ a: "Apportion residual profits using agreed partnership salary clauses", b: "Calculate profit share ratio adjustments under current legal bases", c: "Charge nominal interest on partner capital drawings variables" },');
+testWindow.document.write('{ a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },');
+testWindow.document.write('{ a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },');
+testWindow.document.write('{ a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" },');
+testWindow.document.write('{ a: "Liabilities, Income (Sales), and Capital Base", b: "Assets, Expenses, and Drawings Accounts", c: "Sales Revenue, Purchases Ledger, and Suspense Accounts" },');
+testWindow.document.write('{ a: "£24,650 Opening Credit Entry", b: "£450 Opening Credit Balance in Suspense Account", c: "£200 Debit Reconciliation Entry" },');
+testWindow.document.write('{ a: "Error of Principle", b: "Error of Omission", c: "Compensating Ledger Balancing Error" },');
+testWindow.document.write('{ a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" }');
+testWindow.document.write('];');
+testWindow.document.write('let currentActiveIndex = 0;');
+testWindow.document.write('const root = document.getElementById("questions-root-wrapper");');
+testWindow.document.write('scenarios.forEach((q, idx) => {');
+testWindow.document.write('const num = idx + 1;');
+testWindow.document.write('const opts = optionTexts[idx % optionTexts.length];');
+testWindow.document.write('root.innerHTML += `');
+testWindow.document.write('<div class="test-card-container ${idx === 0 ? \'active\' : \'\'}" id="card_task_${idx}" data-correct="${q.correct}">');
+testWindow.document.write('<div class="header-area">');
+testWindow.document.write('<span class="level-tag">' + badgeText + ' • Q${num} of 15</span>');
+testWindow.document.write('<span class="difficulty-tag">${q.diff}</span>');
+testWindow.document.write('</div>');
+testWindow.document.write('<div class="question-title">Assessment Task ${num}</div>');
+testWindow.document.write('<p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">${q.text}</p>');
+testWindow.document.write('<div class="option-row" onclick="document.getElementById(\'opt_${idx}_A\').checked = true"><span class="option-text-left">${opts.a}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_${idx}_A"></div><input type="radio" name="ans_${idx}" id="opt_${idx}_A" value="A" style="cursor:pointer;"></div></div>');
+testWindow.document.write('<div class="option-row" onclick="document.getElementById(\'opt_${idx}_B\').checked = true"><span class="option-text-left">${opts.b}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_${idx}_B"></div><input type="radio" name="ans_${idx}" id="opt_${idx}_B" value="B" style="cursor:pointer;"></div></div>');
+testWindow.document.write('<div class="option-row" onclick="document.getElementById(\'opt_${idx}_C\').checked = true"><span class="option-text-left">${opts.c}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_${idx}_C"></div><input type="radio" name="ans_${idx}" id="opt_${idx}_C" value="C" style="cursor:pointer;"></div></div>');
+testWindow.document.write('</div>`;}); CheckBox();');
+testWindow.document.write('function changeQuestion(step) {');
+testWindow.document.write('const target = currentActiveIndex + step;');
+testWindow.document.write('if (target >= 0 && target < 15) {');
+testWindow.document.write('document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");');
+testWindow.document.write('currentActiveIndex = target;');
+testWindow.document.write('document.getElementById("card_task_" + currentActiveIndex).classList.add("active");');
+testWindow.document.write('}');
+testWindow.document.write('const pdfBtn = document.getElementById("osborne-pdf-trigger");');
+testWindow.document.write('if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";');
+testWindow.document.write('}');
+testWindow.document.write('function triggerAutoPDFDownload() {');
+testWindow.document.write('const originalTitle = document.title;');
+testWindow.document.write('document.title = "AAT_Official_Exam_Worksheet";');
+testWindow.document.write('window.print();');
+testWindow.document.write('setTimeout(() => { document.title = originalTitle; }, 500);');
+testWindow.document.write('}');
+testWindow.document.write('function showCurrentSolution() {');
+testWindow.document.write('const activeCard = document.getElementById("card_task_" + currentActiveIndex);');
+testWindow.document.write('const correctLetter = activeCard.getAttribute("data-correct");');
+testWindow.document.write('const rows = activeCard.querySelectorAll(".option-row");');
+testWindow.document.write('rows.forEach(r => r.classList.remove("reveal-correct"));');
+testWindow.document.write('const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);');
+testWindow.document.write('if (correctRadio) { const targetRow = correctRadio.closest(".option-row"); if (targetRow) targetRow.classList.add("reveal-correct"); }');
+testWindow.document.write('}');
+testWindow.document.write('function verifyCurrentInline() {');
+testWindow.document.write('const activeCard = document.getElementById("card_task_" + currentActiveIndex);');
+testWindow.document.write('const correctVal = activeCard.getAttribute("data-correct");');
+testWindow.document.write('const rA = document.getElementById("opt_" + currentActiveIndex + "_A");');
+testWindow.document.write('const rB = document.getElementById("opt_" + currentActiveIndex + "_B");');
+testWindow.document.write('const rC = document.getElementById("opt_" + currentActiveIndex + "_C");');
+testWindow.document.write('const mA = document.getElementById("mark_" + currentActiveIndex + "_A");');
+testWindow.document.write('const mB = document.getElementById("mark_" + currentActiveIndex + "_B");');
+testWindow.document.write('const mC = document.getElementById("mark_" + currentActiveIndex + "_C");');
+testWindow.document.write('if(mA) mA.style.display = "none"; if(mB) mB.style.display = "none"; if(mC) mC.style.display = "none";');
+testWindow.document.write('if (rA && rA.checked && mA) { mA.style.display = "block"; mA.innerHTML = correctVal === "A" ? \'<span class="feedback-correct">✔</span>\' : \'<span class="feedback-wrong">❌</span>\'; }');
+testWindow.document.write('else if (rB && rB.checked && mB) { mB.style.display = "block"; mB.innerHTML = correctVal === "B" ? \'<span class="feedback-correct">✔</span>\' : \'<span class="feedback-wrong">❌</span>\'; }');
+testWindow.document.write('else if (rC && rC.checked && mC) { mC.style.display = "block"; mC.innerHTML = correctVal === "C" ? \'<span class="feedback-correct">✔</span>\' : \'<span class="feedback-wrong">❌</span>\'; }');
+testWindow.document.write('}');
+testWindow.document.write('function resetCurrentForm() {');
+testWindow.document.write('const activeCard = document.getElementById("card_task_" + currentActiveIndex);');
+testWindow.document.write('if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";');
+testWindow.document.write('if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";');
+testWindow.document.write('if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";');
+testWindow.document.write('const rows = activeCard.querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct"));');
+testWindow.document.write('document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;');
+testWindow.document.write('document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;');
+testWindow.document.write('document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;');
+testWindow.document.write('}');
+testWindow.document.write('let isCalcBodyExpanded = false; let calcCurrentExpressionString = "";');
+testWindow.document.write('function toggleCalculatorView() { const body = document.getElementById("calcWidgetBody"); const arrow = document.getElementById("calcToggleArrow"); isCalcBodyExpanded = !isCalcBodyExpanded; body.style.display = isCalcBodyExpanded ? "block" : "none"; arrow.textContent = isCalcBodyExpanded ? "▼" : "▲"; }');
+testWindow.document.write('function pushCalcChar(char) { const display = document.getElementById("calcDisplayScreen"); if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; } else { calcCurrentExpressionString += char; } display.value = calcCurrentExpressionString; }');
+testWindow.document.write('function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }');
+testWindow.document.write('function pushCalcFunction(type) { const display = document.getElementById("calcDisplayScreen"); let val = parseFloat(display.value) || 0; if (type === "sqrt") { if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; } val = Math.sqrt(val); } else if (type === "pow") { val = Math.pow(val, 2); } else if (type === "percent") { val = val / 100; } calcCurrentExpressionString = Number(val.toFixed(6)).toString(); display.value = calcCurrentExpressionString; }');
+testWindow.document.write('function executeCalcExpression() { const display = document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let res = new Function("return (" + calcCurrentExpressionString + ")")(); calcCurrentExpressionString = Number(res.toFixed(6)).toString(); display.value = calcCurrentExpressionString; } catch (e) { display.value = "Error"; calcCurrentExpressionString = ""; } }');
+testWindow.document.write('<\/script></body></html>');
+testWindow.document.close();
+}
 </script>
 </body>
 </html>
