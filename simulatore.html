@@ -217,13 +217,13 @@
  scenarios.forEach((q, idx) => {
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
- <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\${q.diff}</span></div>
+ <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\text{\${q.correct}}">
+ <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
  <div class="question-title">Assessment Task \${num}</div>
- <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\${q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\${opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\text{\${opts.b}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\text{\${opts.c}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
+ <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\u0024{opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\u0024{opts.b}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\u0024{opts.c}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
  <div class="osborne-footer-grid">
      <div class="left-btns">
          <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
@@ -317,7 +317,7 @@
             </div>
         </div>
     </div>\`);
- <\/script></body></html>
+ </script></body></html>
  \`);
  testWindow.document.close();
  }
