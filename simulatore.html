@@ -24,7 +24,6 @@
         <a href="javascript:history.back();" class="back-link">← Back to Dashboard</a>
         <h1>AAT Interactive Simulator</h1>
         <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
-        
         <div class="form-group">
             <label>Target Assessment Level</label>
             <select id="level-select" onchange="updateChapters()">
@@ -35,290 +34,40 @@
                 <option value="L4">🔶 AAT Level 4 Diploma</option>
             </select>
         </div>
-
         <div class="form-group">
             <label>Syllabus Chapter Unit</label>
             <select id="chapter-select" disabled>
                 <option value="" selected disabled>Select a level first...</option>
             </select>
         </div>
-
-        <button class="launch-btn" onclick="launchPaginatedTestWindow()">
-            Launch Paginated Test Window →
-        </button>
+        <button class="launch-btn" onclick="launchPaginatedTestWindow()">Launch Paginated Test Window →</button>
     </div>
 <script>
  const syllabusData = {
- "L2": [
- "Chapter 1: Bookkeeping Transactions",
- "Chapter 2: Bookkeeping Controls",
- "Chapter 3: Principles of Costing",
- "Chapter 4: Work Effectively in Finance",
- "Chapter 5: The Trial Balance Matrix & DEAD CLIC"
- ],
- "L3": [
- "Chapter 1: Advanced Bookkeeping",
- "Chapter 2: Final Accounts Preparation",
- "Chapter 3: Management Accounting: Costing",
- "Chapter 4: Indirect Tax",
- "Chapter 5: Ethics for Accountants",
- "Chapter 6: Business Awareness"
- ],
- "L4": [
- "Chapter 1: Financial Statements of Limited Companies",
- "Chapter 2: Management Accounting: Budgeting",
- "Chapter 3: Management Accounting: Decision and Control",
- "Chapter 4: External Auditing",
- "Chapter 5: Cash and Treasury Management",
- "Chapter 6: Credit Management",
- "Chapter 7: Personal Tax",
- "Chapter 8: Business Tax",
- "Chapter 9: Internal Accounting Systems and Controls"
- ]
+ "L2": ["Chapter 1: Bookkeeping Transactions","Chapter 2: Bookkeeping Controls","Chapter 3: Principles of Costing","Chapter 4: Work Effectively in Finance","Chapter 5: The Trial Balance Matrix & DEAD CLIC"],
+ "L3": ["Chapter 1: Advanced Bookkeeping","Chapter 2: Final Accounts Preparation","Chapter 3: Management Accounting: Costing","Chapter 4: Indirect Tax","Chapter 5: Ethics for Accountants","Chapter 6: Business Awareness"],
+ "L4": ["Chapter 1: Financial Statements of Limited Companies","Chapter 2: Management Accounting: Budgeting","Chapter 3: Management Accounting: Decision and Control","Chapter 4: External Auditing","Chapter 5: Cash and Treasury Management","Chapter 6: Credit Management","Chapter 7: Personal Tax","Chapter 8: Business Tax","Chapter 9: Internal Accounting Systems and Controls"]
  };
  function updateChapters() {
- const lvlSelector = document.getElementById("level-select");
- const chapSelector = document.getElementById("chapter-select");
- if (!lvlSelector || !chapSelector) return;
- 
- const selectedLevel = lvlSelector.value;
- chapSelector.removeAttribute("disabled");
- chapSelector.disabled = false;
- chapSelector.innerHTML = "";
- 
- if (selectedLevel === "RANDOM") {
- let opt = document.createElement("option");
- opt.value = "ALL_RANDOM";
- opt.textContent = "🎲 Randomize Across All Syllabus Chapters";
- chapSelector.appendChild(opt);
- return;
+ const lvl = document.getElementById("level-select"); const chap = document.getElementById("chapter-select");
+ if (!lvl || !chap) return;
+ chap.removeAttribute("disabled"); chap.disabled = false; chap.innerHTML = "";
+ if (lvl.value === "RANDOM") {
+     let o = document.createElement("option"); o.value = "ALL_RANDOM"; o.textContent = "🎲 Randomize Across All Syllabus Chapters"; chap.appendChild(o); return;
  }
- let optRand = document.createElement("option");
- optRand.value = "LEVEL_RANDOM";
- optRand.textContent = "🎲 Randomize Chapter Inside This Level";
- chapSelector.appendChild(optRand);
- if (syllabusData[selectedLevel]) {
- syllabusData[selectedLevel].forEach((chapName, index) => {
- let opt = document.createElement("option");
- opt.value = "cap" + (index + 1);
- opt.textContent = chapName;
- chapSelector.appendChild(opt);
- });
+ let oRand = document.createElement("option"); oRand.value = "LEVEL_RANDOM"; oRand.textContent = "🎲 Randomize Chapter Inside This Level"; chap.appendChild(oRand);
+ if (syllabusData[lvl.value]) {
+     syllabusData[lvl.value].forEach((name, i) => {
+         let o = document.createElement("option"); o.value = "cap" + (i + 1); o.textContent = name; chap.appendChild(o);
+     });
  }
  }
  function launchPaginatedTestWindow() {
- const lvlSelector = document.getElementById("level-select");
- const chapSelector = document.getElementById("chapter-select");
- if (!lvlSelector || !chapSelector) return;
- 
- let lvl = lvlSelector.value;
- let chap = chapSelector.value;
- if (!lvl || !chap) {
- alert("Please select both parameters before launching.");
- return;
- }
- if (lvl === "RANDOM") {
- const levels = ["L2", "L3", "L4"];
- lvl = levels[Math.floor(Math.random() * levels.length)];
- }
- let badgeClass = "background: #0D9488;";
- let badgeText = "Level 2 Full Assessment";
- if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
- if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
- const testWindow = window.open("", "_blank");
- 
- testWindow.document.write(`
- <!DOCTYPE html>
- <html>
- head>
- <title>AAT Paginated Exam - Assessment Entry</title>
- <style>
- body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
- .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
- .test-card-container.active { display: block; }
- .header-area { border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
- .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; \${badgeClass} }
- .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
- .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
- .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
- .option-row:hover { background: #F1F5F9; }
- .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
- .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
- .feedback-marker { font-size: 15px; font-weight: bold; display: none; margin-right: 8px; }
- .feedback-correct { color: #10B981; } .feedback-wrong { color: #EF4444; }
- .osborne-footer-grid { display: flex; gap: 10px; width: 100%; margin-top: 24px; padding-top: 18px; border-top: 1px solid #E2E8F0; justify-content: space-between; }
- .left-btns, .right-btns { display: flex; gap: 8px; }
- .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; }
- .btn-verify { background: #2563EB; } .btn-verify:hover { background: #1D4ED8; }
- .btn-solution { background: #059669; } .btn-solution:hover { background: #047857; }
- .btn-reset { background: #DC2626; } .btn-reset:hover { background: #B91C1C; }
- .btn-nav { background: #475569; } .btn-nav:hover { background: #334155; }
- .btn-pdf { background: #7C3AED; } .btn-pdf:hover { background: #6D28D9; }
- .calc-icon-trigger { position: fixed; bottom: 20px; right: 20px; width: 52px; height: 52px; z-index: 9999; background: #0F172A; border: 2px solid #00f2fe; border-radius: 50%; box-shadow: 0 0 15px #00f2fe; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; user-select: none; }
- .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.5); border-radius: 10px; box-shadow: 0 0 25px rgba(0, 242, 254, 0.6); overflow: hidden; display: none; }
- .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
- .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
- .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
- .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
- .calc-btn:hover { background: rgba(255, 255, 255, 0.1); }
- .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
- .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
- .btn-equals { background: #00f2fe; color: #0a0f1d; }
- </style>
- </head>
- <body>
- <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
- <div id="questions-root-wrapper" style="width: 100%;"></div>
- </div>
- `);
- testWindow.document.write(`
- </body>
- </html>
- `);
- testWindow.document.write(`
- <script>
- const scenarios = [
- { text: "A company purchased goods on credit for £1,200 plus 20% VAT. Calculate the exact gross entry value to be posted in the Purchase Day Book.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Calculate the total credit sales from the Sales Day Book if net sales are £45,000 and standard 20% VAT is applied to all invoices.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "The Petty Cash box has a fixed imprest of £250. Vouchers total £184. Compute the exact amount required to restore the imprest value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A bank reconciliation reveals an unpresented cheque of £450 and an uncredited lodgement of £300. If the ledger balance is £1,200, find the correct balance per bank statement.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A credit customer balance of £850 was posted to the wrong individual ledger account. Classify this specific book-keeping error type.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "Closing inventory valuation under FIFO shows 120 units at £15 cost per unit. Realisable value drops to £12. Calculate the correct valuation adjustment.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A sole trader has a gross mark-up of 25% on cost. If the total cost of sales amounts to £16,000, calculate the total expected turnover value.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
- { text: "An office computer invoice for £1,500 was debited to the Office Stationery Expenses account. Identify this category of ledger accounting error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Process the year-end accrual entry if a business receives an electricity bill for £360 covering a 3-month period, but 1 month belongs to the next accounting year.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Under the DEAD CLIC matrix framework, which group of nominal accounts have debit balances extracted in a Trial Balance?", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "A Trial Balance shows a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening entry value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "Calculate the adjusted Partnership profit share for Partner A under a 3:2 ratio if the net residue profit to be split is exactly £45,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
- { text: "An invoice of £150 is recorded in the Sales Day Book as £105. Name this type of original entry mistake.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
- { text: "A company carries a bank overdraft of £1,850 at month-end. In which Trial Balance ledger column must this balance be extracted?", correct: "B", diff: "🟡 Difficulty: Intermediate" },
- { text: "Calculate the net profit percentage if a trader has sales of £120,000, cost of sales of £80,000, and additional overhead expenses of £16,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
- ];
- const optionTexts = [
- { a: "£1,440 Gross total value", b: "£1,200 Net total value", c: "£240 Input VAT value only" },
- { a: "£45,000 Gross total", b: "£54,000 Gross total value with VAT included", c: "£9,000 Output VAT component" },
- { a: "£184 to replenish cash spent", b: "£66 cash remaining value", c: "£250 full imprest amount" },
- { a: "£1,350 adjusted bank balance", b: "£1,050 bank ledger statement balance", c: "£1,500 unadjusted ledger total" },
- { a: "Error of Principle", b: "Error of Commission within customer accounts", c: "Complete Reversal of entries" },
- { a: "£1,440 total value adjustment", b: "£1,800 asset book value", c: "£360 cost down-valuation reduction" },
- { a: "£20,000 sales value", b: "£20,000 turnover using mark-up logic", c: "£4,000 gross margin value" },
- { a: "Error of Principle (Asset vs Expense)", b: "Error of Commission", c: "Compensating Error pattern" },
- { a: "Debit relevant utility expenditure £240 and credit Accruals £240", b: "Credit outstanding rental provisions £120", c: "Post year-end corrections £360 directly" },
- { a: "Liabilities, Income, and Capital", b: "Debit: Expenses, Assets, and Drawings (DEAD)", c: "Credit: Liabilities, Income, and Capital (CLIC) only" },
- { a: "£450 Opening Credit Balance in Suspense Account", b: "£24,650 Opening Credit Entry", c: "£200 Debit Reconciliation Entry" },
- { a: "£27,000 profit share allocated", b: "£27,000 calculated profit using ratio rules", c: "£18,000 residual profit share" },
- { a: "Error of Original Entry", b: "Error of Omission", c: "Complete Reversal of Double Entry" },
- { a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" },
- { a: "33.3% Gross Margin", b: "20.0% Net Profit Margin", c: "13.3% Total Expense Coefficient" }
- ];
- let currentActiveIndex = 0;
- const root = document.getElementById("questions-root-wrapper");
- scenarios.forEach((q, idx) => {
- const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
- root.innerHTML += \`
- <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\${q.diff}</span></div>
- <div class="question-title">Assessment Task \${num}</div>
- <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\${q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\${opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\text{\${opts.b}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\text{\${opts.c}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
- <div class="osborne-footer-grid">
-     <div class="left-btns">
-         <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
-         <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
-         <button onclick="resetCurrentForm()" class="osborne-btn btn-reset">Reset</button>
-     </div>
-     <div class="right-btns">
-         <button onclick="changeQuestion(-1)" class="osborne-btn btn-nav">Previous Question</button>
-         <button id="next-btn-toggle_\${idx}" onclick="changeQuestion(1)" class="osborne-btn btn-nav">Next Question</button>
-         <button id="osborne-pdf-trigger_\${idx}" onclick="triggerAutoPDFDownload()" class="osborne-btn btn-pdf" style="display: none;">Download as PDF</button>
-     </div>
- </div>
- </div>\`;
- });
- function changeQuestion(s) { 
- const t = currentActiveIndex + s; 
- if (t >= 0 && t < scenarios.length) { 
- document.getElementById("card_task_" + currentActiveIndex).classList.remove("active"); 
- currentActiveIndex = t; 
- document.getElementById("card_task_" + currentActiveIndex).classList.add("active"); 
- } 
- const nextBtn = document.getElementById("next-btn-toggle_" + currentActiveIndex);
- const pdfBtn = document.getElementById("osborne-pdf-trigger_" + currentActiveIndex);
- if (nextBtn && pdfBtn) {
- if (currentActiveIndex === scenarios.length - 1) { nextBtn.style.display = "none"; pdfBtn.style.display = "block"; }
- else { nextBtn.style.display = "block"; pdfBtn.style.display = "none"; }
- }
- }
- function triggerAutoPDFDownload() { const o = document.title; document.title = "AAT_Official_Exam_Worksheet"; window.print(); setTimeout(() => { document.title = o; }, 500); }
- function showCurrentSolution() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); document.getElementById("card_task_"+currentActiveIndex).querySelectorAll(".option-row").forEach(r=>r.classList.remove("reveal-correct")); const r=document.getElementById("opt_"+currentActiveIndex+"_"+c); if(r) r.closest(".option-row").classList.add("reveal-correct"); }
- function verifyCurrentInline() {
- const activeCard = document.getElementById("card_task_" + currentActiveIndex);
- const correctVal = activeCard.getAttribute("data-correct");
- const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
- const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
- const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
- const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
- const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
- const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
- if(mA) mA.style.display = "none"; if(mB) mB.style.display = "none"; if(mC) mC.style.display = "none";
- if (rA && rA.checked && mA) { mA.style.display = "block"; mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- else if (rB && rB.checked && mB) { mB.style.display = "block"; mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- else if (rC && rC.checked && mC) { mC.style.display = "block"; mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- }
- function resetCurrentForm() { 
- if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
- if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
- if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
- const rows = document.getElementById("card_task_" + currentActiveIndex).querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct"));
- document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; 
- }
- function toggleCalculatorView(show) {
- const w = document.getElementById("floatingCalcWidget"); const i = document.getElementById("calc-icon-trigger-id");
- if (show) { w.style.display = "block"; i.style.display = "none"; } else { w.style.display = "none"; i.style.display = "flex"; }
- }
- let calcCurrentExpressionString = "";
- function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
- function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
- function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let n = parseFloat(d.value) || 0; if (t === 'sqrt') { if (n < 0) { d.value = "Error"; calcCurrentExpressionString = ""; return; } n = Math.sqrt(n); } else if (t === 'pow') { n = Math.pow(n, 2); } else if (t === 'percent') { n = n / 100; } calcCurrentExpressionString = Number(n.toFixed(6)).toString(); d.value = calcCurrentExpressionString; }
- function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let o = new Function(\`return (\${calcCurrentExpressionString})\`)(); if (o === Infinity || isNaN(o)) { d.value = "Error"; calcCurrentExpressionString = ""; } else { calcCurrentExpressionString = Number(o.toFixed(6)).toString(); d.value = calcCurrentExpressionString; } } catch (e) { d.value = "Syntax Error"; calcCurrentExpressionString = ""; } }
- document.body.insertAdjacentHTML('beforeend', \`
-    <div id="calc-icon-trigger-id" class="calc-icon-trigger" onclick="toggleCalculatorView(true)">🧮</div>
-    <div id="floatingCalcWidget" class="calc-widget-floating">
-        <div class="calc-widget-header" onclick="toggleCalculatorView(false)">
-            <span>🧮 AAT Exam Calculator</span>
-            <span id="calcToggleArrow">▲</span>
-        </div>
-        <div id="calcWidgetBody" class="calc-widget-body">
-            <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
-            <div class="calc-btn-grid">
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
-                <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
-                <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
-                <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
-                <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
-                <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
-                <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
-                <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
-                <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
-                <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
-                <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
-                <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
-                <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
-                <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
-            </div>
-        </div>
-    </div>\`);
- <\/script></body></html>
- \`);
- testWindow.document.close();
+ const lvl = document.getElementById("level-select").value;
+ const chap = document.getElementById("chapter-select").value;
+ if (!lvl || !chap) { alert("Please select both parameters before launching."); return; }
+ localStorage.setItem("aat_sel_level", lvl);
+ window.open("test-popup.html", "_blank");
  }
 </script>
 </body>
