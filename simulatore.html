@@ -84,8 +84,8 @@
  };
 
  function updateChapters() {
- const lvlSelector = document.getElementById("level-selector");
- const chapSelector = document.getElementById("chapter-selector");
+ const lvlSelector = document.getElementById("level-select") || document.getElementById("level-selector");
+ const chapSelector = document.getElementById("chapter-select") || document.getElementById("chapter-selector");
  if (!lvlSelector || !chapSelector) return;
  
  const selectedLevel = lvlSelector.value;
@@ -114,8 +114,8 @@
  }
  }
  function launchPaginatedTestWindow() {
- const lvlSelector = document.getElementById("level-selector");
- const chapSelector = document.getElementById("chapter-selector");
+ const lvlSelector = document.getElementById("level-select") || document.getElementById("level-selector");
+ const chapSelector = document.getElementById("chapter-select") || document.getElementById("chapter-selector");
  if (!lvlSelector || !chapSelector) return;
  
  let lvl = lvlSelector.value;
@@ -217,74 +217,51 @@
  </div>
  </div>
  </div>
-`);
-`);
-testWindow.document.write('<script>');
-testWindow.document.write('const scenarios = [');
-testWindow.document.write('{ text: "A company purchased goods on credit for £1,200 plus 20% VAT. Calculate the exact gross entry value to be posted in the Purchase Day Book.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "Calculate the total credit sales from the Sales Day Book if net sales are £45,000 and standard 20% VAT is applied to all invoices.", correct: "B", diff: "🟡 Difficulty: Intermediate" },');
-testWindow.document.write('{ text: "The Petty Cash box has a fixed imprest of £250. Vouchers total £184. Compute the exact amount required to restore the imprest value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "A bank reconciliation reveals an unpresented cheque of £450 and an uncredited lodgement of £300. If the ledger balance is £1,200, find the correct balance per bank statement.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "A credit customer balance of £850 was posted to the wrong individual ledger account. Classify this specific book-keeping error type.", correct: "B", diff: "🟡 Difficulty: Intermediate" },');
-testWindow.document.write('{ text: "Closing inventory valuation under FIFO shows 120 units at £15 cost per unit. Realisable value drops to £12. Calculate the correct valuation adjustment.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "A sole trader has a gross mark-up of 25% on cost. If the total cost of sales amounts to £16,000, calculate the total expected turnover value.", correct: "B", diff: "🔴 Difficulty: Professional Level" },');
-testWindow.document.write('{ text: "An office computer invoice for £1,500 was debited to the Office Stationery Expenses account. Identify this category of ledger accounting error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "Process the year-end accrual entry if a business receives an electricity bill for £360 covering a 3-month period, but 1 month belongs to the next accounting year.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "Under the DEAD CLIC matrix framework, which group of nominal accounts have debit balances extracted in a Trial Balance?", correct: "B", diff: "🟡 Difficulty: Intermediate" },');
-testWindow.document.write('{ text: "A Trial Balance shows a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening entry value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "Calculate the adjusted Partnership profit share for Partner A under a 3:2 ratio if the net residue profit to be split is exactly £45,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" },');
-testWindow.document.write('{ text: "An invoice of £150 is recorded in the Sales Day Book as £105. Name this type of original entry mistake.", correct: "A", diff: "🟢 Difficulty: Entry Level" },');
-testWindow.document.write('{ text: "A company carries a bank overdraft of £1,850 at month-end. In which Trial Balance ledger column must this balance be extracted?", correct: "B", diff: "🟡 Difficulty: Intermediate" },');
-testWindow.document.write('{ text: "Calculate the net profit percentage if a trader has sales of £120,000, cost of sales of £80,000, and additional overhead expenses of £16,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" }');
-testWindow.document.write('];');
-testWindow.document.write('const optionTexts = [');
-testWindow.document.write('{ a: "£1,440 Gross total value", b: "£1,200 Net total value", c: "£240 Input VAT value only" },');
-testWindow.document.write('{ a: "£45,000 Gross total", b: "£54,000 Gross total value with VAT included", c: "£9,000 Output VAT component" },');
-testWindow.document.write('{ a: "£184 to replenish cash spent", b: "£66 cash remaining value", c: "£250 full imprest amount" },');
-testWindow.document.write('{ a: "£1,350 adjusted bank balance", b: "£1,050 bank ledger statement balance", c: "£1,500 unadjusted ledger total" },');
-testWindow.document.write('{ a: "Error of Principle", b: "Error of Commission within customer accounts", c: "Complete Reversal of entries" },');
-testWindow.document.write('{ a: "£1,440 total value adjustment", b: "£1,800 asset book value", c: "£360 cost down-valuation reduction" },');
-testWindow.document.write('{ a: "£20,000 sales value", b: "£20,000 turnover using mark-up logic", c: "£4,000 gross margin value" },');
-testWindow.document.write('{ a: "Error of Principle (Asset vs Expense)", b: "Error of Commission", c: "Compensating Error pattern" },');
-testWindow.document.write('{ a: "Debit relevant utility expenditure £240 and credit Accruals £240", b: "Credit outstanding rental provisions £120", c: "Post year-end corrections £360 directly" },');
-testWindow.document.write('{ a: "Liabilities, Income, and Capital", b: "Debit: Expenses, Assets, and Drawings (DEAD)", c: "Credit: Liabilities, Income, and Capital (CLIC) only" },');
-testWindow.document.write('{ a: "£450 Opening Credit Balance in Suspense Account", b: "£24,650 Opening Credit Entry", c: "£200 Debit Reconciliation Entry" },');
-testWindow.document.write('{ a: "£27,000 profit share allocated", b: "£27,000 calculated profit using ratio rules", c: "£18,000 residual profit share" },');
-testWindow.document.write('{ a: "Error of Original Entry", b: "Error of Omission", c: "Complete Reversal of Double Entry" },');
-testWindow.document.write('{ a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" },');
-testWindow.document.write('{ a: "33.3% Gross Margin", b: "20.0% Net Profit Margin", c: "13.3% Total Expense Coefficient" }');
-testWindow.document.write('];');
-testWindow.document.write('let currentActiveIndex = 0;');
-testWindow.document.write('const root = document.getElementById("questions-root-wrapper");');
-testWindow.document.write('scenarios.forEach((q, idx) => {');
-testWindow.document.write('const num = idx + 1;');
-testWindow.document.write('const opts = optionTexts[idx % optionTexts.length];');
-testWindow.document.write('root.innerHTML += `');
-testWindow.document.write('<div class="test-card-container ${idx === 0 ? \'active\' : \'\'}" id="card_task_${idx}" data-correct="${q.correct}">');
-testWindow.document.write('<div class="header-area">');
-testWindow.document.write('<span class="level-tag">' + badgeText + ' • Q${num} of 15</span>');
-testWindow.document.write('<span class="difficulty-tag">${q.diff}</span>');
-testWindow.document.write('</div>');
-testWindow.document.write('<div class="question-title">Assessment Task ${num}</div>');
-testWindow.document.write('<p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">${q.text}</p>');
-testWindow.document.write('<div class="option-row" onclick="document.getElementById(\'opt_${idx}_A\').checked = true"><span class="option-text-left">${opts.a}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_${idx}_A"></div><input type="radio" name="ans_${idx}" id="opt_${idx}_A" value="A" style="cursor:pointer;"></div></div>');
-testWindow.document.write('<div class="option-row" onclick="document.getElementById(\'opt_${idx}_B\').checked = true"><span class="option-text-left">${opts.b}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_${idx}_B"></div><input type="radio" name="ans_${idx}" id="opt_${idx}_B" value="B" style="cursor:pointer;"></div></div>');
-testWindow.document.write('<div class="option-row" onclick="document.getElementById(\'opt_${idx}_C\').checked = true"><span class="option-text-left">${opts.c}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_${idx}_C"></div><input type="radio" name="ans_${idx}" id="opt_${idx}_C" value="C" style="cursor:pointer;"></div></div>');
-testWindow.document.write('</div>`;});');
-testWindow.document.write('function changeQuestion(step) { const target = currentActiveIndex + step; if (target >= 0 && target < scenarios.length) { document.getElementById("card_task_" + currentActiveIndex).classList.remove("active"); currentActiveIndex = target; document.getElementById("card_task_" + currentActiveIndex).classList.add("active"); } const pdfBtn = document.getElementById("osborne-pdf-trigger"); if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === scenarios.length - 1) ? "block" : "none"; }');
-testWindow.document.write('function triggerAutoPDFDownload() { const originalTitle = document.title; document.title = "AAT_Official_Exam_Worksheet"; window.print(); setTimeout(() => { document.title = originalTitle; }, 500); }');
-testWindow.document.write('function showCurrentSolution() { const activeCard = document.getElementById("card_task_" + currentActiveIndex); const correctLetter = activeCard.getAttribute("data-correct"); const rows = activeCard.querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct")); const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter); if (correctRadio) { const targetRow = correctRadio.closest(".option-row"); if (targetRow) targetRow.classList.add("reveal-correct"); } }');
-testWindow.document.write('function verifyCurrentInline() { const activeCard = document.getElementById("card_task_" + currentActiveIndex); const correctVal = activeCard.getAttribute("data-correct"); const rA = document.getElementById("opt_" + currentActiveIndex + "_A"); const rB = document.getElementById("opt_" + currentActiveIndex + "_B"); const rC = document.getElementById("opt_" + currentActiveIndex + "_C"); const mA = document.getElementById("mark_" + currentActiveIndex + "_A"); const mB = document.getElementById("mark_" + currentActiveIndex + "_B"); const mC = document.getElementById("mark_" + currentActiveIndex + "_C"); if(mA) mA.style.display = "none"; if(mB) mB.style.display = "none"; if(mC) mC.style.display = "none"; if (rA && rA.checked && mA) { mA.style.display = "block"; mA.innerHTML = correctVal === "A" ? \'<span class="feedback-correct">✔</span>\' : \'<span class="feedback-wrong">❌</span>\'; } else if (rB && rB.checked && mB) { mB.style.display = "block"; mB.innerHTML = correctVal === "B" ? \'<span class="feedback-correct">✔</span>\' : \'<span class="feedback-wrong">❌</span>\'; } else if (rC && rC.checked && mC) { mC.style.display = "block"; mC.innerHTML = correctVal === "C" ? \'<span class="feedback-correct">✔</span>\' : \'<span class="feedback-wrong">❌</span>\'; } }');
-testWindow.document.write('function resetCurrentForm() { const activeCard = document.getElementById("card_task_" + currentActiveIndex); if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none"; if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none"; if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none"; const rows = activeCard.querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct")); document.getElementById("opt_" + currentActiveIndex + "_A").checked = false; document.getElementById("opt_" + currentActiveIndex + "_B").checked = false; document.getElementById("opt_" + currentActiveIndex + "_C").checked = false; }');
-testWindow.document.write('let isCalcBodyExpanded = false; let calcCurrentExpressionString = "";');
-testWindow.document.write('function toggleCalculatorView() { const body = document.getElementById("calcWidgetBody"); const arrow = document.getElementById("calcToggleArrow"); isCalcBodyExpanded = !isCalcBodyExpanded; body.style.display = isCalcBodyExpanded ? "block" : "none"; arrow.textContent = isCalcBodyExpanded ? "▼" : "▲"; }');
-testWindow.document.write('function pushCalcChar(char) { const display = document.getElementById("calcDisplayScreen"); if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; } else { calcCurrentExpressionString += char; } display.value = calcCurrentExpressionString; }');
-testWindow.document.write('function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }');
-testWindow.document.write('function pushCalcFunction(type) { const display = document.getElementById("calcDisplayScreen"); let val = parseFloat(display.value) || 0; if (type === "sqrt") { if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; } val = Math.sqrt(val); } else if (type === "pow") { val = Math.pow(val, 2); } else if (type === "percent") { val = val / 100; } calcCurrentExpressionString = Number(val.toFixed(6)).toString(); display.value = calcCurrentExpressionString; }');
-testWindow.document.write('function executeCalcExpression() { const display = document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let res = new Function("return (" + calcCurrentExpressionString + ")")(); calcCurrentExpressionString = Number(res.toFixed(6)).toString(); display.value = calcCurrentExpressionString; } catch (e) { display.value = "Error"; calcCurrentExpressionString = ""; } }');
-testWindow.document.write('<\/script></body></html>');
-testWindow.document.close();
-}
+ `);
+ testWindow.document.write(`
+ <script>
+ const scenarios = [
+ { text: "A credit buy of £1,200 plus 20% VAT occurs. Calculate Gross value.", correct: "A", diff: "🟢 Entry Level" },
+ { text: "Net sales are £45,000. 20% standard VAT is added. Find Gross sales.", correct: "B", diff: "🟡 Intermediate" },
+ { text: "Trial Balance has Debit £24,650 and Credit £24,200. Find Suspense balance.", correct: "A", diff: "🟢 Entry Level" },
+ { text: "An asset item of £150 is debited to Expenses. Name this type of error.", correct: "A", diff: "🟢 Entry Level" },
+ { text: "Under DEAD CLIC, which group carries Debit balances by default?", correct: "B", diff: "🟡 Intermediate" }
+ ];
+ const optionTexts = [
+ { a: "£1,440 Gross entry value", b: "£1,200 Net ledger value", c: "£240 Input VAT amount" },
+ { a: "£45,000 net baseline", b: "£54,000 Gross sales with VAT", c: "£9,000 output tax liability" },
+ { a: "£450 Opening Credit Balance", b: "£24,650 Debit total", c: "£200 reconciliation value" },
+ { a: "Error of Principle", b: "Error of Omission", c: "Error of Commission" },
+ { a: "Liabilities and Capital", b: "Expenses, Assets, and Drawings (DEAD)", c: "Income and Revenues (CLIC)" }
+ ];
+ let currentActiveIndex = 0;
+ const root = document.getElementById("questions-root-wrapper");
+ scenarios.forEach((q, idx) => {
+ const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
+ root.innerHTML += \`
+ <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
+ <div class="header-area"><span class="level-tag">${badgeText} • Q\${num}</span><span class="difficulty-tag">\${q.diff}</span></div>
+ <div class="question-title">Task \text{\${num}}</div>
+ <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px;">\u0024{q.text}</p>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><span class="option-text-left">\u0024{opts.a}</span><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><span class="option-text-left">\u0024{opts.b}</span><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><span class="option-text-left">\u0024{opts.c}</span><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C"></div>
+ </div>\`;
+ });
+ function changeQuestion(s) { const t=currentActiveIndex+s; if(t>=0 && t<scenarios.length){ document.getElementById("card_task_"+currentActiveIndex).classList.remove("active"); currentActiveIndex=t; document.getElementById("card_task_"+currentActiveIndex).classList.add("active"); } }
+ function showCurrentSolution() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); document.getElementById("card_task_"+currentActiveIndex).querySelectorAll(".option-row").forEach(r=>r.classList.remove("reveal-correct")); const r=document.getElementById("opt_"+currentActiveIndex+"_"+c); if(r) r.closest(".option-row").classList.add("reveal-correct"); }
+ function verifyCurrentInline() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); const r=document.getElementById("opt_"+currentActiveIndex+"_A").checked?"A":document.getElementById("opt_"+currentActiveIndex+"_B").checked?"B":document.getElementById("opt_"+currentActiveIndex+"_C").checked?"C":""; if(r==="") return; alert(r===c?"Correct! ✔":"Wrong! ❌"); }
+ function resetCurrentForm() { document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; }
+ let isCalcBodyExpanded = false; let calcCurrentExpressionString = "";
+ function toggleCalculatorView() { const b=document.getElementById("calcWidgetBody"); const a=document.getElementById("calcToggleArrow"); isCalcBodyExpanded=!isCalcBodyExpanded; b.style.display=isCalcBodyExpanded?"block":"none"; a.textContent=isCalcBodyExpanded?"▼":"▲"; }
+ function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
+ function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
+ function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let v=parseFloat(d.value)||0; if(t==="sqrt"){v=Math.sqrt(v);}else if(t==="pow"){v=Math.pow(v,2);}else if(t==="percent"){v=v/100;} d.value=Number(v.toFixed(4)).toString(); calcCurrentExpressionString=d.value; }
+ function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); try{ let r=new Function('return ('+calcCurrentExpressionString+')')(); d.value=Number(r.toFixed(4)).toString(); calcCurrentExpressionString=d.value; }catch(e){d.value="Error"; calcCurrentExpressionString="";} }
+ <\/script></body></html>
+ `);
+ testWindow.document.close();
+ }
 </script>
 </body>
 </html>
