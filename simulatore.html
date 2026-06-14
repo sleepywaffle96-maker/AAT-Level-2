@@ -1,446 +1,280 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAT Accounting Hub - Interactive Simulator</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>AAT Interactive Simulator Matrix</title>
     <style>
-        body {
-            background-color: #0B0F19 !important;
-            color: #F3F4F6;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 40px 20px;
+        :root {
+            --bg-dark: #0B0F19;
+            --card-white: #FFFFFF;
+            --primary-teal: #117A71;
+            --primary-hover: #0E635C;
+            --text-dark: #1F2937;
+            --text-muted: #64748B;
+            --border-light: #E5E7EB;
+        }
+
+        * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            align-items: center;
+            padding: 20px;
         }
-        .container {
+
+        .dashboard-container {
             width: 100%;
-            max-width: 760px;
-            margin: 0 auto;
+            max-width: 600px;
+            background: var(--card-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .back-home {
+
+        .back-link {
             display: inline-block;
-            color: #38BDF8;
+            color: #0284C7;
             text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 600;
             font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
         }
-        .back-home:hover { text-decoration: underline; }
-        .simulator-white-bubble {
-            background: #FFFFFF !important;
-            border-radius: 20px;
-            padding: 35px 25px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            border: 1px solid #E2E8F0;
-            color: #1E293B !important;
+
+        .back-link:hover {
+            text-decoration: underline;
         }
-        .header-section {
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
             text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 20px;
+            color: #0F172A;
+            margin-bottom: 8px;
         }
-        h1 { color: #0F172A !important; margin: 0 0 8px 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
-        .subtitle { font-size: 14px; color: #64748B; margin: 0; }
-        .filter-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-        .select-wrapper { display: flex; flex-direction: column; gap: 6px; }
-        .select-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.5px; }
-        .custom-select { width: 100%; background-color: #F8FAFC; border: 1px solid #D1D5DB; color: #1E293B; font-size: 14px; border-radius: 10px; padding: 14px; font-weight: 700; cursor: pointer; outline: none; }
-        .generate-btn { display: block; width: 100%; background: linear-gradient(135deg, #0D9488, #0F766E); color: #FFFFFF !important; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
-        .generate-btn:hover { opacity: 0.95; }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px rgba(17, 122, 113, 0.15);
+        }
+
+        .launch-btn {
+            width: 100%;
+            background-color: var(--primary-teal);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+            margin-top: 32px;
+        }
+
+        .launch-btn:hover {
+            background-color: var(--primary-hover);
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
 
-    <!-- LA GRANDE BOLLA BIANCA DI CONTRASTO -->
-    <div class="simulator-white-bubble">
+    <div class="dashboard-container">
+        <a href="#" class="back-link">← Back to Dashboard</a>
+        <h1>AAT Interactive Simulator</h1>
+        <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
         
-        <div class="header-section">
-            <h1>AAT Interactive Simulator</h1>
-            <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
+        <div class="form-group">
+            <label>Target Assessment Level</label>
+            <select id="level-select" onchange="updateChapters()">
+                <option value="" disabled selected>Select Qualification Level...</option>
+                <option value="L2">AAT Level 2 Certificate</option>
+                <option value="L3">AAT Level 3 Diploma</option>
+            </select>
         </div>
 
-        <div class="filter-group">
-            <div class="select-wrapper">
-                <label class="select-label">Target Assessment Level</label>
-                <select id="level-selector" class="custom-select" onchange="updateChapters()">
-                    <option value="" selected disabled>Select Qualification Level...</option>
-                    <option value="RANDOM">🎲 Randomize All Levels (Mixed Scenario)</option>
-                    <option value="L2">📊 AAT Level 2 Certificate</option>
-                    <option value="L3">🔹 AAT Level 3 Diploma</option>
-                    <option value="L4">🔸 AAT Level 4 Diploma</option>
-                </select>
-            </div>
-            <div class="select-wrapper">
-                <label class="select-label">Syllabus Chapter Unit</label>
-                <select id="chapter-selector" class="custom-select" disabled>
-                    <option value="" selected disabled>Select a level first...</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label>Syllabus Chapter Unit</label>
+            <select id="chapter-select">
+                <option value="" disabled selected>Select a level first...</option>
+            </select>
         </div>
 
-        <button onclick="launchPaginatedTestWindow()" class="generate-btn">
-            Launch Paginated Test Window &rarr;
+        <button class="launch-btn" onclick="launchPaginatedTestWindow()">
+            Launch Paginated Test Window →
         </button>
-
     </div>
-</div>
 <script>
-    const syllabusData = {
-        "L2": [
-            "Chapter 1: Bookkeeping Transactions",
-            "Chapter 2: Bookkeeping Controls",
-            "Chapter 3: Principles of Costing",
-            "Chapter 4: Work Effectively in Finance"
-        ],
-        "L3": [
-            "Chapter 1: Advanced Bookkeeping",
-            "Chapter 2: Final Accounts Preparation",
-            "Chapter 3: Management Accounting: Costing",
-            "Chapter 4: Indirect Tax",
-            "Chapter 5: Ethics for Accountants",
-            "Chapter 6: Business Awareness"
-        ],
-        "L4": [
-            "Chapter 1: Financial Statements of Limited Companies",
-            "Chapter 2: Management Accounting: Budgeting",
-            "Chapter 3: Management Accounting: Decision and Control",
-            "Chapter 4: External Auditing",
-            "Chapter 5: Cash and Treasury Management",
-            "Chapter 6: Credit Management",
-            "Chapter 7: Personal Tax",
-            "Chapter 8: Business Tax",
-            "Chapter 9: Internal Accounting Systems and Controls"
-        ]
-    };
-        function updateChapters() {
-        const lvlSelector = document.getElementById("level-selector");
-        const chapSelector = document.getElementById("chapter-selector");
-        if (!lvlSelector || !chapSelector) return;
-        
-        const selectedLevel = lvlSelector.value;
-        chapSelector.removeAttribute("disabled");
-        chapSelector.disabled = false;
-        chapSelector.innerHTML = "";
-        
-        if (selectedLevel === "RANDOM") {
-            let opt = document.createElement("option");
-            opt.value = "ALL_RANDOM";
-            opt.textContent = "🎲 Randomize Across All Syllabus Chapters";
-            chapSelector.appendChild(opt);
-            return;
-        }
+// --- CONFIGURAZIONE SYLLABUS DATA AGGIORNATA ---
+const syllabusData = {
+    "L2": [
+        { id: 1, title: "Chapter 1: Introduction to Bookkeeping" },
+        { id: 2, title: "Chapter 2: Sales and Purchase Day Books" },
+        { id: 3, title: "Chapter 3: Cash Book & Petty Cash Imprest" },
+        { id: 4, title: "Chapter 4: The General Journal & Corrections" },
+        { id: 5, title: "Chapter 5: The Trial Balance Matrix & DEAD CLIC" }
+    ],
+    "L3": [
+        { id: 1, title: "Advanced Financial Accounting (FAPR)" }
+    ]
+};
 
-        let optRand = document.createElement("option");
-        optRand.value = "LEVEL_RANDOM";
-        optRand.textContent = "🎲 Randomize Chapter Inside This Level";
-        chapSelector.appendChild(optRand);
+function updateChapters() {
+    const lvlSelect = document.getElementById('level-select');
+    const chapSelect = document.getElementById('chapter-select');
+    
+    if (!lvlSelect || !chapSelect) return;
+    
+    const selectedLevel = lvlSelect.value;
+    chapSelect.innerHTML = '';
 
-        if (syllabusData[selectedLevel]) {
-            syllabusData[selectedLevel].forEach((chapName, index) => {
-                let opt = document.createElement("option");
-                opt.value = "cap" + (index + 1);
-                opt.textContent = chapName;
-                chapSelector.appendChild(opt);
-            });
-        }
+    if (!selectedLevel || !syllabusData[selectedLevel]) {
+        chapSelect.innerHTML = '<option value="" disabled selected>Select a level first...</option>';
+        return;
     }
-    function launchPaginatedTestWindow() {
-        const lvlSelector = document.getElementById("level-selector");
-        const chapSelector = document.getElementById("chapter-selector");
-        if (!lvlSelector || !chapSelector) return;
-        
-        let lvl = lvlSelector.value;
-        let chap = chapSelector.value;
-        if (!lvl || !chap) {
-            alert("Please select both parameters before launching.");
-            return;
-        }
 
-        if (lvl === "RANDOM") {
-            const levels = ["L2", "L3", "L4"];
-            lvl = levels[Math.floor(Math.random() * levels.length)];
-        }
+    syllabusData[selectedLevel].forEach(ch => {
+        const opt = document.createElement('option');
+        opt.value = `cap${ch.id}`;
+        opt.textContent = ch.title;
+        chapSelect.appendChild(opt);
+    });
+}
+function launchPaginatedTestWindow() {
+    const lvlSelector = document.getElementById('level-select');
+    const chapSelector = document.getElementById('chapter-select');
+    
+    if (!lvlSelector || !chapSelector) return;
+    
+    let lvl1 = lvlSelector.value;
+    let chap = chapSelector.value;
 
-        let badgeClass = "background: #0D9488;";
-        let badgeText = "Level 2 Full Assessment";
-        if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
-        if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
+    if (!lvl1 || !chap) {
+        alert("Please select both a Qualification Level and a Chapter Unit.");
+        return;
+    }
 
-        const randomEntryNum = Math.floor(Math.random() * 900 + 100);
-        const testWindow = window.open("", "_blank");
-        testWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>AAT Paginated Exam - Entry #${randomEntryNum}</title>
-                <link href="https://googleapis.com" rel="stylesheet">
-                <style>
-                    body { background-color: #0B0F19; color: #F3F4F6; font-family: 'Inter', sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
-                    .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
-                    .test-card-container.active { display: block; }
-                    .header-area { border-bottom: 2px dashed #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
-                    .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
-                    .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
-                    .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
-                    .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
-                    .option-row:hover { background: #F1F5F9; }
-                    .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
-                    .option-right-inputs { display: flex; align-items: center; gap: 12px; }
-                    .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); }
-                    .feedback-marker { font-size: 15px; font-weight: bold; display: none; }
-                    .feedback-correct { color: #10B981; }
-                    .feedback-wrong { color: #EF4444; }
-                    .osborne-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
-                    .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 4px; font-size: 11.5px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
-                    .osborne-btn:hover { background: #F1F5F9; }
-                    .btn-verify { background: #1E293B; color: #FFFFFF; border-color: #1E293B; }
-                    .btn-verify:hover { background: #0F172A; }
-                    .btn-solution { background: #0284C7; color: #FFFFFF; border-color: #0284C7; }
-                    .btn-solution:hover { background: #0369A1; }
-                    .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
-                    .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
-                    .calc-widget-body { padding: 1rem; display: none; }
-                    .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
-                    .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-                    .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
-                    .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
-                    .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
-                    .btn-equals { background: #00f2fe; color: #0a0f1d; }
-                    @media print {
-                        body { background: #FFFFFF !important; color: #000000 !important; padding: 0; }
-                        .test-card-container { box-shadow: none !important; border: none !important; padding: 20px 0 !important; page-break-inside: avoid; display: block !important; }
-                        .calc-widget-floating, .osborne-footer-grid { display: none !important; }
-                    }
-                </style>
-            </head>
-            <body>
-                <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
-                    <div id="questions-root-wrapper" style="width: 100%;"></div>
-                </div>
-
-                <div class="osborne-footer-grid">
-                    <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
-                    <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
-                    <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
-                    <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
-                    <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
-                    <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);">💾 Download as PDF</button>
-                </div>
-
-                <div id="floatingCalcWidget" class="calc-widget-floating">
-                    <div class="calc-widget-header" onclick="toggleCalculatorView()">
-                        <span>🧮 AAT Exam Calculator</span>
-                        <span id="calcToggleArrow">▲</span>
-                    </div>
-                    <div id="calcWidgetBody" class="calc-widget-body">
-                        <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
-                        <div class="calc-btn-grid">
-                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
-                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
-                            <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
-                            <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
-                            <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
-                            <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
-                            <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
-                            <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
-                            <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
-                            <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
-                            <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
-                            <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
-                            <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
-                            <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
-                            <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
-                            <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
-                            <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
-                        </div>
-                    </div>
-                </div>
-                <script>
-    const targetChapterNum = parseInt(chap.replace("cap", ""));
+    // RISOLUZIONE BUG: Estrae il numero puro dal valore della tendina (es. "cap5" -> 5)
+    const targetChapterNum = parseInt(chap.replace("cap", ""), 10);
     const scenarios = questionsDatabase.filter(q => q.level === lvl1 && q.chapter === targetChapterNum);
 
-                    const optionTexts = [
-                        { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
-                        { a: "Apply straight-line depreciation index to non-current structures", b: "Execute statutory reducing balance adjustments to current categories", c: "Reclassify non-current outlays into operational expenses" },
-                        { a: "Reconcile the opening cash book deficit against credit bank entries", b: "Transfer unpresented cheques directly to the Suspense Control account", c: "Perform a retrospective bank statement write-off analysis" },
-                        { a: "Compute standard absorption parameters based on direct labour allocation", b: "Allocate general factory overheads using floor area square coefficients", c: "Absorb marginal expenses into production yield margins" },
-                        { a: "Process bad debts write-offs under HMRC irrecoverable rules", b: "Determine the correct input VAT clawback for trade receivables", c: "Adjust the provision for doubtful debts using age analysis parameters" },
-                        { a: "Evaluate closing inventory values under strict FIFO constraints", b: "Apply AVCO index adjustments to periodic stock valuations", c: "Execute an immediate net realisable value cost write-down" },
-                        { a: "Apply the standard gross profit margin percentage to purchases data", b: "Reconstruct incomplete sole trader turnover using mark-up criteria", c: "Formulate bank summary cash drawings balancing steps" },
-                        { a: "Capitalise intangible outlays under strict IAS 38 recognition criteria", b: "Write off structural prototype expenses as immediate overhead costs", c: "Amortise research coefficients over a fixed operational cycle" },
-                        { a: "Debit relevant utility expenditure and credit the Accruals account", b: "Credit outstanding rental provisions and debit Prepayments balances", c: "Post year-end corrections directly through the Trial Balance ledger" },
-                        { a: "Segregate commercial processing duties within the purchase ledger", b: "Implement systemic risk reviews within the automated payment loop", c: "Perform an exhaustive manual audit of supplier invoice matching rules" },
-                        { a: "Debit Suspense Account and credit Sales ledger following a transposition error", b: "Adjust opening Trial Balance differences via direct general journal entries", c: "Reverse incorrect double-entry parameters across control files" },
-                        { a: "Apportion residual profits using agreed partnership salary clauses", b: "Calculate profit share ratio adjustments under current legal bases", c: "Charge nominal interest on partner capital drawings variables" },
-                        { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
-                        { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
-                        { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" }
-                            ,
-    { id: "l2_c5_q1", level: "L2", chapter: 5, text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", options: { a: "Expenses, Assets, and Drawings", b: "Liabilities, Income (Sales), and Capital Base", c: "Assets, Liabilities, and Sales Returns" }, correct: "B", diff: "🔴 Difficulty: Professional Level" },
-    { id: "l2_c5_q2", level: "L2", chapter: 5, text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", options: { a: "450", b: "250", c: "150" }, correct: "A", diff: "🟡 Difficulty: Intermediate" },
-    { id: "l2_c5_q3", level: "L2", chapter: 5, text: "If an office stationery invoice for £150 is debited to the Machinery Asset account instead of Stationery Expenses, what category of error is formed?", options: { a: "Error of Omission", b: "Error of Principle", c: "Error of Commission" }, correct: "B", diff: "🟢 Difficulty: Entry Level" }
-
-                    ];
-                    let currentActiveIndex = 0;
-                    const root = document.getElementById("questions-root-wrapper");
-
-                    scenarios.forEach((q, idx) => {
-                        const num = idx + 1;
-                        const opts = optionTexts[idx % optionTexts.length];
-                        root.innerHTML += \`
-                            <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
-                                <div class="header-area">
-                                    <span class="level-tag">${badgeText} • Q\${num} of 15</span>
-                                    <span class="difficulty-tag">\${q.diff}</span>
-                                </div>
-                                <div class="question-title">Assessment Task \${num}</div>
-                                <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">
-                                    \${q.text}
-                                </p>
-                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true">
-                                    <span class="option-text-left">\${opts.a}</span>
-                                    <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_\${idx}_A"></div>
-                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;">
-                                    </div>
-                                </div>
-                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true">
-                                    <span class="option-text-left">\${opts.b}</span>
-                                    <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_\${idx}_B"></div>
-                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;">
-                                    </div>
-                                </div>
-                                <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked = true">
-                                    <span class="option-text-left">\${opts.c}</span>
-                                    <div class="option-right-inputs">
-                                        <div class="feedback-marker" id="mark_\${idx}_C"></div>
-                                        <input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;">
-                                    </div>
-                                </div>
-                            </div>
-                        \`;
-                    });
-
-                    function changeQuestion(step) {
-                        const target = currentActiveIndex + step;
-                        if (target >= 0 && target < 15) {
-                            document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
-                            currentActiveIndex = target;
-                            document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
-                        }
-                        const pdfBtn = document.getElementById("osborne-pdf-trigger");
-                        if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
-                    }
-                    function triggerAutoPDFDownload() {
-                        const originalTitle = document.title;
-                        document.title = "AAT_Official_Exam_Worksheet";
-                        window.print();
-                        setTimeout(() => { document.title = originalTitle; }, 500);
-                    }
-
-                    function showCurrentSolution() {
-                        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-                        const correctLetter = activeCard.getAttribute("data-correct");
-                        const rows = activeCard.querySelectorAll(".option-row");
-                        rows.forEach(r => r.classList.remove("reveal-correct"));
-                        const correctRadio = document.getElementById("opt_" + currentActiveIndex + "_" + correctLetter);
-                        if (correctRadio) {
-                            const targetRow = correctRadio.closest(".option-row");
-                            if (targetRow) targetRow.classList.add("reveal-correct");
-                        }
-                    }
-
-                    function verifyCurrentInline() {
-                        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-                        const correctVal = activeCard.getAttribute("data-correct");
-                        const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
-                        const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
-                        const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
-                        const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
-                        const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
-                        const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
-
-                        if(mA) mA.style.display = "none";
-                        if(mB) mB.style.display = "none";
-                        if(mC) mC.style.display = "none";
-
-                        if (rA && rA.checked && mA) {
-                            mA.style.display = "block";
-                            mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
-                        } else if (rB && rB.checked && mB) {
-                            mB.style.display = "block";
-                            mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
-                        } else if (rC && rC.checked && mC) {
-                            mC.style.display = "block";
-                            mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔️</span>' : '<span class="feedback-wrong">❌</span>';
-                        }
-                    }
-
-                    function resetCurrentForm() {
-                        const activeCard = document.getElementById("card_task_" + currentActiveIndex);
-                        if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
-                        if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
-                        if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
-                        const rows = activeCard.querySelectorAll(".option-row");
-                        rows.forEach(r => r.classList.remove("reveal-correct"));
-                        document.getElementById("opt_" + currentActiveIndex + "_A").checked = false;
-                        document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
-                        document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
-                    }
-
-                    let isCalcBodyExpanded = false;
-                    let calcCurrentExpressionString = "";
-                    function toggleCalculatorView() {
-                        const body = document.getElementById("calcWidgetBody");
-                        const arrow = document.getElementById("calcToggleArrow");
-                        isCalcBodyExpanded = !isCalcBodyExpanded;
-                        body.style.display = isCalcBodyExpanded ? "block" : "none";
-                        arrow.textContent = isCalcBodyExpanded ? "▼" : "▲";
-                    }
-                    function pushCalcChar(char) {
-                        const display = document.getElementById("calcDisplayScreen");
-                        if (display.value === "0" && char !== ".") { calcCurrentExpressionString = char; }
-                        else { calcCurrentExpressionString += char; }
-                        display.value = calcCurrentExpressionString;
-                    }
-                    function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }
-                    function pushCalcFunction(type) {
-                        const display = document.getElementById("calcDisplayScreen");
-                        let val = parseFloat(display.value) || 0;
-                        if (type === 'sqrt') { if (val < 0) { display.value = "Error"; calcCurrentExpressionString = ""; return; } val = Math.sqrt(val); }
-                        else if (type === 'pow') { val = Math.pow(val, 2); }
-                        else if (type === 'percent') { val = val / 100; }
-                        calcCurrentExpressionString = Number(val.toFixed(6)).toString();
-                        display.value = calcCurrentExpressionString;
-                    }
-                    function executeCalcExpression() {
-                        const display = document.getElementById("calcDisplayScreen");
-                        if (!calcCurrentExpressionString) return;
-                        try {
-                            let res = new Function('return (' + calcCurrentExpressionString + ')')();
-                            calcCurrentExpressionString = Number(res.toFixed(6)).toString();
-                            display.value = calcCurrentExpressionString;
-                        } catch (e) { display.value = "Error"; calcCurrentExpressionString = ""; }
-                    }
-                <\/script>
-            </body>
-            </html>
-        `);
-        testWindow.document.close();
+    if (scenarios.length === 0) {
+        alert("No questions found inside the database for this specific module selection.");
+        return;
     }
+
+    // Mescola e seleziona fino a un massimo di 15 domande a caso
+    const testQuestions = scenarios.sort(() => 0.5 - Math.random()).slice(0, 15);
+    
+    const testWindow = window.open("", "_blank");
+    if (!testWindow) {
+        alert("Popup blocked! Please allow popups to launch the simulator assessment.");
+        return;
+    }
+
+    testWindow.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AAT Simulator Matrix Window</title>
+    <style>
+        body { background-color: #0B0F19; color: #1F2937; font-family: Arial, sans-serif; padding: 40px 20px; }
+        .white-bubble { background: #FFFFFF; max-width: 800px; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .q-card { background: #F8FAFC; border: 1px solid #E5E7EB; border-radius: 6px; padding: 20px; margin-bottom: 20px; }
+        .q-title { font-weight: bold; font-size: 15px; margin-bottom: 10px; color: #0F172A; }
+        .field-row { margin-top: 10px; font-weight: 600; font-size: 14px; }
+        .num-field { width: 130px; padding: 6px; border: 1px solid #CBD5E1; border-radius: 4px; text-align: right; }
+    </style>
+</head>
+<body>
+    <div class="white-bubble">
+        <h2 style="margin-bottom:20px; border-bottom:2px solid #E5E7EB; padding-bottom:10px; color:#111827;">AAT RANDOMIZED SIMULATION</h2>
+        <div id="container-slots"></div>
+    </div>
+</body>
+</html>
+    `);
+    testWindow.document.close();
+
+    const slotsDiv = testWindow.document.getElementById('container-slots');
+    testQuestions.forEach((q, idx) => {
+        const div = testWindow.document.createElement('div');
+        div.className = 'q-card';
+        div.innerHTML = `
+            <div class="q-title">${idx + 1}. ${q.text}</div>
+            <div class="field-row">
+                <span>Your Answer:</span>
+                <input type="text" class="num-field" placeholder="0">
+            </div>
+            <div style="font-size:11px; margin-top:6px; color:#64748B; font-weight:bold;">${q.diff}</div>
+        `;
+        slotsDiv.appendChild(div);
+    });
+}
+// --- DATABASE INTEGRATO DELLE DOMANDE ---
+const questionsDatabase = [
+    // Esempi Capitolo 1
+    { id: "l2_c1_q1", level: "L2", chapter: 1, text: "Which financial accounting book registers prompt credit raw sales invoices?", correct: "Sales Day Book", diff: "🟢 Difficulty: Entry Level" },
+    
+    // Nuove Domande Iniettate per il Capitolo 5
+    { id: "l2_c5_q1", level: "L2", chapter: 5, text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", correct: "Liabilities, Income, Capital Base", diff: "🔴 Difficulty: Professional Level" },
+    { id: "l2_c5_q2", level: "L2", chapter: 5, text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", correct: "450", diff: "🟡 Difficulty: Intermediate" },
+    { id: "l2_c5_q3", level: "L2", chapter: 5, text: "If an office stationery invoice for £150 is debited to the Machinery Asset account instead of Stationery Expenses, what category of error is formed?", correct: "Error of Principle", diff: "🟢 Difficulty: Entry Level" }
+];
 </script>
 </body>
 </html>
