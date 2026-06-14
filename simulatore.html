@@ -283,43 +283,104 @@
  function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
  function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let n = parseFloat(d.value) || 0; if (t === 'sqrt') { if (n < 0) { d.value = "Error"; calcCurrentExpressionString = ""; return; } n = Math.sqrt(n); } else if (t === 'pow') { n = Math.pow(n, 2); } else if (t === 'percent') { n = n / 100; } calcCurrentExpressionString = Number(n.toFixed(6)).toString(); d.value = calcCurrentExpressionString; }
  function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let o = new Function(\`return (\${calcCurrentExpressionString})\`)(); if (o === Infinity || isNaN(o)) { d.value = "Error"; calcCurrentExpressionString = ""; } else { calcCurrentExpressionString = Number(o.toFixed(6)).toString(); d.value = calcCurrentExpressionString; } } catch (e) { d.value = "Syntax Error"; calcCurrentExpressionString = ""; } }
- document.body.insertAdjacentHTML('beforeend', \`
-    <div id="calc-icon-trigger-id" class="calc-icon-trigger" onclick="toggleCalculatorView(true)">🧮</div>
-    <div id="floatingCalcWidget" class="calc-widget-floating">
-        <div class="calc-widget-header" onclick="toggleCalculatorView(false)">
-            <span>🧮 AAT Exam Calculator</span>
-            <span id="calcToggleArrow">▲</span>
-        </div>
-        <div id="calcWidgetBody" class="calc-widget-body">
-            <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
-            <div class="calc-btn-grid">
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
-                <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
-                <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
-                <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
-                <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
-                <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
-                <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
-                <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
-                <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
-                <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
-                <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
-                <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
-                <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
-                <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
-                <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
-                <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+    // Inietto la calcolatrice fluttuante a icona con effetto fosforico direttamente nel popup d'esame
+    testWindow.document.body.insertAdjacentHTML('beforeend', `
+        <div id="calc-icon-trigger-id" class="calc-icon-trigger" onclick="toggleCalculatorView(true)">🧮</div>
+        <div id="floatingCalcWidget" class="calc-widget-floating">
+            <div class="calc-widget-header" onclick="toggleCalculatorView(false)">
+                <span>🧮 AAT Exam Calculator</span>
+                <span id="calcToggleArrow">▲</span>
+            </div>
+            <div id="calcWidgetBody" class="calc-widget-body">
+                <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
+                <div class="calc-btn-grid">
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
+                    <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
+                    <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+                    <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
+                    <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
+                    <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+                    <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
+                    <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
+                    <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+                    <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
+                    <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
+                    <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+                    <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
+                    <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
+                    <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
+                    <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+                </div>
             </div>
         </div>
-    </div>\`);
- </script></body></html>
- \`);
- testWindow.document.close();
- }
+    `);
+
+    // Inietto le funzioni operative della calcolatrice all'interno del contesto del popup d'esame
+    testWindow.toggleCalculatorView = function(show) {
+        const w = testWindow.document.getElementById("floatingCalcWidget");
+        const i = testWindow.document.getElementById("calc-icon-trigger-id");
+        if (w && i) {
+            if (show) { w.style.display = "block"; i.style.display = "none"; }
+            else { w.style.display = "none"; i.style.display = "flex"; }
+        }
+    };
+
+    testWindow.calcCurrentExpressionString = "";
+
+    testWindow.pushCalcChar = function(c) {
+        const d = testWindow.document.getElementById("calcDisplayScreen");
+        if (!d) return;
+        if (d.value === "0" && c !== ".") { testWindow.calcCurrentExpressionString = c; }
+        else { testWindow.calcCurrentExpressionString += c; }
+        d.value = testWindow.calcCurrentExpressionString;
+    };
+
+    testWindow.clearCalcScreen = function() {
+        testWindow.calcCurrentExpressionString = "";
+        const d = testWindow.document.getElementById("calcDisplayScreen");
+        if (d) d.value = "0";
+    };
+
+    testWindow.pushCalcFunction = function(t) {
+        const d = testWindow.document.getElementById("calcDisplayScreen");
+        if (!d) return;
+        let n = parseFloat(d.value) || 0;
+        if (t === 'sqrt') {
+            if (n < 0) { d.value = "Error"; testWindow.calcCurrentExpressionString = ""; return; }
+            n = Math.sqrt(n);
+        } else if (t === 'pow') {
+            n = Math.pow(n, 2);
+        } else if (t === 'percent') {
+            n = n / 100;
+        }
+        testWindow.calcCurrentExpressionString = Number(n.toFixed(6)).toString();
+        d.value = testWindow.calcCurrentExpressionString;
+    };
+
+    testWindow.executeCalcExpression = function() {
+        const d = testWindow.document.getElementById("calcDisplayScreen");
+        if (!d || !testWindow.calcCurrentExpressionString) return;
+        try {
+            let o = new testWindow.Function('return (' + testWindow.calcCurrentExpressionString + ')')();
+            if (o === Infinity || isNaN(o)) {
+                d.value = "Error"; testWindow.calcCurrentExpressionString = "";
+            } else {
+                testWindow.calcCurrentExpressionString = Number(o.toFixed(6)).toString();
+                d.value = testWindow.calcCurrentExpressionString;
+            }
+        } catch (e) {
+            d.value = "Syntax Error"; testWindow.calcCurrentExpressionString = "";
+        }
+    };
+
+    // Chiudo correttamente i tag script rimasti aperti nel document.write iniziale
+    testWindow.document.write('<\/script></body></html>');
+    testWindow.document.close();
+}
 </script>
 </body>
 </html>
