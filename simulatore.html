@@ -143,63 +143,39 @@
  .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
  .option-row:hover { background: #F1F5F9; }
  .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
- .option-right-inputs { display: flex; align-items: center; gap: 12px; }
  .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
  .feedback-marker { font-size: 15px; font-weight: bold; display: none; margin-right: 8px; }
- .feedback-correct { color: #10B981; }
- .feedback-wrong { color: #EF4444; }
- .osborne-footer-grid { display: flex; gap: 10px; width: 100%; max-width: 720px; margin-top: 20px; justify-content: space-between; }
- .left-btns { display: flex; gap: 8px; }
- .right-btns { display: flex; gap: 8px; }
+ .feedback-correct { color: #10B981; } .feedback-wrong { color: #EF4444; }
+ .osborne-footer-grid { display: flex; gap: 10px; width: 100%; margin-top: 24px; padding-top: 18px; border-top: 1px solid #E2E8F0; justify-content: space-between; }
+ .left-btns, .right-btns { display: flex; gap: 8px; }
  .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; }
  .btn-verify { background: #1D4ED8; } .btn-verify:hover { background: #1E40AF; }
  .btn-solution { background: #047857; } .btn-solution:hover { background: #065F46; }
  .btn-reset { background: #B91C1C; } .btn-reset:hover { background: #991B1B; }
  .btn-nav { background: #334155; } .btn-nav:hover { background: #1E293B; }
  .btn-pdf { background: #6D28D9; } .btn-pdf:hover { background: #5B21B6; }
- .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 250px; z-index: 9999; background: #111827; border: 1px solid #374151; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); overflow: hidden; }
- .calc-widget-header { background: #1F2937; padding: 10px; font-weight: 700; font-size: 12px; color: #38BDF8; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #374151; }
- .calc-widget-body { padding: 10px; }
- .calc-display { width: 100%; padding: 10px; background: #030712; border: 1px solid #374151; border-radius: 4px; color: #10B981; font-family: monospace; font-size: 24px; text-align: right; margin-bottom: 10px; box-sizing: border-box; font-weight: bold; }
- .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
- .calc-btn { background: #1F2937; border: 1px solid #374151; border-radius: 4px; padding: 12px 0; color: #F9FAFB; font-size: 14px; font-weight: bold; cursor: pointer; text-align: center; }
- .calc-btn:hover { background: #374151; }
- .btn-sci { color: #38BDF8; background: #1F2937; }
- .btn-equals { background: #10B981; color: #030712; border: 1px solid #059669; } .btn-equals:hover { background: #059669; }
+ .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; transition: transform 0.3s ease; }
+ .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
+ .calc-widget-header:hover { background: rgba(0, 242, 254, 0.25); }
+ .calc-widget-body { padding: 1rem; display: none; }
+ .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
+ .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+ .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+ .calc-btn:hover { background: rgba(255, 255, 255, 0.1); }
+ .btn-sci { color: #4facfe; background: rgba(79, 172, 254, 0.05); }
+ .btn-op { color: #00f2fe; background: rgba(0, 242, 254, 0.05); }
+ .btn-equals { background: #00f2fe; color: #0a0f1d; grid-row: span 1; }
+ .btn-equals:hover { background: #4facfe; color: #fff; }
  </style>
  </head>
  <body>
  <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
  <div id="questions-root-wrapper" style="width: 100%;"></div>
  </div>
- <div class="osborne-footer-grid">
-     <div class="left-btns">
-         <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
-         <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
-         <button onclick="resetCurrentForm()" class="osborne-btn btn-reset">Reset</button>
-     </div>
-     <div class="right-btns">
-         <button onclick="changeQuestion(-1)" class="osborne-btn btn-nav">Previous Question</button>
-         <button id="next-btn-toggle" onclick="changeQuestion(1)" class="osborne-btn btn-nav">Next Question</button>
-         <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn btn-pdf" style="display: none;">Download as PDF</button>
-     </div>
- </div>
- <div id="floatingCalcWidget" class="calc-widget-floating">
- <div class="calc-widget-header" onclick="toggleCalculatorView()"><span>OSBORNE CALC</span><span id="calcToggleArrow">▼</span></div>
- <div id="calcWidgetBody" class="calc-widget-body">
- <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
- <div class="calc-btn-grid">
- <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
- <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
- <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
- <button class="calc-btn btn-sci" onclick="pushCalcChar('/')">/</button>
- <button class="calc-btn" onclick="pushCalcChar('7')">7</button> <button class="calc-btn" onclick="pushCalcChar('8')">8</button> <button class="calc-btn" onclick="pushCalcChar('9')">9</button> <button class="calc-btn btn-sci" onclick="pushCalcChar('*')">*</button>
- <button class="calc-btn" onclick="pushCalcChar('4')">4</button> <button class="calc-btn" onclick="pushCalcChar('5')">5</button> <button class="calc-btn" onclick="pushCalcChar('6')">6</button> <button class="calc-btn btn-sci" onclick="pushCalcChar('-')">-</button>
- <button class="calc-btn" onclick="pushCalcChar('1')">1</button> <button class="calc-btn" onclick="pushCalcChar('2')">2</button> <button class="calc-btn" onclick="pushCalcChar('3')">3</button> <button class="calc-btn btn-sci" onclick="pushCalcChar('+')">+</button>
- <button class="calc-btn" onclick="pushCalcChar('0')">0</button> <button class="calc-btn" onclick="pushCalcChar('.')">.</button> <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button> <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
- </div>
- </div>
- </div>
+ `);
+ testWindow.document.write(`
+ </body>
+ </html>
  `);
  testWindow.document.write(`
  <script>
@@ -243,12 +219,24 @@
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
  <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
+ <div class="header-area"><span class="level-tag">${badgeText} • Q\Ref{\${num}} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
  <div class="question-title">Assessment Task \${num}</div>
  <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
  <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\u0024{opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
  <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\u0024{opts.b}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
  <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\u0024{opts.c}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
+ <div class="osborne-footer-grid">
+     <div class="left-btns">
+         <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
+         <button onclick="showCurrentSolution()" class="osborne-btn btn-solution">Show Solution</button>
+         <button onclick="resetCurrentForm()" class="osborne-btn btn-reset">Reset</button>
+     </div>
+     <div class="right-btns">
+         <button onclick="changeQuestion(-1)" class="osborne-btn btn-nav">Previous Question</button>
+         <button id="next-btn-toggle_\${idx}" onclick="changeQuestion(1)" class="osborne-btn btn-nav">Next Question</button>
+         <button id="osborne-pdf-trigger_\${idx}" onclick="triggerAutoPDFDownload()" class="osborne-btn btn-pdf" style="display: none;">Download as PDF</button>
+     </div>
+ </div>
  </div>\`;
  });
  function changeQuestion(s) { 
@@ -258,28 +246,23 @@
  currentActiveIndex = t; 
  document.getElementById("card_task_" + currentActiveIndex).classList.add("active"); 
  } 
- const nextBtn = document.getElementById("next-btn-toggle");
- const pdfBtn = document.getElementById("osborne-pdf-trigger");
+ const nextBtn = document.getElementById("next-btn-toggle_" + currentActiveIndex);
+ const pdfBtn = document.getElementById("osborne-pdf-trigger_" + currentActiveIndex);
  if (nextBtn && pdfBtn) {
  if (currentActiveIndex === scenarios.length - 1) { nextBtn.style.display = "none"; pdfBtn.style.display = "block"; }
  else { nextBtn.style.display = "block"; pdfBtn.style.display = "none"; }
  }
  }
- function triggerAutoPDFDownload() { const o = document.title; document.title = "AAT_Official_Exam_Worksheet"; window.print(); setTimeout(() => { document.title = o; }, 500); }
+ function triggerAutoPDFDownload() { window.print(); }
  function showCurrentSolution() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); document.getElementById("card_task_"+currentActiveIndex).querySelectorAll(".option-row").forEach(r=>r.classList.remove("reveal-correct")); const r=document.getElementById("opt_"+currentActiveIndex+"_"+c); if(r) r.closest(".option-row").classList.add("reveal-correct"); }
  function verifyCurrentInline() {
- const activeCard = document.getElementById("card_task_" + currentActiveIndex);
- const correctVal = activeCard.getAttribute("data-correct");
- const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
- const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
- const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
- const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
- const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
- const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
+ const activeCard = document.getElementById("card_task_" + currentActiveIndex); const correctVal = activeCard.getAttribute("data-correct");
+ const rA = document.getElementById("opt_" + currentActiveIndex + "_A"); const rB = document.getElementById("opt_" + currentActiveIndex + "_B"); const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
+ const mA = document.getElementById("mark_" + currentActiveIndex + "_A"); const mB = document.getElementById("mark_" + currentActiveIndex + "_B"); const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
  if(mA) mA.style.display = "none"; if(mB) mB.style.display = "none"; if(mC) mC.style.display = "none";
  if (rA && rA.checked && mA) { mA.style.display = "block"; mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
  else if (rB && rB.checked && mB) { mB.style.display = "block"; mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
- else if (rC && rC.checked && mC) { mC.style.display = "block"; mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
+ else if (rC && rC.checked && mC) { mC.style.display = "block"; mA.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
  }
  function resetCurrentForm() { 
  if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
@@ -288,15 +271,28 @@
  const rows = document.getElementById("card_task_" + currentActiveIndex).querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct"));
  document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; 
  }
- let isCalcBodyExpanded = true; let calcCurrentExpressionString = "";
- function toggleCalculatorView() { const b=document.getElementById("calcWidgetBody"); const a=document.getElementById("calcToggleArrow"); isCalcBodyExpanded=!isCalcBodyExpanded; b.style.display=isCalcBodyExpanded?"block":"none"; a.textContent=isCalcBodyExpanded?"▼":"▲"; }
- function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
- function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
- function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let v=parseFloat(d.value)||0; if(t==="sqrt"){v=Math.sqrt(v);}else if(t==="pow"){v=Math.pow(v,2);}else if(t==="percent"){v=v/100;} d.value=Number(v.toFixed(4)).toString(); calcCurrentExpressionString=d.value; }
- function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); try{ let r=new Function('return ('+calcCurrentExpressionString+')')(); d.value=Number(r.toFixed(4)).toString(); calcCurrentExpressionString=d.value; }catch(e){d.value="Error"; calcCurrentExpressionString="";} }
- <\/script></body></html>
+ document.body.insertAdjacentHTML('beforeend', \`
+ <div id="floatingCalcWidget" class="calc-widget-floating">
+ <div class="calc-widget-header" onclick="toggleCalculatorView()"><span>🧮 AAT Exam Calculator</span><span id="calcToggleArrow">▲</span></div>
+ <div id="calcWidgetBody" class="calc-widget-body">
+ <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
+ <div class="calc-btn-grid">
+ <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button><button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button><button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button><button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+ <button class="calc-btn" onclick="pushCalcChar('7')">7</button><button class="calc-btn" onclick="pushCalcChar('8')">8</button><button class="calc-btn" onclick="pushCalcChar('9')">9</button><button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+ <button class="calc-btn" onclick="pushCalcChar('4')">4</button><button class="calc-btn" onclick="pushCalcChar('5')">5</button><button class="calc-btn" onclick="pushCalcChar('6')">6</button><button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+ <button class="calc-btn" onclick="pushCalcChar('1')">1</button><button class="calc-btn" onclick="pushCalcChar('2')">2</button><button class="calc-btn" onclick="pushCalcChar('3')">3</button><button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+ <button class="calc-btn" onclick="pushCalcChar('0')">0</button><button class="calc-btn" onclick="pushCalcChar('.')">.</button><button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button><button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+ </div>
+ </div>
+ </div>\`);
+ let isCalcBodyExpanded = false; let calcCurrentExpressionString = "";
+ function toggleCalculatorView() { const b = document.getElementById("calcWidgetBody"); const a = document.getElementById("calcToggleArrow"); isCalcBodyExpanded = !isCalcBodyExpanded; if (isCalcBodyExpanded) { b.style.display = "block"; a.textContent = "▼"; } else { b.style.display = "none"; a.textContent = "▲"; } }
+ function pushCalcChar(c) { const d = document.getElementById("calcDisplayScreen"); if (d.value === "0" && c !== ".") { calcCurrentExpressionString = c; } else { calcCurrentExpressionString += c; } d.value = calcCurrentExpressionString; }
+ function clearCalcScreen() { calcCurrentExpressionString = ""; document.getElementById("calcDisplayScreen").value = "0"; }
+ function pushCalcFunction(t) { const d = document.getElementById("calcDisplayScreen"); let n = parseFloat(d.value) || 0; if (t === 'sqrt') { if (n < 0) { d.value = "Error"; calcCurrentExpressionString = ""; return; } n = Math.sqrt(n); } else if (t === 'pow') { n = Math.pow(n, 2); } else if (t === 'percent') { n = n / 100; } calcCurrentExpressionString = Number(n.toFixed(6)).toString(); d.value = calcCurrentExpressionString; }
+ function executeCalcExpression() { const d = document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let o = new Function(\`return (\${calcCurrentExpressionString})\`)(); if (o === Infinity || isNaN(o)) { d.value = "Error"; calcCurrentExpressionString = ""; } else { calcCurrentExpressionString = Number(o.toFixed(6)).toString(); d.value = calcCurrentExpressionString; } } catch (e) { d.value = "Syntax Error"; calcCurrentExpressionString = ""; } }
+ <\/script>
  `);
- testWindow.document.write('</body></html>');
  testWindow.document.close();
  }
 </script>
