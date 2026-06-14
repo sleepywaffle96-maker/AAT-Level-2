@@ -1,58 +1,52 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>AAT Accounting Hub - Interactive Simulator</title>
- <link href="https://googleapis.com" rel="stylesheet">
- <style>
- body { background-color: #0B0F19 !important; color: #F3F4F6; font-family: 'Inter', sans-serif; margin: 0; padding: 40px 20px; box-sizing: border-box; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
- .container { width: 100%; max-width: 760px; margin: 0 auto; }
- .back-home { display: inline-block; color: #38BDF8; text-decoration: none; margin-bottom: 20px; font-weight: 600; font-size: 14px; }
- .back-home:hover { text-decoration: underline; }
- .simulator-white-bubble { background: #FFFFFF !important; border-radius: 20px; padding: 35px 25px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); border: 1px solid #E2E8F0; color: #1E293B !important; }
- .header-section { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #E2E8F0; padding-bottom: 20px; }
- h1 { color: #0F172A !important; margin: 0 0 8px 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
- .subtitle { font-size: 14px; color: #64748B; margin: 0; }
- .filter-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
- .select-wrapper { display: flex; flex-direction: column; gap: 6px; }
- .select-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.5px; }
- .custom-select { width: 100%; background-color: #F8FAFC; border: 1px solid #D1D5DB; color: #1E293B; font-size: 14px; border-radius: 10px; padding: 14px; font-weight: 700; cursor: pointer; outline: none; }
- .generate-btn { display: block; width: 100%; background: linear-gradient(135deg, #0D9488, #0F766E); color: #FFFFFF !important; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3); transition: opacity 0.2s; }
- .generate-btn:hover { opacity: 0.95; }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAT Interactive Simulator Matrix</title>
+    <style>
+        :root { --bg-dark: #0B0F19; --card-white: #FFFFFF; --primary-teal: #117A71; --primary-hover: #0E635C; --text-dark: #1F2937; --text-muted: #64748B; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: sans-serif; background-color: var(--bg-dark); color: var(--text-dark); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .dashboard-container { width: 100%; max-width: 600px; background: var(--card-white); padding: 40px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .back-link { display: inline-block; color: #0284C7; text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+        h1 { font-size: 32px; font-weight: 800; text-align: center; color: #0F172A; margin-bottom: 8px; }
+        .subtitle { font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 32px; line-height: 1.5; }
+        .form-group { margin-bottom: 24px; }
+        label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; }
+        select { width: 100%; padding: 14px 16px; font-size: 15px; border: 1px solid #CBD5E1; border-radius: 8px; background-color: #F8FAFC; color: #0F172A; cursor: pointer; }
+        .launch-btn { width: 100%; background-color: var(--primary-teal); color: white; border: none; padding: 16px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer; margin-top: 32px; }
+        .launch-btn:hover { background-color: var(--primary-hover); }
+    </style>
 </head>
 <body>
-<div class="container">
- <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
- <div class="simulator-white-bubble">
- <div class="header-section">
- <h1>AAT Interactive Simulator</h1>
- <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
- </div>
- <div class="filter-group">
- <div class="select-wrapper">
- <label class="select-label">Target Assessment Level</label>
- <select id="level-selector" class="custom-select" onchange="updateChapters()">
- <option value="" selected disabled>Select Qualification Level...</option>
- <option value="RANDOM">🎲 Randomize All Levels - Mixed Scenario</option>
- <option value="L2">📊 AAT Level 2 Certificate</option>
- <option value="L3">🔷 AAT Level 3 Diploma</option>
- <option value="L4">🔶 AAT Level 4 Diploma</option>
- </select>
- </div>
- <div class="select-wrapper">
- <label class="select-label">Syllabus Chapter Unit</label>
- <select id="chapter-selector" class="custom-select" disabled>
- <option value="" selected disabled>Select a level first...</option>
- </select>
- </div>
- </div>
- <button onclick="launchPaginatedTestWindow()" class="generate-btn">
- Launch Paginated Test Window &rarr;
- </button>
- </div>
-</div>
+    <div class="dashboard-container">
+        <a href="#" class="back-link">← Back to Dashboard</a>
+        <h1>AAT Interactive Simulator</h1>
+        <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
+        
+        <div class="form-group">
+            <label>Target Assessment Level</label>
+            <select id="level-select" onchange="updateChapters()">
+                <option value="" selected disabled>Select Qualification Level...</option>
+                <option value="RANDOM">🎲 Randomize All Levels - Mixed Scenario</option>
+                <option value="L2">📊 AAT Level 2 Certificate</option>
+                <option value="L3">🔷 AAT Level 3 Diploma</option>
+                <option value="L4">🔶 AAT Level 4 Diploma</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Syllabus Chapter Unit</label>
+            <select id="chapter-select" disabled>
+                <option value="" selected disabled>Select a level first...</option>
+            </select>
+        </div>
+
+        <button class="launch-btn" onclick="launchPaginatedTestWindow()">
+            Launch Paginated Test Window →
+        </button>
+    </div>
 <script>
  const syllabusData = {
  "L2": [
@@ -82,10 +76,9 @@
  "Chapter 9: Internal Accounting Systems and Controls"
  ]
  };
-
  function updateChapters() {
- const lvlSelector = document.getElementById("level-select") || document.getElementById("level-selector");
- const chapSelector = document.getElementById("chapter-select") || document.getElementById("chapter-selector");
+ const lvlSelector = document.getElementById("level-select");
+ const chapSelector = document.getElementById("chapter-select");
  if (!lvlSelector || !chapSelector) return;
  
  const selectedLevel = lvlSelector.value;
@@ -114,8 +107,8 @@
  }
  }
  function launchPaginatedTestWindow() {
- const lvlSelector = document.getElementById("level-select") || document.getElementById("level-selector");
- const chapSelector = document.getElementById("chapter-select") || document.getElementById("chapter-selector");
+ const lvlSelector = document.getElementById("level-select");
+ const chapSelector = document.getElementById("chapter-select");
  if (!lvlSelector || !chapSelector) return;
  
  let lvl = lvlSelector.value;
@@ -132,14 +125,13 @@
  let badgeText = "Level 2 Full Assessment";
  if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
  if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
- const randomEntryNum = Math.floor(Math.random() * 900 + 100);
  const testWindow = window.open("", "_blank");
  
  testWindow.document.write(`
  <!DOCTYPE html>
  <html>
  <head>
- <title>AAT Paginated Exam - Entry #\${randomEntryNum}</title>
+ <title>AAT Paginated Exam - Assessment Entry</title>
  <style>
  body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
  .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
@@ -152,19 +144,17 @@
  .option-row:hover { background: #F1F5F9; }
  .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
  .option-right-inputs { display: flex; align-items: center; gap: 12px; }
- .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); }
- .feedback-marker { font-size: 15px; font-weight: bold; display: none; }
+ .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
+ .feedback-marker { font-size: 15px; font-weight: bold; display: none; margin-right: 8px; }
  .feedback-correct { color: #10B981; }
  .feedback-wrong { color: #EF4444; }
  .osborne-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; width: 100%; max-width: 720px; margin-top: 20px; }
  .osborne-btn { border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 4px; font-size: 11.5px; font-weight: 700; cursor: pointer; text-align: center; background: #F8FAFC; color: #334155; outline: none; }
  .osborne-btn:hover { background: #F1F5F9; }
  .btn-verify { background: #1E293B; color: #FFFFFF; border-color: #1E293B; }
- .btn-verify:hover { background: #0F172A; }
  .btn-solution { background: #0284C7; color: #FFFFFF; border-color: #0284C7; }
- .btn-solution:hover { background: #0369A1; }
- .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
- .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
+ .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.9); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); overflow: hidden; }
+ .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); }
  .calc-widget-body { padding: 1rem; display: none; }
  .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
  .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
@@ -184,7 +174,6 @@
  <button onclick="resetCurrentForm()" class="osborne-btn">Reset</button>
  <button onclick="changeQuestion(-1)" class="osborne-btn">&larr;&larr;&larr; previous question</button>
  <button onclick="changeQuestion(1)" class="osborne-btn">next question &rarr;&rarr;&rarr;</button>
- <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B;"> Download as PDF</button>
  </div>
  <div id="floatingCalcWidget" class="calc-widget-floating">
  <div class="calc-widget-header" onclick="toggleCalculatorView()">
@@ -221,18 +210,38 @@
  testWindow.document.write(`
  <script>
  const scenarios = [
- { text: "A credit buy of £1,200 plus 20% VAT occurs. Calculate Gross value.", correct: "A", diff: "🟢 Entry Level" },
- { text: "Net sales are £45,000. 20% standard VAT is added. Find Gross sales.", correct: "B", diff: "🟡 Intermediate" },
- { text: "Trial Balance has Debit £24,650 and Credit £24,200. Find Suspense balance.", correct: "A", diff: "🟢 Entry Level" },
- { text: "An asset item of £150 is debited to Expenses. Name this type of error.", correct: "A", diff: "🟢 Entry Level" },
- { text: "Under DEAD CLIC, which group carries Debit balances by default?", correct: "B", diff: "🟡 Intermediate" }
+ { text: "A company purchased goods on credit for £1,200 plus 20% VAT. Calculate the exact gross entry value to be posted in the Purchase Day Book.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "Calculate the total credit sales from the Sales Day Book if net sales are £45,000 and standard 20% VAT is applied to all invoices.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+ { text: "The Petty Cash box has a fixed imprest of £250. Vouchers total £184. Compute the exact amount required to restore the imprest value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "A bank reconciliation reveals an unpresented cheque of £450 and an uncredited lodgement of £300. If the ledger balance is £1,200, find the correct balance per bank statement.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "A credit customer balance of £850 was posted to the wrong individual ledger account. Classify this specific book-keeping error type.", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+ { text: "Closing inventory valuation under FIFO shows 120 units at £15 cost per unit. Realisable value drops to £12. Calculate the correct valuation adjustment.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "A sole trader has a gross mark-up of 25% on cost. If the total cost of sales amounts to £16,000, calculate the total expected turnover value.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
+ { text: "An office computer invoice for £1,500 was debited to the Office Stationery Expenses account. Identify this category of ledger accounting error.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "Process the year-end accrual entry if a business receives an electricity bill for £360 covering a 3-month period, but 1 month belongs to the next accounting year.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "Under the DEAD CLIC matrix framework, which group of nominal accounts have debit balances extracted in a Trial Balance?", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+ { text: "A Trial Balance shows a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening entry value.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "Calculate the adjusted Partnership profit share for Partner A under a 3:2 ratio if the net residue profit to be split is exactly £45,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" },
+ { text: "An invoice of £150 is recorded in the Sales Day Book as £105. Name this type of original entry mistake.", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "A company carries a bank overdraft of £1,850 at month-end. In which Trial Balance ledger column must this balance be extracted?", correct: "B", diff: "🟡 Difficulty: Intermediate" },
+ { text: "Calculate the net profit percentage if a trader has sales of £120,000, cost of sales of £80,000, and additional overhead expenses of £16,000.", correct: "B", diff: "🔴 Difficulty: Professional Level" }
  ];
  const optionTexts = [
- { a: "£1,440 Gross entry value", b: "£1,200 Net ledger value", c: "£240 Input VAT amount" },
- { a: "£45,000 net baseline", b: "£54,000 Gross sales with VAT", c: "£9,000 output tax liability" },
- { a: "£450 Opening Credit Balance", b: "£24,650 Debit total", c: "£200 reconciliation value" },
- { a: "Error of Principle", b: "Error of Omission", c: "Error of Commission" },
- { a: "Liabilities and Capital", b: "Expenses, Assets, and Drawings (DEAD)", c: "Income and Revenues (CLIC)" }
+ { a: "£1,440 Gross total value", b: "£1,200 Net total value", c: "£240 Input VAT value only" },
+ { a: "£45,000 Gross total", b: "£54,000 Gross total value with VAT included", c: "£9,000 Output VAT component" },
+ { a: "£184 to replenish cash spent", b: "£66 cash remaining value", c: "£250 full imprest amount" },
+ { a: "£1,350 adjusted bank balance", b: "£1,050 bank ledger statement balance", c: "£1,500 unadjusted ledger total" },
+ { a: "Error of Principle", b: "Error of Commission within customer accounts", c: "Complete Reversal of entries" },
+ { a: "£1,440 total value adjustment", b: "£1,800 asset book value", c: "£360 cost down-valuation reduction" },
+ { a: "£20,000 sales value", b: "£20,000 turnover using mark-up logic", c: "£4,000 gross margin value" },
+ { a: "Error of Principle (Asset vs Expense)", b: "Error of Commission", c: "Compensating Error pattern" },
+ { a: "Debit relevant utility expenditure £240 and credit Accruals £240", b: "Credit outstanding rental provisions £120", c: "Post year-end corrections £360 directly" },
+ { a: "Liabilities, Income, and Capital", b: "Debit: Expenses, Assets, and Drawings (DEAD)", c: "Credit: Liabilities, Income, and Capital (CLIC) only" },
+ { a: "£450 Opening Credit Balance in Suspense Account", b: "£24,650 Opening Credit Entry", c: "£200 Debit Reconciliation Entry" },
+ { a: "£27,000 profit share allocated", b: "£27,000 calculated profit using ratio rules", c: "£18,000 residual profit share" },
+ { a: "Error of Original Entry", b: "Error of Omission", c: "Complete Reversal of Double Entry" },
+ { a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" },
+ { a: "33.3% Gross Margin", b: "20.0% Net Profit Margin", c: "13.3% Total Expense Coefficient" }
  ];
  let currentActiveIndex = 0;
  const root = document.getElementById("questions-root-wrapper");
@@ -240,18 +249,37 @@
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
  <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q\${num}</span><span class="difficulty-tag">\${q.diff}</span></div>
- <div class="question-title">Task \text{\${num}}</div>
- <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px;">\u0024{q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><span class="option-text-left">\u0024{opts.a}</span><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><span class="option-text-left">\u0024{opts.b}</span><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><span class="option-text-left">\u0024{opts.c}</span><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C"></div>
+ <div class="header-area"><span class="level-tag">${badgeText} • Q\${num}</span><span class="difficulty-tag">\text{\${q.diff}}</span></div>
+ <div class="question-title">Assessment Task \${num}</div>
+ <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\u0024{opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\u0024{opts.b}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\u0024{opts.c}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
  </div>\`;
  });
  function changeQuestion(s) { const t=currentActiveIndex+s; if(t>=0 && t<scenarios.length){ document.getElementById("card_task_"+currentActiveIndex).classList.remove("active"); currentActiveIndex=t; document.getElementById("card_task_"+currentActiveIndex).classList.add("active"); } }
  function showCurrentSolution() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); document.getElementById("card_task_"+currentActiveIndex).querySelectorAll(".option-row").forEach(r=>r.classList.remove("reveal-correct")); const r=document.getElementById("opt_"+currentActiveIndex+"_"+c); if(r) r.closest(".option-row").classList.add("reveal-correct"); }
- function verifyCurrentInline() { const c=document.getElementById("card_task_"+currentActiveIndex).getAttribute("data-correct"); const r=document.getElementById("opt_"+currentActiveIndex+"_A").checked?"A":document.getElementById("opt_"+currentActiveIndex+"_B").checked?"B":document.getElementById("opt_"+currentActiveIndex+"_C").checked?"C":""; if(r==="") return; alert(r===c?"Correct! ✔":"Wrong! ❌"); }
- function resetCurrentForm() { document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; }
+ function verifyCurrentInline() {
+ const activeCard = document.getElementById("card_task_" + currentActiveIndex);
+ const correctVal = activeCard.getAttribute("data-correct");
+ const rA = document.getElementById("opt_" + currentActiveIndex + "_A");
+ const rB = document.getElementById("opt_" + currentActiveIndex + "_B");
+ const rC = document.getElementById("opt_" + currentActiveIndex + "_C");
+ const mA = document.getElementById("mark_" + currentActiveIndex + "_A");
+ const mB = document.getElementById("mark_" + currentActiveIndex + "_B");
+ const mC = document.getElementById("mark_" + currentActiveIndex + "_C");
+ if(mA) mA.style.display = "none"; if(mB) mB.style.display = "none"; if(mC) mC.style.display = "none";
+ if (rA && rA.checked && mA) { mA.style.display = "block"; mA.innerHTML = correctVal === "A" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
+ else if (rB && rB.checked && mB) { mB.style.display = "block"; mB.innerHTML = correctVal === "B" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
+ else if (rC && rC.checked && mC) { mC.style.display = "block"; mC.innerHTML = correctVal === "C" ? '<span class="feedback-correct">✔ </span>' : '<span class="feedback-wrong">❌ </span>'; }
+ }
+ function resetCurrentForm() { 
+ if(document.getElementById("mark_" + currentActiveIndex + "_A")) document.getElementById("mark_" + currentActiveIndex + "_A").style.display = "none";
+ if(document.getElementById("mark_" + currentActiveIndex + "_B")) document.getElementById("mark_" + currentActiveIndex + "_B").style.display = "none";
+ if(document.getElementById("mark_" + currentActiveIndex + "_C")) document.getElementById("mark_" + currentActiveIndex + "_C").style.display = "none";
+ const rows = document.getElementById("card_task_" + currentActiveIndex).querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct"));
+ document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; 
+ }
  let isCalcBodyExpanded = false; let calcCurrentExpressionString = "";
  function toggleCalculatorView() { const b=document.getElementById("calcWidgetBody"); const a=document.getElementById("calcToggleArrow"); isCalcBodyExpanded=!isCalcBodyExpanded; b.style.display=isCalcBodyExpanded?"block":"none"; a.textContent=isCalcBodyExpanded?"▼":"▲"; }
  function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
