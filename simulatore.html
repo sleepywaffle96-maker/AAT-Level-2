@@ -130,7 +130,7 @@
  testWindow.document.write(`
  <!DOCTYPE html>
  <html>
- <head>
+ head>
  <title>AAT Paginated Exam - Assessment Entry</title>
  <style>
  body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
@@ -217,12 +217,12 @@
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
  <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
+ <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\${q.diff}</span></div>
  <div class="question-title">Assessment Task \${num}</div>
- <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\u0024{opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\u0024{opts.b}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\u0024{opts.c}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
+ <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\${q.text}</p>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\${opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\text{\${opts.b}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\text{\${opts.c}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
  <div class="osborne-footer-grid">
      <div class="left-btns">
          <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
@@ -274,6 +274,15 @@
  const rows = document.getElementById("card_task_" + currentActiveIndex).querySelectorAll(".option-row"); rows.forEach(r => r.classList.remove("reveal-correct"));
  document.getElementById("opt_"+currentActiveIndex+"_A").checked=false; document.getElementById("opt_"+currentActiveIndex+"_B").checked=false; document.getElementById("opt_"+currentActiveIndex+"_C").checked=false; 
  }
+ function toggleCalculatorView(show) {
+ const w = document.getElementById("floatingCalcWidget"); const i = document.getElementById("calc-icon-trigger-id");
+ if (show) { w.style.display = "block"; i.style.display = "none"; } else { w.style.display = "none"; i.style.display = "flex"; }
+ }
+ let calcCurrentExpressionString = "";
+ function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
+ function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
+ function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let n = parseFloat(d.value) || 0; if (t === 'sqrt') { if (n < 0) { d.value = "Error"; calcCurrentExpressionString = ""; return; } n = Math.sqrt(n); } else if (t === 'pow') { n = Math.pow(n, 2); } else if (t === 'percent') { n = n / 100; } calcCurrentExpressionString = Number(n.toFixed(6)).toString(); d.value = calcCurrentExpressionString; }
+ function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let o = new Function(\`return (\${calcCurrentExpressionString})\`)(); if (o === Infinity || isNaN(o)) { d.value = "Error"; calcCurrentExpressionString = ""; } else { calcCurrentExpressionString = Number(o.toFixed(6)).toString(); d.value = calcCurrentExpressionString; } } catch (e) { d.value = "Syntax Error"; calcCurrentExpressionString = ""; } }
  document.body.insertAdjacentHTML('beforeend', \`
     <div id="calc-icon-trigger-id" class="calc-icon-trigger" onclick="toggleCalculatorView(true)">🧮</div>
     <div id="floatingCalcWidget" class="calc-widget-floating">
@@ -307,15 +316,6 @@
             </div>
         </div>
     </div>\`);
- function toggleCalculatorView(show) {
- const w = document.getElementById("floatingCalcWidget"); const i = document.getElementById("calc-icon-trigger-id");
- if (show) { w.style.display = "block"; i.style.display = "none"; } else { w.style.display = "none"; i.style.display = "flex"; }
- }
- let calcCurrentExpressionString = "";
- function pushCalcChar(c) { const d=document.getElementById("calcDisplayScreen"); if(d.value==="0"&&c!=="."){calcCurrentExpressionString=c;}else{calcCurrentExpressionString+=c;} d.value=calcCurrentExpressionString; }
- function clearCalcScreen() { calcCurrentExpressionString=""; document.getElementById("calcDisplayScreen").value="0"; }
- function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let n = parseFloat(d.value) || 0; if (t === 'sqrt') { if (n < 0) { d.value = "Error"; calcCurrentExpressionString = ""; return; } n = Math.sqrt(n); } else if (t === 'pow') { n = Math.pow(n, 2); } else if (t === 'percent') { n = n / 100; } calcCurrentExpressionString = Number(n.toFixed(6)).toString(); d.value = calcCurrentExpressionString; }
- function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); if (!calcCurrentExpressionString) return; try { let o = new Function(\`return (\${calcCurrentExpressionString})\`)(); if (o === Infinity || isNaN(o)) { d.value = "Error"; calcCurrentExpressionString = ""; } else { calcCurrentExpressionString = Number(o.toFixed(6)).toString(); d.value = calcCurrentExpressionString; } } catch (e) { d.value = "Syntax Error"; calcCurrentExpressionString = ""; } }
  <\/script></body></html>
  \`);
  testWindow.document.close();
