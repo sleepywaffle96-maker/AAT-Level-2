@@ -106,72 +106,61 @@
  });
  }
  }
- function launchPaginatedTestWindow() {
- const lvlSelector = document.getElementById("level-select");
- const chapSelector = document.getElementById("chapter-select");
- if (!lvlSelector || !chapSelector) return;
- 
- let lvl = lvlSelector.value;
- let chap = chapSelector.value;
- if (!lvl || !chap) {
- alert("Please select both parameters before launching.");
- return;
- }
- if (lvl === "RANDOM") {
- const levels = ["L2", "L3", "L4"];
- lvl = levels[Math.floor(Math.random() * levels.length)];
- }
- let badgeClass = "background: #0D9488;";
- let badgeText = "Level 2 Full Assessment";
- if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
- if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
- const testWindow = window.open("", "_blank");
- 
- testWindow.document.write(`
- <!DOCTYPE html>
- <html>
- <head>
- <title>AAT Paginated Exam - Assessment Entry</title>
- <style>
- body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; box-sizing: border-box; }
- .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid #E2E8F0; box-sizing: border-box; display: none; }
- .test-card-container.active { display: block; }
- .header-area { border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
- .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; color: #FFFFFF; \${badgeClass} }
- .difficulty-tag { font-size: 11px; font-weight: 700; color: #4B5563; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
- .question-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 5px 0; }
- .option-row { display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #D1D5DB; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
- .option-row:hover { background: #F1F5F9; }
- .option-text-left { font-size: 13.5px; font-weight: 600; color: #334155; }
- .option-right-inputs { display: flex; align-items: center; gap: 12px; }
- .option-row.reveal-correct { background-color: #DCFCE7 !important; border-color: #10B981 !important; }
- .feedback-marker { font-size: 15px; font-weight: bold; display: none; margin-right: 8px; }
- .feedback-correct { color: #10B981; }
- .feedback-wrong { color: #EF4444; }
- .osborne-footer-grid { display: flex; gap: 10px; width: 100%; max-width: 720px; margin-top: 20px; justify-content: space-between; }
- .left-btns { display: flex; gap: 8px; }
- .right-btns { display: flex; gap: 8px; }
- .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; }
- .btn-verify { background: #1D4ED8; } .btn-verify:hover { background: #1E40AF; }
- .btn-solution { background: #047857; } .btn-solution:hover { background: #065F46; }
- .btn-reset { background: #B91C1C; } .btn-reset:hover { background: #991B1B; }
- .btn-nav { background: #334155; } .btn-nav:hover { background: #1E293B; }
- .btn-pdf { background: #6D28D9; } .btn-pdf:hover { background: #5B21B6; }
- .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 250px; z-index: 9999; background: #111827; border: 1px solid #374151; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); overflow: hidden; }
- .calc-widget-header { background: #1F2937; padding: 10px; font-weight: 700; font-size: 12px; color: #38BDF8; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #374151; }
- .calc-widget-body { padding: 10px; }
- .calc-display { width: 100%; padding: 10px; background: #030712; border: 1px solid #374151; border-radius: 4px; color: #10B981; font-family: monospace; font-size: 24px; text-align: right; margin-bottom: 10px; box-sizing: border-box; font-weight: bold; }
- .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
- .calc-btn { background: #1F2937; border: 1px solid #374151; border-radius: 4px; padding: 12px 0; color: #F9FAFB; font-size: 14px; font-weight: bold; cursor: pointer; text-align: center; }
- .calc-btn:hover { background: #374151; }
- .btn-sci { color: #38BDF8; background: #1F2937; }
- .btn-equals { background: #10B981; color: #030712; border: 1px solid #059669; } .btn-equals:hover { background: #059669; }
- </style>
- </head>
- <body>
- <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center;">
- <div id="questions-root-wrapper" style="width: 100%;"></div>
- </div>
+function launchPaginatedTestWindow() {
+    const lvlSelector = document.getElementById("level-select");
+    const chapSelector = document.getElementById("chapter-select");
+    if (!lvlSelector || !chapSelector) return;
+    
+    let lvl = lvlSelector.value;
+    let chap = chapSelector.value;
+    if (!lvl || !chap) { alert("Please select both parameters before launching."); return; }
+    if (lvl === "RANDOM") {
+        const levels = ["L2", "L3", "L4"];
+        lvl = levels[Math.floor(Math.random() * levels.length)];
+    }
+    
+    // Assegnazione colori badge basata sul livello
+    let badgeClass = "background: #0D9488;", badgeText = "Level 2 Full Assessment";
+    if (lvl === "L3") { badgeClass = "background: #0284C7;"; badgeText = "Level 3 Full Assessment"; }
+    if (lvl === "L4") { badgeClass = "background: #EA580C;"; badgeText = "Level 4 Full Assessment"; }
+
+    const testWindow = window.open("", "_blank");
+    testWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>AAT Paginated Exam - ${badgeText}</title>
+    <style>
+    body { background-color: #0B0F19; color: #F3F4F6; font-family: sans-serif; padding: 20px; margin: 0; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+    .test-card-container { width: 100%; max-width: 720px; background: #FFFFFF; color: #1E293B; border-radius: 16px; padding: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.4); border: 1px solid #E2E8F0; display: none; }
+    .test-card-container.active { display: block; }
+    .header-area { border-bottom: 2px solid #F1F5F9; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; color: #FFFFFF; ${badgeClass} }
+    .question-title { font-size: 18px; font-weight: 700; color: #0F172A; margin: 10px 0 20px 0; }
+    .option-row { display: flex; align-items: center; gap: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .option-row:hover { background: #F1F5F9; }
+    .option-row.reveal-correct { background-color: #ECFDF5; border-color: #10B981; }
+    .feedback-marker { font-weight: bold; margin-left: auto; display: none; }
+    .feedback-correct { color: #10B981; display: block; }
+    .feedback-wrong { color: #EF4444; display: block; }
+    
+    /* Stili OSBORNE CALC */
+    .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 260px; z-index: 9999; background: #1F2937; border: 2px solid #4B5563; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); overflow: hidden; }
+    .calc-widget-header { background: #111827; padding: 10px; font-weight: 700; font-size: 12px; color: #38BDF8; cursor: pointer; display: flex; justify-content: space-between; }
+    .calc-display { width: 100%; padding: 12px; background: #030712; border: none; color: #10B981; font-family: monospace; font-size: 26px; text-align: right; box-sizing: border-box; font-weight: bold; }
+    .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 6px; }
+    .calc-btn { background: #374151; border: none; padding: 15px 0; color: white; font-weight: bold; cursor: pointer; border-radius: 4px; }
+    .calc-btn:hover { background: #4B5563; }
+    .btn-sci { color: #38BDF8; background: #111827; }
+    .btn-equals { background: #10B981; color: #030712; }
+    .btn-equals:hover { background: #059669; }
+    </style>
+    </head>
+    <body>
+    <div id="questions-root-wrapper" style="width: 100%; max-width: 720px;"></div>
+    <!-- Spazio per pulsanti navigazione/calcolatrice... -->
+    `);
+}
  <div class="osborne-footer-grid">
      <div class="left-btns">
          <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
@@ -257,9 +246,9 @@
  scenarios.forEach((q, idx) => {
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
- <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\text{\${q.correct}}">
+ <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
  <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
- <div class="question-title">Assessment Task \${num}</div>
+ <div class="question-title">Assessment Task \text{\${num}}</div>
  <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
  <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\u0024{opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
  <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\u0024{opts.b}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
@@ -271,7 +260,7 @@
  if(t>=0 && t<scenarios.length){ 
  document.getElementById("card_task_"+currentActiveIndex).classList.remove("active"); 
  currentActiveIndex=t; 
- document.getElementById("card_task_"+currentActiveIndex).classList.add("active"); 
+ document.getElementById("card_task_"+currentActiveIndex).add("active"); 
  } 
  const nextBtn = document.getElementById("next-btn-toggle");
  const pdfBtn = document.getElementById("osborne-pdf-trigger");
@@ -310,7 +299,7 @@
  function pushCalcFunction(t) { const d=document.getElementById("calcDisplayScreen"); let v=parseFloat(d.value)||0; if(t==="sqrt"){v=Math.sqrt(v);}else if(t==="pow"){v=Math.pow(v,2);}else if(t==="percent"){v=v/100;} d.value=Number(v.toFixed(4)).toString(); calcCurrentExpressionString=d.value; }
  function executeCalcExpression() { const d=document.getElementById("calcDisplayScreen"); try{ let r=new Function('return ('+calcCurrentExpressionString+')')(); d.value=Number(r.toFixed(4)).toString(); calcCurrentExpressionString=d.value; }catch(e){d.value="Error"; calcCurrentExpressionString="";} }
  <\/script></body></html>
- `);
+ \`);
  testWindow.document.write('</body></html>');
  testWindow.document.close();
  }
