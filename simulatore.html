@@ -1287,19 +1287,119 @@ body{
 }
 
 /* 9. Widget Calcolatrice Vetrificata */
-#calc-widget { ... }
-#calc-header { ... }
-#calc-header span { ... }
-#calc-close-btn { ... }
-#calc-screen { ... }
-.calc-grid { ... }
-.calc-btn { ... }
-.calc-btn:hover { ... }
-.calc-btn.op { ... }
-.calc-btn.op:hover { ... }
 
-#calc-toggle-trigger { ... }
-#calc-toggle-trigger:hover { ... }
+#calc-widget{
+position:fixed;
+bottom:90px;
+right:30px;
+width:240px;
+background:rgba(15,23,42,.9);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:14px;
+padding:18px;
+box-shadow:0 20px 40px rgba(0,0,0,.6);
+z-index:2000;
+display:none;
+cursor:move;
+}
+
+#calc-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+padding-bottom:6px;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+#calc-header span{
+color:#64748B;
+font-size:11px;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+#calc-close-btn{
+background:transparent;
+border:none;
+color:#EF4444;
+font-weight:bold;
+cursor:pointer;
+font-size:14px;
+}
+
+#calc-screen{
+width:100%;
+height:45px;
+background:#000;
+border-radius:8px;
+color:#00FFFF;
+text-shadow:0 0 10px #00FFFF;
+font-family:'Courier New',monospace;
+text-align:right;
+padding:12px;
+font-size:20px;
+font-weight:bold;
+margin-bottom:12px;
+border:1px solid #00FFFF;
+box-sizing:border-box;
+}
+
+.calc-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+}
+
+.calc-btn{
+background:rgba(255,255,255,.08);
+border:none;
+color:white;
+padding:12px;
+font-size:14px;
+font-weight:600;
+border-radius:6px;
+cursor:pointer;
+}
+
+.calc-btn:hover{
+background:rgba(255,255,255,.2);
+}
+
+.calc-btn.op{
+color:#00FFFF;
+background:rgba(0,255,255,.05);
+}
+
+.calc-btn.op:hover{
+background:rgba(0,255,255,.2);
+}
+
+#calc-toggle-trigger{
+position:fixed;
+bottom:30px;
+right:30px;
+width:50px;
+height:50px;
+background:#2563EB;
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 4px 15px rgba(37,99,235,.4);
+cursor:pointer;
+z-index:1999;
+font-size:20px;
+}
+
+#calc-toggle-trigger:hover{
+transform:scale(1.08);
+background:#1D4ED8;
+}
 </style>
 
 </head>
@@ -1640,72 +1740,6 @@ function nextQuestion(){
 }
 
 renderQuestion();
-
-/* CALCOLATRICE */
-
-const calcWidget =
-document.getElementById("calc-widget");
-
-const calcTrigger =
-document.getElementById("calc-toggle-trigger");
-
-const calcClose =
-document.getElementById("calc-close-btn");
-
-const calcDisplay =
-document.getElementById("calc-screen");
-
-calcTrigger.onclick = () => {
-    calcWidget.style.display = "block";
-};
-
-calcClose.onclick = () => {
-    calcWidget.style.display = "none";
-};
-
-function pressCalc(val){
-
-    if(
-        calcDisplay.innerText === "0" &&
-        !isNaN(val)
-    ){
-        calcDisplay.innerText = "";
-    }
-
-    if(val === "sq"){
-        calcDisplay.innerText =
-        Math.pow(
-            eval(calcDisplay.innerText),
-            2
-        );
-    }
-    else if(val === "rt"){
-        calcDisplay.innerText =
-        Math.sqrt(
-            eval(calcDisplay.innerText)
-        );
-    }
-    else{
-        calcDisplay.innerText += val;
-    }
-}
-
-function clearCalc(){
-    calcDisplay.innerText = "0";
-}
-
-function calculateCalc(){
-
-    try{
-        calcDisplay.innerText =
-        eval(calcDisplay.innerText);
-    }
-    catch(e){
-        calcDisplay.innerText = "Error";
-    }
-}
-
-/* FINE CALCOLATRICE */
 
 }
 
