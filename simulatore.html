@@ -6,46 +6,12 @@
  <title>AAT Accounting Hub - Interactive Simulator</title>
  <link href="https://googleapis.com" rel="stylesheet">
  <style>
- body {
- background-color: #0B0F19 !important;
- color: #F3F4F6;
- font-family: 'Inter', sans-serif;
- margin: 0;
- padding: 40px 20px;
- box-sizing: border-box;
- display: flex;
- justify-content: center;
- align-items: flex-start;
- min-height: 100vh;
- }
- .container {
- width: 100%;
- max-width: 760px;
- margin: 0 auto;
- }
- .back-home {
- display: inline-block;
- color: #38BDF8;
- text-decoration: none;
- margin-bottom: 20px;
- font-weight: 600;
- font-size: 14px;
- }
+ body { background-color: #0B0F19 !important; color: #F3F4F6; font-family: 'Inter', sans-serif; margin: 0; padding: 40px 20px; box-sizing: border-box; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+ .container { width: 100%; max-width: 760px; margin: 0 auto; }
+ .back-home { display: inline-block; color: #38BDF8; text-decoration: none; margin-bottom: 20px; font-weight: 600; font-size: 14px; }
  .back-home:hover { text-decoration: underline; }
- .simulator-white-bubble {
- background: #FFFFFF !important;
- border-radius: 20px;
- padding: 35px 25px;
- box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
- border: 1px solid #E2E8F0;
- color: #1E293B !important;
- }
- .header-section {
- text-align: center;
- margin-bottom: 30px;
- border-bottom: 1px solid #E2E8F0;
- padding-bottom: 20px;
- }
+ .simulator-white-bubble { background: #FFFFFF !important; border-radius: 20px; padding: 35px 25px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); border: 1px solid #E2E8F0; color: #1E293B !important; }
+ .header-section { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #E2E8F0; padding-bottom: 20px; }
  h1 { color: #0F172A !important; margin: 0 0 8px 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
  .subtitle { font-size: 14px; color: #64748B; margin: 0; }
  .filter-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
@@ -60,7 +26,6 @@
 <div class="container">
  <a href="index.html" class="back-home">&larr; Back to Dashboard</a>
  <div class="simulator-white-bubble">
- 
  <div class="header-section">
  <h1>AAT Interactive Simulator</h1>
  <p class="subtitle">Configure your criteria parameters below to generate a paginated 15-task mock assessment window.</p>
@@ -121,12 +86,10 @@
  const lvlSelector = document.getElementById("level-selector");
  const chapSelector = document.getElementById("chapter-selector");
  if (!lvlSelector || !chapSelector) return;
- 
  const selectedLevel = lvlSelector.value;
  chapSelector.removeAttribute("disabled");
  chapSelector.disabled = false;
  chapSelector.innerHTML = "";
- 
  if (selectedLevel === "RANDOM") {
  let opt = document.createElement("option");
  opt.value = "ALL_RANDOM";
@@ -151,7 +114,6 @@
  const lvlSelector = document.getElementById("level-selector");
  const chapSelector = document.getElementById("chapter-selector");
  if (!lvlSelector || !chapSelector) return;
- 
  let lvl = lvlSelector.value;
  let chap = chapSelector.value;
  if (!lvl || !chap) {
@@ -226,33 +188,15 @@
  <button id="osborne-pdf-trigger" onclick="triggerAutoPDFDownload()" class="osborne-btn" style="display: none; background: #00796B; color: white; border-color: #00796B; box-shadow: 0 4px 12px rgba(0,121,107,0.15);"> Download as PDF</button>
  </div>
  <div id="floatingCalcWidget" class="calc-widget-floating">
- <div class="calc-widget-header" onclick="toggleCalculatorView()">
- <span> AAT Exam Calculator</span> 🧮
- <span id="calcToggleArrow">▲</span>
- </div>
+ <div class="calc-widget-header" onclick="toggleCalculatorView()"><span> AAT Exam Calculator</span> 🧮<span id="calcToggleArrow">▲</span></div>
  <div id="calcWidgetBody" class="calc-widget-body">
  <input type="text" id="calcDisplayScreen" class="calc-display" readonly value="0">
  <div class="calc-btn-grid">
- <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button>
- <button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button>
- <button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button>
- <button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
- <button class="calc-btn" onclick="pushCalcChar('7')">7</button>
- <button class="calc-btn" onclick="pushCalcChar('8')">8</button>
- <button class="calc-btn" onclick="pushCalcChar('9')">9</button>
- <button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
- <button class="calc-btn" onclick="pushCalcChar('4')">4</button>
- <button class="calc-btn" onclick="pushCalcChar('5')">5</button>
- <button class="calc-btn" onclick="pushCalcChar('6')">6</button>
- <button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
- <button class="calc-btn" onclick="pushCalcChar('1')">1</button>
- <button class="calc-btn" onclick="pushCalcChar('2')">2</button>
- <button class="calc-btn" onclick="pushCalcChar('3')">3</button>
- <button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
- <button class="calc-btn" onclick="pushCalcChar('0')">0</button>
- <button class="calc-btn" onclick="pushCalcChar('.')">.</button>
- <button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button>
- <button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
+ <button class="calc-btn btn-sci" onclick="pushCalcFunction('sqrt')">√</button><button class="calc-btn btn-sci" onclick="pushCalcFunction('pow')">x²</button><button class="calc-btn btn-sci" onclick="pushCalcFunction('percent')">%</button><button class="calc-btn btn-sci" onclick="clearCalcScreen()">C</button>
+ <button class="calc-btn" onclick="pushCalcChar('7')">7</button><button class="calc-btn" onclick="pushCalcChar('8')">8</button><button class="calc-btn" onclick="pushCalcChar('9')">9</button><button class="calc-btn btn-op" onclick="pushCalcChar('/')">/</button>
+ <button class="calc-btn" onclick="pushCalcChar('4')">4</button><button class="calc-btn" onclick="pushCalcChar('5')">5</button><button class="calc-btn" onclick="pushCalcChar('6')">6</button><button class="calc-btn btn-op" onclick="pushCalcChar('*')">*</button>
+ <button class="calc-btn" onclick="pushCalcChar('1')">1</button><button class="calc-btn" onclick="pushCalcChar('2')">2</button><button class="calc-btn" onclick="pushCalcChar('3')">3</button><button class="calc-btn btn-op" onclick="pushCalcChar('-')">-</button>
+ <button class="calc-btn" onclick="pushCalcChar('0')">0</button><button class="calc-btn" onclick="pushCalcChar('.')">.</button><button class="calc-btn btn-equals" onclick="executeCalcExpression()">=</button><button class="calc-btn btn-op" onclick="pushCalcChar('+')">+</button>
  </div>
  </div>
  </div>
@@ -275,8 +219,8 @@
  { text: "Compute the standard variance indicators for production yields.", correct: "B", diff: " Difficulty: Professional Level" },
  { text: "Under the DEAD CLIC framework, which nominal accounts have balances placed in the Credit column of a Trial Balance?", correct: "A", diff: " Difficulty: 🔴 Professional Level" },
  { text: "A Trial Balance has a Debit total of £24,650 and a Credit total of £24,200. Calculate the temporary Suspense Account opening balance (£).", correct: "B", diff: " Difficulty: Intermediate" },
- { text: "If an office stationery invoice for £150 is debited to the Machinery Asset account, what category of error is formed?", correct: "C", diff: "🟢 Difficulty: Entry Level" },
- { text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "A", diff: " Difficulty: Intermediate" }
+ { text: "If an office stationery invoice for £150 is debited to the Machinery Asset account, what category of error is formed?", correct: "A", diff: "🟢 Difficulty: Entry Level" },
+ { text: "A business carries a bank overdraft at month-end. In which Trial Balance column must this balance b/d be extracted?", correct: "B", diff: " Difficulty: Intermediate" }
  ];
  const optionTexts = [
  { a: "Adjust Sales Ledger Control Account parameters through prime journals", b: "Account for the discrepancy directly through Suspense Control procedures", c: "Issue a formal credit note to match outstanding balances" },
@@ -294,10 +238,10 @@
  { a: "Report ethical breaches under the official IESBA public interest framework", b: "Incorporate strict internal corporate governance compliance committees", c: "Execute disclosure notes additions to safeguard audit independence" },
  { a: "Eliminate internal unrealised profits from closing consolidated stocks", b: "Adjust minority interest coefficients within the Group statement", c: "Consolidate subsidiary ledger provisions using pro-rata rules" },
  { a: "Compute standard yield variances across active material parameters", b: "Isolate total material price variances from operational usage data", c: "Revise budgeted output targets following unexpected machine failures" },
- { a: "Liabilities, Income (Sales), and Capital Base", b: "Expenses, Assets, and Drawings", c: "Assets, Capital, and Revenue accounts" },
- { a: "£450 Debit Balance", b: "£450 Credit Balance", c: "£48,850 Balance" },
- { a: "Error of Commission", b: "Error of Omission", c: "Error of Principle" },
- { a: "The Credit column, because a bank overdraft represents an active Current Liability", b: "The Debit column, because all balances with bank institutions are assets", c: "Suspense Account Balance" }
+ { a: "Liabilities, Income (Sales), and Capital Base", b: "Assets, Expenses, and Drawings Accounts", c: "Sales Revenue, Purchases Ledger, and Suspense Accounts" },
+ { a: "£24,650 Opening Credit Entry", b: "£450 Opening Credit Balance in Suspense Account", c: "£200 Debit Reconciliation Entry" },
+ { a: "Error of Principle", b: "Error of Omission", c: "Compensating Ledger Balancing Error" },
+ { a: "The Debit column, matching raw cash assets", b: "The Credit column, because a bank overdraft represents an active Current Liability", c: "The Suspense Statement sheet exclusively" }
  ];
  let currentActiveIndex = 0;
  const root = document.getElementById("questions-root-wrapper");
@@ -312,79 +256,10 @@
  </div>
  <div class="question-title">Assessment Task \${num}</div>
  <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">\${q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true">
- <span class="option-text-left">\${opts.a}</span>
- <div class="option-right-inputs">
- <div class="feedback-marker" id="mark_\${idx}_A"></div>
- <input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;">
- </div>
- </div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true">
- <span class="option-text-left">\${opts.b}</span>
- <div class="option-right-inputs">
- <div class="feedback-marker" id="mark_\${idx}_B"></div>
- <input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;">
- </div>
- </div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked = true">
- <span class="option-text-left">\${opts.c}</span>
- <div class="option-right-inputs">
- <div class="feedback-marker" id="mark_\${idx}_C"></div>
- <input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;">
- </div>
- </div>
- </div>
- `;
- });
-
- function changeQuestion(step) {
- const target = currentActiveIndex + step;
- if (target >= 0 && target < 15) {
- document.getElementById("card_task_" + currentActiveIndex).classList.remove("active");
- currentActiveIndex = target;
- document.getElementById("card_task_" + currentActiveIndex).classList.add("active");
- }
- const pdfBtn = document.getElementById("osborne-pdf-trigger");
- if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
- }
- let currentActiveIndex = 0;
- const root = document.getElementById("questions-root-wrapper");
- scenarios.forEach((q, idx) => {
- const num = idx + 1;
- const opts = optionTexts[idx % optionTexts.length];
- root.innerHTML += `
- <div class="test-card-container ${idx === 0 ? 'active' : ''}" id="card_task_${idx}" data-correct="${q.correct}">
- <div class="header-area">
- <span class="level-tag">${badgeText} • Q${num} of 15</span>
- <span class="difficulty-tag">${q.diff}</span>
- </div>
- <div class="question-title">Assessment Task ${num}</div>
- <p style="font-size: 14.5px; color: #1E293B; margin-bottom: 20px; line-height: 1.5; font-weight: 500;">
- ${q.text}
- </p>
- <div class="option-row" onclick="document.getElementById('opt_${idx}_A').checked = true">
- <span class="option-text-left">${opts.a}</span>
- <div class="option-right-inputs">
- <div class="feedback-marker" id="mark_${idx}_A"></div>
- <input type="radio" name="ans_${idx}" id="opt_${idx}_A" value="A" style="cursor:pointer;">
- </div>
- </div>
- <div class="option-row" onclick="document.getElementById('opt_${idx}_B').checked = true">
- <span class="option-text-left">${opts.b}</span>
- <div class="option-right-inputs">
- <div class="feedback-marker" id="mark_${idx}_B"></div>
- <input type="radio" name="ans_${idx}" id="opt_${idx}_B" value="B" style="cursor:pointer;">
- </div>
- </div>
- <div class="option-row" onclick="document.getElementById('opt_${idx}_C').checked = true">
- <span class="option-text-left">${opts.c}</span>
- <div class="option-right-inputs">
- <div class="feedback-marker" id="mark_${idx}_C"></div>
- <input type="radio" name="ans_${idx}" id="opt_${idx}_C" value="C" style="cursor:pointer;">
- </div>
- </div>
- </div>
- `;
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked = true"><span class="option-text-left">\Token_A_Text\${opts.a}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_\${idx}_A"></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked = true"><span class="option-text-left">\Token_B_Text\${opts.b}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_\${idx}_B"></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked = true"><span class="option-text-left">\Token_C_Text\${opts.c}</span><div class="option-right-inputs"><div class="feedback-marker" id="mark_\${idx}_C"></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div></div>
+ </div>\`;
  });
  function changeQuestion(step) {
  const target = currentActiveIndex + step;
@@ -396,7 +271,6 @@
  const pdfBtn = document.getElementById("osborne-pdf-trigger");
  if (pdfBtn) pdfBtn.style.display = (currentActiveIndex === 14) ? "block" : "none";
  }
-
  function triggerAutoPDFDownload() {
  const originalTitle = document.title;
  document.title = "AAT_Official_Exam_Worksheet";
@@ -414,7 +288,6 @@
  if (targetRow) targetRow.classList.add("reveal-correct");
  }
  }
-
  function verifyCurrentInline() {
  const activeCard = document.getElementById("card_task_" + currentActiveIndex);
  const correctVal = activeCard.getAttribute("data-correct");
@@ -449,7 +322,6 @@
  document.getElementById("opt_" + currentActiveIndex + "_B").checked = false;
  document.getElementById("opt_" + currentActiveIndex + "_C").checked = false;
  }
-
  let isCalcBodyExpanded = false;
  let calcCurrentExpressionString = "";
  function toggleCalculatorView() {
