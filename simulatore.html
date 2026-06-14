@@ -33,9 +33,18 @@ a:hover{
 }
 
 .back-link{
-    align-self:flex-start;
-    margin-bottom:30px;
-    font-size:.95rem;
+
+    display:inline-block;
+
+    margin-bottom:20px;
+
+    color:#38BDF8;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
 }
 
 .simulator-container{
@@ -176,11 +185,13 @@ a:hover{
 
 <body>
 
-<a href="javascript:history.back();" class="back-link">
+<div class="simulator-container">
+
+    <a 
+        href="javascript:history.back();" 
+        class="back-link">
 ← Back to Dashboard
 </a>
-
-<div class="simulator-container">
 
     <h1>AAT Interactive Simulator</h1>
 
