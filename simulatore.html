@@ -149,15 +149,14 @@
  .osborne-footer-grid { display: flex; gap: 10px; width: 100%; margin-top: 24px; padding-top: 18px; border-top: 1px solid #E2E8F0; justify-content: space-between; }
  .left-btns, .right-btns { display: flex; gap: 8px; }
  .osborne-btn { border: none; border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; color: white; outline: none; }
- .btn-verify { background: #1D4ED8; } .btn-verify:hover { background: #1E40AF; }
- .btn-solution { background: #047857; } .btn-solution:hover { background: #065F46; }
- .btn-reset { background: #B91C1C; } .btn-reset:hover { background: #991B1B; }
- .btn-nav { background: #334155; } .btn-nav:hover { background: #1E293B; }
+ .btn-verify { background: #2563EB; } .btn-verify:hover { background: #1D4ED8; }
+ .btn-solution { background: #059669; } .btn-solution:hover { background: #047857; }
+ .btn-reset { background: #DC2626; } .btn-reset:hover { background: #B91C1C; }
+ .btn-nav { background: #475569; } .btn-nav:hover { background: #334155; }
  .btn-pdf { background: #7C3AED; } .btn-pdf:hover { background: #6D28D9; }
  .calc-icon-trigger { position: fixed; bottom: 20px; right: 20px; width: 52px; height: 52px; z-index: 9999; background: #0F172A; border: 2px solid #00f2fe; border-radius: 50%; box-shadow: 0 0 15px #00f2fe; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; user-select: none; }
  .calc-widget-floating { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 9999; background: rgba(16, 24, 48, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.5); border-radius: 10px; box-shadow: 0 0 25px rgba(0, 242, 254, 0.6); overflow: hidden; display: none; transition: transform 0.3s ease; }
  .calc-widget-header { background: rgba(0, 242, 254, 0.15); padding: 0.8rem 1rem; font-weight: 600; font-size: 0.9rem; color: #00f2fe; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 254, 0.15); user-select: none; }
- .calc-widget-body { padding: 1rem; }
  .calc-display { width: 100%; padding: 0.6rem; background: #070b14; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; color: #00f2fe; font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; text-align: right; margin-bottom: 1rem; box-sizing: border-box; }
  .calc-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
  .calc-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; padding: 0.6rem; color: #f8fafc; font-size: 1rem; font-weight: 600; cursor: pointer; }
@@ -217,13 +216,13 @@
  scenarios.forEach((q, idx) => {
  const num = idx + 1; const opts = optionTexts[idx % optionTexts.length];
  root.innerHTML += \`
- <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\text{\${q.correct}}">
- <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\u0024{q.diff}</span></div>
+ <div class="test-card-container \${idx === 0 ? 'active' : ''}" id="card_task_\${idx}" data-correct="\${q.correct}">
+ <div class="header-area"><span class="level-tag">${badgeText} • Q\${num} of 15</span><span class="difficulty-tag">\${q.diff}</span></div>
  <div class="question-title">Assessment Task \${num}</div>
- <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\u0024{q.text}</p>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\u0024{opts.a}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\u0024{opts.b}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
- <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\u0024{opts.c}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
+ <p style="font-size: 14.5px; color:#1E293B; margin-bottom:20px; font-weight:500; line-height:1.5;">\${q.text}</p>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_A').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_A"></div><span class="option-text-left">\text{\${opts.a}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_A" value="A" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_B').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_B"></div><span class="option-text-left">\text{\${opts.b}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_B" value="B" style="cursor:pointer;"></div>
+ <div class="option-row" onclick="document.getElementById('opt_\${idx}_C').checked=true"><div style="display:flex; align-items:center;"><div class="feedback-marker" id="mark_\${idx}_C"></div><span class="option-text-left">\text{\${opts.c}}</span></div><input type="radio" name="ans_\${idx}" id="opt_\${idx}_C" value="C" style="cursor:pointer;"></div>
  <div class="osborne-footer-grid">
      <div class="left-btns">
          <button onclick="verifyCurrentInline()" class="osborne-btn btn-verify">Am I right?</button>
