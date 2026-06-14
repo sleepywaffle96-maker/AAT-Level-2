@@ -1286,6 +1286,20 @@ body{
     background:#6D28D9;
 }
 
+/* 9. Widget Calcolatrice Vetrificata */
+#calc-widget { ... }
+#calc-header { ... }
+#calc-header span { ... }
+#calc-close-btn { ... }
+#calc-screen { ... }
+.calc-grid { ... }
+.calc-btn { ... }
+.calc-btn:hover { ... }
+.calc-btn.op { ... }
+.calc-btn.op:hover { ... }
+
+#calc-toggle-trigger { ... }
+#calc-toggle-trigger:hover { ... }
 </style>
 
 </head>
@@ -1293,6 +1307,59 @@ body{
 <body>
 
 <div id="quiz-root"></div>
+<body>
+
+<div id="quiz-root"></div>
+
+<!-- TRIGGER CIRCOLARE CALCOLATRICE -->
+<div id="calc-toggle-trigger" title="Open Calculator">🧮</div>
+
+<!-- WIDGET CALCOLATRICE -->
+<div id="calc-widget">
+
+    <div id="calc-header">
+        <span>Osborne Calc</span>
+        <button id="calc-close-btn">✕</button>
+    </div>
+
+    <div id="calc-screen">0</div>
+
+    <div class="calc-grid">
+
+       <button class="calc-btn op" onclick="clearCalc()">C</button>
+<button class="calc-btn op" onclick="pressCalc('sq')">x²</button>
+<button class="calc-btn op" onclick="pressCalc('rt')">√</button>
+<button class="calc-btn op" onclick="pressCalc('/')">/</button>
+
+<button class="calc-btn" onclick="pressCalc('7')">7</button>
+<button class="calc-btn" onclick="pressCalc('8')">8</button>
+<button class="calc-btn" onclick="pressCalc('9')">9</button>
+<button class="calc-btn op" onclick="pressCalc('*')">*</button>
+
+<button class="calc-btn" onclick="pressCalc('4')">4</button>
+<button class="calc-btn" onclick="pressCalc('5')">5</button>
+<button class="calc-btn" onclick="pressCalc('6')">6</button>
+<button class="calc-btn op" onclick="pressCalc('-')">-</button>
+
+<button class="calc-btn" onclick="pressCalc('1')">1</button>
+<button class="calc-btn" onclick="pressCalc('2')">2</button>
+<button class="calc-btn" onclick="pressCalc('3')">3</button>
+<button class="calc-btn op" onclick="pressCalc('+')">+</button>
+
+<button class="calc-btn" onclick="pressCalc('0')">0</button>
+<button class="calc-btn" onclick="pressCalc('.')">.</button>
+<button class="calc-btn op" onclick="pressCalc('%')">%</button>
+
+<button
+class="calc-btn op"
+style="background:#059669;color:white;"
+onclick="calculateCalc()">
+=
+</button>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -1573,6 +1640,74 @@ function nextQuestion(){
 }
 
 renderQuestion();
+
+/* CALCOLATRICE */
+
+const calcWidget =
+document.getElementById("calc-widget");
+
+const calcTrigger =
+document.getElementById("calc-toggle-trigger");
+
+const calcClose =
+document.getElementById("calc-close-btn");
+
+const calcDisplay =
+document.getElementById("calc-screen");
+
+calcTrigger.onclick = () => {
+    calcWidget.style.display = "block";
+};
+
+calcClose.onclick = () => {
+    calcWidget.style.display = "none";
+};
+
+function pressCalc(val){
+
+    if(
+        calcDisplay.innerText === "0" &&
+        !isNaN(val)
+    ){
+        calcDisplay.innerText = "";
+    }
+
+    if(val === "sq"){
+        calcDisplay.innerText =
+        Math.pow(
+            eval(calcDisplay.innerText),
+            2
+        );
+    }
+    else if(val === "rt"){
+        calcDisplay.innerText =
+        Math.sqrt(
+            eval(calcDisplay.innerText)
+        );
+    }
+    else{
+        calcDisplay.innerText += val;
+    }
+}
+
+function clearCalc(){
+    calcDisplay.innerText = "0";
+}
+
+function calculateCalc(){
+
+    try{
+        calcDisplay.innerText =
+        eval(calcDisplay.innerText);
+    }
+    catch(e){
+        calcDisplay.innerText = "Error";
+    }
+}
+
+/* FINE CALCOLATRICE */
+
+}
 
 <\/script>
 
