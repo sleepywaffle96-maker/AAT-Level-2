@@ -154,21 +154,21 @@ a:hover{
                 Select Qualification Level...
             </option>
 
-            <option value="L2">
-                Level 2 – Foundation
-            </option>
+           <option value="random">
+🎲 Randomize All Levels - Mixed Scenario
+</option>
 
-            <option value="L3">
-                Level 3 – Advanced
-            </option>
+<option value="L2">
+📊 AAT Level 2 Certificate
+</option>
 
-            <option value="L4">
-                Level 4 – Professional
-            </option>
+<option value="L3">
+🔷 AAT Level 3 Diploma
+</option>
 
-            <option value="random">
-                Random (Mixed Levels)
-            </option>
+<option value="L4">
+🔶 AAT Level 4 Diploma
+</option>
         </select>
     </div>
 
@@ -957,7 +957,6 @@ function createExamQuestions(){
 /* ------------------------
    POPUP TEST WINDOW
 ------------------------ */
-
 function launchPaginatedTestWindow(){
 
     const level =
@@ -981,61 +980,141 @@ function launchPaginatedTestWindow(){
         window.open(
             "",
             "_blank",
-            "width=1200,height=850"
+            "width=1400,height=900"
         );
 
     testWindow.document.write(`
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<title>AAT Assessment</title>
+
+<title>
+AAT Interactive Assessment
+</title>
 
 <style>
 
-body{
+*{
     margin:0;
-    padding:40px;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
     background:#0B0F19;
-    font-family:Segoe UI,sans-serif;
+
+    font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+    min-height:100vh;
+
+    padding:60px;
+
+    color:#0F172A;
+}
+
+#quiz-root{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
 }
 
 .test-card-container{
 
-    background:white;
+    width:100%;
 
-    max-width:900px;
+    max-width:980px;
 
-    margin:auto;
+    background:#FFFFFF;
 
-    border-radius:18px;
+    border-radius:14px;
 
-    padding:40px;
+    padding:34px;
 
     box-shadow:
-    0 10px 40px rgba(0,0,0,.25);
-
-    min-height:500px;
+    0 12px 40px
+    rgba(0,0,0,.35);
 }
 
-.question-counter{
+.exam-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+    padding-bottom:14px;
+
+    border-bottom:
+    1px solid #E2E8F0;
+}
+
+.exam-title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+    text-transform:uppercase;
+
+    letter-spacing:.02em;
+}
+
+.question-badge{
+
+    background:#F1F5F9;
 
     color:#64748B;
 
-    font-weight:600;
+    padding:8px 14px;
 
-    margin-bottom:20px;
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
 }
 
 .question-title{
 
-    color:#0F172A;
+    font-size:20px;
 
-    font-size:1.2rem;
+    font-weight:600;
+
+    color:#0F172A;
 
     line-height:1.7;
 
-    margin-bottom:30px;
+    margin-bottom:24px;
+}
+
+.scenario-box{
+
+    background:#F8FAFC;
+
+    border:1px solid #E2E8F0;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    margin-bottom:24px;
 }
 
 .option-row{
@@ -1050,53 +1129,78 @@ body{
 
     border-radius:8px;
 
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .option-row:hover{
 
-    background:#F1F5F9;
+    background:#F8FAFC;
 }
 
 .feedback-marker{
 
     font-weight:700;
 
-    margin-left:10px;
+    margin-left:auto;
+
+    font-size:18px;
 }
 
 .reveal-correct{
 
     background:#DCFCE7;
 
-    border:2px solid #16A34A;
+    border:
+    2px solid #16A34A;
 }
 
-.action-buttons{
+.footer-bar{
 
-    margin-top:30px;
+    margin-top:28px;
+
+    padding-top:20px;
+
+    border-top:
+    1px solid #E2E8F0;
 
     display:flex;
 
+    justify-content:space-between;
+
+    align-items:center;
+
     flex-wrap:wrap;
 
-    gap:10px;
+    gap:12px;
 }
 
-.action-buttons button{
+.left-actions,
+.right-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.footer-bar button{
 
     border:none;
 
     color:white;
 
-    padding:12px 16px;
-
-    border-radius:8px;
-
     cursor:pointer;
 
     font-weight:600;
+
+    font-size:13px;
+
+    padding:10px 16px;
+
+    border-radius:6px;
 }
+
 .btn-check{
     background:#1D4ED8;
 }
@@ -1118,6 +1222,7 @@ body{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -1131,93 +1236,159 @@ ${JSON.stringify(examQuestions)};
 
 let currentQuestion = 0;
 
+
 function renderQuestion(){
 
     const q =
     questions[currentQuestion];
 
-    let optionsHTML = "";
-
-    q.options.forEach((option,index)=>{
-
-        optionsHTML +=
-        '<div class="option-row">' +
-        '<input type="radio" ' +
-        'name="answer" ' +
-        'value="'+index+'">' +
-
-        '<span>'+option+'</span>' +
-
-        '<span class="feedback-marker" ' +
-        'id="marker-'+index+'"></span>' +
-
-        '</div>';
-    });
-
     const lastQuestion =
     currentQuestion ===
     questions.length - 1;
 
-    document.getElementById(
+    let optionsHTML = "";
+
+    q.options.forEach(
+        (option,index)=>{
+
+        optionsHTML +=
+
+        '<div class="option-row">' +
+
+        '<input ' +
+        'type="radio" ' +
+        'name="answer" ' +
+        'value="'+index+'">' +
+
+        '<span>' +
+        option +
+        '</span>' +
+
+        '<span ' +
+        'class="feedback-marker" ' +
+        'id="marker-'+index+'">' +
+        '</span>' +
+
+        '</div>';
+    });
+
+    document
+    .getElementById(
         "quiz-root"
     ).innerHTML =
 
     '<div class="test-card-container">' +
 
-    '<div class="question-counter">' +
-    'Task ' +
-    (currentQuestion+1) +
-    ' of ' +
-    questions.length +
-    '</div>' +
+        '<div class="exam-header">' +
 
-    '<div class="question-title">' +
-    q.question +
-    '</div>' +
+            '<div class="exam-title">' +
 
-    optionsHTML +
+            'AAT Interactive Assessment Simulator' +
 
-    '<div class="action-buttons">' +
+            '</div>' +
 
-    '<button class="btn-check" ' +
-    'onclick="checkAnswer()">' +
-    'Am I Right?' +
-    '</button>' +
+            '<div class="question-badge">' +
 
-    '<button class="btn-solution" ' +
-    'onclick="showSolution()">' +
-    'Show Solution' +
-    '</button>' +
+            'Question ' +
 
-    '<button class="btn-reset" ' +
-    'onclick="resetQuestion()">' +
-    'Reset' +
-    '</button>' +
+            (currentQuestion + 1) +
 
-    '<button class="btn-nav" ' +
-    'onclick="previousQuestion()">' +
-    'Previous Question' +
-    '</button>' +
+            ' of ' +
 
-    (
-        lastQuestion
-        ?
-        '<button class="btn-pdf" onclick="window.print()">' +
-        'Download as PDF' +
-        '</button>'
-        :
-        '<button class="btn-nav" onclick="nextQuestion()">' +
-        'Next Question' +
-        '</button>'
-    ) +
+            questions.length +
 
-    '</div>' +
+            '</div>' +
+
+        '</div>' +
+
+        '<div class="question-title">' +
+
+        q.question +
+
+        '</div>' +
+
+        '<div class="scenario-box">' +
+
+        optionsHTML +
+
+        '</div>' +
+
+        '<div class="footer-bar">' +
+
+            '<div class="left-actions">' +
+
+                '<button ' +
+                'class="btn-check" ' +
+                'onclick="checkAnswer()">' +
+
+                'Am I Right?' +
+
+                '</button>' +
+
+                '<button ' +
+                'class="btn-solution" ' +
+                'onclick="showSolution()">' +
+
+                'Show Solution' +
+
+                '</button>' +
+
+                '<button ' +
+                'class="btn-reset" ' +
+                'onclick="resetQuestion()">' +
+
+                'Reset' +
+
+                '</button>' +
+
+            '</div>' +
+
+            '<div class="right-actions">' +
+
+                '<button ' +
+                'class="btn-nav" ' +
+                'onclick="previousQuestion()">' +
+
+                'Previous Question' +
+
+                '</button>' +
+
+                (
+
+                    lastQuestion
+
+                    ?
+
+                    '<button ' +
+                    'class="btn-pdf" ' +
+                    'onclick="window.print()">' +
+
+                    'Download as PDF' +
+
+                    '</button>'
+
+                    :
+
+                    '<button ' +
+                    'class="btn-nav" ' +
+                    'onclick="nextQuestion()">' +
+
+                    'Next Question' +
+
+                    '</button>'
+                ) +
+
+            '</div>' +
+
+        '</div>' +
 
     '</div>';
 }
+
 function checkAnswer(){
 
     const selected =
+
     document.querySelector(
         'input[name="answer"]:checked'
     );
@@ -1234,28 +1405,37 @@ function checkAnswer(){
     .correct;
 
     const marker =
+
     document.getElementById(
         "marker-" + chosen
     );
 
     marker.textContent =
+
     chosen === correct
+
     ? "✔"
+
     : "❌";
 
     marker.style.color =
+
     chosen === correct
+
     ? "#16A34A"
+
     : "#DC2626";
 }
 
 function showSolution(){
 
     const correct =
+
     questions[currentQuestion]
     .correct;
 
     const rows =
+
     document.querySelectorAll(
         ".option-row"
     );
@@ -1269,26 +1449,35 @@ function showSolution(){
 function resetQuestion(){
 
     document
+
     .querySelectorAll(
         'input[name="answer"]'
     )
+
     .forEach(el=>{
+
         el.checked = false;
     });
 
     document
+
     .querySelectorAll(
         ".feedback-marker"
     )
+
     .forEach(el=>{
+
         el.textContent = "";
     });
 
     document
+
     .querySelectorAll(
         ".option-row"
     )
+
     .forEach(el=>{
+
         el.classList.remove(
             "reveal-correct"
         );
@@ -1319,13 +1508,213 @@ function nextQuestion(){
 }
 
 renderQuestion();
+
+/* ------------------------
+   OSBORNE CALC
+------------------------ */
+
+document.body.insertAdjacentHTML(
+"beforeend",
+`
+
+<div
+id="calc-launcher"
+
+style="
+position:fixed;
+right:25px;
+bottom:25px;
+width:72px;
+height:72px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+cursor:pointer;
+background:#0F172A;
+box-shadow:0 0 15px #00f2fe;
+z-index:99999;
+"
+
+onclick="openCalculator()"
+>
+
+🧮
+
+</div>
+
+<div
+
+id="calc-widget"
+
+style="
+display:none;
+position:fixed;
+right:25px;
+bottom:25px;
+width:330px;
+padding:18px;
+border-radius:18px;
+background:rgba(16,24,48,.85);
+backdrop-filter:blur(16px);
+border:1px solid rgba(0,242,254,.5);
+box-shadow:0 0 25px rgba(0,242,254,.6);
+z-index:99999;
+"
+
+>
+
+<input
+
+id="calc-screen"
+
+readonly
+
+style="
+width:100%;
+height:64px;
+background:#000;
+color:#00f2fe;
+border:none;
+border-radius:10px;
+padding:12px;
+font-size:24px;
+font-weight:700;
+text-align:right;
+margin-bottom:12px;
+"
+
+>
+
+<div
+
+style="
+display:grid;
+grid-template-columns:
+repeat(4,1fr);
+gap:8px;
+"
+
+>
+
+<button onclick="clearCalcScreen()">C</button>
+<button onclick="pushCalcChar('**2')">x²</button>
+<button onclick="pushCalcChar('Math.sqrt(')">√</button>
+<button onclick="pushCalcChar('/')">/</button>
+
+<button onclick="pushCalcChar('7')">7</button>
+<button onclick="pushCalcChar('8')">8</button>
+<button onclick="pushCalcChar('9')">9</button>
+<button onclick="pushCalcChar('*')">×</button>
+
+<button onclick="pushCalcChar('4')">4</button>
+<button onclick="pushCalcChar('5')">5</button>
+<button onclick="pushCalcChar('6')">6</button>
+<button onclick="pushCalcChar('-')">−</button>
+
+<button onclick="pushCalcChar('1')">1</button>
+<button onclick="pushCalcChar('2')">2</button>
+<button onclick="pushCalcChar('3')">3</button>
+<button onclick="pushCalcChar('+')">+</button>
+
+<button onclick="pushCalcChar('%')">%</button>
+<button onclick="pushCalcChar('0')">0</button>
+<button onclick="pushCalcChar('.')">.</button>
+<button onclick="executeCalcExpression()">=</button>
+
+</div>
+
+</div>
+
+`
+);
+
+document
+.querySelectorAll(
+"#calc-widget button"
+)
+.forEach(btn=>{
+
+    btn.style.height = "48px";
+    btn.style.border = "none";
+    btn.style.borderRadius = "8px";
+    btn.style.cursor = "pointer";
+    btn.style.fontWeight = "700";
+    btn.style.background = "#0F172A";
+    btn.style.color = "#00f2fe";
+    btn.style.boxShadow =
+    "0 0 8px rgba(0,242,254,.35)";
+});
+
+function openCalculator(){
+
+    document.getElementById(
+        "calc-launcher"
+    ).style.display = "none";
+
+    document.getElementById(
+        "calc-widget"
+    ).style.display = "block";
+}
+
+function pushCalcChar(value){
+
+    const screen =
+    document.getElementById(
+        "calc-screen"
+    );
+
+    screen.value += value;
+}
+
+function clearCalcScreen(){
+
+    document.getElementById(
+        "calc-screen"
+    ).value = "";
+}
+
+function executeCalcExpression(){
+
+    const screen =
+    document.getElementById(
+        "calc-screen"
+    );
+
+    try{
+
+        let expression =
+        screen.value;
+
+        expression =
+        expression.replace(
+            /(\d+)%/g,
+            "($1/100)"
+        );
+
+        screen.value =
+        new Function(
+            "return (" +
+            expression +
+            ")"
+        )();
+
+    }catch(error){
+
+        screen.value = "Error";
+    }
+}
+
 <\/script>
 
 </body>
 </html>
+
 `);
 
-    testWindow.document.close();
+testWindow.document.close();
+
 }
 </script>
 </body>
